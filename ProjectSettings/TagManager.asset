@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Fire
+  - missile
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Obstacles
+  - Blocked
+  - Player
+  - Bullet
+  - Enemy
+  - GoBack
+  - WIN
+  - Node
+  - Barrel
+  - NavTerrein
+  - Obstacles2
+  - Bones
+  - CheckPoint
+  - CameraNoCollision
+  - Grass And Plants
+  - Missile
+  - NEXT LEVEL
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Key
+  - CombatTrigger
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
