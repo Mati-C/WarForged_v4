@@ -20,9 +20,11 @@ public class AnimationTimeLineScenes : MonoBehaviour
 
     private void Start()
     {
-       // CutScene01_ROCKS = RocksAnim.GetComponent<Animator>();
+        // CutScene01_ROCKS = RocksAnim.GetComponent<Animator>();
 
-       // cinema = GetComponent<CinematicActivator>();
+        // cinema = GetComponent<CinematicActivator>();
+        cinema.DirtParticle.Stop();
+    
     }
 
     public IEnumerator CutSceneRocks()
@@ -31,12 +33,11 @@ public class AnimationTimeLineScenes : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (CutScene01_ROCKS)
         {
-
-            if (cinema.RockIsActivate == true)
-            {
-                print("Rocks");
-            }
             CutScene01_ROCKS.SetBool("RockActivate", cinema.RockIsActivate);
+            cinema.DirtParticle.Play();
+
+            yield return new WaitForSeconds(0.8f);
+            cinema.DirtParticle.Stop();
         }
     }
     public IEnumerator CutSceneLever()

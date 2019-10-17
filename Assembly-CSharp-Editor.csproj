@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5DBB0C5F-FB51-95EB-8572-E66DB0FE37C9}</ProjectGuid>
+    <ProjectGuid>{C19440D9-8D3C-5EAE-B53A-D69178162829}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -537,73 +537,73 @@
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
     <Compile Include="Assets\Ultimate Game Tools\ConcaveCollider\Editor\ConcaveColliderEditor.cs" />
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -791,35 +791,32 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>G:/Da Vinci/Seminario/Warforged_2019/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -1178,23 +1175,23 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{AA053439-E80B-A87A-C6F7-29DF974E9A12}</Project>
+      <Project>{B62CF6BF-ED95-C90F-EC4D-004DF5814BF7}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{3FCB4062-DF98-F147-C324-BD2C25029AE8}</Project>
+      <Project>{D2E67523-11AB-E168-5839-AE9BD8A15ABD}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{8AD85AC6-060B-16F8-00A2-6CB49350CB77}</Project>
+      <Project>{09C1771B-06EB-0EB3-8C67-01E71CB2D9AD}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="RadicalForge.Blockout.Editor.csproj">
-      <Project>{231ABF74-6F02-8716-BF85-1648D7C895B4}</Project>
+      <Project>{17ADFA02-2FCF-FEF7-F28B-FBE082BCF11C}</Project>
       <Name>RadicalForge.Blockout.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="RadicalForge.Blockout.csproj">
-      <Project>{E0ED0171-6C79-F1F2-DDA0-3FA577E1737B}</Project>
+      <Project>{84873CD8-8729-0B11-628B-9E6F166A03BA}</Project>
       <Name>RadicalForge.Blockout</Name>
     </ProjectReference>
   </ItemGroup>

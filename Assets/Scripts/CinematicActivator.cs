@@ -12,6 +12,7 @@ public class CinematicActivator : MonoBehaviour
     public GameObject ph;
     public GameObject lever;
     public Animator leverAnimator;
+    public ParticleSystem DirtParticle;
 
     Model player;
 
