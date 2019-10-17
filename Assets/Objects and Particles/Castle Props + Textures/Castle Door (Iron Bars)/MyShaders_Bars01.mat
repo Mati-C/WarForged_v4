@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MyShaders_Bars01
+  m_Shader: {fileID: 4800000, guid: d7a5f9c75b291a04ab3d2c75aaa501e5, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Barsv2:
+        m_Texture: {fileID: 2800000, guid: a215cf017f5c66842997b2feba728ee9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CastleDoorIronBars_02Default_AO:
+        m_Texture: {fileID: 2800000, guid: 513d4885deaee3a40b5f3d0c8965f4a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CastleDoorIronBars_02Default_MetallicSmth:
+        m_Texture: {fileID: 2800000, guid: 284c9eb93e70d5049bbba11f963114df, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CastleDoorIronBars_02Default_Normal:
+        m_Texture: {fileID: 2800000, guid: 5635f4b5efc68ad44bf72eb935a30607, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0.5
+    - _Cuttingperfection: -611.32
+    - _OpacityCutout: 10
+    - _Position: 67053.7
+    - _Smoothness: 0.1
+    - __dirty: 0
+    m_Colors: []

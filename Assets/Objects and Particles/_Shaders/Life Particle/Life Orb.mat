@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Life Orb
+  m_Shader: {fileID: 4800000, guid: c7d6f2925caa8554b937cbb3e4071aa9, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - _Float0: 1.02
+    - _Float1: 3.39
+    - _Float2: -1.63
+    - _Float3: 1.02
+    - _Float4: 3.39
+    - _Float5: -0.52
+    - _FresnelBias: -0.08
+    - _FresnelBias1: -0.08
+    - _FresnelBias2: -0.86
+    - _FresnelBias3: -0.52
+    - _FresnelPower: 1.02
+    - _FresnelPower1: 1.02
+    - _FresnelPower2: 1.36
+    - _FresnelPower3: 1.02
+    - _FresnelScale: 3.39
+    - _FresnelScale1: 3.39
+    - _FresnelScale2: 3.39
+    - _FresnelScale3: 3.39
+    - _MaxOpacity: 0.5
+    - _RingIntensity: 0.4
+    - _Saturation: 0.5
+    - __dirty: 0
+    m_Colors:
+    - _Color0: {r: 1, g: 0, b: 0, a: 0}
+    - _OrbColor: {r: 1, g: 0, b: 0, a: 0}
