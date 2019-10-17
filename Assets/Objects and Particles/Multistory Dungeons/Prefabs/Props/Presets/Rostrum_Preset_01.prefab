@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3301910}
   - component: {fileID: 2301910}
   - component: {fileID: 6588870}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rostrum_Preset_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 492056}
   - component: {fileID: 10892056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orange light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 492058}
   - component: {fileID: 19892056}
   - component: {fileID: 19992056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4889,7 +4889,7 @@ GameObject:
   - component: {fileID: 492060}
   - component: {fileID: 19892058}
   - component: {fileID: 19992058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9561,7 +9561,7 @@ GameObject:
   - component: {fileID: 492062}
   - component: {fileID: 19892060}
   - component: {fileID: 19992060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14233,7 +14233,7 @@ GameObject:
   - component: {fileID: 492064}
   - component: {fileID: 19892062}
   - component: {fileID: 19992062}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
