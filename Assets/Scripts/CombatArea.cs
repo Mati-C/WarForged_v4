@@ -42,6 +42,11 @@ public class CombatArea : MonoBehaviour
 
     void Update()
     {
+        var auxMyEntites = 0;
+
+        foreach (var item in myNPCs)
+            if (item.isDead) auxMyEntites++;
+
         if (player.isDead && !endArea)
         {
             ToggleBlock(false);
@@ -51,6 +56,16 @@ public class CombatArea : MonoBehaviour
 
         if (myEntities <= 0 && !endArea)
         {
+            if (auxMyEntites == myNPCs.Count && !numAdded)
+            {
+                numAdded = true;
+                Model player = FindObjectOfType<Model>();
+                player.combatIndex++;
+                player.isInCombatArea = false;
+                if (player.combatIndex == 4 && !isLevel2)
+                    player.combatIndex++;
+            }
+
             ToggleBlock(false);
             cm.times = 2;
             foreach (var item in myNPCs)
@@ -61,24 +76,11 @@ public class CombatArea : MonoBehaviour
             endArea = true;
         }
 
-        var auxMyEntites = 0;
-
-        foreach (var item in myNPCs)
-        {
-            if (item.isDead) auxMyEntites++;
-        }
-
         if (auxMyEntites == myNPCs.Count && !aux)
         {
             ToggleBlock(false);
             cm.times = 2;
             aux = true;
-
-            if (auxMyEntites == 0 && !numAdded)
-            {
-                numAdded = true;
-                FindObjectOfType<Model>().combatIndex++;
-            }
         }
     }
 
@@ -102,6 +104,7 @@ public class CombatArea : MonoBehaviour
             }
 
             foreach (var item in myNPCs) item.target = player;
+            c.GetComponent<Model>().isInCombatArea = true;
 
             if (myEntities > 0 && !aux)
                 ToggleBlock(true);

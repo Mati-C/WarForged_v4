@@ -11,6 +11,8 @@ public class ModelE_Melee : EnemyMeleeClass
     public enum EnemyInputs { PATROL, PERSUIT, WAIT, ATTACK, RETREAT , FOLLOW, DIE, ANSWER, DEFENCE, STUNED, KNOCK }
     public EventFSM<EnemyInputs> _myFsm;
     public List<CombatNode> restOfNodes = new List<CombatNode>();
+
+    Model player;
   
     public Transform attackPivot;
     public ViewerE_Melee _view;
@@ -247,6 +249,7 @@ public class ModelE_Melee : EnemyMeleeClass
         var myEntites = FindObjectsOfType<EnemyEntity>().Where(x => x != this && x.EnemyID_Area == EnemyID_Area);
         nearEntities.Clear();
         nearEntities.AddRange(myEntites);
+        player = FindObjectOfType<Model>();
 
         var warriors = FindObjectsOfType<ModelE_Melee>().Where(x => x != this && x.EnemyID_Area == EnemyID_Area);
         EnemyMeleeFriends.Clear();
@@ -1233,11 +1236,17 @@ public class ModelE_Melee : EnemyMeleeClass
             life -= damage;
             _view.LifeBar(life / maxLife);
             _view.CreatePopText(damage);
-
+            
             if (!firstHit)
             {
                 firstHit = true;
                 SendInputToFSM(EnemyInputs.PERSUIT);
+                foreach(var e in EnemyMeleeFriends)
+                {
+                    ModelE_Melee melee = e.GetComponent<ModelE_Melee>();
+                    if (melee != null)
+                        melee.SendInputToFSM(EnemyInputs.PERSUIT);
+                }
                 CombatIdleEvent();
             }
         }

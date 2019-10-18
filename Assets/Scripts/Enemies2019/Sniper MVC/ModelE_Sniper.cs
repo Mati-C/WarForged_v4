@@ -475,7 +475,7 @@ public class ModelE_Sniper : EnemyEntity
     }
 
 
-    private void SendInputToFSM(EnemyInputs inp)
+    public void SendInputToFSM(EnemyInputs inp)
     {
         _myFsm.SendInput(inp);
     }

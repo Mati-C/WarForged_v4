@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class Model : MonoBehaviour
@@ -14,6 +15,7 @@ public class Model : MonoBehaviour
     public bool targetLockedOn;
     public int lockIndex;
     public LayerMask layerEnemies;
+    public LayerMask enemyLayer;
     EnemyEntity snapTarget;
 
     public float distanceAggressiveNodes;
@@ -576,7 +578,10 @@ public class Model : MonoBehaviour
         isInCombatArea = false;
         onDefenseCorroutine = false;
         combatAreas = FindObjectsOfType<CombatArea>().OrderBy(x => x.EnemyID_Area).ToList();
-        combatIndex = 0;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+            combatIndex = 1;
+        else
+            combatIndex = 0;
     }
 
     void Update()
@@ -650,6 +655,12 @@ public class Model : MonoBehaviour
     {
         transform.position = teleportLocations[i];
         transform.rotation = Quaternion.Euler(teleportRotations[i]);
+
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            if (i == 1) combatIndex = 3;
+            else if (i == 2) combatIndex = 6;
+        }
     }
 
     public void Roll(Vector3 dir, DogeDirecctions directions )
@@ -997,7 +1008,7 @@ public class Model : MonoBehaviour
         //print(allEnemies.Length);
         //foreach (var i in allEnemies) print(i.gameObject.name);
         //enemiesToLock = Physics.OverlapSphere(allEnemies.First().transform.position, 5, enemyLayer).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).Select(x => x.GetComponent<EnemyEntity>()).ToList();
-
+        print("NPCs: " + combatAreas[combatIndex].myNPCs.Count + "     -     Index: " + combatIndex);
         List<EnemyEntity> detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
         enemiesToLock.AddRange(detectedEnemies);
 
@@ -1005,18 +1016,17 @@ public class Model : MonoBehaviour
         {
             if (!targetLockedOn)
             {
-                RaycastHit hit;
-                EnemyEntity e = null;
-                foreach (var item in detectedEnemies)
-                {
-                    Physics.Raycast(transform.position, item.transform.position - transform.position, out hit, layerEnemies);
-                    e = hit.transform.GetComponent<EnemyEntity>();
-                    if (e != null)
-                        break;
-                }
-                //IEnumerable<EnemyEntity> visibleEnemies = detectedEnemies.Where(x => Physics.Raycast(mainCamera.position, x.transform.position - mainCamera.position, layerEnemies, out hit));
-                if (e == null) return;
-                targetLocked = e;
+//                 RaycastHit hit;
+//                 EnemyEntity e = null;
+//                 foreach (var item in detectedEnemies)
+//                 {
+//                     Physics.Raycast(transform.position, item.transform.position - transform.position, out hit, layerEnemies);
+//                     e = hit.transform.GetComponent<EnemyEntity>();
+//                     if (e != null)
+//                         break;
+//                 }          
+//                 if (e == null) return;
+                targetLocked = enemiesToLock.First();
                 mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
                 targetLockedOn = true;
                 lockIndex = 0;
