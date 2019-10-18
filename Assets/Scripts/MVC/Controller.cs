@@ -138,7 +138,7 @@ public class Controller : MonoBehaviour
                 model.ClassChange();
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && model.isInCombat)
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 model.LockEnemies();
             }
@@ -316,7 +316,7 @@ public class Controller : MonoBehaviour
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.E)) model.StartInteraction();
+                //if (Input.GetKeyDown(KeyCode.E)) model.StartInteraction();
 
                 if (Input.GetKeyDown(KeyCode.Alpha1)) model.DrinkPotion(1);
                 if (Input.GetKeyDown(KeyCode.Alpha2)) model.DrinkPotion(2);

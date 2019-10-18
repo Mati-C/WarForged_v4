@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CheckPoint : MonoBehaviour, ICheckObservable
 {
     public GameObject fire;
+    public float lightIntensity;
   
     public GameObject textCheck;
     public GameObject buttonRespawn;
@@ -26,6 +27,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         move1 = true;
         textCheck.SetActive(true);
         fire.SetActive(true);
+        StartCoroutine(Light());
         yield return new WaitForSeconds(4);
         move1 = false;
         textCheck.SetActive(false);      
@@ -35,6 +37,17 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     {
         yield return new WaitForSeconds(2);
         buttonRespawn.SetActive(true);
+    }
+
+    public IEnumerator Light()
+    {
+        float t = 0;
+        while (t < 1.5f)
+        {
+            t += Time.deltaTime;
+            fire.transform.GetChild(0).GetComponent<Light>().intensity = Mathf.Lerp(0, lightIntensity, t / 2);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     void Start ()

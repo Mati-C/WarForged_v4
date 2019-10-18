@@ -20,6 +20,8 @@ public class CombatArea : MonoBehaviour
     public List<GameObject> doors = new List<GameObject>();
     bool isLevel2;
 
+    bool numAdded;
+
     private void Awake()
     {
         cm = FindObjectOfType<EnemyCombatManager>();
@@ -27,6 +29,7 @@ public class CombatArea : MonoBehaviour
         var enemies = FindObjectsOfType<EnemyEntity>().Where(x => x.EnemyID_Area == EnemyID_Area);
         myNPCs.Clear();
         myNPCs.AddRange(enemies);
+        numAdded = false;
     }
 
     void Start()
@@ -70,6 +73,12 @@ public class CombatArea : MonoBehaviour
             ToggleBlock(false);
             cm.times = 2;
             aux = true;
+
+            if (auxMyEntites == 0 && !numAdded)
+            {
+                numAdded = true;
+                FindObjectOfType<Model>().combatIndex++;
+            }
         }
     }
 
@@ -79,7 +88,7 @@ public class CombatArea : MonoBehaviour
         {
             if (!puzzleblock)
             {
-                c.GetComponent<Model>().enemiesToLock.Clear();
+                //c.GetComponent<Model>().enemiesToLock.Clear();
 
 
                 var enemies = myNPCs.OrderBy(x =>
@@ -89,7 +98,7 @@ public class CombatArea : MonoBehaviour
 
                 }).Where(x => x.life > 0);
 
-                c.GetComponent<Model>().enemiesToLock.AddRange(enemies);
+                //c.GetComponent<Model>().enemiesToLock.AddRange(enemies);
             }
 
             foreach (var item in myNPCs) item.target = player;

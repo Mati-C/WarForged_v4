@@ -201,6 +201,9 @@ public class Model : MonoBehaviour
     public bool isInCombatArea;
     public bool hasKey = false;
 
+    List<CombatArea> combatAreas = new List<CombatArea>();
+    public int combatIndex;
+
     IEnumerator RotateToShoot()
     {
         float time = 0.5f;
@@ -572,6 +575,8 @@ public class Model : MonoBehaviour
         internCdPower2 = timeCdPower2;
         isInCombatArea = false;
         onDefenseCorroutine = false;
+        combatAreas = FindObjectsOfType<CombatArea>().OrderBy(x => x.EnemyID_Area).ToList();
+        combatIndex = 0;
     }
 
     void Update()
@@ -988,12 +993,30 @@ public class Model : MonoBehaviour
    
     public void LockEnemies()
     {
-       
+        //Collider[] allEnemies = Physics.OverlapSphere(transform.position, 50, enemyLayer).OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
+        //print(allEnemies.Length);
+        //foreach (var i in allEnemies) print(i.gameObject.name);
+        //enemiesToLock = Physics.OverlapSphere(allEnemies.First().transform.position, 5, enemyLayer).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).Select(x => x.GetComponent<EnemyEntity>()).ToList();
+
+        List<EnemyEntity> detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
+        enemiesToLock.AddRange(detectedEnemies);
+
         if (enemiesToLock.Any())
         {
             if (!targetLockedOn)
             {
-                targetLocked = enemiesToLock.First();
+                RaycastHit hit;
+                EnemyEntity e = null;
+                foreach (var item in detectedEnemies)
+                {
+                    Physics.Raycast(transform.position, item.transform.position - transform.position, out hit, layerEnemies);
+                    e = hit.transform.GetComponent<EnemyEntity>();
+                    if (e != null)
+                        break;
+                }
+                //IEnumerable<EnemyEntity> visibleEnemies = detectedEnemies.Where(x => Physics.Raycast(mainCamera.position, x.transform.position - mainCamera.position, layerEnemies, out hit));
+                if (e == null) return;
+                targetLocked = e;
                 mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
                 targetLockedOn = true;
                 lockIndex = 0;
@@ -1563,7 +1586,7 @@ public class Model : MonoBehaviour
             StartCoroutine(view.NextLevel());
     }
 
-
+    /*
     public void StartInteraction()
     {
         Ray ray = new Ray(transform.position, transform.forward);
@@ -1575,6 +1598,7 @@ public class Model : MonoBehaviour
                 comp.Interaction();
         }
     }
+    */
 
     public void OnDrawGizmos()
     {
