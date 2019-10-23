@@ -1,248 +1,728 @@
 fileFormatVersion: 2
 guid: 1d3c08b8094d10a4ca1400bc8d16e61c
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: ArmLeather
-    100002: ArmorF
-    100004: ArmorFront
-    100006: Body
-    100008: Boots LowPoly
-    100010: Box003
-    100012: Box008
-    100014: Box010
-    100016: Box013
-    100018: CATRigAnkleBone001
-    100020: CATRigAnkleBone001 1
-    100022: CATRigAnkleBone001Bone001
-    100024: CATRigAnkleBone001Bone001 1
-    100026: CATRigHub001
-    100028: CATRigHub001Gizmo
-    100030: CATRigHub002
-    100032: CATRigHub002Gizmo
-    100034: CATRigHub004
-    100036: CATRigHub004Gizmo
-    100038: CATRigLArm1
-    100040: CATRigLArm1Gizmo
-    100042: CATRigLArm2
-    100044: CATRigLArm2Gizmo
-    100046: CATRigLArmCollarbone
-    100048: CATRigLArmDigit11
-    100050: CATRigLArmDigit12
-    100052: CATRigLArmDigit21
-    100054: CATRigLArmDigit22
-    100056: CATRigLArmDigit23
-    100058: CATRigLArmDigit31
-    100060: CATRigLArmDigit32
-    100062: CATRigLArmDigit33
-    100064: CATRigLArmDigit41
-    100066: CATRigLArmDigit42
-    100068: CATRigLArmDigit43
-    100070: CATRigLArmDigit51
-    100072: CATRigLArmDigit52
-    100074: CATRigLArmDigit53
-    100076: CATRigLArmPalm
-    100078: CATRigLArmPalmGizmo
-    100080: CATRigLLeg1
-    100082: CATRigLLeg2
-    100084: CATRigLLegAnkle
-    100086: CATRigLLegPlatform
-    100088: CATRigLLegUpVectorNode
-    100090: CATRigRArm1
-    100092: CATRigRArm1Gizmo
-    100094: CATRigRArm2
-    100096: CATRigRArm2Gizmo
-    100098: CATRigRArmCollarbone
-    100100: CATRigRArmDigit11
-    100102: CATRigRArmDigit12
-    100104: CATRigRArmDigit21
-    100106: CATRigRArmDigit22
-    100108: CATRigRArmDigit23
-    100110: CATRigRArmDigit31
-    100112: CATRigRArmDigit32
-    100114: CATRigRArmDigit33
-    100116: CATRigRArmDigit41
-    100118: CATRigRArmDigit42
-    100120: CATRigRArmDigit43
-    100122: CATRigRArmDigit51
-    100124: CATRigRArmDigit52
-    100126: CATRigRArmDigit53
-    100128: CATRigRArmPalm
-    100130: CATRigRArmPalmGizmo
-    100132: CATRigRLeg1
-    100134: CATRigRLeg2
-    100136: CATRigRLegAnkle
-    100138: CATRigRLegPlatform
-    100140: CATRigRLegUpVectorNode
-    100142: CATRigSpine1
-    100144: CATRigSpine1 1
-    100146: CATRigSpine2
-    100148: CATRigSpine2 1
-    100150: CATRigSpine3
-    100152: Character001
-    100154: Cinturon
-    100156: default
-    100158: //RootNode
-    100160: Epic Gauntlet001
-    100162: Espada
-    100164: Gauntlet
-    100166: Hair
-    100168: Holster(Sword)
-    100170: Hood
-    100172: Object001
-    100174: Object002
-    100176: Pants001
-    100178: Polar
-    100180: Poller
-    100182: Sword
-    100184: Sword(Blade)
-    400000: ArmLeather
-    400002: ArmorF
-    400004: ArmorFront
-    400006: Body
-    400008: Boots LowPoly
-    400010: Box003
-    400012: Box008
-    400014: Box010
-    400016: Box013
-    400018: CATRigAnkleBone001
-    400020: CATRigAnkleBone001 1
-    400022: CATRigAnkleBone001Bone001
-    400024: CATRigAnkleBone001Bone001 1
-    400026: CATRigHub001
-    400028: CATRigHub001Gizmo
-    400030: CATRigHub002
-    400032: CATRigHub002Gizmo
-    400034: CATRigHub004
-    400036: CATRigHub004Gizmo
-    400038: CATRigLArm1
-    400040: CATRigLArm1Gizmo
-    400042: CATRigLArm2
-    400044: CATRigLArm2Gizmo
-    400046: CATRigLArmCollarbone
-    400048: CATRigLArmDigit11
-    400050: CATRigLArmDigit12
-    400052: CATRigLArmDigit21
-    400054: CATRigLArmDigit22
-    400056: CATRigLArmDigit23
-    400058: CATRigLArmDigit31
-    400060: CATRigLArmDigit32
-    400062: CATRigLArmDigit33
-    400064: CATRigLArmDigit41
-    400066: CATRigLArmDigit42
-    400068: CATRigLArmDigit43
-    400070: CATRigLArmDigit51
-    400072: CATRigLArmDigit52
-    400074: CATRigLArmDigit53
-    400076: CATRigLArmPalm
-    400078: CATRigLArmPalmGizmo
-    400080: CATRigLLeg1
-    400082: CATRigLLeg2
-    400084: CATRigLLegAnkle
-    400086: CATRigLLegPlatform
-    400088: CATRigLLegUpVectorNode
-    400090: CATRigRArm1
-    400092: CATRigRArm1Gizmo
-    400094: CATRigRArm2
-    400096: CATRigRArm2Gizmo
-    400098: CATRigRArmCollarbone
-    400100: CATRigRArmDigit11
-    400102: CATRigRArmDigit12
-    400104: CATRigRArmDigit21
-    400106: CATRigRArmDigit22
-    400108: CATRigRArmDigit23
-    400110: CATRigRArmDigit31
-    400112: CATRigRArmDigit32
-    400114: CATRigRArmDigit33
-    400116: CATRigRArmDigit41
-    400118: CATRigRArmDigit42
-    400120: CATRigRArmDigit43
-    400122: CATRigRArmDigit51
-    400124: CATRigRArmDigit52
-    400126: CATRigRArmDigit53
-    400128: CATRigRArmPalm
-    400130: CATRigRArmPalmGizmo
-    400132: CATRigRLeg1
-    400134: CATRigRLeg2
-    400136: CATRigRLegAnkle
-    400138: CATRigRLegPlatform
-    400140: CATRigRLegUpVectorNode
-    400142: CATRigSpine1
-    400144: CATRigSpine1 1
-    400146: CATRigSpine2
-    400148: CATRigSpine2 1
-    400150: CATRigSpine3
-    400152: Character001
-    400154: Cinturon
-    400156: default
-    400158: //RootNode
-    400160: Epic Gauntlet001
-    400162: Espada
-    400164: Gauntlet
-    400166: Hair
-    400168: Holster(Sword)
-    400170: Hood
-    400172: Object001
-    400174: Object002
-    400176: Pants001
-    400178: Polar
-    400180: Poller
-    400182: Sword
-    400184: Sword(Blade)
-    2100000: Skin
-    2100002: Hair
-    2100004: TopArmour
-    2100006: DownArmour
-    4300000: Body
-    4300002: Hair
-    4300004: Gauntlet
-    4300006: Boots LowPoly
-    4300008: ArmorFront
-    4300010: Cinturon
-    4300012: Poller
-    4300014: Object001
-    4300016: Polar
-    4300018: Epic Gauntlet001
-    4300020: Object002
-    4300022: ArmorF
-    4300024: default
-    4300026: Sword(Blade)
-    4300028: Pants001
-    4300030: Holster(Sword)
-    4300032: Box003
-    4300034: Box008
-    4300036: Box010
-    4300038: Sword
-    4300040: Hood
-    4300042: ArmLeather
-    4300044: Box013
-    7400000: P_Warrior_DodgeR-V2
-    7400002: P_Warrior_DodgeBack-V2
-    9500000: //RootNode
-    13700000: ArmLeather
-    13700002: ArmorF
-    13700004: ArmorFront
-    13700006: Body
-    13700008: Boots LowPoly
-    13700010: Box003
-    13700012: Box008
-    13700014: Box010
-    13700016: Box013
-    13700018: Cinturon
-    13700020: default
-    13700022: Epic Gauntlet001
-    13700024: Gauntlet
-    13700026: Hair
-    13700028: Holster(Sword)
-    13700030: Hood
-    13700032: Object001
-    13700034: Object002
-    13700036: Pants001
-    13700038: Polar
-    13700040: Poller
-    13700042: Sword
-    13700044: Sword(Blade)
-    2186277476908879412: ImportLogs
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: ArmLeather
+  - first:
+      1: 100002
+    second: ArmorF
+  - first:
+      1: 100004
+    second: ArmorFront
+  - first:
+      1: 100006
+    second: Body
+  - first:
+      1: 100008
+    second: Boots LowPoly
+  - first:
+      1: 100010
+    second: Box003
+  - first:
+      1: 100012
+    second: Box008
+  - first:
+      1: 100014
+    second: Box010
+  - first:
+      1: 100016
+    second: Box013
+  - first:
+      1: 100018
+    second: CATRigAnkleBone001
+  - first:
+      1: 100020
+    second: CATRigAnkleBone001 1
+  - first:
+      1: 100022
+    second: CATRigAnkleBone001Bone001
+  - first:
+      1: 100024
+    second: CATRigAnkleBone001Bone001 1
+  - first:
+      1: 100026
+    second: CATRigHub001
+  - first:
+      1: 100028
+    second: CATRigHub001Gizmo
+  - first:
+      1: 100030
+    second: CATRigHub002
+  - first:
+      1: 100032
+    second: CATRigHub002Gizmo
+  - first:
+      1: 100034
+    second: CATRigHub004
+  - first:
+      1: 100036
+    second: CATRigHub004Gizmo
+  - first:
+      1: 100038
+    second: CATRigLArm1
+  - first:
+      1: 100040
+    second: CATRigLArm1Gizmo
+  - first:
+      1: 100042
+    second: CATRigLArm2
+  - first:
+      1: 100044
+    second: CATRigLArm2Gizmo
+  - first:
+      1: 100046
+    second: CATRigLArmCollarbone
+  - first:
+      1: 100048
+    second: CATRigLArmDigit11
+  - first:
+      1: 100050
+    second: CATRigLArmDigit12
+  - first:
+      1: 100052
+    second: CATRigLArmDigit21
+  - first:
+      1: 100054
+    second: CATRigLArmDigit22
+  - first:
+      1: 100056
+    second: CATRigLArmDigit23
+  - first:
+      1: 100058
+    second: CATRigLArmDigit31
+  - first:
+      1: 100060
+    second: CATRigLArmDigit32
+  - first:
+      1: 100062
+    second: CATRigLArmDigit33
+  - first:
+      1: 100064
+    second: CATRigLArmDigit41
+  - first:
+      1: 100066
+    second: CATRigLArmDigit42
+  - first:
+      1: 100068
+    second: CATRigLArmDigit43
+  - first:
+      1: 100070
+    second: CATRigLArmDigit51
+  - first:
+      1: 100072
+    second: CATRigLArmDigit52
+  - first:
+      1: 100074
+    second: CATRigLArmDigit53
+  - first:
+      1: 100076
+    second: CATRigLArmPalm
+  - first:
+      1: 100078
+    second: CATRigLArmPalmGizmo
+  - first:
+      1: 100080
+    second: CATRigLLeg1
+  - first:
+      1: 100082
+    second: CATRigLLeg2
+  - first:
+      1: 100084
+    second: CATRigLLegAnkle
+  - first:
+      1: 100086
+    second: CATRigLLegPlatform
+  - first:
+      1: 100088
+    second: CATRigLLegUpVectorNode
+  - first:
+      1: 100090
+    second: CATRigRArm1
+  - first:
+      1: 100092
+    second: CATRigRArm1Gizmo
+  - first:
+      1: 100094
+    second: CATRigRArm2
+  - first:
+      1: 100096
+    second: CATRigRArm2Gizmo
+  - first:
+      1: 100098
+    second: CATRigRArmCollarbone
+  - first:
+      1: 100100
+    second: CATRigRArmDigit11
+  - first:
+      1: 100102
+    second: CATRigRArmDigit12
+  - first:
+      1: 100104
+    second: CATRigRArmDigit21
+  - first:
+      1: 100106
+    second: CATRigRArmDigit22
+  - first:
+      1: 100108
+    second: CATRigRArmDigit23
+  - first:
+      1: 100110
+    second: CATRigRArmDigit31
+  - first:
+      1: 100112
+    second: CATRigRArmDigit32
+  - first:
+      1: 100114
+    second: CATRigRArmDigit33
+  - first:
+      1: 100116
+    second: CATRigRArmDigit41
+  - first:
+      1: 100118
+    second: CATRigRArmDigit42
+  - first:
+      1: 100120
+    second: CATRigRArmDigit43
+  - first:
+      1: 100122
+    second: CATRigRArmDigit51
+  - first:
+      1: 100124
+    second: CATRigRArmDigit52
+  - first:
+      1: 100126
+    second: CATRigRArmDigit53
+  - first:
+      1: 100128
+    second: CATRigRArmPalm
+  - first:
+      1: 100130
+    second: CATRigRArmPalmGizmo
+  - first:
+      1: 100132
+    second: CATRigRLeg1
+  - first:
+      1: 100134
+    second: CATRigRLeg2
+  - first:
+      1: 100136
+    second: CATRigRLegAnkle
+  - first:
+      1: 100138
+    second: CATRigRLegPlatform
+  - first:
+      1: 100140
+    second: CATRigRLegUpVectorNode
+  - first:
+      1: 100142
+    second: CATRigSpine1
+  - first:
+      1: 100144
+    second: CATRigSpine1 1
+  - first:
+      1: 100146
+    second: CATRigSpine2
+  - first:
+      1: 100148
+    second: CATRigSpine2 1
+  - first:
+      1: 100150
+    second: CATRigSpine3
+  - first:
+      1: 100152
+    second: Character001
+  - first:
+      1: 100154
+    second: Cinturon
+  - first:
+      1: 100156
+    second: default
+  - first:
+      1: 100158
+    second: //RootNode
+  - first:
+      1: 100160
+    second: Epic Gauntlet001
+  - first:
+      1: 100162
+    second: Espada
+  - first:
+      1: 100164
+    second: Gauntlet
+  - first:
+      1: 100166
+    second: Hair
+  - first:
+      1: 100168
+    second: Holster(Sword)
+  - first:
+      1: 100170
+    second: Hood
+  - first:
+      1: 100172
+    second: Object001
+  - first:
+      1: 100174
+    second: Object002
+  - first:
+      1: 100176
+    second: Pants001
+  - first:
+      1: 100178
+    second: Polar
+  - first:
+      1: 100180
+    second: Poller
+  - first:
+      1: 100182
+    second: Sword
+  - first:
+      1: 100184
+    second: Sword(Blade)
+  - first:
+      4: 400000
+    second: ArmLeather
+  - first:
+      4: 400002
+    second: ArmorF
+  - first:
+      4: 400004
+    second: ArmorFront
+  - first:
+      4: 400006
+    second: Body
+  - first:
+      4: 400008
+    second: Boots LowPoly
+  - first:
+      4: 400010
+    second: Box003
+  - first:
+      4: 400012
+    second: Box008
+  - first:
+      4: 400014
+    second: Box010
+  - first:
+      4: 400016
+    second: Box013
+  - first:
+      4: 400018
+    second: CATRigAnkleBone001
+  - first:
+      4: 400020
+    second: CATRigAnkleBone001 1
+  - first:
+      4: 400022
+    second: CATRigAnkleBone001Bone001
+  - first:
+      4: 400024
+    second: CATRigAnkleBone001Bone001 1
+  - first:
+      4: 400026
+    second: CATRigHub001
+  - first:
+      4: 400028
+    second: CATRigHub001Gizmo
+  - first:
+      4: 400030
+    second: CATRigHub002
+  - first:
+      4: 400032
+    second: CATRigHub002Gizmo
+  - first:
+      4: 400034
+    second: CATRigHub004
+  - first:
+      4: 400036
+    second: CATRigHub004Gizmo
+  - first:
+      4: 400038
+    second: CATRigLArm1
+  - first:
+      4: 400040
+    second: CATRigLArm1Gizmo
+  - first:
+      4: 400042
+    second: CATRigLArm2
+  - first:
+      4: 400044
+    second: CATRigLArm2Gizmo
+  - first:
+      4: 400046
+    second: CATRigLArmCollarbone
+  - first:
+      4: 400048
+    second: CATRigLArmDigit11
+  - first:
+      4: 400050
+    second: CATRigLArmDigit12
+  - first:
+      4: 400052
+    second: CATRigLArmDigit21
+  - first:
+      4: 400054
+    second: CATRigLArmDigit22
+  - first:
+      4: 400056
+    second: CATRigLArmDigit23
+  - first:
+      4: 400058
+    second: CATRigLArmDigit31
+  - first:
+      4: 400060
+    second: CATRigLArmDigit32
+  - first:
+      4: 400062
+    second: CATRigLArmDigit33
+  - first:
+      4: 400064
+    second: CATRigLArmDigit41
+  - first:
+      4: 400066
+    second: CATRigLArmDigit42
+  - first:
+      4: 400068
+    second: CATRigLArmDigit43
+  - first:
+      4: 400070
+    second: CATRigLArmDigit51
+  - first:
+      4: 400072
+    second: CATRigLArmDigit52
+  - first:
+      4: 400074
+    second: CATRigLArmDigit53
+  - first:
+      4: 400076
+    second: CATRigLArmPalm
+  - first:
+      4: 400078
+    second: CATRigLArmPalmGizmo
+  - first:
+      4: 400080
+    second: CATRigLLeg1
+  - first:
+      4: 400082
+    second: CATRigLLeg2
+  - first:
+      4: 400084
+    second: CATRigLLegAnkle
+  - first:
+      4: 400086
+    second: CATRigLLegPlatform
+  - first:
+      4: 400088
+    second: CATRigLLegUpVectorNode
+  - first:
+      4: 400090
+    second: CATRigRArm1
+  - first:
+      4: 400092
+    second: CATRigRArm1Gizmo
+  - first:
+      4: 400094
+    second: CATRigRArm2
+  - first:
+      4: 400096
+    second: CATRigRArm2Gizmo
+  - first:
+      4: 400098
+    second: CATRigRArmCollarbone
+  - first:
+      4: 400100
+    second: CATRigRArmDigit11
+  - first:
+      4: 400102
+    second: CATRigRArmDigit12
+  - first:
+      4: 400104
+    second: CATRigRArmDigit21
+  - first:
+      4: 400106
+    second: CATRigRArmDigit22
+  - first:
+      4: 400108
+    second: CATRigRArmDigit23
+  - first:
+      4: 400110
+    second: CATRigRArmDigit31
+  - first:
+      4: 400112
+    second: CATRigRArmDigit32
+  - first:
+      4: 400114
+    second: CATRigRArmDigit33
+  - first:
+      4: 400116
+    second: CATRigRArmDigit41
+  - first:
+      4: 400118
+    second: CATRigRArmDigit42
+  - first:
+      4: 400120
+    second: CATRigRArmDigit43
+  - first:
+      4: 400122
+    second: CATRigRArmDigit51
+  - first:
+      4: 400124
+    second: CATRigRArmDigit52
+  - first:
+      4: 400126
+    second: CATRigRArmDigit53
+  - first:
+      4: 400128
+    second: CATRigRArmPalm
+  - first:
+      4: 400130
+    second: CATRigRArmPalmGizmo
+  - first:
+      4: 400132
+    second: CATRigRLeg1
+  - first:
+      4: 400134
+    second: CATRigRLeg2
+  - first:
+      4: 400136
+    second: CATRigRLegAnkle
+  - first:
+      4: 400138
+    second: CATRigRLegPlatform
+  - first:
+      4: 400140
+    second: CATRigRLegUpVectorNode
+  - first:
+      4: 400142
+    second: CATRigSpine1
+  - first:
+      4: 400144
+    second: CATRigSpine1 1
+  - first:
+      4: 400146
+    second: CATRigSpine2
+  - first:
+      4: 400148
+    second: CATRigSpine2 1
+  - first:
+      4: 400150
+    second: CATRigSpine3
+  - first:
+      4: 400152
+    second: Character001
+  - first:
+      4: 400154
+    second: Cinturon
+  - first:
+      4: 400156
+    second: default
+  - first:
+      4: 400158
+    second: //RootNode
+  - first:
+      4: 400160
+    second: Epic Gauntlet001
+  - first:
+      4: 400162
+    second: Espada
+  - first:
+      4: 400164
+    second: Gauntlet
+  - first:
+      4: 400166
+    second: Hair
+  - first:
+      4: 400168
+    second: Holster(Sword)
+  - first:
+      4: 400170
+    second: Hood
+  - first:
+      4: 400172
+    second: Object001
+  - first:
+      4: 400174
+    second: Object002
+  - first:
+      4: 400176
+    second: Pants001
+  - first:
+      4: 400178
+    second: Polar
+  - first:
+      4: 400180
+    second: Poller
+  - first:
+      4: 400182
+    second: Sword
+  - first:
+      4: 400184
+    second: Sword(Blade)
+  - first:
+      21: 2100000
+    second: Skin
+  - first:
+      21: 2100002
+    second: Hair
+  - first:
+      21: 2100004
+    second: TopArmour
+  - first:
+      21: 2100006
+    second: DownArmour
+  - first:
+      43: 4300000
+    second: Body
+  - first:
+      43: 4300002
+    second: Hair
+  - first:
+      43: 4300004
+    second: Gauntlet
+  - first:
+      43: 4300006
+    second: Boots LowPoly
+  - first:
+      43: 4300008
+    second: ArmorFront
+  - first:
+      43: 4300010
+    second: Cinturon
+  - first:
+      43: 4300012
+    second: Poller
+  - first:
+      43: 4300014
+    second: Object001
+  - first:
+      43: 4300016
+    second: Polar
+  - first:
+      43: 4300018
+    second: Epic Gauntlet001
+  - first:
+      43: 4300020
+    second: Object002
+  - first:
+      43: 4300022
+    second: ArmorF
+  - first:
+      43: 4300024
+    second: default
+  - first:
+      43: 4300026
+    second: Sword(Blade)
+  - first:
+      43: 4300028
+    second: Pants001
+  - first:
+      43: 4300030
+    second: Holster(Sword)
+  - first:
+      43: 4300032
+    second: Box003
+  - first:
+      43: 4300034
+    second: Box008
+  - first:
+      43: 4300036
+    second: Box010
+  - first:
+      43: 4300038
+    second: Sword
+  - first:
+      43: 4300040
+    second: Hood
+  - first:
+      43: 4300042
+    second: ArmLeather
+  - first:
+      43: 4300044
+    second: Box013
+  - first:
+      74: 7400000
+    second: P_Warrior_DodgeR-V2
+  - first:
+      74: 7400002
+    second: P_Warrior_DodgeBack-V2
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: ArmLeather
+  - first:
+      137: 13700002
+    second: ArmorF
+  - first:
+      137: 13700004
+    second: ArmorFront
+  - first:
+      137: 13700006
+    second: Body
+  - first:
+      137: 13700008
+    second: Boots LowPoly
+  - first:
+      137: 13700010
+    second: Box003
+  - first:
+      137: 13700012
+    second: Box008
+  - first:
+      137: 13700014
+    second: Box010
+  - first:
+      137: 13700016
+    second: Box013
+  - first:
+      137: 13700018
+    second: Cinturon
+  - first:
+      137: 13700020
+    second: default
+  - first:
+      137: 13700022
+    second: Epic Gauntlet001
+  - first:
+      137: 13700024
+    second: Gauntlet
+  - first:
+      137: 13700026
+    second: Hair
+  - first:
+      137: 13700028
+    second: Holster(Sword)
+  - first:
+      137: 13700030
+    second: Hood
+  - first:
+      137: 13700032
+    second: Object001
+  - first:
+      137: 13700034
+    second: Object002
+  - first:
+      137: 13700036
+    second: Pants001
+  - first:
+      137: 13700038
+    second: Polar
+  - first:
+      137: 13700040
+    second: Poller
+  - first:
+      137: 13700042
+    second: Sword
+  - first:
+      137: 13700044
+    second: Sword(Blade)
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -274,6 +754,7 @@ ModelImporter:
     - serializedVersion: 16
       name: P_Warrior_DodgeR-V2
       takeName: Take 001
+      internalID: 0
       firstFrame: 2357
       lastFrame: 2378
       wrapMode: 0
@@ -293,7 +774,41 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0.01085557
+            value: 0.5005375
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.21000488
+            value: 0.55088747
+            inSlope: -0.001633061
+            outSlope: -0.001633061
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.16666658
+            outWeight: 1
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.7992828
+            outSlope: -1.7992828
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.055349138
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events:
       - time: 0.92582095
         functionName: EndCombo
@@ -309,6 +824,7 @@ ModelImporter:
     - serializedVersion: 16
       name: P_Warrior_DodgeBack-V2
       takeName: Take 001
+      internalID: 0
       firstFrame: 2389
       lastFrame: 2412
       wrapMode: 0
@@ -328,7 +844,75 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0.14391635
+            outSlope: 0.14391635
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.38778326
+          - serializedVersion: 3
+            time: 0.14044261
+            value: 0.049419615
+            inSlope: 0.109298296
+            outSlope: 0.109298296
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.12025693
+            outWeight: 0.13195667
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.21805654
+            outSlope: -0.21805654
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.07726718
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.40416667
+            value: 0.014858491
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.3356644
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.06839621
+            outSlope: -0.06839621
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.16783221
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events:
       - time: 0.9020788
         functionName: EndCombo
@@ -348,6 +932,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -355,18 +940,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.0254
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -375,10 +961,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -388,6 +975,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
