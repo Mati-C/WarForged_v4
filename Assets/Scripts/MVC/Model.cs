@@ -203,6 +203,8 @@ public class Model : MonoBehaviour
     public bool isInCombatArea;
     public bool hasKey = false;
 
+    bool maxDamage;
+
     List<CombatArea> combatAreas = new List<CombatArea>();
     public int combatIndex;
 
@@ -582,6 +584,7 @@ public class Model : MonoBehaviour
             combatIndex = 1;
         else
             combatIndex = 0;
+        maxDamage = false;
     }
 
     void Update()
@@ -660,6 +663,41 @@ public class Model : MonoBehaviour
         {
             if (i == 1) combatIndex = 3;
             else if (i == 2) combatIndex = 6;
+        }
+    }
+
+    public void ToggleMaxDamage ()
+    {
+        maxDamage = !maxDamage;
+        view.ToggleMaxDamage(maxDamage);
+
+        if (maxDamage)
+        {
+            attackDamage *= 1000;
+            swordAttack1Damage *= 1000;
+            swordAttack2Damage *= 1000;
+            swordAttack3Damage *= 1000;
+            swordAttack4Damage *= 1000;
+            punchAttack1Damage *= 1000;
+            punchAttack2Damage *= 1000;
+            punchAttack3Damage *= 1000;
+            punchAttack4Damage *= 1000;
+            attackRollDamage *= 1000;
+            magicMissileDamage *= 1000;
+        }
+        else
+        {
+            attackDamage /= 1000;
+            swordAttack1Damage /= 1000;
+            swordAttack2Damage /= 1000;
+            swordAttack3Damage /= 1000;
+            swordAttack4Damage /= 1000;
+            punchAttack1Damage /= 1000;
+            punchAttack2Damage /= 1000;
+            punchAttack3Damage /= 1000;
+            punchAttack4Damage /= 1000;
+            attackRollDamage /= 1000;
+            magicMissileDamage /= 1000;
         }
     }
 

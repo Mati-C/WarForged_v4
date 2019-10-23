@@ -7,8 +7,10 @@ public class CinematicActivator : MonoBehaviour
     public bool isActive;
     public CamController cam;
     Camera myCamera;
-    public GameObject interactiveKey;
+    GameObject interactiveKey;
     public GameObject prefabInteractiveKey;
+    GameObject lockKey;
+    public GameObject prefabLockKey;
     public GameObject ph;
     public GameObject lever;
     public Animator leverAnimator;
@@ -21,7 +23,8 @@ public class CinematicActivator : MonoBehaviour
 
     public bool RockIsActivate;
 
-    DepthUI depthUI;
+    DepthUI interactiveKeyDepth;
+    DepthUI lockKeyDepth;
 
     Canvas canvas;
 
@@ -95,7 +98,11 @@ public class CinematicActivator : MonoBehaviour
         interactiveKey = Instantiate(prefabInteractiveKey);
         interactiveKey.transform.SetParent(canvas.transform, false);
         interactiveKey.SetActive(false);
-        depthUI = interactiveKey.GetComponent<DepthUI>();
+        lockKey = Instantiate(prefabLockKey);
+        lockKey.transform.SetParent(canvas.transform, false);
+        lockKey.SetActive(false);
+        interactiveKeyDepth = interactiveKey.GetComponent<DepthUI>();
+        lockKeyDepth = lockKey.GetComponent<DepthUI>();
         player = FindObjectOfType<Model>();
     }
 
@@ -104,9 +111,11 @@ public class CinematicActivator : MonoBehaviour
         Vector3 worldPos = transform.position + Vector3.up * positionFix ;
         Vector3 screenPos = myCamera.WorldToScreenPoint(worldPos);
         interactiveKey.transform.position = screenPos;
+        lockKey.transform.position = myCamera.WorldToScreenPoint(transform.position + (Vector3.down * 0.7f));
 
         float distance = Vector3.Distance(worldPos, cam.transform.position);
-        depthUI.depth = -distance;
+        interactiveKeyDepth.depth = -distance;
+        lockKeyDepth.depth = -distance;
     }
 
     public void OnTriggerEnter(Collider col)
@@ -135,10 +144,20 @@ public class CinematicActivator : MonoBehaviour
         if (col.gameObject.layer == LayerMask.NameToLayer("Player") && !isActive)
         {
 
-            if (NumberClipAnimation != 0 && NumberClipAnimation == 3 && player.hasKey) interactiveKey.SetActive(true);
+            if (NumberClipAnimation != 0 && NumberClipAnimation == 3)
+            {
+                if (player.hasKey)
+                    interactiveKey.SetActive(true);
+                else
+                    lockKey.SetActive(true);
+            }
 
             if (NumberClipAnimation == 3 && Input.GetKeyDown(KeyCode.F) && player.hasKey)
+            {
                 StartCoroutine(BreakChains());
+                player.hasKey = false;
+                cam.transform.GetChild(0).gameObject.SetActive(false);
+            }
         }
     }
 
@@ -160,6 +179,7 @@ public class CinematicActivator : MonoBehaviour
         if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             interactiveKey.SetActive(false);
+            lockKey.SetActive(false);
             isActive = false;
         }
     }

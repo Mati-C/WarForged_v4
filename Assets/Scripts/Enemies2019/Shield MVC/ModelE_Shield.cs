@@ -994,10 +994,19 @@ public class ModelE_Shield : EnemyMeleeClass
         else return playerNodes[0];
     }
 
+    public override void StartPursuit()
+    {
+        SendInputToFSM(EnemyInputs.PERSUIT);
+    }
+
     public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
     {
         Vector3 dir = transform.position - target.transform.position;
         float angle = Vector3.Angle(dir, transform.forward);
+
+        IEnumerable<Collider> others = Physics.OverlapSphere(transform.position, 3).Where(x => x.GetComponent<EnemyEntity>());
+        foreach (var item in others)
+            item.GetComponent<EnemyEntity>().StartPursuit();
 
         if (angle > 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile") && !isKnock)
         {

@@ -89,5 +89,6 @@ public abstract class EnemyEntity: MonoBehaviour
     public bool chat3;
 
     public abstract void SetChatAnimation();
- 
+
+    public abstract void StartPursuit();
 }

@@ -7,18 +7,31 @@ public class LevelKey : MonoBehaviour
     SpriteRenderer lightEffect;
     public float flickerSpeed;
     Transform cam;
+    bool isInCanvas;
+    public float rotationSpeed;
+    GameObject UIKey;
 
     void Start()
     {
-        lightObject = transform.GetChild(0).gameObject;
-        lightEffect = lightObject.GetComponent<SpriteRenderer>();
-        StartCoroutine(LightFlicker(true));
-        cam = FindObjectOfType<CamController>().transform;
+        if (transform.parent == null)
+        {
+            lightObject = transform.GetChild(0).gameObject;
+            lightEffect = lightObject.GetComponent<SpriteRenderer>();
+            StartCoroutine(LightFlicker(true));
+            cam = FindObjectOfType<CamController>().transform;
+            UIKey = cam.GetChild(0).gameObject;
+            isInCanvas = false;
+        }
+        else
+            isInCanvas = true;
     }
 
     void Update()
     {
-        lightObject.transform.LookAt(cam);
+        if (!isInCanvas)
+            lightObject.transform.LookAt(cam);
+        else
+            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
     }
 
     void OnTriggerEnter(Collider c)
@@ -26,6 +39,7 @@ public class LevelKey : MonoBehaviour
         Model player = c.GetComponent<Model>();
         if (player)
         {
+            UIKey.SetActive(true);
             player.hasKey = true;
             Destroy(gameObject);
         }

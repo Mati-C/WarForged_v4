@@ -550,8 +550,17 @@ public class ModelE_Sniper : EnemyEntity
         else return Vector3.zero;
     }
 
+    public override void StartPursuit()
+    {
+        SendInputToFSM(EnemyInputs.PERSUIT);
+    }
+
     public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
     {
+        IEnumerable<Collider> others = Physics.OverlapSphere(transform.position, 3).Where(x => x.GetComponent<EnemyEntity>());
+        foreach (var item in others)
+            item.GetComponent<EnemyEntity>().StartPursuit();
+
         timeOnDamage = 1f;
         if (!onDamage)
         {

@@ -57,6 +57,8 @@ public class Viewer : MonoBehaviour
 
     public GameObject pauseMenu;
 
+    public GameObject maxDamageDisplay;
+
     bool slowSpeed;
 
     public enum AnimPlayerNames {Dead, Attack1_Pre, Attack1_Damage, Attack1_End, Attack2_Pre, Attack2_Damage, Attack2_End, Attack3_Pre, Attack3_Damage, Attack3_End, Attack4_Pre, Attack4_Damage, Attack4_End,
@@ -539,12 +541,10 @@ public class Viewer : MonoBehaviour
         StartCoroutine(BarSmooth(val, manaBar));
     }
 
-    public void UpdateArmorBar(float val)
+    public void ToggleMaxDamage(bool state)
     {
-        //StartCoroutine(BarSmooth(val, armor));
+        maxDamageDisplay.SetActive(state);
     }
-
-
 
     public void CounterAttackAnim()
     {

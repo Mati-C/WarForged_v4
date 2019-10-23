@@ -20,7 +20,7 @@ public class ExtraHealth : IPotionEffect {
         {
             m.armorActive = true;
             m.armor = m.maxArmor;
-            m.view.UpdateArmorBar(m.armor / m.maxArmor);
+            //m.view.UpdateArmorBar(m.armor / m.maxArmor);
             if(m.life > m.maxLife * 0.15f)
             {
                 m.life -= m.maxLife * 0.15f;
@@ -31,7 +31,7 @@ public class ExtraHealth : IPotionEffect {
         {
             m.armor = 0;
             m.armorActive = false;
-            m.view.UpdateArmorBar(m.armor / m.maxArmor);
+            //m.view.UpdateArmorBar(m.armor / m.maxArmor);
             m.view.UpdateTimer();
             m.currentPotionEffect = null;
         }

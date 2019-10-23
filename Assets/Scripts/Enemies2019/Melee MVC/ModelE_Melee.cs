@@ -1218,6 +1218,11 @@ public class ModelE_Melee : EnemyMeleeClass
         impulse = false;
     }
 
+    public override void StartPursuit()
+    {
+        SendInputToFSM(EnemyInputs.PERSUIT);
+    }
+
     public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
     {
         Vector3 dir = transform.position - target.transform.position;
@@ -1241,12 +1246,9 @@ public class ModelE_Melee : EnemyMeleeClass
             {
                 firstHit = true;
                 SendInputToFSM(EnemyInputs.PERSUIT);
-                foreach(var e in EnemyMeleeFriends)
-                {
-                    ModelE_Melee melee = e.GetComponent<ModelE_Melee>();
-                    if (melee != null)
-                        melee.SendInputToFSM(EnemyInputs.PERSUIT);
-                }
+                IEnumerable<Collider> others = Physics.OverlapSphere(transform.position, 3).Where(x => x.GetComponent<EnemyEntity>());
+                foreach (var item in others)
+                    item.GetComponent<EnemyEntity>().StartPursuit();
                 CombatIdleEvent();
             }
         }
