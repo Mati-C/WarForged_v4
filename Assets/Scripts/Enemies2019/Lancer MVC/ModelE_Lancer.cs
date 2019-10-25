@@ -946,7 +946,7 @@ public class ModelE_Lancer : EnemyMeleeClass
         if (target != null)
         {
 
-            isPersuit = SearchForTarget.SearchTarget(target.transform, viewDistancePersuit, angleToPersuit, transform, true, layerObst) && target.isInCombatArea;
+            isPersuit = SearchForTarget.SearchTarget(target.transform, viewDistancePersuit, angleToPersuit, transform, true, layerObst);
 
             isWaitArea = SearchForTarget.SearchTarget(target.transform, viewDistanceAttack, angleToAttack, transform, true, layerObst);
 

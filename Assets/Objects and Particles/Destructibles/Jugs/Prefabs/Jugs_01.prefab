@@ -2520,7 +2520,8 @@ MonoBehaviour:
   myBox: {fileID: 0}
   anim: {fileID: 9037186765455030761}
   rb: {fileID: 1621708090915478115}
-  healthOrb: {fileID: 0}
+  healthOrb: {fileID: 6600163854666151337, guid: d3a36e13175cc1a4aaf59fa5a7c8065d,
+    type: 3}
   lm:
     serializedVersion: 2
     m_Bits: 256

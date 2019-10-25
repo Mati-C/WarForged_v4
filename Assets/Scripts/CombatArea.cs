@@ -19,8 +19,9 @@ public class CombatArea : MonoBehaviour
 
     public List<GameObject> doors = new List<GameObject>();
     bool isLevel2;
-
     bool numAdded;
+    int prevIndex;
+    int deadEntities;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class CombatArea : MonoBehaviour
         myEntities = myNPCs.Count;
         if (startArea == true)
             ToggleBlock(false);
+        prevIndex = -1;
     }
 
     void Update()
@@ -46,6 +48,7 @@ public class CombatArea : MonoBehaviour
 
         foreach (var item in myNPCs)
             if (item.isDead) auxMyEntites++;
+        deadEntities = auxMyEntites;
 
         if (player.isDead && !endArea)
         {
@@ -56,16 +59,6 @@ public class CombatArea : MonoBehaviour
 
         if (myEntities <= 0 && !endArea)
         {
-            if (auxMyEntites == myNPCs.Count && !numAdded)
-            {
-                numAdded = true;
-                Model player = FindObjectOfType<Model>();
-                player.combatIndex++;
-                player.isInCombatArea = false;
-                if (player.combatIndex == 4 && !isLevel2)
-                    player.combatIndex++;
-            }
-
             ToggleBlock(false);
             cm.times = 2;
             foreach (var item in myNPCs)
@@ -90,21 +83,13 @@ public class CombatArea : MonoBehaviour
         {
             if (!puzzleblock)
             {
-                //c.GetComponent<Model>().enemiesToLock.Clear();
-
-
                 var enemies = myNPCs.OrderBy(x =>
                 {
                     var d = Vector3.Distance(x.transform.position, player.transform.position);
                     return d;
 
                 }).Where(x => x.life > 0);
-
-                //c.GetComponent<Model>().enemiesToLock.AddRange(enemies);
             }
-
-            foreach (var item in myNPCs) item.target = player;
-            c.GetComponent<Model>().isInCombatArea = true;
 
             if (myEntities > 0 && !aux)
                 ToggleBlock(true);
@@ -154,8 +139,8 @@ public class CombatArea : MonoBehaviour
             else
             {
                 obj = door.transform;
-                target = state ? new Vector3(-17.359f, -1.28f, 6.4242f) : new Vector3(-17.359f, -3.718f, 6.4242f);
-                start = obj.position;
+                target = state ? new Vector3(85.656f, 102.868f, -143.485f) : new Vector3(85.656f, 105.728f, -143.485f);
+                start = obj.localPosition;
             }
 
             while (t <= 1)

@@ -493,13 +493,13 @@ public class ModelE_Sniper : EnemyEntity
 
         entitiesAvoidVect = EntitiesAvoidance();
 
-        if (target != null && SearchForTarget.SearchTarget(target.transform, viewDistancePersuit, angleToPersuit, transform, true, layerObst) && target.isInCombatArea) isPersuit = true;
+        if (target != null && SearchForTarget.SearchTarget(target.transform, viewDistancePersuit, angleToPersuit, transform, true, layerObst)) isPersuit = true;
         else isPersuit = false;
 
         if (target != null &&  SearchForTarget.SearchTarget(target.transform, viewDistanceAttack, angleToAttack, transform, true, layerObst)) isWaitArea = true;
         else isWaitArea = false;
 
-        if (target != null && SearchForTarget.SearchTarget(target.transform, distanceToMeleeAttack, angleToMeleeAttack, transform, true, layerObst) && target.isInCombatArea) onMeleeAttack = true;
+        if (target != null && SearchForTarget.SearchTarget(target.transform, distanceToMeleeAttack, angleToMeleeAttack, transform, true, layerObst)) onMeleeAttack = true;
         else onMeleeAttack = false;
 
 

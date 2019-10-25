@@ -39,6 +39,7 @@ public class ModelE_Shield : EnemyMeleeClass
     public Action BlockEvent;
     public Action PerfectBlockedEvent;
 
+    bool isAttackingFaster;
 
     public IEnumerator OnDamageCorrutine()
     {
@@ -172,6 +173,7 @@ public class ModelE_Shield : EnemyMeleeClass
         startPos = transform.position;
         startRotation = transform.rotation;
         myNodes.AddRange(NodePath.GetComponentsInChildren<Node>());
+        isAttackingFaster = false;
 
         var myEntites = FindObjectsOfType<EnemyEntity>().Where(x => x != this && x.EnemyID_Area == EnemyID_Area);
         nearEntities.Clear();
@@ -449,9 +451,9 @@ public class ModelE_Shield : EnemyMeleeClass
 
             if (!timeToAttack)
             {
-                if(EnemyMeleeFriends.Count>0) delayToAttack = UnityEngine.Random.Range(timeMinAttack, timeMaxAttack); 
+                if (EnemyMeleeFriends.Count > 0) delayToAttack = UnityEngine.Random.Range(timeMinAttack, timeMaxAttack);
 
-                else delayToAttack = UnityEngine.Random.Range(timeMinAttack/2, timeMaxAttack/2);
+                if (nearEntities.Count <= 0) delayToAttack = UnityEngine.Random.Range(timeMinAttack / 2, timeMaxAttack / 2);
             }
 
             onRetreat = false;
@@ -852,17 +854,23 @@ public class ModelE_Shield : EnemyMeleeClass
 
     }
 
-
     void Update()
     {
         animClipName = view.anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
 
         _myFsm.Update();
 
+        if (nearEntities.Count <= 0 && !isAttackingFaster)
+        {
+            isAttackingFaster = true;
+            timeMaxAttack = timeMaxAttack / 2;
+            timeMinAttack = timeMinAttack / 2;
+        }
+
         if (target != null)
         {
 
-            isPersuit = SearchForTarget.SearchTarget(target.transform, viewDistancePersuit, angleToPersuit, transform, true, layerObst) && target.isInCombatArea;
+            isPersuit = SearchForTarget.SearchTarget(target.transform, viewDistancePersuit, angleToPersuit, transform, true, layerObst);
 
             isWaitArea = SearchForTarget.SearchTarget(target.transform, viewDistanceAttack, angleToAttack, transform, true, layerObst);
 
@@ -1004,9 +1012,8 @@ public class ModelE_Shield : EnemyMeleeClass
         Vector3 dir = transform.position - target.transform.position;
         float angle = Vector3.Angle(dir, transform.forward);
 
-        IEnumerable<Collider> others = Physics.OverlapSphere(transform.position, 3).Where(x => x.GetComponent<EnemyEntity>());
-        foreach (var item in others)
-            item.GetComponent<EnemyEntity>().StartPursuit();
+        foreach (var item in nearEntities)
+            item.StartPursuit();
 
         if (angle > 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile") && !isKnock)
         {

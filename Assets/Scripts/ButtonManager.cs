@@ -184,7 +184,6 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         player.mana = player.maxMana;       
         player.isIdle = true;
         player.isDead = false;
-        player.isInCombatArea = false;
         player.rb.isKinematic = false;
         startRespawn = false;
         StartCoroutine(Fade());

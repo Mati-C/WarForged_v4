@@ -10,7 +10,8 @@ public class Model : MonoBehaviour
 
     public Viewer view;
     EnemyCombatManager ECM;
-    public List<EnemyEntity> enemiesToLock = new List<EnemyEntity>();
+    List<EnemyEntity> enemiesToLock = new List<EnemyEntity>();
+    EnemyEntity[] allEnemies;
     public EnemyEntity targetLocked;
     public bool targetLockedOn;
     public int lockIndex;
@@ -200,13 +201,8 @@ public class Model : MonoBehaviour
     public List<Vector3> teleportLocations;
     public List<Vector3> teleportRotations;
 
-    public bool isInCombatArea;
     public bool hasKey = false;
-
     bool maxDamage;
-
-    List<CombatArea> combatAreas = new List<CombatArea>();
-    public int combatIndex;
 
     IEnumerator RotateToShoot()
     {
@@ -577,13 +573,8 @@ public class Model : MonoBehaviour
         checking = false;
         fadeTimer = 0;
         internCdPower2 = timeCdPower2;
-        isInCombatArea = false;
         onDefenseCorroutine = false;
-        combatAreas = FindObjectsOfType<CombatArea>().OrderBy(x => x.EnemyID_Area).ToList();
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-            combatIndex = 1;
-        else
-            combatIndex = 0;
+        allEnemies = FindObjectsOfType<EnemyEntity>();
         maxDamage = false;
     }
 
@@ -658,12 +649,6 @@ public class Model : MonoBehaviour
     {
         transform.position = teleportLocations[i];
         transform.rotation = Quaternion.Euler(teleportRotations[i]);
-
-        if(SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            if (i == 1) combatIndex = 3;
-            else if (i == 2) combatIndex = 6;
-        }
     }
 
     public void ToggleMaxDamage ()
@@ -1042,29 +1027,29 @@ public class Model : MonoBehaviour
    
     public void LockEnemies()
     {
-        //Collider[] allEnemies = Physics.OverlapSphere(transform.position, 50, enemyLayer).OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
-        //print(allEnemies.Length);
-        //foreach (var i in allEnemies) print(i.gameObject.name);
-        //enemiesToLock = Physics.OverlapSphere(allEnemies.First().transform.position, 5, enemyLayer).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).Select(x => x.GetComponent<EnemyEntity>()).ToList();
-        print("NPCs: " + combatAreas[combatIndex].myNPCs.Count + "     -     Index: " + combatIndex);
-        List<EnemyEntity> detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
-        enemiesToLock.AddRange(detectedEnemies);
+        enemiesToLock.Clear();
+
+        foreach (var e in allEnemies)
+        {
+            RaycastHit hit;
+            Physics.Raycast(transform.position, e.transform.position - transform.position, out hit, layerEnemies);
+            if (hit.collider.gameObject.GetComponent<EnemyEntity>())
+            {
+                enemiesToLock.Add(e);
+                enemiesToLock.AddRange(e.nearEntities);
+                break;
+            }
+        }
 
         if (enemiesToLock.Any())
         {
             if (!targetLockedOn)
             {
-//                 RaycastHit hit;
-//                 EnemyEntity e = null;
-//                 foreach (var item in detectedEnemies)
-//                 {
-//                     Physics.Raycast(transform.position, item.transform.position - transform.position, out hit, layerEnemies);
-//                     e = hit.transform.GetComponent<EnemyEntity>();
-//                     if (e != null)
-//                         break;
-//                 }          
-//                 if (e == null) return;
-                targetLocked = enemiesToLock.First();
+                if (enemiesToLock.Count == 1)
+                    targetLocked = enemiesToLock.First();
+                else
+                    targetLocked = enemiesToLock.OrderBy(x => Vector3.Angle(transform.forward, x.transform.position - transform.position)).First();
+
                 mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
                 targetLockedOn = true;
                 lockIndex = 0;
@@ -1601,33 +1586,8 @@ public class Model : MonoBehaviour
         pointerPool.DisablePoolObject(p);
     }
 
-
-    public void OnCollisionEnter(Collision c)
-    {
-       
-    }
-
-    void OnTriggerStay(Collider c)
-    {
-
-    }
-
-    void OnTriggerExit(Collider c)
-    {
-        if (c.gameObject.layer == 31)
-            isInCombatArea = false;
-    }
-
     void OnTriggerEnter(Collider c)
-    {
-
-
-        if (c.gameObject.layer == 31)
-        {
-            isInCombatArea = true;
-
-        }
-                        
+    {         
         if (c.gameObject.layer == LayerMask.NameToLayer("WIN"))
             StartCoroutine(view.YouWin());
         if (c.gameObject.layer == LayerMask.NameToLayer("NEXT LEVEL"))

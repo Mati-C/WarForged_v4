@@ -46,6 +46,7 @@ public class CinematicActivator : MonoBehaviour
         {
             Quaternion targetRotation;
 
+            ph.transform.position = new Vector3(ph.transform.position.x, player.transform.position.y, ph.transform.position.z);
             var dir = ph.transform.position - player.transform.position;
             dir.y = 0;
 
