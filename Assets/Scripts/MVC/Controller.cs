@@ -108,9 +108,6 @@ public class Controller : MonoBehaviour
             firstPushA = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
-            SoundManager.instance.Play((int)SoundType.CHECKPOINT);
-
         if (Input.GetKey(KeyCode.W)) pushW = true;
         if (Input.GetKey(KeyCode.S)) pushS = true;
         if (Input.GetKey(KeyCode.D)) pushD = true;
