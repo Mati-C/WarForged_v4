@@ -204,6 +204,9 @@ public class Model : MonoBehaviour
     public bool hasKey = false;
     bool maxDamage;
 
+    List<CombatArea> combatAreas = new List<CombatArea>();
+    public int combatIndex;
+
     IEnumerator RotateToShoot()
     {
         float time = 0.5f;
@@ -574,7 +577,11 @@ public class Model : MonoBehaviour
         fadeTimer = 0;
         internCdPower2 = timeCdPower2;
         onDefenseCorroutine = false;
-        allEnemies = FindObjectsOfType<EnemyEntity>();
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+            allEnemies = FindObjectsOfType<EnemyEntity>();
+        else
+            combatIndex = 1;
+        combatAreas = FindObjectsOfType<CombatArea>().OrderBy(x => x.EnemyID_Area).ToList();       
         maxDamage = false;
     }
 
@@ -649,6 +656,9 @@ public class Model : MonoBehaviour
     {
         transform.position = teleportLocations[i];
         transform.rotation = Quaternion.Euler(teleportRotations[i]);
+
+        if (i == 1) combatIndex = 3;
+        else if (i == 2) combatIndex = 6;
     }
 
     public void ToggleMaxDamage ()
@@ -1029,15 +1039,25 @@ public class Model : MonoBehaviour
     {
         enemiesToLock.Clear();
 
-        foreach (var e in allEnemies)
+        List<EnemyEntity> detectedEnemies = new List<EnemyEntity>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            RaycastHit hit;
-            Physics.Raycast(transform.position, e.transform.position - transform.position, out hit, layerEnemies);
-            if (hit.collider.gameObject.GetComponent<EnemyEntity>())
+            detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
+            enemiesToLock.AddRange(detectedEnemies);
+        }
+        else
+        {
+            foreach (var e in allEnemies)
             {
-                enemiesToLock.Add(e);
-                enemiesToLock.AddRange(e.nearEntities);
-                break;
+                RaycastHit hit;
+                Physics.Raycast(transform.position, e.transform.position - transform.position, out hit, layerEnemies);
+                if (hit.collider.gameObject.GetComponent<EnemyEntity>())
+                {
+                    enemiesToLock.Add(e);
+                    enemiesToLock.AddRange(e.nearEntities);
+                    break;
+                }
             }
         }
 
@@ -1045,7 +1065,7 @@ public class Model : MonoBehaviour
         {
             if (!targetLockedOn)
             {
-                if (enemiesToLock.Count == 1)
+                if (enemiesToLock.Count == 1 || SceneManager.GetActiveScene().buildIndex == 1)
                     targetLocked = enemiesToLock.First();
                 else
                     targetLocked = enemiesToLock.OrderBy(x => Vector3.Angle(transform.forward, x.transform.position - transform.position)).First();

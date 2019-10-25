@@ -1087,9 +1087,8 @@ public class ModelE_Lancer : EnemyMeleeClass
         Vector3 dir = transform.position - target.transform.position;
         float angle = Vector3.Angle(dir, transform.forward);
 
-        IEnumerable<Collider> others = Physics.OverlapSphere(transform.position, 3).Where(x => x.GetComponent<EnemyEntity>());
-        foreach (var item in others)
-            item.GetComponent<EnemyEntity>().StartPursuit();
+        foreach (var item in nearEntities)
+            item.StartPursuit();
 
         if (typeOfDamage == "Normal" && canBeHit)
         {

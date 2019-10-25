@@ -557,9 +557,8 @@ public class ModelE_Sniper : EnemyEntity
 
     public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
     {
-        IEnumerable<Collider> others = Physics.OverlapSphere(transform.position, 3).Where(x => x.GetComponent<EnemyEntity>());
-        foreach (var item in others)
-            item.GetComponent<EnemyEntity>().StartPursuit();
+        foreach (var item in nearEntities)
+            item.StartPursuit();
 
         timeOnDamage = 1f;
         if (!onDamage)

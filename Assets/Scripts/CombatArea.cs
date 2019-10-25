@@ -21,7 +21,6 @@ public class CombatArea : MonoBehaviour
     bool isLevel2;
     bool numAdded;
     int prevIndex;
-    int deadEntities;
 
     private void Awake()
     {
@@ -48,7 +47,6 @@ public class CombatArea : MonoBehaviour
 
         foreach (var item in myNPCs)
             if (item.isDead) auxMyEntites++;
-        deadEntities = auxMyEntites;
 
         if (player.isDead && !endArea)
         {
@@ -60,6 +58,16 @@ public class CombatArea : MonoBehaviour
         if (myEntities <= 0 && !endArea)
         {
             ToggleBlock(false);
+
+            if (auxMyEntites == myNPCs.Count && !numAdded)
+            {
+                numAdded = true;
+                Model player = FindObjectOfType<Model>();
+                player.combatIndex++;
+                if (player.combatIndex == 4 && !isLevel2)
+                    player.combatIndex++;
+            }
+
             cm.times = 2;
             foreach (var item in myNPCs)
             {

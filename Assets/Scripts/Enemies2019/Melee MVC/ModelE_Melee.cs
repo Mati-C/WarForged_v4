@@ -1228,6 +1228,9 @@ public class ModelE_Melee : EnemyMeleeClass
         Vector3 dir = transform.position - target.transform.position;
         float angle = Vector3.Angle(dir, transform.forward);
 
+        SendInputToFSM(EnemyInputs.PERSUIT);
+        foreach (var item in nearEntities)
+            item.StartPursuit();
 
         if (!onDefence && (typeOfDamage =="Normal" || typeOfDamage == "Proyectile"))
         {
@@ -1245,10 +1248,6 @@ public class ModelE_Melee : EnemyMeleeClass
             if (!firstHit)
             {
                 firstHit = true;
-                SendInputToFSM(EnemyInputs.PERSUIT);
-                IEnumerable<Collider> others = Physics.OverlapSphere(transform.position, 3).Where(x => x.GetComponent<EnemyEntity>());
-                foreach (var item in others)
-                    item.GetComponent<EnemyEntity>().StartPursuit();
                 CombatIdleEvent();
             }
         }
