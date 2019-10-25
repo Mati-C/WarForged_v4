@@ -207,6 +207,8 @@ public class Model : MonoBehaviour
     List<CombatArea> combatAreas = new List<CombatArea>();
     public int combatIndex;
 
+    bool wasInCombat;
+
     IEnumerator RotateToShoot()
     {
         float time = 0.5f;
@@ -583,6 +585,7 @@ public class Model : MonoBehaviour
             combatIndex = 1;
         combatAreas = FindObjectsOfType<CombatArea>().OrderBy(x => x.EnemyID_Area).ToList();       
         maxDamage = false;
+        wasInCombat = false;
     }
 
     void Update()
@@ -625,6 +628,8 @@ public class Model : MonoBehaviour
             }
             view.anim.SetFloat("RollTime", timeToRoll);
         }
+
+        SoundManager.instance.CombatMusic(isInCombat);
     }
 
     public void ModifyNodes()
