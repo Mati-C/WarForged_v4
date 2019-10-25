@@ -493,6 +493,7 @@
     <Compile Include="Assets\AmplifyShaderEditor\Plugins\Editor\Wires\WireReference.cs" />
     <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Editor\DecalEditor.cs" />
     <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Editor\Helpers\GUIUtils.cs" />
+    <Compile Include="Assets\Editor\NamedArrayDrawer.cs" />
     <Compile Include="Assets\Editor\NodeEditor.cs" />
     <Compile Include="Assets\Editor\SplitTerrain.cs" />
     <Compile Include="Assets\Path Painter\Editor\CompMgr.cs" />

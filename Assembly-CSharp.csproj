@@ -312,7 +312,6 @@
     <Compile Include="Assets\Scripts\Skills.cs" />
     <Compile Include="Assets\Scripts\SkillsManager.cs" />
     <Compile Include="Assets\Scripts\SoundManager\NamedArrayAttribute.cs" />
-    <Compile Include="Assets\Scripts\SoundManager\NamedArrayDrawer.cs" />
     <Compile Include="Assets\Scripts\SoundManager\SoundCue.cs" />
     <Compile Include="Assets\Scripts\SoundManager\SoundManager.cs" />
     <Compile Include="Assets\Scripts\TorchLight.cs" />
