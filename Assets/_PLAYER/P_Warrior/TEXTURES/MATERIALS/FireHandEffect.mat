@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FireHandEffect
+  m_Shader: {fileID: 4800000, guid: 9b1e82916fff06743a793a6916f84b9c, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _ALBEDO:
+        m_Texture: {fileID: 2800000, guid: fdb170200887ef64591671fe06e0f63e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AO:
+        m_Texture: {fileID: 2800000, guid: 2909cb98272c0e54a9ef63b797a7b774, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistorsionMap:
+        m_Texture: {fileID: 2800000, guid: ec85c297e3d5c8c4e9884ba560162bf7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _METALIC:
+        m_Texture: {fileID: 2800000, guid: 92c6b6ca406397b4597b5c6cdf79b659, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: 60545ef3ec4a955439c19a07126009d2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NOISE:
+        m_Texture: {fileID: 2800000, guid: ab37ff13379cdc5459f43d1145819094, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Scratch:
+        m_Texture: {fileID: 2800000, guid: 5cc85b0f88186a54ea5c0c20c1fc7047, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Sratches:
+        m_Texture: {fileID: 2800000, guid: 5cc85b0f88186a54ea5c0c20c1fc7047, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: c0158ad0a496d6d4c90b17ce89957709, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WARRIOR_TPOSE_DownArmour_AlbedoTransparency:
+        m_Texture: {fileID: 2800000, guid: 0c69aafc8441f0f4087324df4c117f00, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WARRIOR_TPOSE_DownArmour_MetallicSmoothness:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WARRIOR_TPOSE_TopArmour_AO:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WARRIOR_TPOSE_TopArmour_AlbedoTransparency:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WARRIOR_TPOSE_TopArmour_Normal:
+        m_Texture: {fileID: 2800000, guid: 9e2a22467eaea3a43bf48c78b17dbf12, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BURN: 1
+    - _Burn: 1
+    - _Cutoff: 0.5
+    - _DistortionAmmount: 0.104308344
+    - _DivideAmmount: 1.2
+    - _EdgeLength: 15
+    - _Float0: 1
+    - _FresnelValue: 1
+    - _OP: 1
+    - _Opa: 1
+    - _Opacity: 1
+    - _Ou: 0
+    - _Outline: 0
+    - _ScrollSpeed: 0.08548943
+    - _Smoothness: 0.36033148
+    - __dirty: 1
+    - _o: 0
+    m_Colors:
+    - _COLOR: {r: 3.7803922, g: 0, b: 0, a: 0}
+    - _COLOR_1: {r: 0.8396226, g: 0.14653784, b: 0.14653784, a: 0}
+    - _COLOR_2: {r: 1, g: 0.97339684, b: 0.37264144, a: 0}
+    - _COLOR_3: {r: 0, g: 0, b: 0, a: 0}
+    - _COLOR_FIRE: {r: 0.8396226, g: 0.14653784, b: 0.14653784, a: 0}
+    - _COLOR_FIRE01: {r: 0.8396226, g: 0.1465376, b: 0.1465376, a: 0}
+    - _COLOR_FIRE02: {r: 1, g: 0.97339684, b: 0.3726412, a: 0}
