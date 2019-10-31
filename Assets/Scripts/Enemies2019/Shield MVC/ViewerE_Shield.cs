@@ -23,6 +23,7 @@ public class ViewerE_Shield : MonoBehaviour
     public Transform lockParticlePosition;
     Model _player;
     public GameObject ragdollPrefab;
+    public ParticleSystem heavyHitParticle;
 
     public enum EnemyMeleeAnim
     {
@@ -116,6 +117,15 @@ public class ViewerE_Shield : MonoBehaviour
             text.transform.position = screenPos;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void OnChargeAnimation()
+    {
+        heavyHitParticle.Stop();
+        heavyHitParticle.Play();
+        anim.SetBool("OnCharge", true);
+        anim.SetBool("IdleCombat", false);
+        anim.SetBool("RunAttack", false);
     }
 
     public void DamageShader()

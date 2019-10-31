@@ -38,6 +38,7 @@ public class ModelE_Shield : EnemyMeleeClass
     public Action StunedEvent;
     public Action KnockEvent;
     public Action BlockEvent;
+    public Action OnChargeEvent;
     public Action PerfectBlockedEvent;
 
     bool isAttackingFaster;
@@ -202,6 +203,7 @@ public class ModelE_Shield : EnemyMeleeClass
         KnockEvent += view.KnockAnim;
         PerfectBlockedEvent += view.FailAttackAnim;
         MoveEvent += view.CombatWalkAnim;
+        OnChargeEvent += view.OnChargeAnimation;
 
         var patrol = new FSM_State<EnemyInputs>("PATROL");
         var persuit = new FSM_State<EnemyInputs>("PERSUIT");
@@ -581,11 +583,10 @@ public class ModelE_Shield : EnemyMeleeClass
 
             if(r==1 || onCharge)
             {
-                view.anim.SetBool("OnCharge", true);
+                OnChargeEvent();
                 currentAction = new A_ShieldCharge(this);
             }
             onDefence = false;
-
             delayToAttack = 0;
             onRetreat = false;
             damageDone = false;
@@ -1239,7 +1240,8 @@ public class ModelE_Shield : EnemyMeleeClass
             isKnock = true;
             onCharge = false;
             view.anim.SetBool("WalkForward", false);
-            onRetreat = true;
+            StopRetreat();
+            SendInputToFSM(EnemyInputs.WAIT);
         }
 
         if (c.gameObject.GetComponent<Model>() && onCharge)
@@ -1249,7 +1251,9 @@ public class ModelE_Shield : EnemyMeleeClass
             c.gameObject.GetComponent<Model>().GetDamage(10, transform, false, 2, this);
             onCharge = false;
             view.anim.SetBool("WalkForward", false);
-            onRetreat = true;
+            StopRetreat();
+            SendInputToFSM(EnemyInputs.WAIT);
+       
         }
     }
 
