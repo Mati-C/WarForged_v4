@@ -51,7 +51,10 @@ public class CamController : MonoBehaviour {
 
     AnimationTimeLineScenes AnimationsCutScenes;
 
-
+    Transform lockedTarget;
+    float xMaxSpeed;
+    float yMaxSpeed;
+    bool corroutineRunning;
 
     public IEnumerator AttackTiltCamera()
     {
@@ -165,6 +168,8 @@ public class CamController : MonoBehaviour {
 
         AnimationsCutScenes = FindObjectOfType<AnimationTimeLineScenes>();
 
+        xMaxSpeed = cinemaCam.m_XAxis.m_MaxSpeed;
+        yMaxSpeed = cinemaCam.m_YAxis.m_MaxSpeed;
     }
 
     void LateUpdate()
@@ -177,6 +182,19 @@ public class CamController : MonoBehaviour {
             var center = Vector3.Lerp(model.transform.position, currentTarget.transform.position, 0.5f);
 
             middleTargets.position = center;
+        }
+
+        if (lockedTarget != null)
+        {
+            cinemaCam.m_XAxis.m_MaxSpeed = 0;
+            cinemaCam.m_YAxis.m_MaxSpeed = 0;
+            if (lockedTarget.GetComponent<EnemyEntity>().isDead)
+                StartCoroutine(CameraFocus(false));
+        }
+        else
+        {
+            cinemaCam.m_XAxis.m_MaxSpeed = xMaxSpeed;
+            cinemaCam.m_YAxis.m_MaxSpeed = yMaxSpeed;
         }
     }
 
@@ -378,6 +396,39 @@ public class CamController : MonoBehaviour {
 
     }
 
+    public void ChangeTargetAlt(EnemyEntity e)
+    {
+        lockedTarget = e.transform;
+        StartCoroutine(CameraFocus(true));
+    }
+
+    public IEnumerator CameraFocus(bool enemy)
+    {
+        if (corroutineRunning) yield break;
+
+        corroutineRunning = true;
+        Transform start = enemy ? model.transform : lockedTarget;
+        Transform end = enemy ? lockedTarget : model.transform;
+        GameObject o = Instantiate(new GameObject());
+        float t = 0;
+
+        while(t < 2)
+        {
+            t += Time.fixedDeltaTime * 2;
+            o.transform.position = Vector3.Lerp(start.position, end.position, t);
+            cinemaCam.LookAt = o.transform;
+            yield return new WaitForFixedUpdate();
+        }
+        cinemaCam.LookAt = end;
+        corroutineRunning = false;
+        if (!enemy)
+            lockedTarget = null;
+    }
+
+    public void StopLockedTargetAlt()
+    {
+        StartCoroutine(CameraFocus(false));
+    }
 
     public void StopLockedTarget()
     {

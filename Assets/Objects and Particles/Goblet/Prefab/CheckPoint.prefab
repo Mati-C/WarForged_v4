@@ -4851,7 +4851,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4366041631076777438}
   - component: {fileID: 400821663049388805}
-  - component: {fileID: 3682254641240475215}
   - component: {fileID: 613325064660280881}
   - component: {fileID: 2496061675681922985}
   m_Layer: 0
@@ -4896,33 +4895,19 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.44451603
+  - screenRelativeHeight: 0.20287989
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7586433362130399305}
-  - screenRelativeHeight: 0.18712601
+  - screenRelativeHeight: 0.09586068
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6780960780163102494}
-  - screenRelativeHeight: 0.05363202
+  - screenRelativeHeight: 0.017280143
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5175592236042513526}
   m_Enabled: 1
---- !u!114 &3682254641240475215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4366041631076777439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa56b14364630d4fbce4b9c889586c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particles: {fileID: 7447285462504290579}
-  runeCircle: {fileID: 5831890257712408830}
 --- !u!114 &613325064660280881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4941,6 +4926,8 @@ MonoBehaviour:
   buttonRespawn: {fileID: 0}
   ph: {fileID: 4412771789569947304}
   checkPointActivated: 0
+  particles: {fileID: 7447285462504290579}
+  runeCircle: {fileID: 5831890257712408830}
   listaChecks: []
 --- !u!135 &2496061675681922985
 SphereCollider:

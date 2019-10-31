@@ -5,6 +5,6 @@ using UnityEngine;
 public interface ICheckObserver
 {
 
-    void OnNotify(Transform check, Rune rune);
+    void OnNotify(Transform check);
 
 }

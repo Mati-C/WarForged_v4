@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Sound;
 
 public class CheckPoint : MonoBehaviour, ICheckObservable
 {
@@ -13,9 +12,13 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     public GameObject buttonRespawn;
     public Transform ph;
     ButtonManager ButtonManager;
-    Rune rune;
     Model player;
     public bool checkPointActivated = false;
+
+    public ParticleSystem particles;
+    CheckPoint myCheckPoint;
+    public ParticleSystem runeCircle;
+    ButtonManager buttonManager;
 
     public List<CheckPoint> listaChecks = new List<CheckPoint>();
     bool move1;
@@ -28,7 +31,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         textCheck.SetActive(true);
         fire.SetActive(true);
         StartCoroutine(Light());
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3.5f);
         move1 = false;
         textCheck.SetActive(false);      
     }
@@ -55,7 +58,6 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         player = FindObjectOfType<Model>();
         ButtonManager = FindObjectOfType<ButtonManager>();
         listaChecks.AddRange(FindObjectsOfType<CheckPoint>());
-        rune = GetComponent<Rune>();
         fire.SetActive(false);
 
         Subscribe(ButtonManager);
@@ -63,12 +65,42 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
     public void OnTriggerEnter(Collider c)
     {
-        if (c.gameObject.GetComponent(typeof(Model)) && !checkPointActivated)
+        if (c.gameObject.GetComponent<Model>())
         {
-            ButtonManager.OnNotify(ph, gameObject.GetComponent<Rune>());
-            StartCoroutine(Message());
-            checkPointActivated = true;
+            if (!checkPointActivated)
+            {
+                ButtonManager.OnNotify(ph);
+                StartCoroutine(Message());
+                checkPointActivated = true;
+                SoundManager.instance.Play(MiscSound.CHECKPOINT_PASS, new Vector3(), false, 0.4f);
+                SoundManager.instance.Play(MiscSound.CHECKPOINT_IDLE, fire.transform.position, false, 0.3f, true);
+            }
+            else if (player.life != player.maxLife)
+            {
+                SoundManager.instance.Play(MiscSound.CHECKPOINT_PASS, new Vector3(), false, 0.4f);
+            }
         }
+    }
+
+    void OnTriggerStay(Collider c)
+    {
+        if (checkPointActivated && c.GetComponent<Model>())
+        {
+            if (player.life != player.maxLife)
+            {
+                player.UpdateLife(player.maxLife);
+                StartCoroutine(PlayParticles());
+            }
+        }
+    }
+
+    IEnumerator PlayParticles()
+    {
+        particles.Play();
+        runeCircle.Play();
+        yield return new WaitForSeconds(1);
+        particles.Stop();
+        runeCircle.Stop();
     }
 
     public void Subscribe(ICheckObserver observer)

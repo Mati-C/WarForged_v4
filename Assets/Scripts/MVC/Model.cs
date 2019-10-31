@@ -400,7 +400,7 @@ public class Model : MonoBehaviour
     public IEnumerator TimeToDoDamage()
     {
         makingDamage = true;
-        SoundManager.instance.PlayRandom(new List<PlayerSound>() { PlayerSound.SWORD_1, PlayerSound.SWORD_2, PlayerSound.SWORD_3 }, new Vector3(), true, 0.5f);
+        SoundManager.instance.PlayRandom(new List<PlayerSound>() { PlayerSound.SWORD_1, PlayerSound.SWORD_2, PlayerSound.SWORD_3 }, transform.position, true);
 
         while (makingDamage)
         {
@@ -805,6 +805,7 @@ public class Model : MonoBehaviour
             {
                 view.SaveSwordAnim2();
                 SoundManager.instance.Play(PlayerSound.SAVE_SWORD, new Vector3(), true, 0.5f);
+                print("808");
             }
             else
                 view.ToggleHandEffect(false);
@@ -1078,14 +1079,14 @@ public class Model : MonoBehaviour
                 else
                     targetLocked = enemiesToLock.OrderBy(x => Vector3.Angle(transform.forward, x.transform.position - transform.position)).First();
 
-                mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
+                mainCamera.GetComponent<CamController>().ChangeTargetAlt(targetLocked);
                 targetLockedOn = true;
                 lockIndex = 0;
             }
 
             else
             {
-                mainCamera.GetComponent<CamController>().StopLockedTarget();
+                mainCamera.GetComponent<CamController>().StopLockedTargetAlt();
                 targetLocked = null;
                 targetLockedOn = false;
             }
@@ -1404,7 +1405,8 @@ public class Model : MonoBehaviour
                 if(isInCombat)
                 {
                     view.SaveSwordAnim2();
-                    SoundManager.instance.Play(PlayerSound.SAVE_SWORD, new Vector3(), true, 0.5f);
+                    SoundManager.instance.Play(PlayerSound.SAVE_SWORD, transform.position, true);
+                    print("1408");
                     view.ToggleHandEffect(true);
                 }
                 break;
@@ -1414,7 +1416,8 @@ public class Model : MonoBehaviour
                 if (isInCombat)
                 {
                     view.TakeSword2();
-                    SoundManager.instance.Play(PlayerSound.TAKE_SWORD, new Vector3(), true, 0.5f);
+                    SoundManager.instance.Play(PlayerSound.TAKE_SWORD, transform.position, true);
+                    print("1419");
                     view.ToggleHandEffect(false);
                 }
                 break;
@@ -1484,10 +1487,11 @@ public class Model : MonoBehaviour
             view.ToggleHandEffect(true);
         if (wasSeen)
             SoundManager.instance.CombatMusic(true);
-        if (!isInCombat && classType == PlayerClass.Warrior)
+        if (!isInCombat && classType == PlayerClass.Warrior && !isDead)
         {          
             view.TakeSword2();
-            SoundManager.instance.Play(PlayerSound.TAKE_SWORD, new Vector3(), true, 0.5f);
+            SoundManager.instance.Play(PlayerSound.TAKE_SWORD, transform.position, true);
+            print("1493");
         }
         isInCombat = true;
     }

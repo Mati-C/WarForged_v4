@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour, ICheckObserver
 {
     public Transform CheckTransform;
-    public Rune CheckRune;
     public Transform firstCheck;
     public Model player;
     public CamController cam;
@@ -54,10 +53,9 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         if (startFirstRespawn) RespawnFirstCheck();
         */
     }
-    public void OnNotify(Transform check, Rune rune)
+    public void OnNotify(Transform check)
     {
         CheckTransform = check;
-        CheckRune = rune;
     }
 
     public void LoadLevel1()
@@ -179,6 +177,7 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         player.view.anim.SetBool("IsDead", false);
         player.view.anim.SetBool("IsIdle", true);
         player.transform.position = CheckTransform.position;
+        player.transform.rotation = CheckTransform.rotation;
         player.life = player.maxLife;
         player.UpdateLife(player.maxLife);
         player.mana = player.maxMana;       
