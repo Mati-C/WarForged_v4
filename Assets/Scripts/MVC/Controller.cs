@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using SoundTypes;
+using Sound;
 
 public class Controller : MonoBehaviour
 {

@@ -49,12 +49,22 @@ MonoBehaviour:
     type: 3}
   musicTransitionTime: 2
   musicVolume: 0.5
-  audioClips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  miscSFX:
+  - {fileID: 8300000, guid: a71f45a608948a945b148e588f118e5f, type: 3}
+  - {fileID: 8300000, guid: b5e0caea33a82f249bb51ceafcc01c3d, type: 3}
+  - {fileID: 8300000, guid: 7956c47b5868003419d31664ac5b087a, type: 3}
+  - {fileID: 8300000, guid: 955c5cf9ca4737c43af413551cb4020a, type: 3}
+  - {fileID: 8300000, guid: 83901fe16da38274aae5b5e1649d1496, type: 3}
+  - {fileID: 8300000, guid: 7d8ed4c1135e50142b8fb584816fb289, type: 3}
+  - {fileID: 8300000, guid: d8fd010a56481924fb71689654a8afdd, type: 3}
+  - {fileID: 8300000, guid: 1815680fc21bd8841bcb123235a47d9e, type: 3}
+  - {fileID: 8300000, guid: c6a94326f10e5b747b5d6d1ec76087e2, type: 3}
+  playerSFX:
+  - {fileID: 8300000, guid: 009870f2264e1484383a494012ffd39b, type: 3}
+  - {fileID: 8300000, guid: 4cbba9b0e550db94a8442937c6215fd4, type: 3}
+  - {fileID: 8300000, guid: bba099341bc20bb4aac218de006cabac, type: 3}
+  - {fileID: 8300000, guid: 3daf6c36fe15b1443945c139c16b4f91, type: 3}
+  - {fileID: 8300000, guid: 61949c8e1b076cb4ab9577f17f4e8a6d, type: 3}
 --- !u!82 &2024881009125272557
 AudioSource:
   m_ObjectHideFlags: 0

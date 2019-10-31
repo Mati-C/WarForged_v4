@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using Sound;
 
 public class Model : MonoBehaviour
 {
@@ -207,8 +208,6 @@ public class Model : MonoBehaviour
     List<CombatArea> combatAreas = new List<CombatArea>();
     public int combatIndex;
 
-    bool wasInCombat;
-
     IEnumerator RotateToShoot()
     {
         float time = 0.5f;
@@ -401,6 +400,7 @@ public class Model : MonoBehaviour
     public IEnumerator TimeToDoDamage()
     {
         makingDamage = true;
+        SoundManager.instance.PlayRandom(new List<PlayerSound>() { PlayerSound.SWORD_1, PlayerSound.SWORD_2, PlayerSound.SWORD_3 }, new Vector3(), true, 0.5f);
 
         while (makingDamage)
         {
@@ -493,7 +493,7 @@ public class Model : MonoBehaviour
     public IEnumerator CombatDelayState()
     {
         yield return new WaitForSeconds(0.4f);
-        CombatState();
+        CombatState(false);
     }
 
     public IEnumerator AttackRotation(Vector3 dir)
@@ -585,7 +585,6 @@ public class Model : MonoBehaviour
             combatIndex = 1;
         combatAreas = FindObjectsOfType<CombatArea>().OrderBy(x => x.EnemyID_Area).ToList();       
         maxDamage = false;
-        wasInCombat = false;
     }
 
     void Update()
@@ -628,8 +627,6 @@ public class Model : MonoBehaviour
             }
             view.anim.SetFloat("RollTime", timeToRoll);
         }
-
-        SoundManager.instance.CombatMusic(isInCombat);
     }
 
     public void ModifyNodes()
@@ -804,7 +801,13 @@ public class Model : MonoBehaviour
      
         if (timeOnCombat <= 0 && isInCombat)
         {
-            if(classType == PlayerClass.Warrior)view.SaveSwordAnim2();
+            if (classType == PlayerClass.Warrior)
+            {
+                view.SaveSwordAnim2();
+                SoundManager.instance.Play(PlayerSound.SAVE_SWORD, new Vector3(), true, 0.5f);
+            }
+            else
+                view.ToggleHandEffect(false);
             view.anim.SetBool("IdleCombat", false);
             view.anim.SetBool("IsInCombat", false);
             view.anim.SetBool("Roll", false);
@@ -929,7 +932,7 @@ public class Model : MonoBehaviour
             view.RollAttackAnimFalse();
             timeCdPower2 = internCdPower2;
             StreakEvent();
-            CombatState();
+            CombatState(false);
             timeImpulse = 0.6f;
             timeEndImpulse = 0.2f;
             StartCoroutine(ImpulseAttackAnimation());
@@ -1124,7 +1127,6 @@ public class Model : MonoBehaviour
 
         if (classType == PlayerClass.Warrior)
         {
-
             if (isInCombat && !view.anim.GetBool("TakeSword2") && animClipName == view.AnimDictionary[Viewer.AnimPlayerNames.Blocked] && classType == PlayerClass.Warrior)
             {
                 countAnimAttack++;
@@ -1132,7 +1134,7 @@ public class Model : MonoBehaviour
                 Attack();
                 if (!makingDamage) StartCoroutine(TimeToDoDamage());
                 StartCoroutine(AttackRotation(dir));
-                CombatState();
+                CombatState(false);
                 attackDamage = swordAttack1Damage;
             }
 
@@ -1143,7 +1145,7 @@ public class Model : MonoBehaviour
                 RollAttackEvent();
                 view.AwakeTrail();
                 EndCombo();
-                CombatState();
+                CombatState(false);
                 StartCoroutine(ImpulseAttackAnimation());
                 view.anim.SetBool("Roll", false);
                 view.anim.SetBool("CanRollAttack", false);
@@ -1168,7 +1170,7 @@ public class Model : MonoBehaviour
                     timeImpulse = 0.07f;
                     timeEndImpulse = 0.25f;
                     StartCoroutine(ImpulseAttackAnimation());
-                    CombatState();
+                    CombatState(false);
                     StartCoroutine(AttackRotation(dir));
                     attackDamage = swordAttack4Damage;
                 }
@@ -1185,7 +1187,7 @@ public class Model : MonoBehaviour
                     timeImpulse = 0.15f;
                     timeEndImpulse = 0.25f;
                     StartCoroutine(ImpulseAttackAnimation());
-                    CombatState();
+                    CombatState(false);
                     StartCoroutine(AttackRotation(dir));
                     attackDamage = swordAttack3Damage;
                 }
@@ -1205,7 +1207,7 @@ public class Model : MonoBehaviour
                         timeEndImpulse = 0.35f;
                     }
                     StartCoroutine(ImpulseAttackAnimation());
-                    CombatState();
+                    CombatState(false);
                     StartCoroutine(AttackRotation(dir));
                     attackDamage = swordAttack2Damage;
                 }
@@ -1222,7 +1224,7 @@ public class Model : MonoBehaviour
                         if (!makingDamage) StartCoroutine(TimeToDoDamage());
                         StartCoroutine(AttackRotation(dir));
                         attackDamage = swordAttack1Damage;
-                        CombatState();
+                        CombatState(false);
                     }
                 }
               
@@ -1239,7 +1241,7 @@ public class Model : MonoBehaviour
                 Attack();
                 if (!makingDamage) StartCoroutine(TimeToDoDamage());              
                 StartCoroutine(ImpulseAttackAnimation());
-                CombatState();
+                CombatState(false);
                 StartCoroutine(AttackRotation(dir));
                 attackDamage = punchAttack4Damage;
             }
@@ -1255,7 +1257,7 @@ public class Model : MonoBehaviour
                 timeImpulse = 0.15f;
                 timeEndImpulse = 0.35f;
                 StartCoroutine(ImpulseAttackAnimation());
-                CombatState();
+                CombatState(false);
                 StartCoroutine(AttackRotation(dir));
                 attackDamage = punchAttack3Damage;
             }
@@ -1274,7 +1276,7 @@ public class Model : MonoBehaviour
                     timeEndImpulse = 0.25f;
                 }
                 StartCoroutine(ImpulseAttackAnimation());
-                CombatState();
+                CombatState(false);
                 StartCoroutine(AttackRotation(dir));
                 attackDamage = punchAttack2Damage;
             }
@@ -1290,12 +1292,12 @@ public class Model : MonoBehaviour
                     if (!makingDamage) StartCoroutine(TimeToDoDamage());
                     StartCoroutine(AttackRotation(dir));
                     attackDamage = punchAttack1Damage;
-                    CombatState();
+                    CombatState(false);
                 }
             }
         }
 
-        if (!isInCombat) CombatState();
+        if (!isInCombat) CombatState(false);
 
         countAnimAttack = Mathf.Clamp(countAnimAttack, 0, 4);
 
@@ -1399,12 +1401,22 @@ public class Model : MonoBehaviour
         {
             case PlayerClass.Warrior:
                 classType = PlayerClass.Wizzard;
-                if(isInCombat)view.SaveSwordAnim2();
+                if(isInCombat)
+                {
+                    view.SaveSwordAnim2();
+                    SoundManager.instance.Play(PlayerSound.SAVE_SWORD, new Vector3(), true, 0.5f);
+                    view.ToggleHandEffect(true);
+                }
                 break;
 
             case PlayerClass.Wizzard:
                 classType = PlayerClass.Warrior;
-                if (isInCombat) view.TakeSword2();
+                if (isInCombat)
+                {
+                    view.TakeSword2();
+                    SoundManager.instance.Play(PlayerSound.TAKE_SWORD, new Vector3(), true, 0.5f);
+                    view.ToggleHandEffect(false);
+                }
                 break;
         }
     }
@@ -1465,12 +1477,17 @@ public class Model : MonoBehaviour
         onDefence = false;
     }
 
-    public void CombatState()
+    public void CombatState(bool wasSeen = true)
     {
         timeOnCombat = maxTimeOnCombat;
+        if (classType == PlayerClass.Wizzard)
+            view.ToggleHandEffect(true);
+        if (wasSeen)
+            SoundManager.instance.CombatMusic(true);
         if (!isInCombat && classType == PlayerClass.Warrior)
         {          
             view.TakeSword2();
+            SoundManager.instance.Play(PlayerSound.TAKE_SWORD, new Vector3(), true, 0.5f);
         }
         isInCombat = true;
     }
@@ -1533,7 +1550,7 @@ public class Model : MonoBehaviour
                 CounterAttackEvent();
                 if (!makingDamage) StartCoroutine(TimeToDoDamage());             
                 attackDamage = 5;
-                CombatState();
+                CombatState(false);
                 view.ShakeCameraDamage(0.5f, 0.5f, 0.5f);
             }
 

@@ -56,7 +56,6 @@ public class Viewer : MonoBehaviour
     public CamController cam;
 
     public GameObject pauseMenu;
-
     public GameObject maxDamageDisplay;
 
     bool slowSpeed;
@@ -83,6 +82,10 @@ public class Viewer : MonoBehaviour
     public GameObject orbPrefab;
     public float orbSpeed;
     public ButtonManager bm;
+
+    public List<SkinnedMeshRenderer> gauntlets;
+    List<Material> gauntletMaterials = new List<Material>();
+    public List<GameObject> handEffects;
 
     IEnumerator DamageDelay()
     {
@@ -124,18 +127,18 @@ public class Viewer : MonoBehaviour
         }
     }
 
-   /* public IEnumerator SlowAnimSpeed()
-    {
-        if (!slowSpeed)
-        {
-            slowSpeed = true;
-            anim.speed = 0;
-            yield return new WaitForSeconds(0.1f);
-            anim.speed = 1;
-            slowSpeed = false;
-        }
-    }
-    */
+    /* public IEnumerator SlowAnimSpeed()
+     {
+         if (!slowSpeed)
+         {
+             slowSpeed = true;
+             anim.speed = 0;
+             yield return new WaitForSeconds(0.1f);
+             anim.speed = 1;
+             slowSpeed = false;
+         }
+     }
+     */
     public void Start()
     {
         var clips = anim.runtimeAnimatorController.animationClips.ToList();
@@ -147,7 +150,7 @@ public class Viewer : MonoBehaviour
             Debug.Log(animClip.name + ": " + aux++);
         }
         */
-       
+
         AnimDictionary.Add(AnimPlayerNames.Dead, clips[0].name);
         AnimDictionary.Add(AnimPlayerNames.Attack1_Pre, clips[1].name);
         AnimDictionary.Add(AnimPlayerNames.Attack1_Damage, clips[2].name);
@@ -220,6 +223,8 @@ public class Viewer : MonoBehaviour
         //whirlMat.SetFloat("_State", 1);
         shieldIcon.color = new Color(shieldIcon.color.r, shieldIcon.color.g, shieldIcon.color.b, 0.5f);
         whirlIcon.color = new Color(whirlIcon.color.r, whirlIcon.color.g, shieldIcon.color.b, 0.5f);
+        foreach (var item in gauntlets)
+            gauntletMaterials.Add(item.material);
     }
 
   
@@ -554,6 +559,28 @@ public class Viewer : MonoBehaviour
     public void CounterAttackFalse()
     {
         anim.SetBool("CounterAttack", false);
+    }
+
+    public void ToggleHandEffect(bool turnOn)
+    {
+        if ((handEffects[0].activeSelf && turnOn) || (!handEffects[0].activeSelf && !turnOn))
+            return;
+        StartCoroutine(HandEffect(turnOn));
+    }
+
+    IEnumerator HandEffect(bool turnOn)
+    {
+        foreach (var item in handEffects)
+            item.SetActive(turnOn);
+        float t = -1;
+        while (t < 1)
+        {
+            t += Time.deltaTime * 4;
+            float fill = turnOn ? t : -t;
+            foreach (var item in gauntletMaterials)
+                item.SetFloat("_BURN", fill);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public IEnumerator UpdateHealth(float target)

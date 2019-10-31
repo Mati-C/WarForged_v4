@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using Sound;
 
 public class DestructibleOBJ : MonoBehaviour
 {
@@ -40,6 +40,11 @@ public class DestructibleOBJ : MonoBehaviour
             destructibleMesh.SetActive(true);
             anim.SetBool("IsHit", true);
             myBox.isTrigger = true;
+            if (gameObject.name.Contains("Barrel"))
+                SoundManager.instance.Play(MiscSound.BARREL_BREAK, transform.position, true);
+            else
+                SoundManager.instance.Play(MiscSound.JUGS_BREAK, transform.position, true);
+
             yield return new WaitForSeconds(5);
             col.isTrigger = true;
             StartCoroutine(Destroy());
