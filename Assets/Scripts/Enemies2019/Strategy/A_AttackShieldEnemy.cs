@@ -11,12 +11,13 @@ public class A_AttackShieldEnemy : i_EnemyActions
     {
         _e.target.CombatState();
         _e.target.saveSword = true;
-
+        Debug.Log("2");
 
         if (!_e.onDamage)
         {
             if (!_e.onAttackArea && !_e.onDamage)
             {
+
                 Quaternion targetRotation;
                 var dir = (_e.target.transform.position - _e.transform.position).normalized;
                 dir.y = 0;
@@ -32,6 +33,7 @@ public class A_AttackShieldEnemy : i_EnemyActions
 
             if (_e.target.onCounterAttack)
             {
+               
                 Quaternion targetRotation;
                 var dir = (_e.target.transform.position - _e.transform.position).normalized;
                 dir.y = 0;

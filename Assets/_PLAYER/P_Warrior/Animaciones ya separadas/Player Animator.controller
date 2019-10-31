@@ -277,7 +277,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Idle
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IdleCombat
+    m_ConditionEvent: IsInCombat
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102174167604268512}
@@ -25948,7 +25948,7 @@ AnimatorStateMachine:
     m_Position: {x: 504, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102174167604268512}
-    m_Position: {x: 640, y: 230, z: 0}
+    m_Position: {x: 650, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102423465489481406}
     m_Position: {x: 210, y: 410, z: 0}
@@ -26880,7 +26880,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Idle
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IdleCombat
+    m_ConditionEvent: IsInCombat
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102174167604268512}

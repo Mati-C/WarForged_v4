@@ -314,6 +314,10 @@ public class Viewer : MonoBehaviour
         if (velocityX > 1) velocityX = 1;
         if (velocityZ > 1) velocityZ = 1;
 
+        if (velocityX > 0 || velocityZ > 0) anim.SetBool("Idle", false);
+
+        if (velocityX <= 0 && velocityZ <= 0) anim.SetBool("Idle", true);
+
         if (model.timeOnCombat>0)
         {
             anim.SetBool("Idle", false);
@@ -321,7 +325,7 @@ public class Viewer : MonoBehaviour
             else anim.SetBool("IdleCombat", false);
         }
 
-        if(model.timeOnCombat <=0 && model.life>0) anim.SetBool("Idle", true);
+      //  if(model.timeOnCombat <=0 && model.life>0) anim.SetBool("Idle", true);
 
         anim.SetFloat("VelX", velocityX);
         anim.SetFloat("VelZ", velocityZ);

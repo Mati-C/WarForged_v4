@@ -48,25 +48,26 @@ public class ViewerE_Shield : MonoBehaviour
         }
 
         //Iterate over the clips and gather their information
-      /*  int aux = 0;
+        /* int aux = 0;
          foreach (var animClip in clips)
          {
              Debug.Log(animClip.name + ": " + aux++);
          }
-         
-    */
-          animDictionary.Add(EnemyMeleeAnim.WalkL, clips[3].name);
-          animDictionary.Add(EnemyMeleeAnim.WalkR, clips[6].name);
-          animDictionary.Add(EnemyMeleeAnim.IdleCombat, clips[8].name);
-          animDictionary.Add(EnemyMeleeAnim.Retreat, clips[7].name);
-          animDictionary.Add(EnemyMeleeAnim.RunAttack, clips[4].name);
+         */
+    
+          animDictionary.Add(EnemyMeleeAnim.WalkL, clips[4].name);
+          animDictionary.Add(EnemyMeleeAnim.WalkR, clips[7].name);
+          animDictionary.Add(EnemyMeleeAnim.IdleCombat, clips[9].name);
+          animDictionary.Add(EnemyMeleeAnim.Retreat, clips[8].name);
+          animDictionary.Add(EnemyMeleeAnim.RunAttack, clips[5].name);
           animDictionary.Add(EnemyMeleeAnim.Attack1, clips[0].name);
           animDictionary.Add(EnemyMeleeAnim.Chat1, clips[10].name);
-          animDictionary.Add(EnemyMeleeAnim.Chat2, clips[9].name);
-          animDictionary.Add(EnemyMeleeAnim.Chat3, clips[8].name);
+          animDictionary.Add(EnemyMeleeAnim.Chat2, clips[11].name);
+          animDictionary.Add(EnemyMeleeAnim.Chat3, clips[12].name);
           animDictionary.Add(EnemyMeleeAnim.Blocked, clips[2].name);
-          animDictionary.Add(EnemyMeleeAnim.WalkForward, clips[5].name);
+          animDictionary.Add(EnemyMeleeAnim.WalkForward, clips[6].name);
           animDictionary.Add(EnemyMeleeAnim.TakeDamage, clips[1].name);
+          animDictionary.Add(EnemyMeleeAnim.Knocked, clips[13].name);
          
     }
 

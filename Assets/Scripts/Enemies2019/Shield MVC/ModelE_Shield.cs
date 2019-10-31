@@ -21,6 +21,7 @@ public class ModelE_Shield : EnemyMeleeClass
     public bool onDefence;
     public bool damageDone;
     public bool impulse;
+    public bool onCharge;
     public string animClipName;
     Vector3 stunedForward;
     Quaternion startRotation;
@@ -403,11 +404,12 @@ public class ModelE_Shield : EnemyMeleeClass
         persuit.OnFixedUpdate += () =>
         {
 
-            if (navMeshAgent)
+
+          /*  if (navMeshAgent)
             {
                 if (navMeshAgent.enabled) navMeshAgent.enabled = false;
             }
-
+            */
             if (aggressiveLevel == 1) viewDistanceAttack = 3.5f;
 
             if (aggressiveLevel == 2) viewDistanceAttack = 7f;
@@ -425,7 +427,7 @@ public class ModelE_Shield : EnemyMeleeClass
 
             foreach (var item in nearEntities) if (!item.isAnswerCall && !item.firstSaw) item.isAnswerCall = true;
 
-            currentAction = new A_Persuit(this);
+            currentAction = new A_FollowTarget(this);
 
             var d = Vector3.Distance(transform.position, target.transform.position);
 
@@ -442,6 +444,7 @@ public class ModelE_Shield : EnemyMeleeClass
 
         wait.OnEnter += x =>
         {
+            
             if (navMeshAgent)
             {
                 if (navMeshAgent.enabled) navMeshAgent.enabled = false;
@@ -475,6 +478,7 @@ public class ModelE_Shield : EnemyMeleeClass
 
         wait.OnUpdate += () =>
         {
+           
             if (navMeshAgent)
             {
                 if (navMeshAgent.enabled) navMeshAgent.enabled = false;
@@ -568,6 +572,18 @@ public class ModelE_Shield : EnemyMeleeClass
                 if (navMeshAgent.enabled) navMeshAgent.enabled = false;
             }
 
+            var r = UnityEngine.Random.Range(0, 2);
+
+            if (r == 0 && !onCharge)
+            {
+                currentAction = new A_AttackShieldEnemy(this);
+            }
+
+            if(r==1 || onCharge)
+            {
+                view.anim.SetBool("OnCharge", true);
+                currentAction = new A_ShieldCharge(this);
+            }
             onDefence = false;
 
             delayToAttack = 0;
@@ -586,17 +602,16 @@ public class ModelE_Shield : EnemyMeleeClass
 
             AttackRunEvent();
 
-            currentAction = new A_AttackShieldEnemy(this);
-
+           
             isAnswerCall = false;
 
             firstSaw = true;
 
             foreach (var item in nearEntities) if (!item.isAnswerCall && !item.firstSaw) item.isAnswerCall = true;
 
-            if (!isDead && !isWaitArea && isPersuit && !onRetreat && !onDefence) SendInputToFSM(EnemyInputs.PERSUIT);
+            if (!isDead && !isWaitArea && isPersuit && !onRetreat && !onDefence && !onCharge) SendInputToFSM(EnemyInputs.PERSUIT);
 
-            if (!isDead && !isPersuit && !isWaitArea && !onRetreat && !onDefence) SendInputToFSM(EnemyInputs.FOLLOW);
+            if (!isDead && !isPersuit && !isWaitArea && !onRetreat && !onDefence && !onCharge) SendInputToFSM(EnemyInputs.FOLLOW);
 
             if (!isDead && isStuned && !isKnock) SendInputToFSM(EnemyInputs.STUNED);
 
@@ -710,6 +725,7 @@ public class ModelE_Shield : EnemyMeleeClass
 
         retreat.OnFixedUpdate += () =>
         {
+          
 
             view.BlockAnimFalse();
 
@@ -797,6 +813,7 @@ public class ModelE_Shield : EnemyMeleeClass
 
         follow.OnFixedUpdate += () =>
         {
+
             currentAction = new A_FollowTarget(this);
         };
 
@@ -1050,7 +1067,7 @@ public class ModelE_Shield : EnemyMeleeClass
             view.CreatePopText(damage);
         }
 
-        if (typeOfDamage == "Knock")
+        if (typeOfDamage == "Knock" || onCharge)
         {
             KnockEvent();
             isKnock = true;
@@ -1059,6 +1076,9 @@ public class ModelE_Shield : EnemyMeleeClass
             life -= damage;
             view.LifeBar(life / totalLife);
             view.CreatePopText(damage);
+            onCharge = false;
+            view.anim.SetBool("WalkForward", false);
+            onRetreat = true;
         }
 
     
@@ -1208,6 +1228,29 @@ public class ModelE_Shield : EnemyMeleeClass
     public void OnTriggerExit(Collider c)
     {
         if (c.GetComponent<CombatNode>() && isWaitArea) c.GetComponent<CombatNode>().myOwner = null;
+    }
+
+    public void OnCollisionEnter(Collision c)
+    {
+        if ((c.gameObject.layer == LayerMask.NameToLayer("Obstacles") || c.gameObject.layer == LayerMask.NameToLayer("Barrel")) && onCharge)
+        {
+            KnockEvent();
+            view.anim.SetBool("OnCharge", false);
+            isKnock = true;
+            onCharge = false;
+            view.anim.SetBool("WalkForward", false);
+            onRetreat = true;
+        }
+
+        if (c.gameObject.GetComponent<Model>() && onCharge)
+        {
+            view.anim.SetBool("OnCharge", false);
+            view.anim.SetBool("IdleCombat", true);
+            c.gameObject.GetComponent<Model>().GetDamage(10, transform, false, 2, this);
+            onCharge = false;
+            view.anim.SetBool("WalkForward", false);
+            onRetreat = true;
+        }
     }
 
     void OnDrawGizmos()

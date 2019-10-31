@@ -180,7 +180,7 @@ public class Controller : MonoBehaviour
 
                 if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
                 {
-                   // if (!view.anim.GetBool("IdleCombat")) view.anim.SetBool("Idle", true);
+                    if (!view.anim.GetBool("IdleCombat")) view.anim.SetBool("Idle", true);
                     model.acceleration = 0;
                     view.FalseAnimRunSword();
                     view.FalseRunAnim();
