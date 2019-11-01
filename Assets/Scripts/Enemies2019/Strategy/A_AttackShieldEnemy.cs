@@ -11,7 +11,7 @@ public class A_AttackShieldEnemy : i_EnemyActions
     {
         _e.target.CombatState();
         _e.target.saveSword = true;
-        Debug.Log("2");
+     
 
         if (!_e.onDamage)
         {
