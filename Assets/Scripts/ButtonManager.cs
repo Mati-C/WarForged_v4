@@ -178,6 +178,7 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         player.view.anim.SetBool("IsIdle", true);
         player.transform.position = CheckTransform.position;
         player.transform.rotation = CheckTransform.rotation;
+        StartCoroutine(ResetCamera());
         player.life = player.maxLife;
         player.UpdateLife(player.maxLife);
         player.mana = player.maxMana;       
@@ -212,6 +213,14 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         player.view.anim.SetLayerWeight(0, 1);
         player.view.anim.SetBool("IsDead", false);
         
+    }
+
+    IEnumerator ResetCamera()
+    {
+        CamController cam = FindObjectOfType<CamController>();
+        cam.cinemaCam.m_RecenterToTargetHeading.m_enabled = true;
+        yield return new WaitForSeconds(0.015f);
+        cam.cinemaCam.m_RecenterToTargetHeading.m_enabled = false;
     }
 
     public void StartRespawn()

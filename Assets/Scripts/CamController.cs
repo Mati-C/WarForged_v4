@@ -421,6 +421,7 @@ public class CamController : MonoBehaviour {
         }
         cinemaCam.LookAt = end;
         corroutineRunning = false;
+        Destroy(o);
         if (!enemy)
             lockedTarget = null;
     }

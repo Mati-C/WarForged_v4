@@ -155,21 +155,18 @@ public class CinematicActivator : MonoBehaviour
 
             if (NumberClipAnimation == 3 && Input.GetKeyDown(KeyCode.F) && player.hasKey)
             {
-                StartCoroutine(BreakChains());
+                BreakChains();
                 player.hasKey = false;
                 cam.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
 
-    public IEnumerator BreakChains()
+    public void BreakChains()
     {
         NumberClipAnimation = 0;
         interactiveKey.SetActive(false);
         chains.enabled = true;
-        yield return new WaitForSeconds(3);
-
-        yield return new WaitForSeconds(0.5f);
         StartCoroutine(AnimationAdjustment());
         interactiveKey.SetActive(false);
         isActive = true;

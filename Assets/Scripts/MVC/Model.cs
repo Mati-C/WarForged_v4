@@ -207,6 +207,7 @@ public class Model : MonoBehaviour
 
     List<CombatArea> combatAreas = new List<CombatArea>();
     public int combatIndex;
+    Vector3 soundOrigin;
 
     IEnumerator RotateToShoot()
     {
@@ -627,6 +628,7 @@ public class Model : MonoBehaviour
             }
             view.anim.SetFloat("RollTime", timeToRoll);
         }
+        soundOrigin = Vector3.Lerp(transform.position, mainCamera.position, 0.5f);
     }
 
     public void ModifyNodes()
@@ -805,7 +807,6 @@ public class Model : MonoBehaviour
             {
                 view.SaveSwordAnim2();
                 SoundManager.instance.Play(PlayerSound.SAVE_SWORD, new Vector3(), true, 0.5f);
-                print("808");
             }
             else
                 view.ToggleHandEffect(false);
@@ -1406,7 +1407,6 @@ public class Model : MonoBehaviour
                 {
                     view.SaveSwordAnim2();
                     SoundManager.instance.Play(PlayerSound.SAVE_SWORD, transform.position, true);
-                    print("1408");
                     view.ToggleHandEffect(true);
                 }
                 break;
@@ -1417,7 +1417,6 @@ public class Model : MonoBehaviour
                 {
                     view.TakeSword2();
                     SoundManager.instance.Play(PlayerSound.TAKE_SWORD, transform.position, true);
-                    print("1419");
                     view.ToggleHandEffect(false);
                 }
                 break;
@@ -1491,7 +1490,6 @@ public class Model : MonoBehaviour
         {          
             view.TakeSword2();
             SoundManager.instance.Play(PlayerSound.TAKE_SWORD, transform.position, true);
-            print("1493");
         }
         isInCombat = true;
     }
@@ -1606,10 +1604,14 @@ public class Model : MonoBehaviour
             view.anim.SetBool("IsDead", true);
             fadeTimer = 0;
             Dead();
+//             SoundManager.instance.PlayRandom(SoundManager.instance.deathVoices, soundOrigin, false, 0.6f * Vector3.Distance(transform.position, mainCamera.position));
             isDead = true;
             StartCoroutine(view.YouDied());
             timeOnCombat = 0;
         }
+
+//         if (life > 0)
+//             SoundManager.instance.PlayRandom(SoundManager.instance.damageVoices, soundOrigin, false, 0.6f * Vector3.Distance(transform.position, mainCamera.position));
 
         StartCoroutine(OnDamageCorrutine());
     }

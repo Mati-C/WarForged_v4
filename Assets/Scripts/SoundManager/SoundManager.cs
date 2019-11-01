@@ -22,6 +22,12 @@ public class SoundManager : MonoBehaviour
     [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWORD_1", "SWORD_2", "SWORD_3" })]
     public AudioClip[] playerSFX;
 
+    [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "LAST_COMBO_HIT" })]
+    public AudioClip[] voices;
+
+    public List<Voice> deathVoices = new List<Voice>() { Voice.DIE_1, Voice.DIE_2, Voice.DIE_3 };
+    public List<Voice> damageVoices = new List<Voice>() { Voice.DAMAGE_1, Voice.DAMAGE_2, Voice.DAMAGE_3, Voice.DAMAGE_4, Voice.DAMAGE_5, Voice.DAMAGE_6 };
+
     void Awake()
     {
         instance = this;
@@ -47,6 +53,8 @@ public class SoundManager : MonoBehaviour
             audioSource.clip = miscSFX[id];
         else if (soundType.GetType() == typeof(PlayerSound))
             audioSource.clip = playerSFX[id];
+        else if (soundType.GetType() == typeof(Voice))
+            audioSource.clip = voices[id];
 
         audioSource.loop = loop;
         s.transform.position = position;
@@ -70,6 +78,8 @@ public class SoundManager : MonoBehaviour
             audioSource.clip = miscSFX[id];
         else if (soundType.GetType() == typeof(PlayerSound))
             audioSource.clip = playerSFX[id];
+        else if (soundType.GetType() == typeof(Voice))
+            audioSource.clip = voices[id];
 
         audioSource.loop = loop;
         s.transform.position = position;
@@ -133,5 +143,19 @@ public class SoundManager : MonoBehaviour
         SWORD_1,
         SWORD_2,
         SWORD_3
+    }
+
+    public enum Voice
+    {
+        DIE_1,
+        DIE_2,
+        DIE_3,
+        DAMAGE_1,
+        DAMAGE_2,
+        DAMAGE_3,
+        DAMAGE_4,
+        DAMAGE_5,
+        DAMAGE_6,
+        LAST_COMBO_HIT
     }
 }
