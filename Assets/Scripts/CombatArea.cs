@@ -160,9 +160,9 @@ public class CombatArea : MonoBehaviour
             start = obj.localPosition;
 
             if (close)
-                SoundManager.instance.Play(MiscSound.IRON_BARS, obj.position, true);
+                SoundManager.instance.Play(MiscSound.IRON_BARS, obj.parent.position, true, 1);
             else
-                SoundManager.instance.Play(MiscSound.IRON_BARS, obj.position, true);
+                SoundManager.instance.Play(MiscSound.IRON_BARS, obj.parent.position, true, 1);
 
             while (t <= 1)
             {
