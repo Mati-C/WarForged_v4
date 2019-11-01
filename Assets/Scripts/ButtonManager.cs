@@ -136,6 +136,8 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         if (Starting)
         {
             player.transform.position = firstCheck.transform.position;
+            player.transform.rotation = firstCheck.transform.rotation;
+            StartCoroutine(ResetCamera());
             player.isIdle = true;
             player.life = 100;
             player.mana = 100;
@@ -174,11 +176,11 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         Time.timeScale = 1;
         pause = false;   
         pauseMenu.SetActive(false);
-        player.view.anim.SetBool("IsDead", false);
-        player.view.anim.SetBool("IsIdle", true);
         player.transform.position = CheckTransform.position;
         player.transform.rotation = CheckTransform.rotation;
         StartCoroutine(ResetCamera());
+        player.view.anim.SetBool("IsDead", false);
+        player.view.anim.SetBool("IsIdle", true);
         player.life = player.maxLife;
         player.UpdateLife(player.maxLife);
         player.mana = player.maxMana;       

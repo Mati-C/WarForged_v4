@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using UnityEngine.AI;
+using Sound;
 
 public class ModelE_Melee : EnemyMeleeClass
 {
@@ -1282,6 +1283,7 @@ public class ModelE_Melee : EnemyMeleeClass
             _view.EndChainAttack();
             _view.HeavyAttackFalse();
             onDefence = false;
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
         }
 
         if (onDefence && angle > 90)
@@ -1304,6 +1306,9 @@ public class ModelE_Melee : EnemyMeleeClass
                 CombatIdleEvent();
             }
         }
+
+        if (life > 0 && !onDefence)
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0 && !isDead)
         {

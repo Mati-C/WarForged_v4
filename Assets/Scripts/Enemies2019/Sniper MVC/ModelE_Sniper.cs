@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using UnityEngine.AI;
+using Sound;
 
 public class ModelE_Sniper : EnemyEntity
 {
@@ -583,6 +584,9 @@ public class ModelE_Sniper : EnemyEntity
             view.LifeBar(life / maxLife);
             view.CreatePopText(damage);
         }
+
+        if (life > 0)
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0)
         {

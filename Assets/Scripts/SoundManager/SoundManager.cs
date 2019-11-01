@@ -19,14 +19,18 @@ public class SoundManager : MonoBehaviour
     [NamedArrayAttribute(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_START", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK" })]
     public AudioClip[] miscSFX;
 
-    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWORD_1", "SWORD_2", "SWORD_3" })]
+    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "BODY_IMPACT_1", "BODY_IMPACT_2" })]
     public AudioClip[] playerSFX;
 
     [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "LAST_COMBO_HIT" })]
     public AudioClip[] voices;
 
-    public List<Voice> deathVoices = new List<Voice>() { Voice.DIE_1, Voice.DIE_2, Voice.DIE_3 };
-    public List<Voice> damageVoices = new List<Voice>() { Voice.DAMAGE_1, Voice.DAMAGE_2, Voice.DAMAGE_3, Voice.DAMAGE_4, Voice.DAMAGE_5, Voice.DAMAGE_6 };
+    #region SFX Lists
+    public List<Voice> deathVoice = new List<Voice>() { Voice.DIE_1, Voice.DIE_2, Voice.DIE_3 };
+    public List<Voice> damageVoice = new List<Voice>() { Voice.DAMAGE_1, Voice.DAMAGE_2, Voice.DAMAGE_3, Voice.DAMAGE_4, Voice.DAMAGE_5, Voice.DAMAGE_6 };
+    public List<EntitySound> swing = new List<EntitySound>() { EntitySound.SWING_1, EntitySound.SWING_2, EntitySound.SWING_3 };
+    public List<EntitySound> bodyImpact = new List<EntitySound>() { EntitySound.BODY_IMPACT_1, EntitySound.BODY_IMPACT_2 };
+    #endregion
 
     void Awake()
     {
@@ -51,7 +55,7 @@ public class SoundManager : MonoBehaviour
 
         if (soundType.GetType() == typeof(MiscSound))
             audioSource.clip = miscSFX[id];
-        else if (soundType.GetType() == typeof(PlayerSound))
+        else if (soundType.GetType() == typeof(EntitySound))
             audioSource.clip = playerSFX[id];
         else if (soundType.GetType() == typeof(Voice))
             audioSource.clip = voices[id];
@@ -66,7 +70,11 @@ public class SoundManager : MonoBehaviour
 
     public void PlayRandom<T>(List<T> sounds, Vector3 position = new Vector3(), bool randomPitch = false, float volume = 0.6f, bool loop = false)
     {
-        T soundType = sounds[UnityEngine.Random.Range(0, sounds.Count)];
+        T soundType;
+        if (sounds.Count == 1)
+            soundType = sounds[0];
+        else
+            soundType = sounds[UnityEngine.Random.Range(0, sounds.Count)];
 
         int id = -1;
         id = (int)Convert.ChangeType(soundType, typeof(Int32));
@@ -76,7 +84,7 @@ public class SoundManager : MonoBehaviour
 
         if (soundType.GetType() == typeof(MiscSound))
             audioSource.clip = miscSFX[id];
-        else if (soundType.GetType() == typeof(PlayerSound))
+        else if (soundType.GetType() == typeof(EntitySound))
             audioSource.clip = playerSFX[id];
         else if (soundType.GetType() == typeof(Voice))
             audioSource.clip = voices[id];
@@ -106,12 +114,12 @@ public class SoundManager : MonoBehaviour
             {
                 if (!combatAudio.isPlaying)
                     combatAudio.Play();
-                combatAudio.volume = t * musicVolume;
+                combatAudio.volume = t * (musicVolume * 0.75f);
                 ambienceAudio.volume = Mathf.Lerp(musicVolume * 0.75f, musicVolume, 1 - t);
             }
             else
             {
-                combatAudio.volume = (1 - t) * musicVolume;
+                combatAudio.volume = ((musicVolume * 0.75f) - t) * (musicVolume * 0.75f);
                 ambienceAudio.volume = t * musicVolume;
             }
             yield return new WaitForEndOfFrame();
@@ -136,13 +144,15 @@ public class SoundManager : MonoBehaviour
         BARREL_BREAK
     }
 
-    public enum PlayerSound
+    public enum EntitySound
     {
         TAKE_SWORD,
         SAVE_SWORD,
-        SWORD_1,
-        SWORD_2,
-        SWORD_3
+        SWING_1,
+        SWING_2,
+        SWING_3,
+        BODY_IMPACT_1,
+        BODY_IMPACT_2
     }
 
     public enum Voice

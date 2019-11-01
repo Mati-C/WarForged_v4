@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using UnityEngine.AI;
+using Sound;
 
 public class ModelE_Lancer : EnemyMeleeClass
 {
@@ -1134,6 +1135,9 @@ public class ModelE_Lancer : EnemyMeleeClass
                 dodgePoints = 0;
             }
         }
+
+        if (life > 0 && canBeHit)
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0)
             isDead = true;

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 using UnityEngine.AI;
+using Sound;
 
 public class ModelE_Shield : EnemyMeleeClass
 {
@@ -1036,6 +1037,7 @@ public class ModelE_Shield : EnemyMeleeClass
         if (angle > 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile") && !isKnock)
         {
             BlockEvent();
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
             timesToCounterAttack++;
             if (timesToCounterAttack > 4)
             {
@@ -1082,7 +1084,9 @@ public class ModelE_Shield : EnemyMeleeClass
             onRetreat = true;
         }
 
-    
+        if (life > 0 && isKnock)
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+
         if (life <= 0 && !isDead)
         {
             isDead = true;
@@ -1092,8 +1096,6 @@ public class ModelE_Shield : EnemyMeleeClass
             }
 
         }
-
-
     }
 
     public override Node GetMyNode()

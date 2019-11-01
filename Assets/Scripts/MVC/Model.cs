@@ -401,7 +401,7 @@ public class Model : MonoBehaviour
     public IEnumerator TimeToDoDamage()
     {
         makingDamage = true;
-        SoundManager.instance.PlayRandom(new List<PlayerSound>() { PlayerSound.SWORD_1, PlayerSound.SWORD_2, PlayerSound.SWORD_3 }, transform.position, true);
+        SoundManager.instance.PlayRandom(SoundManager.instance.swing, transform.position, true);
 
         while (makingDamage)
         {
@@ -806,7 +806,7 @@ public class Model : MonoBehaviour
             if (classType == PlayerClass.Warrior)
             {
                 view.SaveSwordAnim2();
-                SoundManager.instance.Play(PlayerSound.SAVE_SWORD, new Vector3(), true, 0.5f);
+                SoundManager.instance.Play(EntitySound.SAVE_SWORD, new Vector3(), true, 0.5f);
             }
             else
                 view.ToggleHandEffect(false);
@@ -1313,6 +1313,11 @@ public class Model : MonoBehaviour
         life += val;
         if (life > maxLife) life = maxLife;
         view.UpdateLifeBar(life / maxLife);
+
+        if (life <= 0)
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1);
+        else if (val < 0 && !isDead)
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true, 1);
     }
 
     public void MakeDamage(string typeOfDamage)
@@ -1406,7 +1411,7 @@ public class Model : MonoBehaviour
                 if(isInCombat)
                 {
                     view.SaveSwordAnim2();
-                    SoundManager.instance.Play(PlayerSound.SAVE_SWORD, transform.position, true);
+                    SoundManager.instance.Play(EntitySound.SAVE_SWORD, transform.position, true);
                     view.ToggleHandEffect(true);
                 }
                 break;
@@ -1416,7 +1421,7 @@ public class Model : MonoBehaviour
                 if (isInCombat)
                 {
                     view.TakeSword2();
-                    SoundManager.instance.Play(PlayerSound.TAKE_SWORD, transform.position, true);
+                    SoundManager.instance.Play(EntitySound.TAKE_SWORD, transform.position, true);
                     view.ToggleHandEffect(false);
                 }
                 break;
@@ -1489,7 +1494,7 @@ public class Model : MonoBehaviour
         if (!isInCombat && classType == PlayerClass.Warrior && !isDead)
         {          
             view.TakeSword2();
-            SoundManager.instance.Play(PlayerSound.TAKE_SWORD, transform.position, true);
+            SoundManager.instance.Play(EntitySound.TAKE_SWORD, transform.position, true);
         }
         isInCombat = true;
     }
@@ -1543,6 +1548,7 @@ public class Model : MonoBehaviour
 
         if (!isBehind && !isProyectile && onDefence &&  damageType == 1)
         {
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
 
             if (perfectParryTimer <= 0.5f)
             {
@@ -1561,8 +1567,6 @@ public class Model : MonoBehaviour
                 view.Blocked();
                 view.ShakeCameraDamage(0.5f, 0.5f, 0.5f);
             }
-          
-            
         }
 
         if(damageType == 2 && !onDefence && !invulnerable)
@@ -1572,6 +1576,7 @@ public class Model : MonoBehaviour
             timeToHeal = maxTimeToHeal;
             OnDamage();
             impulse = false;
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
         }
 
         if (damageType == 2 && onDefence)
@@ -1589,6 +1594,7 @@ public class Model : MonoBehaviour
             UpdateLife(-damage);
             timeToHeal = maxTimeToHeal;
             impulse = false;
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
             if (life > 0 && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.RollAttack]
                         && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.Dodge_Back]
@@ -1604,14 +1610,10 @@ public class Model : MonoBehaviour
             view.anim.SetBool("IsDead", true);
             fadeTimer = 0;
             Dead();
-//             SoundManager.instance.PlayRandom(SoundManager.instance.deathVoices, soundOrigin, false, 0.6f * Vector3.Distance(transform.position, mainCamera.position));
             isDead = true;
             StartCoroutine(view.YouDied());
             timeOnCombat = 0;
         }
-
-//         if (life > 0)
-//             SoundManager.instance.PlayRandom(SoundManager.instance.damageVoices, soundOrigin, false, 0.6f * Vector3.Distance(transform.position, mainCamera.position));
 
         StartCoroutine(OnDamageCorrutine());
     }
