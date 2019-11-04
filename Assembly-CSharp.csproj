@@ -391,6 +391,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ASinOpNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\_Enemy Feedback\Fire Hands\Fire Hands.shader" />
+    <None Include="Assets\Objects and Particles\_Shaders\Tower\ThunderEffect.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_DecalDistortMaskMulMobile.shader" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DeltaTime.shader" />
@@ -595,6 +596,7 @@
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Portal\NoStencilTransperentDiffuse.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DdxOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TextureArrayNode.shader" />
+    <None Include="Assets\Objects and Particles\_Shaders\Tower\MagicSphere.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Blood Pool\Blood Pool.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DecodeDepthNormalNode.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_DecalMaskMobile.shader" />

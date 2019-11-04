@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MagicSphere
+  m_Shader: {fileID: 4800000, guid: b010df3dfef0fd64bb261243140ade5f, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Bump:
+        m_Texture: {fileID: 2800000, guid: 62539d06374c5e04795ab6e69e466531, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: a29f600386831914fa2f2b7b0cf78a5b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 1d7055aa4cb811f42a8663b78ec1b57c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Coordinates_Value: 2.29
+    - _EdgeLength: 4.8
+    - _EmissiveIntensity: 0.813
+    - _Float0: 5
+    - _NoiseMapStrength: 0.611
+    - _Opacity_Value: 1
+    - _Power: 0.536
+    - _ScrollSpeed: 0.154
+    - _Speed: 0.484
+    - _Tessellation: 4
+    - __dirty: 0
+    m_Colors:
+    - _COLOR_: {r: 0, g: 0.083200455, b: 1, a: 0}
+    - _COLOR_01: {r: 0.19215684, g: 0.19839272, b: 0.7921569, a: 0}
+    - _COLOR_02: {r: 0.12513342, g: 0.6211949, b: 0.7169812, a: 0}
+    - _Color0: {r: 0, g: 0.08320042, b: 1, a: 0}
+    - _NoiseMapPannerSpeed: {r: 1, g: -1, b: 0, a: 0}
+    - _NoiseMapSize: {r: 5, g: 5, b: 0, a: 0}
+    - _RingPannerSpeed: {r: 1, g: -1, b: 0, a: 0}

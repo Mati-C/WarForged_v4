@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ThunderEffect
+  m_Shader: {fileID: 4800000, guid: 5928e1633041e754992b2eb84e4deda3, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2001
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: 15df1f31186634c4b8e30230323e7161, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Thunder_01:
+        m_Texture: {fileID: 2800000, guid: 54794fc18fdc2fe4e82ab4048aab642c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Thunder_01_NRM:
+        m_Texture: {fileID: 2800000, guid: fbf85561c39c76f46a08adab1c8ce021, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Thunder_02:
+        m_Texture: {fileID: 2800000, guid: 8804ac111ca8c9844bb1a9ca7b98fe51, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Thunder_02_NRM:
+        m_Texture: {fileID: 2800000, guid: 7802ee41646ee3d4db6cbed51d5d090c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Waves_Height:
+        m_Texture: {fileID: 2800000, guid: a29f600386831914fa2f2b7b0cf78a5b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0.5
+    - _Float6: 1.4273251
+    - _Opacity: -1
+    - _Power: 0.731
+    - _PowerTime: 1.102
+    - _Scale_Texture: 0
+    - _Scale_Time: 3
+    - _Speed: 1
+    - _Tessellation: 2.3179717
+    - _Value_Image: 0
+    - __dirty: 0
+    m_Colors:
+    - _C: {r: 0.5115387, g: 0.28969374, b: 0.5849056, a: 0}
+    - _COLOR: {r: 0.5115387, g: 0.28969374, b: 0.5849056, a: 0}
+    - _COLOR_Thun: {r: 0.5115387, g: 0.28969374, b: 0.5849056, a: 0}
+    - _COLOR_Thunder: {r: 0.51153874, g: 0.2896938, b: 0.5849056, a: 0}
+    - _Thunder_COLOR: {r: 0.7466669, g: 0, b: 1, a: 0}
