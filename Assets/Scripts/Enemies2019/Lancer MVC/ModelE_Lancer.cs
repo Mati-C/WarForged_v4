@@ -806,7 +806,7 @@ public class ModelE_Lancer : EnemyMeleeClass
 
         retreat.OnUpdate += () =>
         {
-            Debug.Log("retreat");
+
 
             view.anim.SetBool("WalkBack", true);
 

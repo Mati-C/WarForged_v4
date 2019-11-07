@@ -67,7 +67,7 @@ public class ViewerE_Lancer : MonoBehaviour
         {
             Debug.Log(animClip.name + ": " + aux++);
         }
-      */  
+      */ 
 
         animDictionary.Add(EnemyMeleeAnim.WalkL, clips[11].name);
         animDictionary.Add(EnemyMeleeAnim.WalkR, clips[12].name);

@@ -431,7 +431,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
                 if (!isDead && isPersuit && !isWaitArea && target.fadeTimer > target.view.fadeTime && enemyPointer)
                 {
-                    Debug.Log("asdasd");
+
 
                     var dir = target.transform.position - transform.position;
                     dir.y = 0;
@@ -754,7 +754,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
         attack.OnFixedUpdate += () =>
         {
-            Debug.Log("attack");
+
 
             _view._anim.SetBool("WalkBack", false);
 

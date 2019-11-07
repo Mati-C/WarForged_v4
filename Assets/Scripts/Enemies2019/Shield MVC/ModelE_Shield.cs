@@ -575,14 +575,14 @@ public class ModelE_Shield : EnemyMeleeClass
                 if (navMeshAgent.enabled) navMeshAgent.enabled = false;
             }
 
-            var r = UnityEngine.Random.Range(0, 2);
+            var r = UnityEngine.Random.Range(0, 10);
 
-            if (r == 0 && !onCharge)
+            if (r > 2 && !onCharge)
             {
                 currentAction = new A_AttackShieldEnemy(this);
             }
 
-            if(r==1 || onCharge)
+            if(r <= 2 || onCharge)
             {
                 OnChargeEvent();
                 currentAction = new A_ShieldCharge(this);
@@ -1034,7 +1034,7 @@ public class ModelE_Shield : EnemyMeleeClass
         foreach (var item in nearEntities)
             item.StartPursuit();
 
-        if (angle > 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile") && !isKnock)
+        if (angle > 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile") && !isKnock && animClipName != view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1])
         {
             BlockEvent();
             SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
@@ -1047,8 +1047,9 @@ public class ModelE_Shield : EnemyMeleeClass
         }
 
 
-        if ((angle < 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || (isKnock && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")))
+        if ((angle < 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || (isKnock && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || animClipName == view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1])
         {
+            
             timeStuned = 0;  
             timeOnDamage = 0.5f;
             view.timeShaderDamage = 1;
@@ -1081,6 +1082,7 @@ public class ModelE_Shield : EnemyMeleeClass
             view.CreatePopText(damage);
             onCharge = false;
             view.anim.SetBool("WalkForward", false);
+            view.anim.SetBool("OnCharge", false);
             onRetreat = true;
         }
 

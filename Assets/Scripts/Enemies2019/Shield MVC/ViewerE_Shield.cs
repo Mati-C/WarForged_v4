@@ -28,7 +28,7 @@ public class ViewerE_Shield : MonoBehaviour
     public enum EnemyMeleeAnim
     {
         TakeDamage, Dead, Attack1, WalkL, WalkR, WalkForward, IdleCombat, Patrol, Retreat, Stuned, Knocked, AttackBlocked, Blocked, CounterAttack, IdleDefence, Idle,
-        Chat1, Chat2, Chat3, Point, RunAttack
+        Chat1, Chat2, Chat3, Point, RunAttack, Charge
     };
 
     public Dictionary<EnemyMeleeAnim, string> animDictionary = new Dictionary<EnemyMeleeAnim, string>();
@@ -56,19 +56,20 @@ public class ViewerE_Shield : MonoBehaviour
          }
          */
     
-          animDictionary.Add(EnemyMeleeAnim.WalkL, clips[4].name);
-          animDictionary.Add(EnemyMeleeAnim.WalkR, clips[7].name);
-          animDictionary.Add(EnemyMeleeAnim.IdleCombat, clips[9].name);
-          animDictionary.Add(EnemyMeleeAnim.Retreat, clips[8].name);
-          animDictionary.Add(EnemyMeleeAnim.RunAttack, clips[5].name);
+          animDictionary.Add(EnemyMeleeAnim.WalkL, clips[5].name);
+          animDictionary.Add(EnemyMeleeAnim.WalkR, clips[8].name);
+          animDictionary.Add(EnemyMeleeAnim.IdleCombat, clips[10].name);
+          animDictionary.Add(EnemyMeleeAnim.Retreat, clips[9].name);
+          animDictionary.Add(EnemyMeleeAnim.RunAttack, clips[6].name);
           animDictionary.Add(EnemyMeleeAnim.Attack1, clips[0].name);
-          animDictionary.Add(EnemyMeleeAnim.Chat1, clips[10].name);
-          animDictionary.Add(EnemyMeleeAnim.Chat2, clips[11].name);
-          animDictionary.Add(EnemyMeleeAnim.Chat3, clips[12].name);
+          animDictionary.Add(EnemyMeleeAnim.Chat1, clips[13].name);
+          animDictionary.Add(EnemyMeleeAnim.Chat2, clips[12].name);
+          animDictionary.Add(EnemyMeleeAnim.Chat3, clips[11].name);
           animDictionary.Add(EnemyMeleeAnim.Blocked, clips[2].name);
-          animDictionary.Add(EnemyMeleeAnim.WalkForward, clips[6].name);
+          animDictionary.Add(EnemyMeleeAnim.WalkForward, clips[7].name);
           animDictionary.Add(EnemyMeleeAnim.TakeDamage, clips[1].name);
-          animDictionary.Add(EnemyMeleeAnim.Knocked, clips[13].name);
+          animDictionary.Add(EnemyMeleeAnim.Knocked, clips[14].name);
+          animDictionary.Add(EnemyMeleeAnim.Charge, clips[3].name);
          
     }
 

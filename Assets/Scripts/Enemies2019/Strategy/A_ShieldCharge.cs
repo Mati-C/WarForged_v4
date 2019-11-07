@@ -5,12 +5,12 @@ using UnityEngine;
 public class A_ShieldCharge : i_EnemyActions
 {
     ModelE_Shield _m;
-    float timer = 1.5f;
+    float timer = 3f;
 
    public void Actions()
    {
         timer -= Time.deltaTime;
-       if(_m.animClipName != _m.view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Knocked]) _m.rb.MovePosition(_m.transform.position + _m.transform.forward * _m.speed * 2 * Time.deltaTime);
+        if(_m.animClipName == _m.view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Charge]) _m.rb.MovePosition(_m.transform.position + _m.transform.forward * _m.speed * 2 * Time.deltaTime);
 
         if (timer <= 0)
         {
