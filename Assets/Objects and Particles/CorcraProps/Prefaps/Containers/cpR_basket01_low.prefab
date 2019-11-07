@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4383516280447422}
   - component: {fileID: 33074265662308662}
   - component: {fileID: 23325103637324044}
-  - component: {fileID: 64323019766588816}
   - component: {fileID: 54526327832675458}
   m_Layer: 8
   m_Name: cpR_basket01_low
@@ -80,20 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64323019766588816
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205648503895122}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: f072984fd0c038b469204ace80f843cd, type: 3}
 --- !u!54 &54526327832675458
 Rigidbody:
   m_ObjectHideFlags: 0
