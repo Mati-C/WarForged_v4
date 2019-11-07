@@ -1034,7 +1034,7 @@ public class ModelE_Shield : EnemyMeleeClass
         foreach (var item in nearEntities)
             item.StartPursuit();
 
-        if (angle > 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile") && !isKnock && animClipName != view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1])
+        if (angle > 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile") && !isKnock && animClipName != view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1] && !onCharge)
         {
             BlockEvent();
             SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
@@ -1047,7 +1047,7 @@ public class ModelE_Shield : EnemyMeleeClass
         }
 
 
-        if ((angle < 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || (isKnock && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || animClipName == view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1])
+        if ((angle < 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || (isKnock && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || animClipName == view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1] || onCharge)
         {
             
             timeStuned = 0;  
@@ -1071,7 +1071,7 @@ public class ModelE_Shield : EnemyMeleeClass
             view.CreatePopText(damage);
         }
 
-        if (typeOfDamage == "Knock" || onCharge)
+        if (typeOfDamage == "Knock")
         {
             KnockEvent();
             isKnock = true;
