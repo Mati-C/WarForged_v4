@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2001
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -49,10 +49,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cutoff: 0.5
-    - _Float6: 1.4273251
+    - _EdgeLength: 15
+    - _Float6: 0.07
     - _Opacity: -1
     - _Power: 0.731
-    - _PowerTime: 1.102
+    - _PowerTime: 0.14
     - _Scale_Texture: 0
     - _Scale_Time: 3
     - _Speed: 1
@@ -62,6 +63,7 @@ Material:
     m_Colors:
     - _C: {r: 0.5115387, g: 0.28969374, b: 0.5849056, a: 0}
     - _COLOR: {r: 0.5115387, g: 0.28969374, b: 0.5849056, a: 0}
+    - _COLOR_01: {r: 0.24109998, g: 0.780932, b: 0.8113207, a: 0}
     - _COLOR_Thun: {r: 0.5115387, g: 0.28969374, b: 0.5849056, a: 0}
     - _COLOR_Thunder: {r: 0.51153874, g: 0.2896938, b: 0.5849056, a: 0}
-    - _Thunder_COLOR: {r: 0.7466669, g: 0, b: 1, a: 0}
+    - _Thunder_COLOR: {r: 1, g: 1, b: 1, a: 0}
