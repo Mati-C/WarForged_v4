@@ -1,0 +1,360 @@
+fileFormatVersion: 2
+guid: 3ef2876dc85fb564392cb466d4f012fe
+timeCreated: 1483070041
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: chainlink
+    100002: chainlink (10)
+    100004: chainlink (11)
+    100006: chainlink (12)
+    100008: chainlink (13)
+    100010: chainlink (14)
+    100012: chainlink (15)
+    100014: chainlink (16)
+    100016: chainlink (17)
+    100018: chainlink (18)
+    100020: chainlink (19)
+    100022: chainlink (2)
+    100024: chainlink (20)
+    100026: chainlink (21)
+    100028: chainlink (22)
+    100030: chainlink (23)
+    100032: chainlink (24)
+    100034: chainlink (25)
+    100036: chainlink (26)
+    100038: chainlink (27)
+    100040: chainlink (28)
+    100042: chainlink (29)
+    100044: chainlink (3)
+    100046: chainlink (30)
+    100048: chainlink (31)
+    100050: chainlink (32)
+    100052: chainlink (33)
+    100054: chainlink (34)
+    100056: chainlink (35)
+    100058: chainlink (36)
+    100060: chainlink (37)
+    100062: chainlink (38)
+    100064: chainlink (39)
+    100066: chainlink (4)
+    100068: chainlink (40)
+    100070: chainlink (41)
+    100072: chainlink (42)
+    100074: chainlink (43)
+    100076: chainlink (44)
+    100078: chainlink (45)
+    100080: chainlink (46)
+    100082: chainlink (47)
+    100084: chainlink (48)
+    100086: chainlink (49)
+    100088: chainlink (5)
+    100090: chainlink (50)
+    100092: chainlink (51)
+    100094: chainlink (52)
+    100096: chainlink (53)
+    100098: chainlink (54)
+    100100: chainlink (55)
+    100102: chainlink (56)
+    100104: chainlink (6)
+    100106: chainlink (7)
+    100108: chainlink (8)
+    100110: chainlink (9)
+    100112: //RootNode
+    100114: cpR_chandelierchain
+    400000: chainlink
+    400002: chainlink (10)
+    400004: chainlink (11)
+    400006: chainlink (12)
+    400008: chainlink (13)
+    400010: chainlink (14)
+    400012: chainlink (15)
+    400014: chainlink (16)
+    400016: chainlink (17)
+    400018: chainlink (18)
+    400020: chainlink (19)
+    400022: chainlink (2)
+    400024: chainlink (20)
+    400026: chainlink (21)
+    400028: chainlink (22)
+    400030: chainlink (23)
+    400032: chainlink (24)
+    400034: chainlink (25)
+    400036: chainlink (26)
+    400038: chainlink (27)
+    400040: chainlink (28)
+    400042: chainlink (29)
+    400044: chainlink (3)
+    400046: chainlink (30)
+    400048: chainlink (31)
+    400050: chainlink (32)
+    400052: chainlink (33)
+    400054: chainlink (34)
+    400056: chainlink (35)
+    400058: chainlink (36)
+    400060: chainlink (37)
+    400062: chainlink (38)
+    400064: chainlink (39)
+    400066: chainlink (4)
+    400068: chainlink (40)
+    400070: chainlink (41)
+    400072: chainlink (42)
+    400074: chainlink (43)
+    400076: chainlink (44)
+    400078: chainlink (45)
+    400080: chainlink (46)
+    400082: chainlink (47)
+    400084: chainlink (48)
+    400086: chainlink (49)
+    400088: chainlink (5)
+    400090: chainlink (50)
+    400092: chainlink (51)
+    400094: chainlink (52)
+    400096: chainlink (53)
+    400098: chainlink (54)
+    400100: chainlink (55)
+    400102: chainlink (56)
+    400104: chainlink (6)
+    400106: chainlink (7)
+    400108: chainlink (8)
+    400110: chainlink (9)
+    400112: //RootNode
+    400114: cpR_chandelierchain
+    2300000: chainlink
+    2300002: chainlink (10)
+    2300004: chainlink (11)
+    2300006: chainlink (12)
+    2300008: chainlink (13)
+    2300010: chainlink (14)
+    2300012: chainlink (15)
+    2300014: chainlink (16)
+    2300016: chainlink (17)
+    2300018: chainlink (18)
+    2300020: chainlink (19)
+    2300022: chainlink (2)
+    2300024: chainlink (20)
+    2300026: chainlink (21)
+    2300028: chainlink (22)
+    2300030: chainlink (23)
+    2300032: chainlink (24)
+    2300034: chainlink (25)
+    2300036: chainlink (26)
+    2300038: chainlink (27)
+    2300040: chainlink (28)
+    2300042: chainlink (29)
+    2300044: chainlink (3)
+    2300046: chainlink (30)
+    2300048: chainlink (31)
+    2300050: chainlink (32)
+    2300052: chainlink (33)
+    2300054: chainlink (34)
+    2300056: chainlink (35)
+    2300058: chainlink (36)
+    2300060: chainlink (37)
+    2300062: chainlink (38)
+    2300064: chainlink (39)
+    2300066: chainlink (4)
+    2300068: chainlink (40)
+    2300070: chainlink (41)
+    2300072: chainlink (42)
+    2300074: chainlink (43)
+    2300076: chainlink (44)
+    2300078: chainlink (45)
+    2300080: chainlink (46)
+    2300082: chainlink (47)
+    2300084: chainlink (48)
+    2300086: chainlink (49)
+    2300088: chainlink (5)
+    2300090: chainlink (50)
+    2300092: chainlink (51)
+    2300094: chainlink (52)
+    2300096: chainlink (53)
+    2300098: chainlink (54)
+    2300100: chainlink (55)
+    2300102: chainlink (56)
+    2300104: chainlink (6)
+    2300106: chainlink (7)
+    2300108: chainlink (8)
+    2300110: chainlink (9)
+    3300000: chainlink
+    3300002: chainlink (10)
+    3300004: chainlink (11)
+    3300006: chainlink (12)
+    3300008: chainlink (13)
+    3300010: chainlink (14)
+    3300012: chainlink (15)
+    3300014: chainlink (16)
+    3300016: chainlink (17)
+    3300018: chainlink (18)
+    3300020: chainlink (19)
+    3300022: chainlink (2)
+    3300024: chainlink (20)
+    3300026: chainlink (21)
+    3300028: chainlink (22)
+    3300030: chainlink (23)
+    3300032: chainlink (24)
+    3300034: chainlink (25)
+    3300036: chainlink (26)
+    3300038: chainlink (27)
+    3300040: chainlink (28)
+    3300042: chainlink (29)
+    3300044: chainlink (3)
+    3300046: chainlink (30)
+    3300048: chainlink (31)
+    3300050: chainlink (32)
+    3300052: chainlink (33)
+    3300054: chainlink (34)
+    3300056: chainlink (35)
+    3300058: chainlink (36)
+    3300060: chainlink (37)
+    3300062: chainlink (38)
+    3300064: chainlink (39)
+    3300066: chainlink (4)
+    3300068: chainlink (40)
+    3300070: chainlink (41)
+    3300072: chainlink (42)
+    3300074: chainlink (43)
+    3300076: chainlink (44)
+    3300078: chainlink (45)
+    3300080: chainlink (46)
+    3300082: chainlink (47)
+    3300084: chainlink (48)
+    3300086: chainlink (49)
+    3300088: chainlink (5)
+    3300090: chainlink (50)
+    3300092: chainlink (51)
+    3300094: chainlink (52)
+    3300096: chainlink (53)
+    3300098: chainlink (54)
+    3300100: chainlink (55)
+    3300102: chainlink (56)
+    3300104: chainlink (6)
+    3300106: chainlink (7)
+    3300108: chainlink (8)
+    3300110: chainlink (9)
+    4300000: chainlink (2)
+    6400000: chainlink
+    6400002: chainlink (10)
+    6400004: chainlink (11)
+    6400006: chainlink (12)
+    6400008: chainlink (13)
+    6400010: chainlink (14)
+    6400012: chainlink (15)
+    6400014: chainlink (16)
+    6400016: chainlink (17)
+    6400018: chainlink (18)
+    6400020: chainlink (19)
+    6400022: chainlink (2)
+    6400024: chainlink (20)
+    6400026: chainlink (21)
+    6400028: chainlink (22)
+    6400030: chainlink (23)
+    6400032: chainlink (24)
+    6400034: chainlink (25)
+    6400036: chainlink (26)
+    6400038: chainlink (27)
+    6400040: chainlink (28)
+    6400042: chainlink (29)
+    6400044: chainlink (3)
+    6400046: chainlink (30)
+    6400048: chainlink (31)
+    6400050: chainlink (32)
+    6400052: chainlink (33)
+    6400054: chainlink (34)
+    6400056: chainlink (35)
+    6400058: chainlink (36)
+    6400060: chainlink (37)
+    6400062: chainlink (38)
+    6400064: chainlink (39)
+    6400066: chainlink (4)
+    6400068: chainlink (40)
+    6400070: chainlink (41)
+    6400072: chainlink (42)
+    6400074: chainlink (43)
+    6400076: chainlink (44)
+    6400078: chainlink (45)
+    6400080: chainlink (46)
+    6400082: chainlink (47)
+    6400084: chainlink (48)
+    6400086: chainlink (49)
+    6400088: chainlink (5)
+    6400090: chainlink (50)
+    6400092: chainlink (51)
+    6400094: chainlink (52)
+    6400096: chainlink (53)
+    6400098: chainlink (54)
+    6400100: chainlink (55)
+    6400102: chainlink (56)
+    6400104: chainlink (6)
+    6400106: chainlink (7)
+    6400108: chainlink (8)
+    6400110: chainlink (9)
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,235 @@
+fileFormatVersion: 2
+guid: 7424f9a14e8061d4fbf01f98afce103a
+timeCreated: 1483070082
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: chainlink (57)
+    100002: chainlink (59)
+    100004: chainlink (60)
+    100006: chainlink (61)
+    100008: chainlink (62)
+    100010: chainlink (63)
+    100012: chainlink (64)
+    100014: chainlink (65)
+    100016: chainlink (66)
+    100018: chainlink (67)
+    100020: chainlink (68)
+    100022: chainlink (69)
+    100024: chainlink (70)
+    100026: chainlink (71)
+    100028: chainlink (72)
+    100030: chainlink (73)
+    100032: chainlink (74)
+    100034: chainlink (75)
+    100036: chainlink (76)
+    100038: chainlink (77)
+    100040: chainlink (78)
+    100042: chainlink (79)
+    100044: chainlink (80)
+    100046: chainlink (81)
+    100048: chainlink (82)
+    100050: chainlink (83)
+    100052: chainlink (84)
+    100054: chainlink (85)
+    100056: chainlink (86)
+    100058: chainlink (87)
+    100060: chainlink (88)
+    100062: //RootNode
+    100064: cpR_chainfivefeet
+    400000: chainlink (57)
+    400002: chainlink (59)
+    400004: chainlink (60)
+    400006: chainlink (61)
+    400008: chainlink (62)
+    400010: chainlink (63)
+    400012: chainlink (64)
+    400014: chainlink (65)
+    400016: chainlink (66)
+    400018: chainlink (67)
+    400020: chainlink (68)
+    400022: chainlink (69)
+    400024: chainlink (70)
+    400026: chainlink (71)
+    400028: chainlink (72)
+    400030: chainlink (73)
+    400032: chainlink (74)
+    400034: chainlink (75)
+    400036: chainlink (76)
+    400038: chainlink (77)
+    400040: chainlink (78)
+    400042: chainlink (79)
+    400044: chainlink (80)
+    400046: chainlink (81)
+    400048: chainlink (82)
+    400050: chainlink (83)
+    400052: chainlink (84)
+    400054: chainlink (85)
+    400056: chainlink (86)
+    400058: chainlink (87)
+    400060: chainlink (88)
+    400062: cpR_chainfivefeet
+    400064: //RootNode
+    2300000: chainlink (57)
+    2300002: chainlink (59)
+    2300004: chainlink (60)
+    2300006: chainlink (61)
+    2300008: chainlink (62)
+    2300010: chainlink (63)
+    2300012: chainlink (64)
+    2300014: chainlink (65)
+    2300016: chainlink (66)
+    2300018: chainlink (67)
+    2300020: chainlink (68)
+    2300022: chainlink (69)
+    2300024: chainlink (70)
+    2300026: chainlink (71)
+    2300028: chainlink (72)
+    2300030: chainlink (73)
+    2300032: chainlink (74)
+    2300034: chainlink (75)
+    2300036: chainlink (76)
+    2300038: chainlink (77)
+    2300040: chainlink (78)
+    2300042: chainlink (79)
+    2300044: chainlink (80)
+    2300046: chainlink (81)
+    2300048: chainlink (82)
+    2300050: chainlink (83)
+    2300052: chainlink (84)
+    2300054: chainlink (85)
+    2300056: chainlink (86)
+    2300058: chainlink (87)
+    2300060: chainlink (88)
+    3300000: chainlink (57)
+    3300002: chainlink (59)
+    3300004: chainlink (60)
+    3300006: chainlink (61)
+    3300008: chainlink (62)
+    3300010: chainlink (63)
+    3300012: chainlink (64)
+    3300014: chainlink (65)
+    3300016: chainlink (66)
+    3300018: chainlink (67)
+    3300020: chainlink (68)
+    3300022: chainlink (69)
+    3300024: chainlink (70)
+    3300026: chainlink (71)
+    3300028: chainlink (72)
+    3300030: chainlink (73)
+    3300032: chainlink (74)
+    3300034: chainlink (75)
+    3300036: chainlink (76)
+    3300038: chainlink (77)
+    3300040: chainlink (78)
+    3300042: chainlink (79)
+    3300044: chainlink (80)
+    3300046: chainlink (81)
+    3300048: chainlink (82)
+    3300050: chainlink (83)
+    3300052: chainlink (84)
+    3300054: chainlink (85)
+    3300056: chainlink (86)
+    3300058: chainlink (87)
+    3300060: chainlink (88)
+    4300000: chainlink (57)
+    6400000: chainlink (57)
+    6400002: chainlink (59)
+    6400004: chainlink (60)
+    6400006: chainlink (61)
+    6400008: chainlink (62)
+    6400010: chainlink (63)
+    6400012: chainlink (64)
+    6400014: chainlink (65)
+    6400016: chainlink (66)
+    6400018: chainlink (67)
+    6400020: chainlink (68)
+    6400022: chainlink (69)
+    6400024: chainlink (70)
+    6400026: chainlink (71)
+    6400028: chainlink (72)
+    6400030: chainlink (73)
+    6400032: chainlink (74)
+    6400034: chainlink (75)
+    6400036: chainlink (76)
+    6400038: chainlink (77)
+    6400040: chainlink (78)
+    6400042: chainlink (79)
+    6400044: chainlink (80)
+    6400046: chainlink (81)
+    6400048: chainlink (82)
+    6400050: chainlink (83)
+    6400052: chainlink (84)
+    6400054: chainlink (85)
+    6400056: chainlink (86)
+    6400058: chainlink (87)
+    6400060: chainlink (88)
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

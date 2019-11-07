@@ -79,7 +79,6 @@
     <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Helpers\PolygonUtils.cs" />
     <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Helpers\TerrainUtils.cs" />
     <Compile Include="Assets\Logo\How To Play\Menu_Controlls.cs" />
-    <Compile Include="Assets\NatureManufacture Assets\NatureManufacture Wind\NM_Wind.cs" />
     <Compile Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Scripts\particleAttractorLinear.cs" />
     <Compile Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Scripts\particleAttractorMove.cs" />
     <Compile Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Scripts\particleAttractorSelf.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="Assets\Objects and Particles\FireTorch\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
     <Compile Include="Assets\Objects and Particles\FireTorch\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
     <Compile Include="Assets\Objects and Particles\FireTorch\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
+    <Compile Include="Assets\Objects and Particles\NatureManufacture Assets\NatureManufacture Wind\NM_Wind.cs" />
     <Compile Include="Assets\Objects and Particles\Standard Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
     <Compile Include="Assets\Objects and Particles\Standard Assets\Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\Objects and Particles\Standard Assets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
@@ -321,7 +321,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SimpleSubtractOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FmodOpNode.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\Advanced Grass Standard.shader" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Advanced Grass Standard.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Shaders\ASESShaderSelectorUnlit.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_NegateNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SmoothstepOpNode.shader" />
@@ -373,7 +373,7 @@
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ScreenPosInputsNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TangentVertexDataNode.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\Advanced Grass Specular.shader" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Advanced Grass Specular.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_PiNode.shader" />
     <None Include="Assets\Blockout\Resources\Blockout\Pins\Blockout_Pin_Shader.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FloorOpNode.shader" />
@@ -423,16 +423,16 @@
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_RGBToHSVNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ClampOpNode.shader" />
-    <None Include="Assets\NatureManufacture Assets\Third-Party Notices 2.txt" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Third-Party Notices 2.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\LightWeightSRPPBR.shader" />
     <None Include="Assets\Objects and Particles\FireTorch\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\Cross_Model_Shader.shader" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Cross_Model_Shader.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_DecalDistortMaskMobile.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Force Field\Force Field2.shader" />
     <None Include="Assets\Objects and Particles\Banner\Textures\Banner.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Log10OpNode.shader" />
-    <None Include="Assets\NatureManufacture Assets\Third-Party Notices.txt" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Third-Party Notices.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LengthOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldSpaceViewDirHlpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_PosVertexDataNode.shader" />
@@ -447,7 +447,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DotProductOpNode.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TemplateShaderProperty.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\Advanced Grass Light.shader" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Advanced Grass Light.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA3.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ConditionalIfNode.shader" />
@@ -456,7 +456,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TruncOpNode.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\_Enemy Feedback\Hit\Hit.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Portal\RFX4_PortalMask.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\NMWindNoShiver.cginc" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\NMWindNoShiver.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SinhOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ParallaxMappingNode.shader" />
     <None Include="Assets\UI\Life bar v4\Stat bar.shader" />
@@ -471,7 +471,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ColorSpaceDouble.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_DistortionParticlesAdd.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Water\RFX4_WaterSplash.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\NM_indirect.cginc" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\NM_indirect.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Chains\Chains.shader" />
     <None Include="Assets\Objects and Particles\Bars\Bars 1.shader" />
@@ -519,7 +519,7 @@
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_Lava.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\PPStack.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\Tree_Leaves_Metalic.shader" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Tree_Leaves_Metalic.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LogOpNode.shader" />
     <None Include="Assets\Final UI\UI Sprite Noise.shader" />
@@ -580,7 +580,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCCompareEqual.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_Particle.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\Legacy\UnlitLightmap.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\Tree_Bark_Specular.shader" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Tree_Bark_Specular.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_DecalDistortMask.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ColorNode.shader" />
@@ -590,7 +590,7 @@
     <None Include="Assets\Blockout\Shaders\Blockout_Depth_Blend_2018.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Fog\Fog 2.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SubstanceSamplerNode.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\Tree_Bark_Metalic.shader" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Tree_Bark_Metalic.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Water\RFX4_WaterSplashTexMobile.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ScaleAndOffsetNode.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Portal\NoStencilTransperentDiffuse.shader" />
@@ -608,7 +608,7 @@
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_StepOpNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\Tree_Leaves_Specular.shader" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Tree_Leaves_Specular.shader" />
     <None Include="Assets\Objects and Particles\Floor\Textures\Floor.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Vector2Node.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_Lightning.shader" />
@@ -620,7 +620,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TriplanarNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldSpaceLightDirHlpNode.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_DistortionParticles.shader" />
-    <None Include="Assets\NatureManufacture Assets\Foliage Shaders\NMWind.cginc" />
+    <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\NMWind.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_NodeMasking.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_PosterizeNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SinTimeNode.shader" />

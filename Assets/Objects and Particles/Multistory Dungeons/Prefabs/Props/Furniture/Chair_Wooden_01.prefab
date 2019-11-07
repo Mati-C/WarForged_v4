@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 6538346}
   - component: {fileID: 3343184}
   - component: {fileID: 2343184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chair_Wooden_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 81
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &438348
 Transform:
