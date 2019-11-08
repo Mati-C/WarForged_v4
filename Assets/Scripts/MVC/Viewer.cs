@@ -60,6 +60,8 @@ public class Viewer : MonoBehaviour
 
     bool slowSpeed;
 
+    public ParticleSystem sparks;
+
     public enum AnimPlayerNames {Dead, Attack1_Pre, Attack1_Damage, Attack1_End, Attack2_Pre, Attack2_Damage, Attack2_End, Attack3_Pre, Attack3_Damage, Attack3_End, Attack4_Pre, Attack4_Damage, Attack4_End,
                                  W_Attack1_Pre, W_Attack1_Damage, W_Attack1_End, W_Attack2_Pre, W_Attack2_Damage, W_Attack2_End, W_Attack3_Pre, W_Attack3_Damage, W_Attack3_End, W_Attack4_Pre, W_Attack4_Damage, W_Attack4_End,
                                  Parry1, Parry2, Parry3, Parry4, BackAttack2, TurnAttack_Pre, TurnAttack_Damage, TurnAttack_End, TakeDamage1, TakeDamage2, TakeDamage3, Defence, Blocked, FailDefence, Kick, IdleCombat, WalkW, WalkS,
@@ -392,6 +394,11 @@ public class Viewer : MonoBehaviour
         anim.SetBool("RollAttack", true);
     }
 
+    public void Sparks()
+    {
+        sparks.Play();
+    }
+
     public void RollAttackAnimFalse()
     {
         anim.SetBool("RollAttack", false);
@@ -572,15 +579,15 @@ public class Viewer : MonoBehaviour
 
     public void ToggleHandEffect(bool turnOn)
     {
-        if ((handEffects[0].activeSelf && turnOn) || (!handEffects[0].activeSelf && !turnOn))
+        if ((gauntletMaterials[0].GetFloat("_BURN") != -1 && turnOn) || (gauntletMaterials[0].GetFloat("_BURN") == -1 && !turnOn))
             return;
         StartCoroutine(HandEffect(turnOn));
     }
 
     IEnumerator HandEffect(bool turnOn)
     {
-        foreach (var item in handEffects)
-            item.SetActive(turnOn);
+//         foreach (var item in handEffects)
+//             item.SetActive(turnOn);
         float t = -1;
         while (t < 1)
         {

@@ -26,7 +26,6 @@ public class FireBall : Ipower
         _damage += extraDamage;
         _power.damage += _damage;
         _power.myCaller = model.transform;
-        Debug.Log(_damage);
     }
 
 }

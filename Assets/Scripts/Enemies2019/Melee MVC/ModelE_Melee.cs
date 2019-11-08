@@ -1283,7 +1283,7 @@ public class ModelE_Melee : EnemyMeleeClass
             _view.EndChainAttack();
             _view.HeavyAttackFalse();
             onDefence = false;
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
         }
 
         if (onDefence && angle > 90)

@@ -4792,7 +4792,7 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.033018887, g: 0.14298946, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 1.5
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4920,15 +4920,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28064d62c44063418b26fcab31126bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire: {fileID: 6892078300521702728}
-  lightIntensity: 2
+  fire: {fileID: 764648886497381474}
+  halo: {fileID: 1870772272983015680}
+  lightIntensity: 3
   textCheck: {fileID: 0}
   buttonRespawn: {fileID: 0}
   ph: {fileID: 4412771789569947304}
   checkPointActivated: 0
   particles: {fileID: 7447285462504290579}
   runeCircle: {fileID: 5831890257712408830}
-  listaChecks: []
 --- !u!135 &2496061675681922985
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5169,7 +5169,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5919,7 +5919,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 22.24
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -14847,7 +14847,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 1.25
       minScalar: 1
       maxCurve:
         serializedVersion: 2

@@ -8,7 +8,6 @@ public class A_GoBackFromAttack : i_EnemyActions
 
     public void Actions()
     {
-        Debug.Log("escapando");
         _e.target.CombatState();
         _e.target.saveSword = true;
 

@@ -1164,6 +1164,7 @@ public class Model : MonoBehaviour
 
                 if ((animClipName == view.AnimDictionary[Viewer.AnimPlayerNames.Attack3_End]))
                 {
+                    SoundManager.instance.Play(Sound.Voice.LAST_COMBO_HIT, transform.position, true, 1);
                     view.EndDodge();
                     view.AwakeTrail();
                     countAnimAttack++;
@@ -1340,14 +1341,30 @@ public class Model : MonoBehaviour
 
         if (typeOfDamage == "Normal")
         {
-            foreach (var item in enemies)
+            if (enemies.Any())
             {
-                if(countAnimAttack<3) item.GetDamage(attackDamage, "Normal", 1);
-                if(countAnimAttack<4 && countAnimAttack>2) item.GetDamage(attackDamage, "Normal", 2);
-                if (countAnimAttack < 5 && countAnimAttack > 3) item.GetDamage(attackDamage, "Normal", 3);
-                if (classType == PlayerClass.Warrior) item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 2, ForceMode.Impulse);
-                else item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 5, ForceMode.Impulse);
-                makingDamage = false;
+                foreach (var item in enemies)
+                {
+                    if (countAnimAttack < 3) item.GetDamage(attackDamage, "Normal", 1);
+                    if (countAnimAttack < 4 && countAnimAttack > 2) item.GetDamage(attackDamage, "Normal", 2);
+                    if (countAnimAttack < 5 && countAnimAttack > 3) item.GetDamage(attackDamage, "Normal", 3);
+                    if (classType == PlayerClass.Warrior) item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 2, ForceMode.Impulse);
+                    else item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 5, ForceMode.Impulse);
+                    makingDamage = false;
+                }
+            }
+            else
+            {
+                if (classType == PlayerClass.Warrior)
+                {
+                    var nearWalls = Physics.OverlapSphere(transform.position + transform.forward * 1.2f + new Vector3(0, 0.7f, 0), radiusAttack).Where(x => x.tag == "Wall");
+                    if (nearWalls.Any())
+                    {
+                        view.ParryAnim();
+                        view.Sparks();
+                        SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
+                    }
+                }
             }
         }
 

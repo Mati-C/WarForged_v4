@@ -858,8 +858,6 @@ public class ModelE_Lancer : EnemyMeleeClass
 
         follow.OnUpdate += () =>
         {
-            Debug.Log("follow");
-
             if (!onDamage) CombatWalkEvent();
 
             if (!isDead && isPersuit && !isWaitArea && !isStuned) SendInputToFSM(EnemyInputs.PERSUIT);

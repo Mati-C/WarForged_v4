@@ -5,7 +5,8 @@ using Sound;
 
 public class CheckPoint : MonoBehaviour, ICheckObservable
 {
-    public GameObject fire;
+    public ParticleSystem fire;
+    public ParticleSystem halo;
     public float lightIntensity;
   
     public GameObject textCheck;
@@ -20,7 +21,6 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     public ParticleSystem runeCircle;
     ButtonManager buttonManager;
 
-    public List<CheckPoint> listaChecks = new List<CheckPoint>();
     bool move1;
   
     List<ICheckObserver> _allObservers = new List<ICheckObserver>();
@@ -29,7 +29,9 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     {
         move1 = true;
         textCheck.SetActive(true);
-        fire.SetActive(true);
+        fire.emissionRate *= 2;
+        fire.startLifetime *= 1.5f;
+        halo.startSize *= 2;
         StartCoroutine(Light());
         yield return new WaitForSeconds(3.5f);
         move1 = false;
@@ -48,7 +50,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         while (t < 1.5f)
         {
             t += Time.deltaTime;
-            fire.transform.GetChild(0).GetComponent<Light>().intensity = Mathf.Lerp(0, lightIntensity, t / 2);
+            fire.transform.GetChild(0).GetComponent<Light>().intensity = Mathf.Lerp(fire.transform.GetChild(0).GetComponent<Light>().intensity, lightIntensity, t / 2);
             yield return new WaitForEndOfFrame();
         }
     }
@@ -57,8 +59,6 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     {
         player = FindObjectOfType<Model>();
         ButtonManager = FindObjectOfType<ButtonManager>();
-        listaChecks.AddRange(FindObjectsOfType<CheckPoint>());
-        fire.SetActive(false);
 
         Subscribe(ButtonManager);
     }

@@ -240,7 +240,6 @@ public class ModelE_Sniper : EnemyEntity
 
         persuit.OnFixedUpdate += () =>
         {
-            Debug.Log("persuit");
             navMeshAgent.enabled = false;
 
             isAnswerCall = false;
@@ -392,8 +391,6 @@ public class ModelE_Sniper : EnemyEntity
 
         retreat.OnUpdate += () =>
         {
-            Debug.Log("retreat");
-
             if (myPointer) myPointer.StopAdvertisement();
 
             view.BackFromAttackRange();
@@ -653,7 +650,6 @@ public class ModelE_Sniper : EnemyEntity
         var obs = Physics.OverlapSphere(transform.position, 1, layerObstAndBarrels);
         if (obs.Count() > 0)
         {
-            Debug.Log(obs.First().transform.name);
             var dir = transform.position - obs.First().transform.position;
             return dir.normalized;
         }
