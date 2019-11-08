@@ -166,16 +166,8 @@ public class ViewerE_Sniper : MonoBehaviour
 
     void Update()
     {
-        if (_player.targetLocked && !_model.isDead)
-        {
-            lockParticle.SetActive(true);
-            if (_player.targetLocked.name == transform.name)
-                lockParticle.transform.position = new Vector2(cam.WorldToScreenPoint(lockParticlePosition.position).x, cam.WorldToScreenPoint(lockParticlePosition.position).y);
-        }
-        else
-            lockParticle.SetActive(false);
-
-        if(_model.isDead && _player.targetLocked.name == transform.name) lockParticle.SetActive(false);
+        if (_player.targetLocked && !_model.isDead && _player.targetLocked.name == transform.name)
+            lockParticle.transform.position = new Vector2(cam.WorldToScreenPoint(lockParticlePosition.position).x, cam.WorldToScreenPoint(lockParticlePosition.position).y);
 
         if (auxTakeDamage)
         {

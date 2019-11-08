@@ -141,14 +141,8 @@ public class ViewerE_Melee : MonoBehaviour
 
     void Update()
     {
-        if (_player.targetLocked && !_model.isDead)
-        {
-            lockParticle.SetActive(true);
-            if (_player.targetLocked.name == transform.name)
-                lockParticle.transform.position = new Vector2(cam.WorldToScreenPoint(lockParticlePosition.position).x, cam.WorldToScreenPoint(lockParticlePosition.position).y );
-        }
-        else
-            lockParticle.SetActive(false);
+        if (_player.targetLocked && !_model.isDead && _player.targetLocked.name == transform.name)
+            lockParticle.transform.position = new Vector2(cam.WorldToScreenPoint(lockParticlePosition.position).x, cam.WorldToScreenPoint(lockParticlePosition.position).y);
 
         animClipName = _anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
 

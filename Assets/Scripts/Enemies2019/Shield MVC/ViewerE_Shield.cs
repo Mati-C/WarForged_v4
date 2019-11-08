@@ -82,14 +82,8 @@ public class ViewerE_Shield : MonoBehaviour
    
     void Update()
     {
-        if (_player.targetLocked && !_model.isDead)
-        {
-            lockParticle.SetActive(true);
-            if (_player.targetLocked.name == transform.name)
-                lockParticle.transform.position = new Vector2(cam.WorldToScreenPoint(positionLockOn.position).x, cam.WorldToScreenPoint(positionLockOn.position).y);
-        }
-        else
-            lockParticle.SetActive(false);
+        if (_player.targetLocked && !_model.isDead && _player.targetLocked.name == transform.name)
+            lockParticle.transform.position = new Vector2(cam.WorldToScreenPoint(positionLockOn.position).x, cam.WorldToScreenPoint(positionLockOn.position).y);
 
         DamageShader();
 

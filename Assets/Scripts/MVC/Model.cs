@@ -1053,7 +1053,7 @@ public class Model : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
+            detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
             enemiesToLock.AddRange(detectedEnemies);
         }
         else

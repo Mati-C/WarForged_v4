@@ -115,11 +115,11 @@ public class SoundManager : MonoBehaviour
                 if (!combatAudio.isPlaying)
                     combatAudio.Play();
                 combatAudio.volume = t * (musicVolume * 0.75f);
-                ambienceAudio.volume = Mathf.Lerp(musicVolume * 0.75f, musicVolume, 1 - t);
+                ambienceAudio.volume = Mathf.Lerp(musicVolume, musicVolume * 0.75f, t);
             }
             else
             {
-                combatAudio.volume = ((musicVolume * 0.75f) - t) * (musicVolume * 0.75f);
+                combatAudio.volume = Mathf.Lerp(musicVolume * 0.75f, 0, t);
                 ambienceAudio.volume = t * musicVolume;
             }
             yield return new WaitForEndOfFrame();

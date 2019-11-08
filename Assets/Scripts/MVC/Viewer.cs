@@ -87,6 +87,8 @@ public class Viewer : MonoBehaviour
     List<Material> gauntletMaterials = new List<Material>();
     public List<GameObject> handEffects;
 
+    public GameObject lockParticle;
+
     IEnumerator DamageDelay()
     {
         yield return new WaitForSeconds(0.2f);
@@ -332,7 +334,10 @@ public class Viewer : MonoBehaviour
 
         if(model.isDead) anim.SetLayerWeight(1, 0);
 
-
+        if (model.targetLocked)
+            lockParticle.SetActive(true);
+        else
+            lockParticle.SetActive(false);
     }
 
     IEnumerator CastMagicMissileFalse()
@@ -820,14 +825,11 @@ public class Viewer : MonoBehaviour
 
     public IEnumerator YouDied()
     {
+        cam.cinemaCam.Follow = null;
         yield return new WaitForSeconds(1.5f);
         GameObject orb = Instantiate(orbPrefab);
         orb.transform.position = orbPH.position + (Vector3.down * 0.25f);
-        cam.cinemaCam.LookAt = orb.transform;
-        cam.cinemaCam.Follow = orb.transform;
         yield return new WaitForEndOfFrame();
-        cam.cinemaCam.LookAt = null;
-        cam.cinemaCam.Follow = null;
         model.rb.isKinematic = true;
 
         var t = 0f;
@@ -848,29 +850,6 @@ public class Viewer : MonoBehaviour
         cam.cinemaCam.Follow = transform;
         Destroy(orb.gameObject);
         bm.RespawnScene();
-
-        /*
-        yield return new WaitForSeconds(0.5f);
-        youDied.gameObject.SetActive(true);
-        var tempColor = youDied.GetComponent<Image>().color;
-        var alpha = 0f;
-        startFade.enabled = true;
-        startFade.CrossFadeAlpha(1, 1f, false);
-        while (alpha <= 1)
-        {
-            alpha += 0.5f * Time.deltaTime;
-            tempColor.a = alpha;
-            youDied.GetComponent<Image>().color = tempColor;
-            if (alpha >= 1)
-            {
-                for (int i = 0; i < youDied.transform.childCount; i++)
-                    youDied.transform.GetChild(i).gameObject.SetActive(true);
-                Time.timeScale = 0;
-                cam.blockMouse = false;
-            }
-            yield return new WaitForEndOfFrame();
-        }
-        */
     }
 
     public IEnumerator YouWin()

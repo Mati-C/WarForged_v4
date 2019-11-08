@@ -6,10 +6,9 @@ public class HealthOrb : MonoBehaviour
 {
     public float healAmount;
 
-    private void OnTriggerEnter(Collider c)
+    void Start()
     {
-        if (c.GetComponent<Model>())
-            StartCoroutine(Effect(c.GetComponent<Model>()));
+        StartCoroutine(Effect(FindObjectOfType<Model>()));
     }
 
     IEnumerator Effect(Model player)
