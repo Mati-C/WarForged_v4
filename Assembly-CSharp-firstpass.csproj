@@ -336,6 +336,15 @@
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
+    <Reference Include="ch.sycoforge.Unity.Runtime">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/ch.sycoforge.Unity.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ch.sycoforge.Decal">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Easy Decal/Scripts/ch.sycoforge.Decal.dll</HintPath>
+    </Reference>
+    <Reference Include="ch.sycoforge.Logging">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/ch.sycoforge.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
     </Reference>

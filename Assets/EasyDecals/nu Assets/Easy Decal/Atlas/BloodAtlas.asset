@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 225627996, guid: ffea41b2ef7376143bee608c897e587a, type: 3}
+  m_Name: BloodAtlas
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 1ec38dce494f579408784d16de06af48, type: 2}
+  regions:
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.68501645
+      y: 0.6810637
+      width: 0.23810649
+      height: 0.30428565
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.39950147
+      y: 0.69501716
+      width: 0.16478398
+      height: 0.26983386
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.039036375
+      y: 0.6888377
+      width: 0.15242521
+      height: 0.26983386
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.010199175
+      y: 0.3860471
+      width: 0.23481724
+      height: 0.25541523
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.39126223
+      y: 0.34485108
+      width: 0.16890365
+      height: 0.29661125
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.6590363
+      y: 0.32013348
+      width: 0.2801329
+      height: 0.31720927
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.6652157
+      y: 0.01734284
+      width: 0.31720924
+      height: 0.29661125
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.32740843
+      y: 0.015283039
+      width: 0.2409966
+      height: 0.26777402
+  - name: 
+    region:
+      serializedVersion: 2
+      x: 0.030797174
+      y: 0.025582038
+      width: 0.24099661
+      height: 0.32544845

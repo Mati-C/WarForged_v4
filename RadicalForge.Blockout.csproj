@@ -296,6 +296,24 @@
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="ch.sycoforge.Unity.Runtime">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/ch.sycoforge.Unity.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ch.sycoforge.Unity.Editor">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/Editor/ch.sycoforge.Unity.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="ch.sycoforge.Decal">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Easy Decal/Scripts/ch.sycoforge.Decal.dll</HintPath>
+    </Reference>
+    <Reference Include="ch.sycoforge.Decal.Editor">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Easy Decal/Scripts/Editor/ch.sycoforge.Decal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="ch.sycoforge.Imaging">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/Editor/ch.sycoforge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="ch.sycoforge.Logging">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/ch.sycoforge.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
     </Reference>
