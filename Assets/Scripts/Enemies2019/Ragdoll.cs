@@ -46,24 +46,12 @@ public class Ragdoll : MonoBehaviour
         pool.transform.position = hit.point;
         StartCoroutine(BloodPoolAnim());
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(10);
         foreach (var rb in allRigidbodies)
             rb.isKinematic = true;
 
         foreach (var c in GetComponentsInChildren<Collider>())
             c.enabled = false;
-
-        /*
-        float timer = 0;
-        while (timer < 6)
-        {
-            transform.position += Vector3.down * Time.deltaTime / 4;
-            timer += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        if (timer >= 6)
-            Destroy(gameObject);
-            */
     }
 
     public IEnumerator BloodPoolAnim()

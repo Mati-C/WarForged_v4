@@ -77,8 +77,6 @@ public class Viewer : MonoBehaviour
 
     public Image shieldIcon;
     public Image whirlIcon;
-    //Material shieldMat;
-    //Material whirlMat;
 
     public Transform orbPH;
     public GameObject orbPrefab;
@@ -221,10 +219,6 @@ public class Viewer : MonoBehaviour
         AnimDictionary.Add(AnimPlayerNames.W_Attack4_Pre, clips[74].name);
         AnimDictionary.Add(AnimPlayerNames.CastSpell, clips[18].name);
 
-        //shieldMat = shieldIcon.material;
-        //whirlMat = whirlIcon.material;
-        //shieldMat.SetFloat("_State", 1);
-        //whirlMat.SetFloat("_State", 1);
         shieldIcon.color = new Color(shieldIcon.color.r, shieldIcon.color.g, shieldIcon.color.b, 0.5f);
         whirlIcon.color = new Color(whirlIcon.color.r, whirlIcon.color.g, shieldIcon.color.b, 0.5f);
         foreach (var item in gauntlets)
@@ -579,15 +573,16 @@ public class Viewer : MonoBehaviour
 
     public void ToggleHandEffect(bool turnOn)
     {
-        if ((gauntletMaterials[0].GetFloat("_BURN") != -1 && turnOn) || (gauntletMaterials[0].GetFloat("_BURN") == -1 && !turnOn))
+        if ((gauntletMaterials[0].GetFloat("_BURN") == 1 && turnOn) || (gauntletMaterials[0].GetFloat("_BURN") == -1 && !turnOn))
             return;
         StartCoroutine(HandEffect(turnOn));
     }
 
     IEnumerator HandEffect(bool turnOn)
     {
-//         foreach (var item in handEffects)
-//             item.SetActive(turnOn);
+        foreach (var item in handEffects)
+            item.SetActive(turnOn);
+
         float t = -1;
         while (t < 1)
         {
@@ -728,12 +723,6 @@ public class Viewer : MonoBehaviour
             while (t < 0.5f)
             {
                 t += Time.deltaTime;
-                /*
-                if (id == 1)
-                    shieldMat.SetFloat("_State", t);
-                else
-                    whirlMat.SetFloat("_State", t);
-                */
                 if (id == 1)
                     shieldIcon.color = new Color(shieldColor.r, shieldColor.g, shieldColor.b, t);
                 else
@@ -747,12 +736,6 @@ public class Viewer : MonoBehaviour
             while (t > 0)
             {
                 t -= Time.deltaTime;
-                /*
-                if (id == 1)
-                    shieldMat.SetFloat("_State", t);
-                else
-                    whirlMat.SetFloat("_State", t);
-                */
                 if (id == 1)
                     shieldIcon.color = new Color(shieldColor.r, shieldColor.g, shieldColor.b, t);
                 else
