@@ -107,6 +107,12 @@ public class ViewerE_Lancer : MonoBehaviour
         else _model.strafeAnim = false;
     }
 
+    public void BloodPlay()
+    {
+        blood.Stop();
+        blood.Play();
+    }
+
     public void TakeDamageAnim()
     {
         blood.Play();

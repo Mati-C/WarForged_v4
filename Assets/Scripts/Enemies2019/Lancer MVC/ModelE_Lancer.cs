@@ -24,6 +24,7 @@ public class ModelE_Lancer : EnemyMeleeClass
     public bool damageDone;
     public bool impulse;
     public bool canBeHit;
+    public bool cantBeStuned;
     public string animClipName;
     Vector3 stunedForward;
     Quaternion startRotation;
@@ -72,8 +73,12 @@ public class ModelE_Lancer : EnemyMeleeClass
     public IEnumerator CanDodgeDelay()
     {
         canBeHit = true;
+        cantBeStuned = true;
         yield return new WaitForSeconds(5f);
         canBeHit = false;
+        cantBeStuned = false;
+
+
     }
 
     public IEnumerator OnDamageCorrutine()
@@ -1103,17 +1108,14 @@ public class ModelE_Lancer : EnemyMeleeClass
   
         if(typeOfDamage == "Proyectile")
         {
-            if (!isStuned)
+            if (!isStuned && !cantBeStuned)
             {
                 StunedEvent();
                 isStuned = true;
                 StartCoroutine(CanDodgeDelay());
             }
 
-            else
-            {
-                TakeDamageEvent();
-            }
+            view.BloodPlay();
 
             timeOnDamage = 0.5f;
             if (!onDamage) StartCoroutine(OnDamageCorrutine());

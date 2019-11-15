@@ -176,10 +176,11 @@ public class CamController : MonoBehaviour {
     {
         if(cinemaCam2.Priority>=1)
         {
+            currentTarget = model.targetLocked.transform;
 
             if (cinemaCam_KickCam.Priority != 1) cinemaCam2.m_XAxis.Value = 352f;
 
-            var center = Vector3.Lerp(model.transform.position, currentTarget.transform.position, 0.5f);
+            var center = Vector3.Lerp(model.transform.position, currentTarget.position, 0.5f);
 
             middleTargets.position = center;
         }

@@ -93,16 +93,27 @@ public class CombatArea : MonoBehaviour
     {
         if (c.GetComponent<Model>() && !firstPass)
         {
-            if (!puzzleblock)
+            var enemies = myNPCs.OrderBy(x =>
             {
-                var enemies = myNPCs.OrderBy(x =>
-                {
-                    var d = Vector3.Distance(x.transform.position, player.transform.position);
-                    return d;
+                var d = Vector3.Distance(x.transform.position, player.transform.position);
+                return d;
 
-                }).Where(x => x.life > 0);
-            }
+            }).Where(x => x.life > 0);
 
+            c.GetComponent<Model>().enemiesToLock.AddRange(enemies);
+
+            /* if (!puzzleblock)
+             {
+                 var enemies = myNPCs.OrderBy(x =>
+                 {
+                     var d = Vector3.Distance(x.transform.position, player.transform.position);
+                     return d;
+
+                 }).Where(x => x.life > 0);
+
+                 c.GetComponent<Model>().enemiesToLock.AddRange(enemies);
+             }
+             */
             if (myEntities > 0 && !aux)
                 ToggleBlock(true);
 

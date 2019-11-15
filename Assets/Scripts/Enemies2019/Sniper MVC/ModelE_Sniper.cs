@@ -523,18 +523,20 @@ public class ModelE_Sniper : EnemyEntity
     
     public void Shoot()
     {
-       
-        Arrow newArrow = munition.arrowsPool.GetObjectFromPool();
-        newArrow.gameObject.SetActive(false);
-        newArrow.ammoAmount = munition;
-        newArrow.owner = this;
-        newArrow.transform.position = attackPivot.position;
-        var dir = (target.transform.position - newArrow.transform.position).normalized;
-        dir.y = 0;
-        newArrow.fireBallParticles.SetActive(true);
-        newArrow.gameObject.SetActive(true);
-        newArrow.transform.forward = dir;
-        timeToShoot = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
+        if (!onRetreat)
+        {
+            Arrow newArrow = munition.arrowsPool.GetObjectFromPool();
+            newArrow.gameObject.SetActive(false);
+            newArrow.ammoAmount = munition;
+            newArrow.owner = this;
+            newArrow.transform.position = attackPivot.position;
+            var dir = (target.transform.position - newArrow.transform.position).normalized;
+            dir.y = 0;
+            newArrow.fireBallParticles.SetActive(true);
+            newArrow.gameObject.SetActive(true);
+            newArrow.transform.forward = dir;
+            timeToShoot = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
+        }
     }
 
     public override Vector3 EntitiesAvoidance()

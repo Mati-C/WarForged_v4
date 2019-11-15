@@ -11,7 +11,7 @@ public class Model : MonoBehaviour
 
     public Viewer view;
     EnemyCombatManager ECM;
-    List<EnemyEntity> enemiesToLock = new List<EnemyEntity>();
+    public List<EnemyEntity> enemiesToLock = new List<EnemyEntity>();
     EnemyEntity[] allEnemies;
     public EnemyEntity targetLocked;
     public bool targetLockedOn;
@@ -1047,49 +1047,76 @@ public class Model : MonoBehaviour
    
     public void LockEnemies()
     {
-        enemiesToLock.Clear();
+        // enemiesToLock.Clear();
+        /*
+                List<EnemyEntity> detectedEnemies = new List<EnemyEntity>();
 
-        List<EnemyEntity> detectedEnemies = new List<EnemyEntity>();
+                mainCamera.GetComponent<CamController>().ChangeTargetAlt(targetLocked);
 
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+                detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
+                enemiesToLock.AddRange(detectedEnemies);
+                mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 2;
+
+                if (SceneManager.GetActiveScene().buildIndex == 1)
+                {
+                    detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
+                    enemiesToLock.AddRange(detectedEnemies);
+                    mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 2;
+                }
+                else
+                {
+                    foreach (var e in allEnemies)
+                    {
+                        RaycastHit hit;
+                        Physics.Raycast(transform.position, e.transform.position - transform.position, out hit, 12, layerEnemies);
+                        if (hit.collider.gameObject.GetComponent<EnemyEntity>())
+                        {
+                            enemiesToLock.Add(e);
+                            enemiesToLock.AddRange(e.nearEntities);
+                            break;
+                        }
+                    }
+
+                    mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 2;
+                }
+                */
+        if (!isInCombat && !targetLocked)
         {
+          
+            enemiesToLock.Clear();
+            List<EnemyEntity> detectedEnemies = new List<EnemyEntity>();
             detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
             enemiesToLock.AddRange(detectedEnemies);
-        }
-        else
-        {
-            foreach (var e in allEnemies)
-            {
-                RaycastHit hit;
-                Physics.Raycast(transform.position, e.transform.position - transform.position, out hit, layerEnemies);
-                if (hit.collider.gameObject.GetComponent<EnemyEntity>())
-                {
-                    enemiesToLock.Add(e);
-                    enemiesToLock.AddRange(e.nearEntities);
-                    break;
-                }
-            }
         }
 
         if (enemiesToLock.Any())
         {
             if (!targetLockedOn)
             {
+           
+
                 if (enemiesToLock.Count == 1 || SceneManager.GetActiveScene().buildIndex == 1)
                     targetLocked = enemiesToLock.First();
                 else
                     targetLocked = enemiesToLock.OrderBy(x => Vector3.Angle(transform.forward, x.transform.position - transform.position)).First();
 
-                mainCamera.GetComponent<CamController>().ChangeTargetAlt(targetLocked);
-                targetLockedOn = true;
-                lockIndex = 0;
+           
+               targetLockedOn = true;
+               lockIndex = 0;
+               if(isInCombat) mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 2;
+               else mainCamera.GetComponent<CamController>().ChangeTargetAlt(targetLocked); ;
+
             }
 
             else
             {
+       
                 mainCamera.GetComponent<CamController>().StopLockedTargetAlt();
+                mainCamera.GetComponent<CamController>().cinemaCam.Priority = 1;
+                mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 0;
                 targetLocked = null;
                 targetLockedOn = false;
+                enemiesToLock.Clear();
             }
         }
     }
@@ -1570,7 +1597,7 @@ public class Model : MonoBehaviour
             if (perfectParryTimer <= 0.5f)
             {
                 snapTarget = e;
-                mainCamera.GetComponent<CamController>().StartCoroutine(mainCamera.GetComponent<CamController>().KickCameraChange());
+              //  mainCamera.GetComponent<CamController>().StartCoroutine(mainCamera.GetComponent<CamController>().KickCameraChange());
                 rb.AddForce(-transform.forward , ForceMode.Impulse);
                 CounterAttackEvent();
                 if (!makingDamage) StartCoroutine(TimeToDoDamage());             
