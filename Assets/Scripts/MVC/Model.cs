@@ -1082,11 +1082,11 @@ public class Model : MonoBehaviour
                 */
         if (!isInCombat && !targetLocked)
         {
-          
             enemiesToLock.Clear();
-            List<EnemyEntity> detectedEnemies = new List<EnemyEntity>();
-            detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
-            enemiesToLock.AddRange(detectedEnemies);
+            EnemyEntity detectedEnemy;
+            detectedEnemy = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
+            enemiesToLock.Add(detectedEnemy);
+            enemiesToLock.AddRange(detectedEnemy.nearEntities);
         }
 
         if (enemiesToLock.Any())

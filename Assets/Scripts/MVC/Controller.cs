@@ -135,6 +135,11 @@ public class Controller : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.KeypadEnter))
                 model.ToggleMaxDamage();
 
+            if (Input.GetKeyDown(KeyCode.KeypadMinus))
+                model.UpdateLife(-10);
+            if (Input.GetKeyDown(KeyCode.KeypadPlus))
+                model.UpdateLife(10);
+
             if (Input.GetKeyDown(KeyCode.Mouse1) && model.classType == Model.PlayerClass.Wizzard) model.CastMagicMissile();
 
             if (Input.GetKeyDown(KeyCode.C))
