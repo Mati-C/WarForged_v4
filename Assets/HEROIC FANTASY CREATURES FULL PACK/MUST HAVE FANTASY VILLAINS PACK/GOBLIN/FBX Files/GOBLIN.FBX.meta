@@ -1,603 +1,221 @@
 fileFormatVersion: 2
 guid: 369bf22314485f2499b7991776c86074
+timeCreated: 1507071784
+licenseType: Store
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: GOBLIN_ R Foot
-  - first:
-      1: 100002
-    second: GOBLIN_ Head
-  - first:
-      1: 100004
-    second: forearm_armor_R
-  - first:
-      1: 100006
-    second: sword
-  - first:
-      1: 100008
-    second: GOBLIN_ L Thigh
-  - first:
-      1: 100010
-    second: GOBLIN_ L Toe0
-  - first:
-      1: 100012
-    second: GOBLIN_ L Foot
-  - first:
-      1: 100014
-    second: GOBLIN_ L Calf
-  - first:
-      1: 100016
-    second: //RootNode
-  - first:
-      1: 100018
-    second: leg_armor_R
-  - first:
-      1: 100020
-    second: slingshot
-  - first:
-      1: 100022
-    second: leg_armor_L
-  - first:
-      1: 100024
-    second: GOBLIN_ R Calf
-  - first:
-      1: 100026
-    second: GOBLIN_ R Thigh
-  - first:
-      1: 100028
-    second: dagger_R
-  - first:
-      1: 100030
-    second: GOBLIN_ R Toe0
-  - first:
-      1: 100032
-    second: GOBLIN_ R Hand
-  - first:
-      1: 100034
-    second: shield
-  - first:
-      1: 100036
-    second: forearm_armor_L
-  - first:
-      1: 100038
-    second: stone
-  - first:
-      1: 100040
-    second: Factice004
-  - first:
-      1: 100042
-    second: Factice003
-  - first:
-      1: 100044
-    second: Factice005
-  - first:
-      1: 100046
-    second: Factice002
-  - first:
-      1: 100048
-    second: Factice001
-  - first:
-      1: 100050
-    second: slingshot_body
-  - first:
-      1: 100052
-    second: dagger_L
-  - first:
-      1: 100054
-    second: GOBLIN_ L Hand
-  - first:
-      1: 100056
-    second: GOBLIN_ Neck
-  - first:
-      1: 100058
-    second: GOBLIN_ Spine1
-  - first:
-      1: 100060
-    second: GOBLIN_ Spine
-  - first:
-      1: 100062
-    second: GOBLIN_ Pelvis
-  - first:
-      1: 100064
-    second: GOBLIN_
-  - first:
-      1: 100066
-    second: shoulder_armor
-  - first:
-      1: 100068
-    second: GOBLIN
-  - first:
-      1: 100070
-    second: GOBLIN_ Queue de cheval 1
-  - first:
-      1: 100072
-    second: GOBLIN_ R Finger32
-  - first:
-      1: 100074
-    second: GOBLIN_ R Finger31
-  - first:
-      1: 100076
-    second: GOBLIN_ R Finger3
-  - first:
-      1: 100078
-    second: GOBLIN_ R Finger22
-  - first:
-      1: 100080
-    second: GOBLIN_ R Finger21
-  - first:
-      1: 100082
-    second: GOBLIN_ R Finger2
-  - first:
-      1: 100084
-    second: GOBLIN_ R Finger12
-  - first:
-      1: 100086
-    second: GOBLIN_ R Finger11
-  - first:
-      1: 100088
-    second: GOBLIN_ R Finger1
-  - first:
-      1: 100090
-    second: GOBLIN_ R Finger02
-  - first:
-      1: 100092
-    second: GOBLIN_ R Finger01
-  - first:
-      1: 100094
-    second: GOBLIN_ R Finger0
-  - first:
-      1: 100096
-    second: GOBLIN_ R Forearm
-  - first:
-      1: 100098
-    second: GOBLIN_ R UpperArm
-  - first:
-      1: 100100
-    second: GOBLIN_ R Clavicle
-  - first:
-      1: 100102
-    second: slingshot_rope_middle
-  - first:
-      1: 100104
-    second: GOBLIN_ L Finger32
-  - first:
-      1: 100106
-    second: GOBLIN_ L Finger31
-  - first:
-      1: 100108
-    second: GOBLIN_ L Finger3
-  - first:
-      1: 100110
-    second: GOBLIN_ L Finger22
-  - first:
-      1: 100112
-    second: GOBLIN_ L Finger21
-  - first:
-      1: 100114
-    second: GOBLIN_ L Finger2
-  - first:
-      1: 100116
-    second: GOBLIN_ L Finger12
-  - first:
-      1: 100118
-    second: GOBLIN_ L Finger11
-  - first:
-      1: 100120
-    second: GOBLIN_ L Finger1
-  - first:
-      1: 100122
-    second: GOBLIN_ L Finger02
-  - first:
-      1: 100124
-    second: GOBLIN_ L Finger01
-  - first:
-      1: 100126
-    second: GOBLIN_ L Finger0
-  - first:
-      1: 100128
-    second: GOBLIN_ L Forearm
-  - first:
-      1: 100130
-    second: GOBLIN_ L UpperArm
-  - first:
-      1: 100132
-    second: GOBLIN_ L Clavicle
-  - first:
-      1: 100134
-    second: GOBLIN_BODY
-  - first:
-      1: 100136
-    second: slingshot_rope_L
-  - first:
-      1: 100138
-    second: slingshot_rope_R
-  - first:
-      4: 400000
-    second: GOBLIN_ R Foot
-  - first:
-      4: 400002
-    second: GOBLIN_ Head
-  - first:
-      4: 400004
-    second: forearm_armor_R
-  - first:
-      4: 400006
-    second: sword
-  - first:
-      4: 400008
-    second: GOBLIN_ L Thigh
-  - first:
-      4: 400010
-    second: GOBLIN_ L Toe0
-  - first:
-      4: 400012
-    second: GOBLIN_ L Foot
-  - first:
-      4: 400014
-    second: GOBLIN_ L Calf
-  - first:
-      4: 400016
-    second: //RootNode
-  - first:
-      4: 400018
-    second: leg_armor_R
-  - first:
-      4: 400020
-    second: slingshot
-  - first:
-      4: 400022
-    second: leg_armor_L
-  - first:
-      4: 400024
-    second: GOBLIN_ R Calf
-  - first:
-      4: 400026
-    second: GOBLIN_ R Thigh
-  - first:
-      4: 400028
-    second: dagger_R
-  - first:
-      4: 400030
-    second: GOBLIN_ R Toe0
-  - first:
-      4: 400032
-    second: GOBLIN_ R Hand
-  - first:
-      4: 400034
-    second: shield
-  - first:
-      4: 400036
-    second: forearm_armor_L
-  - first:
-      4: 400038
-    second: stone
-  - first:
-      4: 400040
-    second: Factice004
-  - first:
-      4: 400042
-    second: Factice003
-  - first:
-      4: 400044
-    second: Factice005
-  - first:
-      4: 400046
-    second: Factice002
-  - first:
-      4: 400048
-    second: Factice001
-  - first:
-      4: 400050
-    second: slingshot_body
-  - first:
-      4: 400052
-    second: dagger_L
-  - first:
-      4: 400054
-    second: GOBLIN_ L Hand
-  - first:
-      4: 400056
-    second: GOBLIN_ Neck
-  - first:
-      4: 400058
-    second: GOBLIN_ Spine1
-  - first:
-      4: 400060
-    second: GOBLIN_ Spine
-  - first:
-      4: 400062
-    second: GOBLIN_ Pelvis
-  - first:
-      4: 400064
-    second: GOBLIN_
-  - first:
-      4: 400066
-    second: shoulder_armor
-  - first:
-      4: 400068
-    second: GOBLIN
-  - first:
-      4: 400070
-    second: GOBLIN_ Queue de cheval 1
-  - first:
-      4: 400072
-    second: GOBLIN_ R Finger32
-  - first:
-      4: 400074
-    second: GOBLIN_ R Finger31
-  - first:
-      4: 400076
-    second: GOBLIN_ R Finger3
-  - first:
-      4: 400078
-    second: GOBLIN_ R Finger22
-  - first:
-      4: 400080
-    second: GOBLIN_ R Finger21
-  - first:
-      4: 400082
-    second: GOBLIN_ R Finger2
-  - first:
-      4: 400084
-    second: GOBLIN_ R Finger12
-  - first:
-      4: 400086
-    second: GOBLIN_ R Finger11
-  - first:
-      4: 400088
-    second: GOBLIN_ R Finger1
-  - first:
-      4: 400090
-    second: GOBLIN_ R Finger02
-  - first:
-      4: 400092
-    second: GOBLIN_ R Finger01
-  - first:
-      4: 400094
-    second: GOBLIN_ R Finger0
-  - first:
-      4: 400096
-    second: GOBLIN_ R Forearm
-  - first:
-      4: 400098
-    second: GOBLIN_ R UpperArm
-  - first:
-      4: 400100
-    second: GOBLIN_ R Clavicle
-  - first:
-      4: 400102
-    second: slingshot_rope_middle
-  - first:
-      4: 400104
-    second: GOBLIN_ L Finger32
-  - first:
-      4: 400106
-    second: GOBLIN_ L Finger31
-  - first:
-      4: 400108
-    second: GOBLIN_ L Finger3
-  - first:
-      4: 400110
-    second: GOBLIN_ L Finger22
-  - first:
-      4: 400112
-    second: GOBLIN_ L Finger21
-  - first:
-      4: 400114
-    second: GOBLIN_ L Finger2
-  - first:
-      4: 400116
-    second: GOBLIN_ L Finger12
-  - first:
-      4: 400118
-    second: GOBLIN_ L Finger11
-  - first:
-      4: 400120
-    second: GOBLIN_ L Finger1
-  - first:
-      4: 400122
-    second: GOBLIN_ L Finger02
-  - first:
-      4: 400124
-    second: GOBLIN_ L Finger01
-  - first:
-      4: 400126
-    second: GOBLIN_ L Finger0
-  - first:
-      4: 400128
-    second: GOBLIN_ L Forearm
-  - first:
-      4: 400130
-    second: GOBLIN_ L UpperArm
-  - first:
-      4: 400132
-    second: GOBLIN_ L Clavicle
-  - first:
-      4: 400134
-    second: GOBLIN_BODY
-  - first:
-      4: 400136
-    second: slingshot_rope_L
-  - first:
-      4: 400138
-    second: slingshot_rope_R
-  - first:
-      23: 2300000
-    second: forearm_armor_R
-  - first:
-      23: 2300002
-    second: sword
-  - first:
-      23: 2300004
-    second: leg_armor_R
-  - first:
-      23: 2300008
-    second: leg_armor_L
-  - first:
-      23: 2300010
-    second: dagger_R
-  - first:
-      23: 2300012
-    second: shield
-  - first:
-      23: 2300014
-    second: forearm_armor_L
-  - first:
-      23: 2300016
-    second: stone
-  - first:
-      23: 2300018
-    second: dagger_L
-  - first:
-      33: 3300000
-    second: forearm_armor_R
-  - first:
-      33: 3300002
-    second: sword
-  - first:
-      33: 3300004
-    second: leg_armor_R
-  - first:
-      33: 3300008
-    second: leg_armor_L
-  - first:
-      33: 3300010
-    second: dagger_R
-  - first:
-      33: 3300012
-    second: shield
-  - first:
-      33: 3300014
-    second: forearm_armor_L
-  - first:
-      33: 3300016
-    second: stone
-  - first:
-      33: 3300018
-    second: dagger_L
-  - first:
-      43: 4300000
-    second: GOBLIN
-  - first:
-      43: 4300002
-    second: shoulder_armor
-  - first:
-      43: 4300004
-    second: dagger_L
-  - first:
-      43: 4300006
-    second: stone
-  - first:
-      43: 4300008
-    second: forearm_armor_L
-  - first:
-      43: 4300010
-    second: shield
-  - first:
-      43: 4300012
-    second: dagger_R
-  - first:
-      43: 4300014
-    second: sword
-  - first:
-      43: 4300016
-    second: forearm_armor_R
-  - first:
-      43: 4300018
-    second: leg_armor_L
-  - first:
-      43: 4300020
-    second: leg_armor_R
-  - first:
-      43: 4300022
-    second: slingshot
-  - first:
-      43: 4300024
-    second: GOBLIN_BODY
-  - first:
-      74: 7400000
-    second: Take 001
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      111: 11100000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: GOBLIN
-  - first:
-      137: 13700002
-    second: slingshot
-  - first:
-      137: 13700004
-    second: shoulder_armor
-  - first:
-      137: 13700006
-    second: GOBLIN_BODY
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: GOBLIN_BODY
-    second: {fileID: 2100000, guid: 1383340fa2b521a4bbb1cc544fa98c43, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: GOBLIN_PROPS
-    second: {fileID: 2100000, guid: e5c9f510d24ae2a418bf65008fb930ac, type: 2}
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: GOBLIN_ R Foot
+    100002: GOBLIN_ Head
+    100004: forearm_armor_R
+    100006: sword
+    100008: GOBLIN_ L Thigh
+    100010: GOBLIN_ L Toe0
+    100012: GOBLIN_ L Foot
+    100014: GOBLIN_ L Calf
+    100016: //RootNode
+    100018: leg_armor_R
+    100020: slingshot
+    100022: leg_armor_L
+    100024: GOBLIN_ R Calf
+    100026: GOBLIN_ R Thigh
+    100028: dagger_R
+    100030: GOBLIN_ R Toe0
+    100032: GOBLIN_ R Hand
+    100034: shield
+    100036: forearm_armor_L
+    100038: stone
+    100040: Factice004
+    100042: Factice003
+    100044: Factice005
+    100046: Factice002
+    100048: Factice001
+    100050: slingshot_body
+    100052: dagger_L
+    100054: GOBLIN_ L Hand
+    100056: GOBLIN_ Neck
+    100058: GOBLIN_ Spine1
+    100060: GOBLIN_ Spine
+    100062: GOBLIN_ Pelvis
+    100064: GOBLIN_
+    100066: shoulder_armor
+    100068: GOBLIN
+    100070: GOBLIN_ Queue de cheval 1
+    100072: GOBLIN_ R Finger32
+    100074: GOBLIN_ R Finger31
+    100076: GOBLIN_ R Finger3
+    100078: GOBLIN_ R Finger22
+    100080: GOBLIN_ R Finger21
+    100082: GOBLIN_ R Finger2
+    100084: GOBLIN_ R Finger12
+    100086: GOBLIN_ R Finger11
+    100088: GOBLIN_ R Finger1
+    100090: GOBLIN_ R Finger02
+    100092: GOBLIN_ R Finger01
+    100094: GOBLIN_ R Finger0
+    100096: GOBLIN_ R Forearm
+    100098: GOBLIN_ R UpperArm
+    100100: GOBLIN_ R Clavicle
+    100102: slingshot_rope_middle
+    100104: GOBLIN_ L Finger32
+    100106: GOBLIN_ L Finger31
+    100108: GOBLIN_ L Finger3
+    100110: GOBLIN_ L Finger22
+    100112: GOBLIN_ L Finger21
+    100114: GOBLIN_ L Finger2
+    100116: GOBLIN_ L Finger12
+    100118: GOBLIN_ L Finger11
+    100120: GOBLIN_ L Finger1
+    100122: GOBLIN_ L Finger02
+    100124: GOBLIN_ L Finger01
+    100126: GOBLIN_ L Finger0
+    100128: GOBLIN_ L Forearm
+    100130: GOBLIN_ L UpperArm
+    100132: GOBLIN_ L Clavicle
+    100134: GOBLIN_BODY
+    100136: slingshot_rope_L
+    100138: slingshot_rope_R
+    400000: GOBLIN_ R Foot
+    400002: GOBLIN_ Head
+    400004: forearm_armor_R
+    400006: sword
+    400008: GOBLIN_ L Thigh
+    400010: GOBLIN_ L Toe0
+    400012: GOBLIN_ L Foot
+    400014: GOBLIN_ L Calf
+    400016: //RootNode
+    400018: leg_armor_R
+    400020: slingshot
+    400022: leg_armor_L
+    400024: GOBLIN_ R Calf
+    400026: GOBLIN_ R Thigh
+    400028: dagger_R
+    400030: GOBLIN_ R Toe0
+    400032: GOBLIN_ R Hand
+    400034: shield
+    400036: forearm_armor_L
+    400038: stone
+    400040: Factice004
+    400042: Factice003
+    400044: Factice005
+    400046: Factice002
+    400048: Factice001
+    400050: slingshot_body
+    400052: dagger_L
+    400054: GOBLIN_ L Hand
+    400056: GOBLIN_ Neck
+    400058: GOBLIN_ Spine1
+    400060: GOBLIN_ Spine
+    400062: GOBLIN_ Pelvis
+    400064: GOBLIN_
+    400066: shoulder_armor
+    400068: GOBLIN
+    400070: GOBLIN_ Queue de cheval 1
+    400072: GOBLIN_ R Finger32
+    400074: GOBLIN_ R Finger31
+    400076: GOBLIN_ R Finger3
+    400078: GOBLIN_ R Finger22
+    400080: GOBLIN_ R Finger21
+    400082: GOBLIN_ R Finger2
+    400084: GOBLIN_ R Finger12
+    400086: GOBLIN_ R Finger11
+    400088: GOBLIN_ R Finger1
+    400090: GOBLIN_ R Finger02
+    400092: GOBLIN_ R Finger01
+    400094: GOBLIN_ R Finger0
+    400096: GOBLIN_ R Forearm
+    400098: GOBLIN_ R UpperArm
+    400100: GOBLIN_ R Clavicle
+    400102: slingshot_rope_middle
+    400104: GOBLIN_ L Finger32
+    400106: GOBLIN_ L Finger31
+    400108: GOBLIN_ L Finger3
+    400110: GOBLIN_ L Finger22
+    400112: GOBLIN_ L Finger21
+    400114: GOBLIN_ L Finger2
+    400116: GOBLIN_ L Finger12
+    400118: GOBLIN_ L Finger11
+    400120: GOBLIN_ L Finger1
+    400122: GOBLIN_ L Finger02
+    400124: GOBLIN_ L Finger01
+    400126: GOBLIN_ L Finger0
+    400128: GOBLIN_ L Forearm
+    400130: GOBLIN_ L UpperArm
+    400132: GOBLIN_ L Clavicle
+    400134: GOBLIN_BODY
+    400136: slingshot_rope_L
+    400138: slingshot_rope_R
+    2300000: forearm_armor_R
+    2300002: sword
+    2300004: leg_armor_R
+    2300008: leg_armor_L
+    2300010: dagger_R
+    2300012: shield
+    2300014: forearm_armor_L
+    2300016: stone
+    2300018: dagger_L
+    3300000: forearm_armor_R
+    3300002: sword
+    3300004: leg_armor_R
+    3300008: leg_armor_L
+    3300010: dagger_R
+    3300012: shield
+    3300014: forearm_armor_L
+    3300016: stone
+    3300018: dagger_L
+    4300000: GOBLIN
+    4300002: shoulder_armor
+    4300004: dagger_L
+    4300006: stone
+    4300008: forearm_armor_L
+    4300010: shield
+    4300012: dagger_R
+    4300014: sword
+    4300016: forearm_armor_R
+    4300018: leg_armor_L
+    4300020: leg_armor_R
+    4300022: slingshot
+    4300024: GOBLIN_BODY
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: GOBLIN
+    13700002: slingshot
+    13700004: shoulder_armor
+    13700006: GOBLIN_BODY
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
-    importConstraints: 0
     animationCompression: 3
-    animationRotationError: 0.5
-    animationPositionError: 0.5
-    animationScaleError: 0.5
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
     animationWrapMode: 2
     extraExposedTransformPaths: []
-    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.01
+    globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
-    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
-    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -605,99 +223,12 @@ ModelImporter:
     useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 4
-    normalCalculationMode: 0
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
-  referencedClips:
-  - 9c75b36703162f243adfd31dd032e9d7
-  - ec5bdc27273e25a419e4d9dfc0cf670a
-  - 9794cb2261610b44695b8e0c809a8a06
-  - 04bf33ea40a7e6e418a497660d43d85e
-  - 2d89e027f0e37a6488aa8be1339351dd
-  - c92b96316c2786849afb0c46ce785c5b
-  - 407a1d0960ce8f24584a3e4b9174ffa7
-  - 834dbabdb63de1248b0e5c38dd57e59b
-  - 44c177656d16db543b9b06aaa034cb14
-  - d3090e126152a07448a80b4ea5bba8c1
-  - 5ea95522e4ad612499f8a5a2e18d7146
-  - 6fe95df42ae250849a274d7c028f0239
-  - e77100b60ad2a8945b9b7061db3b6c33
-  - 3a55ee87ab0113f40b9c0a589dd6d6cf
-  - cfae8bef95817f9419347035c56df17a
-  - ad72501e97f58b54a8d99792909cf33b
-  - cb13b1682bdf1204d9b90dc4333a1aef
-  - eaa055f25dc10e740861bfe96437ef06
-  - f9ad714bdb8172b4bb2aa17403b45466
-  - 232ad165301071e489ae51c8bbcb0231
-  - 85696ec38088cca4b8d41e2f81b9a4c8
-  - 7f58aef2737b2394c91c3303d97af9e1
-  - 258d25c542a18bb499c4ae7e3e7b9e91
-  - 558f95389b0200e46af5ab85373e4077
-  - 8b4f07f184107b346900347ae209ace9
-  - 48b754dc316f35441a8e38b6a7f889c3
-  - 1aa3b8ba281045847944a607561b3b29
-  - 29b34a449d42585449b6fae9638900fa
-  - e887fb1afdd1e214f9b25deec227b060
-  - 9422d274a247fcd4bae7a7168be7cad0
-  - aa85d5bfd3d139f4fbc54ec5212e4e59
-  - c4c9978371ca2fb4cb740253014d6fdb
-  - b009670c46a12c84cb43a2cb5acec924
-  - 01279e3a714a663479f2ca18c983e2d0
-  - 2e08a1ff694c0d94d8f958be7138fd58
-  - a7f51c394ff040d429b974cb71203de6
-  - 96cdb853981f5bc4aa32fd3f2657a360
-  - f1b38bfb8b647ea4abac6df05e771fb2
-  - 63980b54524ba554ba6e4863fb7dfaee
-  - 85ed37ef6624014428a37ecad6a69b03
-  - 1df79e0a7c1f780498c47803ad176855
-  - cb074ff1f46939e40b3f49f51926268a
-  - 9cbff15c2463b3748874e0203c6ef0db
-  - 63933b2c48f83844eab8bc79ac6ec7ff
-  - c5fb14a9a8ee85c439efc113375c7f04
-  - 31f88959d8e64684f815f1964f25bab8
-  - 1fdb775b1b2b1da44a92aa1220526a49
-  - 4097e97084ec20b468f4e344b704adb1
-  - c628537a71943984886086aa7f9d1cf8
-  - e4a2c97a217f1074ead2d482fb2501f6
-  - 36403e086cac29b4689671701f9c8065
-  - f0f18bbf73c40d047bc7c561d501f8dc
-  - 801fc122b97462e4a938e41232d38d2a
-  - 563f3388bdc1a3345b886091f6f08869
-  - 8bdb920b85adb084bb59949a33a4b84c
-  - 54f4e8285a8a4f74799be5cdf11292a9
-  - 62a0eaca43f5fa24bbab674e0865aef4
-  - 05b14c55a68c03d49b0c840209a99ba8
-  - 3e281c0cc0adf41488c3ba01c8420e2a
-  - b87323dc4c8682e479e7939c3424d1a9
-  - e3a47a2270d878f42a38be712d143f82
-  - 9a4e4b2c40d7928429dfcdeecbd71fff
-  - 670c36f4c9a731348b6b224515b6a8c4
-  - 99d7d8e93f2bc29409f54f4b8c347913
-  - a1fc6c84ffe8bd645ae0c8c72337daf1
-  - eb12e5982fd6e314cb547a448a9e8066
-  - 35220e81e6238d845bb8adde6474405b
-  - 3f9b784f2bd787e4389ed08ffd35eef7
-  - 81ff775d44a6d2c43a3ac146691be121
-  - 822aa796fdafc574ca317b59bfb92a06
-  - 450ff965331a8df4a8f37881be193726
-  - 6221aafc1b3e87f46b64949adabdb4e0
-  - beea18688e61cdb4cab2d3f2011538e1
-  - ab56f17ba638cd04597e8d5e3e1068b2
-  - 6d7616f4d612f74478c53b90b5535030
-  - 2ae6218dcee526849a65884c8bda134d
-  - 0cc0bf60f44f02f46aa631cbfecdc991
-  - fea353d35b94ef3428295d11f780fdc1
-  - 731f41706d897dc45a08061fd1954560
-  - b184e954076892f4f9bd6b4cd839f274
-  - 3405aa351f154f24eb7afe52712cc754
-  - 6b45dacc0d1c97a46b063ac94b24191a
+    tangentImportMode: 1
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
     human:
     - boneName: GOBLIN_ Pelvis
       humanName: Hips
@@ -1069,367 +600,360 @@ ModelImporter:
         modified: 0
     skeleton:
     - name: GOBLIN(Clone)
-      parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_
-      parentName: 
-      position: {x: 0, y: 0.8902521, z: 0}
-      rotation: {x: -0.50000036, y: 0.49999967, z: 0.49999967, w: 0.50000036}
+      position: {x: 0, y: .890252113, z: 0}
+      rotation: {x: -.500000358, y: .499999672, z: .499999672, w: .500000358}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ Pelvis
-      parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: -0.5, y: 0.5, z: 0.4999993, w: 0.5000007}
+      rotation: {x: -.5, y: .5, z: .499999315, w: .500000715}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Thigh
-      parentName: 
-      position: {x: 0.000000076293944, y: 0.00000015013923, z: 0.08020266}
-      rotation: {x: 0.0008756174, y: 0.996567, z: 0.000073386436, w: 0.0827855}
-      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+      position: {x: 7.62939436e-08, y: 1.50139229e-07, z: .0802026615}
+      rotation: {x: .000875617377, y: .996567011, z: 7.33864363e-05, w: .0827855021}
+      scale: {x: .99999994, y: 1, z: 1.00000012}
+      transformModified: 1
     - name: GOBLIN_ L Calf
-      parentName: 
-      position: {x: -0.40101275, y: -1.4901161e-10, z: 0}
-      rotation: {x: -2.5595454e-10, y: 0.0000000074461814, z: 0.034353644, w: 0.99940974}
-      scale: {x: 1.0000002, y: 1, z: 1}
+      position: {x: -.401012748, y: -1.49011609e-10, z: 0}
+      rotation: {x: -2.55954535e-10, y: 7.44618145e-09, z: .0343536437, w: .999409735}
+      scale: {x: 1.00000024, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Foot
-      parentName: 
-      position: {x: -0.40101275, y: 0.0000000023841857, z: 0}
-      rotation: {x: -0.024970146, y: 0.08368546, z: -0.032780465, w: 0.99563986}
-      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+      position: {x: -.401012748, y: 2.38418574e-09, z: 0}
+      rotation: {x: -.0249701459, y: .0836854577, z: -.0327804647, w: .995639861}
+      scale: {x: .99999994, y: 1, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ L Toe0
-      parentName: 
-      position: {x: -0.09916558, y: 0.16469145, z: 0}
-      rotation: {x: -0.000000015454313, y: 0.000000015454313, z: -0.7071068, w: 0.7071068}
+      position: {x: -.0991655812, y: .164691448, z: 0}
+      rotation: {x: -1.54543134e-08, y: 1.54543134e-08, z: -.707106829, w: .707106829}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: leg_armor_L
-      parentName: 
-      position: {x: -0.2340095, y: -0.008218443, z: 0.0068866536}
-      rotation: {x: 0.76274407, y: -0.026898734, z: 0.6457395, w: 0.022769885}
-      scale: {x: 1, y: 1, z: 0.99999994}
+      position: {x: -.234009504, y: -.00821844302, z: .0068866536}
+      rotation: {x: .762744069, y: -.0268987343, z: .645739496, w: .0227698851}
+      scale: {x: 1, y: 1, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ R Thigh
-      parentName: 
-      position: {x: -0.000000076293944, y: -0.00000007231091, z: -0.08020266}
-      rotation: {x: 0.0008757897, y: 0.9965669, z: -0.00007477512, w: -0.082786925}
-      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+      position: {x: -7.62939436e-08, y: -7.2310911e-08, z: -.0802026615}
+      rotation: {x: .000875789672, y: .996566892, z: -7.47751183e-05, w: -.0827869251}
+      scale: {x: .99999994, y: 1.00000012, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Calf
-      parentName: 
-      position: {x: -0.40101272, y: 1.4901161e-10, z: 0}
-      rotation: {x: 7.213409e-10, y: -0.0000000074301845, z: 0.03435364, w: 0.99940974}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1}
+      position: {x: -.401012719, y: 1.49011609e-10, z: 0}
+      rotation: {x: 7.21340876e-10, y: -7.43018447e-09, z: .0343536399, w: .999409735}
+      scale: {x: 1.00000024, y: 1.00000012, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Foot
-      parentName: 
-      position: {x: -0.40101275, y: 0.0000000023841857, z: 0}
-      rotation: {x: 0.02497015, y: -0.08368552, z: -0.03278052, w: 0.99563986}
-      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+      position: {x: -.401012748, y: 2.38418574e-09, z: 0}
+      rotation: {x: .0249701496, y: -.0836855173, z: -.0327805206, w: .995639861}
+      scale: {x: .99999994, y: 1, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ R Toe0
-      parentName: 
-      position: {x: -0.09916558, y: 0.16469142, z: 0.000000019073486}
-      rotation: {x: 0.000000015454313, y: -0.000000015454313, z: -0.7071068, w: 0.7071068}
+      position: {x: -.0991655812, y: .164691418, z: 1.90734859e-08}
+      rotation: {x: 1.54543134e-08, y: -1.54543134e-08, z: -.707106829, w: .707106829}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: leg_armor_R
-      parentName: 
-      position: {x: -0.23400958, y: -0.008218935, z: -0.0068868445}
-      rotation: {x: 0.6457394, y: -0.022770885, z: 0.7627442, w: 0.02689787}
-      scale: {x: 1, y: 1.0000001, z: 1}
+      position: {x: -.234009579, y: -.00821893476, z: -.00688684452}
+      rotation: {x: .645739377, y: -.0227708854, z: .762744188, w: .02689787}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
     - name: GOBLIN_ Spine
-      parentName: 
-      position: {x: -0.09223312, y: -0.00016600163, z: 0.00000012813906}
-      rotation: {x: -0.000002080476, y: 0.00000069367604, z: -0.00039815903, w: 0.99999994}
+      position: {x: -.0922331214, y: -.000166001628, z: 1.28139064e-07}
+      rotation: {x: -2.08047595e-06, y: 6.93676043e-07, z: -.000398159027, w: .99999994}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ Spine1
-      parentName: 
-      position: {x: -0.20852669, y: -0.00016604445, z: -4.6054083e-10}
-      rotation: {x: -1.9458393e-14, y: -4.440892e-16, z: -8.6412625e-30, w: 1}
+      position: {x: -.208526686, y: -.000166044454, z: -4.60540828e-10}
+      rotation: {x: -1.94583932e-14, y: -4.4408921e-16, z: -8.64126247e-30, w: 1}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Clavicle
-      parentName: 
-      position: {x: -0.20852691, y: -0.00000010512769, z: 0.03789876}
-      rotation: {x: -0.64724195, y: -0.0002587649, z: 0.7622845, w: -0.00030261037}
+      position: {x: -.208526909, y: -1.0512769e-07, z: .0378987603}
+      rotation: {x: -.64724195, y: -.000258764892, z: .762284517, w: -.000302610366}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L UpperArm
-      parentName: 
-      position: {x: -0.1477395, y: -4.5474734e-15, z: 0}
-      rotation: {x: -0.09202042, y: 0.049721472, z: 0.010960329, w: 0.99445456}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      position: {x: -.1477395, y: -4.54747341e-15, z: 0}
+      rotation: {x: -.0920204222, y: .049721472, z: .0109603293, w: .994454563}
+      scale: {x: 1, y: 1, z: 1.00000012}
+      transformModified: 1
     - name: GOBLIN_ L Forearm
-      parentName: 
-      position: {x: -0.3251793, y: 0, z: 0}
-      rotation: {x: -0.008585229, y: 0.028537737, z: 0.028224466, w: 0.9991573}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+      position: {x: -.325179309, y: 0, z: 0}
+      rotation: {x: -.00858522858, y: .0285377372, z: .0282244664, w: .99915731}
+      scale: {x: .99999994, y: .99999994, z: .999999881}
+      transformModified: 1
     - name: forearm_armor_L
-      parentName: 
-      position: {x: -0.103577726, y: -0.0144047355, z: 0.0047023008}
-      rotation: {x: -0.68867743, y: 0.721948, z: 0.045696765, w: 0.04925685}
-      scale: {x: -1.0143163, y: -0.9993814, z: -0.9864958}
+      position: {x: -.103577726, y: -.0144047355, z: .00470230076}
+      rotation: {x: -.68867743, y: .721948028, z: .0456967652, w: .04925685}
+      scale: {x: -1.01431632, y: -.999381423, z: -.986495793}
+      transformModified: 1
     - name: GOBLIN_ L Hand
-      parentName: 
-      position: {x: -0.23429075, y: -0.000000038146972, z: 0}
-      rotation: {x: -0.5974789, y: 0.018341282, z: 0.02067704, w: 0.8014082}
-      scale: {x: 1.0000001, y: 1, z: 1}
+      position: {x: -.234290749, y: -3.81469718e-08, z: 0}
+      rotation: {x: -.597478926, y: .0183412824, z: .0206770394, w: .801408172}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
     - name: dagger_L
-      parentName: 
-      position: {x: -0.08292663, y: 0.009351654, z: -0.014863748}
-      rotation: {x: 0.064622484, y: 0.03347075, z: 0.139839, w: 0.9874962}
-      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+      position: {x: -.082926631, y: .00935165398, z: -.0148637481}
+      rotation: {x: .0646224841, y: .0334707499, z: .139838994, w: .987496197}
+      scale: {x: 1.00000012, y: .99999994, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Finger0
-      parentName: 
-      position: {x: -0.028347187, y: -0.0037765503, z: -0.02662404}
-      rotation: {x: 0.41284382, y: -0.38453764, z: 0.2192929, w: 0.7959909}
-      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+      position: {x: -.0283471867, y: -.00377655029, z: -.0266240407}
+      rotation: {x: .412843823, y: -.384537637, z: .219292894, w: .795990884}
+      scale: {x: 1, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
     - name: GOBLIN_ L Finger01
-      parentName: 
-      position: {x: -0.043152083, y: 0, z: 0}
-      rotation: {x: 0.0000000745058, y: 0.0000013709066, z: -0.037768852, w: 0.99928653}
-      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      position: {x: -.0431520827, y: 0, z: 0}
+      rotation: {x: 7.45057989e-08, y: 1.3709066e-06, z: -.037768852, w: .999286532}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ L Finger02
-      parentName: 
-      position: {x: -0.04538948, y: 0.000000038146972, z: -0.000000076293944}
-      rotation: {x: 0.000000009698862, y: -0.000000018708857, z: -0.30232522, w: 0.9532048}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+      position: {x: -.0453894809, y: 3.81469718e-08, z: -7.62939436e-08}
+      rotation: {x: 9.69886216e-09, y: -1.87088567e-08, z: -.302325219, w: .953204811}
+      scale: {x: .99999994, y: .99999994, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ L Finger1
-      parentName: 
-      position: {x: -0.097336575, y: -0.011644897, z: -0.043763943}
-      rotation: {x: -0.0722806, y: -0.054494116, z: 0.055139717, w: 0.99436694}
-      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      position: {x: -.0973365754, y: -.0116448971, z: -.043763943}
+      rotation: {x: -.0722806007, y: -.0544941165, z: .0551397167, w: .994366944}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ L Finger11
-      parentName: 
-      position: {x: -0.033966523, y: -0.00000015258789, z: 0}
-      rotation: {x: -0.0000000745058, y: -0.00000017881392, z: -0.03776608, w: 0.9992866}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      position: {x: -.0339665227, y: -1.52587887e-07, z: 0}
+      rotation: {x: -7.45057989e-08, y: -1.7881392e-07, z: -.0377660803, w: .999286592}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Finger12
-      parentName: 
-      position: {x: -0.037950095, y: 0, z: -0.000000038146972}
-      rotation: {x: -0.000000009770814, y: -0.000000051365898, z: -0.11640221, w: 0.9932022}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      position: {x: -.0379500948, y: 0, z: -3.81469718e-08}
+      rotation: {x: -9.77081438e-09, y: -5.13658982e-08, z: -.116402209, w: .993202209}
+      scale: {x: 1, y: 1, z: 1.00000012}
+      transformModified: 1
     - name: GOBLIN_ L Finger2
-      parentName: 
-      position: {x: -0.0999089, y: -0.010044555, z: -0.001815567}
-      rotation: {x: -0.028438073, y: -0.069557115, z: 0.037717286, w: 0.996459}
-      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+      position: {x: -.0999089032, y: -.0100445552, z: -.00181556703}
+      rotation: {x: -.0284380727, y: -.0695571154, z: .0377172865, w: .996459007}
+      scale: {x: 1.00000012, y: .99999994, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Finger21
-      parentName: 
-      position: {x: -0.04326286, y: 0, z: 0.000000009536743}
-      rotation: {x: -0.00000002235174, y: -0.0000009536742, z: -0.0377676, w: 0.99928653}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      position: {x: -.0432628617, y: 0, z: 9.53674295e-09}
+      rotation: {x: -2.235174e-08, y: -9.53674203e-07, z: -.0377676003, w: .999286532}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Finger22
-      parentName: 
-      position: {x: -0.039718207, y: 0, z: 0.000000019073486}
-      rotation: {x: -0.000000018499835, y: 0.0000000021681597, z: -0.11640218, w: 0.9932022}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      position: {x: -.039718207, y: 0, z: 1.90734859e-08}
+      rotation: {x: -1.84998346e-08, y: 2.16815965e-09, z: -.116402179, w: .993202209}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Finger3
-      parentName: 
-      position: {x: -0.0972987, y: -0.005621185, z: 0.039433174}
-      rotation: {x: -0.032974795, y: -0.06957307, z: 0.037379425, w: 0.9963308}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      position: {x: -.0972986966, y: -.00562118506, z: .0394331738}
+      rotation: {x: -.0329747945, y: -.0695730671, z: .037379425, w: .996330798}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Finger31
-      parentName: 
-      position: {x: -0.029177437, y: 0, z: -0.000000009536743}
-      rotation: {x: -0.00000008102506, y: 0.000000059604638, z: -0.037768047, w: 0.99928653}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      position: {x: -.0291774366, y: 0, z: -9.53674295e-09}
+      rotation: {x: -8.10250569e-08, y: 5.96046377e-08, z: -.0377680473, w: .999286532}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
     - name: GOBLIN_ L Finger32
-      parentName: 
-      position: {x: -0.0377161, y: 0, z: 0.000000009536743}
-      rotation: {x: 0.0000000093653725, y: -0.000000016100767, z: -0.116402194, w: 0.9932022}
-      scale: {x: 0.9999998, y: 0.99999994, z: 1}
+      position: {x: -.0377161019, y: 0, z: 9.53674295e-09}
+      rotation: {x: 9.36537248e-09, y: -1.61007669e-08, z: -.116402194, w: .993202209}
+      scale: {x: .999999821, y: .99999994, z: 1}
+      transformModified: 1
     - name: slingshot_body
-      parentName: 
-      position: {x: -0.08619804, y: 0.024269866, z: 0.08002094}
-      rotation: {x: 0.055277117, y: -0.6895626, z: 0.06723712, w: 0.7189764}
-      scale: {x: 0.9999999, y: 1, z: 1}
+      position: {x: -.0861980394, y: .0242698658, z: .0800209418}
+      rotation: {x: .0552771166, y: -.689562619, z: .0672371164, w: .718976378}
+      scale: {x: .999999881, y: 1, z: 1}
+      transformModified: 1
     - name: Factice001
-      parentName: 
-      position: {x: -0.28673366, y: 0.07477806, z: -0.013339576}
-      rotation: {x: -0.49999312, y: -0.50000703, z: 0.5000096, w: 0.49999037}
+      position: {x: -.286733657, y: .0747780576, z: -.0133395763}
+      rotation: {x: -.499993116, y: -.500007033, z: .500009596, w: .499990374}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: Factice002
-      parentName: 
-      position: {x: -0.28672886, y: -0.069932096, z: -0.013338852}
-      rotation: {x: -0.49999312, y: -0.50000703, z: 0.5000096, w: 0.49999037}
+      position: {x: -.286728859, y: -.0699320957, z: -.0133388517}
+      rotation: {x: -.499993116, y: -.500007033, z: .500009596, w: .499990374}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: Factice005
-      parentName: 
-      position: {x: -0.2867312, y: -0.00006484985, z: -0.057320595}
-      rotation: {x: -0.49999312, y: -0.50000703, z: 0.5000096, w: 0.49999037}
+      position: {x: -.286731213, y: -6.48498535e-05, z: -.0573205948}
+      rotation: {x: -.499993116, y: -.500007033, z: .500009596, w: .499990374}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: Factice003
-      parentName: 
-      position: {x: 0.05856926, y: -0.005737686, z: -0.00000018119812}
-      rotation: {x: -0.0000000018626451, y: -0.000000007450581, z: 0.0000000037252903,
-        w: 1}
+      position: {x: .0585692599, y: -.00573768606, z: -1.81198118e-07}
+      rotation: {x: -1.86264515e-09, y: -7.4505806e-09, z: 3.7252903e-09, w: 1}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: Factice004
-      parentName: 
-      position: {x: -0.050810087, y: -0.005737648, z: -0.00000022888183}
-      rotation: {x: -0.0000000018626451, y: -0.000000007450581, z: 0.0000000037252903,
-        w: 1}
+      position: {x: -.0508100875, y: -.00573764788, z: -2.28881831e-07}
+      rotation: {x: -1.86264515e-09, y: -7.4505806e-09, z: 3.7252903e-09, w: 1}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: slingshot_rope_middle
-      parentName: 
-      position: {x: -0, y: -0.036356315, z: -0.0132328225}
-      rotation: {x: 0.74057555, y: 0.5155158, z: -0.41808218, w: 0.104875065}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      position: {x: -0, y: -.036356315, z: -.0132328225}
+      rotation: {x: .740575552, y: .515515804, z: -.418082178, w: .104875065}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
     - name: stone
-      parentName: 
-      position: {x: -0.0033998108, y: 0.000055160523, z: -0.0022218323}
-      rotation: {x: 0.000000027000313, y: -0.000000004609832, z: 0.7071062, w: 0.7071074}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1}
+      position: {x: -.00339981075, y: 5.51605226e-05, z: -.00222183228}
+      rotation: {x: 2.70003131e-08, y: -4.60983207e-09, z: .707106173, w: .707107425}
+      scale: {x: 1.00000024, y: 1.00000012, z: 1}
+      transformModified: 1
     - name: slingshot_rope_L
-      parentName: 
-      position: {x: -0.28672886, y: -0.069932096, z: -0.013338852}
-      rotation: {x: -0.5705606, y: 0.6283092, z: -0.3243788, w: -0.41769198}
+      position: {x: -.286728859, y: -.0699320957, z: -.0133388517}
+      rotation: {x: -.570560575, y: .62830919, z: -.324378788, w: -.417691976}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: slingshot_rope_R
-      parentName: 
-      position: {x: -0.2867336, y: 0.07477813, z: -0.013339576}
-      rotation: {x: 0.3394017, y: -0.4379046, z: 0.55519634, w: 0.62032497}
+      position: {x: -.286733598, y: .0747781321, z: -.0133395763}
+      rotation: {x: .339401692, y: -.437904596, z: .555196345, w: .620324969}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: shield
-      parentName: 
-      position: {x: -0.21873519, y: -0.002512703, z: 0.03249649}
-      rotation: {x: 0.60409445, y: 0.44835904, z: -0.52961427, w: -0.39185816}
-      scale: {x: 0.99999994, y: 1.161891, z: 1.0000005}
+      position: {x: -.218735188, y: -.00251270295, z: .0324964896}
+      rotation: {x: .604094446, y: .448359042, z: -.52961427, w: -.39185816}
+      scale: {x: .99999994, y: 1.16189098, z: 1.00000048}
+      transformModified: 1
     - name: GOBLIN_ Neck
-      parentName: 
-      position: {x: -0.2085733, y: -0.000071400405, z: -1.9802428e-10}
-      rotation: {x: 0.000000029802322, y: 0.00000044703484, z: -0.24479654, w: 0.96957445}
+      position: {x: -.208573297, y: -7.14004054e-05, z: -1.98024278e-10}
+      rotation: {x: 2.98023224e-08, y: 4.47034836e-07, z: -.244796544, w: .969574451}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ Head
-      parentName: 
-      position: {x: -0.10695335, y: 0, z: 0}
-      rotation: {x: -5.21913e-13, y: -0.0000006469269, z: 0.23324513, w: 0.97241795}
-      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+      position: {x: -.106953353, y: 0, z: 0}
+      rotation: {x: -5.21913025e-13, y: -6.46926878e-07, z: .233245134, w: .972417951}
+      scale: {x: .999999881, y: .999999881, z: 1}
+      transformModified: 1
     - name: GOBLIN_ Queue de cheval 1
-      parentName: 
-      position: {x: -0.019187622, y: 0.009444417, z: -0.00000007806095}
-      rotation: {x: -1.5173005e-12, y: -0.000002411776, z: 0.8695474, w: -0.49384946}
+      position: {x: -.0191876218, y: .00944441743, z: -7.80609497e-08}
+      rotation: {x: -1.5173005e-12, y: -2.41177599e-06, z: .869547427, w: -.493849456}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Clavicle
-      parentName: 
-      position: {x: -0.20852691, y: 0.00000010512769, z: -0.03789876}
-      rotation: {x: 0.64724195, y: 0.00025665062, z: 0.7622845, w: -0.00030440558}
+      position: {x: -.208526909, y: 1.0512769e-07, z: -.0378987603}
+      rotation: {x: .64724195, y: .000256650615, z: .762284517, w: -.000304405577}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R UpperArm
-      parentName: 
-      position: {x: -0.1477395, y: 1.364242e-14, z: 0}
-      rotation: {x: 0.09202033, y: -0.0497201, z: 0.010960186, w: 0.9944547}
-      scale: {x: 0.99999994, y: 1, z: 1}
+      position: {x: -.1477395, y: 1.36424202e-14, z: 0}
+      rotation: {x: .0920203328, y: -.0497201011, z: .0109601859, w: .994454682}
+      scale: {x: .99999994, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Forearm
-      parentName: 
-      position: {x: -0.3251793, y: 0, z: 0}
-      rotation: {x: 0.008585006, y: -0.02853787, z: 0.0282247, w: 0.9991573}
-      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+      position: {x: -.325179309, y: 0, z: 0}
+      rotation: {x: .008585006, y: -.0285378695, z: .0282246992, w: .99915731}
+      scale: {x: .99999994, y: .999999821, z: .99999994}
+      transformModified: 1
     - name: forearm_armor_R
-      parentName: 
-      position: {x: -0.10385746, y: -0.014214649, z: -0.0048768613}
-      rotation: {x: 0.7219488, y: 0.68867666, z: -0.049256243, w: 0.045696747}
-      scale: {x: 1.0143162, y: 0.9993813, z: 0.9864958}
+      position: {x: -.103857458, y: -.0142146489, z: -.00487686135}
+      rotation: {x: .721948802, y: .688676655, z: -.0492562428, w: .0456967466}
+      scale: {x: 1.0143162, y: .999381304, z: .986495793}
+      transformModified: 1
     - name: GOBLIN_ R Hand
-      parentName: 
-      position: {x: -0.23429076, y: -0.000000019073486, z: 0}
-      rotation: {x: 0.5977072, y: 0.0000000037466066, z: -0.0000000074398856, w: 0.80171454}
-      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+      position: {x: -.234290764, y: -1.90734859e-08, z: 0}
+      rotation: {x: .597707212, y: 3.74660658e-09, z: -7.4398856e-09, w: .80171454}
+      scale: {x: .99999994, y: 1, z: 1.00000012}
+      transformModified: 1
     - name: dagger_R
-      parentName: 
-      position: {x: -0.077059016, y: 0.018247833, z: 0.01686529}
-      rotation: {x: -0.093210526, y: 0.99324185, z: 0.019487657, w: 0.06635313}
-      scale: {x: 1, y: 0.99999994, z: 1.0000002}
+      position: {x: -.0770590156, y: .0182478335, z: .0168652907}
+      rotation: {x: -.0932105258, y: .993241847, z: .0194876567, w: .0663531274}
+      scale: {x: 1, y: .99999994, z: 1.00000024}
+      transformModified: 1
     - name: GOBLIN_ R Finger0
-      parentName: 
-      position: {x: -0.028347187, y: -0.0037767028, z: 0.02662402}
-      rotation: {x: -0.43074656, y: 0.36673987, z: 0.20185477, w: 0.7995086}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+      position: {x: -.0283471867, y: -.0037767028, z: .0266240202}
+      rotation: {x: -.430746555, y: .366739869, z: .201854765, w: .799508572}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
     - name: GOBLIN_ R Finger01
-      parentName: 
-      position: {x: -0.043152045, y: 0.000000038146972, z: 0}
-      rotation: {x: 0.000000059604616, y: 0.00000056624384, z: -0.037769448, w: 0.9992865}
-      scale: {x: 1, y: 1, z: 0.99999994}
+      position: {x: -.0431520455, y: 3.81469718e-08, z: 0}
+      rotation: {x: 5.96046164e-08, y: 5.66243841e-07, z: -.037769448, w: .999286473}
+      scale: {x: 1, y: 1, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ R Finger02
-      parentName: 
-      position: {x: -0.04538948, y: 0, z: 0}
-      rotation: {x: 0.000000016111924, y: 0.00000002615522, z: -0.30232525, w: 0.9532048}
-      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      position: {x: -.0453894809, y: 0, z: 0}
+      rotation: {x: 1.61119242e-08, y: 2.61552202e-08, z: -.302325249, w: .953204811}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ R Finger1
-      parentName: 
-      position: {x: -0.0973365, y: -0.01164505, z: 0.04376395}
-      rotation: {x: 0.014477082, y: 0.08179897, z: 0.04781934, w: 0.9953958}
-      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+      position: {x: -.0973365009, y: -.0116450498, z: .0437639505}
+      rotation: {x: .0144770816, y: .0817989707, z: .0478193387, w: .99539578}
+      scale: {x: 1, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
     - name: GOBLIN_ R Finger11
-      parentName: 
-      position: {x: -0.033966444, y: 0, z: -0.000000019073486}
-      rotation: {x: -0.000000011175867, y: -0.0000012218948, z: -0.037770897, w: 0.9992864}
+      position: {x: -.0339664444, y: 0, z: -1.90734859e-08}
+      rotation: {x: -1.11758673e-08, y: -1.22189476e-06, z: -.0377708972, w: .999286413}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Finger12
-      parentName: 
-      position: {x: -0.037950173, y: 0, z: 0}
-      rotation: {x: 0.000000008064476, y: -0.000000027200661, z: -0.11640219, w: 0.9932022}
+      position: {x: -.037950173, y: 0, z: 0}
+      rotation: {x: 8.0644762e-09, y: -2.72006613e-08, z: -.116402186, w: .993202209}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Finger2
-      parentName: 
-      position: {x: -0.0999089, y: -0.010044555, z: 0.0018155384}
-      rotation: {x: 0.011797608, y: 0.08152662, z: 0.048735734, w: 0.99540895}
-      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+      position: {x: -.0999089032, y: -.0100445552, z: .00181553839}
+      rotation: {x: .0117976079, y: .0815266222, z: .0487357341, w: .995408952}
+      scale: {x: 1, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
     - name: GOBLIN_ R Finger21
-      parentName: 
-      position: {x: -0.04326286, y: 0, z: -0.000000028610229}
-      rotation: {x: -0.000000029802308, y: -0.0000024437893, z: -0.037770938, w: 0.9992864}
+      position: {x: -.0432628617, y: 0, z: -2.86102289e-08}
+      rotation: {x: -2.98023082e-08, y: -2.4437893e-06, z: -.0377709381, w: .999286413}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Finger22
-      parentName: 
-      position: {x: -0.039718132, y: 0, z: 0.000000028610229}
-      rotation: {x: -0.000000005868127, y: -0.000000018066203, z: -0.116402194, w: 0.9932022}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+      position: {x: -.0397181325, y: 0, z: 2.86102289e-08}
+      rotation: {x: -5.86812687e-09, y: -1.80662028e-08, z: -.116402194, w: .993202209}
+      scale: {x: .99999994, y: .99999994, z: .99999994}
+      transformModified: 1
     - name: GOBLIN_ R Finger3
-      parentName: 
-      position: {x: -0.0972987, y: -0.005621185, z: -0.039433192}
-      rotation: {x: 0.009104425, y: 0.08125269, z: 0.04941012, w: 0.9954265}
-      scale: {x: 1, y: 1.0000001, z: 1}
+      position: {x: -.0972986966, y: -.00562118506, z: -.0394331925}
+      rotation: {x: .00910442509, y: .0812526867, z: .0494101197, w: .995426476}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Finger31
-      parentName: 
-      position: {x: -0.029177437, y: 0, z: -0.000000047683713}
-      rotation: {x: 0.00000013783573, y: -0.0000014603136, z: -0.03777336, w: 0.99928635}
-      scale: {x: 0.9999999, y: 1, z: 1}
+      position: {x: -.0291774366, y: 0, z: -4.7683713e-08}
+      rotation: {x: 1.37835727e-07, y: -1.46031357e-06, z: -.0377733596, w: .999286354}
+      scale: {x: .999999881, y: 1, z: 1}
+      transformModified: 1
     - name: GOBLIN_ R Finger32
-      parentName: 
-      position: {x: -0.037715986, y: -0.00000015258789, z: 0.000000028610229}
-      rotation: {x: 0.000000024598872, y: -0.000000014135325, z: -0.116402194, w: 0.9932022}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+      position: {x: -.0377159864, y: -1.52587887e-07, z: 2.86102289e-08}
+      rotation: {x: 2.45988723e-08, y: -1.41353249e-08, z: -.116402194, w: .993202209}
+      scale: {x: .99999994, y: .99999994, z: .999999881}
+      transformModified: 1
     - name: sword
-      parentName: 
-      position: {x: -0.08586189, y: 0.017862549, z: -0.007620706}
-      rotation: {x: -0.081184916, y: 0.014049539, z: 0.9869475, w: -0.13837035}
-      scale: {x: 1, y: 1, z: 1.0000002}
+      position: {x: -.0858618915, y: .0178625491, z: -.00762070622}
+      rotation: {x: -.0811849162, y: .0140495393, z: .986947477, w: -.13837035}
+      scale: {x: 1, y: 1, z: 1.00000024}
+      transformModified: 1
     - name: GOBLIN_BODY
-      parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: shoulder_armor
-      parentName: 
-      position: {x: 0, y: 1.2559308, z: 0.12548184}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      position: {x: 0, y: 1.25593078, z: .125481844}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
       scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     - name: slingshot
-      parentName: 
-      position: {x: -0.69258803, y: 1.120819, z: 0.20635527}
-      rotation: {x: -0.2530654, y: 0.17852344, z: -0.6174686, w: 0.7230628}
-      scale: {x: 1.0000001, y: 1.0000002, z: 0.9999999}
-    armTwist: 0.5
-    foreArmTwist: 0.5
-    upperLegTwist: 0.5
-    legTwist: 0.5
-    armStretch: 0.05
-    legStretch: 0.05
+      position: {x: -.692588031, y: 1.12081897, z: .206355274}
+      rotation: {x: -.253065407, y: .178523436, z: -.617468596, w: .723062813}
+      scale: {x: 1.00000012, y: 1.00000024, z: .999999881}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
     feetSpacing: 0
-    globalScale: 0.01
     rootMotionBoneName: 
-    hasTranslationDoF: 0
-    hasExtraRoot: 0
-    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
-  humanoidOversampling: 1
   additionalBone: 1
   userData: 
   assetBundleName: 
