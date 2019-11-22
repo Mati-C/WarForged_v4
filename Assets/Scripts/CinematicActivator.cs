@@ -32,6 +32,8 @@ public class CinematicActivator : MonoBehaviour
 
     public Animator chains;
 
+    bool activated;
+
     IEnumerator AnimationAdjustment()
     {
         lever.GetComponent<BoxCollider>().isTrigger= true;
@@ -89,7 +91,12 @@ public class CinematicActivator : MonoBehaviour
         player.view.anim.SetBool("InteractLevel", false);
         player.view.anim.SetBool("Idle", true);
         lever.GetComponent<BoxCollider>().isTrigger = false;
-        cam.StartCoroutine(cam.Cinematic03());
+        if (gameObject.name != "Lever01" && gameObject.name != "Lever02")
+            cam.StartCoroutine(cam.Cinematic03());
+        else
+        {
+			print("AAAAAAAHHHHHHH");
+        }
     }
 
     public void Start()
@@ -105,6 +112,7 @@ public class CinematicActivator : MonoBehaviour
         interactiveKeyDepth = interactiveKey.GetComponent<DepthUI>();
         lockKeyDepth = lockKey.GetComponent<DepthUI>();
         player = FindObjectOfType<Model>();
+        activated = false;
     }
 
     private void Update()
@@ -147,17 +155,25 @@ public class CinematicActivator : MonoBehaviour
 
             if (NumberClipAnimation != 0 && NumberClipAnimation == 3)
             {
-                if (player.hasKey)
+                if (player.hasKey || gameObject.name == "Lever01" || gameObject.name == "Lever02")
                     interactiveKey.SetActive(true);
                 else
                     lockKey.SetActive(true);
             }
 
-            if (NumberClipAnimation == 3 && Input.GetKeyDown(KeyCode.F) && player.hasKey)
+            if (NumberClipAnimation == 3 && Input.GetKeyDown(KeyCode.F) && !activated)
             {
-                BreakChains();
-                player.hasKey = false;
-                cam.transform.GetChild(0).gameObject.SetActive(false);
+                if (gameObject.name != "Lever01" && gameObject.name != "Lever02")
+                {
+                    BreakChains();
+                    player.hasKey = false;
+                    cam.transform.GetChild(0).gameObject.SetActive(false);
+                }
+                else
+                {
+                    StartCoroutine(AnimationAdjustment());
+                }
+				activated = true;
             }
         }
     }

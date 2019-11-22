@@ -588,10 +588,7 @@ public class Model : MonoBehaviour
         fadeTimer = 0;
         internCdPower2 = timeCdPower2;
         onDefenseCorroutine = false;
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-            allEnemies = FindObjectsOfType<EnemyEntity>();
-        else
-            combatIndex = 1;
+        //allEnemies = FindObjectsOfType<EnemyEntity>();
         combatAreas = FindObjectsOfType<CombatArea>().OrderBy(x => x.EnemyID_Area).ToList();       
         maxDamage = false;
     }
@@ -1057,9 +1054,10 @@ public class Model : MonoBehaviour
     {
         enemiesToLock.Clear();
         EnemyEntity detectedEnemy;
-        // var allEnemies = FindObjectsOfType<EnemyEntity>();
+        allEnemies = FindObjectsOfType<EnemyEntity>();
         //detectedEnemy = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
-         detectedEnemy = allEnemies.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
+        detectedEnemy = allEnemies.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
+        print(detectedEnemy != null);
         enemiesToLock.Add(detectedEnemy);
         enemiesToLock.AddRange(detectedEnemy.nearEntities);
 
@@ -1079,9 +1077,9 @@ public class Model : MonoBehaviour
         {
             if (!targetLockedOn)
             {
-           
+                if (enemiesToLock.Count == 0) return;
 
-                if (enemiesToLock.Count == 1 || SceneManager.GetActiveScene().buildIndex == 1)
+                else if (enemiesToLock.Count == 1)
                     targetLocked = enemiesToLock.First();
                 else
                     targetLocked = enemiesToLock.OrderBy(x => Vector3.Angle(transform.forward, x.transform.position - transform.position)).First();
