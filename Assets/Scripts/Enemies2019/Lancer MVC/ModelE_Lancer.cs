@@ -700,7 +700,7 @@ public class ModelE_Lancer : EnemyMeleeClass
             onDefence = false;
             view.anim.SetBool("WalkBack", false);
             checkTurn = false;
-            timeStuned = 3;
+            timeStuned = 1;
         };
 
         stuned.OnUpdate += () =>
@@ -1116,9 +1116,6 @@ public class ModelE_Lancer : EnemyMeleeClass
             }
 
             view.BloodPlay();
-
-            timeOnDamage = 0.5f;
-            if (!onDamage) StartCoroutine(OnDamageCorrutine());
             life -= damage;
             view.LifeBar(life / totalLife);
         }

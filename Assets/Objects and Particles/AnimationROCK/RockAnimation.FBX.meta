@@ -1,76 +1,212 @@
 fileFormatVersion: 2
 guid: c0e8a0ba3f449db459735709d0b151ff
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: AnimationRocks
-    100002: Box001
-    100004: Box002
-    100006: Box003
-    100008: GeoSphere031
-    100010: GeoSphere032
-    100012: GeoSphere033
-    100014: GeoSphere034
-    100016: GeoSphere036
-    100018: GeoSphere037
-    100020: GeoSphere038
-    100022: GeoSphere039
-    100024: //RootNode
-    400000: AnimationRocks
-    400002: Box001
-    400004: Box002
-    400006: Box003
-    400008: GeoSphere031
-    400010: GeoSphere032
-    400012: GeoSphere033
-    400014: GeoSphere034
-    400016: GeoSphere036
-    400018: GeoSphere037
-    400020: GeoSphere038
-    400022: GeoSphere039
-    400024: //RootNode
-    2100000: WOOD
-    2100002: ROCK
-    2300000: Box001
-    2300002: Box002
-    2300004: Box003
-    2300006: GeoSphere031
-    2300008: GeoSphere032
-    2300010: GeoSphere033
-    2300012: GeoSphere034
-    2300014: GeoSphere036
-    2300016: GeoSphere037
-    2300018: GeoSphere038
-    2300020: GeoSphere039
-    3300000: Box001
-    3300002: Box002
-    3300004: Box003
-    3300006: GeoSphere031
-    3300008: GeoSphere032
-    3300010: GeoSphere033
-    3300012: GeoSphere034
-    3300014: GeoSphere036
-    3300016: GeoSphere037
-    3300018: GeoSphere038
-    3300020: GeoSphere039
-    4300000: Box001
-    4300002: Box002
-    4300004: Box003
-    4300006: GeoSphere031
-    4300008: GeoSphere032
-    4300010: GeoSphere033
-    4300012: GeoSphere034
-    4300014: GeoSphere036
-    4300016: GeoSphere037
-    4300018: GeoSphere038
-    4300020: GeoSphere039
-    7400000: RockAnimation
-    9500000: //RootNode
-  externalObjects: {}
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: AnimationRocks
+  - first:
+      1: 100002
+    second: Box001
+  - first:
+      1: 100004
+    second: Box002
+  - first:
+      1: 100006
+    second: Box003
+  - first:
+      1: 100008
+    second: GeoSphere031
+  - first:
+      1: 100010
+    second: GeoSphere032
+  - first:
+      1: 100012
+    second: GeoSphere033
+  - first:
+      1: 100014
+    second: GeoSphere034
+  - first:
+      1: 100016
+    second: GeoSphere036
+  - first:
+      1: 100018
+    second: GeoSphere037
+  - first:
+      1: 100020
+    second: GeoSphere038
+  - first:
+      1: 100022
+    second: GeoSphere039
+  - first:
+      1: 100024
+    second: //RootNode
+  - first:
+      4: 400000
+    second: AnimationRocks
+  - first:
+      4: 400002
+    second: Box001
+  - first:
+      4: 400004
+    second: Box002
+  - first:
+      4: 400006
+    second: Box003
+  - first:
+      4: 400008
+    second: GeoSphere031
+  - first:
+      4: 400010
+    second: GeoSphere032
+  - first:
+      4: 400012
+    second: GeoSphere033
+  - first:
+      4: 400014
+    second: GeoSphere034
+  - first:
+      4: 400016
+    second: GeoSphere036
+  - first:
+      4: 400018
+    second: GeoSphere037
+  - first:
+      4: 400020
+    second: GeoSphere038
+  - first:
+      4: 400022
+    second: GeoSphere039
+  - first:
+      4: 400024
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: WOOD
+  - first:
+      21: 2100002
+    second: ROCK
+  - first:
+      23: 2300000
+    second: Box001
+  - first:
+      23: 2300002
+    second: Box002
+  - first:
+      23: 2300004
+    second: Box003
+  - first:
+      23: 2300006
+    second: GeoSphere031
+  - first:
+      23: 2300008
+    second: GeoSphere032
+  - first:
+      23: 2300010
+    second: GeoSphere033
+  - first:
+      23: 2300012
+    second: GeoSphere034
+  - first:
+      23: 2300014
+    second: GeoSphere036
+  - first:
+      23: 2300016
+    second: GeoSphere037
+  - first:
+      23: 2300018
+    second: GeoSphere038
+  - first:
+      23: 2300020
+    second: GeoSphere039
+  - first:
+      33: 3300000
+    second: Box001
+  - first:
+      33: 3300002
+    second: Box002
+  - first:
+      33: 3300004
+    second: Box003
+  - first:
+      33: 3300006
+    second: GeoSphere031
+  - first:
+      33: 3300008
+    second: GeoSphere032
+  - first:
+      33: 3300010
+    second: GeoSphere033
+  - first:
+      33: 3300012
+    second: GeoSphere034
+  - first:
+      33: 3300014
+    second: GeoSphere036
+  - first:
+      33: 3300016
+    second: GeoSphere037
+  - first:
+      33: 3300018
+    second: GeoSphere038
+  - first:
+      33: 3300020
+    second: GeoSphere039
+  - first:
+      43: 4300000
+    second: Box001
+  - first:
+      43: 4300002
+    second: Box002
+  - first:
+      43: 4300004
+    second: Box003
+  - first:
+      43: 4300006
+    second: GeoSphere031
+  - first:
+      43: 4300008
+    second: GeoSphere032
+  - first:
+      43: 4300010
+    second: GeoSphere033
+  - first:
+      43: 4300012
+    second: GeoSphere034
+  - first:
+      43: 4300014
+    second: GeoSphere036
+  - first:
+      43: 4300016
+    second: GeoSphere037
+  - first:
+      43: 4300018
+    second: GeoSphere038
+  - first:
+      43: 4300020
+    second: GeoSphere039
+  - first:
+      74: 7400000
+    second: RockAnimation
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ROCK
+    second: {fileID: 2100000, guid: efb567eb25d01624f9afebbddf0e2bed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WOOD
+    second: {fileID: 2100000, guid: 357ae39b67aa9bd4ea518dee7f5bded8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
-    materialSearch: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
@@ -97,6 +233,7 @@ ModelImporter:
     - serializedVersion: 16
       name: RockAnimation
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 180
       wrapMode: 0
@@ -129,6 +266,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -136,18 +274,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.0254
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -156,10 +295,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -169,6 +309,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

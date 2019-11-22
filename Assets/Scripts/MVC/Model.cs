@@ -66,6 +66,7 @@ public class Model : MonoBehaviour
     public float timeCdPower2;
     public float damagePower2;
     public float reduceTimePerHit;
+    public int spellCount;
 
     [Header("Player ParryStats:")]
 
@@ -208,6 +209,12 @@ public class Model : MonoBehaviour
     List<CombatArea> combatAreas = new List<CombatArea>();
     public int combatIndex;
     Vector3 soundOrigin;
+
+    IEnumerator SpellCD()
+    {
+        yield return new WaitForSeconds(5f);
+        spellCount = 3;
+    }
 
     IEnumerator RotateToShoot()
     {
@@ -569,6 +576,7 @@ public class Model : MonoBehaviour
     {
         ECM = FindObjectOfType<EnemyCombatManager>();
         timeOnCombat = -1;
+        spellCount = 3;
         rb = GetComponent<Rigidbody>();
         pointerPool = new Pool<EnemyPointer>(5, PointerFactory, EnemyPointer.InitializePointer, EnemyPointer.DisposePointer, true);
         timeToRecoverDefence = maxTimeToRecoverDefence;
@@ -1047,49 +1055,27 @@ public class Model : MonoBehaviour
    
     public void LockEnemies()
     {
-        // enemiesToLock.Clear();
-        /*
-                List<EnemyEntity> detectedEnemies = new List<EnemyEntity>();
+        enemiesToLock.Clear();
+        EnemyEntity detectedEnemy;
+        // var allEnemies = FindObjectsOfType<EnemyEntity>();
+        //detectedEnemy = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
+         detectedEnemy = allEnemies.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
+        enemiesToLock.Add(detectedEnemy);
+        enemiesToLock.AddRange(detectedEnemy.nearEntities);
 
-                mainCamera.GetComponent<CamController>().ChangeTargetAlt(targetLocked);
 
-                detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
-                enemiesToLock.AddRange(detectedEnemies);
-                mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 2;
-
-                if (SceneManager.GetActiveScene().buildIndex == 1)
-                {
-                    detectedEnemies = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12).OrderBy(x => Vector3.Angle(mainCamera.forward, x.transform.position)).ToList();
-                    enemiesToLock.AddRange(detectedEnemies);
-                    mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 2;
-                }
-                else
-                {
-                    foreach (var e in allEnemies)
-                    {
-                        RaycastHit hit;
-                        Physics.Raycast(transform.position, e.transform.position - transform.position, out hit, 12, layerEnemies);
-                        if (hit.collider.gameObject.GetComponent<EnemyEntity>())
-                        {
-                            enemiesToLock.Add(e);
-                            enemiesToLock.AddRange(e.nearEntities);
-                            break;
-                        }
-                    }
-
-                    mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 2;
-                }
-                */
-        if (!isInCombat && !targetLocked)
+       /* if (!isInCombat && !targetLocked)
         {
             enemiesToLock.Clear();
             EnemyEntity detectedEnemy;
+           // var allEnemies = FindObjectsOfType<EnemyEntity>();
             detectedEnemy = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
+           // detectedEnemy = allEnemies.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
             enemiesToLock.Add(detectedEnemy);
             enemiesToLock.AddRange(detectedEnemy.nearEntities);
         }
-
-        if (enemiesToLock.Any())
+        */
+        if (enemiesToLock.Count> 0)
         {
             if (!targetLockedOn)
             {
@@ -1136,10 +1122,12 @@ public class Model : MonoBehaviour
     public void CastMagicMissile()
     {
 
-        if (!view.dodgeAnims && isInCombat && view.movementAnims)
+        if (!view.dodgeAnims && isInCombat && view.movementAnims && spellCount >0)
         {
             StartCoroutine(RotateToShoot());
             CastMagicMissileEvent();
+            spellCount--;
+            if (spellCount <= 0) StartCoroutine(SpellCD());
         }
     }
 
