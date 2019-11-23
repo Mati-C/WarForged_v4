@@ -1668,8 +1668,6 @@ public class Model : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {         
-        if (c.gameObject.layer == LayerMask.NameToLayer("WIN"))
-            StartCoroutine(view.YouWin());
         if (c.gameObject.layer == LayerMask.NameToLayer("NEXT LEVEL"))
             StartCoroutine(view.NextLevel());
     }

@@ -31,7 +31,6 @@ public class Viewer : MonoBehaviour
     public Image power4;
     public Image defenceColdwon;
 
-    public GameObject youDied;
     public GameObject youWin;
     public GameObject phParticles;
     public GameObject trail;
@@ -652,7 +651,7 @@ public class Viewer : MonoBehaviour
     public void TogglePause()
     {
 
-        if (!youWin.activeSelf && !youDied.activeSelf)
+        if (!youWin.activeSelf)
         {
             if (pauseMenu.activeSelf)
             {
@@ -856,7 +855,7 @@ public class Viewer : MonoBehaviour
             if (alpha >= 1)
             {
                 cam.blockMouse = false;
-                for (int i = 0; i < youDied.transform.childCount; i++)
+                for (int i = 0; i < youWin.transform.childCount; i++)
                     youWin.transform.GetChild(i).gameObject.SetActive(true);
                 Time.timeScale = 0;
             }

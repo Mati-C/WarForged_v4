@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class CinematicActivator : MonoBehaviour
 {
@@ -34,9 +35,16 @@ public class CinematicActivator : MonoBehaviour
 
     bool activated;
 
+    public PlayableDirector leverAnim;
+
+    public GameObject[] otherDoors;
+
     IEnumerator AnimationAdjustment()
     {
-        lever.GetComponent<BoxCollider>().isTrigger= true;
+        isActive = true;
+        interactiveKey.SetActive(false);
+
+        lever.GetComponent<BoxCollider>().isTrigger = true;
 
         player.GetComponent<Controller>().ShutDownControlls(timeToMove + 0.2f + 1);
 
@@ -91,12 +99,18 @@ public class CinematicActivator : MonoBehaviour
         player.view.anim.SetBool("InteractLevel", false);
         player.view.anim.SetBool("Idle", true);
         lever.GetComponent<BoxCollider>().isTrigger = false;
-        if (gameObject.name != "Lever01" && gameObject.name != "Lever02")
-            cam.StartCoroutine(cam.Cinematic03());
-        else
+
+        if (gameObject.name == "Lever01" || gameObject.name == "Lever02")
         {
-			print("AAAAAAAHHHHHHH");
+            yield return new WaitForSeconds(3.5f);
+            leverAnim.Play();
+            foreach (var door in otherDoors)
+                door.transform.localPosition += Vector3.forward * 1.2f;
+            yield return new WaitForSeconds(3.5f);
+            leverAnim.Stop();
         }
+        else
+            cam.StartCoroutine(cam.Cinematic03());
     }
 
     public void Start()
@@ -120,7 +134,7 @@ public class CinematicActivator : MonoBehaviour
         Vector3 worldPos = transform.position + Vector3.up * positionFix ;
         Vector3 screenPos = myCamera.WorldToScreenPoint(worldPos);
         interactiveKey.transform.position = screenPos;
-        lockKey.transform.position = myCamera.WorldToScreenPoint(transform.position + (Vector3.down * 0.7f));
+        lockKey.transform.position = transform.name != "Lever02" ? myCamera.WorldToScreenPoint(transform.position + (Vector3.down * 0.7f)) : myCamera.WorldToScreenPoint(transform.position);
 
         float distance = Vector3.Distance(worldPos, cam.transform.position);
         interactiveKeyDepth.depth = -distance;
@@ -155,7 +169,7 @@ public class CinematicActivator : MonoBehaviour
 
             if (NumberClipAnimation != 0 && NumberClipAnimation == 3)
             {
-                if (player.hasKey || gameObject.name == "Lever01" || gameObject.name == "Lever02")
+                if (player.hasKey || gameObject.name == "Lever01")
                     interactiveKey.SetActive(true);
                 else
                     lockKey.SetActive(true);
@@ -163,7 +177,7 @@ public class CinematicActivator : MonoBehaviour
 
             if (NumberClipAnimation == 3 && Input.GetKeyDown(KeyCode.F) && !activated)
             {
-                if (gameObject.name != "Lever01" && gameObject.name != "Lever02")
+                if (gameObject.name != "Lever01")
                 {
                     BreakChains();
                     player.hasKey = false;
@@ -194,7 +208,6 @@ public class CinematicActivator : MonoBehaviour
         {
             interactiveKey.SetActive(false);
             lockKey.SetActive(false);
-            isActive = false;
         }
     }
 }
