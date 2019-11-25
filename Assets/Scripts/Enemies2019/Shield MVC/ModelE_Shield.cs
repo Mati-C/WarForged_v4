@@ -1088,7 +1088,7 @@ public class ModelE_Shield : EnemyMeleeClass
             onRetreat = true;
         }
 
-        if (life > 0 && isKnock)
+        if (isKnock)
             SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0 && !isDead)

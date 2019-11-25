@@ -1135,7 +1135,7 @@ public class ModelE_Lancer : EnemyMeleeClass
             }
         }
 
-        if (life > 0 && canBeHit)
+        if (canBeHit)
             SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0)

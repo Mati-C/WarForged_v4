@@ -585,8 +585,7 @@ public class ModelE_Sniper : EnemyEntity
             view.CreatePopText(damage);
         }
 
-        if (life > 0)
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+        SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0)
         {

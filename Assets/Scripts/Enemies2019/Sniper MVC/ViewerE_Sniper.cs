@@ -21,7 +21,7 @@ public class ViewerE_Sniper : MonoBehaviour
     public List<ParticleSystem> fireHandsParticles;
     public float timeFireHands;
     public PopText prefabTextDamage;
-    GameObject canvas;
+    GameObject levelUI;
     public Camera cam;
     float _timeShaderMeleeAttack;
     bool _shaderMeleeAttackTrigger;
@@ -79,7 +79,7 @@ public class ViewerE_Sniper : MonoBehaviour
     void Awake()
     {
         _player = FindObjectOfType<Model>();
-        canvas = GameObject.Find("Canvas");
+        levelUI = GameObject.Find("LEVEL UI");
         anim = GetComponent<Animator>();
         _model = GetComponent<ModelE_Sniper>();
         _rb = GetComponent<Rigidbody>();
@@ -347,7 +347,7 @@ public class ViewerE_Sniper : MonoBehaviour
     {
         PopText text = Instantiate(prefabTextDamage);
         StartCoroutine(FollowEnemy(text));
-        text.transform.SetParent(canvas.transform, false);
+        text.transform.SetParent(levelUI.transform, false);
         text.SetDamage(damage);
     }
 

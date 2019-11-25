@@ -11,7 +11,7 @@ public class ViewerE_Shield : MonoBehaviour
     public List<Material> myMats = new List<Material>();
     string animClipName;
     EnemyScreenSpace ess;
-    GameObject canvas;
+    GameObject levelUI;
     public PopText prefabTextDamage;
     public Camera cam;
     public ParticleSystem sparks;
@@ -39,7 +39,7 @@ public class ViewerE_Shield : MonoBehaviour
         anim = GetComponent<Animator>();
         var clips = anim.runtimeAnimatorController.animationClips.ToList();
         ess = GetComponent<EnemyScreenSpace>();
-        canvas = GameObject.Find("Canvas");
+        levelUI = GameObject.Find("LEVEL UI");
         myMeshes.AddRange(GetComponentsInChildren<SkinnedMeshRenderer>());
 
         foreach (var item in myMeshes)
@@ -99,7 +99,7 @@ public class ViewerE_Shield : MonoBehaviour
         {
             PopText text = Instantiate(prefabTextDamage);
             StartCoroutine(FollowEnemy(text));
-            text.transform.SetParent(canvas.transform, false);
+            text.transform.SetParent(levelUI.transform, false);
             text.SetDamage(damage);
         }
     }

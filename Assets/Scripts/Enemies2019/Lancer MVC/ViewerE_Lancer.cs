@@ -11,7 +11,7 @@ public class ViewerE_Lancer : MonoBehaviour
     public List<SkinnedMeshRenderer> myMeshes = new List<SkinnedMeshRenderer>();
     public List<Material> myMats = new List<Material>();
     string animClipName;
-    GameObject canvas;
+    GameObject levelUI;
     public PopText prefabTextDamage;
     public Camera cam;
     public ParticleSystem sparks;
@@ -52,7 +52,7 @@ public class ViewerE_Lancer : MonoBehaviour
         anim = GetComponent<Animator>();
         var clips = anim.runtimeAnimatorController.animationClips.ToList();
         ess = GetComponent<EnemyScreenSpace>();
-        canvas = GameObject.Find("Canvas");
+        levelUI = GameObject.Find("LEVEL UI");
         myMeshes.AddRange(GetComponentsInChildren<SkinnedMeshRenderer>());
 
         foreach (var item in myMeshes)
