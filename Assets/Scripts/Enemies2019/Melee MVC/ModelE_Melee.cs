@@ -1017,6 +1017,7 @@ public class ModelE_Melee : EnemyMeleeClass
             healthBar.SetActive(false);
 
             DropKey();
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 0.9f);
 
             if (EnemyMeleeFriends.Count > 0)
             {

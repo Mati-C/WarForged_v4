@@ -68,7 +68,7 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
     }
 
-    public void PlayRandom<T>(List<T> sounds, Vector3 position = new Vector3(), bool randomPitch = false, float volume = 0.6f, bool loop = false)
+    public void PlayRandom<T>(List<T> sounds, Vector3 position = new Vector3(), bool randomPitch = false, float volume = 0.6f, float pitch = 1f, bool loop = false)
     {
         T soundType;
         if (sounds.Count == 1)
@@ -93,7 +93,7 @@ public class SoundManager : MonoBehaviour
         s.transform.position = position;
         audioSource.spatialBlend = position != new Vector3() ? 1 : 0;
         audioSource.volume = volume;
-        audioSource.pitch = randomPitch ? UnityEngine.Random.Range(0.9f, 1.1f) : 1;
+        audioSource.pitch = randomPitch ? UnityEngine.Random.Range(pitch * 0.9f, pitch * 1.1f) : pitch;
         audioSource.Play();
     }
 

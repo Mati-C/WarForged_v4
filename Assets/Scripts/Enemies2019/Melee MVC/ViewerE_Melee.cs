@@ -21,7 +21,7 @@ public class ViewerE_Melee : MonoBehaviour
     float timeOnDamage;
     bool auxTakeDamage;
     public PopText prefabTextDamage;
-    GameObject canvas;
+    GameObject levelUI;
     public Transform pechera;
     public Camera cam;
     int attacksCounter;
@@ -88,7 +88,7 @@ public class ViewerE_Melee : MonoBehaviour
         _model = GetComponent<ModelE_Melee>();
         myMeshes.AddRange(GetComponentsInChildren<SkinnedMeshRenderer>());
         ess = GetComponent<EnemyScreenSpace>();
-        canvas = GameObject.Find("Canvas");
+        levelUI = GameObject.Find("LEVEL UI");
 
        
        // boneRigs.AddRange(GetComponentsInChildren<Transform>().Where(x => x.gameObject.layer == LayerMask.NameToLayer("Bones")).Where(x => x.GetComponent<Rigidbody>()).Select(x => x.GetComponent<Rigidbody>()));
@@ -467,7 +467,7 @@ public class ViewerE_Melee : MonoBehaviour
         {
             PopText text = Instantiate(prefabTextDamage);
             StartCoroutine(FollowEnemy(text));
-            text.transform.SetParent(canvas.transform, false);
+            text.transform.SetParent(levelUI.transform, false);
             text.SetDamage(damage);
         }
     }

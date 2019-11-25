@@ -8,6 +8,7 @@ public class EnemyScreenSpace : MonoBehaviour
     EnemyEntity enemy;
 
     public Canvas canvas;
+    GameObject levelUI;
     public HealthBar barPrefab;
 
     public LayerMask lm;
@@ -23,8 +24,9 @@ public class EnemyScreenSpace : MonoBehaviour
     void Start()
     {
         enemy = GetComponent<EnemyEntity>();
+        levelUI = GameObject.Find("LEVEL UI");
         healthBar = Instantiate(barPrefab);
-        healthBar.transform.SetParent(canvas.transform, false);
+        healthBar.transform.SetParent(levelUI.transform, false);
         tempHealthFill = healthBar.transform.GetChild(0).GetComponent<Image>();
         healthFill = healthBar.transform.GetChild(1).GetComponent<Image>();
 
