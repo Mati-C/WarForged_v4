@@ -844,7 +844,7 @@ public class ModelE_Shield : EnemyMeleeClass
             currentAction = null;
             timeToAttack = false;
             healthBar.SetActive(false);
-            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 1.1f);
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 0.9f);
 
             if (EnemyMeleeFriends.Count > 0)
             {

@@ -650,27 +650,23 @@ public class Viewer : MonoBehaviour
 
     public void TogglePause()
     {
-
-        if (!youWin.activeSelf)
+        if (pauseMenu.activeSelf)
         {
-            if (pauseMenu.activeSelf)
-            {
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1;
-                cam.blockMouse = true;
-                model.rb.velocity = Vector3.zero;
-                AudioSource[] audios = FindObjectsOfType<AudioSource>();
-                foreach (var item in audios) item.UnPause();
-            }
-            else
-            {
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0;
-                cam.blockMouse = false;
-                model.rb.velocity = Vector3.zero;
-                AudioSource[] audios = FindObjectsOfType<AudioSource>();
-                foreach (var item in audios) item.Pause();
-            }
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            cam.blockMouse = true;
+            model.rb.velocity = Vector3.zero;
+            AudioSource[] audios = FindObjectsOfType<AudioSource>();
+            foreach (var item in audios) item.UnPause();
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+            cam.blockMouse = false;
+            model.rb.velocity = Vector3.zero;
+            AudioSource[] audios = FindObjectsOfType<AudioSource>();
+            foreach (var item in audios) item.Pause();
         }
     }
 

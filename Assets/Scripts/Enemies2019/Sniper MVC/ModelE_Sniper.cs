@@ -456,7 +456,7 @@ public class ModelE_Sniper : EnemyEntity
             navMeshAgent.enabled = false;
             DeadEvent();
             currentAction = null;
-            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 1);
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 0.9f);
 
             if (nearEntities.Count > 0)
             {

@@ -908,7 +908,7 @@ public class ModelE_Lancer : EnemyMeleeClass
             currentAction = null;
             timeToAttack = false;
             healthBar.SetActive(false);
-            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 0.8f);
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 1.2f);
 
             if (EnemyMeleeFriends.Count > 0)
             {
