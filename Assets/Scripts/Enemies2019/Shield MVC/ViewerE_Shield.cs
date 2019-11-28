@@ -177,7 +177,8 @@ public class ViewerE_Shield : MonoBehaviour
     public void IdleAnim()
     {
         anim.SetBool("Idle", true);
-        anim.SetBool("IdleCombat", false);
+        anim.SetBool("IdleCombat", true);
+        anim.SetBool("WalkForward", false);
     }
 
     public void ChangeChatAnimation()

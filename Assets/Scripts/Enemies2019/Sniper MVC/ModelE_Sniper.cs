@@ -296,7 +296,7 @@ public class ModelE_Sniper : EnemyEntity
 
             var d = Vector3.Distance(transform.position, target.transform.position);
 
-            if (timeToRetreat <= 0) onRetreat = true;
+            if (timeToRetreat <= 0 && d <= 1.5f) onRetreat = true;
 
             // if (!isDead && onMeleeAttack) SendInputToFSM(EnemyInputs.MELEE_ATTACK);
 
@@ -306,7 +306,7 @@ public class ModelE_Sniper : EnemyEntity
 
             if (!isDead && isStuned) SendInputToFSM(EnemyInputs.STUNED);
 
-            if (!isDead && onRetreat && timeToRetreat < 0 && d<=1.5) SendInputToFSM(EnemyInputs.RETREAT);
+            if (!isDead && onRetreat && timeToRetreat <= 0 && d<=1.5) SendInputToFSM(EnemyInputs.RETREAT);
 
             if (isDead) SendInputToFSM(EnemyInputs.DIE);
 
@@ -537,6 +537,7 @@ public class ModelE_Sniper : EnemyEntity
             newArrow.gameObject.SetActive(true);
             newArrow.transform.forward = dir;
             timeToShoot = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
+            view.BackFromAttackRange();
         }
     }
 
