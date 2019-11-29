@@ -298,6 +298,8 @@ public class ModelE_Sniper : EnemyEntity
 
             if (timeToRetreat <= 0 && d <= 1.5f) onRetreat = true;
 
+            else onRetreat = false;
+
             // if (!isDead && onMeleeAttack) SendInputToFSM(EnemyInputs.MELEE_ATTACK);
 
             if (!isDead && !isWaitArea && isPersuit) SendInputToFSM(EnemyInputs.PERSUIT);
@@ -524,6 +526,7 @@ public class ModelE_Sniper : EnemyEntity
     
     public void Shoot()
     {
+
         if (!onRetreat)
         {
             Arrow newArrow = munition.arrowsPool.GetObjectFromPool();
