@@ -33,8 +33,6 @@ public class CinematicActivator : MonoBehaviour
 
     public Animator chains;
 
-    bool activated;
-
     public PlayableDirector leverAnim;
 
     public GameObject[] otherDoors;
@@ -126,7 +124,6 @@ public class CinematicActivator : MonoBehaviour
         interactiveKeyDepth = interactiveKey.GetComponent<DepthUI>();
         lockKeyDepth = lockKey.GetComponent<DepthUI>();
         player = FindObjectOfType<Model>();
-        activated = false;
     }
 
     private void Update()
@@ -173,30 +170,23 @@ public class CinematicActivator : MonoBehaviour
                     interactiveKey.SetActive(true);
                 else
                     lockKey.SetActive(true);
-            }
 
-            if (NumberClipAnimation == 3 && Input.GetKeyDown(KeyCode.F) && !activated)
-            {
-                if (gameObject.name != "Lever01")
+                if (interactiveKey.activeSelf && Input.GetKeyDown(KeyCode.F))
                 {
-                    BreakChains();
+                    ActivateLever(chains != null);
                     player.hasKey = false;
                     cam.transform.GetChild(0).gameObject.SetActive(false);
                 }
-                else
-                {
-                    StartCoroutine(AnimationAdjustment());
-                }
-				activated = true;
             }
         }
     }
 
-    public void BreakChains()
+    public void ActivateLever(bool hasChains)
     {
         NumberClipAnimation = 0;
         interactiveKey.SetActive(false);
-        chains.enabled = true;
+        if (hasChains)
+            chains.enabled = true;
         StartCoroutine(AnimationAdjustment());
         interactiveKey.SetActive(false);
         isActive = true;
