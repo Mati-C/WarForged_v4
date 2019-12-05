@@ -112,14 +112,14 @@ public class CamController : MonoBehaviour {
         var controller = FindObjectOfType<Controller>();
         controller.ShutDownControlls(4);
         yield return new WaitForSeconds(4);
-        mage.angleToPersuit = 360;
-        mage.viewDistancePersuit = 100;
         CinemaCam_Cinematic01.Priority = 0;
         CinemaCam_Cinematic02.Priority = 0;
         cinemaCam2.Priority = 0;
         cinemaCam_KickCam.Priority = 0;
         cinemaCam.Priority = 1;
         yield return new WaitForSeconds(2);
+        mage.angleToPersuit = 360;
+        mage.viewDistancePersuit = 100;
         mage.angleToPersuit = 180;
         mage.viewDistancePersuit = 100;
         PlayerCanMove = false;

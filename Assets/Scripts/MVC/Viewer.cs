@@ -227,6 +227,13 @@ public class Viewer : MonoBehaviour
   
     public void Update()
     {
+        if (model.life <=0)
+        {
+            anim.SetBool("IdleCombat", false);
+            anim.SetBool("IsInCombat", false);
+            anim.SetBool("Idle", false);
+        }
+
         if (animClipName == AnimDictionary[AnimPlayerNames.Dodge_Back] || animClipName == AnimDictionary[AnimPlayerNames.Dodge_Left] || animClipName == AnimDictionary[AnimPlayerNames.Dodge_Right]
           || animClipName == AnimDictionary[AnimPlayerNames.Dodge_Back2] || animClipName == AnimDictionary[AnimPlayerNames.Dodge_Left2] || animClipName == AnimDictionary[AnimPlayerNames.Dodge_Right2]) dodgeAnims = true;
 
@@ -313,7 +320,7 @@ public class Viewer : MonoBehaviour
 
         if (velocityX > 0 || velocityZ > 0) anim.SetBool("Idle", false);
 
-        if (velocityX <= 0 && velocityZ <= 0) anim.SetBool("Idle", true);
+        if (velocityX <= 0 && velocityZ <= 0 && model.life>0) anim.SetBool("Idle", true);
 
         if (model.timeOnCombat>0)
         {
@@ -835,6 +842,8 @@ public class Viewer : MonoBehaviour
         cam.cinemaCam.Follow = transform;
         Destroy(orb.gameObject);
         bm.RespawnScene();
+       
+
     }
 
     public IEnumerator YouWin()

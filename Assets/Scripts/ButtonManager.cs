@@ -189,7 +189,7 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         player.rb.isKinematic = false;
         startRespawn = false;
         StartCoroutine(Fade());
-        diedMenu.SetActive(false);
+
         cam.blockMouse = true;
         player.fadeTimer = 0;
 

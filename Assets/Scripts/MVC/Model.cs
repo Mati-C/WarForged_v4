@@ -1578,7 +1578,7 @@ public class Model : MonoBehaviour
 
         if (!isBehind && !isProyectile && onDefence &&  damageType == 1)
         {
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
+            if(!isDead)SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
 
             if (perfectParryTimer <= 0.5f)
             {
@@ -1606,7 +1606,7 @@ public class Model : MonoBehaviour
             timeToHeal = maxTimeToHeal;
             OnDamage();
             impulse = false;
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            if (!isDead) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
         }
 
         if (damageType == 2 && onDefence)
@@ -1624,7 +1624,7 @@ public class Model : MonoBehaviour
             UpdateLife(-damage);
             timeToHeal = maxTimeToHeal;
             impulse = false;
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            if (!isDead) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
             if (life > 0 && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.RollAttack]
                         && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.Dodge_Back]

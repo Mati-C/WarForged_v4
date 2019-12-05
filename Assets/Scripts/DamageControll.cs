@@ -5,7 +5,11 @@ using UnityEngine;
 public class DamageControll : MonoBehaviour
 {
     public bool teleport1;
+    public bool teleport2;
+    public bool teleport3;
     public Transform pivot1;
+    public Transform pivot2;
+    public Transform pivot3;
 
     public List<EnemyEntity> enemies = new List<EnemyEntity>();
 
@@ -28,6 +32,18 @@ public class DamageControll : MonoBehaviour
         {
             _player.transform.position = pivot1.position;
             teleport1 = false;
+        }
+
+        if (teleport2)
+        {
+            _player.transform.position = pivot2.position;
+            teleport2 = false;
+        }
+
+        if (teleport3)
+        {
+            _player.transform.position = pivot3.position;
+            teleport3 = false;
         }
     }
 
