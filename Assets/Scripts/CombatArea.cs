@@ -123,10 +123,11 @@ public class CombatArea : MonoBehaviour
 
     void ToggleBlock (bool state)
     {
-        if (isLevel2)
+        if (doors.Count != 0)
             foreach (var item in doors)
                 StartCoroutine(DoorMovement(item, state));
-        else
+
+        if (walls.Count != 0)
             foreach (var item in walls)
                 item.SetActive(state);
     }

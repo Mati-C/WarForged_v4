@@ -111,6 +111,7 @@ public class SoundManager : MonoBehaviour
         if (aux == activate) return;
         combatAudio.clip = bossMusic;
         aux = activate;
+        musicVolume *= 1.2f;
         StartCoroutine(CombatMusicCorroutine(activate));
     }
 
