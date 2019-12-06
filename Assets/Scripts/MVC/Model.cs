@@ -1354,7 +1354,21 @@ public class Model : MonoBehaviour
 
         if (typeOfDamage == "Normal")
         {
-            if (enemies.Any())
+            bool wallHit = false;
+
+            if (classType == PlayerClass.Warrior)
+            {
+                var nearWalls = Physics.OverlapSphere(transform.position + transform.forward * 1.2f + new Vector3(0, 0.7f, 0), radiusAttack).Where(x => x.tag == "Wall");
+                if (nearWalls.Any())
+                {
+                    view.ParryAnim();
+                    view.Sparks();
+                    wallHit = true;
+                    SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
+                }
+            }
+
+            if (!wallHit)
             {
                 foreach (var item in enemies)
                 {
@@ -1364,19 +1378,6 @@ public class Model : MonoBehaviour
                     if (classType == PlayerClass.Warrior) item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 2, ForceMode.Impulse);
                     else item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 5, ForceMode.Impulse);
                     makingDamage = false;
-                }
-            }
-            else
-            {
-                if (classType == PlayerClass.Warrior)
-                {
-                    var nearWalls = Physics.OverlapSphere(transform.position + transform.forward * 1.2f + new Vector3(0, 0.7f, 0), radiusAttack).Where(x => x.tag == "Wall");
-                    if (nearWalls.Any())
-                    {
-                        view.ParryAnim();
-                        view.Sparks();
-                        SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
-                    }
                 }
             }
         }
@@ -1587,7 +1588,7 @@ public class Model : MonoBehaviour
                 rb.AddForce(-transform.forward , ForceMode.Impulse);
                 CounterAttackEvent();
                 if (!makingDamage) StartCoroutine(TimeToDoDamage());             
-                attackDamage = 5;
+                if (!maxDamage) attackDamage = 5;
                 CombatState(false);
                 view.ShakeCameraDamage(0.5f, 0.5f, 0.5f);
             }
