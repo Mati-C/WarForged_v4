@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
     public float musicVolume;
 
     AudioSource ambienceAudio;
-    AudioSource combatAudio;
+    public AudioSource combatAudio;
 
     bool aux;
 
@@ -24,6 +24,8 @@ public class SoundManager : MonoBehaviour
 
     [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "LAST_COMBO_HIT" })]
     public AudioClip[] voices;
+
+    public AudioClip bossMusic;
 
     #region SFX Lists
     public List<Voice> deathVoice = new List<Voice>() { Voice.DIE_1, Voice.DIE_2, Voice.DIE_3 };
@@ -100,6 +102,14 @@ public class SoundManager : MonoBehaviour
     public void CombatMusic(bool activate)
     {
         if (aux == activate) return;
+        aux = activate;
+        StartCoroutine(CombatMusicCorroutine(activate));
+    }
+
+    public void BossMusic(bool activate)
+    {
+        if (aux == activate) return;
+        combatAudio.clip = bossMusic;
         aux = activate;
         StartCoroutine(CombatMusicCorroutine(activate));
     }

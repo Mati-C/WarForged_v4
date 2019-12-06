@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Sound;
 
 public class ModelB_Cyclops : EnemyEntity
 {
@@ -157,6 +158,8 @@ public class ModelB_Cyclops : EnemyEntity
 
         die.OnEnter += x =>
         {
+            isDead = true;
+            SoundManager.instance.CombatMusic(false);
             DieEvent();
         };
 
@@ -166,6 +169,14 @@ public class ModelB_Cyclops : EnemyEntity
     private void Update()
     {
         _myFsm.Update();
+
+        if (target.isDead)
+        {
+            isPersuit = false;
+            onAttackArea = false;
+            SendInputToFSM(EnemyInputs.IDLE);
+            _view.healthBar.gameObject.SetActive(false);
+        }
       
         if (target != null)
         {
@@ -183,7 +194,8 @@ public class ModelB_Cyclops : EnemyEntity
         if (t)
         {
             t.GetDamage(actualDamage, transform, false, 2, this);
-            t.rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+            if (!t.invulnerable)
+                t.rb.AddForce(transform.forward * 5, ForceMode.Impulse);
         }
     }
 
@@ -224,6 +236,7 @@ public class ModelB_Cyclops : EnemyEntity
 
     public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
     {
+        SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
         life -= damage;
     }
 

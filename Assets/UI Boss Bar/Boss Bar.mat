@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Boss Bar
+  m_Shader: {fileID: 4800000, guid: 09cd7a546f2eb054184ae51537b16251, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _ArrowBoss:
+        m_Texture: {fileID: 2800000, guid: 7ffed5d8f946f6a4db0b3cfa29e54572, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ArrowBoss1:
+        m_Texture: {fileID: 2800000, guid: 7ffed5d8f946f6a4db0b3cfa29e54572, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BossBar:
+        m_Texture: {fileID: 2800000, guid: c81aad8fa1c990940a49bf9178e62b96, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BossBarSplatmap:
+        m_Texture: {fileID: 2800000, guid: 902f0af77c0ee3f4da1f20431809c401, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BossBarSplatmap1:
+        m_Texture: {fileID: 2800000, guid: 902f0af77c0ee3f4da1f20431809c401, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Flowmap:
+        m_Texture: {fileID: 2800000, guid: 1903f5f8212195b4e9c128b41e6fd696, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mist:
+        m_Texture: {fileID: 2800000, guid: 6a03fae17dfcd914a819dcf8bdf8037c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RedGradient:
+        m_Texture: {fileID: 2800000, guid: 314676eb2b08d7c4d9914086acbfaed4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 7ffed5d8f946f6a4db0b3cfa29e54572, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 902f0af77c0ee3f4da1f20431809c401, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: 6a03fae17dfcd914a819dcf8bdf8037c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: 95948364b58c82c48a26ce78125efdbc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample4:
+        m_Texture: {fileID: 2800000, guid: 1903f5f8212195b4e9c128b41e6fd696, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ArrowBeatRate: 0
+    - _ArrowBeatRatePercentage: 60.4
+    - _ArrowMovementTimeScale: 1
+    - _BaseBarDarkness: 0.229
+    - _BossLifeBarGradient: 10
+    - _BossLifeMaxOffset: 1400
+    - _BossLifePercentage: 120.8
+    - _Cutoff: 0.5
+    - _Float0: 1400
+    - _Int: -1.18
+    - _SmokeColorIntensity: 1
+    - _SmokeFlowmapIntensity: 0.057
+    - _SmokeIntensity: 0.65
+    - __dirty: 0
+    m_Colors:
+    - _ArrowLOffset: {r: 1.83, g: 1.92, b: 0, a: 0}
+    - _ArrowLTiling: {r: -12, g: -3, b: 0, a: 0}
+    - _ArrowROffset: {r: -10, g: -0.92, b: 0, a: 0}
+    - _ArrowROffset1: {r: 2.28, g: 1.92, b: 0, a: 0}
+    - _ArrowRTiling: {r: 12, g: 3, b: 0, a: 0}
+    - _ArrowRTiling1: {r: -12, g: -3, b: 0, a: 0}
+    - _SmokeColor: {r: 0.3773585, g: 0, b: 0, a: 0}
+    - _Vector0: {r: 1.83, g: 1.92, b: 0, a: 0}
+    - _Vector1: {r: -12, g: -3, b: 0, a: 0}
