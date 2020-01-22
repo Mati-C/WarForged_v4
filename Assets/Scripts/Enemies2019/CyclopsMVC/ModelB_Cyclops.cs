@@ -234,7 +234,7 @@ public class ModelB_Cyclops : EnemyEntity
         throw new System.NotImplementedException();
     }
 
-    public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
+    public override void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex)
     {
         SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
         life -= damage;

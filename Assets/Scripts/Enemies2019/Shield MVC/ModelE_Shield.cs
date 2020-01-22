@@ -1028,7 +1028,7 @@ public class ModelE_Shield : EnemyMeleeClass
         SendInputToFSM(EnemyInputs.PERSUIT);
     }
 
-    public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
+    public override void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex)
     {
         Vector3 dir = transform.position - target.transform.position;
         float angle = Vector3.Angle(dir, transform.forward);
@@ -1036,7 +1036,7 @@ public class ModelE_Shield : EnemyMeleeClass
         foreach (var item in nearEntities)
             item.StartPursuit();
 
-        if (angle > 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile") && !isKnock && animClipName != view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1] && !onCharge)
+        if (angle > 90 && (typeOfDamage == DamageType.Normal || typeOfDamage == DamageType.Proyectile) && !isKnock && animClipName != view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1] && !onCharge)
         {
             BlockEvent();
             SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
@@ -1049,7 +1049,7 @@ public class ModelE_Shield : EnemyMeleeClass
         }
 
 
-        if ((angle < 90 && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || (isKnock && (typeOfDamage == "Normal" || typeOfDamage == "Proyectile")) || animClipName == view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1] || onCharge)
+        if ((angle < 90 && (typeOfDamage == DamageType.Normal || typeOfDamage == DamageType.Proyectile)) || (isKnock && (typeOfDamage == DamageType.Normal || typeOfDamage == DamageType.Proyectile)) || animClipName == view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1] || onCharge)
         {
             
             timeStuned = 0;  
@@ -1063,7 +1063,7 @@ public class ModelE_Shield : EnemyMeleeClass
             view.CreatePopText(damage);
         }
 
-        if (angle < 90 && typeOfDamage == "Stune")
+        if (angle < 90 && typeOfDamage == DamageType.Stune)
         {
             StunedEvent();
             timeOnDamage = 0.5f;
@@ -1073,7 +1073,7 @@ public class ModelE_Shield : EnemyMeleeClass
             view.CreatePopText(damage);
         }
 
-        if (typeOfDamage == "Knock")
+        if (typeOfDamage == DamageType.Knock)
         {
             KnockEvent();
             isKnock = true;

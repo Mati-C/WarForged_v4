@@ -560,7 +560,7 @@ public class ModelE_Sniper : EnemyEntity
         SendInputToFSM(EnemyInputs.PERSUIT);
     }
 
-    public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
+    public override void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex)
     {
         foreach (var item in nearEntities)
             item.StartPursuit();
@@ -572,7 +572,7 @@ public class ModelE_Sniper : EnemyEntity
             StartCoroutine(OnDamageCorrutine());
         }
 
-        if (typeOfDamage == "Normal")
+        if (typeOfDamage == EnemyEntity.DamageType.Normal)
         {
             timeStuned = 0;
             TakeDamageEvent();
@@ -581,7 +581,7 @@ public class ModelE_Sniper : EnemyEntity
             view.CreatePopText(damage);
         }
 
-        if (typeOfDamage == "Stune")
+        if (typeOfDamage == EnemyEntity.DamageType.Stune)
         {
             isStuned = true;
             life -= damage;
@@ -600,18 +600,7 @@ public class ModelE_Sniper : EnemyEntity
 
     public Vector3 FindNearScapeNode()
     {
-        /* var nodes = scapeNodesParent.GetComponentsInChildren<Transform>().Where(x => x != scapeNodesParent).Where(x=>
-         {
-             var d = Vector3.Distance(x.transform.position, transform.position);
-             if (d < 1) return false;
-             else return true;
-
-         }).ToList();
-
-         var r = UnityEngine.Random.Range(0, nodes.Count - 1);
-
-         return nodes[r].transform.position;
-         */
+      
         var nodes = scapeNodesParent.GetComponentsInChildren<Transform>().OrderByDescending(x=> 
         {
             var d = Vector3.Distance(x.transform.position, transform.position);

@@ -8,6 +8,7 @@ public abstract class EnemyMeleeClass : EnemyEntity
 
     [Header("ENEMY COMBAT:")]
 
+    
     public bool reposition;
     public bool changeRotateWarrior;
     public bool checkTurn;
@@ -31,6 +32,8 @@ public abstract class EnemyMeleeClass : EnemyEntity
     public Action CombatIdleEvent;
     public Action WalkRightEvent;
     public Action WalkLeftEvent;
+
+  
 
     public abstract IEnumerator AvoidWarriorRight();
 
@@ -60,7 +63,7 @@ public abstract class EnemyMeleeClass : EnemyEntity
         throw new System.NotImplementedException();
     }
 
-    public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
+    public override void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex)
     {
         throw new System.NotImplementedException();
     }

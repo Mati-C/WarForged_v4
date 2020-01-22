@@ -1088,7 +1088,7 @@ public class ModelE_Lancer : EnemyMeleeClass
         SendInputToFSM(EnemyInputs.PERSUIT);
     }
 
-    public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
+    public override void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex)
     {
         Vector3 dir = transform.position - target.transform.position;
         float angle = Vector3.Angle(dir, transform.forward);
@@ -1096,7 +1096,7 @@ public class ModelE_Lancer : EnemyMeleeClass
         foreach (var item in nearEntities)
             item.StartPursuit();
 
-        if (typeOfDamage == "Normal" && canBeHit)
+        if (typeOfDamage == EnemyEntity.DamageType.Normal && canBeHit)
         {
             TakeDamageEvent();        
             timeOnDamage = 0.5f;
@@ -1108,7 +1108,7 @@ public class ModelE_Lancer : EnemyMeleeClass
             view.LifeBar(life / totalLife);
         }
   
-        if(typeOfDamage == "Proyectile")
+        if(typeOfDamage == EnemyEntity.DamageType.Proyectile)
         {
             if (!isStuned && !cantBeStuned)
             {
@@ -1122,7 +1122,7 @@ public class ModelE_Lancer : EnemyMeleeClass
             view.LifeBar(life / totalLife);
         }
 
-        if(angle > 90 && typeOfDamage == "Normal" && animClipName != view.animDictionary[ViewerE_Lancer.EnemyMeleeAnim.Attack1] && !canBeHit)
+        if(angle > 90 && typeOfDamage == EnemyEntity.DamageType.Normal && animClipName != view.animDictionary[ViewerE_Lancer.EnemyMeleeAnim.Attack1] && !canBeHit)
         {
             dodgePoints++;
             timeOnDodge = 1.5f;
@@ -1264,8 +1264,6 @@ public class ModelE_Lancer : EnemyMeleeClass
         view.anim.SetBool("Chat2", chat2);
         view.anim.SetBool("Chat3", chat3);
     }
-
-    // Start is called before the first frame update
 
 
     void OnDrawGizmos()

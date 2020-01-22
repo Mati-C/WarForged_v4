@@ -6,6 +6,14 @@ using System;
 
 public abstract class EnemyEntity: MonoBehaviour
 {
+    public enum DamageType
+    {
+        Normal,
+        Stune,
+        Knock,
+        Proyectile
+    };
+
     public Transform NodePath;
     public LayerMask layerEntites;
     public LayerMask layerPlayer;
@@ -53,7 +61,7 @@ public abstract class EnemyEntity: MonoBehaviour
     public abstract Node GetRandomNode();
     public List<EnemyEntity> nearEntities = new List<EnemyEntity>();
     public List<Node> pathToTarget = new List<Node>();
-    public abstract void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex);
+    public abstract void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex);
     public abstract void MakeDamage();
     public abstract void ChangeChatAnimation();
     public List<Node> myNodes = new List<Node>();

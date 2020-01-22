@@ -232,6 +232,18 @@ public class Model : MonoBehaviour
         }
     }
 
+    IEnumerator DelayKnockAttack()
+    {       
+        yield return new WaitForSeconds(0.6f);
+        MakeDamage(EnemyEntity.DamageType.Knock);
+    }
+
+    IEnumerator DelayRollAttack()
+    {
+        yield return new WaitForSeconds(0.35f);
+        MakeDamage(EnemyEntity.DamageType.Stune);
+    }
+
     IEnumerator DelayCheatAnimClip()
     {
         cheatAnimClip = true;
@@ -417,7 +429,7 @@ public class Model : MonoBehaviour
                 || animClipName == view.AnimDictionary[Viewer.AnimPlayerNames.W_Attack1_Damage] || animClipName == view.AnimDictionary[Viewer.AnimPlayerNames.W_Attack2_Damage]
                 || animClipName == view.AnimDictionary[Viewer.AnimPlayerNames.W_Attack3_Damage] || animClipName == view.AnimDictionary[Viewer.AnimPlayerNames.W_Attack4_Damage])
             {
-                MakeDamage("Normal");               
+                MakeDamage(EnemyEntity.DamageType.Normal);               
                 timeToRoll = 0;
             }
             yield return new WaitForEndOfFrame();
@@ -595,7 +607,8 @@ public class Model : MonoBehaviour
 
     void Update()
     {
-     
+        ChangeTarget();
+
         CombatParameters();
 
         WraperAction();      
@@ -1107,13 +1120,67 @@ public class Model : MonoBehaviour
 
     public void ChangeTarget()
     {
-        if(targetLockedOn && enemiesToLock.Count>=1)
+        float mouseAxis = Input.GetAxis("Mouse X");
+
+        if (targetLocked)
         {
-            lockIndex++;
-            if (lockIndex > enemiesToLock.Count-1) lockIndex=0;
-            targetLocked = enemiesToLock[lockIndex];
-            mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
+            if (mouseAxis > 3)
+            {
+                var newTarget = enemiesToLock.Where(x =>
+                {
+
+                    var relativePoint = transform.InverseTransformPoint(x.transform.position);
+
+                    if (relativePoint.x > 0) return true;
+
+                    else return false;
+
+                }).OrderBy(x =>
+                {
+                    var dir = Vector3.Distance(targetLocked.transform.position, x.transform.position);
+
+                    return dir;
+
+                }).ToList();
+
+                if (newTarget.Count>0)
+                {
+                    targetLocked = newTarget[0];
+                    mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
+                }
+            }
         }
+
+        if (targetLocked)
+        {
+            if (mouseAxis < -3)
+            {
+                var newTarget = enemiesToLock.Where(x =>
+                {
+
+                    var relativePoint = transform.InverseTransformPoint(x.transform.position);
+
+                    if (relativePoint.x < 0) return true;
+
+                    else return false;
+
+                }).OrderBy(x =>
+                {
+
+                    var dir = Vector3.Distance(targetLocked.transform.position, x.transform.position);
+
+                    return dir;
+
+                }).ToList();
+
+                if (newTarget.Count > 0)
+                {
+                    targetLocked = newTarget[0];
+                    mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
+                }
+            }
+        }
+
     }
 
 
@@ -1158,6 +1225,7 @@ public class Model : MonoBehaviour
             {
                 attackDamage = attackRollDamage;
                 RollAttackEvent();
+                StartCoroutine(DelayRollAttack());
                 view.AwakeTrail();
                 EndCombo();
                 CombatState(false);
@@ -1334,7 +1402,7 @@ public class Model : MonoBehaviour
             SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true, 1);
     }
 
-    public void MakeDamage(string typeOfDamage)
+    public void MakeDamage(EnemyEntity.DamageType typeOfDamage)
     {
 
         if (onRoll) onRoll = false;
@@ -1352,7 +1420,7 @@ public class Model : MonoBehaviour
 
         var destructibleMesh = desMesh.Distinct();
 
-        if (typeOfDamage == "Normal")
+        if (typeOfDamage == EnemyEntity.DamageType.Normal)
         {
             bool wallHit = false;
 
@@ -1372,9 +1440,9 @@ public class Model : MonoBehaviour
             {
                 foreach (var item in enemies)
                 {
-                    if (countAnimAttack < 3) item.GetDamage(attackDamage, "Normal", 1);
-                    if (countAnimAttack < 4 && countAnimAttack > 2) item.GetDamage(attackDamage, "Normal", 2);
-                    if (countAnimAttack < 5 && countAnimAttack > 3) item.GetDamage(attackDamage, "Normal", 3);
+                    if (countAnimAttack < 3) item.GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 1);
+                    if (countAnimAttack < 4 && countAnimAttack > 2) item.GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 2);
+                    if (countAnimAttack < 5 && countAnimAttack > 3) item.GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 3);
                     if (classType == PlayerClass.Warrior) item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 2, ForceMode.Impulse);
                     else item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 5, ForceMode.Impulse);
                     makingDamage = false;
@@ -1382,19 +1450,19 @@ public class Model : MonoBehaviour
             }
         }
 
-        if(typeOfDamage =="Stune" && enemies.Count()>0)
+        if(typeOfDamage == EnemyEntity.DamageType.Stune && enemies.Count()>0)
         {
             if (!enemies.FirstOrDefault().isKnock)
             {
-                enemies.FirstOrDefault().GetDamage(attackDamage, "Stune",0);
+                enemies.FirstOrDefault().GetDamage(attackDamage, EnemyEntity.DamageType.Stune,0);
                 enemies.FirstOrDefault().isStuned = true;
             }
 
             else
             {             
-                if (countAnimAttack < 3) enemies.FirstOrDefault().GetDamage(attackDamage, "Normal",1);
-                if (countAnimAttack < 4 && countAnimAttack > 2) enemies.FirstOrDefault().GetDamage(attackDamage, "Normal", 2);
-                if (countAnimAttack < 5 && countAnimAttack > 3) enemies.FirstOrDefault().GetDamage(attackDamage, "Normal", 3);
+                if (countAnimAttack < 3) enemies.FirstOrDefault().GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 1);
+                if (countAnimAttack < 4 && countAnimAttack > 2) enemies.FirstOrDefault().GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 2);
+                if (countAnimAttack < 5 && countAnimAttack > 3) enemies.FirstOrDefault().GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 3);
             }
 
             if (enemies.FirstOrDefault().life > 0)
@@ -1407,19 +1475,19 @@ public class Model : MonoBehaviour
 
             foreach (var item in restOfenemies)
             {
-                if (countAnimAttack < 3) item.GetDamage(attackDamage, "Normal", 1);
-                if (countAnimAttack < 4 && countAnimAttack > 2) item.GetDamage(attackDamage, "Normal", 2);
-                if (countAnimAttack < 5 && countAnimAttack > 3) item.GetDamage(attackDamage, "Normal", 3);
+                if (countAnimAttack < 3) item.GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 1);
+                if (countAnimAttack < 4 && countAnimAttack > 2) item.GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 2);
+                if (countAnimAttack < 5 && countAnimAttack > 3) item.GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 3);
                 if(classType == PlayerClass.Warrior) item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 2, ForceMode.Impulse);
                 else item.GetComponent<Rigidbody>().AddForce(-item.transform.forward * 5, ForceMode.Impulse);
                 makingDamage = false;
             }
         }
 
-        if (typeOfDamage == "Knock" && enemies.Count() > 0)
+        if (typeOfDamage == EnemyEntity.DamageType.Knock && enemies.Count() > 0)
         {
             view.ShakeCameraDamage(1, 1, 0.5f);          
-            enemies.FirstOrDefault().GetDamage(attackDamage, "Knock",0);
+            enemies.FirstOrDefault().GetDamage(attackDamage, EnemyEntity.DamageType.Knock, 0);
             enemies.FirstOrDefault().isKnock = true;
             enemies.FirstOrDefault().GetComponent<Rigidbody>().AddForce(-enemies.FirstOrDefault().transform.forward * 5, ForceMode.Impulse);
         }
@@ -1472,9 +1540,9 @@ public class Model : MonoBehaviour
 
         foreach (var item in col)
         {
-            if (countAnimAttack < 3) item.GetDamage(damagePower2, "Normal", 1);
-            if (countAnimAttack < 4 && countAnimAttack > 2) item.GetDamage(damagePower2, "Normal", 2);
-            if (countAnimAttack < 5 && countAnimAttack > 3) item.GetDamage(attackDamage, "Normal", 3);
+            if (countAnimAttack < 3) item.GetDamage(damagePower2, EnemyEntity.DamageType.Normal, 1);
+            if (countAnimAttack < 4 && countAnimAttack > 2) item.GetDamage(damagePower2, EnemyEntity.DamageType.Normal, 2);
+            if (countAnimAttack < 5 && countAnimAttack > 3) item.GetDamage(attackDamage, EnemyEntity.DamageType.Normal, 3);
             if (item.GetComponent<ViewerE_Melee>())
             {
                 item.GetComponent<ViewerE_Melee>().BackFromAttack();
@@ -1498,6 +1566,7 @@ public class Model : MonoBehaviour
         {
             if (!view.anim.GetBool("CounterAttack")) DefenceEvent();
             else CounterAttackEvent();
+           // StartCoroutine(DelayKnockAttack());
             perfectParryTimer += Time.deltaTime;
             InAction = true;
             InActionAttack = true;
@@ -1584,9 +1653,9 @@ public class Model : MonoBehaviour
             if (perfectParryTimer <= 0.5f)
             {
                 snapTarget = e;
-              //  mainCamera.GetComponent<CamController>().StartCoroutine(mainCamera.GetComponent<CamController>().KickCameraChange());
                 rb.AddForce(-transform.forward , ForceMode.Impulse);
                 CounterAttackEvent();
+                StartCoroutine(DelayKnockAttack());
                 if (!makingDamage) StartCoroutine(TimeToDoDamage());             
                 if (!maxDamage) attackDamage = 5;
                 CombatState(false);
@@ -1672,20 +1741,6 @@ public class Model : MonoBehaviour
         if (c.gameObject.layer == LayerMask.NameToLayer("NEXT LEVEL"))
             StartCoroutine(view.NextLevel());
     }
-
-    /*
-    public void StartInteraction()
-    {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1.5f))
-        {
-            var comp = hit.transform.GetComponent<Interactable>();
-            if (comp)
-                comp.Interaction();
-        }
-    }
-    */
 
     public void OnDrawGizmos()
     {

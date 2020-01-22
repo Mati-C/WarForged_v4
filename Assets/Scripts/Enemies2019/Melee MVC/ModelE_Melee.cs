@@ -1225,7 +1225,7 @@ public class ModelE_Melee : EnemyMeleeClass
         SendInputToFSM(EnemyInputs.PERSUIT);
     }
 
-    public override void GetDamage(float damage, string typeOfDamage, int damageAnimationIndex)
+    public override void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex)
     {
         Vector3 dir = transform.position - target.transform.position;
         float angle = Vector3.Angle(dir, transform.forward);
@@ -1234,7 +1234,7 @@ public class ModelE_Melee : EnemyMeleeClass
         foreach (var item in nearEntities)
             item.StartPursuit();
 
-        if (!onDefence && (typeOfDamage =="Normal" || typeOfDamage == "Proyectile"))
+        if (!onDefence && (typeOfDamage == DamageType.Normal || typeOfDamage == DamageType.Proyectile))
         {
             timeStuned = 0;
             _view.DefenceAnimFalse();
@@ -1254,7 +1254,7 @@ public class ModelE_Melee : EnemyMeleeClass
             }
         }
 
-        if (!onDefence && typeOfDamage == "Stune")
+        if (!onDefence && typeOfDamage == DamageType.Stune)
         {            
             StunedEvent();
             actualHits--;
@@ -1265,9 +1265,10 @@ public class ModelE_Melee : EnemyMeleeClass
             _view.CreatePopText(damage);
         }
 
-        if (!onDefence && typeOfDamage == "Knock")
+        if (!onDefence && typeOfDamage == DamageType.Knock)
         {
             KnockEvent();
+            Debug.Log("asdasd");
             timeOnDamage = 0.5f;
             if (!onDamage) StartCoroutine(OnDamageCorrutine());
             life -= damage;
