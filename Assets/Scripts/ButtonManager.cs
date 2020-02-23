@@ -96,9 +96,14 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
 
     public void ToggleWindow(GameObject window)
     {
-        window.SetActive(!window.activeSelf);
-        if (window.activeSelf)
-            StartCoroutine(ControlsEffect());
+        if (!window.activeSelf)
+        {
+            StartCoroutine(ControlsEffect(window));
+        }
+        else
+        {
+            StartCoroutine(ControlsEffectBackwards(window));
+        }
     }
 
     public void UpdateVideo(int videoNumber)
@@ -106,8 +111,9 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         videoPlayer.clip = videoDescriptions[videoNumber];
     }
 
-    public IEnumerator ControlsEffect()
+    public IEnumerator ControlsEffect(GameObject w)
     {
+        w.SetActive(true);
         controlsMat.SetFloat("_DissolveAmount", 0);
         controlButtons.SetActive(false);
         float t = 0;
@@ -118,6 +124,20 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
             yield return new WaitForEndOfFrame();
         }
         controlButtons.SetActive(true);
+    }
+
+    public IEnumerator ControlsEffectBackwards(GameObject w)
+    {
+        controlsMat.SetFloat("_DissolveAmount", 1);
+        controlButtons.SetActive(false);
+        float t = 1;
+        while (t > 0)
+        {
+            t -= Time.deltaTime / dissolveTime;
+            controlsMat.SetFloat("_DissolveAmount", t);
+            yield return new WaitForEndOfFrame();
+        }
+        w.SetActive(false);
     }
 
     public void ToggleDescription(GameObject d)
