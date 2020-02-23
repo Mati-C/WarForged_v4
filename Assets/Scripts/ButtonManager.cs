@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class ButtonManager : MonoBehaviour, ICheckObserver
 {
@@ -27,7 +28,11 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
     public GameObject orb;
     public Transform orbTarget;
 
+    public VideoPlayer videoPlayer;
+    public List<VideoClip> videoDescriptions;
+
     List<EnemyEntity> enemies = new List<EnemyEntity>();
+
 
     public void Awake()
     {
@@ -48,10 +53,10 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
     }
     public void Update()
     {
-      /*  if (player.life <= 0 && !startRespawn) StartCoroutine(Respawn());
-        if (startRespawn) RespawnScene();
-        if (startFirstRespawn) RespawnFirstCheck();
-        */
+        /*  if (player.life <= 0 && !startRespawn) StartCoroutine(Respawn());
+          if (startRespawn) RespawnScene();
+          if (startFirstRespawn) RespawnFirstCheck();
+          */
     }
     public void OnNotify(Transform check)
     {
@@ -89,11 +94,16 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         Application.Quit();
     }
 
-    public void ToggleWindow (GameObject window)
+    public void ToggleWindow(GameObject window)
     {
         window.SetActive(!window.activeSelf);
         if (window.activeSelf)
             StartCoroutine(ControlsEffect());
+    }
+
+    public void UpdateVideo(int videoNumber)
+    {
+        videoPlayer.clip = videoDescriptions[videoNumber];
     }
 
     public IEnumerator ControlsEffect()
@@ -131,7 +141,7 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         buttonRespawn.SetActive(false);
         pauseMenu.SetActive(false);
 
-        Starting = true;    
+        Starting = true;
 
         if (Starting)
         {
@@ -174,7 +184,7 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
     public void RespawnScene()
     {
         Time.timeScale = 1;
-        pause = false;   
+        pause = false;
         pauseMenu.SetActive(false);
         player.transform.position = CheckTransform.position;
         player.transform.rotation = CheckTransform.rotation;
@@ -183,7 +193,7 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         player.view.anim.SetBool("IsIdle", true);
         player.life = player.maxLife;
         player.UpdateLife(player.maxLife);
-        player.mana = player.maxMana;       
+        player.mana = player.maxMana;
         player.isIdle = true;
         player.isDead = false;
         player.rb.isKinematic = false;
@@ -214,7 +224,7 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         player.view.anim.SetLayerWeight(1, 0);
         player.view.anim.SetLayerWeight(0, 1);
         player.view.anim.SetBool("IsDead", false);
-        
+
     }
 
     IEnumerator ResetCamera()
@@ -238,5 +248,5 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         pause = false;
         startFirstRespawn = true;
     }
- 
+
 }

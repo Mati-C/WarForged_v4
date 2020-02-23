@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ImageToBurn:
-        m_Texture: {fileID: 2800000, guid: 1184bc49f65d8554ca0384fe95ad6684, type: 3}
+        m_Texture: {fileID: 2800000, guid: 42fade425817e9e41983b3c71950f6a1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Layout:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _DissolveAmount: 1.0073242
+    - _DissolveAmount: 1.0020254
     - _DissolveOffset: -0.08
     - _DissolveRemapMaxNew: 0.7
     - _DissolveRemapMinNew: 0.03
