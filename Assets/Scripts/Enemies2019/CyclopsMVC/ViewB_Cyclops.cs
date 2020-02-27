@@ -12,6 +12,7 @@ public class ViewB_Cyclops : MonoBehaviour
     public GameObject lockParticle;
     public Transform lockParticlePosition;
     public Camera cam;
+    public bool auxAwake;
 
     private void Awake()
     {
@@ -46,6 +47,11 @@ public class ViewB_Cyclops : MonoBehaviour
         dir.y = 0;
 
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+        if (!auxAwake)
+        {
+            SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
+            auxAwake = true;
+        }
         SoundManager.instance.BossMusic(true);
     }
 
@@ -59,6 +65,7 @@ public class ViewB_Cyclops : MonoBehaviour
     public void IdleAnimation()
     {
         anim.SetBool("Idle", true);
+        anim.SetBool("Move", false);
     }
 
     public void MoveAnimation()
@@ -74,9 +81,34 @@ public class ViewB_Cyclops : MonoBehaviour
         anim.SetBool("Move", false);
     }
 
+    public void Attack2OnPlaceAnimation()
+    {
+        anim.SetBool("Smash", true);
+        anim.SetBool("Move", false);
+    }
+
+    public void Attack3Combo()
+    {
+        anim.SetBool("Combo", true);
+        anim.SetBool("Move", false);
+    }
+
     public void Attack1OnPlaceAnimationFalse()
     {
         anim.SetBool("Attack1OnPlace", false);
+        _model.AnimationAttackFalse();
+    }
+
+
+    public void Attack2OnPlaceAnimationFalse()
+    {
+        anim.SetBool("Smash", false);
+        _model.AnimationAttackFalse();
+    }
+
+    public void Attack3ComboFalse()
+    {
+        anim.SetBool("Combo", false);
         _model.AnimationAttackFalse();
     }
 

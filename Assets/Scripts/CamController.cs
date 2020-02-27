@@ -19,6 +19,7 @@ public class CamController : MonoBehaviour {
     public CinemachineFreeLook CinemaCam_Cinematic01;
     public CinemachineFreeLook CinemaCam_Cinematic02;
     public CinemachineFreeLook CinemaCam_Cinematic03;
+    public CinemachineFreeLook CinemaCam_AimCam;
     public Transform currentTarget;
     public ModelE_Sniper mage;
     public float distanceIdle;
@@ -34,6 +35,9 @@ public class CamController : MonoBehaviour {
     public float smoothRun;
     bool onAttack;
     bool onMovement;
+
+
+    public bool aimCam;
 
     public bool PlayerCanMove;
 
@@ -436,5 +440,27 @@ public class CamController : MonoBehaviour {
     {
         cinemaCam.m_Priority = 1;
         cinemaCam2.m_Priority = 0;
+    }
+
+    public void AimMageCam()
+    {
+        switch(aimCam)
+        {
+            case true:
+                {
+                    cinemaCam.m_Priority = 1;
+                    CinemaCam_AimCam.m_Priority = 0;
+                    aimCam = false;
+                    break;
+                }
+
+            case false:
+                {
+                    cinemaCam.m_Priority = 0;
+                    CinemaCam_AimCam.m_Priority = 1;
+                    aimCam = true;
+                    break;
+                }
+        }
     }
 }

@@ -10,6 +10,7 @@ public class ActivateEnemiesArea : MonoBehaviour
     public int roomNumber;
     public bool active;
     public bool desactive;
+    public bool boss;
 
 
     public void Awake()
@@ -27,6 +28,12 @@ public class ActivateEnemiesArea : MonoBehaviour
             {
                 if (item.GetComponent<EnemyEntity>())
                 {
+                    if(boss)
+                    {
+                        item.GetComponent<EnemyEntity>().viewDistancePersuit = 21;
+                        item.GetComponent<EnemyEntity>().angleToPersuit = 180;
+                    }
+
                     if (!item.GetComponent<EnemyEntity>().cantRespawn)
                     {
                         item.SetActive(true);

@@ -1159,7 +1159,7 @@ public class ModelE_Shield : EnemyMeleeClass
             var dir = (target.transform.position - transform.position).normalized;
             var angle = Vector3.Angle(dir, target.transform.forward);
             if (player.onDefence && angle >= 90 && player.perfectParryTimer < 0.3f) PerfectBlockedEvent();
-            player.GetDamage(attackDamage, transform, false, 1, this);
+            player.GetDamage(attackDamage, transform, false, Model.DamagePlayerType.Normal, this);
             player.rb.AddForce(transform.forward * 2, ForceMode.Impulse);
         }
 
@@ -1254,7 +1254,7 @@ public class ModelE_Shield : EnemyMeleeClass
         {
             view.anim.SetBool("OnCharge", false);
             view.anim.SetBool("IdleCombat", true);
-            c.gameObject.GetComponent<Model>().GetDamage(10, transform, false, 2, this);
+            c.gameObject.GetComponent<Model>().GetDamage(10, transform, false, Model.DamagePlayerType.Heavy, this);
             onCharge = false;
             view.anim.SetBool("WalkForward", false);
             StopRetreat();

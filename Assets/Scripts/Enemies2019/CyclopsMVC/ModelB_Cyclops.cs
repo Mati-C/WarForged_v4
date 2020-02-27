@@ -17,6 +17,7 @@ public class ModelB_Cyclops : EnemyEntity
     public bool fase2;
     public bool fase3;
     public bool onAnimationAttack;
+    public bool changeAttack;
 
     public float actualDamage;
     public float damage1;
@@ -24,6 +25,8 @@ public class ModelB_Cyclops : EnemyEntity
     public float damage3;
 
     ViewB_Cyclops _view;
+    bool _restart;
+    Vector3 _startPos;
 
     public bool onAttackArea;
     public float distanceToHit;
@@ -32,17 +35,63 @@ public class ModelB_Cyclops : EnemyEntity
     public GameObject attackPivot;
 
     public Action Attack1Event;
+    public Action Attack2Event;
+    public Action Attack3Event;
     public Action AwakeEvent;
     public Action DieEvent;
 
     private EventFSM<EnemyInputs> _myFsm;
 
+    public int _ID_Behaviour;
+
+    IEnumerator DelayChangeAttackState(float t)
+    {        
+        yield return new WaitForSeconds(t);
+        changeAttack = false;
+    }
+
+    IEnumerator MoveWhenAttck()
+    {
+        var pos1 = transform.position;
+        float time1 = 1;
+
+        while (time1 > 0)
+        {
+            time1 -= Time.deltaTime;
+            transform.position = Vector3.Lerp(pos1, transform.position + transform.forward  * Time.deltaTime, 2);
+            yield return new WaitForEndOfFrame();
+        }
+
+        var pos2 = transform.position;
+        float time2 = 1.5f;
+
+        while(time2 >0)
+        {
+            time2 -= Time.deltaTime;
+            transform.position = Vector3.Lerp(pos2, transform.position + transform.forward  * Time.deltaTime, 2);
+            yield return new WaitForEndOfFrame();
+        }
+             
+        var pos3 = transform.position;
+        float time3 = 1;
+
+        while (time3 > 0)
+        {
+            time3 -= Time.deltaTime;
+            transform.position = Vector3.Lerp(pos3, transform.position + transform.forward  * Time.deltaTime, 2);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     private void Awake()
     {
         _view = GetComponent<ViewB_Cyclops>();
         rb = GetComponent<Rigidbody>();
+        _startPos = transform.position;
 
         Attack1Event += _view.Attack1OnPlaceAnimation;
+        Attack2Event += _view.Attack2OnPlaceAnimation;
+        Attack3Event += _view.Attack3Combo;
         MoveEvent += _view.MoveAnimation;
         IdleEvent += _view.IdleAnimation;
         AwakeEvent += _view.AwakeAnim;
@@ -64,32 +113,42 @@ public class ModelB_Cyclops : EnemyEntity
         .SetTransition(EnemyInputs.ATTACK1, attack1)
         .SetTransition(EnemyInputs.ATTACK2, attack2)
         .SetTransition(EnemyInputs.ATTACK3, attack3)
+        .SetTransition(EnemyInputs.IDLE, idle)
         .SetTransition(EnemyInputs.DIE, die)
         .Done();
 
         StateConfigurer.Create(attack1)
         .SetTransition(EnemyInputs.PERSUIT, persuit)
+        .SetTransition(EnemyInputs.IDLE, idle)
         .SetTransition(EnemyInputs.DIE, die)
         .Done();
 
         StateConfigurer.Create(attack2)
         .SetTransition(EnemyInputs.PERSUIT, persuit)
+        .SetTransition(EnemyInputs.IDLE, idle)
         .SetTransition(EnemyInputs.DIE, die)
         .Done();
 
         StateConfigurer.Create(attack3)
         .SetTransition(EnemyInputs.PERSUIT, persuit)
+        .SetTransition(EnemyInputs.IDLE, idle)
         .SetTransition(EnemyInputs.DIE, die)
         .Done();
 
         idle.OnUpdate += () =>
         {
+            _restart = false;
+
             IdleEvent();
 
-            if (isPersuit) AwakeEvent();
+            if (target.life >= 0)
+            {              
 
-            if (isPersuit && AwakeAnimation) SendInputToFSM(EnemyInputs.PERSUIT);
+                if (isPersuit) AwakeEvent();
 
+                if (isPersuit && AwakeAnimation) SendInputToFSM(EnemyInputs.PERSUIT);
+
+            }
         };
 
         persuit.OnUpdate += () =>
@@ -111,9 +170,15 @@ public class ModelB_Cyclops : EnemyEntity
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
             rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
 
-            if (fase1 && onAttackArea) SendInputToFSM(EnemyInputs.ATTACK1);
+            if (fase1 && !fase2 && onAttackArea) SendInputToFSM(EnemyInputs.ATTACK1);
+
+            if (!fase3 && fase2 && onAttackArea) SendInputToFSM(EnemyInputs.ATTACK2);
+
+            if (fase3 && onAttackArea) SendInputToFSM(EnemyInputs.ATTACK3);
 
             if (life <= 0) SendInputToFSM(EnemyInputs.DIE);
+
+            if(target.life<=0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
 
         };
 
@@ -153,7 +218,175 @@ public class ModelB_Cyclops : EnemyEntity
 
             if (!onAttackArea && isPersuit && !onAnimationAttack) SendInputToFSM(EnemyInputs.PERSUIT);
 
+            if (fase2 && onAttackArea) SendInputToFSM(EnemyInputs.ATTACK2);
+
             if (life <= 0) SendInputToFSM(EnemyInputs.DIE);
+
+            if (target.life <= 0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
+        };
+
+        attack2.OnEnter += x =>
+        {
+            
+        };
+
+        attack2.OnUpdate += () =>
+        {
+            if(!changeAttack)
+            {
+                _ID_Behaviour = UnityEngine.Random.Range(0, 2);
+                changeAttack = true;
+            }
+
+            if (_ID_Behaviour == 0)
+            {
+                delayToAttack -= Time.deltaTime;
+
+                if (delayToAttack <= 0)
+                {
+                    Attack1Event();
+                    actualDamage = damage1;
+                    onAnimationAttack = true;
+                    delayToAttack = maxDelayToAttack;
+                    StartCoroutine(DelayChangeAttackState(1.5f));
+                }
+
+                if (delayToAttack > 0 && !onAnimationAttack)
+                {
+                    _view.anim.SetBool("Attack1OnPlace", false);
+                    IdleEvent();
+                }
+            }
+
+            if (_ID_Behaviour == 1)
+            {
+                delayToAttack -= Time.deltaTime;
+
+                if (delayToAttack <= 0)
+                {
+                    Attack2Event();
+                    actualDamage = damage2;
+                    onAnimationAttack = true;
+                    delayToAttack = maxDelayToAttack;
+                    StartCoroutine(DelayChangeAttackState(1.5f));
+                }
+
+                if (delayToAttack > 0 && !onAnimationAttack)
+                {
+                    _view.anim.SetBool("Attack1OnPlace", false);
+                    IdleEvent();
+                }
+            }
+
+            target.CombatState();
+            Quaternion targetRotation;
+
+            var dir = Vector3.zero;
+
+            dir = (target.transform.position - transform.position).normalized;
+
+            dir.y = 0;
+
+            targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+
+            if (!onAttackArea && isPersuit && !onAnimationAttack) SendInputToFSM(EnemyInputs.PERSUIT);
+
+            if (fase3 && onAttackArea) SendInputToFSM(EnemyInputs.ATTACK3);
+
+            if (life <= 0) SendInputToFSM(EnemyInputs.DIE);
+
+            if (target.life <= 0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
+        };
+
+        attack3.OnUpdate += () =>
+        {
+
+            if (!changeAttack)
+            {
+                _ID_Behaviour = UnityEngine.Random.Range(0, 3);
+                changeAttack = true;
+            }
+
+            if (_ID_Behaviour == 0)
+            {
+                delayToAttack -= Time.deltaTime;
+
+                if (delayToAttack <= 0)
+                {
+                    Attack1Event();
+                    actualDamage = damage1;
+                    onAnimationAttack = true;
+                    delayToAttack = maxDelayToAttack;
+                    StartCoroutine(DelayChangeAttackState(1.5f));
+                }
+
+                if (delayToAttack > 0 && !onAnimationAttack)
+                {
+                    _view.anim.SetBool("Attack1OnPlace", false);
+                    IdleEvent();
+                }
+            }
+
+            if (_ID_Behaviour == 1)
+            {
+                delayToAttack -= Time.deltaTime;
+
+                if (delayToAttack <= 0)
+                {
+                    Attack2Event();
+                    actualDamage = damage2;
+                    onAnimationAttack = true;
+                    delayToAttack = maxDelayToAttack;
+                    StartCoroutine(DelayChangeAttackState(1.5f));
+                }
+
+                if (delayToAttack > 0 && !onAnimationAttack)
+                {
+                    _view.anim.SetBool("Attack1OnPlace", false);
+                    IdleEvent();
+                }
+            }
+
+            if (_ID_Behaviour == 2)
+            {
+                delayToAttack -= Time.deltaTime;
+
+                if (delayToAttack <= 0)
+                {
+                    Attack3Event();
+                    actualDamage = damage3;
+                    onAnimationAttack = true;
+                    delayToAttack = maxDelayToAttack;
+                    StartCoroutine(DelayChangeAttackState(4f));
+                    StartCoroutine(MoveWhenAttck());
+
+                }
+
+                if (delayToAttack > 0 && !onAnimationAttack)
+                {
+                    _view.anim.SetBool("Attack1OnPlace", false);
+                    IdleEvent();
+                }
+            }
+
+            target.CombatState();
+            Quaternion targetRotation;
+
+            var dir = Vector3.zero;
+
+            dir = (target.transform.position - transform.position).normalized;
+
+            dir.y = 0;
+
+            targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+
+            if (!onAttackArea && isPersuit && !onAnimationAttack) SendInputToFSM(EnemyInputs.PERSUIT);
+
+            if (life <= 0) SendInputToFSM(EnemyInputs.DIE);
+
+            if (target.life <= 0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
         };
 
         die.OnEnter += x =>
@@ -176,8 +409,14 @@ public class ModelB_Cyclops : EnemyEntity
             onAttackArea = false;
             SendInputToFSM(EnemyInputs.IDLE);
             _view.healthBar.gameObject.SetActive(false);
+            viewDistancePersuit = 0;
+            angleToPersuit = 0;
         }
-      
+
+        if (life <= 180 && life > 100) fase2 = true;
+
+        if (life <= 100) fase3 = true;
+
         if (target != null)
         {
 
@@ -189,13 +428,24 @@ public class ModelB_Cyclops : EnemyEntity
 
     public void MakeDamageBoss()
     {
-        var t = Physics.OverlapSphere(attackPivot.transform.position, radiusAttack).Where(x => x.GetComponent<Model>()).Select(x => x.GetComponent<Model>()).First();
+        var t = Physics.OverlapSphere(attackPivot.transform.position, radiusAttack).Where(x => x.GetComponent<Model>()).Select(x => x.GetComponent<Model>());
 
-        if (t)
+        if (t.Count() >0)
         {
-            t.GetDamage(actualDamage, transform, false, 2, this);
-            if (!t.invulnerable)
-                t.rb.AddForce(transform.forward * 5, ForceMode.Impulse);
+            t.First().GetDamage(actualDamage, transform, false, Model.DamagePlayerType.Heavy, this);
+            if (!t.First().invulnerable)
+                t.First().rb.AddForce(transform.forward * 5, ForceMode.Impulse);
+        }
+    }
+
+    public void MakeDamageBossUnstopable()
+    {
+        var t = Physics.OverlapSphere(attackPivot.transform.position, radiusAttack).Where(x => x.GetComponent<Model>()).Select(x => x.GetComponent<Model>());
+
+        if (t.Count() > 0)
+        {
+            t.First().GetDamage(actualDamage, transform, false, Model.DamagePlayerType.Unstopable, this);
+            t.First().rb.AddForce(transform.forward * 5, ForceMode.Impulse);
         }
     }
 
@@ -272,12 +522,21 @@ public class ModelB_Cyclops : EnemyEntity
 
     public override void Respawn()
     {
-        throw new System.NotImplementedException();
+        AwakeAnimation = false;
+        life = totalLife;
+        _view.auxAwake = false;
+        _view.healthBar.gameObject.SetActive(false);
+        fase2 = false;
+        fase3 = false;
+        transform.position = _startPos;
+        _restart = true;
+        viewDistancePersuit = 21;
+        angleToPersuit = 180;
     }
 
     public override void SetChatAnimation()
     {
-        throw new System.NotImplementedException();
+       // throw new System.NotImplementedException();
     }
 
     public override void StartPursuit()

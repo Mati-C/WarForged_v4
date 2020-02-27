@@ -292,8 +292,6 @@ public class ModelE_Sniper : EnemyEntity
 
             currentAction = new A_SniperAttack(this);
 
-            timeToRetreat -= Time.deltaTime;
-
             var d = Vector3.Distance(transform.position, target.transform.position);
 
             if (timeToRetreat <= 0 && d <= 1.5f) onRetreat = true;
@@ -689,7 +687,7 @@ public class ModelE_Sniper : EnemyEntity
         var player = Physics.OverlapSphere(attackPivot.position, radiusAttack).Where(x => x.GetComponent<Model>()).Select(x => x.GetComponent<Model>()).FirstOrDefault();
         if (player != null)
         {          
-            player.GetDamage(attackDamage, transform, false, 1, this);
+            player.GetDamage(attackDamage, transform, false, Model.DamagePlayerType.Normal, this);
         }
     }
 

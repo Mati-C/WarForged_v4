@@ -149,7 +149,11 @@ public class Controller : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                model.LockEnemies();
+                if(model.classType == Model.PlayerClass.Warrior) model.LockEnemies(); 
+
+               // if(model.classType == Model.PlayerClass.Wizzard) model.AimCameraOn(); 
+
+                
             }
 
             if (Input.GetKeyDown(KeyCode.Tab))

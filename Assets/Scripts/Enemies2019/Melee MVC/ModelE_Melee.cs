@@ -1268,7 +1268,6 @@ public class ModelE_Melee : EnemyMeleeClass
         if (!onDefence && typeOfDamage == DamageType.Knock)
         {
             KnockEvent();
-            Debug.Log("asdasd");
             timeOnDamage = 0.5f;
             if (!onDamage) StartCoroutine(OnDamageCorrutine());
             life -= damage;
@@ -1340,7 +1339,7 @@ public class ModelE_Melee : EnemyMeleeClass
             var angle = Vector3.Angle(dir, target.transform.forward);
             if (player.onDefence && angle >= 90 && player.perfectParryTimer>0.3f) BlockedEvent();
             if (player.onDefence && angle >= 90 && player.perfectParryTimer<0.3f) PerfectBlocked();
-            player.GetDamage(attackDamage, transform, false, 1, this);
+            player.GetDamage(attackDamage, transform, false, Model.DamagePlayerType.Normal, this);
             player.rb.AddForce(transform.forward * 2, ForceMode.Impulse);
         }
 
@@ -1363,7 +1362,7 @@ public class ModelE_Melee : EnemyMeleeClass
                 _view.sparks.gameObject.SetActive(true);
                 _view.sparks.Play();
             }
-            player.GetDamage(attackDamage + 5, transform, false, 2, this);
+            player.GetDamage(attackDamage + 5, transform, false, Model.DamagePlayerType.Heavy, this);
             player.rb.AddForce(transform.forward * 2, ForceMode.Impulse);
         }
 

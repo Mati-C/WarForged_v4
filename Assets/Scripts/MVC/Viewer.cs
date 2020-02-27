@@ -843,7 +843,6 @@ public class Viewer : MonoBehaviour
         Destroy(orb.gameObject);
         bm.RespawnScene();
        
-
     }
 
     public IEnumerator YouWin()

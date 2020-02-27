@@ -72,7 +72,7 @@ public class Arrow : Munition {
 
     public void OnCollisionEnter(Collision c)
     {
-        if (c.gameObject.GetComponent<Model>()) player.GetDamage(damage,transform,true,1, owner);
+        if (c.gameObject.GetComponent<Model>()) player.GetDamage(damage,transform,true, Model.DamagePlayerType.Normal, owner);
         
         StartCoroutine(DestroyExplotion());
        

@@ -8,6 +8,14 @@ using Sound;
 
 public class Model : MonoBehaviour
 {
+    public enum DamagePlayerType
+    {
+        Normal,
+        Heavy,
+        Unstopable
+    }
+
+    public DamagePlayerType damageType;
 
     public Viewer view;
     EnemyCombatManager ECM;
@@ -19,6 +27,7 @@ public class Model : MonoBehaviour
     public LayerMask layerEnemies;
     public LayerMask enemyLayer;
     EnemyEntity snapTarget;
+    CamController _camController;
 
     public float distanceAggressiveNodes;
     public float distanceNon_AggressiveNodes;
@@ -28,6 +37,7 @@ public class Model : MonoBehaviour
     public Transform pointerParent;
     public Transform pointerParent2;
     public EnemyPointer pointerPrefab;
+    public Transform playerTorso;
     public Pool<EnemyPointer> pointerPool;
 
     public float radiusAttack;
@@ -129,6 +139,7 @@ public class Model : MonoBehaviour
     public bool onCounterAttack;
     bool impulse;
     bool starChangeDirAttack;
+    bool damageRollAux;
 
     public bool cdPower1;
     bool cdPower2;
@@ -241,7 +252,21 @@ public class Model : MonoBehaviour
     IEnumerator DelayRollAttack()
     {
         yield return new WaitForSeconds(0.35f);
-        MakeDamage(EnemyEntity.DamageType.Stune);
+
+        if (!damageRollAux)
+        {    
+           StartCoroutine(DelayAuxRollAttack());
+           MakeDamage(EnemyEntity.DamageType.Stune);
+        }
+         
+    }
+
+    IEnumerator DelayAuxRollAttack()
+    {
+
+        damageRollAux = true;
+        yield return new WaitForSeconds(2);
+        damageRollAux = false;
     }
 
     IEnumerator DelayCheatAnimClip()
@@ -369,6 +394,20 @@ public class Model : MonoBehaviour
             }
             onDefenseCorroutine = false;
         }
+    }
+
+    public IEnumerator OnAimCorrutine()
+    {
+      
+        while (_camController.aimCam && timeOnCombat > 0)
+        {
+            var aimDir = mainCamera.transform.forward;
+            aimDir.y = 0;
+            Quaternion targetRotation;
+            targetRotation = Quaternion.LookRotation(aimDir, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }      
     }
 
     public IEnumerator OnDamageCorrutine()
@@ -581,6 +620,7 @@ public class Model : MonoBehaviour
         Time.timeScale = 1;
         ModifyNodes();
         munition = FindObjectOfType<PlayerMunition>();
+        _camController = FindObjectOfType<CamController>();
     }
 
 
@@ -600,14 +640,14 @@ public class Model : MonoBehaviour
         fadeTimer = 0;
         internCdPower2 = timeCdPower2;
         onDefenseCorroutine = false;
-        //allEnemies = FindObjectsOfType<EnemyEntity>();
+
         combatAreas = FindObjectsOfType<CombatArea>().OrderBy(x => x.EnemyID_Area).ToList();       
         maxDamage = false;
     }
 
     void Update()
     {
-        ChangeTarget();
+        if(classType == PlayerClass.Warrior) ChangeTarget();
 
         CombatParameters();
 
@@ -647,6 +687,19 @@ public class Model : MonoBehaviour
             view.anim.SetFloat("RollTime", timeToRoll);
         }
         soundOrigin = Vector3.Lerp(transform.position, mainCamera.position, 0.5f);
+    }
+
+    private void LateUpdate()
+    {
+       /* if(_camController.aimCam)
+        {            
+            var newRot = new Vector3 (0 ,0 ,mainCamera.forward.z);
+            Quaternion targetRotation;
+            targetRotation = Quaternion.LookRotation(newRot, Vector3.up);
+            playerTorso.rotation = Quaternion.Slerp(playerTorso.rotation, targetRotation, 20 * Time.deltaTime);
+            
+        }
+        */
     }
 
     public void ModifyNodes()
@@ -799,12 +852,16 @@ public class Model : MonoBehaviour
 
                 if (enemiesToLock.Count <= 0)
                 {
-                    mainCamera.GetComponent<CamController>().StopLockedTarget();
+                    _camController.StopLockedTarget();
                     targetLocked = null;
                     targetLockedOn = false;
                 }
                 
-                if (enemiesToLock.Count > 0) ChangeTarget();
+                if (enemiesToLock.Count > 0)
+                {
+                    targetLocked = enemiesToLock.First();
+                    _camController.ChangeTargetAlt(targetLocked);
+                }
                            
             }
 
@@ -963,7 +1020,6 @@ public class Model : MonoBehaviour
 
     public void Movement(Vector3 dir)
     {
-        //view.anim.SetBool("Idle", false);
         acceleration += 3f * Time.deltaTime;
         if (acceleration > maxAcceleration) acceleration = maxAcceleration;
 
@@ -1004,7 +1060,7 @@ public class Model : MonoBehaviour
         if (acceleration > maxAcceleration) acceleration = maxAcceleration;
 
      
-        if ((view.movementAnims || (!view.attacking && timeToRoll <= 0.1f)) && targetLockedOn && !onDefence && !view.onDamageAnim)
+        if ((view.movementAnims || (!view.attacking && timeToRoll <= 0.1f)) && targetLockedOn  && !onDefence && !view.onDamageAnim)
         {
            rb.MovePosition(rb.position + dir * acceleration * speed * Time.deltaTime);
         }
@@ -1068,24 +1124,13 @@ public class Model : MonoBehaviour
         enemiesToLock.Clear();
         EnemyEntity detectedEnemy;
         allEnemies = FindObjectsOfType<EnemyEntity>();
-        //detectedEnemy = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
         detectedEnemy = allEnemies.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
         print(detectedEnemy != null);
         enemiesToLock.Add(detectedEnemy);
         enemiesToLock.AddRange(detectedEnemy.nearEntities);
 
 
-       /* if (!isInCombat && !targetLocked)
-        {
-            enemiesToLock.Clear();
-            EnemyEntity detectedEnemy;
-           // var allEnemies = FindObjectsOfType<EnemyEntity>();
-            detectedEnemy = combatAreas[combatIndex].myNPCs.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
-           // detectedEnemy = allEnemies.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
-            enemiesToLock.Add(detectedEnemy);
-            enemiesToLock.AddRange(detectedEnemy.nearEntities);
-        }
-        */
+  
         if (enemiesToLock.Count> 0)
         {
             if (!targetLockedOn)
@@ -1100,22 +1145,28 @@ public class Model : MonoBehaviour
            
                targetLockedOn = true;
                lockIndex = 0;
-               if(isInCombat) mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 2;
-               else mainCamera.GetComponent<CamController>().ChangeTargetAlt(targetLocked); ;
+               if(isInCombat) _camController.cinemaCam2.Priority = 2;
+               else _camController.ChangeTargetAlt(targetLocked); 
 
             }
 
             else
             {
-       
-                mainCamera.GetComponent<CamController>().StopLockedTargetAlt();
-                mainCamera.GetComponent<CamController>().cinemaCam.Priority = 1;
-                mainCamera.GetComponent<CamController>().cinemaCam2.Priority = 0;
+
+                _camController.StopLockedTargetAlt();
+                _camController.cinemaCam.Priority = 1;
+                _camController.cinemaCam2.Priority = 0;
                 targetLocked = null;
                 targetLockedOn = false;
                 enemiesToLock.Clear();
             }
         }
+    }
+
+    public void AimCameraOn()
+    {
+        _camController.AimMageCam();
+        StartCoroutine(OnAimCorrutine());
     }
 
     public void ChangeTarget()
@@ -1146,13 +1197,10 @@ public class Model : MonoBehaviour
                 if (newTarget.Count>0)
                 {
                     targetLocked = newTarget[0];
-                    mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
+                    _camController.ChangeTarget(targetLocked);
                 }
             }
-        }
-
-        if (targetLocked)
-        {
+     
             if (mouseAxis < -3)
             {
                 var newTarget = enemiesToLock.Where(x =>
@@ -1176,7 +1224,7 @@ public class Model : MonoBehaviour
                 if (newTarget.Count > 0)
                 {
                     targetLocked = newTarget[0];
-                    mainCamera.GetComponent<CamController>().ChangeTarget(targetLocked);
+                    _camController.ChangeTarget(targetLocked);
                 }
             }
         }
@@ -1632,7 +1680,7 @@ public class Model : MonoBehaviour
         view.SaveSwordAnim2();
     }
 
-    public void GetDamage(float damage, Transform enemy, bool isProyectile, int damageType, EnemyEntity e)
+    public void GetDamage(float damage, Transform enemy, bool isProyectile, DamagePlayerType damageType, EnemyEntity e)
     {
         EndCombo();
         timeCdPower2 -= reduceTimePerHit;
@@ -1646,7 +1694,7 @@ public class Model : MonoBehaviour
         if (angle < 90) isBehind = true;
 
 
-        if (!isBehind && !isProyectile && onDefence &&  damageType == 1)
+        if (!isBehind && !isProyectile && onDefence &&  damageType == DamagePlayerType.Normal)
         {
             if(!isDead)SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
 
@@ -1669,7 +1717,7 @@ public class Model : MonoBehaviour
             }
         }
 
-        if(damageType == 2 && !onDefence && !invulnerable)
+        if(damageType == DamagePlayerType.Heavy && !onDefence && !invulnerable)
         {
             float dmg = damage - armor;
             UpdateLife(-dmg);
@@ -1679,7 +1727,7 @@ public class Model : MonoBehaviour
             if (!isDead) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
         }
 
-        if (damageType == 2 && onDefence)
+        if (damageType == DamagePlayerType.Heavy && onDefence)
         {
             view.BlockedFail();
             StopDefence();
@@ -1689,8 +1737,9 @@ public class Model : MonoBehaviour
             view.ShakeCameraDamage(1,1,0.5f);
         }
 
-        if (((!onDefence || (onDefence && isBehind) || isProyectile) && damageType == 1 && !invulnerable) || damageType == 3)
+        if (((!onDefence || (onDefence && isBehind) || isProyectile) && damageType == DamagePlayerType.Normal) || damageType == DamagePlayerType.Unstopable)
         {
+
             UpdateLife(-damage);
             timeToHeal = maxTimeToHeal;
             impulse = false;

@@ -1199,7 +1199,7 @@ public class ModelE_Lancer : EnemyMeleeClass
 
             var dir = (target.transform.position - transform.position).normalized;
             var angle = Vector3.Angle(dir, target.transform.forward);
-            player.GetDamage(attackDamage, transform, false, 3, this);
+            player.GetDamage(attackDamage, transform, false, Model.DamagePlayerType.Unstopable, this);
             player.rb.AddForce(transform.forward * 2, ForceMode.Impulse);
         }
 
