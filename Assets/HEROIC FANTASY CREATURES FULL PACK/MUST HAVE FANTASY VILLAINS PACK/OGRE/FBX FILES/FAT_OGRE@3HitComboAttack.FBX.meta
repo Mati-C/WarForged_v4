@@ -1,155 +1,394 @@
 fileFormatVersion: 2
 guid: d1ae6ebb84756d146aa8d07ca3b392b5
-timeCreated: 1481317722
-licenseType: Store
 ModelImporter:
-  serializedVersion: 18
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: FAT_OGRE_
-    100004: FAT_OGRE_ Head
-    100006: FAT_OGRE_ L Calf
-    100008: FAT_OGRE_ L Clavicle
-    100010: FAT_OGRE_ L Finger0
-    100012: FAT_OGRE_ L Finger01
-    100014: FAT_OGRE_ L Finger02
-    100016: FAT_OGRE_ L Finger1
-    100018: FAT_OGRE_ L Finger11
-    100020: FAT_OGRE_ L Finger12
-    100022: FAT_OGRE_ L Finger2
-    100024: FAT_OGRE_ L Finger21
-    100026: FAT_OGRE_ L Finger22
-    100028: FAT_OGRE_ L Finger3
-    100030: FAT_OGRE_ L Finger31
-    100032: FAT_OGRE_ L Finger32
-    100034: FAT_OGRE_ L Finger4
-    100036: FAT_OGRE_ L Finger41
-    100038: FAT_OGRE_ L Finger42
-    100040: FAT_OGRE_ L Foot
-    100042: FAT_OGRE_ L Forearm
-    100044: FAT_OGRE_ L Hand
-    100046: FAT_OGRE_ L Thigh
-    100048: FAT_OGRE_ L Toe0
-    100050: FAT_OGRE_ L UpperArm
-    100052: FAT_OGRE_ Neck
-    100054: FAT_OGRE_ Pelvis
-    100056: FAT_OGRE_ Ponytail1
-    100058: FAT_OGRE_ R Calf
-    100060: FAT_OGRE_ R Clavicle
-    100062: FAT_OGRE_ R Finger0
-    100064: FAT_OGRE_ R Finger01
-    100066: FAT_OGRE_ R Finger02
-    100068: FAT_OGRE_ R Finger1
-    100070: FAT_OGRE_ R Finger11
-    100072: FAT_OGRE_ R Finger12
-    100074: FAT_OGRE_ R Finger2
-    100076: FAT_OGRE_ R Finger21
-    100078: FAT_OGRE_ R Finger22
-    100080: FAT_OGRE_ R Finger3
-    100082: FAT_OGRE_ R Finger31
-    100084: FAT_OGRE_ R Finger32
-    100086: FAT_OGRE_ R Finger4
-    100088: FAT_OGRE_ R Finger41
-    100090: FAT_OGRE_ R Finger42
-    100092: FAT_OGRE_ R Foot
-    100094: FAT_OGRE_ R Forearm
-    100096: FAT_OGRE_ R Hand
-    100098: FAT_OGRE_ R Thigh
-    100100: FAT_OGRE_ R Toe0
-    100102: FAT_OGRE_ R UpperArm
-    100104: FAT_OGRE_ Spine
-    100106: FAT_OGRE_ Spine1
-    100108: FAT_OGRE_EYE_L
-    100110: FAT_OGRE_EYE_R
-    100112: FAT_OGRE_SAGGING_BELLY
-    400000: //RootNode
-    400002: FAT_OGRE_
-    400004: FAT_OGRE_ Head
-    400006: FAT_OGRE_ L Calf
-    400008: FAT_OGRE_ L Clavicle
-    400010: FAT_OGRE_ L Finger0
-    400012: FAT_OGRE_ L Finger01
-    400014: FAT_OGRE_ L Finger02
-    400016: FAT_OGRE_ L Finger1
-    400018: FAT_OGRE_ L Finger11
-    400020: FAT_OGRE_ L Finger12
-    400022: FAT_OGRE_ L Finger2
-    400024: FAT_OGRE_ L Finger21
-    400026: FAT_OGRE_ L Finger22
-    400028: FAT_OGRE_ L Finger3
-    400030: FAT_OGRE_ L Finger31
-    400032: FAT_OGRE_ L Finger32
-    400034: FAT_OGRE_ L Finger4
-    400036: FAT_OGRE_ L Finger41
-    400038: FAT_OGRE_ L Finger42
-    400040: FAT_OGRE_ L Foot
-    400042: FAT_OGRE_ L Forearm
-    400044: FAT_OGRE_ L Hand
-    400046: FAT_OGRE_ L Thigh
-    400048: FAT_OGRE_ L Toe0
-    400050: FAT_OGRE_ L UpperArm
-    400052: FAT_OGRE_ Neck
-    400054: FAT_OGRE_ Pelvis
-    400056: FAT_OGRE_ Ponytail1
-    400058: FAT_OGRE_ R Calf
-    400060: FAT_OGRE_ R Clavicle
-    400062: FAT_OGRE_ R Finger0
-    400064: FAT_OGRE_ R Finger01
-    400066: FAT_OGRE_ R Finger02
-    400068: FAT_OGRE_ R Finger1
-    400070: FAT_OGRE_ R Finger11
-    400072: FAT_OGRE_ R Finger12
-    400074: FAT_OGRE_ R Finger2
-    400076: FAT_OGRE_ R Finger21
-    400078: FAT_OGRE_ R Finger22
-    400080: FAT_OGRE_ R Finger3
-    400082: FAT_OGRE_ R Finger31
-    400084: FAT_OGRE_ R Finger32
-    400086: FAT_OGRE_ R Finger4
-    400088: FAT_OGRE_ R Finger41
-    400090: FAT_OGRE_ R Finger42
-    400092: FAT_OGRE_ R Foot
-    400094: FAT_OGRE_ R Forearm
-    400096: FAT_OGRE_ R Hand
-    400098: FAT_OGRE_ R Thigh
-    400100: FAT_OGRE_ R Toe0
-    400102: FAT_OGRE_ R UpperArm
-    400104: FAT_OGRE_ Spine
-    400106: FAT_OGRE_ Spine1
-    400108: FAT_OGRE_EYE_L
-    400110: FAT_OGRE_EYE_R
-    400112: FAT_OGRE_SAGGING_BELLY
-    7400000: 3HitComboAttack
-    9500000: //RootNode
-    11100000: //RootNode
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: FAT_OGRE_
+  - first:
+      1: 100004
+    second: FAT_OGRE_ Head
+  - first:
+      1: 100006
+    second: FAT_OGRE_ L Calf
+  - first:
+      1: 100008
+    second: FAT_OGRE_ L Clavicle
+  - first:
+      1: 100010
+    second: FAT_OGRE_ L Finger0
+  - first:
+      1: 100012
+    second: FAT_OGRE_ L Finger01
+  - first:
+      1: 100014
+    second: FAT_OGRE_ L Finger02
+  - first:
+      1: 100016
+    second: FAT_OGRE_ L Finger1
+  - first:
+      1: 100018
+    second: FAT_OGRE_ L Finger11
+  - first:
+      1: 100020
+    second: FAT_OGRE_ L Finger12
+  - first:
+      1: 100022
+    second: FAT_OGRE_ L Finger2
+  - first:
+      1: 100024
+    second: FAT_OGRE_ L Finger21
+  - first:
+      1: 100026
+    second: FAT_OGRE_ L Finger22
+  - first:
+      1: 100028
+    second: FAT_OGRE_ L Finger3
+  - first:
+      1: 100030
+    second: FAT_OGRE_ L Finger31
+  - first:
+      1: 100032
+    second: FAT_OGRE_ L Finger32
+  - first:
+      1: 100034
+    second: FAT_OGRE_ L Finger4
+  - first:
+      1: 100036
+    second: FAT_OGRE_ L Finger41
+  - first:
+      1: 100038
+    second: FAT_OGRE_ L Finger42
+  - first:
+      1: 100040
+    second: FAT_OGRE_ L Foot
+  - first:
+      1: 100042
+    second: FAT_OGRE_ L Forearm
+  - first:
+      1: 100044
+    second: FAT_OGRE_ L Hand
+  - first:
+      1: 100046
+    second: FAT_OGRE_ L Thigh
+  - first:
+      1: 100048
+    second: FAT_OGRE_ L Toe0
+  - first:
+      1: 100050
+    second: FAT_OGRE_ L UpperArm
+  - first:
+      1: 100052
+    second: FAT_OGRE_ Neck
+  - first:
+      1: 100054
+    second: FAT_OGRE_ Pelvis
+  - first:
+      1: 100056
+    second: FAT_OGRE_ Ponytail1
+  - first:
+      1: 100058
+    second: FAT_OGRE_ R Calf
+  - first:
+      1: 100060
+    second: FAT_OGRE_ R Clavicle
+  - first:
+      1: 100062
+    second: FAT_OGRE_ R Finger0
+  - first:
+      1: 100064
+    second: FAT_OGRE_ R Finger01
+  - first:
+      1: 100066
+    second: FAT_OGRE_ R Finger02
+  - first:
+      1: 100068
+    second: FAT_OGRE_ R Finger1
+  - first:
+      1: 100070
+    second: FAT_OGRE_ R Finger11
+  - first:
+      1: 100072
+    second: FAT_OGRE_ R Finger12
+  - first:
+      1: 100074
+    second: FAT_OGRE_ R Finger2
+  - first:
+      1: 100076
+    second: FAT_OGRE_ R Finger21
+  - first:
+      1: 100078
+    second: FAT_OGRE_ R Finger22
+  - first:
+      1: 100080
+    second: FAT_OGRE_ R Finger3
+  - first:
+      1: 100082
+    second: FAT_OGRE_ R Finger31
+  - first:
+      1: 100084
+    second: FAT_OGRE_ R Finger32
+  - first:
+      1: 100086
+    second: FAT_OGRE_ R Finger4
+  - first:
+      1: 100088
+    second: FAT_OGRE_ R Finger41
+  - first:
+      1: 100090
+    second: FAT_OGRE_ R Finger42
+  - first:
+      1: 100092
+    second: FAT_OGRE_ R Foot
+  - first:
+      1: 100094
+    second: FAT_OGRE_ R Forearm
+  - first:
+      1: 100096
+    second: FAT_OGRE_ R Hand
+  - first:
+      1: 100098
+    second: FAT_OGRE_ R Thigh
+  - first:
+      1: 100100
+    second: FAT_OGRE_ R Toe0
+  - first:
+      1: 100102
+    second: FAT_OGRE_ R UpperArm
+  - first:
+      1: 100104
+    second: FAT_OGRE_ Spine
+  - first:
+      1: 100106
+    second: FAT_OGRE_ Spine1
+  - first:
+      1: 100108
+    second: FAT_OGRE_EYE_L
+  - first:
+      1: 100110
+    second: FAT_OGRE_EYE_R
+  - first:
+      1: 100112
+    second: FAT_OGRE_SAGGING_BELLY
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: FAT_OGRE_
+  - first:
+      4: 400004
+    second: FAT_OGRE_ Head
+  - first:
+      4: 400006
+    second: FAT_OGRE_ L Calf
+  - first:
+      4: 400008
+    second: FAT_OGRE_ L Clavicle
+  - first:
+      4: 400010
+    second: FAT_OGRE_ L Finger0
+  - first:
+      4: 400012
+    second: FAT_OGRE_ L Finger01
+  - first:
+      4: 400014
+    second: FAT_OGRE_ L Finger02
+  - first:
+      4: 400016
+    second: FAT_OGRE_ L Finger1
+  - first:
+      4: 400018
+    second: FAT_OGRE_ L Finger11
+  - first:
+      4: 400020
+    second: FAT_OGRE_ L Finger12
+  - first:
+      4: 400022
+    second: FAT_OGRE_ L Finger2
+  - first:
+      4: 400024
+    second: FAT_OGRE_ L Finger21
+  - first:
+      4: 400026
+    second: FAT_OGRE_ L Finger22
+  - first:
+      4: 400028
+    second: FAT_OGRE_ L Finger3
+  - first:
+      4: 400030
+    second: FAT_OGRE_ L Finger31
+  - first:
+      4: 400032
+    second: FAT_OGRE_ L Finger32
+  - first:
+      4: 400034
+    second: FAT_OGRE_ L Finger4
+  - first:
+      4: 400036
+    second: FAT_OGRE_ L Finger41
+  - first:
+      4: 400038
+    second: FAT_OGRE_ L Finger42
+  - first:
+      4: 400040
+    second: FAT_OGRE_ L Foot
+  - first:
+      4: 400042
+    second: FAT_OGRE_ L Forearm
+  - first:
+      4: 400044
+    second: FAT_OGRE_ L Hand
+  - first:
+      4: 400046
+    second: FAT_OGRE_ L Thigh
+  - first:
+      4: 400048
+    second: FAT_OGRE_ L Toe0
+  - first:
+      4: 400050
+    second: FAT_OGRE_ L UpperArm
+  - first:
+      4: 400052
+    second: FAT_OGRE_ Neck
+  - first:
+      4: 400054
+    second: FAT_OGRE_ Pelvis
+  - first:
+      4: 400056
+    second: FAT_OGRE_ Ponytail1
+  - first:
+      4: 400058
+    second: FAT_OGRE_ R Calf
+  - first:
+      4: 400060
+    second: FAT_OGRE_ R Clavicle
+  - first:
+      4: 400062
+    second: FAT_OGRE_ R Finger0
+  - first:
+      4: 400064
+    second: FAT_OGRE_ R Finger01
+  - first:
+      4: 400066
+    second: FAT_OGRE_ R Finger02
+  - first:
+      4: 400068
+    second: FAT_OGRE_ R Finger1
+  - first:
+      4: 400070
+    second: FAT_OGRE_ R Finger11
+  - first:
+      4: 400072
+    second: FAT_OGRE_ R Finger12
+  - first:
+      4: 400074
+    second: FAT_OGRE_ R Finger2
+  - first:
+      4: 400076
+    second: FAT_OGRE_ R Finger21
+  - first:
+      4: 400078
+    second: FAT_OGRE_ R Finger22
+  - first:
+      4: 400080
+    second: FAT_OGRE_ R Finger3
+  - first:
+      4: 400082
+    second: FAT_OGRE_ R Finger31
+  - first:
+      4: 400084
+    second: FAT_OGRE_ R Finger32
+  - first:
+      4: 400086
+    second: FAT_OGRE_ R Finger4
+  - first:
+      4: 400088
+    second: FAT_OGRE_ R Finger41
+  - first:
+      4: 400090
+    second: FAT_OGRE_ R Finger42
+  - first:
+      4: 400092
+    second: FAT_OGRE_ R Foot
+  - first:
+      4: 400094
+    second: FAT_OGRE_ R Forearm
+  - first:
+      4: 400096
+    second: FAT_OGRE_ R Hand
+  - first:
+      4: 400098
+    second: FAT_OGRE_ R Thigh
+  - first:
+      4: 400100
+    second: FAT_OGRE_ R Toe0
+  - first:
+      4: 400102
+    second: FAT_OGRE_ R UpperArm
+  - first:
+      4: 400104
+    second: FAT_OGRE_ Spine
+  - first:
+      4: 400106
+    second: FAT_OGRE_ Spine1
+  - first:
+      4: 400108
+    second: FAT_OGRE_EYE_L
+  - first:
+      4: 400110
+    second: FAT_OGRE_EYE_R
+  - first:
+      4: 400112
+    second: FAT_OGRE_SAGGING_BELLY
+  - first:
+      74: 7400000
+    second: 3HitComboAttack
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      111: 11100000
+    second: //RootNode
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 'MuscleClip ''FAT_OGRE@3HitComboAttack''conversion warning:
-      ''FAT_OGRE_/FAT_OGRE_ Pelvis/FAT_OGRE_ Spine'' has translation animation. It
-      is not supported.
-
-
-'
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'FAT_OGRE_ Spine' has translation animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 0
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 2
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: 3HitComboAttack
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -157,6 +396,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
@@ -364,19 +604,30 @@ ModelImporter:
         weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -384,752 +635,329 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 1
   humanDescription:
-    human:
-    - boneName: FAT_OGRE_ Pelvis
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Thigh
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Thigh
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Calf
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Calf
-      humanName: RightLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Foot
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Foot
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ Spine
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ Spine1
-      humanName: Chest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ Neck
-      humanName: Neck
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ Head
-      humanName: Head
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Clavicle
-      humanName: LeftShoulder
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Clavicle
-      humanName: RightShoulder
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L UpperArm
-      humanName: LeftUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R UpperArm
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Forearm
-      humanName: LeftLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Forearm
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Hand
-      humanName: LeftHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Hand
-      humanName: RightHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Toe0
-      humanName: LeftToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Toe0
-      humanName: RightToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_EYE_L
-      humanName: LeftEye
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_EYE_R
-      humanName: RightEye
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger0
-      humanName: Left Thumb Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger01
-      humanName: Left Thumb Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger02
-      humanName: Left Thumb Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger1
-      humanName: Left Index Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger11
-      humanName: Left Index Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger12
-      humanName: Left Index Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger2
-      humanName: Left Middle Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger21
-      humanName: Left Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger22
-      humanName: Left Middle Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger3
-      humanName: Left Ring Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger31
-      humanName: Left Ring Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger32
-      humanName: Left Ring Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger4
-      humanName: Left Little Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger41
-      humanName: Left Little Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ L Finger42
-      humanName: Left Little Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger0
-      humanName: Right Thumb Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger01
-      humanName: Right Thumb Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger02
-      humanName: Right Thumb Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger1
-      humanName: Right Index Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger11
-      humanName: Right Index Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger12
-      humanName: Right Index Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger2
-      humanName: Right Middle Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger21
-      humanName: Right Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger22
-      humanName: Right Middle Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger3
-      humanName: Right Ring Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger31
-      humanName: Right Ring Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger32
-      humanName: Right Ring Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger4
-      humanName: Right Little Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger41
-      humanName: Right Little Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ R Finger42
-      humanName: Right Little Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: FAT_OGRE_ Ponytail1
-      humanName: Jaw
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
+    serializedVersion: 3
+    human: []
     skeleton:
     - name: FAT_OGRE(Clone)
+      parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: FAT_OGRE
+      parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: FAT_OGRE_
-      position: {x: 0, y: 1.81505585, z: -.148193121}
-      rotation: {x: -.500000358, y: .499999672, z: .499999672, w: .500000358}
+      parentName: 
+      position: {x: 0, y: 1.8150558, z: -0.14819312}
+      rotation: {x: -0.50000036, y: 0.49999967, z: 0.49999967, w: 0.50000036}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: FAT_OGRE_ Pelvis
+      parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: .5, y: -.500000715, z: -.499999374, w: -.49999994}
+      rotation: {x: 0.5, y: -0.5000007, z: -0.49999937, w: -0.49999994}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: FAT_OGRE_ Spine
-      position: {x: -.318596482, y: -.000399417855, z: 4.42383168e-07}
-      rotation: {x: 2.07126163e-06, y: 7.15255794e-07, z: .000398173957, w: -.99999994}
-      scale: {x: .99999994, y: .99999994, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.31859648, y: -0.00039941786, z: 0.00000044238317}
+      rotation: {x: 0.0000020712616, y: 0.0000007152558, z: 0.00039817396, w: -0.99999994}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
     - name: FAT_OGRE_ Spine1
-      position: {x: -.501747251, y: -.000399541837, z: -1.10812837e-09}
+      parentName: 
+      position: {x: -0.50174725, y: -0.00039954184, z: -0.0000000011081284}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: FAT_OGRE_ L Clavicle
-      position: {x: -.501747727, y: -5.43594354e-07, z: .234121427}
-      rotation: {x: .653505921, y: .0600098185, z: -.752774298, w: -.0515740588}
-      scale: {x: 1.00000012, y: .999999821, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.5017477, y: -0.00000054359435, z: 0.23412143}
+      rotation: {x: 0.6535059, y: 0.06000982, z: -0.7527743, w: -0.05157406}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1.0000001}
     - name: FAT_OGRE_ L UpperArm
-      position: {x: -.463570476, y: 9.53674295e-09, z: -3.05175774e-07}
-      rotation: {x: .0554303154, y: .0438163355, z: .0694856942, w: .99507761}
-      scale: {x: .999999821, y: .999999762, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.46357048, y: 0.000000009536743, z: -0.00000030517577}
+      rotation: {x: 0.055430315, y: 0.043816335, z: 0.069485694, w: 0.9950776}
+      scale: {x: 0.9999998, y: 0.99999976, z: 1.0000001}
     - name: FAT_OGRE_ L Forearm
-      position: {x: -.885207474, y: -3.81469718e-08, z: 0}
-      rotation: {x: -.0107146204, y: .0283271465, z: .0303001963, w: .99908191}
-      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.8852075, y: -0.000000038146972, z: 0}
+      rotation: {x: -0.01071462, y: 0.028327147, z: 0.030300196, w: 0.9990819}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
     - name: FAT_OGRE_ L Hand
-      position: {x: -.671918571, y: -3.81469718e-08, z: 3.05175774e-07}
-      rotation: {x: .706825316, y: -1.19209275e-07, z: 1.22934566e-07, w: -.707388282}
-      scale: {x: 1, y: .999999881, z: .999999762}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.6719186, y: -0.000000038146972, z: 0.00000030517577}
+      rotation: {x: 0.7068253, y: -0.000000119209275, z: 0.00000012293457, w: -0.7073883}
+      scale: {x: 1, y: 0.9999999, z: 0.99999976}
     - name: FAT_OGRE_ L Finger0
-      position: {x: -.0658768415, y: .0486706533, z: -.125591204}
-      rotation: {x: -.440657437, y: .43425405, z: -.20493634, w: -.758449435}
-      scale: {x: .999999881, y: 1, z: .999999821}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.06587684, y: 0.048670653, z: -0.1255912}
+      rotation: {x: -0.44065744, y: 0.43425405, z: -0.20493634, w: -0.75844944}
+      scale: {x: 0.9999999, y: 1, z: 0.9999998}
     - name: FAT_OGRE_ L Finger01
-      position: {x: -.135676876, y: -1.52587887e-07, z: 0}
-      rotation: {x: -5.21540464e-08, y: 5.66243898e-07, z: -.0347975381, w: .999394357}
-      scale: {x: .999999762, y: .999999642, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.13567688, y: -0.00000015258789, z: 0}
+      rotation: {x: -0.000000052154046, y: 0.0000005662439, z: -0.034797538, w: 0.99939436}
+      scale: {x: 0.99999976, y: 0.99999964, z: 0.9999999}
     - name: FAT_OGRE_ L Finger02
-      position: {x: -.101046219, y: 0, z: 0}
-      rotation: {x: 5.21540571e-08, y: -1.7881392e-07, z: -.039034158, w: .999237895}
-      scale: {x: .99999994, y: 1.00000012, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.10104622, y: 0, z: 0}
+      rotation: {x: 0.000000052154057, y: -0.00000017881392, z: -0.039034158, w: 0.9992379}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
     - name: FAT_OGRE_ L Finger1
-      position: {x: -.328929961, y: .0248364247, z: -.1505135}
-      rotation: {x: .12300308, y: -.110266775, z: .0138426423, w: .986164212}
-      scale: {x: .99999994, y: .999999881, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.32892996, y: 0.024836425, z: -0.1505135}
+      rotation: {x: 0.12300308, y: -0.110266775, z: 0.013842642, w: 0.9861642}
+      scale: {x: 0.99999994, y: 0.9999999, z: 1}
     - name: FAT_OGRE_ L Finger11
-      position: {x: -.112244412, y: -3.05175774e-07, z: -1.52587887e-07}
-      rotation: {x: -1.19674894e-07, y: -8.04662307e-07, z: -.0321842767, w: .999482036}
-      scale: {x: .999999762, y: .999999881, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.11224441, y: -0.00000030517577, z: -0.00000015258789}
+      rotation: {x: -0.0000001196749, y: -0.0000008046623, z: -0.032184277, w: 0.99948204}
+      scale: {x: 0.99999976, y: 0.9999999, z: 0.9999999}
     - name: FAT_OGRE_ L Finger12
-      position: {x: -.0903965756, y: 0, z: 0}
-      rotation: {x: -4.470348e-08, y: 1.19209275e-07, z: -.116402313, w: .993202209}
-      scale: {x: .999999881, y: .999999881, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.090396576, y: 0, z: 0}
+      rotation: {x: -0.00000004470348, y: 0.000000119209275, z: -0.11640231, w: 0.9932022}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
     - name: FAT_OGRE_ L Finger2
-      position: {x: -.349251181, y: -.00986663811, z: -.0561127476}
-      rotation: {x: -.000398136675, y: -.00930771232, z: 3.68058681e-06, w: .999956667}
-      scale: {x: .999999881, y: 1, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.34925118, y: -0.009866638, z: -0.056112748}
+      rotation: {x: -0.00039813668, y: -0.009307712, z: 0.0000036805868, w: 0.99995667}
+      scale: {x: 0.9999999, y: 1, z: 1}
     - name: FAT_OGRE_ L Finger21
-      position: {x: -.132580489, y: 0, z: 0}
-      rotation: {x: -2.75205593e-07, y: 1.97440215e-07, z: -.0285504609, w: .999592364}
-      scale: {x: .999999583, y: .99999994, z: .999999642}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.13258049, y: 0, z: 0}
+      rotation: {x: -0.0000002752056, y: 0.00000019744022, z: -0.028550461, w: 0.99959236}
+      scale: {x: 0.9999996, y: 0.99999994, z: 0.99999964}
     - name: FAT_OGRE_ L Finger22
-      position: {x: -.0849837512, y: 0, z: -3.81469718e-08}
-      rotation: {x: 5.96046306e-08, y: -4.47034729e-08, z: -.116402268, w: .993202209}
-      scale: {x: .999999821, y: .999999702, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.08498375, y: 0, z: -0.000000038146972}
+      rotation: {x: 0.00000005960463, y: -0.000000044703473, z: -0.11640227, w: 0.9932022}
+      scale: {x: 0.9999998, y: 0.9999997, z: 0.99999994}
     - name: FAT_OGRE_ L Finger3
-      position: {x: -.347059309, y: -.033720091, z: .0613369755}
-      rotation: {x: -.00304850354, y: -.0532425754, z: -.0609349981, w: .996716082}
-      scale: {x: .999999881, y: .999999881, z: .999999642}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.3470593, y: -0.03372009, z: 0.061336976}
+      rotation: {x: -0.0030485035, y: -0.053242575, z: -0.060934998, w: 0.9967161}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999964}
     - name: FAT_OGRE_ L Finger31
-      position: {x: -.11420013, y: 0, z: -1.14440915e-07}
-      rotation: {x: 1.24797168e-07, y: -1.44541195e-06, z: -.0348775983, w: .999391615}
-      scale: {x: .999999762, y: 1, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.11420013, y: 0, z: -0.000000114440915}
+      rotation: {x: 0.00000012479717, y: -0.000001445412, z: -0.0348776, w: 0.9993916}
+      scale: {x: 0.99999976, y: 1, z: 1.0000001}
     - name: FAT_OGRE_ L Finger32
-      position: {x: -.0726370215, y: 0, z: 7.62939436e-08}
-      rotation: {x: 1.49011594e-08, y: -1.49011594e-08, z: -.116402224, w: .99320215}
-      scale: {x: 1, y: 1, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.07263702, y: 0, z: 0.000000076293944}
+      rotation: {x: 0.000000014901159, y: -0.000000014901159, z: -0.11640222, w: 0.99320215}
+      scale: {x: 1, y: 1, z: 1.0000002}
     - name: FAT_OGRE_ L Finger4
-      position: {x: -.345959157, y: -.0158380121, z: .146613196}
-      rotation: {x: -.0104556028, y: -.0573190115, z: -.0537999123, w: .996850431}
-      scale: {x: .999999702, y: .999999762, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.34595916, y: -0.015838012, z: 0.1466132}
+      rotation: {x: -0.010455603, y: -0.05731901, z: -0.053799912, w: 0.99685043}
+      scale: {x: 0.9999997, y: 0.99999976, z: 1.0000001}
     - name: FAT_OGRE_ L Finger41
-      position: {x: -.114465632, y: 3.05175774e-07, z: -1.52587887e-07}
-      rotation: {x: 6.79865266e-08, y: -1.75833634e-06, z: -.0338239297, w: .999427855}
-      scale: {x: .99999994, y: .99999994, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.11446563, y: 0.00000030517577, z: -0.00000015258789}
+      rotation: {x: 0.00000006798653, y: -0.0000017583363, z: -0.03382393, w: 0.99942786}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000002}
     - name: FAT_OGRE_ L Finger42
-      position: {x: -.0726670846, y: 0, z: 1.52587887e-07}
-      rotation: {x: 1.49011598e-07, y: 4.470348e-08, z: -.116402224, w: .993202209}
-      scale: {x: 1.00000036, y: 1.00000012, z: .999999821}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.072667085, y: 0, z: 0.00000015258789}
+      rotation: {x: 0.0000001490116, y: 0.00000004470348, z: -0.11640222, w: 0.9932022}
+      scale: {x: 1.0000004, y: 1.0000001, z: 0.9999998}
     - name: FAT_OGRE_ R Clavicle
-      position: {x: -.501747727, y: 7.62939408e-07, z: -.234121427}
-      rotation: {x: -.653506041, y: -.0600077808, z: -.752774358, w: -.0515722036}
-      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.5017477, y: 0.0000007629394, z: -0.23412143}
+      rotation: {x: -0.65350604, y: -0.06000778, z: -0.75277436, w: -0.051572204}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
     - name: FAT_OGRE_ R UpperArm
-      position: {x: -.463570535, y: 9.53674295e-09, z: 0}
-      rotation: {x: .0554302856, y: .0438161083, z: -.0694857016, w: -.99507761}
-      scale: {x: .999999762, y: .999999821, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.46357054, y: 0.000000009536743, z: 0}
+      rotation: {x: 0.055430286, y: 0.04381611, z: -0.0694857, w: -0.9950776}
+      scale: {x: 0.99999976, y: 0.9999998, z: 1.0000002}
     - name: FAT_OGRE_ R Forearm
-      position: {x: -.885207355, y: 0, z: -3.05175774e-07}
-      rotation: {x: -.0107143484, y: .0283272807, z: -.0303003918, w: -.99908191}
-      scale: {x: .999999762, y: .999999881, z: .999999821}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.88520736, y: 0, z: -0.00000030517577}
+      rotation: {x: -0.010714348, y: 0.02832728, z: -0.030300392, w: -0.9990819}
+      scale: {x: 0.99999976, y: 0.9999999, z: 0.9999998}
     - name: FAT_OGRE_ R Hand
-      position: {x: -.671918869, y: 7.62939436e-08, z: 0}
-      rotation: {x: .706825256, y: 8.94069458e-08, z: 0, w: .707388222}
-      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.67191887, y: 0.000000076293944, z: 0}
+      rotation: {x: 0.70682526, y: 0.000000089406946, z: 0, w: 0.7073882}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
     - name: default001
-      position: {x: -.302046269, y: .10833618, z: -.00258071884}
-      rotation: {x: .00777467061, y: -.0200417638, z: -.811577439, w: .583849251}
-      scale: {x: .999999821, y: 1.00000036, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.30204627, y: 0.10833618, z: -0.0025807188}
+      rotation: {x: 0.0077746706, y: -0.020041764, z: -0.81157744, w: 0.58384925}
+      scale: {x: 0.9999998, y: 1.0000004, z: 0.99999994}
     - name: FAT_OGRE_ R Finger0
-      position: {x: -.0658768415, y: .0486706533, z: .125591278}
-      rotation: {x: .440657616, y: -.43425554, z: -.204937145, w: -.758448243}
-      scale: {x: .999999523, y: .99999994, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.06587684, y: 0.048670653, z: 0.12559128}
+      rotation: {x: 0.44065762, y: -0.43425554, z: -0.20493715, w: -0.75844824}
+      scale: {x: 0.9999995, y: 0.99999994, z: 0.99999994}
     - name: FAT_OGRE_ R Finger01
-      position: {x: -.135676727, y: 7.62939436e-08, z: 0}
-      rotation: {x: 8.94069601e-08, y: 5.36441746e-07, z: -.0347987674, w: .999394357}
-      scale: {x: 1.00000012, y: .99999994, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.13567673, y: 0.000000076293944, z: 0}
+      rotation: {x: 0.00000008940696, y: 0.00000053644175, z: -0.034798767, w: 0.99939436}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
     - name: FAT_OGRE_ R Finger02
-      position: {x: -.101046368, y: -1.52587887e-07, z: 0}
-      rotation: {x: -2.98023224e-08, y: 5.96046448e-08, z: -.0390340686, w: .999237895}
-      scale: {x: .999999881, y: 1.00000024, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.10104637, y: -0.00000015258789, z: 0}
+      rotation: {x: -0.000000029802322, y: 0.000000059604645, z: -0.03903407, w: 0.9992379}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1}
     - name: FAT_OGRE_ R Finger1
-      position: {x: -.32893011, y: .0248367302, z: .15051353}
-      rotation: {x: -.123003051, y: .110266745, z: .013842633, w: .986164272}
-      scale: {x: 1.00000012, y: 1.00000012, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.3289301, y: 0.02483673, z: 0.15051353}
+      rotation: {x: -0.12300305, y: 0.110266745, z: 0.013842633, w: 0.9861643}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: FAT_OGRE_ R Finger11
-      position: {x: -.112244569, y: -3.05175774e-07, z: -7.62939436e-08}
-      rotation: {x: -1.34110408e-07, y: -8.64267065e-07, z: -.0321854055, w: .999481916}
-      scale: {x: .999999881, y: .999999881, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.11224457, y: -0.00000030517577, z: -0.000000076293944}
+      rotation: {x: -0.00000013411041, y: -0.00000086426707, z: -0.032185405, w: 0.9994819}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
     - name: FAT_OGRE_ R Finger12
-      position: {x: -.0903965011, y: 0, z: 0}
-      rotation: {x: -1.49011612e-08, y: 5.96046448e-08, z: -.116402112, w: .993202209}
-      scale: {x: 1.00000036, y: 1.00000036, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.0903965, y: 0, z: 0}
+      rotation: {x: -0.000000014901161, y: 0.000000059604645, z: -0.11640211, w: 0.9932022}
+      scale: {x: 1.0000004, y: 1.0000004, z: 0.99999994}
     - name: FAT_OGRE_ R Finger2
-      position: {x: -.34925133, y: -.00986663811, z: .0561125539}
-      rotation: {x: .000398177654, y: .00930771232, z: 3.74857336e-06, w: .999956608}
-      scale: {x: 1.00000012, y: 1.00000012, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.34925133, y: -0.009866638, z: 0.056112554}
+      rotation: {x: 0.00039817765, y: 0.009307712, z: 0.0000037485734, w: 0.9999566}
+      scale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
     - name: FAT_OGRE_ R Finger21
-      position: {x: -.132580489, y: 0, z: 3.81469718e-08}
-      rotation: {x: 2.19792071e-07, y: -4.2468298e-07, z: -.0285507049, w: .999592364}
-      scale: {x: .999999881, y: 1, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.13258049, y: 0, z: 0.000000038146972}
+      rotation: {x: 0.00000021979207, y: -0.00000042468298, z: -0.028550705, w: 0.99959236}
+      scale: {x: 0.9999999, y: 1, z: 0.9999999}
     - name: FAT_OGRE_ R Finger22
-      position: {x: -.0849837512, y: 0, z: 3.81469718e-08}
-      rotation: {x: 0, y: 0, z: -.116402157, w: .993202209}
-      scale: {x: .999999762, y: 1, z: .999999821}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.08498375, y: 0, z: 0.000000038146972}
+      rotation: {x: 0, y: 0, z: -0.11640216, w: 0.9932022}
+      scale: {x: 0.99999976, y: 1, z: 0.9999998}
     - name: FAT_OGRE_ R Finger3
-      position: {x: -.347059458, y: -.033720091, z: -.0613370873}
-      rotation: {x: .00304857944, y: .0532427169, z: -.0609342977, w: .996716082}
-      scale: {x: .99999994, y: 1, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.34705946, y: -0.03372009, z: -0.061337087}
+      rotation: {x: 0.0030485794, y: 0.053242717, z: -0.060934298, w: 0.9967161}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
     - name: FAT_OGRE_ R Finger31
-      position: {x: -.11420013, y: -3.05175774e-07, z: -1.14440915e-07}
-      rotation: {x: 1.00582817e-07, y: -1.44541229e-06, z: -.0348746181, w: .999391735}
-      scale: {x: .999999881, y: 1.00000024, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.11420013, y: -0.00000030517577, z: -0.000000114440915}
+      rotation: {x: 0.00000010058282, y: -0.0000014454123, z: -0.034874618, w: 0.99939173}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000001}
     - name: FAT_OGRE_ R Finger32
-      position: {x: -.0726370215, y: 0, z: 1.14440915e-07}
-      rotation: {x: 1.4901163e-08, y: 0, z: -.116402224, w: .993202209}
-      scale: {x: .999999881, y: 1.00000024, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.07263702, y: 0, z: 0.000000114440915}
+      rotation: {x: 0.000000014901163, y: 0, z: -0.11640222, w: 0.9932022}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1}
     - name: FAT_OGRE_ R Finger4
-      position: {x: -.345959097, y: -.0158377066, z: -.14661327}
-      rotation: {x: .010454799, y: .0573194921, z: -.0538015477, w: .996850312}
-      scale: {x: .999999881, y: 1, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.3459591, y: -0.015837707, z: -0.14661327}
+      rotation: {x: 0.010454799, y: 0.057319492, z: -0.053801548, w: 0.9968503}
+      scale: {x: 0.9999999, y: 1, z: 0.99999994}
     - name: FAT_OGRE_ R Finger41
-      position: {x: -.114465632, y: 0, z: -7.62939436e-08}
-      rotation: {x: -2.79396744e-07, y: -1.33365381e-06, z: -.0338234007, w: .999427915}
-      scale: {x: .999999881, y: .99999994, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.11446563, y: 0, z: -0.000000076293944}
+      rotation: {x: -0.00000027939674, y: -0.0000013336538, z: -0.0338234, w: 0.9994279}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.9999999}
     - name: FAT_OGRE_ R Finger42
-      position: {x: -.0726670846, y: 0, z: 7.62939436e-08}
-      rotation: {x: 7.4505806e-09, y: 2.98023224e-08, z: -.116402291, w: .993202209}
-      scale: {x: .999999821, y: 1.00000012, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.072667085, y: 0, z: 0.000000076293944}
+      rotation: {x: 0.000000007450581, y: 0.000000029802322, z: -0.11640229, w: 0.9932022}
+      scale: {x: 0.9999998, y: 1.0000001, z: 1.0000002}
     - name: FAT_OGRE_ Neck
-      position: {x: -.501796842, y: -.000165700912, z: -4.49690563e-10}
-      rotation: {x: -1.49011612e-08, y: 5.96046448e-07, z: -.143189713, w: .989695311}
-      scale: {x: 1.00000036, y: 1.00000048, z: 1.00000036}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.50179684, y: -0.00016570091, z: -4.4969056e-10}
+      rotation: {x: -0.000000014901161, y: 0.00000059604645, z: -0.14318971, w: 0.9896953}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000004}
     - name: FAT_OGRE_ Head
-      position: {x: -.21697326, y: 0, z: 0}
-      rotation: {x: 8.94069672e-08, y: -8.94069672e-08, z: -.143583804, w: -.989638209}
-      scale: {x: .999999762, y: .999999762, z: .999999642}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.21697326, y: 0, z: 0}
+      rotation: {x: 0.00000008940697, y: -0.00000008940697, z: -0.1435838, w: -0.9896382}
+      scale: {x: 0.99999976, y: 0.99999976, z: 0.99999964}
     - name: FAT_OGRE_ Ponytail1
-      position: {x: -.08708404, y: .0578508265, z: 1.20098855e-06}
-      rotation: {x: 5.73694649e-07, y: 2.02655769e-06, z: -.841611803, w: .540082932}
-      scale: {x: 1.00000048, y: 1.00000072, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.08708404, y: 0.057850827, z: 0.0000012009885}
+      rotation: {x: 0.00000057369465, y: 0.0000020265577, z: -0.8416118, w: 0.54008293}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000002}
     - name: FAT_OGRE_EYE_L
-      position: {x: -.208630055, y: .282331645, z: .0900003016}
-      rotation: {x: -.716855705, y: .697221577, z: -1.28522501e-07, w: 1.05192873e-06}
-      scale: {x: .999999762, y: 1, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.20863006, y: 0.28233165, z: 0.0900003}
+      rotation: {x: -0.7168557, y: 0.6972216, z: -0.0000001285225, w: 0.0000010519287}
+      scale: {x: 0.99999976, y: 1, z: 1}
     - name: FAT_OGRE_EYE_R
-      position: {x: -.208630055, y: .282331944, z: -.0899996907}
-      rotation: {x: 1.16555009e-06, y: 1.7881392e-07, z: -.697221458, w: .716855943}
-      scale: {x: .999999583, y: .999999523, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.20863006, y: 0.28233194, z: -0.08999969}
+      rotation: {x: 0.0000011655501, y: 0.00000017881392, z: -0.69722146, w: 0.71685594}
+      scale: {x: 0.9999996, y: 0.9999995, z: 1}
     - name: FAT_OGRE_SAGGING_BELLY
-      position: {x: -.0137037653, y: .390121847, z: -9.15527323e-07}
-      rotation: {x: -.54094404, y: .841058671, z: -1.66893005e-06, w: -9.68575478e-08}
-      scale: {x: .999999702, y: .99999994, z: .999999583}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.013703765, y: 0.39012185, z: -0.0000009155273}
+      rotation: {x: -0.54094404, y: 0.8410587, z: -0.00000166893, w: -0.00000009685755}
+      scale: {x: 0.9999997, y: 0.99999994, z: 0.9999996}
     - name: FAT_OGRE_ L Thigh
-      position: {x: 4.57763662e-07, y: 6.00814815e-07, z: .376551241}
-      rotation: {x: -.0169129949, y: .997138619, z: .0012128948, w: .0736686811}
-      scale: {x: .999999762, y: 1.00000024, z: .999999821}
-      transformModified: 1
+      parentName: 
+      position: {x: 0.00000045776366, y: 0.0000006008148, z: 0.37655124}
+      rotation: {x: -0.016912995, y: 0.9971386, z: 0.0012128948, w: 0.07366868}
+      scale: {x: 0.99999976, y: 1.0000002, z: 0.9999998}
     - name: FAT_OGRE_ L Calf
-      position: {x: -.921804011, y: 0, z: 0}
-      rotation: {x: 7.4505806e-08, y: 2.98023224e-08, z: .000456824899, w: .99999994}
-      scale: {x: 1.00000012, y: 1, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.921804, y: 0, z: 0}
+      rotation: {x: 0.000000074505806, y: 0.000000029802322, z: 0.0004568249, w: 0.99999994}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
     - name: FAT_OGRE_ L Foot
-      position: {x: -.647027552, y: 9.53674295e-09, z: 0}
-      rotation: {x: -.106250942, y: .0714640915, z: .024302721, w: .991470098}
-      scale: {x: .999999762, y: .999999821, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.64702755, y: 0.000000009536743, z: 0}
+      rotation: {x: -0.10625094, y: 0.07146409, z: 0.024302721, w: 0.9914701}
+      scale: {x: 0.99999976, y: 0.9999998, z: 1}
     - name: FAT_OGRE_ L Toe0
-      position: {x: -.248775989, y: .366612464, z: -3.81469718e-08}
-      rotation: {x: 5.96046377e-08, y: 2.11756834e-08, z: -.707106709, w: .707106888}
-      scale: {x: 1.0000006, y: 1.00000024, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.24877599, y: 0.36661246, z: -0.000000038146972}
+      rotation: {x: 0.000000059604638, y: 0.000000021175683, z: -0.7071067, w: 0.7071069}
+      scale: {x: 1.0000006, y: 1.0000002, z: 1.0000002}
     - name: FAT_OGRE_ R Thigh
-      position: {x: -4.57763662e-07, y: -4.48226928e-07, z: -.376551241}
-      rotation: {x: -.0169129074, y: .997138739, z: -.00121425092, w: -.0736674964}
-      scale: {x: .999999762, y: .999999881, z: .999999762}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.00000045776366, y: -0.00000044822693, z: -0.37655124}
+      rotation: {x: -0.016912907, y: 0.99713874, z: -0.0012142509, w: -0.0736675}
+      scale: {x: 0.99999976, y: 0.9999999, z: 0.99999976}
     - name: FAT_OGRE_ R Calf
-      position: {x: -.921803892, y: 0, z: -7.62939436e-08}
-      rotation: {x: -8.94069601e-08, y: -5.96046377e-08, z: .000456854643, w: .999999881}
-      scale: {x: .99999994, y: 1, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.9218039, y: 0, z: -0.000000076293944}
+      rotation: {x: -0.00000008940696, y: -0.000000059604638, z: 0.00045685464, w: 0.9999999}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
     - name: FAT_OGRE_ R Foot
-      position: {x: -.647027373, y: 0, z: 3.81469718e-08}
-      rotation: {x: .106250852, y: -.0714642182, z: .0243028365, w: .991470098}
-      scale: {x: 1.00000012, y: 1.00000024, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.6470274, y: 0, z: 0.000000038146972}
+      rotation: {x: 0.10625085, y: -0.07146422, z: 0.024302837, w: 0.9914701}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000001}
     - name: FAT_OGRE_ R Toe0
-      position: {x: -.248775989, y: .366612375, z: 3.81469718e-08}
-      rotation: {x: -2.98023224e-08, y: 3.84290573e-08, z: -.707106829, w: .707106769}
-      scale: {x: 1.00000012, y: 1, z: .99999994}
-      transformModified: 1
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+      parentName: 
+      position: {x: -0.24877599, y: 0.36661237, z: 0.000000038146972}
+      rotation: {x: -0.000000029802322, y: 0.000000038429057, z: -0.7071068, w: 0.70710677}
+      scale: {x: 1.0000001, y: 1, z: 0.99999994}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 5c5013c8d6859ec4e8c0c14ea3df8cd6,
-    type: 3}
-  animationType: 3
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1112,6 +1112,7 @@ public class ModelE_Lancer : EnemyMeleeClass
         {
             if (!isStuned && !cantBeStuned)
             {
+               
                 StunedEvent();
                 isStuned = true;
                 StartCoroutine(CanDodgeDelay());
@@ -1124,6 +1125,7 @@ public class ModelE_Lancer : EnemyMeleeClass
 
         if(angle > 90 && typeOfDamage == EnemyEntity.DamageType.Normal && animClipName != view.animDictionary[ViewerE_Lancer.EnemyMeleeAnim.Attack1] && !canBeHit)
         {
+     
             dodgePoints++;
             timeOnDodge = 1.5f;
             StartCoroutine(OnDodge());

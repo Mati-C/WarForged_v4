@@ -70,7 +70,7 @@ public class MagicMissilePlayer : MonoBehaviour
     {
         if(c.gameObject.GetComponent<EnemyEntity>())
         {
-            c.gameObject.GetComponent<EnemyEntity>().GetDamage(player.magicMissileDamage, EnemyEntity.DamageType.Normal, 1);
+            c.gameObject.GetComponent<EnemyEntity>().GetDamage(player.magicMissileDamage, EnemyEntity.DamageType.Proyectile, 1);
         }
 
         StartCoroutine(DestroyExplotion());

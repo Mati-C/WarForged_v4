@@ -134,6 +134,8 @@ public class Model_B_Ogre : EnemyEntity
 
             IdleEvent();
 
+            Debug.Log("idle");
+
             if (target.life >= 0)
             {
 
@@ -141,6 +143,7 @@ public class Model_B_Ogre : EnemyEntity
 
                 if (isPersuit && AwakeAnimation) SendInputToFSM(EnemyInputs.PERSUIT);
 
+                
             }
         };
 
@@ -158,6 +161,8 @@ public class Model_B_Ogre : EnemyEntity
             dir = (target.transform.position - transform.position).normalized;
 
             dir.y = 0;
+
+            Debug.Log("persuit");
 
             targetRotation = Quaternion.LookRotation(dir, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
@@ -307,6 +312,8 @@ public class Model_B_Ogre : EnemyEntity
             if (!onAttackArea && isPersuit && !onAnimationAttack) SendInputToFSM(EnemyInputs.PERSUIT);
 
         };
+
+        _myFsm = new EventFSM<EnemyInputs>(idle);
     }
 
     void Start()

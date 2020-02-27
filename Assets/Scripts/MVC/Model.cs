@@ -846,7 +846,7 @@ public class Model : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
             }
 
-            if (targetLocked.isDead && targetLocked || isDead)
+            if (targetLocked.isDead && targetLocked || life<=0)
             {
                 enemiesToLock.Remove(targetLocked);
 
