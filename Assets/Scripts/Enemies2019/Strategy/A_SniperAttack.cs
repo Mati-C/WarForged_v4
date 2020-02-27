@@ -79,7 +79,7 @@ public class A_SniperAttack : i_EnemyActions
 
         if (_e.timeToShoot <=0 && !_e.onDamage && !_e.target.onCounterAttack)
         {
-            Debug.Log(2);
+
             Quaternion targetRotation;
             var _dir = (_e.target.transform.position - _e.transform.position).normalized;
             _dir.y = 0;
@@ -96,7 +96,6 @@ public class A_SniperAttack : i_EnemyActions
 
             if (Physics.Raycast(_e.transform.position + new Vector3(0,1,0), _e.transform.forward, out hit, _distanceToTarget, _e.layerPlayer))
             {
-                Debug.Log(hit.transform.name);
                 if (hit.transform.name == _e.target.name) onSight = true;
             }
 

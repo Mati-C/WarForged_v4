@@ -865,6 +865,12 @@ public class Model : MonoBehaviour
                            
             }
 
+            if (targetLockedOn && life <=0)
+            {
+                targetLockedOn = false;
+                _camController.StopLockedTarget();
+                targetLocked = null;
+            }
         }
 
         timeOnCombat -= Time.deltaTime;
@@ -1075,7 +1081,6 @@ public class Model : MonoBehaviour
             if (!isRuning)
             {
                
-
                 Trot();
 
                 if (key)
@@ -1125,7 +1130,6 @@ public class Model : MonoBehaviour
         EnemyEntity detectedEnemy;
         allEnemies = FindObjectsOfType<EnemyEntity>();
         detectedEnemy = allEnemies.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
-        print(detectedEnemy != null);
         enemiesToLock.Add(detectedEnemy);
         enemiesToLock.AddRange(detectedEnemy.nearEntities);
 
@@ -1418,6 +1422,7 @@ public class Model : MonoBehaviour
 
                 if (isInCombat && !view.anim.GetBool("TakeSword2"))
                 {
+                    
                     view.EndDodge();
                     countAnimAttack++;
                     Attack();
@@ -1696,7 +1701,7 @@ public class Model : MonoBehaviour
 
         if (!isBehind && !isProyectile && onDefence &&  damageType == DamagePlayerType.Normal)
         {
-            if(!isDead)SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
+            if(!isDead && life>0)SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
 
             if (perfectParryTimer <= 0.5f)
             {
@@ -1724,7 +1729,7 @@ public class Model : MonoBehaviour
             timeToHeal = maxTimeToHeal;
             OnDamage();
             impulse = false;
-            if (!isDead) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            if (!isDead && life > 0) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
         }
 
         if (damageType == DamagePlayerType.Heavy && onDefence)
@@ -1743,7 +1748,7 @@ public class Model : MonoBehaviour
             UpdateLife(-damage);
             timeToHeal = maxTimeToHeal;
             impulse = false;
-            if (!isDead) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            if (!isDead && life > 0) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
 
             if (life > 0 && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.RollAttack]
                         && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.Dodge_Back]

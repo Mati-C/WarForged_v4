@@ -26,6 +26,7 @@ public class ModelB_Cyclops : EnemyEntity
 
     ViewB_Cyclops _view;
     bool _restart;
+    bool activeHeavyParticlesAgain;
     Vector3 _startPos;
 
     public bool onAttackArea;
@@ -47,7 +48,14 @@ public class ModelB_Cyclops : EnemyEntity
     IEnumerator DelayChangeAttackState(float t)
     {        
         yield return new WaitForSeconds(t);
+        activeHeavyParticlesAgain = false;
         changeAttack = false;
+    }
+
+    IEnumerator StopHeavyParticles()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _view.HeavyParticlesActiveFalse();
     }
 
     IEnumerator MoveWhenAttck()
@@ -191,11 +199,20 @@ public class ModelB_Cyclops : EnemyEntity
         {
             delayToAttack -= Time.deltaTime;
 
-            if(delayToAttack <=0)
+            if (delayToAttack <= 0.5f && !activeHeavyParticlesAgain)
             {
+                _view.HeavyParticlesActive();
+                activeHeavyParticlesAgain = true;
+                StartCoroutine(StopHeavyParticles());
+            }
+
+            if (delayToAttack <=0)
+            {
+               // _view.HeavyParticlesActiveFalse();
                 Attack1Event();
                 onAnimationAttack = true;
                 delayToAttack = maxDelayToAttack;
+                StartCoroutine(DelayChangeAttackState(1.5f));
             }
 
             if (delayToAttack > 0 && !onAnimationAttack)
@@ -238,12 +255,19 @@ public class ModelB_Cyclops : EnemyEntity
                 changeAttack = true;
             }
 
+            if (delayToAttack <= 0.5f && !activeHeavyParticlesAgain)
+            {
+                _view.HeavyParticlesActive();
+                activeHeavyParticlesAgain = true;
+                StartCoroutine(StopHeavyParticles());
+            }
+
             if (_ID_Behaviour == 0)
             {
-                delayToAttack -= Time.deltaTime;
-
+              
                 if (delayToAttack <= 0)
                 {
+                   // _view.HeavyParticlesActiveFalse();
                     Attack1Event();
                     actualDamage = damage1;
                     onAnimationAttack = true;
@@ -264,6 +288,7 @@ public class ModelB_Cyclops : EnemyEntity
 
                 if (delayToAttack <= 0)
                 {
+                   // _view.HeavyParticlesActiveFalse();
                     Attack2Event();
                     actualDamage = damage2;
                     onAnimationAttack = true;
@@ -308,12 +333,20 @@ public class ModelB_Cyclops : EnemyEntity
                 changeAttack = true;
             }
 
+            if (delayToAttack <= 0.25f && !activeHeavyParticlesAgain)
+            {
+                _view.HeavyParticlesActive();
+                activeHeavyParticlesAgain = true;
+                StartCoroutine(StopHeavyParticles());
+            }
+
             if (_ID_Behaviour == 0)
             {
                 delayToAttack -= Time.deltaTime;
 
                 if (delayToAttack <= 0)
                 {
+                   // _view.HeavyParticlesActiveFalse();
                     Attack1Event();
                     actualDamage = damage1;
                     onAnimationAttack = true;
@@ -334,6 +367,7 @@ public class ModelB_Cyclops : EnemyEntity
 
                 if (delayToAttack <= 0)
                 {
+                  //  _view.HeavyParticlesActiveFalse();
                     Attack2Event();
                     actualDamage = damage2;
                     onAnimationAttack = true;
@@ -354,6 +388,7 @@ public class ModelB_Cyclops : EnemyEntity
 
                 if (delayToAttack <= 0)
                 {
+                  //  _view.HeavyParticlesActiveFalse();
                     Attack3Event();
                     actualDamage = damage3;
                     onAnimationAttack = true;
@@ -488,6 +523,7 @@ public class ModelB_Cyclops : EnemyEntity
     {
         SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
         life -= damage;
+        _view.CreatePopText(damage);
     }
 
     public override Node GetMyNode()

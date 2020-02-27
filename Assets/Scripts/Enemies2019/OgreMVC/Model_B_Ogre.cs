@@ -399,8 +399,8 @@ public class Model_B_Ogre : EnemyEntity
     {
         AwakeAnimation = false;
         life = totalLife;
-     //   _view.auxAwake = false;
-      //  _view.healthBar.gameObject.SetActive(false);
+        _view.auxAwake = false;
+        _view.healthBar.gameObject.SetActive(false);
         fase2 = false;
         fase3 = false;
         transform.position = _startPos;

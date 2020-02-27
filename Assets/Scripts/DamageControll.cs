@@ -7,9 +7,11 @@ public class DamageControll : MonoBehaviour
     public bool teleport1;
     public bool teleport2;
     public bool teleport3;
+    public bool teleport4;
     public Transform pivot1;
     public Transform pivot2;
     public Transform pivot3;
+    public Transform pivot4;
 
     public List<EnemyEntity> enemies = new List<EnemyEntity>();
 
@@ -44,6 +46,12 @@ public class DamageControll : MonoBehaviour
         {
             _player.transform.position = pivot3.position;
             teleport3 = false;
+        }
+
+        if (teleport4)
+        {
+            _player.transform.position = pivot4.position;
+            teleport4 = false;
         }
     }
 

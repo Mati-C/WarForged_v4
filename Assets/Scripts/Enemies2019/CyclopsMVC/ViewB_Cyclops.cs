@@ -11,14 +11,21 @@ public class ViewB_Cyclops : MonoBehaviour
     ModelB_Cyclops _model;
     public GameObject lockParticle;
     public Transform lockParticlePosition;
+    GameObject levelUI;
     public Camera cam;
     public bool auxAwake;
+    public ParticleSystem furyParticles;
+    public ParticleSystem smashParticles;
+    public ParticleSystem heavyParticles;
+    public ParticleSystem bloodParticles;
+    public PopText prefabTextDamage;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         _model = GetComponent<ModelB_Cyclops>();
         healthBarMat = healthBar.material;
+        levelUI = GameObject.Find("LEVEL UI");
     }
 
     void Start()
@@ -55,11 +62,47 @@ public class ViewB_Cyclops : MonoBehaviour
         SoundManager.instance.BossMusic(true);
     }
 
+    public void CreatePopText(float damage)
+    {
+        bloodParticles.Play();
+        PopText text = Instantiate(prefabTextDamage);
+        StartCoroutine(FollowEnemy(text));
+        text.transform.SetParent(levelUI.transform, false);
+        text.SetDamage(damage);
+    }
+
+    IEnumerator FollowEnemy(PopText text)
+    {
+        while (text != null)
+        {
+            Vector2 screenPos = cam.WorldToScreenPoint(transform.position + (Vector3.up * 2));
+            text.transform.position = screenPos;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public void AwakeAnimFalse()
     {
         anim.SetBool("Awake", false);
         _model.AwakeStateActivate();
         healthBar.gameObject.SetActive(true);
+    }
+
+    public void SmashParticlesActive()
+    {
+        smashParticles.Play();
+    }
+
+    public void HeavyParticlesActive()
+    {
+       
+        heavyParticles.Play();
+    }
+
+    public void HeavyParticlesActiveFalse()
+    {
+        heavyParticles.Stop();
+        heavyParticles.Simulate(0, false, true, true);
     }
 
     public void IdleAnimation()
@@ -77,18 +120,37 @@ public class ViewB_Cyclops : MonoBehaviour
 
     public void Attack1OnPlaceAnimation()
     {
+        int r = Random.Range(0, 3);
+
+        if(r == 0) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK1, transform.position, true, 1);
+
+        if(r == 1) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK2, transform.position, true, 1);
+
+        if(r == 2) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK3, transform.position, true, 1);
+
         anim.SetBool("Attack1OnPlace", true);
         anim.SetBool("Move", false);
     }
 
     public void Attack2OnPlaceAnimation()
     {
+        int r = Random.Range(0, 3);
+
+        if (r == 0) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK1, transform.position, true, 1);
+
+        if (r == 1) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK2, transform.position, true, 1);
+
+        if (r == 2) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK3, transform.position, true, 1);
+
         anim.SetBool("Smash", true);
         anim.SetBool("Move", false);
     }
 
     public void Attack3Combo()
     {
+        SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
+
+        furyParticles.Play();
         anim.SetBool("Combo", true);
         anim.SetBool("Move", false);
     }
@@ -108,6 +170,7 @@ public class ViewB_Cyclops : MonoBehaviour
 
     public void Attack3ComboFalse()
     {
+        furyParticles.Stop();
         anim.SetBool("Combo", false);
         _model.AnimationAttackFalse();
     }
@@ -115,6 +178,9 @@ public class ViewB_Cyclops : MonoBehaviour
     public void DieAnim()
     {
         anim.SetBool("Die", true);
+        heavyParticles.Stop();
+        furyParticles.Stop();
+        smashParticles.Stop();
         healthBar.gameObject.SetActive(false);
     }
 }

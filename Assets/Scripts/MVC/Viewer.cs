@@ -407,9 +407,17 @@ public class Viewer : MonoBehaviour
 
     public void ParryAnim()
     {
-        anim.SetBool("Parry", true);
+        StartCoroutine(DelayAnimActive("Parry", 0.5f));
+    }
+
+    IEnumerator DelayAnimActive(string animName, float t)
+    {
+        anim.SetBool(animName, true);
+        yield return new WaitForSeconds(t);
+        anim.SetBool(animName, false);
         currentAttackAnimation = 0;
         model.countAnimAttack = 0;
+        anim.SetInteger("AttackAnim", currentAttackAnimation);
     }
 
     public void ParryAnimFalse()
@@ -776,7 +784,7 @@ public class Viewer : MonoBehaviour
     {
 
         blood.Play();
-        if (!model.onPowerState)
+        if (!model.onPowerState && model.life>0)
         {
             StartCoroutine(DamageDelay());
             ShakeCameraDamage(1, 1.5f, 0.5f);

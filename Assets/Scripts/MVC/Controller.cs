@@ -147,18 +147,12 @@ public class Controller : MonoBehaviour
                 model.ClassChange();
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if(model.classType == Model.PlayerClass.Warrior) model.LockEnemies(); 
+            if (Input.GetKeyDown(KeyCode.E)) model.LockEnemies();
 
-               // if(model.classType == Model.PlayerClass.Wizzard) model.AimCameraOn(); 
-
-                
-            }
 
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                model.ChangeTarget();
+              //  model.ChangeTarget();
             }
 
             if (!model.isPlatformJumping && model.fadeTimer > view.fadeTime && !view.pauseMenu.activeSelf)
