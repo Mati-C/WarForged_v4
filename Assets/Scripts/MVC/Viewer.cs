@@ -845,7 +845,8 @@ public class Viewer : MonoBehaviour
         {
             t += Time.deltaTime;
             orb.transform.position += Vector3.up * Time.deltaTime * orbSpeed;
-
+            anim.SetBool("IsDead", true);
+            anim.SetBool("IdleCombat", false);
             if (t > 3)
             {
                 startFade.enabled = true;
