@@ -82,13 +82,14 @@ public class ModelB_Cyclops : EnemyEntity
              
         var pos3 = transform.position;
         float time3 = 1;
-
+        radiusAttack = 3;
         while (time3 > 0)
         {
             time3 -= Time.deltaTime;
             transform.position = Vector3.Lerp(pos3, transform.position + transform.forward  * Time.deltaTime, 2);
             yield return new WaitForEndOfFrame();
         }
+        radiusAttack = 2;
     }
 
     private void Awake()
@@ -267,7 +268,8 @@ public class ModelB_Cyclops : EnemyEntity
               
                 if (delayToAttack <= 0)
                 {
-                   // _view.HeavyParticlesActiveFalse();
+                    radiusAttack = 2;
+                    // _view.HeavyParticlesActiveFalse();
                     Attack1Event();
                     actualDamage = damage1;
                     onAnimationAttack = true;
@@ -288,7 +290,8 @@ public class ModelB_Cyclops : EnemyEntity
 
                 if (delayToAttack <= 0)
                 {
-                   // _view.HeavyParticlesActiveFalse();
+                    radiusAttack = 2;
+                    // _view.HeavyParticlesActiveFalse();
                     Attack2Event();
                     actualDamage = damage2;
                     onAnimationAttack = true;
@@ -346,7 +349,8 @@ public class ModelB_Cyclops : EnemyEntity
 
                 if (delayToAttack <= 0)
                 {
-                   // _view.HeavyParticlesActiveFalse();
+                    radiusAttack = 2;
+                    // _view.HeavyParticlesActiveFalse();
                     Attack1Event();
                     actualDamage = damage1;
                     onAnimationAttack = true;
@@ -367,7 +371,8 @@ public class ModelB_Cyclops : EnemyEntity
 
                 if (delayToAttack <= 0)
                 {
-                  //  _view.HeavyParticlesActiveFalse();
+                    radiusAttack = 3;
+                    //  _view.HeavyParticlesActiveFalse();
                     Attack2Event();
                     actualDamage = damage2;
                     onAnimationAttack = true;

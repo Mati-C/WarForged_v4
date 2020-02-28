@@ -221,10 +221,33 @@ public class Model : MonoBehaviour
     public int combatIndex;
     Vector3 soundOrigin;
 
-    IEnumerator SpellCD()
+    float _cdFire1;
+    float _cdFire2;
+
+    IEnumerator SpellCD_Fire1()
     {
-        yield return new WaitForSeconds(5f);
-        spellCount = 3;
+        _cdFire1 = 5;
+
+        while (_cdFire1 > 0)
+        {
+            _cdFire1 -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        spellCount++;
+    }
+
+    IEnumerator SpellCD_Fire2()
+    {
+        _cdFire2 = 5;
+
+        while (_cdFire2 > 0)
+        {
+            _cdFire2 -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        spellCount++;
     }
 
     IEnumerator RotateToShoot()
@@ -628,7 +651,7 @@ public class Model : MonoBehaviour
     {
         ECM = FindObjectOfType<EnemyCombatManager>();
         timeOnCombat = -1;
-        spellCount = 3;
+        spellCount = 2;
         rb = GetComponent<Rigidbody>();
         pointerPool = new Pool<EnemyPointer>(5, PointerFactory, EnemyPointer.InitializePointer, EnemyPointer.DisposePointer, true);
         timeToRecoverDefence = maxTimeToRecoverDefence;
@@ -1241,10 +1264,24 @@ public class Model : MonoBehaviour
 
         if (!view.dodgeAnims && isInCombat && view.movementAnims && spellCount >0)
         {
+
+            if (spellCount >= 2)
+            {
+
+                StartCoroutine(view.PowerEffect(2, true));
+                StartCoroutine(PowerColdown(5, 2));
+                StartCoroutine(SpellCD_Fire1());
+            }
+            if (spellCount < 2)
+            {
+                StartCoroutine(view.PowerEffect(1, true));
+                StartCoroutine(PowerColdown(5, 1));
+                StartCoroutine(SpellCD_Fire2());
+            }
+
             StartCoroutine(RotateToShoot());
             CastMagicMissileEvent();
             spellCount--;
-            if (spellCount <= 0) StartCoroutine(SpellCD());
         }
     }
 
@@ -1565,6 +1602,10 @@ public class Model : MonoBehaviour
                     view.SaveSwordAnim2();
                     SoundManager.instance.Play(EntitySound.SAVE_SWORD, transform.position, true);
                     view.ToggleHandEffect(true);
+                    view.fire1Image.SetActive(true);
+                    view.fire2Image.SetActive(true);
+                    view.rotateImage.SetActive(false);
+                    view.coverImage.SetActive(false);
                 }
                 break;
 
@@ -1575,6 +1616,10 @@ public class Model : MonoBehaviour
                     view.TakeSword2();
                     SoundManager.instance.Play(EntitySound.TAKE_SWORD, transform.position, true);
                     view.ToggleHandEffect(false);
+                    view.fire1Image.SetActive(false);
+                    view.fire2Image.SetActive(false);
+                    view.rotateImage.SetActive(true);
+                    view.coverImage.SetActive(true);
                 }
                 break;
         }

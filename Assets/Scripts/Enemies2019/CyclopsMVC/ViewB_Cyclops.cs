@@ -89,8 +89,9 @@ public class ViewB_Cyclops : MonoBehaviour
     }
 
     public void SmashParticlesActive()
-    {
+    {      
         smashParticles.Play();
+        SoundManager.instance.Play(Sound.EntitySound.SMASH, transform.position, true, 1);
     }
 
     public void HeavyParticlesActive()

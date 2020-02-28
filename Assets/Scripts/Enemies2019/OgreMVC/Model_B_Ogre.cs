@@ -12,6 +12,7 @@ public class Model_B_Ogre : EnemyEntity
     [Header("Enemy Boss Variables:")]
 
     public GameObject bossBlocks;
+    public List<DestructibleOBJ> destructibleOBJs = new List<DestructibleOBJ>();
     public bool AwakeAnimation;
     public bool fase1;
     public bool fase2;
@@ -410,7 +411,7 @@ public class Model_B_Ogre : EnemyEntity
             summoned2 = true;
             fase2 = false;
             summonPos = transform.position;
-            bossBlocks.SetActive(true);
+        
         };
 
         summon2.OnUpdate += () =>
@@ -440,7 +441,7 @@ public class Model_B_Ogre : EnemyEntity
             if (!_view.anim.GetBool("Awake") && d < 0.5f)
             {
                 IdleEvent();
-
+                bossBlocks.SetActive(true);
                 Quaternion targetRotation;
 
                 var dir = Vector3.zero;
@@ -493,7 +494,7 @@ public class Model_B_Ogre : EnemyEntity
             summoned3 = true;
             fase3 = false;
             summonPos = transform.position;
-            bossBlocks.SetActive(true);
+           
         };
 
         summon3.OnUpdate += () =>
@@ -523,7 +524,7 @@ public class Model_B_Ogre : EnemyEntity
             if (!_view.anim.GetBool("Awake") && d < 0.5f)
             {
                 IdleEvent();
-
+                bossBlocks.SetActive(true);
                 Quaternion targetRotation;
 
                 var dir = Vector3.zero;
@@ -711,6 +712,8 @@ public class Model_B_Ogre : EnemyEntity
             item.viewDistancePersuit = 0.1f;
         }
 
+        foreach (var item in destructibleOBJs) item.RecoverDes();
+    
     }
 
     public override Node GetMyNode()

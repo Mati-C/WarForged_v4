@@ -14,6 +14,7 @@ public class DestructibleOBJ : MonoBehaviour
     float time;
     bool first;
     bool change;
+    public bool canDestroy;
     public Rigidbody rb;
 
     public GameObject healthOrb;
@@ -21,13 +22,13 @@ public class DestructibleOBJ : MonoBehaviour
     public LayerMask lm;
     bool alreadySelected = false;
     public float range;
-
+    Vector3 startpos;
 
 
     public IEnumerator Destroy()
     {
         yield return new WaitForSeconds(5);
-        Destroy();
+        if(canDestroy) Destroy();
     }
 
     public IEnumerator startDisolve()
@@ -51,8 +52,19 @@ public class DestructibleOBJ : MonoBehaviour
         }
     }
 
+    public void RecoverDes()
+    {
+        transform.position = startpos;
+        first = false;
+        principalMesh.SetActive(true);
+        destructibleMesh.SetActive(false);
+        anim.SetBool("IsHit", false);
+        myBox.isTrigger = false;       
+    }
+
     public void Start()
     {
+        startpos = transform.position;
         rb = destructibleMesh.GetComponent<Rigidbody>();
         anim = destructibleMesh.GetComponent<Animator>();
         col = destructibleMesh.GetComponent<BoxCollider>();

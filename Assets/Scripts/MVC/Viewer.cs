@@ -24,6 +24,10 @@ public class Viewer : MonoBehaviour
     public ParticleSystem blood;
     public ParticleSystem healParticles;
     public ParticleSystem antisipationRing;
+    public GameObject rotateImage;
+    public GameObject coverImage;
+    public GameObject fire1Image;
+    public GameObject fire2Image;
 
     public Image power1;
     public Image power2;
@@ -705,7 +709,9 @@ public class Viewer : MonoBehaviour
         switch (id)
         {
             case 1:
-                power1.fillAmount = (fa / 100 * 18) + 0.34f;
+                power1.fillAmount = fa;
+                if (fa >= 1)
+                    StartCoroutine(PowerEffect(id, true));
                 break;
             case 2:
                 power2.fillAmount = fa;

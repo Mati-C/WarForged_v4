@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour
     [NamedArrayAttribute(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_START", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK" })]
     public AudioClip[] miscSFX;
 
-    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "BODY_IMPACT_1", "BODY_IMPACT_2", "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3" })]
+    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "BODY_IMPACT_1", "BODY_IMPACT_2", "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH" })]
     public AudioClip[] playerSFX;
 
     [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "LAST_COMBO_HIT" })]
@@ -167,7 +167,8 @@ public class SoundManager : MonoBehaviour
         ROAR,
         MONSTER_ATTACK1,
         MONSTER_ATTACK2,
-        MONSTER_ATTACK3
+        MONSTER_ATTACK3,
+        SMASH
     }
 
     public enum Voice
