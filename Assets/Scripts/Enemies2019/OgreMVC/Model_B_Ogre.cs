@@ -58,6 +58,20 @@ public class Model_B_Ogre : EnemyEntity
     bool enemies3Dead;
     bool activeHeavyParticlesAgain;
 
+    bool _customAnim;
+    bool _firstSaw;
+
+    IEnumerator DelayFirstSaw()
+    {
+        var cam = FindObjectOfType<CamController>();
+
+        cam.StartCoroutine(cam.Cinematic04());
+
+        yield return new WaitForSeconds(1);
+
+        _customAnim = true;
+    }
+
     IEnumerator StopHeavyParticles()
     {
         yield return new WaitForSeconds(0.5f);
@@ -178,7 +192,7 @@ public class Model_B_Ogre : EnemyEntity
             if (target.life >= 0)
             {
 
-                if (isPersuit) AwakeEvent();
+                if (isPersuit && _customAnim) AwakeEvent();
 
                 if (isPersuit && AwakeAnimation) SendInputToFSM(EnemyInputs.PERSUIT);                
             }
@@ -589,6 +603,12 @@ public class Model_B_Ogre : EnemyEntity
             isPersuit = SearchForTarget.SearchTarget(target.transform, viewDistancePersuit, angleToPersuit, transform, true, layerObst);
 
             onAttackArea = SearchForTarget.SearchTarget(target.transform, distanceToHit, angleToHit, transform, true, layerObst);
+
+            if (isPersuit && !_firstSaw)
+            {
+                _firstSaw = true;
+                StartCoroutine(DelayFirstSaw());
+            }
         }
 
         if(life <= 150 && !summoned1) fase1 = true;

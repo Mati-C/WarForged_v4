@@ -77,12 +77,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ArrowBeatRate: 0
-    - _ArrowBeatRatePercentage: -0.8
+    - _ArrowBeatRatePercentage: 100
     - _ArrowMovementTimeScale: 1
     - _BaseBarDarkness: 0.229
     - _BossLifeBarGradient: 10
     - _BossLifeMaxOffset: 1400
-    - _BossLifePercentage: -1.6
+    - _BossLifePercentage: 200
     - _Cutoff: 0.5
     - _Float0: 1400
     - _Int: -1.18

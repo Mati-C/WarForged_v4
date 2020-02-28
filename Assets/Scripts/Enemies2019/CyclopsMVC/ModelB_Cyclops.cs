@@ -44,6 +44,19 @@ public class ModelB_Cyclops : EnemyEntity
     private EventFSM<EnemyInputs> _myFsm;
 
     public int _ID_Behaviour;
+    bool _customAnim;
+    bool _firstSaw;
+
+    IEnumerator DelayFirstSaw()
+    {
+        var cam = FindObjectOfType<CamController>();
+
+        cam.StartCoroutine(cam.Cinematic04());
+       
+        yield return new WaitForSeconds(1);
+
+        _customAnim = true;
+    }
 
     IEnumerator DelayChangeAttackState(float t)
     {        
@@ -152,12 +165,16 @@ public class ModelB_Cyclops : EnemyEntity
 
             if (target.life >= 0)
             {              
-
-                if (isPersuit) AwakeEvent();
+                if (isPersuit && _customAnim) AwakeEvent();
 
                 if (isPersuit && AwakeAnimation) SendInputToFSM(EnemyInputs.PERSUIT);
 
             }
+        };
+
+        persuit.OnEnter += x =>
+        {
+
         };
 
         persuit.OnUpdate += () =>
@@ -209,7 +226,7 @@ public class ModelB_Cyclops : EnemyEntity
 
             if (delayToAttack <=0)
             {
-               // _view.HeavyParticlesActiveFalse();
+               
                 Attack1Event();
                 onAnimationAttack = true;
                 delayToAttack = maxDelayToAttack;
@@ -443,6 +460,8 @@ public class ModelB_Cyclops : EnemyEntity
     {
         _myFsm.Update();
 
+        
+
         if (target.isDead)
         {
             isPersuit = false;
@@ -463,6 +482,12 @@ public class ModelB_Cyclops : EnemyEntity
             isPersuit = SearchForTarget.SearchTarget(target.transform, viewDistancePersuit, angleToPersuit, transform, true, layerObst);
 
             onAttackArea = SearchForTarget.SearchTarget(target.transform, distanceToHit, angleToHit, transform, true, layerObst);
+
+            if (isPersuit && !_firstSaw)
+            {
+                _firstSaw = true;
+                StartCoroutine(DelayFirstSaw());
+            }
         }
     }
 

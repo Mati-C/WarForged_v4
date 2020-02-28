@@ -20,6 +20,7 @@ public class CamController : MonoBehaviour {
     public CinemachineFreeLook CinemaCam_Cinematic02;
     public CinemachineFreeLook CinemaCam_Cinematic03;
     public CinemachineFreeLook CinemaCam_AimCam;
+    public CinemachineFreeLook Boss_AnimCam;
     public Transform currentTarget;
     public ModelE_Sniper mage;
     public float distanceIdle;
@@ -158,6 +159,21 @@ public class CamController : MonoBehaviour {
 
     }
 
+    public IEnumerator Cinematic04()
+    {
+        Boss_AnimCam.Priority = 1;        
+        cinemaCam.Priority = 0;
+        cinemaCam2.Priority = 0;
+        PlayerCanMove = true;
+
+        yield return new WaitForSeconds(2f);
+
+        Boss_AnimCam.Priority = 0;
+        cinemaCam.Priority = 1;
+        cinemaCam2.Priority = 0;
+        PlayerCanMove = false;
+
+    }
 
     void Start()
     {
