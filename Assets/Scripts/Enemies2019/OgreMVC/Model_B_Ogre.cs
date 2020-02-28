@@ -663,6 +663,7 @@ public class Model_B_Ogre : EnemyEntity
 
     public override void Respawn()
     {
+        var dc = FindObjectOfType<DamageControll>();
         AwakeAnimation = false;
         life = totalLife;
         _view.auxAwake = false;
@@ -677,9 +678,38 @@ public class Model_B_Ogre : EnemyEntity
         summoned1 = false;
         summoned2 = false;
         summoned3 = false;
-        foreach (var item in enemiesSummon1) item.life = item.totalLife;
-        foreach (var item in enemiesSummon2) item.life = item.totalLife;
-        foreach (var item in enemiesSummon3) item.life = item.totalLife;
+        enemies1Dead = false;
+        enemies2Dead = false;
+        enemies3Dead = false;
+        foreach (var item in enemiesSummon1)
+        {
+            dc.enemies.Remove(item);
+            item.isDead = false;
+            item.gameObject.SetActive(true);
+            item.Respawn();
+            item.life = item.totalLife;
+            item.viewDistancePersuit = 0.1f;
+        }
+
+        foreach (var item in enemiesSummon2)
+        {
+            dc.enemies.Remove(item);
+            item.isDead = false;
+            item.gameObject.SetActive(true);
+            item.Respawn();
+            item.life = item.totalLife;
+            item.viewDistancePersuit = 0.1f;
+        }
+
+        foreach (var item in enemiesSummon3)
+        {
+            dc.enemies.Remove(item);
+            item.isDead = false;
+            item.gameObject.SetActive(true);
+            item.Respawn();
+            item.life = item.totalLife;
+            item.viewDistancePersuit = 0.1f;
+        }
 
     }
 

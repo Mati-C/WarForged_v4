@@ -312,12 +312,11 @@ public class ModelE_Shield : EnemyMeleeClass
             if (bossSummon) SendInputToFSM(EnemyInputs.FOLLOW);
 
             if (patroling)
-            {
-         
+            {        
                 timeToPatrol -= Time.deltaTime;
                 currentAction = new A_Patrol(this);
 
-                if (target.fadeTimer > target.view.fadeTime) IdleEvent();
+              //  if (target.fadeTimer > target.view.fadeTime) IdleEvent();
 
                 if ((!isDead && isPersuit && !isWaitArea && target.fadeTimer > target.view.fadeTime) || onDamage) SendInputToFSM(EnemyInputs.PERSUIT);
 
@@ -333,6 +332,8 @@ public class ModelE_Shield : EnemyMeleeClass
             {
                 currentAction = new A_Chating(this);
 
+                view.anim.SetBool("IdleCombat", false);
+
                 if (!isDead && isPersuit && !isWaitArea && target.fadeTimer > target.view.fadeTime && enemyPointer)
                 {
                     var dir = target.transform.position - transform.position;
@@ -341,7 +342,7 @@ public class ModelE_Shield : EnemyMeleeClass
                     StartCoroutine(DelayPoint());
                 }
 
-                if (target.fadeTimer > target.view.fadeTime && !enemyPointer) IdleEvent();
+              //  if (target.fadeTimer > target.view.fadeTime && !enemyPointer) IdleEvent();
 
                 if ((!isDead && isPersuit && !isWaitArea && target.fadeTimer > target.view.fadeTime && !enemyPointer) || onDamage) SendInputToFSM(EnemyInputs.PERSUIT);
 

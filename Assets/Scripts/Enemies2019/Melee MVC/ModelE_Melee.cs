@@ -988,9 +988,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
         follow.OnFixedUpdate += () =>
         {
-            Debug.Log("follow");
-            currentAction = new A_FollowTarget(this);
-           
+            currentAction = new A_FollowTarget(this);         
         };
 
         follow.OnExit += x =>
