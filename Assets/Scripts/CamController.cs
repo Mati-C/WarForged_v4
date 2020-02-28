@@ -56,7 +56,7 @@ public class CamController : MonoBehaviour {
 
     AnimationTimeLineScenes AnimationsCutScenes;
 
-    Transform lockedTarget;
+    public Transform lockedTarget;
     float xMaxSpeed;
     float yMaxSpeed;
     bool corroutineRunning;
@@ -217,6 +217,13 @@ public class CamController : MonoBehaviour {
             cinemaCam.m_XAxis.m_MaxSpeed = xMaxSpeed;
             cinemaCam.m_YAxis.m_MaxSpeed = yMaxSpeed;
         }
+    }
+
+    public void SetAxisToNormal()
+    {
+        lockedTarget = null;
+        cinemaCam.m_XAxis.m_MaxSpeed = xMaxSpeed;
+        cinemaCam.m_YAxis.m_MaxSpeed = yMaxSpeed;
     }
 
     void Update()

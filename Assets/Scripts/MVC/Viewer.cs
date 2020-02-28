@@ -857,6 +857,7 @@ public class Viewer : MonoBehaviour
 
         cam.cinemaCam.LookAt = transform;
         cam.cinemaCam.Follow = transform;
+        cam.SetAxisToNormal();
         Destroy(orb.gameObject);
         bm.RespawnScene();
        

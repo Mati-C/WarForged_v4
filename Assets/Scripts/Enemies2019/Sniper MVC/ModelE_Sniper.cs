@@ -571,7 +571,7 @@ public class ModelE_Sniper : EnemyEntity
             StartCoroutine(OnDamageCorrutine());
         }
 
-        if (typeOfDamage == EnemyEntity.DamageType.Normal)
+        if (typeOfDamage == EnemyEntity.DamageType.Normal || typeOfDamage == DamageType.Proyectile)
         {
             timeStuned = 0;
             TakeDamageEvent();

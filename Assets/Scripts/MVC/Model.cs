@@ -870,6 +870,7 @@ public class Model : MonoBehaviour
         {
             if (targetLockedOn)
             {
+                Debug.Log("asdasdas");
                 var dir = (targetLocked.transform.position - transform.position).normalized;
                 dir.y = 0;
                 Quaternion targetRotation;
@@ -877,7 +878,7 @@ public class Model : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
             }
 
-            if (targetLocked.isDead && targetLocked || life<=0)
+            if (targetLocked.life<=0 && targetLocked || life<=0)
             {
                 enemiesToLock.Remove(targetLocked);
 
@@ -1181,7 +1182,7 @@ public class Model : MonoBehaviour
                targetLockedOn = true;
                lockIndex = 0;
                if(isInCombat) _camController.cinemaCam2.Priority = 2;
-               else _camController.ChangeTargetAlt(targetLocked); 
+             //  else _camController.ChangeTargetAlt(targetLocked); 
 
             }
 
@@ -1401,7 +1402,7 @@ public class Model : MonoBehaviour
 
                     if (isInCombat && !view.anim.GetBool("TakeSword2"))
                     {
-                        Debug.Log(1);
+
                         view.EndDodge();
                         countAnimAttack++;
                         view.AwakeTrail();
