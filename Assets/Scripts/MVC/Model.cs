@@ -1267,16 +1267,18 @@ public class Model : MonoBehaviour
 
             if (spellCount >= 2)
             {
-
                 StartCoroutine(view.PowerEffect(2, true));
                 StartCoroutine(PowerColdown(5, 2));
                 StartCoroutine(SpellCD_Fire1());
+                SoundManager.instance.Play(EntitySound.FIREBALL, transform.position, true, 0.5f);
             }
+
             if (spellCount < 2)
             {
                 StartCoroutine(view.PowerEffect(1, true));
                 StartCoroutine(PowerColdown(5, 1));
                 StartCoroutine(SpellCD_Fire2());
+                SoundManager.instance.Play(EntitySound.FIREBALL, transform.position, true, 0.5f);
             }
 
             StartCoroutine(RotateToShoot());

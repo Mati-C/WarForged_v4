@@ -25,10 +25,6 @@ public class ViewerE_Sniper : MonoBehaviour
     public Camera cam;
     float _timeShaderMeleeAttack;
     bool _shaderMeleeAttackTrigger;
-    //float timerExpandPool;
-    //float timerVanishPool;
-    //public GameObject bloodPool;
-    //public Material matPool;
     public GameObject ragdollPrefab;
     bool startFireHands;
     bool auxTakeDamage;

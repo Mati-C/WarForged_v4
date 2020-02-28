@@ -16,6 +16,7 @@ public class Viewer_B_Ogre : MonoBehaviour
     public bool auxAwake;
     public ParticleSystem heavyParticles;
     public ParticleSystem bloodParticles;
+    public ParticleSystem smashParticles;
     GameObject levelUI; 
     public PopText prefabTextDamage;
 
@@ -40,6 +41,12 @@ public class Viewer_B_Ogre : MonoBehaviour
 
         if (_model.target.targetLocked && !_model.isDead && _model.target.targetLocked.name == transform.name)
             lockParticle.transform.position = new Vector2(cam.WorldToScreenPoint(lockParticlePosition.position).x, cam.WorldToScreenPoint(lockParticlePosition.position).y);
+    }
+
+    public void SmashParticlesActive()
+    {
+        smashParticles.Play();
+        SoundManager.instance.Play(Sound.EntitySound.SMASH, transform.position, true, 1);
     }
 
     public void AwakeAnim()

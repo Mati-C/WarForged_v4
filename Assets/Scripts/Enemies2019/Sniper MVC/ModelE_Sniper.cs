@@ -539,6 +539,7 @@ public class ModelE_Sniper : EnemyEntity
             newArrow.transform.forward = dir;
             timeToShoot = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
             view.BackFromAttackRange();
+            SoundManager.instance.Play(EntitySound.FIREBALL, transform.position, true, 0.5f);
         }
     }
 
