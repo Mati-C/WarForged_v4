@@ -304,6 +304,7 @@ public class ModelE_Melee : EnemyMeleeClass
         StateConfigurer.Create(patrol)
            .SetTransition(EnemyInputs.PERSUIT, persuit)
            .SetTransition(EnemyInputs.ANSWER, answerCall)
+           .SetTransition(EnemyInputs.FOLLOW, follow)
            .SetTransition(EnemyInputs.WAIT, wait)
            .SetTransition(EnemyInputs.DIE, die)
            .Done();
@@ -406,6 +407,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
         patrol.OnFixedUpdate += () =>
         {
+            if (bossSummon) SendInputToFSM(EnemyInputs.FOLLOW);
 
             if (patroling)
             {
@@ -420,9 +422,8 @@ public class ModelE_Melee : EnemyMeleeClass
                 if (!isDead && isAnswerCall && target.fadeTimer > target.view.fadeTime) SendInputToFSM(EnemyInputs.ANSWER);
 
                 if (!isDead && isWaitArea && target.fadeTimer > target.view.fadeTime) SendInputToFSM(EnemyInputs.WAIT);
-
+              
                 if (isDead) SendInputToFSM(EnemyInputs.DIE);
-
             }
 
             if (chating)
@@ -987,7 +988,9 @@ public class ModelE_Melee : EnemyMeleeClass
 
         follow.OnFixedUpdate += () =>
         {
+            Debug.Log("follow");
             currentAction = new A_FollowTarget(this);
+           
         };
 
         follow.OnExit += x =>
@@ -997,6 +1000,7 @@ public class ModelE_Melee : EnemyMeleeClass
                 if (navMeshAgent.enabled) navMeshAgent.enabled = false;
             }
             FollowsState = false;
+            bossSummon = false;
         };
 
         die.OnEnter += x =>
@@ -1035,9 +1039,12 @@ public class ModelE_Melee : EnemyMeleeClass
                 }
             }
 
-            ca.myEntities--;
-            cm.times++;
-            cm.enemiesList.Remove(this);
+            if (ca)
+            {
+                ca.myEntities--;
+                cm.times++;
+                cm.enemiesList.Remove(this);
+            }
 
             var myNodes = playerNodes.Where(y => y.myOwner == this);
 

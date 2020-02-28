@@ -11,10 +11,14 @@ public class Model_B_Ogre : EnemyEntity
 
     [Header("Enemy Boss Variables:")]
 
+    public GameObject bossBlocks;
     public bool AwakeAnimation;
     public bool fase1;
     public bool fase2;
     public bool fase3;
+    public bool summoned1;
+    public bool summoned2;
+    public bool summoned3;
     public bool onAnimationAttack;
     public bool changeAttack;
 
@@ -47,6 +51,18 @@ public class Model_B_Ogre : EnemyEntity
 
     public int _ID_Behaviour;
 
+    Vector3 summonPos;
+    bool enemies1Dead;
+    bool enemies2Dead;
+    bool enemies3Dead;
+    bool activeHeavyParticlesAgain;
+
+    IEnumerator StopHeavyParticles()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _view.HeavyParticlesActiveFalse();
+    }
+
     IEnumerator DelaySummon()
     {
         _delaySummon = true;
@@ -58,6 +74,30 @@ public class Model_B_Ogre : EnemyEntity
     {
         yield return new WaitForSeconds(t);
         changeAttack = false;
+    }
+
+    IEnumerator MoveWhenAttck()
+    {
+        var pos1 = transform.position;
+        float time1 = 0.3f;
+
+        while (time1 > 0)
+        {
+            time1 -= Time.deltaTime;
+            transform.position = Vector3.Lerp(pos1, transform.position + transform.forward * Time.deltaTime, 2);
+            yield return new WaitForEndOfFrame();
+        }
+
+        var pos2 = transform.position;
+        float time2 = 0.5f;
+
+        while (time2 > 0)
+        {
+            time2 -= Time.deltaTime;
+            transform.position = Vector3.Lerp(pos2, transform.position + transform.forward * Time.deltaTime, 2);
+            yield return new WaitForEndOfFrame();
+        }
+        
     }
 
     private void Awake()
@@ -134,16 +174,12 @@ public class Model_B_Ogre : EnemyEntity
 
             IdleEvent();
 
-            Debug.Log("idle");
-
             if (target.life >= 0)
             {
 
                 if (isPersuit) AwakeEvent();
 
-                if (isPersuit && AwakeAnimation) SendInputToFSM(EnemyInputs.PERSUIT);
-
-                
+                if (isPersuit && AwakeAnimation) SendInputToFSM(EnemyInputs.PERSUIT);                
             }
         };
 
@@ -162,8 +198,6 @@ public class Model_B_Ogre : EnemyEntity
 
             dir.y = 0;
 
-            Debug.Log("persuit");
-
             targetRotation = Quaternion.LookRotation(dir, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
             rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
@@ -174,6 +208,11 @@ public class Model_B_Ogre : EnemyEntity
 
             if (target.life <= 0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
 
+            if (fase1 && life > 0) SendInputToFSM(EnemyInputs.SUMMON1);
+
+            if (fase2 && life > 0) SendInputToFSM(EnemyInputs.SUMMON2);
+
+            if (fase3 && life > 0) SendInputToFSM(EnemyInputs.SUMMON3);
         };
 
         attack.OnUpdate += () =>
@@ -182,6 +221,13 @@ public class Model_B_Ogre : EnemyEntity
             {
                 _ID_Behaviour = UnityEngine.Random.Range(0, 2);
                 changeAttack = true;
+            }
+
+            if (delayToAttack <= 0.5f && !activeHeavyParticlesAgain)
+            {
+                _view.HeavyParticlesActive();
+                activeHeavyParticlesAgain = true;
+                StartCoroutine(StopHeavyParticles());
             }
 
             if (_ID_Behaviour == 0)
@@ -199,6 +245,7 @@ public class Model_B_Ogre : EnemyEntity
 
                 if (delayToAttack > 0 && !onAnimationAttack)
                 {
+
                     _view.anim.SetBool("Attack", false);
                     IdleEvent();
                 }
@@ -210,15 +257,18 @@ public class Model_B_Ogre : EnemyEntity
 
                 if (delayToAttack <= 0)
                 {
+
                     Attack2Event();
                     actualDamage = damage2;
                     onAnimationAttack = true;
                     delayToAttack = maxDelayToAttack;
                     StartCoroutine(DelayChangeAttackState(1.5f));
+                    StartCoroutine(MoveWhenAttck());
                 }
 
                 if (delayToAttack > 0 && !onAnimationAttack)
                 {
+
                     _view.anim.SetBool("Attack2", false);
                     IdleEvent();
                 }
@@ -242,75 +292,271 @@ public class Model_B_Ogre : EnemyEntity
 
             if (target.life <= 0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
 
+            if (fase1 && life>0) SendInputToFSM(EnemyInputs.SUMMON1);
+
+            if (fase2 && life > 0) SendInputToFSM(EnemyInputs.SUMMON2);
+
+            if (fase3 && life > 0) SendInputToFSM(EnemyInputs.SUMMON3);
+
         };
 
         summon1.OnEnter += x =>
         {
+            bossStage = true;
+            target.targetLockedOn = false;
+            target._camController.StopLockedTarget();
+            target.targetLocked = null;
+            target.enemiesToLock.Clear();
+            AwakeAnimation = true;
             AwakeEvent();
+            _view.Attack1AnimFalse();
+            _view.Attack2AnimFalse();
+            SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
             StartCoroutine(DelaySummon());
+            nearEntities.AddRange(enemiesSummon1);
+            target.enemiesToLock.AddRange(enemiesSummon1);
             foreach (var item in enemiesSummon1)
             {
-                item.viewDistancePersuit = 25;
+                item.viewDistancePersuit = 10;
                 item.angleToPersuit = 180;
+                item.bossSummon = true;
             }
+            summoned1 = true;
+            fase1 = false;
+            summonPos = transform.position;
         };
 
         summon1.OnUpdate += () =>
         {
-            if (onAttackArea) SendInputToFSM(EnemyInputs.ATTACK);
+
+            if (!enemiesSummon1.Any(x => x.life > 0)) enemies1Dead = true;
+
+            target.CombatState();
+
+            var d = Vector3.Distance(_startPos, transform.position);
+
+            if (!_view.anim.GetBool("Awake") && d >0.5f)
+            {
+                MoveEvent();
+                Quaternion targetRotation;
+
+                var dir = Vector3.zero;
+
+                dir = (_startPos - transform.position).normalized;
+
+                dir.y = 0;
+
+                targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+                rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
+            }
+
+            if (!_view.anim.GetBool("Awake") && d < 0.5f)
+            {
+                bossBlocks.SetActive(true);
+
+                IdleEvent();
+
+                Quaternion targetRotation;
+
+                var dir = Vector3.zero;
+
+                dir = (target.transform.position - transform.position).normalized;
+
+                dir.y = 0;
+
+                targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            }
+
+            if (onAttackArea && enemies1Dead) SendInputToFSM(EnemyInputs.ATTACK);
 
             if (life <= 0) SendInputToFSM(EnemyInputs.DIE);
 
             if (target.life <= 0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
 
-            if(!onAttackArea && isPersuit && !onAnimationAttack) SendInputToFSM(EnemyInputs.PERSUIT);
+            if(!onAttackArea && isPersuit && enemies1Dead) SendInputToFSM(EnemyInputs.PERSUIT);
 
+        };
+
+        summon1.OnExit += x =>
+        {
+            bossStage = false;
+            bossBlocks.SetActive(false);
         };
 
         summon2.OnEnter += x =>
         {
+            bossStage = true;
+
+            target.targetLockedOn = false;
+            target._camController.StopLockedTarget();
+            target.targetLocked = null;
+            target.enemiesToLock.Clear();
+            AwakeAnimation = true;
             AwakeEvent();
+            _view.Attack1AnimFalse();
+            _view.Attack2AnimFalse();
+            SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
             StartCoroutine(DelaySummon());
+            nearEntities.AddRange(enemiesSummon2);
+            target.enemiesToLock.AddRange(enemiesSummon2);
             foreach (var item in enemiesSummon2)
             {
-                item.viewDistancePersuit = 25;
+                item.viewDistancePersuit = 10;
                 item.angleToPersuit = 180;
+                item.bossSummon = true;
             }
+            summoned2 = true;
+            fase2 = false;
+            summonPos = transform.position;
+            bossBlocks.SetActive(true);
         };
 
         summon2.OnUpdate += () =>
         {
-            if (onAttackArea) SendInputToFSM(EnemyInputs.ATTACK);
+            if (!enemiesSummon2.Any(x => x.life > 0)) enemies2Dead = true;
+
+            target.CombatState();
+
+            var d = Vector3.Distance(_startPos, transform.position);
+
+            if (!_view.anim.GetBool("Awake") && d > 0.5f)
+            {
+                MoveEvent();
+                Quaternion targetRotation;
+
+                var dir = Vector3.zero;
+
+                dir = (_startPos - transform.position).normalized;
+
+                dir.y = 0;
+
+                targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+                rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
+            }
+
+            if (!_view.anim.GetBool("Awake") && d < 0.5f)
+            {
+                IdleEvent();
+
+                Quaternion targetRotation;
+
+                var dir = Vector3.zero;
+
+                dir = (target.transform.position - transform.position).normalized;
+
+                dir.y = 0;
+
+                targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            }
+
+            if (onAttackArea && enemies2Dead) SendInputToFSM(EnemyInputs.ATTACK);
 
             if (life <= 0) SendInputToFSM(EnemyInputs.DIE);
 
             if (target.life <= 0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
 
-            if (!onAttackArea && isPersuit && !onAnimationAttack) SendInputToFSM(EnemyInputs.PERSUIT);
+            if (!onAttackArea && isPersuit && enemies2Dead) SendInputToFSM(EnemyInputs.PERSUIT);
 
+        };
+
+        summon2.OnExit += x =>
+        {
+            bossStage = false;
+            bossBlocks.SetActive(false);
         };
 
         summon3.OnEnter += x =>
         {
+            bossStage = true;
+            target.targetLockedOn = false;
+            target._camController.StopLockedTarget();
+            target.targetLocked = null;
+            target.enemiesToLock.Clear();
+            AwakeAnimation = true;
             AwakeEvent();
+            _view.Attack1AnimFalse();
+            _view.Attack2AnimFalse();
+            SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
             StartCoroutine(DelaySummon());
+            nearEntities.AddRange(enemiesSummon3);
+            target.enemiesToLock.AddRange(enemiesSummon3);
             foreach (var item in enemiesSummon3)
             {
-                item.viewDistancePersuit = 25;
+                item.viewDistancePersuit = 10;
                 item.angleToPersuit = 180;
+                item.bossSummon = true;
             }
+            summoned3 = true;
+            fase3 = false;
+            summonPos = transform.position;
+            bossBlocks.SetActive(true);
         };
 
         summon3.OnUpdate += () =>
         {
-            if (onAttackArea) SendInputToFSM(EnemyInputs.ATTACK);
+            if (!enemiesSummon3.Any(x => x.life > 0)) enemies3Dead = true;
+
+            target.CombatState();
+
+            var d = Vector3.Distance(_startPos, transform.position);
+
+            if (!_view.anim.GetBool("Awake") && d > 0.5f)
+            {
+                MoveEvent();
+                Quaternion targetRotation;
+
+                var dir = Vector3.zero;
+
+                dir = (_startPos - transform.position).normalized;
+
+                dir.y = 0;
+
+                targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+                rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
+            }
+
+            if (!_view.anim.GetBool("Awake") && d < 0.5f)
+            {
+                IdleEvent();
+
+                Quaternion targetRotation;
+
+                var dir = Vector3.zero;
+
+                dir = (target.transform.position - transform.position).normalized;
+
+                dir.y = 0;
+
+                targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            }
+
+            if (onAttackArea && enemies3Dead) SendInputToFSM(EnemyInputs.ATTACK);
 
             if (life <= 0) SendInputToFSM(EnemyInputs.DIE);
 
             if (target.life <= 0 || _restart) SendInputToFSM(EnemyInputs.IDLE);
 
-            if (!onAttackArea && isPersuit && !onAnimationAttack) SendInputToFSM(EnemyInputs.PERSUIT);
+            if (!onAttackArea && isPersuit && enemies3Dead) SendInputToFSM(EnemyInputs.PERSUIT);
 
+        };
+
+        summon3.OnExit += x =>
+        {
+            bossStage = false;
+            bossBlocks.SetActive(false);
+        };
+
+        die.OnEnter += x =>
+        {
+            isDead = true;
+            SoundManager.instance.CombatMusic(false);
+            DieEvent();
         };
 
         _myFsm = new EventFSM<EnemyInputs>(idle);
@@ -336,10 +582,6 @@ public class Model_B_Ogre : EnemyEntity
             angleToPersuit = 0;
         }
 
-        if (life <= 180 && life > 100) fase2 = true;
-
-        if (life <= 100) fase3 = true;
-
         if (target != null)
         {
 
@@ -347,11 +589,23 @@ public class Model_B_Ogre : EnemyEntity
 
             onAttackArea = SearchForTarget.SearchTarget(target.transform, distanceToHit, angleToHit, transform, true, layerObst);
         }
+
+        if(life <= 150 && !summoned1) fase1 = true;
+
+        if(life <= 100 && !summoned2) fase2 = true;
+
+        if(life <= 50 && !summoned3) fase3 = true;
+
     }
 
     public void AwakeStateActivate()
     {
         AwakeAnimation = true;
+    }
+
+    public void AwakeStateDisable()
+    {
+        AwakeAnimation = false;
     }
 
     public void AnimationAttackFalse()
@@ -398,8 +652,13 @@ public class Model_B_Ogre : EnemyEntity
 
     public override void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex)
     {
-        SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
-        life -= damage;
+        if (!bossStage)
+        {
+            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            _view.ActiveBloodParticles();
+            _view.CreatePopText(damage);
+            life -= damage;
+        }
     }
 
     public override void Respawn()
@@ -408,12 +667,20 @@ public class Model_B_Ogre : EnemyEntity
         life = totalLife;
         _view.auxAwake = false;
         _view.healthBar.gameObject.SetActive(false);
+        fase1 = false;
         fase2 = false;
         fase3 = false;
         transform.position = _startPos;
         _restart = true;
         viewDistancePersuit = 21;
         angleToPersuit = 180;
+        summoned1 = false;
+        summoned2 = false;
+        summoned3 = false;
+        foreach (var item in enemiesSummon1) item.life = item.totalLife;
+        foreach (var item in enemiesSummon2) item.life = item.totalLife;
+        foreach (var item in enemiesSummon3) item.life = item.totalLife;
+
     }
 
     public override Node GetMyNode()

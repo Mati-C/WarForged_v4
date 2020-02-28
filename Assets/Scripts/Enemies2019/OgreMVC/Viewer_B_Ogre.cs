@@ -14,12 +14,17 @@ public class Viewer_B_Ogre : MonoBehaviour
     public Transform lockParticlePosition;
     public Camera cam;
     public bool auxAwake;
+    public ParticleSystem heavyParticles;
+    public ParticleSystem bloodParticles;
+    GameObject levelUI; 
+    public PopText prefabTextDamage;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         _model = GetComponent<Model_B_Ogre>();
         healthBarMat = healthBar.material;
+        levelUI = GameObject.Find("LEVEL UI");
     }
 
     void Start()
@@ -63,6 +68,27 @@ public class Viewer_B_Ogre : MonoBehaviour
         healthBar.gameObject.SetActive(true);
     }
 
+    public void AwakeAnimSum()
+    {
+        anim.SetBool("Awake", true);
+    }
+
+    public void ActiveBloodParticles()
+    {
+        bloodParticles.Play();
+    }
+
+    public void HeavyParticlesActive()
+    {
+        heavyParticles.Play();
+    }
+
+    public void HeavyParticlesActiveFalse()
+    {
+        heavyParticles.Stop();
+        heavyParticles.Simulate(0, false, true, true);
+    }
+
     public void IdleAnimation()
     {
         anim.SetBool("Idle", true);
@@ -76,14 +102,49 @@ public class Viewer_B_Ogre : MonoBehaviour
         anim.SetBool("Awake", false);
     }
 
+    public void CreatePopText(float damage)
+    {
+        bloodParticles.Play();
+        PopText text = Instantiate(prefabTextDamage);
+        StartCoroutine(FollowEnemy(text));
+        text.transform.SetParent(levelUI.transform, false);
+        text.SetDamage(damage);
+    }
+
+    IEnumerator FollowEnemy(PopText text)
+    {
+        while (text != null)
+        {
+            Vector2 screenPos = cam.WorldToScreenPoint(transform.position + (Vector3.up * 2));
+            text.transform.position = screenPos;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public void Attack1Anim()
     {
+        int r = Random.Range(0, 3);
+
+        if (r == 0) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK1, transform.position, true, 1);
+
+        if (r == 1) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK2, transform.position, true, 1);
+
+        if (r == 2) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK3, transform.position, true, 1);
+
         anim.SetBool("Attack1", true);
         anim.SetBool("Move", false);
     }
 
     public void Attack2Anim()
     {
+        int r = Random.Range(0, 3);
+
+        if (r == 0) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK1, transform.position, true, 1);
+
+        if (r == 1) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK2, transform.position, true, 1);
+
+        if (r == 2) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK3, transform.position, true, 1);
+
         anim.SetBool("Attack2", true);
         anim.SetBool("Move", false);
     }
@@ -101,8 +162,6 @@ public class Viewer_B_Ogre : MonoBehaviour
         anim.SetBool("Attack2", false);
         _model.AnimationAttackFalse();
     }
-
-
 
     public void DieAnim()
     {

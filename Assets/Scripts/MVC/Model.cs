@@ -27,7 +27,7 @@ public class Model : MonoBehaviour
     public LayerMask layerEnemies;
     public LayerMask enemyLayer;
     EnemyEntity snapTarget;
-    CamController _camController;
+    public CamController _camController;
 
     public float distanceAggressiveNodes;
     public float distanceNon_AggressiveNodes;
@@ -1129,7 +1129,7 @@ public class Model : MonoBehaviour
         enemiesToLock.Clear();
         EnemyEntity detectedEnemy;
         allEnemies = FindObjectsOfType<EnemyEntity>();
-        detectedEnemy = allEnemies.Where(x => !x.isDead && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
+        detectedEnemy = allEnemies.Where(x => !x.isDead && !x.bossStage && Vector3.Distance(x.transform.position, transform.position) < 12 && Mathf.Abs(transform.position.y - x.transform.position.y) < 1).OrderBy(x => Vector3.Angle(transform.forward, x.transform.position)).First();
         enemiesToLock.Add(detectedEnemy);
         enemiesToLock.AddRange(detectedEnemy.nearEntities);
 

@@ -220,6 +220,7 @@ public class ModelE_Shield : EnemyMeleeClass
         StateConfigurer.Create(patrol)
            .SetTransition(EnemyInputs.PERSUIT, persuit)
            .SetTransition(EnemyInputs.ANSWER, answerCall)
+           .SetTransition(EnemyInputs.FOLLOW, follow)
            .SetTransition(EnemyInputs.WAIT, wait)
            .SetTransition(EnemyInputs.DIE, die)
            .Done();
@@ -308,11 +309,11 @@ public class ModelE_Shield : EnemyMeleeClass
 
         patrol.OnFixedUpdate += () =>
         {
+            if (bossSummon) SendInputToFSM(EnemyInputs.FOLLOW);
 
             if (patroling)
             {
-          
-
+         
                 timeToPatrol -= Time.deltaTime;
                 currentAction = new A_Patrol(this);
 
@@ -408,11 +409,6 @@ public class ModelE_Shield : EnemyMeleeClass
         {
 
 
-          /*  if (navMeshAgent)
-            {
-                if (navMeshAgent.enabled) navMeshAgent.enabled = false;
-            }
-            */
             if (aggressiveLevel == 1) viewDistanceAttack = 3.5f;
 
             if (aggressiveLevel == 2) viewDistanceAttack = 7f;
@@ -788,7 +784,7 @@ public class ModelE_Shield : EnemyMeleeClass
 
         retreat.OnExit += x =>
         {
-          
+         
             StopRetreat();
         };
 
@@ -825,7 +821,7 @@ public class ModelE_Shield : EnemyMeleeClass
             {
                 if (navMeshAgent.enabled) navMeshAgent.enabled = false;
             }
-           
+            bossSummon = false;
         };
 
         die.OnEnter += x =>
@@ -862,10 +858,12 @@ public class ModelE_Shield : EnemyMeleeClass
                 }
             }
 
-            ca.myEntities--;
-            cm.times++;
-            cm.enemiesList.Remove(this);
-
+            if (ca)
+            {
+                ca.myEntities--;
+                cm.times++;
+                cm.enemiesList.Remove(this);
+            }
             var myNodes = playerNodes.Where(y => y.myOwner == this);
 
             foreach (var item in myNodes) item.myOwner = null;

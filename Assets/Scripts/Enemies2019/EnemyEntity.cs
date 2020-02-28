@@ -13,7 +13,8 @@ public abstract class EnemyEntity: MonoBehaviour
         Knock,
         Proyectile
     };
-
+    public bool bossSummon;
+    public bool bossStage;
     public Transform NodePath;
     public LayerMask layerEntites;
     public LayerMask layerPlayer;
