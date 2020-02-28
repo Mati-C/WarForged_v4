@@ -733,7 +733,11 @@ public class Model_B_Ogre : EnemyEntity
         }
 
         foreach (var item in destructibleOBJs) item.RecoverDes();
-    
+
+        var bodies = FindObjectsOfType<Ragdoll>();
+
+        foreach (var item in bodies) Destroy(item);
+
     }
 
     public override Node GetMyNode()

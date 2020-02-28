@@ -223,6 +223,14 @@ public class Model : MonoBehaviour
 
     float _cdFire1;
     float _cdFire2;
+    bool _delayToCast;
+
+    IEnumerator DealyToCastAgain()
+    {
+        _delayToCast = true;
+        yield return new WaitForSeconds(0.3f);
+        _delayToCast = false;
+    }
 
     IEnumerator SpellCD_Fire1()
     {
@@ -1262,7 +1270,7 @@ public class Model : MonoBehaviour
     public void CastMagicMissile()
     {
 
-        if (!view.dodgeAnims && isInCombat && view.movementAnims && spellCount >0)
+        if (!view.dodgeAnims && isInCombat && view.movementAnims && spellCount >0 && !_delayToCast)
         {
 
             if (spellCount >= 2)
@@ -1271,6 +1279,7 @@ public class Model : MonoBehaviour
                 StartCoroutine(PowerColdown(5, 2));
                 StartCoroutine(SpellCD_Fire1());
                 SoundManager.instance.Play(EntitySound.FIREBALL, transform.position, true, 0.5f);
+                StartCoroutine(DealyToCastAgain());
             }
 
             if (spellCount < 2)
@@ -1279,6 +1288,7 @@ public class Model : MonoBehaviour
                 StartCoroutine(PowerColdown(5, 1));
                 StartCoroutine(SpellCD_Fire2());
                 SoundManager.instance.Play(EntitySound.FIREBALL, transform.position, true, 0.5f);
+                StartCoroutine(DealyToCastAgain());
             }
 
             StartCoroutine(RotateToShoot());
@@ -1318,7 +1328,6 @@ public class Model : MonoBehaviour
                 RollAttackEvent();
                 StartCoroutine(DelayRollAttack());
                 view.AwakeTrail();
-                EndCombo();
                 CombatState(false);
                 StartCoroutine(ImpulseAttackAnimation());
                 view.anim.SetBool("Roll", false);
@@ -1336,7 +1345,7 @@ public class Model : MonoBehaviour
 
                 if ((animClipName == view.AnimDictionary[Viewer.AnimPlayerNames.Attack3_End]))
                 {
-                    SoundManager.instance.Play(Sound.Voice.LAST_COMBO_HIT, transform.position, true, 1);
+                    SoundManager.instance.Play(Voice.LAST_COMBO_HIT, transform.position, true, 1);
                     view.EndDodge();
                     view.AwakeTrail();
                     countAnimAttack++;
@@ -1375,7 +1384,7 @@ public class Model : MonoBehaviour
                     view.AwakeTrail();
                     if (countAnimAttack > 2) countAnimAttack = 2;
                     Attack();
-                    if (!makingDamage) StartCoroutine(TimeToDoDamage());
+                    if (!makingDamage && countAnimAttack ==2) StartCoroutine(TimeToDoDamage());
                     if (view.currentAttackAnimation == 2)
                     {
                         timeImpulse = 0.1f;
@@ -1392,6 +1401,7 @@ public class Model : MonoBehaviour
 
                     if (isInCombat && !view.anim.GetBool("TakeSword2"))
                     {
+                        Debug.Log(1);
                         view.EndDodge();
                         countAnimAttack++;
                         view.AwakeTrail();
@@ -1597,31 +1607,38 @@ public class Model : MonoBehaviour
     {
         switch(classType)
         {
+
             case PlayerClass.Warrior:
                 classType = PlayerClass.Wizzard;
-                if(isInCombat)
+                view.fire1Image.SetActive(true);
+                view.fire2Image.SetActive(true);
+                view.rotateImage.SetActive(false);
+                view.coverImage.SetActive(false);
+                view.wizzardImage.SetActive(true);
+                view.warriorImage.SetActive(false);
+                if (isInCombat)
                 {
                     view.SaveSwordAnim2();
                     SoundManager.instance.Play(EntitySound.SAVE_SWORD, transform.position, true);
                     view.ToggleHandEffect(true);
-                    view.fire1Image.SetActive(true);
-                    view.fire2Image.SetActive(true);
-                    view.rotateImage.SetActive(false);
-                    view.coverImage.SetActive(false);
+                   
                 }
                 break;
 
             case PlayerClass.Wizzard:
                 classType = PlayerClass.Warrior;
+                view.ToggleHandEffect(false);
+                view.fire1Image.SetActive(false);
+                view.fire2Image.SetActive(false);
+                view.rotateImage.SetActive(true);
+                view.coverImage.SetActive(true);
+                view.wizzardImage.SetActive(false);
+                view.warriorImage.SetActive(true);
                 if (isInCombat)
                 {
                     view.TakeSword2();
                     SoundManager.instance.Play(EntitySound.TAKE_SWORD, transform.position, true);
-                    view.ToggleHandEffect(false);
-                    view.fire1Image.SetActive(false);
-                    view.fire2Image.SetActive(false);
-                    view.rotateImage.SetActive(true);
-                    view.coverImage.SetActive(true);
+                  
                 }
                 break;
         }

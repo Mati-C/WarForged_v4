@@ -28,6 +28,8 @@ public class Viewer : MonoBehaviour
     public GameObject coverImage;
     public GameObject fire1Image;
     public GameObject fire2Image;
+    public GameObject wizzardImage;
+    public GameObject warriorImage;
 
     public Image power1;
     public Image power2;
