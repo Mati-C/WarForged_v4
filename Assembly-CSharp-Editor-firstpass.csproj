@@ -321,24 +321,6 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="ch.sycoforge.Decal">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Easy Decal/Scripts/ch.sycoforge.Decal.dll</HintPath>
-    </Reference>
-    <Reference Include="ch.sycoforge.Decal.Editor">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Easy Decal/Scripts/Editor/ch.sycoforge.Decal.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="ch.sycoforge.Logging">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/ch.sycoforge.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="ch.sycoforge.Unity.Runtime">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/ch.sycoforge.Unity.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="ch.sycoforge.Imaging">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/Editor/ch.sycoforge.Imaging.dll</HintPath>
-    </Reference>
-    <Reference Include="ch.sycoforge.Unity.Editor">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/Editor/ch.sycoforge.Unity.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>

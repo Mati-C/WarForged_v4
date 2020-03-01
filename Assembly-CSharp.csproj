@@ -71,28 +71,6 @@
     <Compile Include="Assets\AmplifyShaderEditor\Examples\Official\Smear\Smear.cs" />
     <Compile Include="Assets\AmplifyShaderEditor\Examples\Official\TemplateExamples\PostProcess\Sobel\PostProcessExample.cs" />
     <Compile Include="Assets\AmplifyShaderEditor\Examples\Official\TemplateExamples\Sprites\SpriteMask\SpriteMaskController.cs" />
-    <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Decal.cs" />
-    <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Helpers\DecalBuilder.cs" />
-    <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Helpers\DecalUtils.cs" />
-    <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Helpers\MeshBuilder.cs" />
-    <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Helpers\MeshUtils.cs" />
-    <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Helpers\PolygonUtils.cs" />
-    <Compile Include="Assets\DecalSystem\Plugins\DecalSystem\Helpers\TerrainUtils.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\AdvancedBulletHoles.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\BasicBulletHoles.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\BezierUtil.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\InfoBubble.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\LineUtil.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\PathAgent.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\ProxyRegister.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\RuntimeDecalCombiner.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\Sinoid.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Scripts\SparksExecutioner.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Unity SA\FP Character\CurveCtrlBob.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Unity SA\FP Character\FOVZoom.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Unity SA\FP Character\FPCtrl.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Unity SA\FP Character\LerpCtrlBob.cs" />
-    <Compile Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Unity SA\FP Character\MLook.cs" />
     <Compile Include="Assets\Logo\How To Play\Menu_Controlls.cs" />
     <Compile Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Scripts\particleAttractorLinear.cs" />
     <Compile Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Scripts\particleAttractorMove.cs" />
@@ -340,7 +318,6 @@
     <Compile Include="Assets\Ultimate Game Tools\ConcaveCollider\Scripts\ConcaveCollider.cs" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\Legacy\Sprites-Default.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\Masking\MaskStdMetallicCG.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SimpleSubtractOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FmodOpNode.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Advanced Grass Standard.shader" />
@@ -356,10 +333,8 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SwizzleNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\CustomRTUpdate.shader" />
     <None Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Shaders\Particles Additive Intensify.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Legacy\ED_AlphaEdgeBleed.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_CosOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FunctionNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\SycoSSD.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LightColorNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\Legacy\MultiPassUnlit.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Vector4Node.shader" />
@@ -371,7 +346,6 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_StaticSwitchNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ReflectOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ATanOpNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\SycoFSSD.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FunctionOutputNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldSpaceCameraPos.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Portal\RFX4_PortalSky.shader" />
@@ -385,25 +359,21 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_RotatorNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DecodeFloatRGBAHlpNode.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\DSSDSignatures.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\LutGen.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldToObjectTransfNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ObjSpaceViewDirHlpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ObjectToWorldTransfNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DecodeLightmapHlpNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\Util.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TangentSignVertexDataNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_CeilOpNode.shader" />
     <None Include="Assets\Blockout\Shaders\Gate_Particle_2018.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_Tornado.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_VertexBinormalNode.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Unity SA\Patricles\Shader\PriorityParticleAddSoft.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ScreenPosInputsNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TangentVertexDataNode.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Advanced Grass Specular.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_PiNode.shader" />
-    <None Include="Assets\EasyDecals\Editor Default Resources\nu Assets\Shared\Shaders\Canvas.shader" />
     <None Include="Assets\Blockout\Resources\Blockout\Pins\Blockout_Pin_Shader.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FloorOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCCompareLessNode.shader" />
@@ -414,17 +384,13 @@
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_DistortionParticlesMobile.shader" />
     <None Include="Assets\Blockout\Shaders\Area_Comment_Wireframe_2018.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\Masking\MaskStdMetallic.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\SSD-M.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ObjSpaceLightDirHlpNode.shader" />
     <None Include="Assets\Blockout\Resources\Blockout\Pins\Pin_Backfacing.shader" />
     <None Include="Assets\Logo\How To Play\DissolveBurn.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ASinOpNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\EDStandardSpecular.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\_Enemy Feedback\Fire Hands\Fire Hands.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Tower\ThunderEffect.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Legacy\ED_AlphaEdgeBleed_Mul.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_DecalDistortMaskMulMobile.shader" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DeltaTime.shader" />
@@ -434,7 +400,6 @@
     <None Include="Assets\Objects and Particles\Landmark\Shader\Landmark.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\ShaderLibrary\ShaderLibrary.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCIf.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\EDStandardSpecularVACutoff.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_VertexTangentNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_RoundOpNode.shader" />
@@ -443,7 +408,6 @@
     <None Include="Assets\Blockout\Shaders\Blockout_Water_2018.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_GetLocalVarNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Log2OpNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Unity SA\Patricles\Shader\PriorityParticleAdd.shader" />
     <None Include="Assets\UI Boss Bar\Boss Bar.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Shaders\Unlit-ColoredAlpha.shader" />
     <None Include="Assets\Blockout\Shaders\Blockout_Shader_Base_2018.shader" />
@@ -463,7 +427,6 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\LightWeightSRPPBR.shader" />
     <None Include="Assets\Objects and Particles\FireTorch\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Unlit\EDMultiply.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Cross_Model_Shader.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_DecalDistortMaskMobile.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Force Field\Force Field2.shader" />
@@ -480,7 +443,6 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DegreesOpNode.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCPixelateUV.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\README.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Exp2OpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DotProductOpNode.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
@@ -490,24 +452,17 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ConditionalIfNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
-    <None Include="Assets\EasyDecals\Editor Default Resources\nu Assets\Shared\Shaders\CanvasUtil.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SummedBlendNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\EDSandardVACutoff.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TruncOpNode.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\_Enemy Feedback\Hit\Hit.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Portal\RFX4_PortalMask.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Particles\ParticleAddSoft.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\NMWindNoShiver.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SinhOpNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\SycoDSSD.cginc" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Legacy\ED_AlphaBumpSpec.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ParallaxMappingNode.shader" />
     <None Include="Assets\UI\Life bar v4\Stat bar.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Demo\Unity SA\Patricles\Shader\PriorityParticleAlpha.shader" />
     <None Include="Assets\Self\Enemy Lock\EnemyLock.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Bloom\Resources\RFX4_Bloom_Inc.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCCompareNotEqual.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\DSSD.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DiffuseAndSpecularFromMetallic.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\_Enemy Feedback\Power Attack\Enemy_PowerAttack.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Orb\Orb.shader" />
@@ -526,8 +481,6 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_BlendOpsNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TanOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCCompareGreaterEqual.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Unlit\EDAlpha.shader" />
-    <None Include="Assets\EasyDecals\Editor Default Resources\nu Assets\Shared\Shaders\CanvasChannels.shader" />
     <None Include="Assets\Objects and Particles\Castle Props + Textures\Carpet\Usar un Quad 1x1 como modelo.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_EncodeViewNormalStereoHlpNode.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Snow\Snow.shader" />
@@ -554,7 +507,6 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SimpleRemainderNode.shader" />
     <None Include="Assets\Objects and Particles\Destructibles\Prefabs\Breakable.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ComponentMaskNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\EDVertexAlpha.shader" />
     <None Include="Assets\Self\Enemy Pointer\Enemy Pointer.shader" />
     <None Include="Assets\Blockout\Shaders\Blockout_Shader_Tri_2018.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_ProjectorBlended.shader" />
@@ -562,18 +514,15 @@
     <None Include="Assets\Blockout\Resources\Blockout\Ruler\Ruler_Shader.shader" />
     <None Include="Assets\Objects and Particles\Potions\Flasks\Potions.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_IceDecal.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\EDMultiply.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_PannerNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ScaleNode.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_Lava.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
-    <None Include="Assets\EasyDecals\Editor Default Resources\nu Assets\Shared\Shaders\CanvasOpaque.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\PPStack.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Tree_Leaves_Metalic.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LogOpNode.shader" />
     <None Include="Assets\Final UI\UI Sprite Noise.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\Masking\MaskStdSpecular.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_AppendNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Portal\RFX4_PortalStandard.shader" />
@@ -586,12 +535,9 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_GammaToLinearNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldReflectionVector.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\TextureArrayInspector.shader" />
-    <None Include="Assets\EasyDecals\Editor Default Resources\nu Assets\Shared\Shaders\UnlitColorAlpha.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\LinearPreviews.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WeightedBlendNode.shader" />
-    <None Include="Assets\EasyDecals\Editor Default Resources\nu Assets\Shared\Shaders\CanvasSelection.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\Masking\MaskStdSpecularCG.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_IndirectDiffuseLight.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_AbsOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_OneMinusNode.shader" />
@@ -605,7 +551,6 @@
     <None Include="Assets\Objects and Particles\Castle Props + Textures\M_Castle_Door.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TextureCoordinatesNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Particles\ParticleAlpha.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Water\RFX4_WaterTurbulence.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FunctionInputNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
@@ -633,7 +578,6 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Texture2D.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_CrossProductOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_NormalVertexDataNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Legacy\ED_AlphaSimple.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCCompareEqual.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_Particle.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\Legacy\UnlitLightmap.shader" />
@@ -666,7 +610,6 @@
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_StepOpNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Legacy\ED_ReflBumpSpec_Cut.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Tree_Leaves_Specular.shader" />
     <None Include="Assets\Objects and Particles\Floor\Textures\Floor.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Vector2Node.shader" />
@@ -682,7 +625,6 @@
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\NMWind.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_NodeMasking.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_PosterizeNode.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Legacy\ED_SoftUnlit.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SinTimeNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_RadiansOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCFlipBookUVAnimation.shader" />
@@ -697,9 +639,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\Legacy\UIDefault.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LODFadeNode.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Water\RFX4_WaterSplashTex.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\SSD\Legacy\Masking\MaskStdMetallicCG_DoubleSided.shader" />
     <None Include="Assets\Blockout\Shaders\Editor_Trigger_2018.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\Legacy\ED_ReflBumpSpec.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SimplifiedFModOpNode.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DdyOpNode.shader" />
@@ -709,7 +649,6 @@
     <None Include="Assets\AmplifyShaderEditor\CreatingTerrainsWithASE.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_EncodeFloatRGBAHlpNode.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_LightningMobile.shader" />
-    <None Include="Assets\EasyDecals\nu Assets\Easy Decal\Shader\EDVertexAlphaN.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_Ice.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_NormalizeNode.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Trail\Sword Trail 2.shader" />
@@ -955,15 +894,6 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/Archivos de programa/Unity/Hub/Editor/2019.2.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
-    </Reference>
-    <Reference Include="ch.sycoforge.Decal">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Easy Decal/Scripts/ch.sycoforge.Decal.dll</HintPath>
-    </Reference>
-    <Reference Include="ch.sycoforge.Logging">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/ch.sycoforge.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="ch.sycoforge.Unity.Runtime">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/EasyDecals/nu Assets/Shared/Scripts/ch.sycoforge.Unity.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
