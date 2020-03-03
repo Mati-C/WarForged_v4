@@ -275,6 +275,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Path Painter 1.0.0 U5">
+      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/Path Painter/Editor/Path Painter 1.0.0 U5.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -295,9 +298,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Path Painter 1.0.0 U5">
-      <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Assets/Path Painter/Editor/Path Painter 1.0.0 U5.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Archivos de programa/Unity/Hub/Editor/2019.2.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
