@@ -37,8 +37,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _EdgeLength: 15
-    - _Metallic: 0
-    - _Smoothness: 0.35
+    - _Metallic: 0.125
+    - _Smoothness: 0.193
     - _TessMax: 25
     - _TessMin: 10
     - _TessValue: 1
