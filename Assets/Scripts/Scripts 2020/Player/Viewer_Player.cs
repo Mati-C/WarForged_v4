@@ -6,6 +6,24 @@ public class Viewer_Player : MonoBehaviour
 {
     public Animator anim;
 
+    IEnumerator DelayAnimationActivate(string animName, bool r, float time)
+    {
+        anim.SetBool(animName, r);
+        yield return new WaitForSeconds(time);       
+        anim.SetBool(animName, !r);
+    }
+
+    IEnumerator DelayActivateLayers(float time)
+    {
+
+        anim.SetLayerWeight(0, 1);
+        anim.SetLayerWeight(1, 1);
+        yield return new WaitForSeconds(time);
+        anim.SetLayerWeight(0, 1);
+        anim.SetLayerWeight(1, 0);
+
+    }
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -19,9 +37,21 @@ public class Viewer_Player : MonoBehaviour
     
     void Update()
     {
-        
+        var velocityX = Input.GetAxis("Vertical");
+        var velocityZ = Input.GetAxis("Horizontal");
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) velocityZ = 0;
+
+        if (velocityX > 1) velocityX = 1;
+        if (velocityZ > 1) velocityZ = 1;
+        if (velocityZ < -1) velocityZ = -1;
+        if (velocityX < -1) velocityX = -1;
+    
+        anim.SetFloat("VelX", velocityX);
+        anim.SetFloat("VelZ", velocityZ);
     }
 
+    
     public void WalkAnim()
     {
         anim.SetBool("Walk", true);
@@ -41,5 +71,22 @@ public class Viewer_Player : MonoBehaviour
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Run", true);
+    }
+
+    public void TakeSwordAnim()
+    {
+        StartCoroutine(DelayActivateLayers(0.8f));
+        StartCoroutine(DelayAnimationActivate("TakeSword", true, 0.8f));
+    }
+
+    public void SaveSwordAnim()
+    {
+        StartCoroutine(DelayActivateLayers(1));
+        StartCoroutine(DelayAnimationActivate("SaveSword", true, 1));
+    }
+
+    public void CombatStateAnimator(bool r)
+    {
+        anim.SetBool("CombatState", r);
     }
 }

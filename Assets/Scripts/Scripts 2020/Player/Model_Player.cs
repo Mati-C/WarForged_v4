@@ -23,11 +23,36 @@ public class Model_Player : MonoBehaviour
     public bool run;
     public bool isInCombat;
 
+    [Header("Player CombatValues:")]
+
+    public float timeOnCombat;
+    public float maxTimeOnCombat;
+
     public Action idleEvent;
     public Action WalkEvent;
     public Action RunEvent;
+    public Action TakeSwordEvent;
+    public Action SaveSwordEvent;
+    public Action<bool> CombatStateEvent;
 
     public PlayerCamera GetPlayerCam() { return _camera; }
+
+    IEnumerator SetTimerCombat()
+    {
+        isInCombat = true;
+        TakeSwordEvent();
+        CombatStateEvent(true);
+
+        while(timeOnCombat >0)
+        {
+            timeOnCombat -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        isInCombat = false;
+        SaveSwordEvent();
+        CombatStateEvent(false);
+    }
 
     private void Awake()
     {
@@ -54,7 +79,6 @@ public class Model_Player : MonoBehaviour
 
         d.y = 0;
 
-
         targetRotation = Quaternion.LookRotation(d, Vector3.up);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
@@ -70,5 +94,59 @@ public class Model_Player : MonoBehaviour
             RunEvent();
             _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
         }
+    }
+
+    public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
+    {
+        Quaternion targetRotation;
+
+        d.y = 0;
+
+        if ((turnDir || run) && !opposite)
+        {
+          
+            targetRotation = Quaternion.LookRotation(d, Vector3.up);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+        }
+
+        if ((!turnDir || !run) && !opposite)
+        {
+            targetRotation = Quaternion.LookRotation(_camera.transform.forward, Vector3.up);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+        }
+
+        if(opposite)
+        {
+            targetRotation = Quaternion.LookRotation(-d, Vector3.up);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+        }
+
+        if (!run)
+        {
+            WalkEvent();
+            _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
+        }
+
+        else
+        {
+            RunEvent();
+            _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+        }
+    }
+
+    public void SwordAttack()
+    {
+        CombatStateUp();
+    }
+
+    public void CombatStateUp()
+    {
+        timeOnCombat = maxTimeOnCombat;
+
+        if (!isInCombat) StartCoroutine(SetTimerCombat());
+        
     }
 }

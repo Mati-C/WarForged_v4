@@ -21,6 +21,9 @@ public class Controller_Player
         _model.idleEvent += _viewer.IdleAnim;
         _model.WalkEvent += _viewer.WalkAnim;
         _model.RunEvent += _viewer.RunAnim;
+        _model.TakeSwordEvent += _viewer.TakeSwordAnim;
+        _model.SaveSwordEvent += _viewer.SaveSwordAnim;
+        _model.CombatStateEvent += _viewer.CombatStateAnimator;
 
         _camera = _model.GetPlayerCam();
 
@@ -34,18 +37,29 @@ public class Controller_Player
         {
             if(!S) W = true;
 
-            if(!A && !D) _model.Movement(_camera.transform.forward);
+            if (!A && !D)
+            {
+                if(!_model.isInCombat) _model.Movement(_camera.transform.forward);
+
+                else _model.CombatMovement(_camera.transform.forward, true, false);
+            }
 
             if (A && !D)
             {
                 var dir = (_camera.transform.forward - _camera.transform.right) / 2;
-                _model.Movement(dir.normalized);
+
+                if (!_model.isInCombat) _model.Movement(dir.normalized);
+
+                else _model.CombatMovement(dir.normalized, true, false);
             }
 
             if (!A && D)
             {
                 var dir = (_camera.transform.forward + _camera.transform.right) / 2;
-                _model.Movement(dir.normalized);
+
+                if (!_model.isInCombat) _model.Movement(dir.normalized);
+
+                else _model.CombatMovement(dir.normalized, true, false);
             }
         }
 
@@ -53,18 +67,29 @@ public class Controller_Player
         {
             if (!W) S = true;
 
-            if (!A && !D) _model.Movement(-_camera.transform.forward);
+            if (!A && !D)
+            {
+                if (!_model.isInCombat) _model.Movement(-_camera.transform.forward);
+
+                else _model.CombatMovement(-_camera.transform.forward, false, false);
+            }
 
             if (A && !D)
             {
                 var dir = (-_camera.transform.forward - _camera.transform.right) / 2;
-                _model.Movement(dir.normalized);
+
+                if (!_model.isInCombat) _model.Movement(dir.normalized);
+
+                else _model.CombatMovement(dir.normalized, true, true);
             }
 
             if (!A && D)
             {
                 var dir = (-_camera.transform.forward + _camera.transform.right) / 2;
-                _model.Movement(dir.normalized);
+
+                if (!_model.isInCombat) _model.Movement(dir.normalized);
+
+                else _model.CombatMovement(dir.normalized, true, true);
             }
         }
 
@@ -72,18 +97,29 @@ public class Controller_Player
         {
             if (!A) D = true;
 
-            if (!W && !S) _model.Movement(_camera.transform.right);
+            if (!W && !S)
+            {
+                if (!_model.isInCombat) _model.Movement(_camera.transform.right);
+
+                else _model.CombatMovement(_camera.transform.right, false, false);
+            }
 
             if (W && !S)
             {
                 var dir = (_camera.transform.forward + _camera.transform.right) / 2;
-                _model.Movement(dir.normalized);
+
+                if (!_model.isInCombat) _model.Movement(dir.normalized);
+
+                else _model.CombatMovement(dir.normalized, true, false);
             }
 
             if (!W && S)
             {
                 var dir = (-_camera.transform.forward + _camera.transform.right) / 2;
-                _model.Movement(dir.normalized);
+
+                if (!_model.isInCombat) _model.Movement(dir.normalized);
+
+                else _model.CombatMovement(dir.normalized, true, true);
             }
         }
 
@@ -91,18 +127,29 @@ public class Controller_Player
         {
             if (!D) A = true;
 
-            if (!W && !S) _model.Movement(-_camera.transform.right);
+            if (!W && !S)
+            {
+                if (!_model.isInCombat) _model.Movement(-_camera.transform.right);
+
+                else _model.CombatMovement(-_camera.transform.right, false, false);
+            }
 
             if (W && !S)
             {
                 var dir = (_camera.transform.forward - _camera.transform.right) / 2;
-                _model.Movement(dir.normalized);
+
+                if (!_model.isInCombat) _model.Movement(dir.normalized);
+
+                else _model.CombatMovement(dir.normalized, true, false);
             }
 
             if (!W && S)
             {
                 var dir = (-_camera.transform.forward - _camera.transform.right) / 2;
-                _model.Movement(dir.normalized);
+
+                if (!_model.isInCombat) _model.Movement(dir.normalized);
+
+                else _model.CombatMovement(dir.normalized, true, true);
             }
         }
 
@@ -116,6 +163,9 @@ public class Controller_Player
         if (Input.GetKeyDown(KeyCode.LeftShift)) _model.run = true;
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
+
+        if (Input.GetKeyDown(KeyCode.Mouse0)) _model.SwordAttack();
+
     }
 
 }
