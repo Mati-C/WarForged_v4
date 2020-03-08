@@ -529,6 +529,10 @@
     <Compile Include="Assets\PostProcessing\Editor\Utils\EditorResources.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Utils\FxStyles.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Utils\ReflectionUtils.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\Editor\ScionGUIUtil.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\Editor\ScionWindow.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\InspectorAttributes\Editor\InspectorAttributesEditor.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\InspectorAttributes\Editor\InspectorDecorationsEditor.cs" />
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshComponentsGUIUtility.cs" />
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshLinkEditor.cs" />
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshModifierEditor.cs" />

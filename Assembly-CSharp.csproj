@@ -168,6 +168,22 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\ScionPostProcess\ScionPostProcess.cs" />
+    <Compile Include="Assets\ScionPostProcess\ScionPostProcessNoTonemap.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\Bloom.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\ColorGrading.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\CombinationPass.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\DepthOfField.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\Downsampling.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\InspectorAttributes\InspectorAttributes.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\ParameterTypes.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\ScionDebug.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\ScionGraphics.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\ScionLensFlare.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\ScionPostProcessBase.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\ScionUtility.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\ShaderSettings.cs" />
+    <Compile Include="Assets\ScionPostProcess\Scripts\VirtualCamera.cs" />
     <Compile Include="Assets\Scripts\ActivateEnemiesArea.cs" />
     <Compile Include="Assets\Scripts\AnimationTimeLineScenes.cs" />
     <Compile Include="Assets\Scripts\AStar\AStar.cs" />
@@ -334,6 +350,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DistanceOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ExpOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldTransformParams.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\DepthOfFieldMask.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SwizzleNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\CustomRTUpdate.shader" />
     <None Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Shaders\Particles Additive Intensify.shader" />
@@ -389,6 +406,7 @@
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_DistortionParticlesMobile.shader" />
     <None Include="Assets\Blockout\Shaders\Area_Comment_Wireframe_2018.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\Downsample.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ObjSpaceLightDirHlpNode.shader" />
     <None Include="Assets\Blockout\Resources\Blockout\Pins\Pin_Backfacing.shader" />
     <None Include="Assets\Logo\How To Play\DissolveBurn.shader" />
@@ -429,6 +447,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_RGBToHSVNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ClampOpNode.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Third-Party Notices 2.txt" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\Bloom.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\LightWeightSRPPBR.shader" />
     <None Include="Assets\Objects and Particles\FireTorch\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
@@ -454,6 +473,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TemplateShaderProperty.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Advanced Grass Light.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA3.cginc" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ConditionalIfNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
@@ -473,6 +493,7 @@
     <None Include="Assets\Objects and Particles\_Shaders\Orb\Orb.shader" />
     <None Include="Assets\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TexCoordVertexDataNode.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\DepthOfFieldImpl.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ColorSpaceDouble.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_DistortionParticlesAdd.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Water\RFX4_WaterSplash.shader" />
@@ -534,12 +555,14 @@
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Water\RFX4_WaterSplashMobile.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TanhOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_BreakToComponentsNode.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\ShaderIncludes\ScionCommon.cginc" />
     <None Include="Assets\Objects and Particles\_Shaders\Force Field\ForceField_version2.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_ProjectorBlendedMobile.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_GammaToLinearNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldReflectionVector.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\TextureArrayInspector.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\ShaderIncludes\DepthOfFieldCommon.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\LinearPreviews.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WeightedBlendNode.shader" />
@@ -564,6 +587,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_CosTime.shader" />
     <None Include="Assets\Objects and Particles\Walls\Textures\4K JPG v6\Walls.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Bloom\Resources\RFX4_BloomAdditive.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\VirtualCamera.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SimpleAddOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_RsqrtOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_VertexColorNode.shader" />
@@ -574,7 +598,9 @@
     <None Include="Assets\Objects and Particles\Rune Stone\Textures\Runic Circle.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SqrtOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TimeNode.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\DepthOfFieldTemporal.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DecodeViewNormalStereoHlpNode.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\ColorGrading.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_VertexIdVariableNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ObjectScaleNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_GradientSample.shader" />
@@ -584,6 +610,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_CrossProductOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_NormalVertexDataNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCCompareEqual.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\ShaderIncludes\MedianFilter.cginc" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_Particle.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\Legacy\UnlitLightmap.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Tree_Bark_Specular.shader" />
@@ -591,6 +618,7 @@
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_DecalDistortMask.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ColorNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LinearDepthNode.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\ShaderIncludes\VirtualCameraCommon.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\LightWeightSRPUnlit.shader" />
     <None Include="Assets\Blockout\Shaders\Blockout_Leaf_2018.shader" />
     <None Include="Assets\Blockout\Shaders\Blockout_Depth_Blend_2018.shader" />
@@ -606,6 +634,7 @@
     <None Include="Assets\Objects and Particles\_Shaders\Tower\MagicSphere.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Blood Pool\Blood Pool.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DecodeDepthNormalNode.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\ShaderIncludes\ColorGradingCommon.cginc" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_DecalMaskMobile.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SimpleTimeNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ToggleSwitchNode.shader" />
@@ -658,8 +687,10 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_NormalizeNode.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Trail\Sword Trail 2.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_NoiseGeneratorNode.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\LensFlare.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DesaturateNode.shader" />
     <None Include="Assets\Objects and Particles\Bars\Bars.shader" />
+    <None Include="Assets\ScionPostProcess\Resources\Shaders\CombinationPass.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>G:/Users/Nahuel Alcázar/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
