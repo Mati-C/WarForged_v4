@@ -64,13 +64,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AOIntensity: 0.803
+    - _AOIntensity: 0.411
     - _BorderWidth: -5.88
     - _DarkMovementIntensity: 0.25
     - _EdgeLength: 20
     - _Gradient: 0.15
     - _HorizontalMaxMovement: 0.05
-    - _IconTranslation: 2
+    - _IconTranslation: 3
     - _NAbyWindGradient: 0
     - _NAbywindPosition: 0.442
     - _NormalIntensity: 0.187
@@ -80,7 +80,7 @@ Material:
     - _WaveDirectionMultiplier: 0
     - _WaveDirectionMultiplierX: -1
     - _WaveDirectionMultiplierZ: 0
-    - _WaveSpeed: 0.1
+    - _WaveSpeed: 0.08
     - _WaveYDirection: -1
     - _WaveZDirection: 0
     - __dirty: 0
