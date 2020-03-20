@@ -18,10 +18,12 @@ public class Model_Player : MonoBehaviour
     [Header("Player Speeds:")]
     public float speed;
     public float runSpeed;
+    public float dodgeSpeed;
 
     [Header("Player States:")]
     public bool run;
     public bool isInCombat;
+    public bool onDodge;
 
     [Header("Player CombatValues:")]
 
@@ -36,6 +38,9 @@ public class Model_Player : MonoBehaviour
     public Action<bool> CombatStateEvent;
 
     public PlayerCamera GetPlayerCam() { return _camera; }
+
+    public enum DogeDirecctions { Left, Right, Back, Roll };
+    public DogeDirecctions dirToDodge;
 
     IEnumerator SetTimerCombat()
     {
@@ -52,6 +57,20 @@ public class Model_Player : MonoBehaviour
         isInCombat = false;
         SaveSwordEvent();
         CombatStateEvent(false);
+    }
+
+    IEnumerator DodgeMovement(float timer, Vector3 dir)
+    {
+        onDodge = true;
+
+        while(timer >0)
+        {
+            timer -= Time.deltaTime;
+            _rb.MovePosition(transform.position + dir * dodgeSpeed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+
+        onDodge = false;
     }
 
     private void Awake()
@@ -75,65 +94,101 @@ public class Model_Player : MonoBehaviour
 
     public void Movement(Vector3 d)
     {
-        Quaternion targetRotation;
-
-        d.y = 0;
-
-        targetRotation = Quaternion.LookRotation(d, Vector3.up);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
-
-        if (!run)
+        if (!onDodge)
         {
-            WalkEvent();
-            _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
-        }
+            Quaternion targetRotation;
 
-        else
-        {
-            RunEvent();
-            _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+            d.y = 0;
+
+            targetRotation = Quaternion.LookRotation(d, Vector3.up);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+
+            if (!run)
+            {
+                WalkEvent();
+                _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
+            }
+
+            else
+            {
+                RunEvent();
+                _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+            }
         }
     }
 
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
     {
-        Quaternion targetRotation;
-
-        d.y = 0;
-
-        if ((turnDir || run) && !opposite)
+        if (!onDodge)
         {
-          
-            targetRotation = Quaternion.LookRotation(d, Vector3.up);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            Quaternion targetRotation;
+
+            d.y = 0;
+
+            if ((turnDir && !opposite) || run)
+            {
+
+                targetRotation = Quaternion.LookRotation(d, Vector3.up);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            }
+
+            if (!turnDir && !opposite && !run)
+            {
+
+                var dir = _camera.transform.forward;
+
+                dir.y = 0;
+
+                targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            }
+
+            if (opposite && !run)
+            {
+
+                targetRotation = Quaternion.LookRotation(-d, Vector3.up);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            }
+
+            if (!run)
+            {
+                WalkEvent();
+                _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
+            }
+
+            else
+            {
+                RunEvent();
+                _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+            }
+        }
+    }
+
+    public void Dodge(DogeDirecctions direction)
+    {
+        if(direction == DogeDirecctions.Roll)
+        {
+            StartCoroutine(DodgeMovement(0.5f, transform.forward));
         }
 
-        if ((!turnDir || !run) && !opposite)
+        if (direction == DogeDirecctions.Back)
         {
-            targetRotation = Quaternion.LookRotation(_camera.transform.forward, Vector3.up);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            StartCoroutine(DodgeMovement(0.5f, -transform.forward));
         }
 
-        if(opposite)
+        if (direction == DogeDirecctions.Right)
         {
-            targetRotation = Quaternion.LookRotation(-d, Vector3.up);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            StartCoroutine(DodgeMovement(0.5f, transform.right));
         }
 
-        if (!run)
+        if (direction == DogeDirecctions.Left)
         {
-            WalkEvent();
-            _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
-        }
-
-        else
-        {
-            RunEvent();
-            _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+            StartCoroutine(DodgeMovement(0.5f, -transform.right));
         }
     }
 

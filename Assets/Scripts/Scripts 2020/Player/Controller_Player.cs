@@ -27,7 +27,9 @@ public class Controller_Player
 
         _camera = _model.GetPlayerCam();
 
-        Cursor.lockState = CursorLockMode.Locked;
+        _model.CombatStateEvent += _camera.SetCameraState;
+
+       Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
  
@@ -153,12 +155,24 @@ public class Controller_Player
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.Space) && !_model.onDodge)
+        {
+            if ((W && !S && !A && !D) || (W && !S && A && !D) || (W && !S && !A && D) || (!W && !S && !A && D)) _model.Dodge(Model_Player.DogeDirecctions.Roll);
+
+            if ((!W && S && !A && !D) || (!W && S && A && !D) || (!W && S && !A && D)) _model.Dodge(Model_Player.DogeDirecctions.Back);
+
+            if ((!W && !S && !A && D)) _model.Dodge(Model_Player.DogeDirecctions.Right); 
+
+            if ((!W && !S && A && !D)) _model.Dodge(Model_Player.DogeDirecctions.Left); 
+
+        }
+
         if (Input.GetKeyUp(KeyCode.W)) W = false;
         if (Input.GetKeyUp(KeyCode.S)) S = false;
         if (Input.GetKeyUp(KeyCode.D)) D = false;
         if (Input.GetKeyUp(KeyCode.A)) A = false;
 
-        if (!W && !S && !D && !A) _model.idleEvent();
+        if (!W && !S && !D && !A && !_model.run) _model.idleEvent();
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) _model.run = true;
 
