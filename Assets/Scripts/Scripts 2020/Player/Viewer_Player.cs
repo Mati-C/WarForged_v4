@@ -52,6 +52,7 @@ public class Viewer_Player : MonoBehaviour
     }
 
     
+
     public void WalkAnim()
     {
         anim.SetBool("Walk", true);
@@ -89,4 +90,11 @@ public class Viewer_Player : MonoBehaviour
     {
         anim.SetBool("CombatState", r);
     }
+
+    public void DodgeAnims(Model_Player.DogeDirecctions dir)
+    {
+        if (dir == Model_Player.DogeDirecctions.Roll) StartCoroutine(DelayAnimationActivate("Roll", true, 0.5f));
+    }
+
+   
 }

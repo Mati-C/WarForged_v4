@@ -24,6 +24,7 @@ public class Controller_Player
         _model.TakeSwordEvent += _viewer.TakeSwordAnim;
         _model.SaveSwordEvent += _viewer.SaveSwordAnim;
         _model.CombatStateEvent += _viewer.CombatStateAnimator;
+        _model.DodgeEvent += _viewer.DodgeAnims;
 
         _camera = _model.GetPlayerCam();
 

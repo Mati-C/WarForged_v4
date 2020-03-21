@@ -36,6 +36,7 @@ public class Model_Player : MonoBehaviour
     public Action TakeSwordEvent;
     public Action SaveSwordEvent;
     public Action<bool> CombatStateEvent;
+    public Action<DogeDirecctions> DodgeEvent;
 
     public PlayerCamera GetPlayerCam() { return _camera; }
 
@@ -44,11 +45,18 @@ public class Model_Player : MonoBehaviour
 
     IEnumerator SetTimerCombat()
     {
-        isInCombat = true;
-        TakeSwordEvent();
-        CombatStateEvent(true);
+        while (onDodge)
+        {
+            yield return new WaitForEndOfFrame();
+        }
 
-        while(timeOnCombat >0)
+        isInCombat = true;
+        
+        CombatStateEvent(true);
+      
+        TakeSwordEvent();
+
+        while (timeOnCombat >0)
         {
             timeOnCombat -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
@@ -173,22 +181,41 @@ public class Model_Player : MonoBehaviour
     {
         if(direction == DogeDirecctions.Roll)
         {
+            DodgeEvent(DogeDirecctions.Roll);
             StartCoroutine(DodgeMovement(0.5f, transform.forward));
         }
 
         if (direction == DogeDirecctions.Back)
         {
-            StartCoroutine(DodgeMovement(0.5f, -transform.forward));
+            if (!isInCombat)
+            {
+                DodgeEvent(DogeDirecctions.Roll);
+                StartCoroutine(DodgeMovement(0.5f, -transform.forward));
+            }
+
+            else StartCoroutine(DodgeMovement(0.5f, transform.forward));
         }
 
         if (direction == DogeDirecctions.Right)
         {
-            StartCoroutine(DodgeMovement(0.5f, transform.right));
+            if (!isInCombat)
+            {
+                DodgeEvent(DogeDirecctions.Roll);
+                StartCoroutine(DodgeMovement(0.5f, transform.right));
+            }
+
+            else StartCoroutine(DodgeMovement(0.5f, transform.forward));
         }
 
         if (direction == DogeDirecctions.Left)
         {
-            StartCoroutine(DodgeMovement(0.5f, -transform.right));
+            if (!isInCombat)
+            {
+                DodgeEvent(DogeDirecctions.Roll);
+                StartCoroutine(DodgeMovement(0.5f, -transform.right));
+            }
+
+            else StartCoroutine(DodgeMovement(0.5f, transform.forward));
         }
     }
 
