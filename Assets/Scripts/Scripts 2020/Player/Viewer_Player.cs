@@ -93,7 +93,9 @@ public class Viewer_Player : MonoBehaviour
 
     public void DodgeAnims(Model_Player.DogeDirecctions dir)
     {
-        if (dir == Model_Player.DogeDirecctions.Roll) StartCoroutine(DelayAnimationActivate("Roll", true, 0.5f));
+        if (dir == Model_Player.DogeDirecctions.Roll) StartCoroutine(DelayAnimationActivate("Roll", true, 0.5f)); 
+
+        if (dir == Model_Player.DogeDirecctions.Back) StartCoroutine(DelayAnimationActivate("DodgeBack", true, 0.5f)); 
     }
 
    

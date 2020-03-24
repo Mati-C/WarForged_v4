@@ -182,7 +182,7 @@ public class Model_Player : MonoBehaviour
         if(direction == DogeDirecctions.Roll)
         {
             DodgeEvent(DogeDirecctions.Roll);
-            StartCoroutine(DodgeMovement(0.5f, transform.forward));
+            if(!onDodge) StartCoroutine(DodgeMovement(0.5f, transform.forward));
         }
 
         if (direction == DogeDirecctions.Back)
@@ -190,10 +190,14 @@ public class Model_Player : MonoBehaviour
             if (!isInCombat)
             {
                 DodgeEvent(DogeDirecctions.Roll);
-                StartCoroutine(DodgeMovement(0.5f, -transform.forward));
+                if (!onDodge) StartCoroutine(DodgeMovement(0.5f, transform.forward));
             }
 
-            else StartCoroutine(DodgeMovement(0.5f, transform.forward));
+            else if (!onDodge)
+            {
+                DodgeEvent(DogeDirecctions.Back);
+                StartCoroutine(DodgeMovement(0.5f, -transform.forward));
+            }
         }
 
         if (direction == DogeDirecctions.Right)
@@ -201,10 +205,10 @@ public class Model_Player : MonoBehaviour
             if (!isInCombat)
             {
                 DodgeEvent(DogeDirecctions.Roll);
-                StartCoroutine(DodgeMovement(0.5f, transform.right));
+                if (!onDodge) StartCoroutine(DodgeMovement(0.5f, transform.right));
             }
 
-            else StartCoroutine(DodgeMovement(0.5f, transform.forward));
+            else if (!onDodge) StartCoroutine(DodgeMovement(0.5f, transform.forward));
         }
 
         if (direction == DogeDirecctions.Left)
@@ -212,10 +216,10 @@ public class Model_Player : MonoBehaviour
             if (!isInCombat)
             {
                 DodgeEvent(DogeDirecctions.Roll);
-                StartCoroutine(DodgeMovement(0.5f, -transform.right));
+                if (!onDodge) StartCoroutine(DodgeMovement(0.5f, -transform.right));
             }
 
-            else StartCoroutine(DodgeMovement(0.5f, transform.forward));
+            else if (!onDodge) StartCoroutine(DodgeMovement(0.5f, transform.forward));
         }
     }
 
