@@ -644,7 +644,7 @@ ModelImporter:
     second: Box013
   - first:
       74: 7400000
-    second: P_Warrior_DodgeR-V2
+    second: P_Warrior_DodgeR
   - first:
       74: 7400002
     second: P_Warrior_DodgeBack
@@ -726,6 +726,9 @@ ModelImporter:
   - first:
       74: 3721506475724340578
     second: P_Warrior_DodgeBack Recover
+  - first:
+      74: -6771775195493806686
+    second: P_Warrior_DodgeR Recover
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -755,11 +758,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: P_Warrior_DodgeR-V2
+      name: P_Warrior_DodgeR
       takeName: Take 001
       internalID: 0
       firstFrame: 2357
-      lastFrame: 2378
+      lastFrame: 2369
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -812,14 +815,7 @@ ModelImporter:
           preInfinity: 3
           postInfinity: 3
           rotationOrder: 4
-      events:
-      - time: 0.92582095
-        functionName: EndCombo
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -927,6 +923,35 @@ ModelImporter:
       internalID: 0
       firstFrame: 2403
       lastFrame: 2411
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: P_Warrior_DodgeR Recover
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 2369
+      lastFrame: 2380
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

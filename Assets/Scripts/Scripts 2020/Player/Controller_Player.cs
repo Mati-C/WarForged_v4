@@ -158,7 +158,7 @@ public class Controller_Player
 
         if(Input.GetKeyDown(KeyCode.Space) && !_model.onDodge)
         {
-            if ((W && !S && !A && !D) || (W && !S && A && !D) || (W && !S && !A && D) || (!W && !S && !A && D)) _model.Dodge(Model_Player.DogeDirecctions.Roll);
+            if ((W && !S && !A && !D) || (W && !S && A && !D) || (W && !S && !A && D) || (!W && !S && !A && !D)) _model.Dodge(Model_Player.DogeDirecctions.Roll);
 
             if ((!W && S && !A && !D) || (!W && S && A && !D) || (!W && S && !A && D)) _model.Dodge(Model_Player.DogeDirecctions.Back);
 
