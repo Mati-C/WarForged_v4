@@ -5,6 +5,7 @@ using UnityEngine;
 public class Viewer_Player : MonoBehaviour
 {
     public Animator anim;
+    Model_Player _player;
 
     IEnumerator DelayAnimationActivate(string animName, bool r, float time)
     {
@@ -27,6 +28,7 @@ public class Viewer_Player : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        _player = GetComponent<Model_Player>();
     }
 
     void Start()
@@ -37,6 +39,8 @@ public class Viewer_Player : MonoBehaviour
     
     void Update()
     {
+        anim.SetInteger("AttackCombo", _player.attackCombo);
+
         var velocityX = Input.GetAxis("Vertical");
         var velocityZ = Input.GetAxis("Horizontal");
 

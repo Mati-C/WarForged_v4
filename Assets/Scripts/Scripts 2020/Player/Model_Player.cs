@@ -27,9 +27,12 @@ public class Model_Player : MonoBehaviour
     public bool run;
     public bool isInCombat;
     public bool onDodge;
+    public bool cantAttack;
 
     [Header("Player CombatValues:")]
 
+    public int attackCombo;
+    public float resetAttackTimer;
     public float timeOnCombat;
     public float maxTimeOnCombat;
 
@@ -45,6 +48,20 @@ public class Model_Player : MonoBehaviour
 
     public enum DogeDirecctions { Left, Right, Back, Roll };
     public DogeDirecctions dirToDodge;
+
+    IEnumerator AttackSword()
+    {
+        while(resetAttackTimer >0)
+        {
+            resetAttackTimer -= Time.deltaTime;
+
+            if (resetAttackTimer < 0.2f) cantAttack = false;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        attackCombo = 0;
+    }
 
     IEnumerator SetTimerCombat()
     {
@@ -237,7 +254,28 @@ public class Model_Player : MonoBehaviour
 
     public void SwordAttack()
     {
+        if (isInCombat)
+        {
+            if (!cantAttack && attackCombo > 0 && attackCombo<=3)
+            {
+                resetAttackTimer = 1;
+                attackCombo++;
+            }
+
+            if (!cantAttack && attackCombo <=0)
+            {
+                if (resetAttackTimer <= 0)
+                {
+                    resetAttackTimer = 1;
+                    attackCombo++;
+                    StartCoroutine(AttackSword());                   
+                }
+            }
+          
+        }
+
         CombatStateUp();
+       
     }
 
     public void CombatStateUp()
