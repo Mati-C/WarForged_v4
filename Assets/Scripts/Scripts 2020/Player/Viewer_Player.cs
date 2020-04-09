@@ -7,6 +7,17 @@ public class Viewer_Player : MonoBehaviour
     public Animator anim;
     Model_Player _player;
 
+    [Header("Player Current Anim Name:")]
+
+    public string animClipName;
+
+    [Header("Attack Animation Ends")]
+
+    public AnimationClip attackEnd1;
+    public AnimationClip attackEnd2;
+    public AnimationClip attackEnd3;
+
+
     IEnumerator DelayAnimationActivate(string animName, bool r, float time)
     {
         anim.SetBool(animName, r);
@@ -39,6 +50,8 @@ public class Viewer_Player : MonoBehaviour
     
     void Update()
     {
+        if(anim.GetCurrentAnimatorClipInfo(0).Length >0) animClipName = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+
         anim.SetInteger("AttackCombo", _player.attackCombo);
 
         var velocityX = Input.GetAxis("Vertical");

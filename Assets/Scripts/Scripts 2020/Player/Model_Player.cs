@@ -35,6 +35,19 @@ public class Model_Player : MonoBehaviour
     public float resetAttackTimer;
     public float timeOnCombat;
     public float maxTimeOnCombat;
+    public enum DogeDirecctions { Left, Right, Back, Roll };
+    public DogeDirecctions dirToDodge;
+
+    [Header("Player AttackMovementImpulses:")]
+    public float impulseAttackMovement1;
+    public float impulseAttackMovement2;
+    public float impulseAttackMovement3;
+    public float impulseAttackMovement4;
+
+    float _timeToWaitBeforeAttack;
+    float _movementAttackTime;
+    Vector3 _attackLastPos;
+    string _currentAnimName;
 
     public Action idleEvent;
     public Action WalkEvent;
@@ -46,21 +59,57 @@ public class Model_Player : MonoBehaviour
 
     public PlayerCamera GetPlayerCam() { return _camera; }
 
-    public enum DogeDirecctions { Left, Right, Back, Roll };
-    public DogeDirecctions dirToDodge;
+  
 
     IEnumerator AttackSword()
     {
+        cantAttack = true;
+
         while(resetAttackTimer >0)
         {
             resetAttackTimer -= Time.deltaTime;
 
-            if (resetAttackTimer < 0.2f) cantAttack = false;
+            if (resetAttackTimer < 0.3f) cantAttack = false;
 
             yield return new WaitForEndOfFrame();
         }
 
         attackCombo = 0;
+    }
+
+    IEnumerator AttackMovement()
+    {
+       
+        while(_movementAttackTime > 0)
+        {
+            _timeToWaitBeforeAttack -= Time.deltaTime;
+
+            if (_timeToWaitBeforeAttack <= 0)
+            {
+                _movementAttackTime -= Time.deltaTime;
+
+                switch (attackCombo)
+                {
+                    case 1:
+                        transform.position = Vector3.Lerp(_attackLastPos, transform.position + transform.forward * impulseAttackMovement1 * Time.deltaTime, 1);
+                        break;
+
+                    case 2:
+                        transform.position = Vector3.Lerp(_attackLastPos, transform.position + transform.forward * impulseAttackMovement2 * Time.deltaTime, 1);
+                        break;
+
+                    case 3:
+                        transform.position = Vector3.Lerp(_attackLastPos, transform.position + transform.forward * impulseAttackMovement3 * Time.deltaTime, 1);
+                        break;
+
+                    case 4:
+                        transform.position = Vector3.Lerp(_attackLastPos, transform.position + transform.forward * impulseAttackMovement4 * Time.deltaTime, 1);
+                        break;
+                }
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     IEnumerator SetTimerCombat()
@@ -98,7 +147,7 @@ public class Model_Player : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         onDodge = false;
     }
 
@@ -119,6 +168,8 @@ public class Model_Player : MonoBehaviour
     void Update()
     {
         _controller.ControllerUpdate();
+        _currentAnimName = _viewer.animClipName;
+        
     }
 
     public void Movement(Vector3 d)
@@ -258,17 +309,47 @@ public class Model_Player : MonoBehaviour
         {
             if (!cantAttack && attackCombo > 0 && attackCombo<=3)
             {
-                resetAttackTimer = 1;
-                attackCombo++;
+                
+                if (attackCombo == 1 && _currentAnimName == _viewer.attackEnd1.name)
+                {
+                    resetAttackTimer = 0.8f;
+                    _timeToWaitBeforeAttack = 0.1f;
+                    _movementAttackTime = 0.35f;
+                    StartCoroutine(AttackMovement());
+                    attackCombo++;
+                }
+
+                if (attackCombo == 2 && _currentAnimName == _viewer.attackEnd2.name)
+                {
+                    resetAttackTimer = 0.8f;
+                    _timeToWaitBeforeAttack = 0.15f;
+                    _movementAttackTime = 0.25f;
+                    StartCoroutine(AttackMovement());
+                    attackCombo++;
+                }
+
+                if (attackCombo == 3 && _currentAnimName == _viewer.attackEnd3.name)
+                {
+                    resetAttackTimer = 1.2f;
+                    _timeToWaitBeforeAttack = 0.07f;
+                    _movementAttackTime = 0.25f;
+                    StartCoroutine(AttackMovement());
+                    attackCombo++;
+                }
+                
             }
 
             if (!cantAttack && attackCombo <=0)
             {
                 if (resetAttackTimer <= 0)
                 {
-                    resetAttackTimer = 1;
+                    resetAttackTimer = 0.6f; 
                     attackCombo++;
-                    StartCoroutine(AttackSword());                   
+                    StartCoroutine(AttackSword());
+                    _attackLastPos = transform.position;
+                    _timeToWaitBeforeAttack = 0.1f;
+                    _movementAttackTime = 0.35f;
+                    StartCoroutine(AttackMovement());
                 }
             }
           
