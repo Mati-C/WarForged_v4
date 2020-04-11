@@ -24696,7 +24696,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400004, guid: cade6cabd8388a14c8718732e7f69793, type: 3}
+  m_Motion: {fileID: 1827226128182048838, guid: 5e7f1704d5d7a8b45abb84bb7d94411f,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -24766,7 +24767,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 98c1c177e4794e44f98e62e815a04e8d, type: 3}
+  m_Motion: {fileID: 1827226128182048838, guid: b7812ad47a06451429b40131c40e594a,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -25225,8 +25227,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutCombatWalk
-  m_Speed: 1.09
+  m_Name: OutCombatJogging
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101330034650094558}
@@ -25248,7 +25250,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6f90cc96d715afc44b2f9a4e83a5284d, type: 3}
+  m_Motion: {fileID: 7400004, guid: cade6cabd8388a14c8718732e7f69793, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -26680,7 +26682,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102115261294067550}
-    m_Position: {x: 588, y: 480, z: 0}
+    m_Position: {x: 590, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102407996019231756}
     m_Position: {x: 504, y: 108, z: 0}
@@ -26701,7 +26703,7 @@ AnimatorStateMachine:
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
-  m_ParentStateMachinePosition: {x: 1164, y: 360, z: 0}
+  m_ParentStateMachinePosition: {x: 1170, y: 360, z: 0}
   m_DefaultState: {fileID: 1102946748073724072}
 --- !u!1107 &1107505677642423268
 AnimatorStateMachine:
