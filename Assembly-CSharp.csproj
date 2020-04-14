@@ -331,6 +331,7 @@
     <Compile Include="Assets\Scripts\Scripts 2020\Camera\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Controller_Player.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Model_Player.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Player\PlayerSword.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Viewer_Player.cs" />
     <Compile Include="Assets\Scripts\SkillNode.cs" />
     <Compile Include="Assets\Scripts\Skills.cs" />

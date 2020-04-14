@@ -179,7 +179,7 @@ public class Controller_Player
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)) _model.SwordAttack();
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge) _model.SwordAttack();
 
     }
 
