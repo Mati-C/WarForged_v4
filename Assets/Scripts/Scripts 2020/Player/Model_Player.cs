@@ -28,6 +28,7 @@ public class Model_Player : MonoBehaviour
     public bool isInCombat;
     public bool onDodge;
     public bool cantAttack;
+    public bool onAttackAnimation;
 
     [Header("Player CombatValues:")]
 
@@ -44,11 +45,12 @@ public class Model_Player : MonoBehaviour
     public float impulseAttackMovement3;
     public float impulseAttackMovement4;
 
+    float _onAttackAnimationTimer;
     float _timeToWaitBeforeAttack;
     float _movementAttackTime;
     Vector3 _attackLastPos;
     string _currentAnimName;
-
+    
     public Action idleEvent;
     public Action WalkEvent;
     public Action RunEvent;
@@ -69,7 +71,9 @@ public class Model_Player : MonoBehaviour
         {
             resetAttackTimer -= Time.deltaTime;
 
-            if (resetAttackTimer < 0.3f) cantAttack = false;
+            if (resetAttackTimer < 0.2f && attackCombo==1) cantAttack = false;
+            if (resetAttackTimer < 0.3f && attackCombo!=1) cantAttack = false;
+            if (resetAttackTimer > 0.3f) cantAttack = true;
 
             yield return new WaitForEndOfFrame();
         }
@@ -110,6 +114,19 @@ public class Model_Player : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    IEnumerator AttackAnimationTimer()
+    {
+        onAttackAnimation = true;
+
+        while (_onAttackAnimationTimer > 0)
+        {
+            _onAttackAnimationTimer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        onAttackAnimation = false;
     }
 
     IEnumerator SetTimerCombat()
@@ -174,7 +191,7 @@ public class Model_Player : MonoBehaviour
 
     public void Movement(Vector3 d)
     {
-        if (!onDodge)
+        if (!onDodge && !onAttackAnimation)
         {
             Quaternion targetRotation;
 
@@ -200,7 +217,7 @@ public class Model_Player : MonoBehaviour
 
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
     {
-        if (!onDodge)
+        if (!onDodge && !onAttackAnimation)
         {
 
             Quaternion targetRotation;
@@ -307,52 +324,51 @@ public class Model_Player : MonoBehaviour
     {
         if (isInCombat)
         {
-            if (!cantAttack && attackCombo > 0 && attackCombo<=3)
+            if (!cantAttack)
             {
-                
-                if (attackCombo == 1 && _currentAnimName == _viewer.attackEnd1.name)
+                if(attackCombo == 3)
                 {
-                    resetAttackTimer = 0.8f;
-                    _timeToWaitBeforeAttack = 0.1f;
-                    _movementAttackTime = 0.35f;
+                    resetAttackTimer = 0.6f;
+                    _onAttackAnimationTimer = 0.7f;
+                    _timeToWaitBeforeAttack = 0.07f;
+                    _movementAttackTime = 0.25f;
                     StartCoroutine(AttackMovement());
                     attackCombo++;
                 }
 
-                if (attackCombo == 2 && _currentAnimName == _viewer.attackEnd2.name)
+                if (attackCombo == 2)
                 {
-                    resetAttackTimer = 0.8f;
+                    resetAttackTimer = 0.5f;
+                    _onAttackAnimationTimer = 0.5f;
                     _timeToWaitBeforeAttack = 0.15f;
                     _movementAttackTime = 0.25f;
                     StartCoroutine(AttackMovement());
                     attackCombo++;
                 }
 
-                if (attackCombo == 3 && _currentAnimName == _viewer.attackEnd3.name)
+                if (attackCombo == 1)
                 {
-                    resetAttackTimer = 1.2f;
-                    _timeToWaitBeforeAttack = 0.07f;
-                    _movementAttackTime = 0.25f;
-                    StartCoroutine(AttackMovement());
-                    attackCombo++;
-                }
-                
-            }
-
-            if (!cantAttack && attackCombo <=0)
-            {
-                if (resetAttackTimer <= 0)
-                {
-                    resetAttackTimer = 0.6f; 
-                    attackCombo++;
-                    StartCoroutine(AttackSword());
-                    _attackLastPos = transform.position;
+                    resetAttackTimer = 0.8f;
+                    _onAttackAnimationTimer = 0.8f;
                     _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.35f;
                     StartCoroutine(AttackMovement());
+                    attackCombo++;
+                }
+
+                if (attackCombo == 0)
+                {
+                    resetAttackTimer = 0.6f;
+                    _onAttackAnimationTimer = 0.6f;
+                    StartCoroutine(AttackSword());
+                    _timeToWaitBeforeAttack = 0.1f;
+                    _movementAttackTime = 0.35f;
+                    StartCoroutine(AttackMovement());
+                    StartCoroutine(AttackAnimationTimer());
+                    attackCombo++;
                 }
             }
-          
+       
         }
 
         CombatStateUp();
