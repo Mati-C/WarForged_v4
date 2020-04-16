@@ -17,6 +17,7 @@ public class Controller_Player
     {
         _model = m;
         _viewer = v;
+        _camera = _model.GetPlayerCam();
 
         _model.idleEvent += _viewer.IdleAnim;
         _model.WalkEvent += _viewer.WalkAnim;
@@ -25,12 +26,11 @@ public class Controller_Player
         _model.SaveSwordEvent += _viewer.SaveSwordAnim;
         _model.CombatStateEvent += _viewer.CombatStateAnimator;
         _model.DodgeEvent += _viewer.DodgeAnims;
-
-        _camera = _model.GetPlayerCam();
-
+        _model.LockedOnEvent += _camera.LockOnCam;
+        _model.LockedOffEvent += _camera.LockOffCam;           
         _model.CombatStateEvent += _camera.SetCameraState;
 
-       Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
  
@@ -178,6 +178,8 @@ public class Controller_Player
         if (Input.GetKeyDown(KeyCode.LeftShift)) _model.run = true;
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
+
+        if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge) _model.SwordAttack();
 

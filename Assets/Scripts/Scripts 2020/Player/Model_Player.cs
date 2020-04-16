@@ -9,9 +9,11 @@ public class Model_Player : MonoBehaviour
     Controller_Player _controller;
     Viewer_Player _viewer;
     Rigidbody _rb;
-    PlayerCamera _camera;
+    PlayerCamera _playerCamera;
     PlayerSword _sword;
+    Camera _mainCam;
 
+  
     [Header("Player Life:")]
     public float life;
     public float maxLife;
@@ -31,6 +33,10 @@ public class Model_Player : MonoBehaviour
     public bool cantAttack;
     public bool onAttackAnimation;
 
+    [Header("Player Layers:")]
+
+    public LayerMask playerCanSee;
+
     [Header("Player CombatValues:")]
 
     public int attackCombo;
@@ -46,6 +52,12 @@ public class Model_Player : MonoBehaviour
     public float impulseAttackMovement3;
     public float impulseAttackMovement4;
 
+    [Header("Player LockEnemies:")]
+
+    public bool onLock;
+    public List<ClassEnemy> lockedEnemies = new List<ClassEnemy>();
+    public ClassEnemy targetEnemy;
+
     float _onAttackAnimationTimer;
     float _timeToWaitBeforeAttack;
     float _movementAttackTime;
@@ -57,10 +69,14 @@ public class Model_Player : MonoBehaviour
     public Action RunEvent;
     public Action TakeSwordEvent;
     public Action SaveSwordEvent;
+
+    public Action LockedOnEvent;
+    public Action LockedOffEvent;
+
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
 
-    public PlayerCamera GetPlayerCam() { return _camera; }
+    public PlayerCamera GetPlayerCam() { return _playerCamera; }
 
   
 
@@ -187,7 +203,8 @@ public class Model_Player : MonoBehaviour
     private void Awake()
     {
         _viewer = GetComponent<Viewer_Player>();
-        _camera = FindObjectOfType<PlayerCamera>();
+        _playerCamera = FindObjectOfType<PlayerCamera>();
+        _mainCam = _playerCamera.GetComponent<Camera>();
         _controller = new Controller_Player(this,_viewer);
         _rb = GetComponent<Rigidbody>();
         _sword = FindObjectOfType<PlayerSword>();
@@ -253,7 +270,7 @@ public class Model_Player : MonoBehaviour
             if (!turnDir && !opposite && !run)
             {
 
-                var dir = _camera.transform.forward;
+                var dir = _playerCamera.transform.forward;
 
                 dir.y = 0;
 
@@ -405,5 +422,56 @@ public class Model_Player : MonoBehaviour
         
     }
 
- 
+    public void LockEnemies()
+    {
+       
+        if (onLock && isInCombat)
+        {
+            LockedOffEvent();
+            onLock = false;
+            lockedEnemies.Clear();
+            targetEnemy = null;
+            return;
+        }
+
+        if (!onLock && isInCombat)
+        {
+            lockedEnemies.Clear();
+
+            var enemies = Physics.OverlapSphere(transform.position, 20).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>()).Where(x => 
+            {
+                var _dirToTarget = (x.transform.position - transform.position).normalized;
+
+                var _distanceToTarget = Vector3.Distance(transform.position, x.transform.position);
+
+                RaycastHit hit;
+
+                bool onSight = false;
+
+                if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.forward, out hit, _distanceToTarget, playerCanSee))
+                {
+                    if (hit.transform.GetComponent<ClassEnemy>()) onSight = true;
+                }
+
+                if (onSight) return true;
+
+                else return false;
+
+            })
+            .OrderBy(x => Vector3.Angle(transform.forward, x.transform.position));
+
+            if (enemies.Count() > 0)
+            {
+                lockedEnemies.AddRange(enemies);
+                targetEnemy = lockedEnemies.First();
+                LockedOnEvent();
+                onLock = true;
+                return;
+            }
+
+           
+        }
+    }
+
+   
 }

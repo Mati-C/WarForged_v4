@@ -329,6 +329,8 @@
     <Compile Include="Assets\Scripts\Powers\Powers.cs" />
     <Compile Include="Assets\Scripts\RocksTrigger.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Camera\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Enemies\ClassEnemy.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Enemies\MeleeEnemy\Model_E_Melee.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Controller_Player.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Model_Player.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\PlayerSword.cs" />

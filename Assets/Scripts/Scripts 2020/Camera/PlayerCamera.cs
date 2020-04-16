@@ -5,7 +5,11 @@ using Cinemachine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public CinemachineFreeLook cinemaCam;
+    Model_Player _player;
+
+    [Header("Cameras:")]
+    public CinemachineFreeLook mainCamera;
+    public CinemachineFreeLook lockOnCamera;
 
     CinemachineComposer middleRig;
     CinemachineComposer topRig;
@@ -19,18 +23,35 @@ public class PlayerCamera : MonoBehaviour
     [Header("Camera Smooth:")]
     public float smoothDistance;
 
-    void Start()
+    [Header("Camera Lock:")]
+
+    public Transform middleTarget;
+    public bool onLockCamera;
+
+    IEnumerator OnLockCorrutine()
     {
-        actualCamDistance = distanceNormal;
-        middleRig = cinemaCam.GetRig(1).GetCinemachineComponent<CinemachineComposer>();
-        topRig = cinemaCam.GetRig(0).GetCinemachineComponent<CinemachineComposer>();
-        bottonRig = cinemaCam.GetRig(2).GetCinemachineComponent<CinemachineComposer>();
+        while(onLockCamera)
+        {
+            var center = Vector3.Lerp(_player.transform.position, _player.targetEnemy.transform.position, 0.5f);
+
+            middleTarget.position = center;
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
-    
+    void Start()
+    {
+        _player = FindObjectOfType<Model_Player>();
+        actualCamDistance = distanceNormal;
+        middleRig = mainCamera.GetRig(1).GetCinemachineComponent<CinemachineComposer>();
+        topRig = mainCamera.GetRig(0).GetCinemachineComponent<CinemachineComposer>();
+        bottonRig = mainCamera.GetRig(2).GetCinemachineComponent<CinemachineComposer>();
+    }
+  
     void Update()
     {
-        
+
     }
 
     public void SetCameraState(bool onCombat)
@@ -40,6 +61,22 @@ public class PlayerCamera : MonoBehaviour
         else StartCoroutine(NormalCameraView());
     }
 
+    public void LockOnCam()
+    {
+        mainCamera.Priority = 0;
+        lockOnCamera.Priority = 1;
+        onLockCamera = true;
+        StartCoroutine(OnLockCorrutine());
+    }
+
+    public void LockOffCam()
+    {
+        mainCamera.Priority = 1;
+        lockOnCamera.Priority = 0;
+        onLockCamera = false;
+    }
+
+
     IEnumerator CombatCameraView()
     {
 
@@ -47,7 +84,7 @@ public class PlayerCamera : MonoBehaviour
         {
             actualCamDistance += Time.deltaTime * smoothDistance;
 
-            cinemaCam.m_Orbits = new CinemachineFreeLook.Orbit[3]
+            mainCamera.m_Orbits = new CinemachineFreeLook.Orbit[3]
             {
                     new CinemachineFreeLook.Orbit(2.5f, actualCamDistance),
                     new CinemachineFreeLook.Orbit(2.5f, actualCamDistance),
@@ -65,7 +102,7 @@ public class PlayerCamera : MonoBehaviour
         {
             actualCamDistance -= Time.deltaTime * smoothDistance;
 
-            cinemaCam.m_Orbits = new CinemachineFreeLook.Orbit[3]
+            mainCamera.m_Orbits = new CinemachineFreeLook.Orbit[3]
             {
                     new CinemachineFreeLook.Orbit(2.5f, actualCamDistance),
                     new CinemachineFreeLook.Orbit(2.5f, actualCamDistance),
@@ -74,5 +111,12 @@ public class PlayerCamera : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+ 
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(middleTarget.position, new Vector3(0.2f, 0.2f, 0.2f));
     }
 }
