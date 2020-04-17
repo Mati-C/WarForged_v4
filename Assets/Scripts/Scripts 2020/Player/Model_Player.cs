@@ -79,6 +79,19 @@ public class Model_Player : MonoBehaviour
     public PlayerCamera GetPlayerCam() { return _playerCamera; }
 
   
+    IEnumerator LockOnMovement()
+    {
+        while(onLock)
+        {
+            var dir = (targetEnemy.transform.position - transform.position).normalized;
+            dir.y = 0;
+            Quaternion targetRotation;
+            targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     IEnumerator AttackSword()
     {
@@ -253,7 +266,14 @@ public class Model_Player : MonoBehaviour
 
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
     {
-        if (!onDodge && !onAttackAnimation)
+
+        if(!onDodge && !onAttackAnimation && onLock)
+        {
+            WalkEvent();
+            _rb.MovePosition(_rb.position + d  * speed * Time.deltaTime);
+        }
+
+        if (!onDodge && !onAttackAnimation && !onLock)
         {
             Quaternion targetRotation;
 
@@ -376,7 +396,7 @@ public class Model_Player : MonoBehaviour
 
                 if (attackCombo == 2)
                 {
-                    resetAttackTimer = 0.5f;
+                    resetAttackTimer = 0.6f;
                     _onAttackAnimationTimer = 0.5f;
                     _timeToWaitBeforeAttack = 0.15f;
                     _movementAttackTime = 0.25f;
@@ -466,6 +486,7 @@ public class Model_Player : MonoBehaviour
                 targetEnemy = lockedEnemies.First();
                 LockedOnEvent();
                 onLock = true;
+                StartCoroutine(LockOnMovement());
                 return;
             }
 

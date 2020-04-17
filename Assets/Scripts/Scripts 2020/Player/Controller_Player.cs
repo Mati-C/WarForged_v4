@@ -44,7 +44,12 @@ public class Controller_Player
             {
                 if(!_model.isInCombat) _model.Movement(_camera.transform.forward);
 
-                else _model.CombatMovement(_camera.transform.forward, true, false);
+                else
+                {
+                    if (!_model.onLock) _model.CombatMovement(_camera.transform.forward, false, false);
+
+                    else _model.CombatMovement(_model.transform.forward, false, false);
+                }
             }
 
             if (A && !D)
@@ -74,7 +79,12 @@ public class Controller_Player
             {
                 if (!_model.isInCombat) _model.Movement(-_camera.transform.forward);
 
-                else _model.CombatMovement(-_camera.transform.forward, false, false);
+                else
+                {
+                   if(!_model.onLock) _model.CombatMovement(-_camera.transform.forward, false, false);
+
+                   else _model.CombatMovement(-_model.transform.forward, false, false);
+                }
             }
 
             if (A && !D)
@@ -104,7 +114,12 @@ public class Controller_Player
             {
                 if (!_model.isInCombat) _model.Movement(_camera.transform.right);
 
-                else _model.CombatMovement(_camera.transform.right, false, false);
+                else
+                {
+                   if(!_model.onLock) _model.CombatMovement(_camera.transform.right, false, false);
+
+                   else _model.CombatMovement(_model.transform.right, false, false);
+                }
             }
 
             if (W && !S)
@@ -134,7 +149,12 @@ public class Controller_Player
             {
                 if (!_model.isInCombat) _model.Movement(-_camera.transform.right);
 
-                else _model.CombatMovement(-_camera.transform.right, false, false);
+                else
+                {
+                   if(!_model.onLock) _model.CombatMovement(-_camera.transform.right, false, false);
+
+                   else _model.CombatMovement(-_model.transform.right, false, false);
+                }
             }
 
             if (W && !S)
