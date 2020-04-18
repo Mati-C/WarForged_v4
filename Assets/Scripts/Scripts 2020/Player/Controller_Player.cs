@@ -27,7 +27,9 @@ public class Controller_Player
         _model.CombatStateEvent += _viewer.CombatStateAnimator;
         _model.DodgeEvent += _viewer.DodgeAnims;
         _model.LockedOnEvent += _camera.LockOnCam;
+        _model.LockedOnEvent += _viewer.SetLockOnParticle;
         _model.LockedOffEvent += _camera.LockOffCam;           
+        _model.LockedOffEvent += _viewer.SetOffLockOnParticle;           
         _model.CombatStateEvent += _camera.SetCameraState;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -199,9 +201,12 @@ public class Controller_Player
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
 
+      
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge) _model.SwordAttack();
+
         if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge) _model.SwordAttack();
+        if (Input.GetKeyDown(KeyCode.Tab)) _model.ChangeTarget();
 
     }
 

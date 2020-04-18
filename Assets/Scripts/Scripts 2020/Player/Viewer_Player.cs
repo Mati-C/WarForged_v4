@@ -1,22 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Viewer_Player : MonoBehaviour
 {
     public Animator anim;
     Model_Player _player;
+    Camera _mainCam;
 
-    [Header("Player Current Anim Name:")]
+    [Header("Lock Particle:")]
 
-    public string animClipName;
+    public Image lockImage;
 
-    [Header("Attack Animation Ends")]
-
-    public AnimationClip attackEnd1;
-    public AnimationClip attackEnd2;
-    public AnimationClip attackEnd3;
-
+    bool _lockParticleUp;
+   
 
     IEnumerator DelayAnimationActivate(string animName, bool r, float time)
     {
@@ -36,6 +34,17 @@ public class Viewer_Player : MonoBehaviour
 
     }
 
+    IEnumerator LockOnParticlePosition()
+    {
+        while(_lockParticleUp)
+        {
+            Vector2 screenPos = _mainCam.WorldToScreenPoint(_player.targetEnemy.transform.position + Vector3.up);
+            lockImage.transform.position = screenPos;
+            yield return new WaitForEndOfFrame();
+        }
+      
+    }
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -44,13 +53,12 @@ public class Viewer_Player : MonoBehaviour
 
     void Start()
     {
-        
+        _mainCam = _player.GetPlayerCam().GetComponent<Camera>();
     }
 
     
     void Update()
     {
-        if(anim.GetCurrentAnimatorClipInfo(0).Length >0) animClipName = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
 
         anim.SetInteger("AttackCombo", _player.attackCombo);
 
@@ -119,5 +127,17 @@ public class Viewer_Player : MonoBehaviour
         if (dir == Model_Player.DogeDirecctions.Right) StartCoroutine(DelayAnimationActivate("DodgeRight", true, 0.3f)); 
     }
 
-   
+    public void SetLockOnParticle()
+    {
+        _lockParticleUp = true;
+        lockImage.gameObject.SetActive(true);
+        StartCoroutine(LockOnParticlePosition());
+    }
+
+    public void SetOffLockOnParticle()
+    {
+        _lockParticleUp = false;
+        lockImage.gameObject.SetActive(false);
+    }
+
 }

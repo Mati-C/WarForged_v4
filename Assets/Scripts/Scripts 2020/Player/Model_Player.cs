@@ -57,12 +57,12 @@ public class Model_Player : MonoBehaviour
     public bool onLock;
     public List<ClassEnemy> lockedEnemies = new List<ClassEnemy>();
     public ClassEnemy targetEnemy;
+    int _indexEnemyLock;
 
     float _onAttackAnimationTimer;
     float _timeToWaitBeforeAttack;
     float _movementAttackTime;
     Vector3 _attackLastPos;
-    string _currentAnimName;
     
     public Action idleEvent;
     public Action WalkEvent;
@@ -83,6 +83,14 @@ public class Model_Player : MonoBehaviour
     {
         while(onLock)
         {
+            if (targetEnemy.isDead)
+            {
+                lockedEnemies.Remove(targetEnemy);
+                if (lockedEnemies.Count > 0) ChangeTarget();
+
+                if (lockedEnemies.Count <= 0) LockEnemies();
+            }
+
             var dir = (targetEnemy.transform.position - transform.position).normalized;
             dir.y = 0;
             Quaternion targetRotation;
@@ -234,8 +242,7 @@ public class Model_Player : MonoBehaviour
     void Update()
     {
         _controller.ControllerUpdate();
-        _currentAnimName = _viewer.animClipName;
-        
+       
     }
 
     public void Movement(Vector3 d)
@@ -451,6 +458,7 @@ public class Model_Player : MonoBehaviour
             onLock = false;
             lockedEnemies.Clear();
             targetEnemy = null;
+            _indexEnemyLock = 0;
             return;
         }
 
@@ -482,8 +490,9 @@ public class Model_Player : MonoBehaviour
 
             if (enemies.Count() > 0)
             {
-                lockedEnemies.AddRange(enemies);
-                targetEnemy = lockedEnemies.First();
+                targetEnemy = enemies.First();
+                lockedEnemies.Add(enemies.First());
+                lockedEnemies.AddRange(targetEnemy.sameID_Enemies);                
                 LockedOnEvent();
                 onLock = true;
                 StartCoroutine(LockOnMovement());
@@ -494,5 +503,16 @@ public class Model_Player : MonoBehaviour
         }
     }
 
-   
+    public void ChangeTarget()
+    {
+        if (onLock)
+        {
+            _indexEnemyLock++;
+
+            if (_indexEnemyLock >= lockedEnemies.Count) _indexEnemyLock = 0;
+
+            targetEnemy = lockedEnemies[_indexEnemyLock];
+        }
+    }
+
 }
