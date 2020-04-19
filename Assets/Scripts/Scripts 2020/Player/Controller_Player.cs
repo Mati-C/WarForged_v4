@@ -31,6 +31,7 @@ public class Controller_Player
         _model.LockedOffEvent += _camera.LockOffCam;           
         _model.LockedOffEvent += _viewer.SetOffLockOnParticle;           
         _model.CombatStateEvent += _camera.SetCameraState;
+        _model.DefenceEvent += _viewer.DefenceAnim;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -203,6 +204,10 @@ public class Controller_Player
 
       
         if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge) _model.SwordAttack();
+
+        if (Input.GetKey(KeyCode.Mouse1) && !_model.onDodge) _model.Defence();
+
+        if (Input.GetKeyUp(KeyCode.Mouse1) && !_model.onDodge) _model.DefenceOff();
 
         if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
 

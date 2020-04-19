@@ -116,6 +116,11 @@ public class Viewer_Player : MonoBehaviour
         anim.SetBool("CombatState", r);
     }
 
+    public void DefenceAnim(bool d)
+    {
+        anim.SetBool("Defence", d);
+    }
+
     public void DodgeAnims(Model_Player.DogeDirecctions dir)
     {
         if (dir == Model_Player.DogeDirecctions.Roll) StartCoroutine(DelayAnimationActivate("Roll", true, 0.5f)); 

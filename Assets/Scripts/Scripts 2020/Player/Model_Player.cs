@@ -32,6 +32,7 @@ public class Model_Player : MonoBehaviour
     public bool onDodge;
     public bool cantAttack;
     public bool onAttackAnimation;
+    public bool onDefence;
 
     [Header("Player Layers:")]
 
@@ -69,15 +70,27 @@ public class Model_Player : MonoBehaviour
     public Action RunEvent;
     public Action TakeSwordEvent;
     public Action SaveSwordEvent;
-
     public Action LockedOnEvent;
     public Action LockedOffEvent;
+    public Action<bool> DefenceEvent;
 
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
 
     public PlayerCamera GetPlayerCam() { return _playerCamera; }
 
+    IEnumerator DefenceMove()
+    {
+        while(onDefence)
+        {
+            var dir = _mainCam.transform.forward;
+            dir.y = 0;
+            Quaternion targetRotation;
+            targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+    }
   
     IEnumerator LockOnMovement()
     {
@@ -274,13 +287,13 @@ public class Model_Player : MonoBehaviour
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
     {
 
-        if(!onDodge && !onAttackAnimation && onLock)
+        if(!onDodge && !onAttackAnimation && onLock && !onDefence)
         {
             WalkEvent();
             _rb.MovePosition(_rb.position + d  * speed * Time.deltaTime);
         }
 
-        if (!onDodge && !onAttackAnimation && !onLock)
+        if (!onDodge && !onAttackAnimation && !onLock && !onDefence)
         {
             Quaternion targetRotation;
 
@@ -332,54 +345,58 @@ public class Model_Player : MonoBehaviour
     {
         attackCombo = 0;
 
-        if(direction == DogeDirecctions.Roll)
+        if (!onDefence)
         {
-            DodgeEvent(DogeDirecctions.Roll);
-            if(!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
-        }
 
-        if (direction == DogeDirecctions.Back)
-        {
-            if (!isInCombat)
+            if (direction == DogeDirecctions.Roll)
             {
                 DodgeEvent(DogeDirecctions.Roll);
                 if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
             }
 
-            else if (!onDodge)
+            if (direction == DogeDirecctions.Back)
             {
-                DodgeEvent(DogeDirecctions.Back);
-                StartCoroutine(DodgeMovement(0.3f, -transform.forward, dodgeSpeedBack));
-            }
-        }
+                if (!isInCombat)
+                {
+                    DodgeEvent(DogeDirecctions.Roll);
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
+                }
 
-        if (direction == DogeDirecctions.Right)
-        {
-            if (!isInCombat)
-            {
-                DodgeEvent(DogeDirecctions.Roll);
-                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
-            }
-
-            else if (!onDodge)
-            {
-                DodgeEvent(DogeDirecctions.Right);
-                StartCoroutine(DodgeMovement(0.3f, transform.right, dodgeSpeedRight));
-            }
-        }
-
-        if (direction == DogeDirecctions.Left)
-        {
-            if (!isInCombat)
-            {
-                DodgeEvent(DogeDirecctions.Roll);
-                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
+                else if (!onDodge)
+                {
+                    DodgeEvent(DogeDirecctions.Back);
+                    StartCoroutine(DodgeMovement(0.3f, -transform.forward, dodgeSpeedBack));
+                }
             }
 
-            else if (!onDodge)
+            if (direction == DogeDirecctions.Right)
             {
-                DodgeEvent(DogeDirecctions.Left);
-                StartCoroutine(DodgeMovement(0.3f, -transform.right, dodgeSpeedLeft));
+                if (!isInCombat)
+                {
+                    DodgeEvent(DogeDirecctions.Roll);
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
+                }
+
+                else if (!onDodge)
+                {
+                    DodgeEvent(DogeDirecctions.Right);
+                    StartCoroutine(DodgeMovement(0.3f, transform.right, dodgeSpeedRight));
+                }
+            }
+
+            if (direction == DogeDirecctions.Left)
+            {
+                if (!isInCombat)
+                {
+                    DodgeEvent(DogeDirecctions.Roll);
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
+                }
+
+                else if (!onDodge)
+                {
+                    DodgeEvent(DogeDirecctions.Left);
+                    StartCoroutine(DodgeMovement(0.3f, -transform.right, dodgeSpeedLeft));
+                }
             }
         }
     }
@@ -388,7 +405,7 @@ public class Model_Player : MonoBehaviour
     {
         if (isInCombat)
         {
-            if (!cantAttack)
+            if (!cantAttack && !onDefence)
             {
                 if(attackCombo == 3)
                 {
@@ -449,6 +466,24 @@ public class Model_Player : MonoBehaviour
         
     }
 
+    public void Defence()
+    {
+        attackCombo = 0;
+        resetAttackTimer = 0;
+        _onAttackAnimationTimer = 0;
+        _timeToWaitBeforeAttack = 0;
+        _movementAttackTime = 0;
+        StartCoroutine(DefenceMove());
+        onDefence = true;
+        DefenceEvent(true);
+    }
+
+    public void DefenceOff()
+    {
+        onDefence = false;
+        DefenceEvent(false);
+    }
+
     public void LockEnemies()
     {
        
@@ -476,17 +511,25 @@ public class Model_Player : MonoBehaviour
 
                 bool onSight = false;
 
-                if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.forward, out hit, _distanceToTarget, playerCanSee))
+                if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), _dirToTarget, out hit, _distanceToTarget, playerCanSee))
                 {
                     if (hit.transform.GetComponent<ClassEnemy>()) onSight = true;
                 }
 
                 if (onSight) return true;
 
-                else return false;
+                else return false; 
 
             })
-            .OrderBy(x => Vector3.Angle(transform.forward, x.transform.position));
+            .OrderBy(x=> 
+            {
+                var enemyCamPos = _mainCam.WorldToScreenPoint(x.transform.position);
+
+                var d = Vector3.Distance(enemyCamPos, new Vector3(Screen.width / 2, Screen.height / 2));
+
+                return d;
+            });
+
 
             if (enemies.Count() > 0)
             {
