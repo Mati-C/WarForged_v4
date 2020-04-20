@@ -13,8 +13,18 @@ public class Viewer_Player : MonoBehaviour
 
     public Image lockImage;
 
+    [Header("Player Bones:")]
+
+    public Transform swordBone;
+    public Transform swordHandBone;
+    public Transform swordHandPositionPh;
+    public Transform swordBackBone;
+    public Transform swordBackPositionPh;
+
     bool _lockParticleUp;
-   
+    bool _changeSwordBoneParent;
+    Quaternion _swordBackSaveRotation;
+
 
     IEnumerator DelayAnimationActivate(string animName, bool r, float time)
     {
@@ -49,6 +59,7 @@ public class Viewer_Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         _player = GetComponent<Model_Player>();
+        _swordBackSaveRotation = swordBone.rotation;
     }
 
     void Start()
@@ -74,10 +85,54 @@ public class Viewer_Player : MonoBehaviour
     
         anim.SetFloat("VelX", velocityX);
         anim.SetFloat("VelZ", velocityZ);
+
     }
 
-    
+    IEnumerator DelayPositionSword(bool handOrBack)
+    {
+        var timer = 0.3f;
 
+        while(timer >0 && !handOrBack)
+        {
+            timer -= Time.deltaTime;
+            swordBone.position = swordHandPositionPh.position;
+            swordBone.rotation = swordHandPositionPh.rotation;
+            yield return new WaitForEndOfFrame();
+        }
+
+        while (timer > 0 && handOrBack)
+        {
+            timer -= Time.deltaTime;
+            swordBone.position = swordBackPositionPh.position;
+            swordBone.rotation = swordBackPositionPh.rotation;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+    
+    public void SwordBonePriority()
+    {
+        if(!_changeSwordBoneParent)
+        {
+            _changeSwordBoneParent = true;
+            swordBone.transform.parent = swordHandBone;
+            swordBone.position = swordHandPositionPh.position;
+            swordBone.rotation = swordHandPositionPh.rotation;
+            StartCoroutine(DelayPositionSword(false));
+            return;
+        }
+
+        if (_changeSwordBoneParent)
+        {
+            _changeSwordBoneParent = false;
+            swordBone.transform.parent = swordBackBone;
+            swordBone.position = swordBackPositionPh.position;
+            swordBone.rotation = _swordBackSaveRotation;            
+            StartCoroutine(DelayPositionSword(true));
+            return;
+        }
+    }
+
+ 
     public void WalkAnim()
     {
         anim.SetBool("Walk", true);
