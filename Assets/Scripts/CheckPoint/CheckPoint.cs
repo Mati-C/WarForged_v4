@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sound;
-using Aura2API;
 
 public class CheckPoint : MonoBehaviour, ICheckObservable
 {
@@ -24,7 +23,6 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
 
 
-     public AuraLight _AuraLight;
 
     bool move1;
   
@@ -64,12 +62,6 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     {
         player = FindObjectOfType<Model>();
         ButtonManager = FindObjectOfType<ButtonManager>();
-
-        _AuraLight = GetComponentInChildren<AuraLight>();
-
-   
-
-
         Subscribe(ButtonManager);
     }
 
@@ -100,7 +92,6 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
             {
                 player.UpdateLife(player.maxLife);
                 StartCoroutine(PlayParticles());
-                StartCoroutine(AuraControllerCheckpoint());
             }
         }
     }
@@ -112,17 +103,6 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         yield return new WaitForSeconds(1);
         particles.Stop();
         runeCircle.Stop();
-    }
-
-    IEnumerator AuraControllerCheckpoint()
-    {
-        _AuraLight.strength = 1 ;
-        _AuraLight.overrideScattering = false;
-   
-        yield return new WaitForSeconds(1);
-
-        _AuraLight.strength = 3;
-        _AuraLight.overrideScattering = true;
     }
 
 

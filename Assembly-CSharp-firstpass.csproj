@@ -703,14 +703,6 @@
       <Project>{84873CD8-8729-0B11-628B-9E6F166A03BA}</Project>
       <Name>RadicalForge.Blockout</Name>
     </ProjectReference>
-    <ProjectReference Include="Aura2_Core.csproj">
-      <Project>{FD2D67C1-9207-484D-6C1B-D61A465CF0B7}</Project>
-      <Name>Aura2_Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="Aura2_Editor.csproj">
-      <Project>{089347C4-5A95-A5C6-3645-7BA728CCE9DE}</Project>
-      <Name>Aura2_Editor</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

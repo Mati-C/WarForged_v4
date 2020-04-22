@@ -71,12 +71,6 @@
     <Compile Include="Assets\AmplifyShaderEditor\Examples\Official\Smear\Smear.cs" />
     <Compile Include="Assets\AmplifyShaderEditor\Examples\Official\TemplateExamples\PostProcess\Sobel\PostProcessExample.cs" />
     <Compile Include="Assets\AmplifyShaderEditor\Examples\Official\TemplateExamples\Sprites\SpriteMask\SpriteMaskController.cs" />
-    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\AuraFreeCamera.cs" />
-    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\AutoMoveAndRotate.cs" />
-    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\DebugFps.cs" />
-    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\LightFlicker.cs" />
-    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\MoveSinCos.cs" />
-    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\SinRotationOffset.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Basic Locomotion\3D Models\Others\HealthItem\vAnimateUV.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Basic Locomotion\Scripts\Camera\CullingFadeControl\vCullingFadeControl.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Basic Locomotion\Scripts\Camera\vThirdPersonCamera.cs" />
@@ -298,6 +292,7 @@
     <Compile Include="Assets\Objects and Particles\FireTorch\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
     <Compile Include="Assets\Objects and Particles\FireTorch\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
     <Compile Include="Assets\Objects and Particles\NatureManufacture Assets\NatureManufacture Wind\NM_Wind.cs" />
+    <Compile Include="Assets\Objects and Particles\Rocks and Boulders 2\Shaders\RotateGameObject.cs" />
     <Compile Include="Assets\Objects and Particles\Standard Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
     <Compile Include="Assets\Objects and Particles\Standard Assets\Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\Objects and Particles\Standard Assets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
@@ -377,7 +372,6 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
-    <Compile Include="Assets\Rocks and Boulders 2\Shaders\RotateGameObject.cs" />
     <Compile Include="Assets\ScionPostProcess\ScionPostProcess.cs" />
     <Compile Include="Assets\ScionPostProcess\ScionPostProcessNoTonemap.cs" />
     <Compile Include="Assets\ScionPostProcess\Scripts\Bloom.cs" />
@@ -579,7 +573,7 @@
     <None Include="Assets\Objects and Particles\_Shaders\Bars\Bars.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_CutoutBorderMobile.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_StaticSwitchNode.shader" />
-    <None Include="Assets\Rocks and Boulders 2\Shaders\shader info.txt" />
+    <None Include="Assets\Objects and Particles\Rocks and Boulders 2\Shaders\shader info.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ReflectOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ATanOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FunctionOutputNode.shader" />
@@ -842,7 +836,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\LightWeightSRPUnlit.shader" />
     <None Include="Assets\Blockout\Shaders\Blockout_Leaf_2018.shader" />
     <None Include="Assets\Blockout\Shaders\Blockout_Depth_Blend_2018.shader" />
-    <None Include="Assets\Rocks and Boulders 2\Shaders\Blend SM3.shader" />
+    <None Include="Assets\Objects and Particles\Rocks and Boulders 2\Shaders\Blend SM3.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Portal\Portal.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Fog\Fog 2.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SubstanceSamplerNode.shader" />
@@ -894,7 +888,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LayeredBlendNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\Legacy\UIDefault.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LODFadeNode.shader" />
-    <None Include="Assets\Rocks and Boulders 2\Shaders\Blend SM2.shader" />
+    <None Include="Assets\Objects and Particles\Rocks and Boulders 2\Shaders\Blend SM2.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Water\RFX4_WaterSplashTex.shader" />
     <None Include="Assets\Blockout\Shaders\Editor_Trigger_2018.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SimplifiedFModOpNode.shader" />
@@ -1540,14 +1534,6 @@
     <ProjectReference Include="RadicalForge.Blockout.csproj">
       <Project>{84873CD8-8729-0B11-628B-9E6F166A03BA}</Project>
       <Name>RadicalForge.Blockout</Name>
-    </ProjectReference>
-    <ProjectReference Include="Aura2_Core.csproj">
-      <Project>{FD2D67C1-9207-484D-6C1B-D61A465CF0B7}</Project>
-      <Name>Aura2_Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="Aura2_Editor.csproj">
-      <Project>{089347C4-5A95-A5C6-3645-7BA728CCE9DE}</Project>
-      <Name>Aura2_Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
