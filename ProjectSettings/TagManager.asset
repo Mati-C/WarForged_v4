@@ -30,6 +30,7 @@ TagManager:
   - FreeClimb
   - ClimbDirection
   - Zipline
+  - missile
   layers:
   - Default
   - TransparentFX
@@ -47,7 +48,7 @@ TagManager:
   - Action
   - HeadTrack
   - BodyPart
-  - 
+  - Obstacles
   - 
   - 
   - 
