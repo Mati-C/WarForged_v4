@@ -123,8 +123,7 @@ public class Model_Player : MonoBehaviour
             {
                 resetAttackTimer -= Time.deltaTime;
 
-                if (resetAttackTimer < 0.2f && attackCombo == 1) cantAttack = false;
-                if (resetAttackTimer < 0.3f && attackCombo != 1) cantAttack = false;
+                if (resetAttackTimer < 0.2f ) cantAttack = false;
                 if (resetAttackTimer > 0.3f) cantAttack = true;
 
                 yield return new WaitForEndOfFrame();
@@ -230,9 +229,9 @@ public class Model_Player : MonoBehaviour
         onDodge = false;
     }
 
-    public void ActivateSword() { _sword.ActivateSword(); }
+    //public void ActivateSword() { _sword.ActivateSword(); }
 
-    public void DesactivateSword() { _sword.DesactivateSword(); }
+  //  public void DesactivateSword() { _sword.DesactivateSword(); }
 
     private void Awake()
     {
@@ -407,22 +406,12 @@ public class Model_Player : MonoBehaviour
         {
             if (!cantAttack && !onDefence)
             {
-                if(attackCombo == 3)
-                {
-                    resetAttackTimer = 0.6f;
-                    _onAttackAnimationTimer = 0.7f;
-                    _timeToWaitBeforeAttack = 0.07f;
-                    _movementAttackTime = 0.25f;
-                    cantAttack = true;
-                    onAttackAnimation = true;
-                    attackCombo++;
-                }
-
+               
                 if (attackCombo == 2)
                 {
                     resetAttackTimer = 0.6f;
                     _onAttackAnimationTimer = 0.5f;
-                    _timeToWaitBeforeAttack = 0.15f;
+                    _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.25f;
                     cantAttack = true;
                     onAttackAnimation = true;
@@ -431,8 +420,8 @@ public class Model_Player : MonoBehaviour
 
                 if (attackCombo == 1)
                 {
-                    resetAttackTimer = 0.8f;
-                    _onAttackAnimationTimer = 0.8f;
+                    resetAttackTimer = 0.7f;
+                    _onAttackAnimationTimer = 0.6f;
                     _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.35f;
                     cantAttack = true;
@@ -442,9 +431,9 @@ public class Model_Player : MonoBehaviour
 
                 if (attackCombo == 0)
                 {
-                    resetAttackTimer = 0.6f;
+                    resetAttackTimer = 0.55f;
                     _onAttackAnimationTimer = 0.6f;
-                    _timeToWaitBeforeAttack = 0.1f;
+                    _timeToWaitBeforeAttack = 0.2f;
                     _movementAttackTime = 0.35f;
                     cantAttack = true;
                     onAttackAnimation = true;

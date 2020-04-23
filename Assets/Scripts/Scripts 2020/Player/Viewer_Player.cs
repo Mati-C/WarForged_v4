@@ -21,6 +21,11 @@ public class Viewer_Player : MonoBehaviour
     public Transform swordBackBone;
     public Transform swordBackPositionPh;
 
+    [Header("Player Swords:")]
+
+    public GameObject swordHand;
+    public GameObject swordBack;
+
     bool _lockParticleUp;
     bool _changeSwordBoneParent;
     Quaternion _swordBackSaveRotation;
@@ -59,7 +64,7 @@ public class Viewer_Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         _player = GetComponent<Model_Player>();
-        _swordBackSaveRotation = swordBone.rotation;
+        DesactivateSword();
     }
 
     void Start()
@@ -108,31 +113,22 @@ public class Viewer_Player : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
-    
-    public void SwordBonePriority()
-    {
-        if(!_changeSwordBoneParent)
-        {
-            _changeSwordBoneParent = true;
-            swordBone.transform.parent = swordHandBone;
-            swordBone.position = swordHandPositionPh.position;
-            swordBone.rotation = swordHandPositionPh.rotation;
-            StartCoroutine(DelayPositionSword(false));
-            return;
-        }
+       
 
-        if (_changeSwordBoneParent)
-        {
-            _changeSwordBoneParent = false;
-            swordBone.transform.parent = swordBackBone;
-            swordBone.position = swordBackPositionPh.position;
-            swordBone.rotation = _swordBackSaveRotation;            
-            StartCoroutine(DelayPositionSword(true));
-            return;
-        }
+    public void ActivateSword()
+    {
+        swordBack.SetActive(false);
+        swordHand.SetActive(true);
+
     }
 
- 
+    public void DesactivateSword()
+    {
+        swordBack.SetActive(true);
+        swordHand.SetActive(false);
+
+    }
+
     public void WalkAnim()
     {
         anim.SetBool("Walk", true);
