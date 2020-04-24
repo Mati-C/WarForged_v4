@@ -26,6 +26,9 @@ public class Viewer_Player : MonoBehaviour
     public GameObject swordHand;
     public GameObject swordBack;
 
+    [Header("Layer Up Active:")]
+    public bool layerUpActive;
+
     bool _lockParticleUp;
     bool _changeSwordBoneParent;
     Quaternion _swordBackSaveRotation;
@@ -43,9 +46,11 @@ public class Viewer_Player : MonoBehaviour
 
         anim.SetLayerWeight(0, 1);
         anim.SetLayerWeight(1, 1);
+        layerUpActive = true;
         yield return new WaitForSeconds(time);
         anim.SetLayerWeight(0, 1);
         anim.SetLayerWeight(1, 0);
+        layerUpActive = false;
 
     }
 
@@ -153,13 +158,13 @@ public class Viewer_Player : MonoBehaviour
     public void TakeSwordAnim()
     {
         StartCoroutine(DelayActivateLayers(0.8f));
-        StartCoroutine(DelayAnimationActivate("TakeSword", true, 0.8f));
+        StartCoroutine(DelayAnimationActivate("TakeSword", true, 0.6f));
     }
 
     public void SaveSwordAnim()
     {
-        StartCoroutine(DelayActivateLayers(1));
-        StartCoroutine(DelayAnimationActivate("SaveSword", true, 1));
+        StartCoroutine(DelayActivateLayers(0.8f));
+        StartCoroutine(DelayAnimationActivate("SaveSword", true, 0.6f));
     }
 
     public void CombatStateAnimator(bool r)

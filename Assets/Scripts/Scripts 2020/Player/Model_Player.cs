@@ -410,7 +410,7 @@ public class Model_Player : MonoBehaviour
                 if (attackCombo == 2)
                 {
                     resetAttackTimer = 0.6f;
-                    _onAttackAnimationTimer = 0.5f;
+                    _onAttackAnimationTimer = 0.7f;
                     _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.25f;
                     cantAttack = true;
@@ -421,7 +421,7 @@ public class Model_Player : MonoBehaviour
                 if (attackCombo == 1)
                 {
                     resetAttackTimer = 0.7f;
-                    _onAttackAnimationTimer = 0.6f;
+                    _onAttackAnimationTimer = 0.8f;
                     _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.35f;
                     cantAttack = true;
@@ -432,7 +432,7 @@ public class Model_Player : MonoBehaviour
                 if (attackCombo == 0)
                 {
                     resetAttackTimer = 0.55f;
-                    _onAttackAnimationTimer = 0.6f;
+                    _onAttackAnimationTimer = 0.65f;
                     _timeToWaitBeforeAttack = 0.2f;
                     _movementAttackTime = 0.35f;
                     cantAttack = true;
@@ -443,7 +443,7 @@ public class Model_Player : MonoBehaviour
        
         }
 
-        CombatStateUp();
+       if(!_viewer.layerUpActive) CombatStateUp();
        
     }
 
