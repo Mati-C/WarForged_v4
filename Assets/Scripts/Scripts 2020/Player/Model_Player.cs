@@ -225,7 +225,7 @@ public class Model_Player : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         onDodge = false;
     }
 
