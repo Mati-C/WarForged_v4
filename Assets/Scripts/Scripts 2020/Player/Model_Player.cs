@@ -214,11 +214,13 @@ public class Model_Player : MonoBehaviour
         CombatStateEvent(false);
     }
 
-    IEnumerator DodgeMovement(float timer, Vector3 dir, float dodgeSpeed)
+    IEnumerator DodgeMovement(float timer, Vector3 dir, float dodgeSpeed, bool delay)
     {
         onDodge = true;
 
-        while(timer >0)
+        if(delay) yield return new WaitForSeconds(0.15f);
+
+        while (timer >0)
         {
             timer -= Time.deltaTime;
             _rb.MovePosition(transform.position + dir * dodgeSpeed * Time.deltaTime);
@@ -350,7 +352,7 @@ public class Model_Player : MonoBehaviour
             if (direction == DogeDirecctions.Roll)
             {
                 DodgeEvent(DogeDirecctions.Roll);
-                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
+                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
             }
 
             if (direction == DogeDirecctions.Back)
@@ -358,13 +360,13 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll,false));
                 }
 
                 else if (!onDodge)
                 {
                     DodgeEvent(DogeDirecctions.Back);
-                    StartCoroutine(DodgeMovement(0.3f, -transform.forward, dodgeSpeedBack));
+                    StartCoroutine(DodgeMovement(0.4f, -transform.forward, dodgeSpeedBack, true));
                 }
             }
 
@@ -373,13 +375,13 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
                 }
 
                 else if (!onDodge)
                 {
                     DodgeEvent(DogeDirecctions.Right);
-                    StartCoroutine(DodgeMovement(0.3f, transform.right, dodgeSpeedRight));
+                    StartCoroutine(DodgeMovement(0.4f, transform.right, dodgeSpeedRight, true));
                 }
             }
 
@@ -388,13 +390,13 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
                 }
 
                 else if (!onDodge)
                 {
                     DodgeEvent(DogeDirecctions.Left);
-                    StartCoroutine(DodgeMovement(0.3f, -transform.right, dodgeSpeedLeft));
+                    StartCoroutine(DodgeMovement(0.4f, -transform.right, dodgeSpeedLeft, true));
                 }
             }
         }
