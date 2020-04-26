@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4530653860164038}
-  - component: {fileID: 205208116723751076}
+  - component: {fileID: 3683866514337863405}
   m_Layer: 0
   m_Name: VS_prefab_05_Poplar
   m_TagString: Untagged
@@ -193,7 +193,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &205208116723751076
+--- !u!205 &3683866514337863405
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,25 +201,25 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402111574464218}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.121730804, y: 10.667805, z: -0.7080436}
+  m_LocalReferencePoint: {x: 0.121730804, y: 10.667805, z: -0.70804334}
   m_Size: 24.37836
-  m_FadeMode: 1
-  m_AnimateCrossFading: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 4
+  - screenRelativeHeight: 0.6
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23942943194100540}
-  - screenRelativeHeight: 2
+  - screenRelativeHeight: 0.3
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23941769087809566}
-  - screenRelativeHeight: 1.4
+  - screenRelativeHeight: 0.12187948
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23571761249209412}
-  - screenRelativeHeight: 0.03
+  - screenRelativeHeight: 0.03337477
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23001902115290546}
