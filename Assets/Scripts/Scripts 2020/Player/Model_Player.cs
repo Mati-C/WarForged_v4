@@ -218,7 +218,7 @@ public class Model_Player : MonoBehaviour
     {
         onDodge = true;
 
-        if(delay) yield return new WaitForSeconds(0.15f);
+        if(delay) yield return new WaitForSeconds(0.2f);
 
         while (timer >0)
         {
@@ -459,14 +459,17 @@ public class Model_Player : MonoBehaviour
 
     public void Defence()
     {
-        attackCombo = 0;
-        resetAttackTimer = 0;
-        _onAttackAnimationTimer = 0;
-        _timeToWaitBeforeAttack = 0;
-        _movementAttackTime = 0;
-        StartCoroutine(DefenceMove());
-        onDefence = true;
-        DefenceEvent(true);
+        if (isInCombat)
+        {
+            attackCombo = 0;
+            resetAttackTimer = 0;
+            _onAttackAnimationTimer = 0;
+            _timeToWaitBeforeAttack = 0;
+            _movementAttackTime = 0;
+            StartCoroutine(DefenceMove());
+            onDefence = true;
+            DefenceEvent(true);
+        }
     }
 
     public void DefenceOff()
