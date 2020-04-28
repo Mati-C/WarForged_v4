@@ -21,7 +21,7 @@ Material:
     m_TexEnvs:
     - _FloorAlbedoTR:
         m_Texture: {fileID: 2800000, guid: 2f999bd36a0e9c746b65c5328d0bc240, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 8, y: 8}
         m_Offset: {x: 0, y: 0}
     - _FloorHeight:
         m_Texture: {fileID: 2800000, guid: ef68cac9fc651b244866f8274f0c0c36, type: 3}
@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _FloorNormal:
         m_Texture: {fileID: 2800000, guid: bea31258aa70e6e48ae3eb79f2f48f21, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 8, y: 8}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
