@@ -79,6 +79,18 @@ public class Model_Player : MonoBehaviour
 
     public PlayerCamera GetPlayerCam() { return _playerCamera; }
 
+    IEnumerator AttackRotation(Vector3 dir)
+    {
+
+        while (resetAttackTimer > 0)
+        {
+            Quaternion targetRotation;
+            targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     IEnumerator DefenceMove()
     {
         while(onDefence)
@@ -402,27 +414,31 @@ public class Model_Player : MonoBehaviour
         }
     }
 
-    public void SwordAttack()
+    public void SwordAttack(Vector3 dir)
     {
+        dir.y = 0;
+
         if (isInCombat)
         {
             if (!cantAttack && !onDefence)
             {
                
                 if (attackCombo == 2)
-                {
+                {                 
                     resetAttackTimer = 0.6f;
+                    StartCoroutine(AttackRotation(dir));
                     _onAttackAnimationTimer = 0.7f;
                     _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.25f;
                     cantAttack = true;
-                    onAttackAnimation = true;
+                    onAttackAnimation = true;                   
                     attackCombo++;
                 }
 
                 if (attackCombo == 1)
-                {
+                {                   
                     resetAttackTimer = 0.7f;
+                    StartCoroutine(AttackRotation(dir));
                     _onAttackAnimationTimer = 0.8f;
                     _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.35f;
@@ -434,11 +450,12 @@ public class Model_Player : MonoBehaviour
                 if (attackCombo == 0)
                 {
                     resetAttackTimer = 0.55f;
+                    StartCoroutine(AttackRotation(dir));                   
                     _onAttackAnimationTimer = 0.65f;
                     _timeToWaitBeforeAttack = 0.2f;
                     _movementAttackTime = 0.35f;
                     cantAttack = true;
-                    onAttackAnimation = true;
+                    onAttackAnimation = true;  
                     attackCombo++;
                 }
             }

@@ -202,8 +202,64 @@ public class Controller_Player
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
 
-      
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge) _model.SwordAttack();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && !W && !S && !A && !D) _model.SwordAttack(_camera.transform.forward);
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && W && !S && !A && !D) _model.SwordAttack(_camera.transform.forward);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && W && !S && A && !D)
+        {
+            var dir = (_camera.transform.forward - _camera.transform.right) / 2;
+            _model.SwordAttack(dir.normalized);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && W && !S && !A && D)
+        {
+            var dir = (_camera.transform.forward + _camera.transform.right) / 2;
+            _model.SwordAttack(dir.normalized);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && !W && S && !A && !D) _model.SwordAttack(-_camera.transform.forward);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && !W && S && A && !D)
+        {
+            var dir = (-_camera.transform.forward - _camera.transform.right) / 2;
+            _model.SwordAttack(dir.normalized);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && !W && S && !A && D)
+        {
+            var dir = (-_camera.transform.forward + _camera.transform.right) / 2;
+            _model.SwordAttack(dir.normalized);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && !W && !S && A && !D) _model.SwordAttack(-_camera.transform.right);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && !W && S && A && !D)
+        {
+            var dir = (-_camera.transform.forward - _camera.transform.right) / 2;
+            _model.SwordAttack(dir.normalized);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && W && !S && A && !D)
+        {
+            var dir = (_camera.transform.forward - _camera.transform.right) / 2;
+            _model.SwordAttack(dir.normalized);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && !W && !S && !A && D) _model.SwordAttack(_camera.transform.right);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && !W && S && !A && D)
+        {
+            var dir = (-_camera.transform.forward + _camera.transform.right) / 2;
+            _model.SwordAttack(dir.normalized);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_model.onDodge && W && !S && !A && D)
+        {
+            var dir = (_camera.transform.forward + _camera.transform.right) / 2;
+            _model.SwordAttack(dir.normalized);
+        }
 
         if (Input.GetKey(KeyCode.Mouse1) && !_model.onDodge) _model.Defence();
 
