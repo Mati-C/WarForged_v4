@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MyShaders_ClimberPlant01
+  m_Shader: {fileID: 4800000, guid: 21c9f56e7dee64d469b0a525378ac152, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Billboard_4K_AO:
+        m_Texture: {fileID: 2800000, guid: ca957be88cdac1a449c1cf945c541dfd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Billboard_4K_Albedo:
+        m_Texture: {fileID: 2800000, guid: 579fae0d9ffe9b64b8a2c97b74045d3e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Billboard_4K_Normal:
+        m_Texture: {fileID: 2800000, guid: 3a6ec707fb3ac56449e278588724fe30, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Billboard_4K_Opacity:
+        m_Texture: {fileID: 2800000, guid: 50b88e8de5de417408a7bb9cf1598316, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Billboard_4K_Translucency:
+        m_Texture: {fileID: 2800000, guid: 1d84d4db8930b0b4b99c068251ef9382, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - __dirty: 0
+    m_Colors: []
