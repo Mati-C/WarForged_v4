@@ -499,6 +499,8 @@
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\ClassEnemyViewer.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\MeleeEnemy\Model_E_Melee.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\MeleeEnemy\Viewer_E_Melee.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\FSM\N_FSM_EventMachine.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\FSM\N_FSM_State.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Grid\Grid.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Grid\Node2.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Grid\Pathfinding.cs" />
