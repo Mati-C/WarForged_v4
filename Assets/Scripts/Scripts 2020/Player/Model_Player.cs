@@ -44,6 +44,12 @@ public class Model_Player : MonoBehaviour
     public float resetAttackTimer;
     public float timeOnCombat;
     public float maxTimeOnCombat;
+    [Header("Player Damage Values:")]
+    public float AttackDamage;
+    public float AttackDamageCombo1;
+    public float AttackDamageCombo2;
+    public float AttackDamageCombo3;
+
     public enum DogeDirecctions { Left, Right, Back, Roll };
     public DogeDirecctions dirToDodge;
 
@@ -214,7 +220,7 @@ public class Model_Player : MonoBehaviour
         CombatStateEvent(true);
       
         TakeSwordEvent();
-
+       
         while (timeOnCombat >0)
         {
             timeOnCombat -= Time.deltaTime;
@@ -224,6 +230,7 @@ public class Model_Player : MonoBehaviour
         isInCombat = false;
         SaveSwordEvent();
         CombatStateEvent(false);
+
     }
 
     IEnumerator DodgeMovement(float timer, Vector3 dir, float dodgeSpeed, bool delay)
@@ -243,9 +250,9 @@ public class Model_Player : MonoBehaviour
         onDodge = false;
     }
 
-    //public void ActivateSword() { _sword.ActivateSword(); }
+    public void ActivateSwordAttack() { _sword.ActivateSword(); }
 
-  //  public void DesactivateSword() { _sword.DesactivateSword(); }
+    public void DesactivateSwordAttack() { _sword.DesactivateSword(); }
 
     private void Awake()
     {
@@ -422,9 +429,11 @@ public class Model_Player : MonoBehaviour
         {
             if (!cantAttack && !onDefence)
             {
-               
+                if (_sword == null) _sword = FindObjectOfType<PlayerSword>();
+
                 if (attackCombo == 2)
-                {                 
+                {
+                    AttackDamage = AttackDamageCombo3;
                     resetAttackTimer = 0.6f;
                     StartCoroutine(AttackRotation(dir));
                     _onAttackAnimationTimer = 0.7f;
@@ -436,7 +445,8 @@ public class Model_Player : MonoBehaviour
                 }
 
                 if (attackCombo == 1)
-                {                   
+                {
+                    AttackDamage = AttackDamageCombo2;
                     resetAttackTimer = 0.7f;
                     StartCoroutine(AttackRotation(dir));
                     _onAttackAnimationTimer = 0.8f;
@@ -449,6 +459,7 @@ public class Model_Player : MonoBehaviour
 
                 if (attackCombo == 0)
                 {
+                    AttackDamage = AttackDamageCombo1;
                     resetAttackTimer = 0.55f;
                     StartCoroutine(AttackRotation(dir));                   
                     _onAttackAnimationTimer = 0.65f;

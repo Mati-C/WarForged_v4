@@ -97,27 +97,6 @@ public class Viewer_Player : MonoBehaviour
         anim.SetFloat("VelZ", velocityZ);
 
     }
-
-    IEnumerator DelayPositionSword(bool handOrBack)
-    {
-        var timer = 0.3f;
-
-        while(timer >0 && !handOrBack)
-        {
-            timer -= Time.deltaTime;
-            swordBone.position = swordHandPositionPh.position;
-            swordBone.rotation = swordHandPositionPh.rotation;
-            yield return new WaitForEndOfFrame();
-        }
-
-        while (timer > 0 && handOrBack)
-        {
-            timer -= Time.deltaTime;
-            swordBone.position = swordBackPositionPh.position;
-            swordBone.rotation = swordBackPositionPh.rotation;
-            yield return new WaitForEndOfFrame();
-        }
-    }
        
 
     public void ActivateSword()
@@ -131,7 +110,6 @@ public class Viewer_Player : MonoBehaviour
     {
         swordBack.SetActive(true);
         swordHand.SetActive(false);
-
     }
 
     public void WalkAnim()
