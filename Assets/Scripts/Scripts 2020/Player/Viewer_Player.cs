@@ -96,6 +96,8 @@ public class Viewer_Player : MonoBehaviour
         anim.SetFloat("VelX", velocityX);
         anim.SetFloat("VelZ", velocityZ);
 
+        anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
+
     }
        
 

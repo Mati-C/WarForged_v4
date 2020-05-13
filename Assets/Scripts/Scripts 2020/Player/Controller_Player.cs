@@ -7,6 +7,7 @@ public class Controller_Player
     Model_Player _model;
     Viewer_Player _viewer;
     PlayerCamera _camera;
+    
 
     bool W;
     bool S;
@@ -18,14 +19,17 @@ public class Controller_Player
         _model = m;
         _viewer = v;
         _camera = _model.GetPlayerCam();
+       
 
         _model.idleEvent += _viewer.IdleAnim;
         _model.WalkEvent += _viewer.WalkAnim;
+        _model.WalkEvent += _model.GetIA_CombatManager().UpdateEnemyAggressive;
         _model.RunEvent += _viewer.RunAnim;
+        _model.RunEvent += _model.GetIA_CombatManager().UpdateEnemyAggressive;
         _model.TakeSwordEvent += _viewer.TakeSwordAnim;
         _model.SaveSwordEvent += _viewer.SaveSwordAnim;
         _model.CombatStateEvent += _viewer.CombatStateAnimator;
-        _model.DodgeEvent += _viewer.DodgeAnims;
+        _model.DodgeEvent += _viewer.DodgeAnims;       
         _model.LockedOnEvent += _camera.LockOnCam;
         _model.LockedOnEvent += _viewer.SetLockOnParticle;
         _model.LockedOffEvent += _camera.LockOffCam;           
@@ -261,9 +265,13 @@ public class Controller_Player
             _model.SwordAttack(dir.normalized);
         }
 
-        if (Input.GetKey(KeyCode.Mouse1) && !_model.onDodge) _model.Defence();
+       // if (Input.GetKey(KeyCode.Mouse1) && !_model.onDodge) _model.Defence();
 
-        if (Input.GetKeyUp(KeyCode.Mouse1) && !_model.onDodge) _model.DefenceOff();
+        if (Input.GetKey(KeyCode.Mouse1) && !_model.onDodge) _model.ChargeAttack();
+
+      //  if (Input.GetKeyUp(KeyCode.Mouse1) && !_model.onDodge) _model.DefenceOff();
+
+        if (Input.GetKeyUp(KeyCode.Mouse1) && !_model.onDodge) _model.ChargeAttackDone();
 
         if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
 

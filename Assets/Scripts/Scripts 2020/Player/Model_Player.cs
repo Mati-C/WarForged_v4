@@ -12,11 +12,14 @@ public class Model_Player : MonoBehaviour
     PlayerCamera _playerCamera;
     PlayerSword _sword;
     Camera _mainCam;
+    IA_CombatManager _IA_CM;
 
   
     [Header("Player Life:")]
     public float life;
     public float maxLife;
+    public float distanceAggressiveNodes;
+    public float distanceNon_AggressiveNodes;
 
     [Header("Player Speeds:")]
     public float speed;
@@ -33,6 +36,7 @@ public class Model_Player : MonoBehaviour
     public bool cantAttack;
     public bool onAttackAnimation;
     public bool onDefence;
+    public bool onAction;
 
     [Header("Player Layers:")]
 
@@ -44,6 +48,9 @@ public class Model_Player : MonoBehaviour
     public float resetAttackTimer;
     public float timeOnCombat;
     public float maxTimeOnCombat;
+    public float chargeAttackAmount;
+    bool _chargeAttackCasted;
+
     [Header("Player Damage Values:")]
     public float AttackDamage;
     public float AttackDamageCombo1;
@@ -84,6 +91,7 @@ public class Model_Player : MonoBehaviour
     public Action<DogeDirecctions> DodgeEvent;
 
     public PlayerCamera GetPlayerCam() { return _playerCamera; }
+    public IA_CombatManager GetIA_CombatManager() { return _IA_CM; }
 
     IEnumerator AttackRotation(Vector3 dir)
     {
@@ -250,6 +258,13 @@ public class Model_Player : MonoBehaviour
         onDodge = false;
     }
 
+    IEnumerator OnActionState(float time)
+    {
+        onAction = true;
+        yield return new WaitForSeconds(time);
+        onAction = false;
+    }
+
     public void ActivateSwordAttack() { _sword.ActivateSword(); }
 
     public void DesactivateSwordAttack() { _sword.DesactivateSword(); }
@@ -259,9 +274,12 @@ public class Model_Player : MonoBehaviour
         _viewer = GetComponent<Viewer_Player>();
         _playerCamera = FindObjectOfType<PlayerCamera>();
         _mainCam = _playerCamera.GetComponent<Camera>();
+        _IA_CM = FindObjectOfType<IA_CombatManager>();
         _controller = new Controller_Player(this,_viewer);
         _rb = GetComponent<Rigidbody>();
         _sword = FindObjectOfType<PlayerSword>();
+
+        ModifyNodes();
     }
 
     void Start()
@@ -307,13 +325,13 @@ public class Model_Player : MonoBehaviour
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
     {
 
-        if(!onDodge && !onAttackAnimation && onLock && !onDefence)
+        if(!onDodge && !onAttackAnimation && onLock && !onDefence && !onAction)
         {
             WalkEvent();
             _rb.MovePosition(_rb.position + d  * speed * Time.deltaTime);
         }
 
-        if (!onDodge && !onAttackAnimation && !onLock && !onDefence)
+        if (!onDodge && !onAttackAnimation && !onLock && !onDefence && !onAction)
         {
             Quaternion targetRotation;
 
@@ -427,7 +445,7 @@ public class Model_Player : MonoBehaviour
 
         if (isInCombat)
         {
-            if (!cantAttack && !onDefence)
+            if (!cantAttack && !onDefence && !onAction)
             {
                 if (_sword == null) _sword = FindObjectOfType<PlayerSword>();
 
@@ -506,6 +524,30 @@ public class Model_Player : MonoBehaviour
         DefenceEvent(false);
     }
 
+    public void ChargeAttack()
+    {
+        if (!_chargeAttackCasted)
+        {
+            onAction = true;
+            chargeAttackAmount += Time.deltaTime;
+            if (chargeAttackAmount >= 1.6f) ChargeAttackDone();
+        }
+    }
+
+    public void ChargeAttackDone()
+    {
+        StartCoroutine(CanCastChargeAttack());
+        StartCoroutine(OnActionState(0.5f));
+        chargeAttackAmount = 0;
+    }
+
+    public IEnumerator CanCastChargeAttack()
+    {
+        _chargeAttackCasted = true;
+        yield return new WaitForSeconds(0.8f);
+        _chargeAttackCasted = false;        
+    }
+
     public void LockEnemies()
     {
        
@@ -578,6 +620,41 @@ public class Model_Player : MonoBehaviour
 
             targetEnemy = lockedEnemies[_indexEnemyLock];
         }
+    }
+
+    public void ModifyNodes()
+    {
+
+        var aggresisveNodes = Physics.OverlapSphere(transform.position, distanceAggressiveNodes).Where(x => x.GetComponent<CombatNode>()).Select(x => x.GetComponent<CombatNode>());
+
+        if (aggresisveNodes.Count() > 0)
+        {
+            foreach (var item in aggresisveNodes)
+            {
+                item.aggressive = true;
+            }
+        }
+
+        var non_AggresisveNodes = Physics.OverlapSphere(transform.position, distanceNon_AggressiveNodes).Where(x => x.GetComponent<CombatNode>()).Select(x => x.GetComponent<CombatNode>());
+
+        if (non_AggresisveNodes.Count() > 0)
+        {
+            foreach (var item in non_AggresisveNodes)
+            {
+                if (!item.aggressive) item.Non_Aggressive = true;
+            }
+        }
+
+    }
+
+    public void OnDrawGizmos()
+    {
+      
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 0.3f, 0), distanceAggressiveNodes);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 0.3f, 0), distanceNon_AggressiveNodes);
     }
 
 }

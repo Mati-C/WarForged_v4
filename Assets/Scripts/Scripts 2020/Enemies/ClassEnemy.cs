@@ -28,6 +28,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public float life;
     public float maxLife;
     public float speed;
+    public int aggressiveLevel;
 
     [Header("Enemy States:")]
 
