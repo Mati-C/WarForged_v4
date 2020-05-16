@@ -80,19 +80,21 @@ public class PlayerCamera : MonoBehaviour
     IEnumerator CombatCameraView()
     {
 
-        while (actualCamDistance < distanceCombat)
-        {
-            actualCamDistance += Time.deltaTime * smoothDistance;
+        /*  while (actualCamDistance < distanceCombat)
+          {
+              actualCamDistance += Time.deltaTime * smoothDistance;
 
-            mainCamera.m_Orbits = new CinemachineFreeLook.Orbit[3]
-            {
-                    new CinemachineFreeLook.Orbit(2.5f, actualCamDistance),
-                    new CinemachineFreeLook.Orbit(2.5f, actualCamDistance),
-                    new CinemachineFreeLook.Orbit(0.4f, 1.3f)
-            };
+              mainCamera.m_Orbits = new CinemachineFreeLook.Orbit[3]
+              {
+                      new CinemachineFreeLook.Orbit(2.5f, actualCamDistance),
+                      new CinemachineFreeLook.Orbit(2.5f, actualCamDistance),
+                      new CinemachineFreeLook.Orbit(0.4f, 1.3f)
+              };
 
-            yield return new WaitForEndOfFrame();
-        }
+              yield return new WaitForEndOfFrame();
+          }
+          */
+        yield return new WaitForEndOfFrame();
     }
 
     IEnumerator NormalCameraView()

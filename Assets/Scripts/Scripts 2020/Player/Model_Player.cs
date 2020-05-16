@@ -374,10 +374,18 @@ public class Model_Player : MonoBehaviour
 
             else
             {
-                RunEvent();
-                if(!onDefence) _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
 
-                else _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
+                if (!onDefence)
+                {
+                    RunEvent();
+                    _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+                }
+
+                else
+                {
+                    WalkEvent();
+                    _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
+                }
             }
         }
     }
@@ -421,7 +429,7 @@ public class Model_Player : MonoBehaviour
                 else if (!onDodge)
                 {
                     DodgeEvent(DogeDirecctions.Right);
-                    StartCoroutine(DodgeMovement(0.4f, transform.right, dodgeSpeedRight, true));
+                    StartCoroutine(DodgeMovement(0.3f, transform.right, dodgeSpeedRight, true));
                 }
             }
 
@@ -436,7 +444,7 @@ public class Model_Player : MonoBehaviour
                 else if (!onDodge)
                 {
                     DodgeEvent(DogeDirecctions.Left);
-                    StartCoroutine(DodgeMovement(0.4f, -transform.right, dodgeSpeedLeft, true));
+                    StartCoroutine(DodgeMovement(0.3f, -transform.right, dodgeSpeedLeft, true));
                 }
             }
         }

@@ -15,11 +15,10 @@ public class Viewer_Player : MonoBehaviour
 
     [Header("Player Bones:")]
 
-    public Transform swordBone;
-    public Transform swordHandBone;
-    public Transform swordHandPositionPh;
-    public Transform swordBackBone;
-    public Transform swordBackPositionPh;
+    public Transform spineBone;
+    public Transform headBone;
+    public Transform defenceFroward;
+    public Transform headFroward;
 
     [Header("Player Swords:")]
 
@@ -114,7 +113,16 @@ public class Viewer_Player : MonoBehaviour
         anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
 
     }
-       
+
+
+    public void LateUpdate()
+    {
+        if (anim.GetBool("Defence"))
+        {            
+            headBone.transform.forward = headFroward.forward;
+            spineBone.transform.forward = defenceFroward.forward;
+        }
+    }
 
     public void ActivateSword()
     {
