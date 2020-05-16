@@ -73,12 +73,12 @@ public class Pathfinding : MonoBehaviour {
 			myPath.Add(currentNode);
 			currentNode = currentNode.parent;
 		}
-		//path.Reverse();
-        //myPath.Reverse();
-        grid.path = path;
 
-       
-	}
+        grid.path = path;
+        myPath.Reverse();
+
+
+    }
 
 	int GetDistance(Node2 nodeA, Node2 nodeB) {
 		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);

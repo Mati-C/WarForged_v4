@@ -77,7 +77,22 @@ public class Viewer_Player : MonoBehaviour
         _mainCam = _player.GetPlayerCam().GetComponent<Camera>();
     }
 
-    
+    public void ChangeLayer(bool b)
+    {
+        if(b)
+        {
+            anim.SetLayerWeight(0, 0);
+            anim.SetLayerWeight(1, 1);
+            layerUpActive = true;
+        }
+        else
+        {
+            anim.SetLayerWeight(0, 1);
+            anim.SetLayerWeight(1, 0);
+            layerUpActive = false;
+        }
+    }
+ 
     void Update()
     {
 

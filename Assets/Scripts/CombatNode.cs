@@ -10,7 +10,7 @@ public class CombatNode : MonoBehaviour
     public bool aggressive;
     public bool Non_Aggressive;
 
-    public EnemyEntity myOwner;
+    public ClassEnemy myOwner;
 
     public IEnumerator UpdateBusyNode()
     {

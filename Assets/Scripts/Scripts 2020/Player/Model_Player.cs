@@ -49,6 +49,7 @@ public class Model_Player : MonoBehaviour
     public float timeOnCombat;
     public float maxTimeOnCombat;
     public float chargeAttackAmount;
+    public float chargeAttackTime;
     bool _chargeAttackCasted;
 
     [Header("Player Damage Values:")]
@@ -325,13 +326,13 @@ public class Model_Player : MonoBehaviour
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
     {
 
-        if(!onDodge && !onAttackAnimation && onLock && !onDefence && !onAction)
+        if(!onDodge && !onAttackAnimation && onLock  && !onAction)
         {
             WalkEvent();
             _rb.MovePosition(_rb.position + d  * speed * Time.deltaTime);
         }
 
-        if (!onDodge && !onAttackAnimation && !onLock && !onDefence && !onAction)
+        if (!onDodge && !onAttackAnimation && !onLock && !onAction)
         {
             Quaternion targetRotation;
 
@@ -374,7 +375,9 @@ public class Model_Player : MonoBehaviour
             else
             {
                 RunEvent();
-                _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+                if(!onDefence) _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+
+                else _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
             }
         }
     }
@@ -444,8 +447,8 @@ public class Model_Player : MonoBehaviour
         dir.y = 0;
 
         if (isInCombat)
-        {
-            if (!cantAttack && !onDefence && !onAction)
+        {        
+            if (!cantAttack && !onDefence)
             {
                 if (_sword == null) _sword = FindObjectOfType<PlayerSword>();
 
@@ -491,7 +494,7 @@ public class Model_Player : MonoBehaviour
        
         }
 
-       if(!_viewer.layerUpActive) CombatStateUp();
+        if(!_viewer.layerUpActive) CombatStateUp();
        
     }
 
@@ -524,22 +527,27 @@ public class Model_Player : MonoBehaviour
         DefenceEvent(false);
     }
 
-    public void ChargeAttack()
+    public void ChargeAttack(float time)
     {
+        
         if (!_chargeAttackCasted)
-        {
-            onAction = true;
-            chargeAttackAmount += Time.deltaTime;
-            if (chargeAttackAmount >= 1.6f) ChargeAttackDone();
+        {         
+           if (time >= 1.6f) ChargeAttackDone(time);
         }
     }
 
-    public void ChargeAttackDone()
+    public void ChargeAttackDone(float time)
     {
-        StartCoroutine(CanCastChargeAttack());
-        StartCoroutine(OnActionState(0.5f));
         chargeAttackAmount = 0;
+        if (time >= 1.6f)
+        {
+            StartCoroutine(CanCastChargeAttack());
+            StartCoroutine(OnActionState(0.3f));
+        }
     }
+
+    public void ChangeActionState(bool b) { onAction = b; }
+
 
     public IEnumerator CanCastChargeAttack()
     {

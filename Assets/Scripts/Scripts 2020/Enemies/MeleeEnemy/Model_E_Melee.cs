@@ -30,14 +30,15 @@ public class Model_E_Melee : ClassEnemy
 
         persuit.OnUpdate += () =>
         {
-            if (aggressiveLevel == 1) viewDistanceAttack = 3.5f;
 
-            if (aggressiveLevel == 2) viewDistanceAttack = 7f;
+            if (aggressiveLevel == 1) MoveToTarget(player.transform);
 
-            MoveToTarget(player.transform);
+            else MoveToTarget(FindNearNon_AggressiveNode().transform);
 
             if (canSurround) myFSM_EventMachine.ChangeState(surround);
         };
+
+       
 
         surround.OnUpdate += () =>
         {
@@ -48,6 +49,13 @@ public class Model_E_Melee : ClassEnemy
 
 
             if (!canSurround && canPersuit) myFSM_EventMachine.ChangeState(persuit);
+        };
+
+        surround.OnExit += () =>
+        {
+            if (aggressiveLevel == 1) viewDistanceAttack = 3.5f;
+
+            if (aggressiveLevel == 2) viewDistanceAttack = 7f;
         };
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);

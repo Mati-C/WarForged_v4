@@ -556,7 +556,7 @@ public class ModelE_Lancer : EnemyMeleeClass
 
             foreach (var item in NearNodes)
             {
-                item.myOwner = this;
+                //item.myOwner = this;
             }
 
             if (NearNodes.Count() > 0)
@@ -1017,12 +1017,12 @@ public class ModelE_Lancer : EnemyMeleeClass
         {
             myCombatNode = node;
 
-            myCombatNode.myOwner = this;
+           // myCombatNode.myOwner = this;
 
             if (lastCombatNode == null)
             {
                 lastCombatNode = node;
-                lastCombatNode.myOwner = this;
+             //   lastCombatNode.myOwner = this;
             }
 
             if (myCombatNode != lastCombatNode)
@@ -1035,7 +1035,7 @@ public class ModelE_Lancer : EnemyMeleeClass
 
             foreach (var item in NearNodes)
             {
-                item.myOwner = this;
+               // item.myOwner = this;
             }
 
             return node;
@@ -1057,12 +1057,12 @@ public class ModelE_Lancer : EnemyMeleeClass
         {
             myCombatNode = node;
 
-            myCombatNode.myOwner = this;
+            //myCombatNode.myOwner = this;
 
             if (lastCombatNode == null)
             {
                 lastCombatNode = node;
-                lastCombatNode.myOwner = this;
+              //  lastCombatNode.myOwner = this;
             }
 
             if (myCombatNode != lastCombatNode)
@@ -1075,7 +1075,7 @@ public class ModelE_Lancer : EnemyMeleeClass
 
             foreach (var item in NearNodes)
             {
-                item.myOwner = this;
+               // item.myOwner = this;
             }
 
             return node;

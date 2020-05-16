@@ -674,7 +674,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
                 foreach (var item in NearNodes)
                 {
-                    item.myOwner = this;
+                    //item.myOwner = this;
                 }
 
                 if (NearNodes.Count() > 0)
@@ -1401,12 +1401,12 @@ public class ModelE_Melee : EnemyMeleeClass
         {
             myCombatNode = node;
 
-            myCombatNode.myOwner = this;
+           // myCombatNode.myOwner = this;
 
             if (lastCombatNode == null)
             {
                 lastCombatNode = node;
-                lastCombatNode.myOwner = this;
+              //  lastCombatNode.myOwner = this;
             }
 
             if (myCombatNode != lastCombatNode)
@@ -1419,7 +1419,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
             foreach (var item in NearNodes)
             {
-                item.myOwner = this;
+               // item.myOwner = this;
             }
 
             return node;
@@ -1441,12 +1441,12 @@ public class ModelE_Melee : EnemyMeleeClass
         {
             myCombatNode = node;
 
-            myCombatNode.myOwner = this;
+           // myCombatNode.myOwner = this;
 
             if (lastCombatNode == null)
             {
                 lastCombatNode = node;
-                lastCombatNode.myOwner = this;
+              //  lastCombatNode.myOwner = this;
             }
 
             if (myCombatNode != lastCombatNode)
@@ -1459,7 +1459,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
             foreach (var item in NearNodes)
             {
-                item.myOwner = this;
+               // item.myOwner = this;
             }
 
             return node;
@@ -1482,17 +1482,17 @@ public class ModelE_Melee : EnemyMeleeClass
 
     public void OnTriggerEnter(Collider c)
     {
-        if (c.GetComponent<CombatNode>() && isWaitArea) c.GetComponent<CombatNode>().myOwner = this;
+      //  if (c.GetComponent<CombatNode>() && isWaitArea) c.GetComponent<CombatNode>().myOwner = this;
     }
 
     public void OnTriggerStay(Collider c)
     {
-        if (c.GetComponent<CombatNode>() && isWaitArea) c.GetComponent<CombatNode>().myOwner = this;
+       // if (c.GetComponent<CombatNode>() && isWaitArea) c.GetComponent<CombatNode>().myOwner = this;
     }
 
     public void OnTriggerExit(Collider c)
     {
-        if (c.GetComponent<CombatNode>() && isWaitArea) c.GetComponent<CombatNode>().myOwner = null;
+       // if (c.GetComponent<CombatNode>() && isWaitArea) c.GetComponent<CombatNode>().myOwner = null;
     }
 
     void OnDestroy()

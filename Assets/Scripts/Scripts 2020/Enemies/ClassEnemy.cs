@@ -14,7 +14,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public Model_Player player;
     public Grid grid;
     public Rigidbody rb;
-
+   
 
     [Header("EnemyRoom ID:")]
 
@@ -22,6 +22,13 @@ public abstract class ClassEnemy : MonoBehaviour
     public LayerMask layersCanSee;
 
     public List<ClassEnemy> sameID_Enemies = new List<ClassEnemy>();
+
+    [Header("Enemy CombatNodes:")]
+
+    public CombatNode myCombatNode;
+    public CombatNode lastCombatNode;
+    public List<CombatNode> playerNodes = new List<CombatNode>();
+    public float distanceToOcupateNodes;
 
     [Header("Enemy Stats:")]
 
@@ -43,6 +50,7 @@ public abstract class ClassEnemy : MonoBehaviour
     {
         player = FindObjectOfType<Model_Player>();
         pathfinding = GetComponent<Pathfinding>();
+        playerNodes.AddRange(FindObjectsOfType<CombatNode>());
         sameID_Enemies.AddRange(FindObjectsOfType<ClassEnemy>().Where(x => x.ID == ID && x != this));
         _viewer = GetComponent<Viewer_E_Melee>();
         rb = GetComponent<Rigidbody>();
@@ -86,7 +94,6 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public void MoveToTarget(Transform target)
     {
-        currentIndex = 0;
         FindPath(target.position);
 
         pathToTarget.Clear();
@@ -94,14 +101,13 @@ public abstract class ClassEnemy : MonoBehaviour
 
         if (currentIndex < pathToTarget.Count)
         {
-            
+
             float d = Vector3.Distance(pathToTarget[currentIndex].worldPosition, transform.position);
 
             var _dir = Vector3.zero;
 
-            if (d >= 1)
+            if (d > 0.5f)
             {
-                Debug.Log("asda");
                 Quaternion targetRotation;
                 _dir = (pathToTarget[currentIndex].worldPosition - transform.position).normalized;
                 _dir.y = 0;
@@ -113,6 +119,8 @@ public abstract class ClassEnemy : MonoBehaviour
             else
                 currentIndex++;
         }
+
+        else currentIndex = 0;
     }
 
     public bool CanSee(Transform target, float d, float a, LayerMask layer)
@@ -156,5 +164,94 @@ public abstract class ClassEnemy : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public CombatNode FindNearAggressiveNode()
+    {
+        var node = playerNodes.Where(x => x.aggressive && !x.isBusy && (x.myOwner == null || x.myOwner == this)).OrderBy(x =>
+        {
+            var d = Vector3.Distance(x.transform.position, transform.position);
+            return d;
+
+        }).FirstOrDefault();
+
+        if (node)
+        {
+            myCombatNode = node;
+
+            myCombatNode.myOwner = this;
+
+            if (lastCombatNode == null)
+            {
+                lastCombatNode = node;
+                lastCombatNode.myOwner = this;
+            }
+
+            if (myCombatNode != lastCombatNode)
+            {
+                lastCombatNode.myOwner = null;
+                lastCombatNode = myCombatNode;
+            }
+
+            var NearNodes = Physics.OverlapSphere(myCombatNode.transform.position, distanceToOcupateNodes + 1).Where(y => y.GetComponent<CombatNode>()).Select(y => y.GetComponent<CombatNode>()).Where(y => y.myOwner == null);
+
+            foreach (var item in NearNodes)
+            {
+                item.myOwner = this;
+            }
+
+            return node;
+        }
+
+        else return playerNodes[0];
+    }
+
+    public CombatNode FindNearNon_AggressiveNode()
+    {
+        var node = playerNodes.Where(x => x.Non_Aggressive && !x.isBusy && (x.myOwner == null || x.myOwner == this)).OrderBy(x =>
+        {
+            var d = Vector3.Distance(x.transform.position, transform.position);
+            return d;
+
+        }).FirstOrDefault();
+
+        if (node)
+        {
+            myCombatNode = node;
+
+            myCombatNode.myOwner = this;
+
+            if (lastCombatNode == null)
+            {
+                lastCombatNode = node;
+                lastCombatNode.myOwner = this;
+            }
+
+            if (myCombatNode != lastCombatNode)
+            {
+                lastCombatNode.myOwner = null;
+                lastCombatNode = myCombatNode;
+            }
+
+            var NearNodes = Physics.OverlapSphere(myCombatNode.transform.position, distanceToOcupateNodes).Where(y => y.GetComponent<CombatNode>()).Select(y => y.GetComponent<CombatNode>()).Where(y => y.myOwner == null);
+
+            foreach (var item in NearNodes)
+            {
+                item.myOwner = this;
+            }
+
+            return node;
+        }
+        else return playerNodes[0];
+    }
+
+    public void OnTriggerStay(Collider c)
+    {
+         if (c.GetComponent<CombatNode>()) c.GetComponent<CombatNode>().myOwner = this;
+    }
+
+    public void OnTriggerExit(Collider c)
+    {
+         if (c.GetComponent<CombatNode>()) c.GetComponent<CombatNode>().myOwner = null;
     }
 }
