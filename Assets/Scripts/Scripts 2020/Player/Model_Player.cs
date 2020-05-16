@@ -66,6 +66,7 @@ public class Model_Player : MonoBehaviour
     public float impulseAttackMovement2;
     public float impulseAttackMovement3;
     public float impulseAttackMovement4;
+    public float impulseChargeAttackMovement;
 
     [Header("Player LockEnemies:")]
 
@@ -176,6 +177,10 @@ public class Model_Player : MonoBehaviour
 
                     switch (attackCombo)
                     {
+                        case -1:
+                            transform.position = Vector3.Lerp(_attackLastPos, transform.position + transform.forward * impulseChargeAttackMovement * Time.deltaTime, 1);
+                            break;
+
                         case 1:
                             transform.position = Vector3.Lerp(_attackLastPos, transform.position + transform.forward * impulseAttackMovement1 * Time.deltaTime, 1);
                             break;
@@ -540,18 +545,20 @@ public class Model_Player : MonoBehaviour
         
         if (!_chargeAttackCasted)
         {         
-           if (time >= 1.6f) ChargeAttackDone(time);
+           if (time >= 2) ChargeAttackDone(time);
         }
     }
 
     public void ChargeAttackDone(float time)
-    {
-        chargeAttackAmount = 0;
-        if (time >= 1.6f)
+    {       
+        if (time >= 2)
         {
+            _movementAttackTime = 0.35f;
+            resetAttackTimer = 0.8f;
             StartCoroutine(CanCastChargeAttack());
             StartCoroutine(OnActionState(0.3f));
         }
+        chargeAttackAmount = 0;
     }
 
     public void ChangeActionState(bool b) { onAction = b; }
@@ -560,7 +567,9 @@ public class Model_Player : MonoBehaviour
     public IEnumerator CanCastChargeAttack()
     {
         _chargeAttackCasted = true;
+        attackCombo = -1;
         yield return new WaitForSeconds(0.8f);
+        attackCombo = 0;
         _chargeAttackCasted = false;        
     }
 

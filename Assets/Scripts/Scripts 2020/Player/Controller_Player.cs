@@ -225,7 +225,7 @@ public class Controller_Player
             if (Time.time - auxTimer < 0.2f && !_model.onDodge)
             {
 
-                if (!_model.onDodge && !W && !S && !A && !D) _model.SwordAttack(_camera.transform.forward);
+                if (!_model.onDodge && !W && !S && !A && !D) _model.SwordAttack(_model.transform.forward);
                 if (!_model.onDodge && W && !S && !A && !D) _model.SwordAttack(_camera.transform.forward);
 
                 if (!_model.onDodge && W && !S && A && !D)

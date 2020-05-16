@@ -32,6 +32,9 @@ public class Viewer_Player : MonoBehaviour
     bool _changeSwordBoneParent;
     Quaternion _swordBackSaveRotation;
 
+    [Header("Player AxisValues:")]
+
+    public float axisX;
 
     IEnumerator DelayAnimationActivate(string animName, bool r, float time)
     {
@@ -99,6 +102,11 @@ public class Viewer_Player : MonoBehaviour
 
         var velocityX = Input.GetAxis("Vertical");
         var velocityZ = Input.GetAxis("Horizontal");
+        axisX += Input.GetAxis("Mouse X Defence");
+
+        if (axisX > 0.1) axisX -= Time.deltaTime * 2;
+
+        if (axisX < -0.1) axisX += Time.deltaTime * 2;
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) velocityZ = 0;
 
@@ -106,9 +114,12 @@ public class Viewer_Player : MonoBehaviour
         if (velocityZ > 1) velocityZ = 1;
         if (velocityZ < -1) velocityZ = -1;
         if (velocityX < -1) velocityX = -1;
-    
+        if (axisX > 1) axisX = 1;
+        if (axisX < -1) axisX = -1;
+
         anim.SetFloat("VelX", velocityX);
         anim.SetFloat("VelZ", velocityZ);
+        anim.SetFloat("Mouse X", axisX);
 
         anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
 
