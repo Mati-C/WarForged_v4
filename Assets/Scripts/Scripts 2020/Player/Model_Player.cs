@@ -434,7 +434,7 @@ public class Model_Player : MonoBehaviour
                 else if (!onDodge)
                 {
                     DodgeEvent(DogeDirecctions.Right);
-                    StartCoroutine(DodgeMovement(0.3f, transform.right, dodgeSpeedRight, true));
+                    StartCoroutine(DodgeMovement(0.3f, transform.right, dodgeSpeedRight, false));
                 }
             }
 
@@ -449,7 +449,7 @@ public class Model_Player : MonoBehaviour
                 else if (!onDodge)
                 {
                     DodgeEvent(DogeDirecctions.Left);
-                    StartCoroutine(DodgeMovement(0.3f, -transform.right, dodgeSpeedLeft, true));
+                    StartCoroutine(DodgeMovement(0.3f, -transform.right, dodgeSpeedLeft, false));
                 }
             }
         }
@@ -494,7 +494,7 @@ public class Model_Player : MonoBehaviour
                 if (attackCombo == 0)
                 {
                     AttackDamage = AttackDamageCombo1;
-                    resetAttackTimer = 0.55f;
+                    resetAttackTimer = 0.35f;
                     StartCoroutine(AttackRotation(dir));                   
                     _onAttackAnimationTimer = 0.65f;
                     _timeToWaitBeforeAttack = 0.2f;
