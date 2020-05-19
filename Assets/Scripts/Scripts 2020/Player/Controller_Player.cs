@@ -203,9 +203,10 @@ public class Controller_Player
         if (Input.GetKeyUp(KeyCode.D)) D = false;
         if (Input.GetKeyUp(KeyCode.A)) A = false;
 
-        if (!W && !S && !D && !A && !_model.run) _model.idleEvent();
-
+       
         if (Input.GetKeyDown(KeyCode.LeftShift)) _model.run = true;
+
+        if (!W && !S && !D && !A) _model.idleEvent();
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
 

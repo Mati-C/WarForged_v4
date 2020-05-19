@@ -399,13 +399,14 @@ public class Model_Player : MonoBehaviour
     {
         attackCombo = 0;
 
+
         if (!onDefence)
         {
 
             if (direction == DogeDirecctions.Roll)
             {
                 DodgeEvent(DogeDirecctions.Roll);
-                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
+                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.forward, dodgeSpeedRoll, false));
             }
 
             if (direction == DogeDirecctions.Back)
@@ -413,13 +414,23 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll,false));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.forward, dodgeSpeedRoll,false));
                 }
 
                 else if (!onDodge)
                 {
-                    DodgeEvent(DogeDirecctions.Back);
-                    StartCoroutine(DodgeMovement(0.4f, -transform.forward, dodgeSpeedBack, true));
+                    if (!run)
+                    {
+                        DodgeEvent(DogeDirecctions.Back);
+                        StartCoroutine(DodgeMovement(0.4f, -_playerCamera.transform.forward, dodgeSpeedBack, true));
+                    }
+
+                    else
+                    {
+                        DodgeEvent(DogeDirecctions.Roll);
+                        StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.forward, dodgeSpeedBack, false));
+                    }
+                    
                 }
             }
 
@@ -428,13 +439,22 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.forward, dodgeSpeedRoll, false));
                 }
 
                 else if (!onDodge)
                 {
-                    DodgeEvent(DogeDirecctions.Right);
-                    StartCoroutine(DodgeMovement(0.3f, transform.right, dodgeSpeedRight, false));
+                    if (!run)
+                    {
+                        DodgeEvent(DogeDirecctions.Right);
+                        StartCoroutine(DodgeMovement(0.5f, _playerCamera.transform.right, dodgeSpeedRight, false));
+                    }
+
+                    else
+                    {
+                        DodgeEvent(DogeDirecctions.Roll);
+                        StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.right, dodgeSpeedRight, false));
+                    }
                 }
             }
 
@@ -443,13 +463,22 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.forward, dodgeSpeedRoll, false));
                 }
 
                 else if (!onDodge)
                 {
-                    DodgeEvent(DogeDirecctions.Left);
-                    StartCoroutine(DodgeMovement(0.3f, -transform.right, dodgeSpeedLeft, false));
+                    if (!run)
+                    {
+                        DodgeEvent(DogeDirecctions.Left);
+                        StartCoroutine(DodgeMovement(0.5f, -_playerCamera.transform.right, dodgeSpeedLeft, false));
+                    }
+
+                    else
+                    {
+                        DodgeEvent(DogeDirecctions.Roll);
+                        StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.right, dodgeSpeedLeft, false));
+                    }
                 }
             }
         }
