@@ -541,20 +541,12 @@ public class Model_Player : MonoBehaviour
     }
 
     public void ChargeAttack(float time)
-    {
-        
-        if (!_chargeAttackCasted)
-        {         
-           if (time >= 2) ChargeAttackDone(time);
-        }
-    }
-
-    public void ChargeAttackDone(float time)
     {       
-        if (time >= 2)
+        if (time >= chargeAttackTime)
         {
-            _movementAttackTime = 0.35f;
-            resetAttackTimer = 0.8f;
+            resetAttackTimer = 0.6f;
+            attackCombo = -1;
+            _movementAttackTime = 0.05f;
             StartCoroutine(CanCastChargeAttack());
             StartCoroutine(OnActionState(0.3f));
         }
@@ -566,11 +558,10 @@ public class Model_Player : MonoBehaviour
 
     public IEnumerator CanCastChargeAttack()
     {
-        _chargeAttackCasted = true;
-        attackCombo = -1;
+        _chargeAttackCasted = true;       
         yield return new WaitForSeconds(0.8f);
+        _chargeAttackCasted = false;
         attackCombo = 0;
-        _chargeAttackCasted = false;        
     }
 
     public void LockEnemies()

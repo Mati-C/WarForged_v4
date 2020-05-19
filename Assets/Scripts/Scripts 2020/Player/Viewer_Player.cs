@@ -30,6 +30,7 @@ public class Viewer_Player : MonoBehaviour
 
     bool _lockParticleUp;
     bool _changeSwordBoneParent;
+    bool _slowedTime;
     Quaternion _swordBackSaveRotation;
 
     [Header("Player AxisValues:")]
@@ -66,6 +67,8 @@ public class Viewer_Player : MonoBehaviour
         }
       
     }
+
+    
 
     private void Awake()
     {
@@ -215,4 +218,17 @@ public class Viewer_Player : MonoBehaviour
         lockImage.gameObject.SetActive(false);
     }
 
+    public void SlowTinme()
+    {
+       if(!_slowedTime)StartCoroutine(SlowTimeCorrutine());
+    }
+
+    IEnumerator SlowTimeCorrutine()
+    {
+        Time.timeScale = 0.1f;
+        _slowedTime = true;
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 1;
+        _slowedTime = false;
+    }
 }

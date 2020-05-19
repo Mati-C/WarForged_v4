@@ -38,6 +38,7 @@ public class Controller_Player
         _model.CombatStateEvent += _camera.SetCameraState;
         _model.DefenceEvent += _viewer.DefenceAnim;
         _model.DefenceEvent += _viewer.ChangeLayer;
+       // _model.ChargeAttackEvent += _viewer.SlowTinme;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -213,7 +214,8 @@ public class Controller_Player
         {
             if (_model.chargeAttackAmount >= 0.2f) _model.ChangeActionState(true);
             _model.chargeAttackAmount += Time.deltaTime;
-            if(_model.chargeAttackAmount >= 1.6f) _model.ChargeAttack(_model.chargeAttackAmount); 
+            if (_model.chargeAttackAmount >= _model.chargeAttackTime - 0.1f) _viewer.SlowTinme();
+            if (_model.chargeAttackAmount >= _model.chargeAttackTime) _model.ChargeAttack(_model.chargeAttackAmount); 
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0)) auxTimer = Time.time;
@@ -285,7 +287,9 @@ public class Controller_Player
             }
 
             _model.ChangeActionState(false);
-            _model.ChargeAttackDone(Time.time - auxTimer);
+            
+            _model.ChargeAttack(Time.time - auxTimer);
+            
 
             auxTimer = 0;
         }
