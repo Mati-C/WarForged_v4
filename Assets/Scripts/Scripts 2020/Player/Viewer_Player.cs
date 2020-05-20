@@ -9,9 +9,11 @@ public class Viewer_Player : MonoBehaviour
     Model_Player _player;
     Camera _mainCam;
 
-    [Header("Lock Particle:")]
+    [Header("Player Sprites:")]
 
     public Image lockImage;
+    public Image powerBar;
+    public Image chargeAttackBar;
 
     [Header("Player Bones:")]
 
@@ -24,6 +26,7 @@ public class Viewer_Player : MonoBehaviour
 
     public GameObject swordHand;
     public GameObject swordBack;
+    public ParticleSystem swordFire;
 
     [Header("Layer Up Active:")]
     public bool layerUpActive;
@@ -74,6 +77,7 @@ public class Viewer_Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         _player = GetComponent<Model_Player>();
+        powerBar.fillAmount = 0;
         DesactivateSword();
     }
 
@@ -125,7 +129,7 @@ public class Viewer_Player : MonoBehaviour
         anim.SetFloat("Mouse X", axisX);
 
         anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
-
+       
     }
 
 
@@ -136,6 +140,49 @@ public class Viewer_Player : MonoBehaviour
             headBone.transform.forward = headFroward.forward;
             spineBone.transform.forward = defenceFroward.forward;
         }
+    }
+
+    public void PowerSwordActivated()
+    {
+        swordFire.Play();
+        StartCoroutine(DecreesPowerBar());
+    }
+
+    public void PowerSwordDesactivated()
+    {
+        swordFire.Stop();
+    }
+
+    public void ChargeAttackAnim()
+    {        
+        StartCoroutine(DecreesChargeAttackBar());
+    }
+
+    IEnumerator DecreesChargeAttackBar()
+    {
+        chargeAttackBar.fillAmount = 0;
+        while (_player.chargeAttackColdown < _player.chargeAttackColdownMax)
+        {
+            chargeAttackBar.fillAmount += Time.deltaTime / _player.chargeAttackColdownMax;
+            yield return new WaitForEndOfFrame();
+        }
+        if (chargeAttackBar.fillAmount > 1) chargeAttackBar.fillAmount = 1;
+    }
+
+    public void OnHit(float target)
+    {
+        powerBar.fillAmount += target;
+        if(powerBar.fillAmount > 1) powerBar.fillAmount = 1;
+    }
+
+    IEnumerator DecreesPowerBar()
+    {
+        while(_player.powerCurrentTime < _player.powerCurrentMaxTime)
+        {
+            powerBar.fillAmount -= Time.deltaTime / _player.powerCurrentMaxTime;
+            yield return new WaitForEndOfFrame();
+        }
+        powerBar.fillAmount = 0;
     }
 
     public void ActivateSword()

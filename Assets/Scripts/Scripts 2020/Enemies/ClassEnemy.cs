@@ -40,7 +40,6 @@ public abstract class ClassEnemy : MonoBehaviour
     [Header("Enemy States:")]
 
     public bool isDead;
-    public bool onDamage;
     public bool canPersuit;
     public bool canSurround;
 
@@ -62,16 +61,11 @@ public abstract class ClassEnemy : MonoBehaviour
         sameID_Enemies.Remove(e);
     }
 
-    public void ChangeCanGetDamage(bool b) { onDamage = b; }
 
     public void GetDamage(float d)
     {
-        if (onDamage)
-        {
-            life -= d;
-            onDamage = false;
-            _viewer.CreatePopText(d);
-        }
+        life -= d;
+        _viewer.CreatePopText(d);      
     }
 
     private Vector3 FindNearNode(Vector3 pos)

@@ -10,9 +10,9 @@ public class Model_Player : MonoBehaviour
     Viewer_Player _viewer;
     Rigidbody _rb;
     PlayerCamera _playerCamera;
-    PlayerSword _sword;
     Camera _mainCam;
     IA_CombatManager _IA_CM;
+    public LayerMask layersCanSee;
 
   
     [Header("Player Life:")]
@@ -50,10 +50,19 @@ public class Model_Player : MonoBehaviour
     public float maxTimeOnCombat;
     public float chargeAttackAmount;
     public float chargeAttackTime;
+    public float chargeAttackColdown;
+    public float chargeAttackColdownMax;
+    public float viewDistanceAttack;
+    public float angleToAttack;
     bool _chargeAttackCasted;
 
+    [Header("Player Powers Values:")]
+    public float powerAmount;
+    public float powerMax;
+    public float powerCurrentTime;
+    public float powerCurrentMaxTime;
+
     [Header("Player Damage Values:")]
-    public float AttackDamage;
     public float AttackDamageCombo1;
     public float AttackDamageCombo2;
     public float AttackDamageCombo3;
@@ -87,6 +96,10 @@ public class Model_Player : MonoBehaviour
     public Action SaveSwordEvent;
     public Action LockedOnEvent;
     public Action LockedOffEvent;
+    public Action PowerActivatedEvent;
+    public Action PowerDesactivatedEvent;
+    public Action <float>HitEnemyEvent;
+    public Action ChargeAttackEvent;
     public Action<bool> DefenceEvent;
 
     public Action<bool> CombatStateEvent;
@@ -271,10 +284,6 @@ public class Model_Player : MonoBehaviour
         onAction = false;
     }
 
-    public void ActivateSwordAttack() { _sword.ActivateSword(); }
-
-    public void DesactivateSwordAttack() { _sword.DesactivateSword(); }
-
     private void Awake()
     {
         _viewer = GetComponent<Viewer_Player>();
@@ -283,7 +292,6 @@ public class Model_Player : MonoBehaviour
         _IA_CM = FindObjectOfType<IA_CombatManager>();
         _controller = new Controller_Player(this,_viewer);
         _rb = GetComponent<Rigidbody>();
-        _sword = FindObjectOfType<PlayerSword>();
 
         ModifyNodes();
     }
@@ -414,7 +422,7 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.forward, dodgeSpeedRoll,false));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.forward, dodgeSpeedRoll,false));
                 }
 
                 else if (!onDodge)
@@ -439,7 +447,7 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.forward, dodgeSpeedRoll, false));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.right, dodgeSpeedRoll, false));
                 }
 
                 else if (!onDodge)
@@ -463,7 +471,7 @@ public class Model_Player : MonoBehaviour
                 if (!isInCombat)
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.forward, dodgeSpeedRoll, false));
+                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.right, dodgeSpeedRoll, false));
                 }
 
                 else if (!onDodge)
@@ -492,16 +500,16 @@ public class Model_Player : MonoBehaviour
         {        
             if (!cantAttack && !onDefence)
             {
-                if (_sword == null) _sword = FindObjectOfType<PlayerSword>();
-
+              
                 if (attackCombo == 2)
                 {
-                    AttackDamage = AttackDamageCombo3;
+   
                     resetAttackTimer = 0.6f;
                     StartCoroutine(AttackRotation(dir));
-                    _onAttackAnimationTimer = 0.7f;
+                    _onAttackAnimationTimer = 1f;
                     _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.25f;
+                    StartCoroutine(MakeAttackDamageDelay2(AttackDamageCombo3));
                     cantAttack = true;
                     onAttackAnimation = true;                   
                     attackCombo++;
@@ -509,12 +517,13 @@ public class Model_Player : MonoBehaviour
 
                 if (attackCombo == 1)
                 {
-                    AttackDamage = AttackDamageCombo2;
+
                     resetAttackTimer = 0.7f;
                     StartCoroutine(AttackRotation(dir));
-                    _onAttackAnimationTimer = 0.8f;
+                    _onAttackAnimationTimer = 1f;
                     _timeToWaitBeforeAttack = 0.1f;
                     _movementAttackTime = 0.35f;
+                    StartCoroutine(MakeAttackDamageDelay1(AttackDamageCombo2));
                     cantAttack = true;
                     onAttackAnimation = true;
                     attackCombo++;
@@ -522,12 +531,13 @@ public class Model_Player : MonoBehaviour
 
                 if (attackCombo == 0)
                 {
-                    AttackDamage = AttackDamageCombo1;
+                    
                     resetAttackTimer = 0.35f;
                     StartCoroutine(AttackRotation(dir));                   
                     _onAttackAnimationTimer = 0.65f;
                     _timeToWaitBeforeAttack = 0.2f;
                     _movementAttackTime = 0.35f;
+                    MakeDamage(AttackDamageCombo1);
                     cantAttack = true;
                     onAttackAnimation = true;  
                     attackCombo++;
@@ -538,6 +548,38 @@ public class Model_Player : MonoBehaviour
 
         if(!_viewer.layerUpActive) CombatStateUp();
        
+    }
+     
+    IEnumerator MakeAttackDamageDelay1(float d)
+    {       
+        yield return new WaitForSeconds(0.35f);
+        MakeDamage(d);
+    }
+
+    IEnumerator MakeAttackDamageDelay2(float d)
+    {
+       
+        yield return new WaitForSeconds(0.3f);
+        MakeDamage(d);
+    }
+
+    public void MakeDamage(float d)
+    {
+        var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
+
+
+        foreach (var item in enemies)
+        {
+            if (CanSee(item.transform, viewDistanceAttack, angleToAttack, layersCanSee))
+            {
+                item.GetDamage(d);
+                if (powerCurrentTime <= 0)
+                {
+                    HitEnemyEvent(d / powerMax);
+                    powerAmount += d;
+                }
+            }
+        }
     }
 
     public void CombatStateUp()
@@ -569,6 +611,10 @@ public class Model_Player : MonoBehaviour
         DefenceEvent(false);
     }
 
+    public void ChargingAttack() { if(chargeAttackColdown <= 0) chargeAttackAmount += Time.deltaTime; }
+    
+    public void ChargeAttackZero() { chargeAttackAmount = 0; }
+   
     public void ChargeAttack(float time)
     {       
         if (time >= chargeAttackTime)
@@ -577,13 +623,46 @@ public class Model_Player : MonoBehaviour
             attackCombo = -1;
             _movementAttackTime = 0.05f;
             StartCoroutine(CanCastChargeAttack());
+            ChargeAttackEvent();
+            if(chargeAttackColdown <= 0) StartCoroutine(DecressChargeAttackColdown());
             StartCoroutine(OnActionState(0.3f));
         }
         chargeAttackAmount = 0;
     }
 
+    IEnumerator DecressChargeAttackColdown()
+    {
+        while(chargeAttackColdown < chargeAttackColdownMax)
+        {
+            chargeAttackColdown += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        chargeAttackColdown = 0;
+    }
+
     public void ChangeActionState(bool b) { onAction = b; }
 
+ 
+    public void PowerWeapon()
+    {
+        if(powerAmount >= powerMax)
+        {
+            StartCoroutine(PowerOn());
+            PowerActivatedEvent();
+        }
+    }
+
+    public IEnumerator PowerOn()
+    {
+        powerAmount = 0;
+        while(powerCurrentTime < powerCurrentMaxTime)
+        {
+            powerCurrentTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        PowerDesactivatedEvent();
+        powerCurrentTime = 0;
+    }
 
     public IEnumerator CanCastChargeAttack()
     {
@@ -692,6 +771,49 @@ public class Model_Player : MonoBehaviour
 
     }
 
+    public bool CanSee(Transform target, float d, float a, LayerMask layer)
+    {
+        var _viewAngle = a;
+        var _viewDistance = d;
+
+
+        if (target == null) return false;
+
+        var _dirToTarget = (target.position + new Vector3(0, 0.5f, 0) - transform.position + new Vector3(0, 0.5f, 0)).normalized;
+
+        var _angleToTarget = Vector3.Angle(transform.forward, _dirToTarget);
+
+        var _distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+        bool obstaclesBetween = false;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), _dirToTarget, out hit, _distanceToTarget, layer))
+        {
+            if (hit.transform.name == target.name)
+            {
+                Debug.DrawLine(transform.position + new Vector3(0, 0.5f, 0), hit.point, Color.yellow);
+            }
+            else
+            {
+                Debug.DrawLine(transform.position + new Vector3(0, 0.5f, 0), hit.point, Color.red);
+                obstaclesBetween = true;
+            }
+
+
+        }
+
+        if (_angleToTarget <= _viewAngle && _distanceToTarget <= _viewDistance && !obstaclesBetween)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void OnDrawGizmos()
     {
       
@@ -700,6 +822,15 @@ public class Model_Player : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position + new Vector3(0, 0.3f, 0), distanceNon_AggressiveNodes);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, viewDistanceAttack);
+
+        Vector3 rightLimit2 = Quaternion.AngleAxis(angleToAttack, transform.up) * transform.forward;
+        Gizmos.DrawLine(transform.position, transform.position + (rightLimit2 * viewDistanceAttack));
+
+        Vector3 leftLimit2 = Quaternion.AngleAxis(-angleToAttack, transform.up) * transform.forward;
+        Gizmos.DrawLine(transform.position, transform.position + (leftLimit2 * viewDistanceAttack));
     }
 
 }

@@ -38,7 +38,11 @@ public class Controller_Player
         _model.CombatStateEvent += _camera.SetCameraState;
         _model.DefenceEvent += _viewer.DefenceAnim;
         _model.DefenceEvent += _viewer.ChangeLayer;
-       // _model.ChargeAttackEvent += _viewer.SlowTinme;
+        _model.PowerActivatedEvent += _viewer.PowerSwordActivated;
+        _model.PowerDesactivatedEvent += _viewer.PowerSwordDesactivated;
+        _model.HitEnemyEvent += _viewer.OnHit;
+        _model.ChargeAttackEvent += _viewer.ChargeAttackAnim;
+        
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -214,7 +218,7 @@ public class Controller_Player
         if (Input.GetKey(KeyCode.Mouse0))
         {
             if (_model.chargeAttackAmount >= 0.2f) _model.ChangeActionState(true);
-            _model.chargeAttackAmount += Time.deltaTime;
+            _model.ChargingAttack();
             if (_model.chargeAttackAmount >= _model.chargeAttackTime - 0.1f) _viewer.SlowTinme();
             if (_model.chargeAttackAmount >= _model.chargeAttackTime) _model.ChargeAttack(_model.chargeAttackAmount); 
         }
@@ -223,7 +227,7 @@ public class Controller_Player
      
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            _model.chargeAttackAmount = 0;
+            _model.ChargeAttackZero();
 
             if (Time.time - auxTimer < 0.2f && !_model.onDodge)
             {
@@ -301,6 +305,8 @@ public class Controller_Player
         if (Input.GetKeyUp(KeyCode.Mouse1) && !_model.onDodge) _model.DefenceOff();
 
         if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
+
+        if (Input.GetKeyDown(KeyCode.Q)) _model.PowerWeapon();
 
         if (Input.GetKeyDown(KeyCode.Tab)) _model.ChangeTarget();
 
