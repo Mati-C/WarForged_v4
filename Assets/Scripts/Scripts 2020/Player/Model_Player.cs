@@ -66,6 +66,7 @@ public class Model_Player : MonoBehaviour
     public float AttackDamageCombo1;
     public float AttackDamageCombo2;
     public float AttackDamageCombo3;
+    public float ChargeAttackDamage;
 
     public enum DogeDirecctions { Left, Right, Back, Roll };
     public DogeDirecctions dirToDodge;
@@ -504,7 +505,7 @@ public class Model_Player : MonoBehaviour
                 if (attackCombo == 2)
                 {
    
-                    resetAttackTimer = 0.6f;
+                    resetAttackTimer = 0.8f;
                     StartCoroutine(AttackRotation(dir));
                     _onAttackAnimationTimer = 1f;
                     _timeToWaitBeforeAttack = 0.1f;
@@ -532,7 +533,7 @@ public class Model_Player : MonoBehaviour
                 if (attackCombo == 0)
                 {
                     
-                    resetAttackTimer = 0.35f;
+                    resetAttackTimer = 0.4f;
                     StartCoroutine(AttackRotation(dir));                   
                     _onAttackAnimationTimer = 0.65f;
                     _timeToWaitBeforeAttack = 0.2f;
@@ -582,6 +583,28 @@ public class Model_Player : MonoBehaviour
         }
     }
 
+    public void MakeDamageChargeAttack()
+    {
+        StartCoroutine(ChargeAttackDamageCorruntine());
+    }
+
+    public IEnumerator ChargeAttackDamageCorruntine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
+
+
+        foreach (var item in enemies)
+        {
+            item.GetDamage(ChargeAttackDamage);
+            if (powerCurrentTime <= 0)
+            {
+                HitEnemyEvent(ChargeAttackDamage / powerMax);
+                powerAmount += ChargeAttackDamage;
+            }
+        }
+    }
+
     public void CombatStateUp()
     {
         timeOnCombat = maxTimeOnCombat;
@@ -611,13 +634,13 @@ public class Model_Player : MonoBehaviour
         DefenceEvent(false);
     }
 
-    public void ChargingAttack() { if(chargeAttackColdown <= 0) chargeAttackAmount += Time.deltaTime; }
+    public void ChargingAttack() { if(chargeAttackColdown <= 0 && !onDefence) chargeAttackAmount += Time.deltaTime; }
     
     public void ChargeAttackZero() { chargeAttackAmount = 0; }
    
     public void ChargeAttack(float time)
     {       
-        if (time >= chargeAttackTime)
+        if (time >= chargeAttackTime && !_chargeAttackCasted)
         {
             resetAttackTimer = 0.6f;
             attackCombo = -1;
@@ -626,6 +649,7 @@ public class Model_Player : MonoBehaviour
             ChargeAttackEvent();
             if(chargeAttackColdown <= 0) StartCoroutine(DecressChargeAttackColdown());
             StartCoroutine(OnActionState(0.3f));
+            MakeDamageChargeAttack();
         }
         chargeAttackAmount = 0;
     }

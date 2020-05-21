@@ -36,6 +36,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7201074219380639408}
   m_Solo: 0
@@ -199,6 +202,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.25
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1811390192789201485}
   m_Solo: 0
@@ -2187,6 +2193,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1811390192789201485}
   m_Solo: 0
@@ -2241,6 +2250,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 1
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 792243492182118672}
   m_Solo: 0
@@ -3178,6 +3190,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7201074219380639408}
   m_Solo: 0
@@ -22568,6 +22583,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6481000144164970660}
   m_Solo: 0
@@ -22772,6 +22790,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6481000144164970660}
   m_Solo: 0
@@ -23096,6 +23117,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7201074219380639408}
   m_Solo: 0
@@ -23539,6 +23563,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6481000144164970660}
   m_Solo: 0
@@ -25122,6 +25149,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1811390192789201485}
   m_Solo: 0
@@ -25285,6 +25315,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: AttackCombo
     m_EventTreshold: 2
+  - m_ConditionMode: 4
+    m_ConditionEvent: ChargeAttack
+    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7999463005009412687}
   m_Solo: 0
