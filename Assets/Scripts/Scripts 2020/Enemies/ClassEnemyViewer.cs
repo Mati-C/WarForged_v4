@@ -45,3 +45,5 @@ public abstract class ClassEnemyViewer : MonoBehaviour
         }
     }
 }
+
+   
