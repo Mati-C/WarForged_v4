@@ -19,6 +19,7 @@ public class Model_E_Melee : ClassEnemy
     public Action WalkLeftEvent;
     public Action WalkRightEvent;
     public Action ComboAttackEvent;
+    public Action HeavyAttackEvent;
 
     Viewer_E_Melee _view;
 
@@ -32,6 +33,11 @@ public class Model_E_Melee : ClassEnemy
     public bool avoidFriends;
 
     [Header("Enemy Attack Variables:")]
+
+    public int ID_Attack;
+
+    [Range(10, 100)]
+    public int singleAttackProbability;
 
     public float timeToAttack;
     public float maxTimeToAttack;
@@ -49,10 +55,10 @@ public class Model_E_Melee : ClassEnemy
     public float retreatSpeed;
     public bool waitingForRetreat;
 
-    IEnumerator OnAttackAnimationCorrutine()
+    IEnumerator OnAttackAnimationCorrutine(float time)
     {
         onAttackAnimation = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(time);
         onAttackAnimation = false;
         attackFinish = true;
     }
@@ -75,6 +81,7 @@ public class Model_E_Melee : ClassEnemy
         WalkRightEvent += _view.AnimWalkRight;
         WalkLeftEvent += _view.AnimWalkLeft;
         ComboAttackEvent += _view.AnimComboAttack;
+        HeavyAttackEvent += _view.AnimHeavyAttack;
 
         patrol.OnUpdate += () =>
         {
@@ -93,6 +100,12 @@ public class Model_E_Melee : ClassEnemy
             if (canSurround) myFSM_EventMachine.ChangeState(surround);
         };
 
+        persuit.OnExit += () =>
+        {
+            if (aggressiveLevel == 1) viewDistanceSurround = 3.5f;
+
+            if (aggressiveLevel == 2) viewDistanceSurround = 7f;
+        };
 
         surround.OnEnter += () =>
         {
@@ -165,9 +178,15 @@ public class Model_E_Melee : ClassEnemy
 
         surround.OnExit += () =>
         {
-            if (aggressiveLevel == 1) viewDistanceSurround = 3.5f;
+            
+        };
 
-            if (aggressiveLevel == 2) viewDistanceSurround = 7f;
+        attack.OnEnter += () =>
+        {
+            int r = UnityEngine.Random.Range(1, 101);
+
+            if (r < singleAttackProbability) ID_Attack = 1;
+            else ID_Attack = 2;
         };
 
         attack.OnUpdate += () =>
@@ -180,14 +199,19 @@ public class Model_E_Melee : ClassEnemy
 
             if(canAttack && !onAttackAnimation && !waitingForRetreat)
             {
-                onAttackAnimation = false;
                 waitingForRetreat = true;
-                ComboAttackEvent();
+
+                if (ID_Attack == 1) ComboAttackEvent();
+
+                else HeavyAttackEvent();
+
                 var dir = Vector3.zero;
                 dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
                 transform.forward = dir;
-                StartCoroutine(OnAttackAnimationCorrutine());
+                if (ID_Attack == 1) StartCoroutine(OnAttackAnimationCorrutine(2));
+
+                else StartCoroutine(OnAttackAnimationCorrutine(3));
             }
 
             if(attackFinish) myFSM_EventMachine.ChangeState(retreat);

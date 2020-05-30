@@ -77,6 +77,16 @@ public class Viewer_E_Melee : ClassEnemyViewer
         anim.SetBool("WalkRight", false);
     }
 
+    public void AnimHeavyAttack()
+    {
+        StartCoroutine(DelayAnimActive("HeavyAttack", 3));
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
+    }
+
     public void AnimRetreat()
     {
         anim.SetBool("Walk", false);
