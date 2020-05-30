@@ -1313,6 +1313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 101073651840924429}
   - component: {fileID: 8065126914986448503}
+  - component: {fileID: 6186241541904950536}
   m_Layer: 0
   m_Name: 2020_SpearmanTPose
   m_TagString: Untagged
@@ -1366,6 +1367,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &6186241541904950536
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3980139920499394846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.08219793
+  m_Height: 0.6866661
+  m_Direction: 1
+  m_Center: {x: 0.001868577, y: 0.34009346, z: 0.009082263}
 --- !u!1 &4402314057009804922
 GameObject:
   m_ObjectHideFlags: 0
