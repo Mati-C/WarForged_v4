@@ -34,6 +34,7 @@ public class Viewer_Player : MonoBehaviour
     bool _lockParticleUp;
     bool _changeSwordBoneParent;
     bool _slowedTime;
+    bool _boneMove;
     Quaternion _swordBackSaveRotation;
 
     [Header("Player AxisValues:")]
@@ -47,7 +48,7 @@ public class Viewer_Player : MonoBehaviour
         anim.SetBool(animName, !r);
     }
 
-    IEnumerator DelayActivateLayers(float time)
+    public IEnumerator DelayActivateLayers(float time)
     {
 
         anim.SetLayerWeight(0, 1);
@@ -71,7 +72,12 @@ public class Viewer_Player : MonoBehaviour
       
     }
 
-    
+    IEnumerator DelayBone()
+    {
+        _boneMove = true;
+        yield return new WaitForSeconds(0.5f);
+        _boneMove = false;
+    }
 
     private void Awake()
     {
@@ -135,7 +141,7 @@ public class Viewer_Player : MonoBehaviour
 
     public void LateUpdate()
     {
-        if (anim.GetBool("Defence"))
+        if (anim.GetBool("Defence") && !_boneMove)
         {            
             headBone.transform.forward = headFroward.forward;
             spineBone.transform.forward = defenceFroward.forward;
@@ -243,6 +249,8 @@ public class Viewer_Player : MonoBehaviour
 
     public void DodgeAnims(Model_Player.DogeDirecctions dir)
     {
+        StartCoroutine(DelayBone());
+
         if (dir == Model_Player.DogeDirecctions.Roll) StartCoroutine(DelayAnimationActivate("Roll", true, 0.3f)); 
 
         if (dir == Model_Player.DogeDirecctions.Back) StartCoroutine(DelayAnimationActivate("DodgeBack", true, 0.3f)); 

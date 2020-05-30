@@ -407,90 +407,87 @@ public class Model_Player : MonoBehaviour
     public void Dodge(DogeDirecctions direction)
     {
         attackCombo = 0;
-
-
-        if (!onDefence)
+        if (direction == DogeDirecctions.Roll)
         {
+            DodgeEvent(DogeDirecctions.Roll);
 
-            if (direction == DogeDirecctions.Roll)
+            StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
+        }
+
+        if (direction == DogeDirecctions.Back)
+        {
+            if (!isInCombat)
             {
                 DodgeEvent(DogeDirecctions.Roll);
-                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.forward, dodgeSpeedRoll, false));
+                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
             }
 
-            if (direction == DogeDirecctions.Back)
+            else if (!onDodge)
             {
-                if (!isInCombat)
+                if (!run)
+                {
+                    DodgeEvent(DogeDirecctions.Back);
+                    StartCoroutine(DodgeMovement(0.4f, -transform.forward, dodgeSpeedBack, true));
+                }
+
+                else
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.forward, dodgeSpeedRoll,false));
+                    StartCoroutine(DodgeMovement(0.7f, -transform.forward, dodgeSpeedBack, false));
                 }
 
-                else if (!onDodge)
-                {
-                    if (!run)
-                    {
-                        DodgeEvent(DogeDirecctions.Back);
-                        StartCoroutine(DodgeMovement(0.4f, -_playerCamera.transform.forward, dodgeSpeedBack, true));
-                    }
+            }
+        }
 
-                    else
-                    {
-                        DodgeEvent(DogeDirecctions.Roll);
-                        StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.forward, dodgeSpeedBack, false));
-                    }
-                    
-                }
+        if (direction == DogeDirecctions.Right)
+        {
+            if (!isInCombat)
+            {
+                DodgeEvent(DogeDirecctions.Roll);
+                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.right, dodgeSpeedRoll, false));
             }
 
-            if (direction == DogeDirecctions.Right)
+            else if (!onDodge)
             {
-                if (!isInCombat)
+                if (!run)
+                {
+                    DodgeEvent(DogeDirecctions.Right);
+                    StartCoroutine(DodgeMovement(0.5f, _playerCamera.transform.right, dodgeSpeedRight, false));
+                }
+
+                else
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.right, dodgeSpeedRoll, false));
-                }
-
-                else if (!onDodge)
-                {
-                    if (!run)
-                    {
-                        DodgeEvent(DogeDirecctions.Right);
-                        StartCoroutine(DodgeMovement(0.5f, _playerCamera.transform.right, dodgeSpeedRight, false));
-                    }
-
-                    else
-                    {
-                        DodgeEvent(DogeDirecctions.Roll);
-                        StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.right, dodgeSpeedRight, false));
-                    }
-                }
-            }
-
-            if (direction == DogeDirecctions.Left)
-            {
-                if (!isInCombat)
-                {
-                    DodgeEvent(DogeDirecctions.Roll);
-                    if (!onDodge) StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.right, dodgeSpeedRoll, false));
-                }
-
-                else if (!onDodge)
-                {
-                    if (!run)
-                    {
-                        DodgeEvent(DogeDirecctions.Left);
-                        StartCoroutine(DodgeMovement(0.5f, -_playerCamera.transform.right, dodgeSpeedLeft, false));
-                    }
-
-                    else
-                    {
-                        DodgeEvent(DogeDirecctions.Roll);
-                        StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.right, dodgeSpeedLeft, false));
-                    }
+                    StartCoroutine(DodgeMovement(0.7f, _playerCamera.transform.right, dodgeSpeedRight, false));
                 }
             }
         }
+
+        if (direction == DogeDirecctions.Left)
+        {
+            if (!isInCombat)
+            {
+                DodgeEvent(DogeDirecctions.Roll);
+                if (!onDodge) StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.right, dodgeSpeedRoll, false));
+            }
+
+            else if (!onDodge)
+            {
+                if (!run)
+                {
+                    DodgeEvent(DogeDirecctions.Left);
+                    StartCoroutine(DodgeMovement(0.5f, -_playerCamera.transform.right, dodgeSpeedLeft, false));
+                }
+
+                else
+                {
+                    DodgeEvent(DogeDirecctions.Roll);
+                    StartCoroutine(DodgeMovement(0.7f, -_playerCamera.transform.right, dodgeSpeedLeft, false));
+                }
+            }
+        }
+
+
     }
 
     public void SwordAttack(Vector3 dir)
@@ -499,7 +496,7 @@ public class Model_Player : MonoBehaviour
 
         if (isInCombat)
         {        
-            if (!cantAttack && !onDefence)
+            if (!cantAttack)
             {
               
                 if (attackCombo == 2)
@@ -615,7 +612,7 @@ public class Model_Player : MonoBehaviour
 
     public void Defence()
     {
-        if (isInCombat)
+        if (isInCombat && chargeAttackAmount <=0 && !onAction)
         {
             attackCombo = 0;
             resetAttackTimer = 0;
@@ -624,6 +621,7 @@ public class Model_Player : MonoBehaviour
             _movementAttackTime = 0;
             StartCoroutine(DefenceMove());
             onDefence = true;
+            cantAttack = false;
             DefenceEvent(true);
         }
     }
@@ -634,8 +632,15 @@ public class Model_Player : MonoBehaviour
         DefenceEvent(false);
     }
 
-    public void ChargingAttack() { if(chargeAttackColdown <= 0 && !onDefence) chargeAttackAmount += Time.deltaTime; }
-    
+    public void ChargingAttack()
+    {
+        if (chargeAttackColdown <= 0)
+        {
+            DefenceOff();
+            chargeAttackAmount += Time.deltaTime;
+        }
+    }
+
     public void ChargeAttackZero() { chargeAttackAmount = 0; }
    
     public void ChargeAttack(float time)

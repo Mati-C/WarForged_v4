@@ -47,6 +47,7 @@ public class Model_E_Melee : ClassEnemy
     public bool canAttack;
     public bool onAttackAnimation;
     public bool attackFinish;
+    float _timeToMoveOnAttack;
 
     [Header("Enemy Retreat Variables:")]
 
@@ -82,6 +83,8 @@ public class Model_E_Melee : ClassEnemy
         WalkLeftEvent += _view.AnimWalkLeft;
         ComboAttackEvent += _view.AnimComboAttack;
         HeavyAttackEvent += _view.AnimHeavyAttack;
+
+        StartCoroutine(MoveOnAttack());
 
         patrol.OnUpdate += () =>
         {
@@ -199,6 +202,7 @@ public class Model_E_Melee : ClassEnemy
 
             if(canAttack && !onAttackAnimation && !waitingForRetreat)
             {
+
                 waitingForRetreat = true;
 
                 if (ID_Attack == 1) ComboAttackEvent();
@@ -211,7 +215,7 @@ public class Model_E_Melee : ClassEnemy
                 transform.forward = dir;
                 if (ID_Attack == 1) StartCoroutine(OnAttackAnimationCorrutine(2));
 
-                else StartCoroutine(OnAttackAnimationCorrutine(3));
+                else StartCoroutine(OnAttackAnimationCorrutine(1.2f));
             }
 
             if(attackFinish) myFSM_EventMachine.ChangeState(retreat);
@@ -277,6 +281,24 @@ public class Model_E_Melee : ClassEnemy
         canAttack = CanSee(player.transform, viewDistanceAttack, angleToAttack, layersCanSee);
 
         myFSM_EventMachine.Update();
+    }
+
+    public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }
+
+
+    IEnumerator MoveOnAttack()
+    {
+        while (true)
+        {
+            if(_timeToMoveOnAttack >0)
+            {
+                rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
+            }
+
+            _timeToMoveOnAttack -= Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     void OnDrawGizmos()

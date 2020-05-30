@@ -219,8 +219,8 @@ public class Controller_Player
         {
             if (_model.chargeAttackAmount >= 0.2f) _model.ChangeActionState(true);
             _model.ChargingAttack();
-            if (_model.chargeAttackAmount >= _model.chargeAttackTime - 0.1f) _viewer.SlowTinme();
-            if (_model.chargeAttackAmount >= _model.chargeAttackTime) _model.ChargeAttack(_model.chargeAttackAmount); 
+            if (_model.chargeAttackAmount >= _model.chargeAttackTime - 0.1f ) _viewer.SlowTinme();
+            if (_model.chargeAttackAmount >= _model.chargeAttackTime ) _model.ChargeAttack(_model.chargeAttackAmount); 
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0)) auxTimer = Time.time;
@@ -302,7 +302,7 @@ public class Controller_Player
        
         if (Input.GetKey(KeyCode.Mouse1) && !_model.onDodge) _model.Defence();
 
-        if (Input.GetKeyUp(KeyCode.Mouse1) && !_model.onDodge) _model.DefenceOff();
+        if (Input.GetKeyUp(KeyCode.Mouse1)) _model.DefenceOff();
 
         if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
 
