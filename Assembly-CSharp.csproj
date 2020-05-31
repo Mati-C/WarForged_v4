@@ -463,7 +463,7 @@
     <Compile Include="Assets\Scripts\Environment\windmill.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\HealthOrb.cs" />
-    <Compile Include="Assets\Scripts\IKFootCharacter.cs" />
+    <Compile Include="Assets\Scripts\IKCharacter.cs" />
     <Compile Include="Assets\Scripts\LevelDoor.cs" />
     <Compile Include="Assets\Scripts\LevelKey.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
