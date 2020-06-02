@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3623395169700047419}
   - component: {fileID: 5698148687370866701}
   - component: {fileID: 2030962223715888372}
-  - component: {fileID: 5820813175655999086}
+  - component: {fileID: 5501703499894807057}
   m_Layer: 0
   m_Name: Castle Stair
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 293784479636428840}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.54, y: 2.54, z: 2.54}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &5820813175655999086
+--- !u!64 &5501703499894807057
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
