@@ -42,8 +42,30 @@ public abstract class ClassEnemy : MonoBehaviour
     public bool isDead;
     public bool canPersuit;
     public bool canSurround;
-
+    public bool OnDamage;
     public int currentIndex;
+
+    [Header("Enemy GetHit Variables:")]
+    public float onDamageTime;
+    public float damageDelayTime;
+
+    public Action GetHitEvent;
+
+    public IEnumerator OnDamageTimer()
+    {
+        while(true)
+        {
+            if(onDamageTime > 0)
+            {
+                onDamageTime -= Time.deltaTime;
+                OnDamage = true;
+            }
+
+            if (onDamageTime <= 0) OnDamage = false;
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     private void Awake()
     {
@@ -65,6 +87,16 @@ public abstract class ClassEnemy : MonoBehaviour
     public void GetDamage(float d)
     {
         life -= d;
+        onDamageTime = damageDelayTime;
+
+        GetHitEvent();
+
+        Vector3 toTarget = (player.transform.position - transform.position).normalized;
+
+        if (Vector3.Dot(toTarget, transform.forward) > 0) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
+
+        else rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+
         _viewer.CreatePopText(d);      
     }
 

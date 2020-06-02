@@ -238,10 +238,6 @@ public class Model_Player : MonoBehaviour
 
     IEnumerator SetTimerCombat()
     {
-        while (onDodge)
-        {
-            yield return new WaitForEndOfFrame();
-        }
 
         isInCombat = true;
         

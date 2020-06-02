@@ -56,12 +56,14 @@ public class Model_E_Melee : ClassEnemy
     public float retreatSpeed;
     public bool waitingForRetreat;
 
+  
+
     IEnumerator OnAttackAnimationCorrutine(float time)
     {
         onAttackAnimation = true;
         yield return new WaitForSeconds(time);
         onAttackAnimation = false;
-        attackFinish = true;
+        if(onDamageTime <=0 )attackFinish = true;
     }
 
     void Start()
@@ -74,6 +76,7 @@ public class Model_E_Melee : ClassEnemy
         var retreat = new N_FSM_State("RETREAT");
         var persuit = new N_FSM_State("PERSUIT");
         var patrol = new N_FSM_State("PATROL");
+        var takeDamage = new N_FSM_State("TAKE_DAMAGE");
 
         IdleEvent += _view.AnimIdleCombat;
         WalkEvent += _view.AnimWalkCombat;
@@ -83,8 +86,10 @@ public class Model_E_Melee : ClassEnemy
         WalkLeftEvent += _view.AnimWalkLeft;
         ComboAttackEvent += _view.AnimComboAttack;
         HeavyAttackEvent += _view.AnimHeavyAttack;
+        GetHitEvent += _view.AnimGetHit;    
 
         StartCoroutine(MoveOnAttack());
+        StartCoroutine(OnDamageTimer());
 
         patrol.OnUpdate += () =>
         {
@@ -95,12 +100,15 @@ public class Model_E_Melee : ClassEnemy
         {
 
             WalkEvent();
+            player.CombatStateUp();
 
             if (aggressiveLevel == 1) MoveToTarget(player.transform);
 
             else MoveToTarget(FindNearNon_AggressiveNode().transform);
            
             if (canSurround) myFSM_EventMachine.ChangeState(surround);
+
+            if(onDamageTime >0) myFSM_EventMachine.ChangeState(takeDamage);
         };
 
         persuit.OnExit += () =>
@@ -129,6 +137,8 @@ public class Model_E_Melee : ClassEnemy
             if (aggressiveLevel == 1) viewDistanceSurround = 5f;
 
             if (aggressiveLevel == 2) viewDistanceSurround = 8f;
+
+            player.CombatStateUp();
 
             surroundTimer -= Time.deltaTime;
 
@@ -177,6 +187,8 @@ public class Model_E_Melee : ClassEnemy
             if (!canSurround && canPersuit && timeToAttack >0) myFSM_EventMachine.ChangeState(persuit);
 
             if (timeToAttack <=0) myFSM_EventMachine.ChangeState(attack);
+
+            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
         };
 
         surround.OnExit += () =>
@@ -194,7 +206,9 @@ public class Model_E_Melee : ClassEnemy
 
         attack.OnUpdate += () =>
         {
-            if (!onAttackAnimation)
+            player.CombatStateUp();
+
+            if (!onAttackAnimation && !canAttack)
             {
                 RunEvent();
                 MoveToTarget(player.transform);
@@ -219,6 +233,8 @@ public class Model_E_Melee : ClassEnemy
             }
 
             if(attackFinish) myFSM_EventMachine.ChangeState(retreat);
+
+            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
         };
 
         attack.OnExit += () =>
@@ -251,6 +267,7 @@ public class Model_E_Melee : ClassEnemy
             if (timeToRetreat >0)
             {
                 RetreatEvent();
+                player.CombatStateUp();
                 Vector3 _dir = Vector3.zero;
                 Quaternion targetRotation;
                 _dir = (player.transform.position - transform.position).normalized;
@@ -263,9 +280,31 @@ public class Model_E_Melee : ClassEnemy
             if (timeToRetreat <=0 && canPersuit) myFSM_EventMachine.ChangeState(persuit);
 
             if (timeToRetreat <=0 && canSurround) myFSM_EventMachine.ChangeState(surround);
+
+            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
         };
 
-       
+        takeDamage.OnEnter += () =>
+        {                        
+            timeToRetreat = 0;
+        };
+
+        takeDamage.OnUpdate += () =>
+        {
+            waitingForRetreat = false;
+            attackFinish = false;
+
+            if (canPersuit && !canSurround && onDamageTime <= 0) myFSM_EventMachine.ChangeState(persuit);
+
+            if (timeToAttack > 0 &&  canSurround &&  onDamageTime <= 0) myFSM_EventMachine.ChangeState(surround);
+
+            if (timeToAttack <= 0 && onDamageTime <=0) myFSM_EventMachine.ChangeState(attack);
+        };
+
+        takeDamage.OnExit += () =>
+        {
+            timeToRetreat = 0;
+        };
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);
     }

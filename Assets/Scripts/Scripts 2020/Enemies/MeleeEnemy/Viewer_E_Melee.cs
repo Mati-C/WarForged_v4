@@ -8,12 +8,29 @@ public class Viewer_E_Melee : ClassEnemyViewer
 {
 
     public Animator anim;
+    public Model_E_Melee myModel;
 
     public IEnumerator DelayAnimActive(string animName, float t)
     {
         anim.SetBool(animName, true);
         yield return new WaitForSeconds(t);
         anim.SetBool(animName, false);
+    }
+
+    IEnumerator DamageTimerAnim()
+    {
+        while(true)
+        {         
+            if (myModel.onDamageTime <= 0) anim.SetInteger("GetHit", 0);
+            
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    private void Start()
+    {
+        myModel = GetComponent<Model_E_Melee>();
+        StartCoroutine(DamageTimerAnim());
     }
 
     public void AnimWalkCombat()
@@ -98,5 +115,30 @@ public class Viewer_E_Melee : ClassEnemyViewer
         anim.SetBool("AttackCombo", false);
     }
 
+    public void AnimGetHit()
+    {
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
+        anim.SetBool("Retreat", false);
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
 
+        switch(anim.GetInteger("GetHit"))
+        {
+            case 0:
+                anim.SetInteger("GetHit", 1);
+                break;
+
+            case 1:
+                anim.SetInteger("GetHit", 2);
+                break;
+
+            case 2:
+                anim.SetInteger("GetHit", 1);
+                break;
+        }
+
+       
+    }
 }
