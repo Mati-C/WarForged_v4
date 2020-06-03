@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418520}
   - component: {fileID: 10818542}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 6518542}
   - component: {fileID: 3318542}
   - component: {fileID: 2318542}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Candlestick_Floor_02_Lit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 418536}
   - component: {fileID: 19818536}
   - component: {fileID: 19918536}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4891,7 +4891,7 @@ GameObject:
   - component: {fileID: 418524}
   - component: {fileID: 19818526}
   - component: {fileID: 19918526}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9582,7 +9582,7 @@ GameObject:
   - component: {fileID: 418530}
   - component: {fileID: 19818530}
   - component: {fileID: 19918530}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14273,7 +14273,7 @@ GameObject:
   - component: {fileID: 418542}
   - component: {fileID: 19818542}
   - component: {fileID: 19918542}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18964,7 +18964,7 @@ GameObject:
   - component: {fileID: 418526}
   - component: {fileID: 19818528}
   - component: {fileID: 19918528}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23655,7 +23655,7 @@ GameObject:
   - component: {fileID: 418522}
   - component: {fileID: 19818524}
   - component: {fileID: 19918524}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28327,7 +28327,7 @@ GameObject:
   - component: {fileID: 418532}
   - component: {fileID: 19818532}
   - component: {fileID: 19918532}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32999,7 +32999,7 @@ GameObject:
   - component: {fileID: 418534}
   - component: {fileID: 19818534}
   - component: {fileID: 19918534}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37671,7 +37671,7 @@ GameObject:
   - component: {fileID: 418538}
   - component: {fileID: 19818538}
   - component: {fileID: 19918538}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42343,7 +42343,7 @@ GameObject:
   - component: {fileID: 418540}
   - component: {fileID: 19818540}
   - component: {fileID: 19918540}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
