@@ -9,6 +9,8 @@ public class Viewer_E_Melee : ClassEnemyViewer
 
     public Animator anim;
     public Model_E_Melee myModel;
+    public ParticleSystem heavyHitParticle;
+    public ParticleSystem bloodParticle;
 
     public IEnumerator DelayAnimActive(string animName, float t)
     {
@@ -31,6 +33,12 @@ public class Viewer_E_Melee : ClassEnemyViewer
     {
         myModel = GetComponent<Model_E_Melee>();
         StartCoroutine(DamageTimerAnim());
+    }
+
+    public void HeavyHitAntisipation()
+    {
+        heavyHitParticle.Clear();
+        heavyHitParticle.Play();
     }
 
     public void AnimWalkCombat()
@@ -117,26 +125,31 @@ public class Viewer_E_Melee : ClassEnemyViewer
 
     public void AnimGetHit()
     {
-        anim.SetBool("Walk", false);
-        anim.SetBool("Idle", false);
-        anim.SetBool("Run", false);
-        anim.SetBool("Retreat", false);
-        anim.SetBool("WalkLeft", false);
-        anim.SetBool("WalkRight", false);
-
-        switch(anim.GetInteger("GetHit"))
+        if (myModel.ID_Attack != 2)
         {
-            case 0:
-                anim.SetInteger("GetHit", 1);
-                break;
+            anim.SetBool("Walk", false);
+            anim.SetBool("Idle", false);
+            anim.SetBool("Run", false);
+            anim.SetBool("Retreat", false);
+            anim.SetBool("WalkLeft", false);
+            anim.SetBool("WalkRight", false);
+            bloodParticle.Clear();
+            bloodParticle.Play();
+       
+            switch (anim.GetInteger("GetHit"))
+            {
+                case 0:
+                    anim.SetInteger("GetHit", 1);
+                    break;
 
-            case 1:
-                anim.SetInteger("GetHit", 2);
-                break;
+                case 1:
+                    anim.SetInteger("GetHit", 2);
+                    break;
 
-            case 2:
-                anim.SetInteger("GetHit", 1);
-                break;
+                case 2:
+                    anim.SetInteger("GetHit", 1);
+                    break;
+            }
         }
 
        

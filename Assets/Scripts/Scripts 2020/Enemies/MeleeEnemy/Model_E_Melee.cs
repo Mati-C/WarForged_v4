@@ -30,7 +30,6 @@ public class Model_E_Melee : ClassEnemy
     public float surroundTimerMin;
     public float surroundTimerMax;
     public int surroundBehaviourID;
-    public bool avoidFriends;
 
     [Header("Enemy Attack Variables:")]
 
@@ -86,6 +85,7 @@ public class Model_E_Melee : ClassEnemy
         WalkLeftEvent += _view.AnimWalkLeft;
         ComboAttackEvent += _view.AnimComboAttack;
         HeavyAttackEvent += _view.AnimHeavyAttack;
+        HeavyAttackEvent += _view.HeavyHitAntisipation;
         GetHitEvent += _view.AnimGetHit;    
 
         StartCoroutine(MoveOnAttack());
@@ -113,6 +113,8 @@ public class Model_E_Melee : ClassEnemy
 
         persuit.OnExit += () =>
         {
+            viewDistancePersuit = 100;
+
             if (aggressiveLevel == 1) viewDistanceSurround = 3.5f;
 
             if (aggressiveLevel == 2) viewDistanceSurround = 7f;

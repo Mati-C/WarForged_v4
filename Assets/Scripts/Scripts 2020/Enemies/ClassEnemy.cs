@@ -20,6 +20,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public float ID;
     public LayerMask layersCanSee;
+    public LayerMask layersObstacles;
 
     public List<ClassEnemy> sameID_Enemies = new List<ClassEnemy>();
 
