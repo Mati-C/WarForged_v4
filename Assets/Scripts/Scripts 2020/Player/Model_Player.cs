@@ -54,6 +54,7 @@ public class Model_Player : MonoBehaviour
     public float chargeAttackColdownMax;
     public float viewDistanceAttack;
     public float angleToAttack;
+    public float defenceTimer;
     bool _chargeAttackCasted;
 
     [Header("Player Powers Values:")]
@@ -102,6 +103,7 @@ public class Model_Player : MonoBehaviour
     public Action <float>HitEnemyEvent;
     public Action ChargeAttackEvent;
     public Action<bool> DefenceEvent;
+    public Action<bool> BlockEvent;
 
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
@@ -490,7 +492,7 @@ public class Model_Player : MonoBehaviour
     {
         dir.y = 0;
 
-        if (isInCombat)
+        if (isInCombat && !onAction)
         {        
             if (!cantAttack)
             {
@@ -610,6 +612,7 @@ public class Model_Player : MonoBehaviour
     {
         if (isInCombat && chargeAttackAmount <=0 && !onAction)
         {
+            defenceTimer += Time.deltaTime; 
             attackCombo = 0;
             resetAttackTimer = 0;
             _onAttackAnimationTimer = 0;
@@ -624,6 +627,7 @@ public class Model_Player : MonoBehaviour
 
     public void DefenceOff()
     {
+        defenceTimer = 0;
         onDefence = false;
         DefenceEvent(false);
     }
@@ -695,6 +699,27 @@ public class Model_Player : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         _chargeAttackCasted = false;
         attackCombo = 0;
+    }
+
+    public void GetDamage(float d, Transform target)
+    {
+        if(target.GetComponent<ClassEnemy>())
+        {
+            Vector3 toTarget = (target.transform.position - transform.position).normalized;
+
+            if (Vector3.Dot(toTarget, transform.forward) > 0)
+            {
+                if (defenceTimer <= 98999f && !onAction) 
+                {
+                    DefenceOff();
+                    BlockEvent(true);
+                    StartCoroutine(OnActionState(0.9f));                   
+                }
+
+                
+            }
+           
+        }
     }
 
     public void LockEnemies()

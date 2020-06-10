@@ -76,6 +76,7 @@ public class Model_E_Melee : ClassEnemy
         var persuit = new N_FSM_State("PERSUIT");
         var patrol = new N_FSM_State("PATROL");
         var takeDamage = new N_FSM_State("TAKE_DAMAGE");
+        var die = new N_FSM_State("DIE");
 
         IdleEvent += _view.AnimIdleCombat;
         WalkEvent += _view.AnimWalkCombat;
@@ -86,7 +87,8 @@ public class Model_E_Melee : ClassEnemy
         ComboAttackEvent += _view.AnimComboAttack;
         HeavyAttackEvent += _view.AnimHeavyAttack;
         HeavyAttackEvent += _view.HeavyHitAntisipation;
-        GetHitEvent += _view.AnimGetHit;    
+        GetHitEvent += _view.AnimGetHit;
+        DieEvent += _view.AnimDie;
 
         StartCoroutine(MoveOnAttack());
         StartCoroutine(OnDamageTimer());
@@ -94,6 +96,13 @@ public class Model_E_Melee : ClassEnemy
         patrol.OnUpdate += () =>
         {
             if (canPersuit) myFSM_EventMachine.ChangeState(persuit);
+        };
+
+        patrol.OnExit += () =>
+        {
+            viewDistancePersuit = 100;
+            angleToPersuit = 360;
+            angleToSurround = 360;
         };
 
         persuit.OnUpdate += () =>
@@ -106,14 +115,15 @@ public class Model_E_Melee : ClassEnemy
 
             else MoveToTarget(FindNearNon_AggressiveNode().transform);
            
-            if (canSurround) myFSM_EventMachine.ChangeState(surround);
+            if (canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
-            if(onDamageTime >0) myFSM_EventMachine.ChangeState(takeDamage);
+            if(onDamageTime >0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         persuit.OnExit += () =>
         {
-            viewDistancePersuit = 100;
 
             if (aggressiveLevel == 1) viewDistanceSurround = 3.5f;
 
@@ -146,14 +156,17 @@ public class Model_E_Melee : ClassEnemy
 
             timeToAttack -= Time.deltaTime;
 
-            if(surroundBehaviourID == 0)
+            var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
+            if (obs.Count() > 0) rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
+
+            if (surroundBehaviourID == 0)
             {
                 IdleEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
                 targetRotation = Quaternion.LookRotation(dir, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
             }
 
             if (surroundBehaviourID == 1)
@@ -163,7 +176,7 @@ public class Model_E_Melee : ClassEnemy
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
                 targetRotation = Quaternion.LookRotation(dir, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
                 rb.MovePosition(rb.position + transform.right * surroundSpeed * Time.deltaTime);
             }
 
@@ -174,7 +187,7 @@ public class Model_E_Melee : ClassEnemy
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
                 targetRotation = Quaternion.LookRotation(dir, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
                 rb.MovePosition(rb.position - transform.right * surroundSpeed * Time.deltaTime);
 
             }
@@ -186,11 +199,13 @@ public class Model_E_Melee : ClassEnemy
                 surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
             }
 
-            if (!canSurround && canPersuit && timeToAttack >0) myFSM_EventMachine.ChangeState(persuit);
+            if (!canSurround && canPersuit && timeToAttack >0 && life >0) myFSM_EventMachine.ChangeState(persuit);
 
-            if (timeToAttack <=0) myFSM_EventMachine.ChangeState(attack);
+            if (timeToAttack <=0 && life > 0) myFSM_EventMachine.ChangeState(attack);
 
-            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
+            if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         surround.OnExit += () =>
@@ -234,9 +249,11 @@ public class Model_E_Melee : ClassEnemy
                 else StartCoroutine(OnAttackAnimationCorrutine(1.2f));
             }
 
-            if(attackFinish) myFSM_EventMachine.ChangeState(retreat);
+            if(attackFinish && life > 0) myFSM_EventMachine.ChangeState(retreat);
 
-            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
+            if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         attack.OnExit += () =>
@@ -279,11 +296,13 @@ public class Model_E_Melee : ClassEnemy
                 rb.MovePosition(rb.position - _dir * retreatSpeed * Time.deltaTime);
             }
 
-            if (timeToRetreat <=0 && canPersuit) myFSM_EventMachine.ChangeState(persuit);
+            if (timeToRetreat <=0 && canPersuit && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
-            if (timeToRetreat <=0 && canSurround) myFSM_EventMachine.ChangeState(surround);
+            if (timeToRetreat <=0 && canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
-            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
+            if (onDamageTime > 0 && life> 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         takeDamage.OnEnter += () =>
@@ -296,11 +315,13 @@ public class Model_E_Melee : ClassEnemy
             waitingForRetreat = false;
             attackFinish = false;
 
-            if (canPersuit && !canSurround && onDamageTime <= 0) myFSM_EventMachine.ChangeState(persuit);
+            if (canPersuit && !canSurround && onDamageTime <= 0 && life >0) myFSM_EventMachine.ChangeState(persuit);
 
-            if (timeToAttack > 0 &&  canSurround &&  onDamageTime <= 0) myFSM_EventMachine.ChangeState(surround);
+            if (timeToAttack > 0 &&  canSurround &&  onDamageTime <= 0 && life >0) myFSM_EventMachine.ChangeState(surround);
 
-            if (timeToAttack <= 0 && onDamageTime <=0) myFSM_EventMachine.ChangeState(attack);
+            if (timeToAttack <= 0 && onDamageTime <=0 && life>0) myFSM_EventMachine.ChangeState(attack);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         takeDamage.OnExit += () =>
@@ -340,6 +361,17 @@ public class Model_E_Melee : ClassEnemy
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void MakeDamage(float d)
+    {
+        var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
+
+        if(p.Count() >0)
+        {
+            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(d, transform);
+        } 
+
     }
 
     void OnDrawGizmos()

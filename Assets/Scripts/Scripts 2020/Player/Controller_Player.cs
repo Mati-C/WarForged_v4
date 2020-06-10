@@ -42,6 +42,7 @@ public class Controller_Player
         _model.PowerDesactivatedEvent += _viewer.PowerSwordDesactivated;
         _model.HitEnemyEvent += _viewer.OnHit;
         _model.ChargeAttackEvent += _viewer.ChargeAttackAnim;
+        _model.BlockEvent += _viewer.BlockAnim;
         
 
         Cursor.lockState = CursorLockMode.Locked;

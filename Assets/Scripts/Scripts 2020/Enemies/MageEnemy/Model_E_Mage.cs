@@ -31,13 +31,34 @@ public class Model_E_Mage : ClassEnemy
 
     [Header("Enemy Attack Variables:")]
 
+    public Transform phShoot;
+    public MageMissile missile;
+    public float attackDamage;
     public float timeToAttack;
     public float maxTimeToAttack;
     public float minTimeToAttack;
-    public bool canAttack;
     public bool onAttackAnimation;
     public bool attackFinish;
     public bool shooting;
+
+    [Header("Enemy Retreat Variables:")]
+
+    public Transform nodesToRetreat;
+    public Transform nearNodeToRetreat;
+    public List<Transform> ListNodesToRetreat;
+    public float timeToRetreatAgain;
+    public float maxTimeToRetreatAgain;
+    public float distanceToRetreat;
+
+    IEnumerator TimerRetreatAgain()
+    {
+        timeToRetreatAgain = maxTimeToRetreatAgain;
+        while(timeToRetreatAgain > 0)
+        {
+            timeToRetreatAgain -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     IEnumerator OnAttackAnimationCorrutine(float time)
     {
@@ -51,6 +72,7 @@ public class Model_E_Mage : ClassEnemy
     {
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         _view = GetComponent<Viewer_E_Mage>();
+        ListNodesToRetreat.AddRange(nodesToRetreat.GetComponentsInChildren<Transform>());
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
@@ -58,6 +80,7 @@ public class Model_E_Mage : ClassEnemy
         var persuit = new N_FSM_State("PERSUIT");
         var patrol = new N_FSM_State("PATROL");
         var takeDamage = new N_FSM_State("TAKE_DAMAGE");
+        var die = new N_FSM_State("DIE");
 
 
         IdleEvent += _view.AnimIdleCombat;
@@ -68,10 +91,20 @@ public class Model_E_Mage : ClassEnemy
         MagicAttackEvent += _view.AnimShootMagicAttack;
         MagicAttackEvent += _view.HeavyHitAntisipation;
         GetHitEvent += _view.AnimGetHit;
+        DieEvent += _view.AnimDie;
+
+        StartCoroutine(OnDamageTimer());
 
         patrol.OnUpdate += () =>
         {
             if (canPersuit) myFSM_EventMachine.ChangeState(persuit);
+        };
+
+        patrol.OnExit += () =>
+        {
+           viewDistancePersuit = 100;
+           angleToPersuit = 360;
+           angleToSurround = 360;
         };
 
         persuit.OnUpdate += () =>
@@ -82,9 +115,11 @@ public class Model_E_Mage : ClassEnemy
 
             MoveToTarget(player.transform);
 
-            if (canSurround) myFSM_EventMachine.ChangeState(surround);
+            if (canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
-            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
+            if (onDamageTime > 0 && life >0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         persuit.OnExit += () =>
@@ -110,6 +145,8 @@ public class Model_E_Mage : ClassEnemy
         {
             viewDistanceSurround = 7f;
 
+            var d = Vector3.Distance(player.transform.position, transform.position);
+
             player.CombatStateUp();
 
             surroundTimer -= Time.deltaTime;
@@ -126,7 +163,7 @@ public class Model_E_Mage : ClassEnemy
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
                 targetRotation = Quaternion.LookRotation(dir, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
             }
 
             if (surroundBehaviourID == 1)
@@ -136,7 +173,7 @@ public class Model_E_Mage : ClassEnemy
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
                 targetRotation = Quaternion.LookRotation(dir, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
                 rb.MovePosition(rb.position + transform.right * surroundSpeed * Time.deltaTime);
             }
 
@@ -147,7 +184,7 @@ public class Model_E_Mage : ClassEnemy
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
                 targetRotation = Quaternion.LookRotation(dir, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
                 rb.MovePosition(rb.position - transform.right * surroundSpeed * Time.deltaTime);
 
             }
@@ -159,16 +196,53 @@ public class Model_E_Mage : ClassEnemy
                 surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
             }
 
-            if (!canSurround && canPersuit && timeToAttack > 0) myFSM_EventMachine.ChangeState(persuit);
+            if (!canSurround && canPersuit && timeToAttack > 0 && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
-            if (timeToAttack <= 0) myFSM_EventMachine.ChangeState(attack);
+            if (timeToAttack <= 0 && life > 0) myFSM_EventMachine.ChangeState(attack);
 
-            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
+            if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (d <= distanceToRetreat && timeToRetreatAgain <=0 && life >0) myFSM_EventMachine.ChangeState(retreat);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         surround.OnExit += () =>
         {
             
+        };
+
+        retreat.OnEnter += () =>
+        {
+            nearNodeToRetreat = ListNodesToRetreat.OrderByDescending(x =>
+            {
+                var d = Vector3.Distance(x.transform.position, transform.position);
+                return d;
+            }).First();
+
+            StartCoroutine(TimerRetreatAgain());
+        };
+
+        retreat.OnUpdate += () =>
+        {
+
+            MoveToTarget(nearNodeToRetreat);
+
+            WalkEvent();
+
+            var d = Vector3.Distance(nearNodeToRetreat.transform.position, transform.position);
+
+            Debug.Log(d);
+
+            if (d <= 1 && onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (d <= 1 && !canSurround && life > 0) myFSM_EventMachine.ChangeState(persuit);
+
+            if (d <= 1 && timeToAttack <= 0 && life > 0) myFSM_EventMachine.ChangeState(attack);
+
+            if (d <= 1 && canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         attack.OnEnter += () =>
@@ -179,48 +253,30 @@ public class Model_E_Mage : ClassEnemy
         attack.OnUpdate += () =>
         {
             player.CombatStateUp();
-
-           
-           
-            Quaternion targetRotation;
-            var _dir = (player.transform.position - transform.position).normalized;
+                     
+            var _dir = (player.transform.position - transform.position);
             _dir.y = 0;
-            targetRotation = Quaternion.LookRotation(_dir, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2 * Time.deltaTime);
-            
-            var _dirToTarget = (player.transform.position - transform.position).normalized;
+            transform.forward = _dir;
+                     
+            if (!canSurround && canPersuit && attackFinish && life >0) myFSM_EventMachine.ChangeState(persuit);
 
-            var _distanceToTarget = Vector3.Distance(transform.position, player.transform.position);
+            if (canSurround && attackFinish && life > 0) myFSM_EventMachine.ChangeState(surround);
 
-            RaycastHit hit;
+            if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
-            canAttack = false;
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
 
-            if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.forward, out hit, _distanceToTarget, layersCanSee))
-            {
-                if (hit.transform.name == player.name) canAttack = true;
-                else canAttack = false;
-            }
-
-            if (!canSurround && canPersuit && attackFinish) myFSM_EventMachine.ChangeState(persuit);
-
-            if (canSurround && attackFinish) myFSM_EventMachine.ChangeState(surround);
-
-            if (onDamageTime > 0) myFSM_EventMachine.ChangeState(takeDamage);
-
-            if (canAttack && !onAttackAnimation && shooting)
+            if (!onAttackAnimation && shooting)
             {            
                 onAttackAnimation = true;
                 MagicAttackEvent();            
                 StartCoroutine(OnAttackAnimationCorrutine(1.2f));
             }
-
-           
+          
         };
 
         attack.OnExit += () =>
-        {
-           
+        {        
             if (timeToAttack <= 0)
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);                
@@ -234,6 +290,20 @@ public class Model_E_Mage : ClassEnemy
             shooting = false;
         };
 
+   
+        takeDamage.OnUpdate += () =>
+        {
+            attackFinish = false;
+
+            if (canPersuit && !canSurround && onDamageTime <= 0 && life > 0) myFSM_EventMachine.ChangeState(persuit);
+
+            if (timeToAttack > 0 && canSurround && onDamageTime <= 0 && life > 0) myFSM_EventMachine.ChangeState(surround);
+
+            if (timeToAttack <= 0 && onDamageTime <= 0 && life>0) myFSM_EventMachine.ChangeState(attack);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
+        };
+    
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);
 
@@ -251,6 +321,12 @@ public class Model_E_Mage : ClassEnemy
 
     public void Shoot()
     {
+        var _dir = (player.transform.position - transform.position);
+        _dir.y = 0;
+        var m = Instantiate(missile);               
+        m.damage = attackDamage;
+        m.transform.position = phShoot.position;
+        m.transform.forward = _dir;
 
     }
 

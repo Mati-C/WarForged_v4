@@ -6,7 +6,7 @@ using System.Linq;
 
 public abstract class ClassEnemy : MonoBehaviour
 {
-    Viewer_E_Melee _viewer;
+    ClassEnemyViewer _viewer;
     public N_FSM_EventMachine myFSM_EventMachine;
     public List<Node2> nodes = new List<Node2>();
     public List<Node2> pathToTarget = new List<Node2>();
@@ -51,6 +51,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public float damageDelayTime;
 
     public Action GetHitEvent;
+    public Action DieEvent;
 
     public IEnumerator OnDamageTimer()
     {
@@ -74,7 +75,7 @@ public abstract class ClassEnemy : MonoBehaviour
         pathfinding = GetComponent<Pathfinding>();
         playerNodes.AddRange(FindObjectsOfType<CombatNode>());
         sameID_Enemies.AddRange(FindObjectsOfType<ClassEnemy>().Where(x => x.ID == ID && x != this));
-        _viewer = GetComponent<Viewer_E_Melee>();
+        _viewer = GetComponent<ClassEnemyViewer>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -90,7 +91,13 @@ public abstract class ClassEnemy : MonoBehaviour
         life -= d;
         onDamageTime = damageDelayTime;
 
-        GetHitEvent();
+        if (life <= 0) DieEvent();
+
+        else
+        {
+            _viewer.CreatePopText(d);
+            GetHitEvent();
+        }
 
         Vector3 toTarget = (player.transform.position - transform.position).normalized;
 
@@ -98,7 +105,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
         else rb.AddForce(transform.forward * 2, ForceMode.Impulse);
 
-        _viewer.CreatePopText(d);      
+              
     }
 
     private Vector3 FindNearNode(Vector3 pos)

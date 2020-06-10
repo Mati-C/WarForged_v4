@@ -41,6 +41,17 @@ public class Viewer_E_Melee : ClassEnemyViewer
         heavyHitParticle.Play();
     }
 
+    public void AnimDie()
+    {
+        anim.SetBool("Die", true);
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Retreat", false);
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
+        anim.SetBool("Attack", false);
+    }
+
     public void AnimWalkCombat()
     {
         anim.SetBool("Walk", true);

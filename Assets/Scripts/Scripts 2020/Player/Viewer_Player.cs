@@ -141,7 +141,7 @@ public class Viewer_Player : MonoBehaviour
 
     public void LateUpdate()
     {
-        if (anim.GetBool("Defence") && !_boneMove)
+        if (anim.GetBool("Defence") && !_boneMove && !anim.GetBool("Blocked") && !anim.GetBool("Kick"))
         {            
             headBone.transform.forward = headFroward.forward;
             spineBone.transform.forward = defenceFroward.forward;
@@ -202,6 +202,28 @@ public class Viewer_Player : MonoBehaviour
     {
         swordBack.SetActive(true);
         swordHand.SetActive(false);
+    }
+
+    public void BlockAnim(bool b)
+    {
+        if (b == false)
+        {
+            if (!anim.GetBool("Blocked")) StartCoroutine(DelayAnimationActivate("Blocked", true, 0.3f));
+        }
+        else
+        {
+            if (!anim.GetBool("Blocked") && !anim.GetBool("Kick")) StartCoroutine(KickAnimnCorrutine());
+        }
+    }
+
+    IEnumerator KickAnimnCorrutine()
+    {
+        anim.SetBool("Blocked", true);
+        yield return new WaitForSeconds(0.3f);
+        anim.SetBool("Blocked", false);
+        anim.SetBool("Kick", true);
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("Kick", false);
     }
 
     public void WalkAnim()
