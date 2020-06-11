@@ -78,6 +78,7 @@ public class Model_E_Melee : ClassEnemy
         var patrol = new N_FSM_State("PATROL");
         var takeDamage = new N_FSM_State("TAKE_DAMAGE");
         var die = new N_FSM_State("DIE");
+        var blocked = new N_FSM_State("BLOCKED");
 
         IdleEvent += _view.AnimIdleCombat;
         WalkEvent += _view.AnimWalkCombat;
@@ -89,6 +90,8 @@ public class Model_E_Melee : ClassEnemy
         HeavyAttackEvent += _view.AnimHeavyAttack;
         HeavyAttackEvent += _view.HeavyHitAntisipation;
         GetHitEvent += _view.AnimGetHit;
+        BlockedEvent += _view.BlockedAnim;
+        KnockedEvent += _view.KnockedAnim;
         DieEvent += _view.AnimDie;
 
         StartCoroutine(MoveOnAttack());
@@ -119,6 +122,8 @@ public class Model_E_Melee : ClassEnemy
             if (canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
             if(onDamageTime >0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
@@ -206,6 +211,8 @@ public class Model_E_Melee : ClassEnemy
 
             if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
+
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
@@ -226,7 +233,7 @@ public class Model_E_Melee : ClassEnemy
         {
             player.CombatStateUp();
 
-            if (!onAttackAnimation && !canAttack)
+            if (!onAttackAnimation && !canAttack && !waitingForRetreat)
             {
                 RunEvent();
                 MoveToTarget(player.transform);
@@ -253,6 +260,8 @@ public class Model_E_Melee : ClassEnemy
             if(attackFinish && life > 0) myFSM_EventMachine.ChangeState(retreat);
 
             if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
@@ -303,6 +312,8 @@ public class Model_E_Melee : ClassEnemy
 
             if (onDamageTime > 0 && life> 0) myFSM_EventMachine.ChangeState(takeDamage);
 
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
+
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
@@ -328,6 +339,32 @@ public class Model_E_Melee : ClassEnemy
         };
 
         takeDamage.OnExit += () =>
+        {
+            timeToRetreat = 0;
+        };
+
+        blocked.OnEnter += () =>
+        {
+            timeToRetreat = 0;
+        };
+
+        blocked.OnUpdate += () =>
+        {
+            waitingForRetreat = false;
+            attackFinish = false;
+
+            if (canPersuit && !canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(persuit);
+
+            if (timeToAttack > 0 && canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(surround);
+
+            if (timeToAttack <= 0 && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(attack);
+
+            if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
+        };
+
+        blocked.OnExit += () =>
         {
             timeToRetreat = 0;
         };

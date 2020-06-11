@@ -705,23 +705,28 @@ public class Model_Player : MonoBehaviour
 
     public void GetDamage(float d, Transform target)
     {
-        if(target.GetComponent<ClassEnemy>())
+        if (target.GetComponent<ClassEnemy>())
         {
             Vector3 toTarget = (target.transform.position - transform.position).normalized;
 
             if (Vector3.Dot(toTarget, transform.forward) > 0)
             {
-                if (defenceTimer <= 98999f && !onAction) 
+                if (defenceTimer <= 0.5f && !onAction && onDefence)
                 {
                     DefenceOff();
                     BlockEvent(true);
-                    SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
-                    StartCoroutine(OnActionState(0.9f));                   
+                    StartCoroutine(OnActionState(0.9f));
+                    target.GetComponent<ClassEnemy>().Knocked();
+
                 }
 
-                
+                if (onDefence && defenceTimer > 0.5f)
+                {
+                    BlockEvent(false);
+                    StartCoroutine(OnActionState(0.4f));
+                    target.GetComponent<ClassEnemy>().BlockedAttack();
+                }
             }
-           
         }
     }
 
