@@ -1,217 +1,635 @@
 fileFormatVersion: 2
 guid: 8ee806b2a0cacff4f813dd563a41c9d9
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Botas
-    100002: Box002
-    100004: Box004
-    100006: Brazales
-    100008: Cylinder001
-    100010: default
-    100012: //RootNode
-    100014: Human
-    100016: HumanAnkleBone001
-    100018: HumanAnkleBone001 1
-    100020: HumanAnkleBone001Bone001
-    100022: HumanAnkleBone001Bone001 1
-    100024: HumanHub001
-    100026: HumanHub002
-    100028: HumanHub003
-    100030: HumanLArm1
-    100032: HumanLArm2
-    100034: HumanLArmCollarbone
-    100036: HumanLArmDigit11
-    100038: HumanLArmDigit12
-    100040: HumanLArmDigit21
-    100042: HumanLArmDigit22
-    100044: HumanLArmDigit23
-    100046: HumanLArmDigit31
-    100048: HumanLArmDigit32
-    100050: HumanLArmDigit33
-    100052: HumanLArmDigit41
-    100054: HumanLArmDigit42
-    100056: HumanLArmDigit43
-    100058: HumanLArmDigit51
-    100060: HumanLArmDigit52
-    100062: HumanLArmDigit53
-    100064: HumanLArmPalm
-    100066: HumanLLeg1
-    100068: HumanLLeg2
-    100070: HumanLLegAnkle
-    100072: HumanLLegPlatform
-    100074: HumanLLegUpVectorNode
-    100076: HumanRArm1
-    100078: HumanRArm1Gizmo
-    100080: HumanRArm2
-    100082: HumanRArm2Gizmo
-    100084: HumanRArmCollarbone
-    100086: HumanRArmDigit11
-    100088: HumanRArmDigit12
-    100090: HumanRArmDigit21
-    100092: HumanRArmDigit22
-    100094: HumanRArmDigit23
-    100096: HumanRArmDigit31
-    100098: HumanRArmDigit32
-    100100: HumanRArmDigit33
-    100102: HumanRArmDigit41
-    100104: HumanRArmDigit42
-    100106: HumanRArmDigit43
-    100108: HumanRArmDigit51
-    100110: HumanRArmDigit52
-    100112: HumanRArmDigit53
-    100114: HumanRArmPalm
-    100116: HumanRArmPalmGizmo
-    100118: HumanRLeg1
-    100120: HumanRLeg2
-    100122: HumanRLegAnkle
-    100124: HumanRLegPlatform
-    100126: HumanRLegUpVectorNode
-    100128: HumanSpine1
-    100130: HumanSpine1 1
-    100132: HumanSpine2
-    100134: HumanSpine2 1
-    100136: HumanSpine3
-    100138: Object002
-    100140: Pantalon
-    100142: Pechera
-    100144: Plane001
-    100146: Protector
-    100148: Rectangle001
-    100150: Sword
-    100152: Sword 1
-    100154: TopArmour
-    100156: TopArmour001
-    100158: ZombieHub001Gizmo
-    100160: ZombieHub002Gizmo
-    100162: ZombieHub003Gizmo
-    100164: ZombieLArm1Gizmo
-    100166: ZombieLArm2Gizmo
-    100168: ZombieLArmPalmGizmo
-    400000: Botas
-    400002: Box002
-    400004: Box004
-    400006: Brazales
-    400008: Cylinder001
-    400010: default
-    400012: //RootNode
-    400014: Human
-    400016: HumanAnkleBone001
-    400018: HumanAnkleBone001 1
-    400020: HumanAnkleBone001Bone001
-    400022: HumanAnkleBone001Bone001 1
-    400024: HumanHub001
-    400026: HumanHub002
-    400028: HumanHub003
-    400030: HumanLArm1
-    400032: HumanLArm2
-    400034: HumanLArmCollarbone
-    400036: HumanLArmDigit11
-    400038: HumanLArmDigit12
-    400040: HumanLArmDigit21
-    400042: HumanLArmDigit22
-    400044: HumanLArmDigit23
-    400046: HumanLArmDigit31
-    400048: HumanLArmDigit32
-    400050: HumanLArmDigit33
-    400052: HumanLArmDigit41
-    400054: HumanLArmDigit42
-    400056: HumanLArmDigit43
-    400058: HumanLArmDigit51
-    400060: HumanLArmDigit52
-    400062: HumanLArmDigit53
-    400064: HumanLArmPalm
-    400066: HumanLLeg1
-    400068: HumanLLeg2
-    400070: HumanLLegAnkle
-    400072: HumanLLegPlatform
-    400074: HumanLLegUpVectorNode
-    400076: HumanRArm1
-    400078: HumanRArm1Gizmo
-    400080: HumanRArm2
-    400082: HumanRArm2Gizmo
-    400084: HumanRArmCollarbone
-    400086: HumanRArmDigit11
-    400088: HumanRArmDigit12
-    400090: HumanRArmDigit21
-    400092: HumanRArmDigit22
-    400094: HumanRArmDigit23
-    400096: HumanRArmDigit31
-    400098: HumanRArmDigit32
-    400100: HumanRArmDigit33
-    400102: HumanRArmDigit41
-    400104: HumanRArmDigit42
-    400106: HumanRArmDigit43
-    400108: HumanRArmDigit51
-    400110: HumanRArmDigit52
-    400112: HumanRArmDigit53
-    400114: HumanRArmPalm
-    400116: HumanRArmPalmGizmo
-    400118: HumanRLeg1
-    400120: HumanRLeg2
-    400122: HumanRLegAnkle
-    400124: HumanRLegPlatform
-    400126: HumanRLegUpVectorNode
-    400128: HumanSpine1
-    400130: HumanSpine1 1
-    400132: HumanSpine2
-    400134: HumanSpine2 1
-    400136: HumanSpine3
-    400138: Object002
-    400140: Pantalon
-    400142: Pechera
-    400144: Plane001
-    400146: Protector
-    400148: Rectangle001
-    400150: Sword
-    400152: Sword 1
-    400154: TopArmour
-    400156: TopArmour001
-    400158: ZombieHub001Gizmo
-    400160: ZombieHub002Gizmo
-    400162: ZombieHub003Gizmo
-    400164: ZombieLArm1Gizmo
-    400166: ZombieLArm2Gizmo
-    400168: ZombieLArmPalmGizmo
-    2100000: 02 - Default
-    2100002: DownArmour
-    2100004: TopArmour
-    2100006: No Name
-    2300000: Plane001
-    3300000: Plane001
-    4300000: default
-    4300002: Pantalon
-    4300004: Botas
-    4300006: Brazales
-    4300008: Object002
-    4300010: Cylinder001
-    4300012: Pechera
-    4300014: Protector
-    4300016: TopArmour
-    4300018: TopArmour001
-    4300020: Box002
-    4300022: Sword
-    4300024: Rectangle001
-    4300026: Box004
-    4300028: Plane001
-    7400000: Attack_EM2
-    7400002: Blocked_EM
-    9500000: //RootNode
-    13700000: Botas
-    13700002: Box002
-    13700004: Box004
-    13700006: Brazales
-    13700008: Cylinder001
-    13700010: default
-    13700012: Object002
-    13700014: Pantalon
-    13700016: Pechera
-    13700018: Protector
-    13700020: Rectangle001
-    13700022: Sword
-    13700024: TopArmour
-    13700026: TopArmour001
-    2186277476908879412: ImportLogs
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Botas
+  - first:
+      1: 100002
+    second: Box002
+  - first:
+      1: 100004
+    second: Box004
+  - first:
+      1: 100006
+    second: Brazales
+  - first:
+      1: 100008
+    second: Cylinder001
+  - first:
+      1: 100010
+    second: default
+  - first:
+      1: 100012
+    second: //RootNode
+  - first:
+      1: 100014
+    second: Human
+  - first:
+      1: 100016
+    second: HumanAnkleBone001
+  - first:
+      1: 100018
+    second: HumanAnkleBone001 1
+  - first:
+      1: 100020
+    second: HumanAnkleBone001Bone001
+  - first:
+      1: 100022
+    second: HumanAnkleBone001Bone001 1
+  - first:
+      1: 100024
+    second: HumanHub001
+  - first:
+      1: 100026
+    second: HumanHub002
+  - first:
+      1: 100028
+    second: HumanHub003
+  - first:
+      1: 100030
+    second: HumanLArm1
+  - first:
+      1: 100032
+    second: HumanLArm2
+  - first:
+      1: 100034
+    second: HumanLArmCollarbone
+  - first:
+      1: 100036
+    second: HumanLArmDigit11
+  - first:
+      1: 100038
+    second: HumanLArmDigit12
+  - first:
+      1: 100040
+    second: HumanLArmDigit21
+  - first:
+      1: 100042
+    second: HumanLArmDigit22
+  - first:
+      1: 100044
+    second: HumanLArmDigit23
+  - first:
+      1: 100046
+    second: HumanLArmDigit31
+  - first:
+      1: 100048
+    second: HumanLArmDigit32
+  - first:
+      1: 100050
+    second: HumanLArmDigit33
+  - first:
+      1: 100052
+    second: HumanLArmDigit41
+  - first:
+      1: 100054
+    second: HumanLArmDigit42
+  - first:
+      1: 100056
+    second: HumanLArmDigit43
+  - first:
+      1: 100058
+    second: HumanLArmDigit51
+  - first:
+      1: 100060
+    second: HumanLArmDigit52
+  - first:
+      1: 100062
+    second: HumanLArmDigit53
+  - first:
+      1: 100064
+    second: HumanLArmPalm
+  - first:
+      1: 100066
+    second: HumanLLeg1
+  - first:
+      1: 100068
+    second: HumanLLeg2
+  - first:
+      1: 100070
+    second: HumanLLegAnkle
+  - first:
+      1: 100072
+    second: HumanLLegPlatform
+  - first:
+      1: 100074
+    second: HumanLLegUpVectorNode
+  - first:
+      1: 100076
+    second: HumanRArm1
+  - first:
+      1: 100078
+    second: HumanRArm1Gizmo
+  - first:
+      1: 100080
+    second: HumanRArm2
+  - first:
+      1: 100082
+    second: HumanRArm2Gizmo
+  - first:
+      1: 100084
+    second: HumanRArmCollarbone
+  - first:
+      1: 100086
+    second: HumanRArmDigit11
+  - first:
+      1: 100088
+    second: HumanRArmDigit12
+  - first:
+      1: 100090
+    second: HumanRArmDigit21
+  - first:
+      1: 100092
+    second: HumanRArmDigit22
+  - first:
+      1: 100094
+    second: HumanRArmDigit23
+  - first:
+      1: 100096
+    second: HumanRArmDigit31
+  - first:
+      1: 100098
+    second: HumanRArmDigit32
+  - first:
+      1: 100100
+    second: HumanRArmDigit33
+  - first:
+      1: 100102
+    second: HumanRArmDigit41
+  - first:
+      1: 100104
+    second: HumanRArmDigit42
+  - first:
+      1: 100106
+    second: HumanRArmDigit43
+  - first:
+      1: 100108
+    second: HumanRArmDigit51
+  - first:
+      1: 100110
+    second: HumanRArmDigit52
+  - first:
+      1: 100112
+    second: HumanRArmDigit53
+  - first:
+      1: 100114
+    second: HumanRArmPalm
+  - first:
+      1: 100116
+    second: HumanRArmPalmGizmo
+  - first:
+      1: 100118
+    second: HumanRLeg1
+  - first:
+      1: 100120
+    second: HumanRLeg2
+  - first:
+      1: 100122
+    second: HumanRLegAnkle
+  - first:
+      1: 100124
+    second: HumanRLegPlatform
+  - first:
+      1: 100126
+    second: HumanRLegUpVectorNode
+  - first:
+      1: 100128
+    second: HumanSpine1
+  - first:
+      1: 100130
+    second: HumanSpine1 1
+  - first:
+      1: 100132
+    second: HumanSpine2
+  - first:
+      1: 100134
+    second: HumanSpine2 1
+  - first:
+      1: 100136
+    second: HumanSpine3
+  - first:
+      1: 100138
+    second: Object002
+  - first:
+      1: 100140
+    second: Pantalon
+  - first:
+      1: 100142
+    second: Pechera
+  - first:
+      1: 100144
+    second: Plane001
+  - first:
+      1: 100146
+    second: Protector
+  - first:
+      1: 100148
+    second: Rectangle001
+  - first:
+      1: 100150
+    second: Sword
+  - first:
+      1: 100152
+    second: Sword 1
+  - first:
+      1: 100154
+    second: TopArmour
+  - first:
+      1: 100156
+    second: TopArmour001
+  - first:
+      1: 100158
+    second: ZombieHub001Gizmo
+  - first:
+      1: 100160
+    second: ZombieHub002Gizmo
+  - first:
+      1: 100162
+    second: ZombieHub003Gizmo
+  - first:
+      1: 100164
+    second: ZombieLArm1Gizmo
+  - first:
+      1: 100166
+    second: ZombieLArm2Gizmo
+  - first:
+      1: 100168
+    second: ZombieLArmPalmGizmo
+  - first:
+      4: 400000
+    second: Botas
+  - first:
+      4: 400002
+    second: Box002
+  - first:
+      4: 400004
+    second: Box004
+  - first:
+      4: 400006
+    second: Brazales
+  - first:
+      4: 400008
+    second: Cylinder001
+  - first:
+      4: 400010
+    second: default
+  - first:
+      4: 400012
+    second: //RootNode
+  - first:
+      4: 400014
+    second: Human
+  - first:
+      4: 400016
+    second: HumanAnkleBone001
+  - first:
+      4: 400018
+    second: HumanAnkleBone001 1
+  - first:
+      4: 400020
+    second: HumanAnkleBone001Bone001
+  - first:
+      4: 400022
+    second: HumanAnkleBone001Bone001 1
+  - first:
+      4: 400024
+    second: HumanHub001
+  - first:
+      4: 400026
+    second: HumanHub002
+  - first:
+      4: 400028
+    second: HumanHub003
+  - first:
+      4: 400030
+    second: HumanLArm1
+  - first:
+      4: 400032
+    second: HumanLArm2
+  - first:
+      4: 400034
+    second: HumanLArmCollarbone
+  - first:
+      4: 400036
+    second: HumanLArmDigit11
+  - first:
+      4: 400038
+    second: HumanLArmDigit12
+  - first:
+      4: 400040
+    second: HumanLArmDigit21
+  - first:
+      4: 400042
+    second: HumanLArmDigit22
+  - first:
+      4: 400044
+    second: HumanLArmDigit23
+  - first:
+      4: 400046
+    second: HumanLArmDigit31
+  - first:
+      4: 400048
+    second: HumanLArmDigit32
+  - first:
+      4: 400050
+    second: HumanLArmDigit33
+  - first:
+      4: 400052
+    second: HumanLArmDigit41
+  - first:
+      4: 400054
+    second: HumanLArmDigit42
+  - first:
+      4: 400056
+    second: HumanLArmDigit43
+  - first:
+      4: 400058
+    second: HumanLArmDigit51
+  - first:
+      4: 400060
+    second: HumanLArmDigit52
+  - first:
+      4: 400062
+    second: HumanLArmDigit53
+  - first:
+      4: 400064
+    second: HumanLArmPalm
+  - first:
+      4: 400066
+    second: HumanLLeg1
+  - first:
+      4: 400068
+    second: HumanLLeg2
+  - first:
+      4: 400070
+    second: HumanLLegAnkle
+  - first:
+      4: 400072
+    second: HumanLLegPlatform
+  - first:
+      4: 400074
+    second: HumanLLegUpVectorNode
+  - first:
+      4: 400076
+    second: HumanRArm1
+  - first:
+      4: 400078
+    second: HumanRArm1Gizmo
+  - first:
+      4: 400080
+    second: HumanRArm2
+  - first:
+      4: 400082
+    second: HumanRArm2Gizmo
+  - first:
+      4: 400084
+    second: HumanRArmCollarbone
+  - first:
+      4: 400086
+    second: HumanRArmDigit11
+  - first:
+      4: 400088
+    second: HumanRArmDigit12
+  - first:
+      4: 400090
+    second: HumanRArmDigit21
+  - first:
+      4: 400092
+    second: HumanRArmDigit22
+  - first:
+      4: 400094
+    second: HumanRArmDigit23
+  - first:
+      4: 400096
+    second: HumanRArmDigit31
+  - first:
+      4: 400098
+    second: HumanRArmDigit32
+  - first:
+      4: 400100
+    second: HumanRArmDigit33
+  - first:
+      4: 400102
+    second: HumanRArmDigit41
+  - first:
+      4: 400104
+    second: HumanRArmDigit42
+  - first:
+      4: 400106
+    second: HumanRArmDigit43
+  - first:
+      4: 400108
+    second: HumanRArmDigit51
+  - first:
+      4: 400110
+    second: HumanRArmDigit52
+  - first:
+      4: 400112
+    second: HumanRArmDigit53
+  - first:
+      4: 400114
+    second: HumanRArmPalm
+  - first:
+      4: 400116
+    second: HumanRArmPalmGizmo
+  - first:
+      4: 400118
+    second: HumanRLeg1
+  - first:
+      4: 400120
+    second: HumanRLeg2
+  - first:
+      4: 400122
+    second: HumanRLegAnkle
+  - first:
+      4: 400124
+    second: HumanRLegPlatform
+  - first:
+      4: 400126
+    second: HumanRLegUpVectorNode
+  - first:
+      4: 400128
+    second: HumanSpine1
+  - first:
+      4: 400130
+    second: HumanSpine1 1
+  - first:
+      4: 400132
+    second: HumanSpine2
+  - first:
+      4: 400134
+    second: HumanSpine2 1
+  - first:
+      4: 400136
+    second: HumanSpine3
+  - first:
+      4: 400138
+    second: Object002
+  - first:
+      4: 400140
+    second: Pantalon
+  - first:
+      4: 400142
+    second: Pechera
+  - first:
+      4: 400144
+    second: Plane001
+  - first:
+      4: 400146
+    second: Protector
+  - first:
+      4: 400148
+    second: Rectangle001
+  - first:
+      4: 400150
+    second: Sword
+  - first:
+      4: 400152
+    second: Sword 1
+  - first:
+      4: 400154
+    second: TopArmour
+  - first:
+      4: 400156
+    second: TopArmour001
+  - first:
+      4: 400158
+    second: ZombieHub001Gizmo
+  - first:
+      4: 400160
+    second: ZombieHub002Gizmo
+  - first:
+      4: 400162
+    second: ZombieHub003Gizmo
+  - first:
+      4: 400164
+    second: ZombieLArm1Gizmo
+  - first:
+      4: 400166
+    second: ZombieLArm2Gizmo
+  - first:
+      4: 400168
+    second: ZombieLArmPalmGizmo
+  - first:
+      21: 2100000
+    second: 02 - Default
+  - first:
+      21: 2100002
+    second: DownArmour
+  - first:
+      21: 2100004
+    second: TopArmour
+  - first:
+      21: 2100006
+    second: No Name
+  - first:
+      23: 2300000
+    second: Plane001
+  - first:
+      33: 3300000
+    second: Plane001
+  - first:
+      43: 4300000
+    second: default
+  - first:
+      43: 4300002
+    second: Pantalon
+  - first:
+      43: 4300004
+    second: Botas
+  - first:
+      43: 4300006
+    second: Brazales
+  - first:
+      43: 4300008
+    second: Object002
+  - first:
+      43: 4300010
+    second: Cylinder001
+  - first:
+      43: 4300012
+    second: Pechera
+  - first:
+      43: 4300014
+    second: Protector
+  - first:
+      43: 4300016
+    second: TopArmour
+  - first:
+      43: 4300018
+    second: TopArmour001
+  - first:
+      43: 4300020
+    second: Box002
+  - first:
+      43: 4300022
+    second: Sword
+  - first:
+      43: 4300024
+    second: Rectangle001
+  - first:
+      43: 4300026
+    second: Box004
+  - first:
+      43: 4300028
+    second: Plane001
+  - first:
+      74: 7400000
+    second: Attack_EM2
+  - first:
+      74: 7400002
+    second: Blocked_EM
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Botas
+  - first:
+      137: 13700002
+    second: Box002
+  - first:
+      137: 13700004
+    second: Box004
+  - first:
+      137: 13700006
+    second: Brazales
+  - first:
+      137: 13700008
+    second: Cylinder001
+  - first:
+      137: 13700010
+    second: default
+  - first:
+      137: 13700012
+    second: Object002
+  - first:
+      137: 13700014
+    second: Pantalon
+  - first:
+      137: 13700016
+    second: Pechera
+  - first:
+      137: 13700018
+    second: Protector
+  - first:
+      137: 13700020
+    second: Rectangle001
+  - first:
+      137: 13700022
+    second: Sword
+  - first:
+      137: 13700024
+    second: TopArmour
+  - first:
+      137: 13700026
+    second: TopArmour001
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -227,15 +645,16 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: Event BackFromAttack has a time (0.266667) outside the
-      clip's valid range (0.000000..0.266666). It will never be firedEvent BackFromBlocked
-      has a time (0.266667) outside the clip's valid range (0.000000..0.266666). It
-      will never be fired
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'HumanSpine3' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'HumanHub002' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -246,6 +665,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack_EM2
       takeName: Take 001
+      internalID: 0
       firstFrame: 1006
       lastFrame: 1035
       wrapMode: 0
@@ -309,6 +729,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Blocked_EM
       takeName: Take 001
+      internalID: 0
       firstFrame: 1124
       lastFrame: 1132
       wrapMode: 0
@@ -319,38 +740,17 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 1
-        functionName: BackFromAttack
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 1
-        functionName: BackFromBlocked
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0
-        functionName: StopImpulse
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -362,6 +762,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -369,18 +770,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.0254
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -389,12 +791,834 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
-    human: []
-    skeleton: []
+    serializedVersion: 3
+    human:
+    - boneName: HumanHub001
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLLeg1
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRLeg1
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLLeg2
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRLeg2
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLLegAnkle
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRLegAnkle
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanSpine1
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanSpine2
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanSpine1 1
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanSpine2 1
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmCollarbone
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmCollarbone
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArm1
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArm1
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArm2
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArm2
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmPalm
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmPalm
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanAnkleBone001Bone001
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanAnkleBone001Bone001 1
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanHub003
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit11
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit12
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit21
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit22
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit23
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit31
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit32
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit33
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit41
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit42
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit43
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit51
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit52
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanLArmDigit53
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit21
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit22
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit23
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit31
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit32
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit33
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit41
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit42
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit43
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit51
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit52
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: HumanRArmDigit53
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Sword 1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: default
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 15.374416, y: 15.539909, z: 15.374416}
+    - name: Pantalon
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 6.05292, y: 6.118075, z: 6.05292}
+    - name: Botas
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 6.05292, y: 6.118075, z: 6.05292}
+    - name: Brazales
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 6.05292, y: 6.118075, z: 6.05292}
+    - name: Object002
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 6.05292, y: 6.118075, z: 6.05292}
+    - name: Human
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.5000001, y: -0.50000006, z: -0.4999999, w: 0.49999997}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: HumanLLegPlatform
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0.20879053, y: 0.027131407, z: 0.09104831}
+      rotation: {x: 0.53337556, y: -0.53337544, z: -0.4642311, w: 0.46423122}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999999}
+    - name: ZombieLArm1Gizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0.15923566, y: 1.2217795, z: 0.078251384}
+      rotation: {x: 0.6461404, y: 0.5770932, z: 0.238127, w: 0.43904626}
+      scale: {x: 0.99999976, y: 1.0000005, z: 0.99999994}
+    - name: ZombieLArm2Gizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0.21507567, y: 0.97998697, z: 0.12864615}
+      rotation: {x: 0.545144, y: 0.62298316, z: 0.12684233, w: 0.5464623}
+      scale: {x: 0.99999994, y: 1.0000013, z: 0.99999976}
+    - name: ZombieLArmPalmGizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0.24318114, y: 0.86002034, z: 0.20823361}
+      rotation: {x: -0.05715057, y: 0.39371154, z: 0.6194318, w: 0.6767786}
+      scale: {x: 0.9999999, y: 0.99999994, z: 1.0000015}
+    - name: ZombieHub001Gizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: 4.380972e-14, y: 0.80683875, z: -0.00000012631585}
+      rotation: {x: 0.37381724, y: -0.37381712, z: -0.60021716, w: 0.6002173}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: ZombieHub002Gizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0.005153524, y: 1.2264788, z: 0.002532297}
+      rotation: {x: 0.3819939, y: -0.36556935, z: -0.5950467, w: 0.6052761}
+      scale: {x: 0.9999999, y: 0.99999994, z: 1.0000002}
+    - name: ZombieHub003Gizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: 0.021048583, y: 1.4226173, z: 0.06680312}
+      rotation: {x: -0.514537, y: 0.47597298, z: 0.5295211, w: -0.4778167}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: HumanRLegPlatform
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: 0.16530357, y: 0.018752478, z: -0.22565366}
+      rotation: {x: 0.20527123, y: -0.20527115, z: -0.67665625, w: 0.67665637}
+      scale: {x: 0.99999994, y: 0.99999976, z: 0.99999976}
+    - name: HumanRArm1Gizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: 0.14892861, y: 1.2311782, z: -0.07318679}
+      rotation: {x: 0.6461675, y: 0.49801317, z: 0.5351796, w: 0.21916486}
+      scale: {x: 0.9999996, y: 0.99999994, z: 0.9999999}
+    - name: HumanRArm2Gizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: 0.16636765, y: 1.0088025, z: -0.19304615}
+      rotation: {x: 0.45065212, y: 0.6674854, z: 0.5161099, w: 0.29155868}
+      scale: {x: 0.9999997, y: 0.9999997, z: 0.9999992}
+    - name: HumanRArmPalmGizmo
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: 0.22853401, y: 0.8764118, z: -0.20418671}
+      rotation: {x: 0.5326032, y: 0.8227181, z: -0.16484381, w: -0.11088454}
+      scale: {x: 0.9999997, y: 0.99999857, z: 1.000001}
+    - name: Cylinder001
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Pechera
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 6.05292, y: 6.118075, z: 6.05292}
+    - name: Protector
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 6.05292, y: 6.118075, z: 6.05292}
+    - name: TopArmour
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 15.374416, y: 15.539909, z: 15.374416}
+    - name: TopArmour001
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 15.374416, y: 15.539909, z: 15.374416}
+    - name: Box002
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Sword
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 0.7615986, y: 0.6251876, z: 0.99999994}
+    - name: Rectangle001
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Box004
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Plane001
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: -0.8477451, y: 0, z: 0.17583674}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 3.0282376, y: 2.9167032, z: 1}
+    - name: HumanHub001
+      parentName: Enemy Warrior Animation(ATTACK - FAILED ATTACK)(Clone)
+      position: {x: 4.380972e-14, y: 0.8311069, z: -0.00000012631585}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999988, w: 0.5}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: HumanRLegUpVectorNode
+      parentName: HumanHub001
+      position: {x: 0.4237687, y: 0.59249794, z: -0.28434703}
+      rotation: {x: 1.9503233e-14, y: -8.314729e-28, z: -4.2632564e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HumanLLegUpVectorNode
+      parentName: HumanHub001
+      position: {x: 0.329383, y: 1.4926571, z: 0.48477888}
+      rotation: {x: 1.9106258e-14, y: -0.0000000037229388, z: -0.0000000027922202,
+        w: 1}
+      scale: {x: 0.9999999, y: 0.9999998, z: 0.9999997}
+    - name: HumanLLeg1
+      parentName: HumanHub001
+      position: {x: -0, y: -0.0000000016941124, z: 0.09961278}
+      rotation: {x: 0.03868881, y: 0.9964578, z: -0.053739503, w: 0.051837236}
+      scale: {x: 1.0000008, y: 1.0000007, z: 1.0000007}
+    - name: HumanLLeg2
+      parentName: HumanLLeg1
+      position: {x: -0.36788976, y: 0.000000048446655, z: -0.000000072669984}
+      rotation: {x: -0.0034239548, y: 0.035091396, z: 0.10369547, w: 0.99398404}
+      scale: {x: 0.99999845, y: 1.0000023, z: 1.0000038}
+    - name: HumanLLegAnkle
+      parentName: HumanLLeg2
+      position: {x: -0.38292655, y: -0.000000012111664, z: 0}
+      rotation: {x: -0.2314357, y: -0.0090776, z: -0.37143973, w: 0.89910376}
+      scale: {x: 0.99999946, y: 1.0000015, z: 1.0000012}
+    - name: HumanAnkleBone001
+      parentName: HumanLLegAnkle
+      position: {x: -0.09393356, y: 0.042657096, z: -0.0000001332283}
+      rotation: {x: 0.00000004470348, y: 0.00000008940696, z: -0.42301068, w: 0.90612465}
+      scale: {x: 1.0000004, y: 1, z: 0.9999999}
+    - name: HumanAnkleBone001Bone001
+      parentName: HumanAnkleBone001
+      position: {x: -0.068698496, y: 0, z: -0.000000012111664}
+      rotation: {x: -0.00000001117587, y: -0.0000001490116, z: -0.000000009313225,
+        w: 1}
+      scale: {x: 1.0000007, y: 1.0000002, z: 1.0000004}
+    - name: HumanRLeg1
+      parentName: HumanHub001
+      position: {x: -0, y: -0.0000000016941124, z: -0.09961279}
+      rotation: {x: 0.018531457, y: 0.9971767, z: 0.051139563, w: -0.051768005}
+      scale: {x: 1.0000006, y: 1.0000001, z: 1}
+    - name: HumanRLeg2
+      parentName: HumanRLeg1
+      position: {x: -0.3678899, y: 0.000000048446655, z: 0.00000009689331}
+      rotation: {x: 0.002148764, y: -0.043612007, z: 0.12798464, w: 0.9908145}
+      scale: {x: 1.0000025, y: 1.0000023, z: 1.0000017}
+    - name: HumanRLegAnkle
+      parentName: HumanRLeg2
+      position: {x: -0.38292658, y: 0, z: 0}
+      rotation: {x: 0.22767353, y: 0.015016423, z: -0.3771038, w: 0.8976258}
+      scale: {x: 1.0000005, y: 0.9999992, z: 0.99999887}
+    - name: HumanAnkleBone001 1
+      parentName: HumanRLegAnkle
+      position: {x: -0.0939335, y: 0.042657096, z: 0.000000024223327}
+      rotation: {x: 0.000000074505806, y: 0.00000011920929, z: -0.42301098, w: 0.9061246}
+      scale: {x: 1.0000017, y: 1.0000002, z: 1.0000015}
+    - name: HumanAnkleBone001Bone001 1
+      parentName: HumanAnkleBone001 1
+      position: {x: -0.06869848, y: 0, z: 0}
+      rotation: {x: 0.00000004423116, y: -0.000000059520403, z: -0.000000029802322,
+        w: 1}
+      scale: {x: 1.0000004, y: 0.99999934, z: 1.0000002}
+    - name: HumanSpine1
+      parentName: HumanHub001
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.000000029802322, y: -0.000000029802322, z: -0, w: 1}
+      scale: {x: 1.0000007, y: 1.0000005, z: 1.0000006}
+    - name: HumanSpine2
+      parentName: HumanSpine1
+      position: {x: -0.13989955, y: 0.0000000027326483, z: -0.000000018167496}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.99999946, y: 1, z: 0.9999997}
+    - name: HumanSpine3
+      parentName: HumanSpine2
+      position: {x: -0.1398996, y: -1.15159306e-10, z: -7.56979e-10}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1.0000007}
+    - name: HumanHub002
+      parentName: HumanSpine3
+      position: {x: -0.1398995, y: 6.251175e-11, z: 0}
+      rotation: {x: -0.000000029802322, y: -0.000000029802322, z: -0.000000029802322,
+        w: 1}
+      scale: {x: 1.0000008, y: 1.0000006, z: 1.0000005}
+    - name: HumanSpine1 1
+      parentName: HumanHub002
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.000000029802322, y: -0.00000002980232, z: -0.15406032, w: 0.9880615}
+      scale: {x: 1.0000012, y: 1.000001, z: 1.0000001}
+    - name: HumanSpine2 1
+      parentName: HumanSpine1 1
+      position: {x: -0.10407524, y: -0.000000024223327, z: 0}
+      rotation: {x: 0.00000032931527, y: 0.000000060516, z: 0.029914167, w: -0.9995525}
+      scale: {x: 1.000001, y: 1.0000015, z: 1.0000007}
+    - name: HumanHub003
+      parentName: HumanSpine2 1
+      position: {x: -0.10407514, y: 0.000000048446655, z: -0.000000012111664}
+      rotation: {x: -0.00000032782555, y: -0.000000014901161, z: -0.14059642, w: -0.99006706}
+      scale: {x: 1.0000005, y: 1.0000012, z: 1.0000012}
+    - name: HumanLArmCollarbone
+      parentName: HumanHub002
+      position: {x: -0, y: 0.000000002446367, z: 0.034349237}
+      rotation: {x: -0.00000006833355, y: 0.70710677, z: 0.000000069409474, w: 0.7071068}
+      scale: {x: 1.0000004, y: 0.999999, z: 0.9999996}
+    - name: HumanLArm1
+      parentName: HumanLArmCollarbone
+      position: {x: -0.13739695, y: 0.0000000036315262, z: 0}
+      rotation: {x: 0.101545244, y: 0.00028189528, z: -0.029399943, w: 0.9943964}
+      scale: {x: 1.000001, y: 1.0000036, z: 1.0000038}
+    - name: HumanLArm2
+      parentName: HumanLArm1
+      position: {x: -0.25322193, y: -0.00000001513958, z: 0}
+      rotation: {x: -0.019423418, y: -0.0008172309, z: -0.008485088, w: 0.99977505}
+      scale: {x: 1.0000001, y: 1.0000015, z: 1.0000008}
+    - name: HumanLArmPalm
+      parentName: HumanLArm2
+      position: {x: -0.14668359, y: -0.000000024223327, z: 0.000000048446655}
+      rotation: {x: -0.73612887, y: 0.13845591, z: 0.0024187705, w: 0.6625244}
+      scale: {x: 1.0000006, y: 1.000001, z: 1.0000008}
+    - name: HumanLArmDigit51
+      parentName: HumanLArmPalm
+      position: {x: -0.05385272, y: 0.0017825462, z: -0.03696441}
+      rotation: {x: 0.04246448, y: -0.01940535, z: -0.06704862, w: 0.99665684}
+      scale: {x: 0.99999994, y: 0.9999971, z: 1.0000031}
+    - name: HumanLArmDigit52
+      parentName: HumanLArmDigit51
+      position: {x: -0.02856003, y: 0, z: 0.000000024223327}
+      rotation: {x: 0.023964705, y: 0.0064329025, z: 0.035056308, w: 0.9990773}
+      scale: {x: 1.0000011, y: 0.99999845, z: 1.0000019}
+    - name: HumanLArmDigit53
+      parentName: HumanLArmDigit52
+      position: {x: -0.025555804, y: 0, z: 0.000000024223327}
+      rotation: {x: -0.0147478, y: 0.0041163196, z: 0.17350763, w: 0.9847135}
+      scale: {x: 1.0000014, y: 0.9999973, z: 1.0000014}
+    - name: HumanLArmDigit11
+      parentName: HumanLArmPalm
+      position: {x: -0.032016117, y: -0.00025386046, z: 0.034243405}
+      rotation: {x: 0.053250406, y: 0.40040553, z: -0.042716544, w: 0.91379166}
+      scale: {x: 0.99999976, y: 1.000004, z: 0.99999756}
+    - name: HumanLArmDigit12
+      parentName: HumanLArmDigit11
+      position: {x: -0.04352738, y: 0, z: -0.000000048446655}
+      rotation: {x: -0.061834052, y: -0.04570051, z: -0.04910735, w: 0.9958296}
+      scale: {x: 1.0000001, y: 0.99999785, z: 1.000004}
+    - name: HumanLArmDigit31
+      parentName: HumanLArmPalm
+      position: {x: -0.07786187, y: 0.011575746, z: 0.009735016}
+      rotation: {x: 0.016729917, y: -0.018507648, z: -0.09533989, w: 0.99513215}
+      scale: {x: 0.99999946, y: 1.0000008, z: 1.0000004}
+    - name: HumanLArmDigit32
+      parentName: HumanLArmDigit31
+      position: {x: -0.030246457, y: 0, z: -0.000000048446655}
+      rotation: {x: -0.006855451, y: -0.0047026076, z: 0.03233286, w: 0.99944264}
+      scale: {x: 0.9999976, y: 1.0000021, z: 1}
+    - name: HumanLArmDigit33
+      parentName: HumanLArmDigit32
+      position: {x: -0.027836286, y: 0, z: 0}
+      rotation: {x: 0.00000078277645, y: 0.00000092387177, z: 0.12578914, w: 0.992057}
+      scale: {x: 0.99999744, y: 1.000002, z: 0.9999996}
+    - name: HumanLArmDigit21
+      parentName: HumanLArmPalm
+      position: {x: -0.07845073, y: 0.000830957, z: 0.030927036}
+      rotation: {x: 0.04728089, y: 0.024466535, z: -0.15069944, w: 0.98714525}
+      scale: {x: 0.9999993, y: 1.0000008, z: 0.99999964}
+    - name: HumanLArmDigit22
+      parentName: HumanLArmDigit21
+      position: {x: -0.04250317, y: 0, z: 0}
+      rotation: {x: -0.007909003, y: -0.020480415, z: 0.030902827, w: 0.9992813}
+      scale: {x: 0.9999987, y: 1.0000014, z: 1.0000004}
+    - name: HumanLArmDigit23
+      parentName: HumanLArmDigit22
+      position: {x: -0.032988682, y: 0, z: 0}
+      rotation: {x: -0.005030704, y: 0.02366218, z: 0.16474034, w: 0.98604035}
+      scale: {x: 0.99999833, y: 1.0000024, z: 1.0000005}
+    - name: HumanLArmDigit41
+      parentName: HumanLArmPalm
+      position: {x: -0.07762922, y: 0.01274365, z: -0.01419768}
+      rotation: {x: -0.009469684, y: 0.010771025, z: -0.018196577, w: 0.99973166}
+      scale: {x: 1.0000002, y: 0.99999815, z: 1.0000027}
+    - name: HumanLArmDigit42
+      parentName: HumanLArmDigit41
+      position: {x: -0.02932631, y: 0.000000024223327, z: 0.000000024223327}
+      rotation: {x: -0.0048182183, y: -0.0032038293, z: 0.03601143, w: 0.99933463}
+      scale: {x: 1.0000002, y: 0.99999815, z: 1.0000021}
+    - name: HumanLArmDigit43
+      parentName: HumanLArmDigit42
+      position: {x: -0.028591907, y: 0.000000024223327, z: -0.000000024223327}
+      rotation: {x: -0.0037984774, y: -0.01342883, z: 0.27220047, w: 0.96213937}
+      scale: {x: 1.0000005, y: 0.9999985, z: 1.0000019}
+    - name: HumanRArmCollarbone
+      parentName: HumanHub002
+      position: {x: 0.00000009689331, y: -0.0000000032033463, z: -0.03434923}
+      rotation: {x: -0.000000059963845, y: 0.7071068, z: -0.000000098135864, w: -0.7071067}
+      scale: {x: 0.9999999, y: 0.9999983, z: 0.99999815}
+    - name: HumanRArm1
+      parentName: HumanRArmCollarbone
+      position: {x: -0.13739696, y: 0.000000003184773, z: 0}
+      rotation: {x: -0.101545244, y: -0.0002819458, z: -0.02939996, w: 0.9943964}
+      scale: {x: 1.0000021, y: 1.0000025, z: 1.0000013}
+    - name: HumanRArm2
+      parentName: HumanRArm1
+      position: {x: -0.25322193, y: -0.00000009689331, z: 0.000000048446655}
+      rotation: {x: 0.019423552, y: 0.0008172602, z: -0.008485128, w: 0.999775}
+      scale: {x: 1.0000004, y: 1.0000002, z: 0.99999964}
+    - name: HumanRArmPalm
+      parentName: HumanRArm2
+      position: {x: -0.14668368, y: 0.000000006055832, z: -0.000000048446655}
+      rotation: {x: 0.73612875, y: -0.13845582, z: 0.0024187872, w: 0.66252446}
+      scale: {x: 1.000001, y: 0.9999995, z: 1.0000024}
+    - name: HumanRArmDigit51
+      parentName: HumanRArmPalm
+      position: {x: -0.053852912, y: 0.0017825947, z: 0.036964543}
+      rotation: {x: -0.035213474, y: 0.11980344, z: -0.054581914, w: 0.99067044}
+      scale: {x: 0.99999964, y: 1.0000008, z: 1.000001}
+    - name: HumanRArmDigit52
+      parentName: HumanRArmDigit51
+      position: {x: -0.028560078, y: 0, z: 0.000000036334992}
+      rotation: {x: -0.023964293, y: -0.0064313645, z: 0.035056267, w: 0.9990773}
+      scale: {x: 0.99999917, y: 1.0000026, z: 0.99999964}
+    - name: HumanRArmDigit53
+      parentName: HumanRArmDigit52
+      position: {x: -0.025555901, y: 0, z: 0.000000024223327}
+      rotation: {x: 0.014747763, y: -0.0041162204, z: 0.17350785, w: 0.9847135}
+      scale: {x: 0.9999993, y: 1.0000007, z: 1.0000032}
+    - name: HumanRArmDigit11
+      parentName: HumanRArmPalm
+      position: {x: -0.032016117, y: -0.00025381203, z: -0.034243446}
+      rotation: {x: -0.17403279, y: -0.09624246, z: 0.26128176, w: 0.9445538}
+      scale: {x: 1.0000014, y: 1.000001, z: 1.0000001}
+    - name: HumanRArmDigit12
+      parentName: HumanRArmDigit11
+      position: {x: -0.043527476, y: 0.000000012111664, z: 0.000000012111664}
+      rotation: {x: 0.061834402, y: 0.04570112, z: -0.049107365, w: 0.9958295}
+      scale: {x: 0.99999905, y: 1.0000024, z: 0.99999833}
+    - name: HumanRArmDigit31
+      parentName: HumanRArmPalm
+      position: {x: -0.07786177, y: 0.011575795, z: -0.009735046}
+      rotation: {x: -0.013460782, y: 0.054011572, z: -0.10446187, w: 0.99296993}
+      scale: {x: 1.0000014, y: 0.9999974, z: 1.0000035}
+    - name: HumanRArmDigit32
+      parentName: HumanRArmDigit31
+      position: {x: -0.030246457, y: 0, z: -0.000000009083748}
+      rotation: {x: 0.0068564583, y: 0.004703372, z: 0.032336786, w: 0.99944246}
+      scale: {x: 1, y: 0.99999774, z: 1.0000042}
+    - name: HumanRArmDigit33
+      parentName: HumanRArmDigit32
+      position: {x: -0.027836189, y: -0.000000024223327, z: 0.000000006055832}
+      rotation: {x: -0.00000027380875, y: 0.00000011362131, z: 0.12578832, w: 0.99205714}
+      scale: {x: 1.0000031, y: 0.9999946, z: 1.0000039}
+    - name: HumanRArmDigit21
+      parentName: HumanRArmPalm
+      position: {x: -0.078450926, y: 0.00083110237, z: -0.030927194}
+      rotation: {x: -0.081719734, y: -0.22198525, z: -0.13333715, w: 0.96242696}
+      scale: {x: 1.0000012, y: 0.9999974, z: 1.0000036}
+    - name: HumanRArmDigit22
+      parentName: HumanRArmDigit21
+      position: {x: -0.04250317, y: 0, z: 0.000000006055832}
+      rotation: {x: 0.00790969, y: 0.020481236, z: 0.030903755, w: 0.99928117}
+      scale: {x: 1.0000006, y: 0.99999815, z: 1.0000046}
+    - name: HumanRArmDigit23
+      parentName: HumanRArmDigit22
+      position: {x: -0.032988586, y: 0.000000012111664, z: 0.000000018167496}
+      rotation: {x: 0.0050312383, y: -0.023660822, z: 0.16473958, w: 0.9860405}
+      scale: {x: 1.0000015, y: 0.9999963, z: 1.0000038}
+    - name: HumanRArmDigit41
+      parentName: HumanRArmPalm
+      position: {x: -0.07762937, y: 0.012743505, z: 0.0141976075}
+      rotation: {x: 0.00041332844, y: 0.09494993, z: -0.002039455, w: 0.9954799}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000023}
+    - name: HumanRArmDigit42
+      parentName: HumanRArmDigit41
+      position: {x: -0.029326359, y: 0.000000024223327, z: 0}
+      rotation: {x: 0.004817982, y: 0.0032059695, z: 0.03601074, w: 0.9993347}
+      scale: {x: 0.9999992, y: 1.0000006, z: 1.0000029}
+    - name: HumanRArmDigit43
+      parentName: HumanRArmDigit42
+      position: {x: -0.028591955, y: -0.000000024223327, z: 0}
+      rotation: {x: 0.003799017, y: 0.013428816, z: 0.27220097, w: 0.9621392}
+      scale: {x: 1.0000036, y: 0.9999994, z: 1.0000019}
+    - name: Sword 1
+      parentName: HumanRArmPalm
+      position: {x: -0.036151525, y: -0.0047063017, z: 0.13196029}
+      rotation: {x: -0.08419404, y: -0.5402113, z: -0.07537118, w: 0.8339079}
+      scale: {x: 1.0000018, y: 0.9999992, z: 1.0000012}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -402,12 +1626,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

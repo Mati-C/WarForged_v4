@@ -218,8 +218,11 @@ public class Viewer_Player : MonoBehaviour
 
     IEnumerator KickAnimnCorrutine()
     {
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
         anim.SetBool("Blocked", true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         anim.SetBool("Blocked", false);
         anim.SetBool("Kick", true);
         yield return new WaitForSeconds(0.5f);

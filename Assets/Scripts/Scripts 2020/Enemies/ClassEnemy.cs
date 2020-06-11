@@ -44,6 +44,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public bool canPersuit;
     public bool canSurround;
     public bool OnDamage;
+    public bool blockedAttack;
     public int currentIndex;
 
     [Header("Enemy GetHit Variables:")]
@@ -52,6 +53,8 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public Action GetHitEvent;
     public Action DieEvent;
+    public Action BlockedEvent;
+    public Action KnockedEvent;
 
     public IEnumerator OnDamageTimer()
     {
@@ -85,6 +88,37 @@ public abstract class ClassEnemy : MonoBehaviour
         sameID_Enemies.Remove(e);
     }
 
+    public void BlockedAttack()
+    {
+        BlockedEvent();
+        StartCoroutine(BlockedState(0.7f));
+    }
+
+    public void Knocked()
+    {
+        KnockedEvent();
+        StartCoroutine(KnockedMovement());
+        StartCoroutine(BlockedState(4.3f));
+    }
+
+    IEnumerator KnockedMovement()
+    {
+        yield return new WaitForSeconds(0.6f);
+        var t = 0.4f;
+        while(t >0)
+        {
+            t -= Time.deltaTime;
+            rb.MovePosition(transform.position + player.transform.forward * 5 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator BlockedState(float t)
+    {
+        blockedAttack = true;
+        yield return new WaitForSeconds(t);
+        blockedAttack = false;
+    }
 
     public void GetDamage(float d)
     {

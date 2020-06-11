@@ -29,6 +29,21 @@ public class Viewer_E_Melee : ClassEnemyViewer
         }
     }
 
+    IEnumerator KnockedAnimTimer()
+    {
+        anim.SetBool("Blocked", true);
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Retreat", false);
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
+        yield return new WaitForSeconds(0.6f);
+        anim.SetBool("Blocked", false);
+        anim.SetBool("Knocked", true);
+        yield return new WaitForSeconds(2.5f);
+        anim.SetBool("Knocked", false);
+    }
+
     private void Start()
     {
         myModel = GetComponent<Model_E_Melee>();
@@ -50,6 +65,21 @@ public class Viewer_E_Melee : ClassEnemyViewer
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
+    }
+
+    public void BlockedAnim()
+    {
+        StartCoroutine(DelayAnimActive("Blocked", 0.7f));
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Retreat", false);
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
+    }
+
+    public void KnockedAnim()
+    {
+        StartCoroutine(KnockedAnimTimer());
     }
 
     public void AnimWalkCombat()
