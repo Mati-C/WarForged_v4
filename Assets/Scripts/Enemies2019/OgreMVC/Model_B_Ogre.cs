@@ -326,7 +326,7 @@ public class Model_B_Ogre : EnemyEntity
             AwakeEvent();
             _view.Attack1AnimFalse();
             _view.Attack2AnimFalse();
-            SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
+            SoundManager.instance.Play(Boss.ROAR, transform.position, true, 1);
             StartCoroutine(DelaySummon());
             nearEntities.AddRange(enemiesSummon1);
             target.enemiesToLock.AddRange(enemiesSummon1);
@@ -412,7 +412,7 @@ public class Model_B_Ogre : EnemyEntity
             AwakeEvent();
             _view.Attack1AnimFalse();
             _view.Attack2AnimFalse();
-            SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
+            SoundManager.instance.Play(Boss.ROAR, transform.position, true, 1);
             StartCoroutine(DelaySummon());
             nearEntities.AddRange(enemiesSummon2);
             target.enemiesToLock.AddRange(enemiesSummon2);
@@ -495,7 +495,7 @@ public class Model_B_Ogre : EnemyEntity
             AwakeEvent();
             _view.Attack1AnimFalse();
             _view.Attack2AnimFalse();
-            SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
+            SoundManager.instance.Play(Boss.ROAR, transform.position, true, 1);
             StartCoroutine(DelaySummon());
             nearEntities.AddRange(enemiesSummon3);
             target.enemiesToLock.AddRange(enemiesSummon3);
@@ -675,7 +675,7 @@ public class Model_B_Ogre : EnemyEntity
     {
         if (!bossStage)
         {
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
             _view.ActiveBloodParticles();
             _view.CreatePopText(damage);
             life -= damage;

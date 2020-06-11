@@ -551,7 +551,7 @@ public class ModelB_Cyclops : EnemyEntity
 
     public override void GetDamage(float damage, DamageType typeOfDamage, int damageAnimationIndex)
     {
-        SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+        SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
         life -= damage;
         _view.CreatePopText(damage);
     }

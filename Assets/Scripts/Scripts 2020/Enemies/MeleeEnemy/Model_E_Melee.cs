@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using Sound;
 
 public class Model_E_Melee : ClassEnemy
 {
@@ -308,6 +309,8 @@ public class Model_E_Melee : ClassEnemy
         takeDamage.OnEnter += () =>
         {                        
             timeToRetreat = 0;
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
+            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
         };
 
         takeDamage.OnUpdate += () =>

@@ -17,21 +17,32 @@ public class SoundManager : MonoBehaviour
     bool aux;
 
     [NamedArrayAttribute(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_START", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK" })]
-    public AudioClip[] miscSFX;
+    public AudioClip[] objects;
 
-    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "BODY_IMPACT_1", "BODY_IMPACT_2", "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH", "FIREBALL" })]
-    public AudioClip[] playerSFX;
+    [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "BODY_IMPACT_1", "BODY_IMPACT_2" })]
+    public AudioClip[] entity;
 
-    [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "LAST_COMBO_HIT" })]
-    public AudioClip[] voices;
+    [NamedArrayAttribute(new string[] { "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH" })]
+    public AudioClip[] boss;
 
-    public AudioClip bossMusic;
+    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "FIREBALL" })]
+    public AudioClip[] player;
+
+    [NamedArrayAttribute(new string[] { "LEVEL_1", "LEVEL_2", "BATTLE_MUSIC", "BOSS_MUSIC" })]
+    public AudioClip[] music;
 
     #region SFX Lists
-    public List<Voice> deathVoice = new List<Voice>() { Voice.DIE_1, Voice.DIE_2, Voice.DIE_3 };
-    public List<Voice> damageVoice = new List<Voice>() { Voice.DAMAGE_1, Voice.DAMAGE_2, Voice.DAMAGE_3, Voice.DAMAGE_4, Voice.DAMAGE_5, Voice.DAMAGE_6 };
-    public List<EntitySound> swing = new List<EntitySound>() { EntitySound.SWING_1, EntitySound.SWING_2, EntitySound.SWING_3 };
-    public List<EntitySound> bodyImpact = new List<EntitySound>() { EntitySound.BODY_IMPACT_1, EntitySound.BODY_IMPACT_2 };
+    [HideInInspector]
+    public List<Entity> deathVoice = new List<Entity>() { Entity.DIE_1, Entity.DIE_2, Entity.DIE_3 };
+
+    [HideInInspector]
+    public List<Entity> damageVoice = new List<Entity>() { Entity.DAMAGE_1, Entity.DAMAGE_2, Entity.DAMAGE_3, Entity.DAMAGE_4, Entity.DAMAGE_5, Entity.DAMAGE_6 };
+
+    [HideInInspector]
+    public List<Player> swing = new List<Player>() { Player.SWING_1, Player.SWING_2, Player.SWING_3 };
+
+    [HideInInspector]
+    public List<Boss> bossAttack = new List<Boss>() { Boss.MONSTER_ATTACK1, Boss.MONSTER_ATTACK2, Boss.MONSTER_ATTACK3 };
     #endregion
 
     void Awake()
@@ -55,12 +66,16 @@ public class SoundManager : MonoBehaviour
         GameObject s = Instantiate(soundCuePrefab);
         AudioSource audioSource = s.GetComponent<AudioSource>();
 
-        if (soundType.GetType() == typeof(MiscSound))
-            audioSource.clip = miscSFX[id];
-        else if (soundType.GetType() == typeof(EntitySound))
-            audioSource.clip = playerSFX[id];
-        else if (soundType.GetType() == typeof(Voice))
-            audioSource.clip = voices[id];
+        if (soundType.GetType() == typeof(Objects))
+            audioSource.clip = objects[id];
+        else if (soundType.GetType() == typeof(Entity))
+            audioSource.clip = entity[id];
+        else if (soundType.GetType() == typeof(Boss))
+            audioSource.clip = boss[id];
+        else if (soundType.GetType() == typeof(Player))
+            audioSource.clip = player[id];
+        else if (soundType.GetType() == typeof(Music))
+            audioSource.clip = music[id];
 
         audioSource.loop = loop;
         s.transform.position = position;
@@ -70,7 +85,7 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
     }
 
-    public void PlayRandom<T>(List<T> sounds, Vector3 position = new Vector3(), bool randomPitch = false, float volume = 0.6f, float pitch = 1f, bool loop = false)
+    public void PlayRandom<T>(List<T> sounds, Vector3 position = new Vector3(), bool randomPitch = false, float pitch = 1f, float volume = 1f, bool loop = false)
     {
         T soundType;
         if (sounds.Count == 1)
@@ -84,12 +99,16 @@ public class SoundManager : MonoBehaviour
         GameObject s = Instantiate(soundCuePrefab);
         AudioSource audioSource = s.GetComponent<AudioSource>();
 
-        if (soundType.GetType() == typeof(MiscSound))
-            audioSource.clip = miscSFX[id];
-        else if (soundType.GetType() == typeof(EntitySound))
-            audioSource.clip = playerSFX[id];
-        else if (soundType.GetType() == typeof(Voice))
-            audioSource.clip = voices[id];
+        if (soundType.GetType() == typeof(Objects))
+            audioSource.clip = objects[id];
+        else if (soundType.GetType() == typeof(Entity))
+            audioSource.clip = entity[id];
+        else if (soundType.GetType() == typeof(Boss))
+            audioSource.clip = boss[id];
+        else if (soundType.GetType() == typeof(Player))
+            audioSource.clip = player[id];
+        else if (soundType.GetType() == typeof(Music))
+            audioSource.clip = music[id];
 
         audioSource.loop = loop;
         s.transform.position = position;
@@ -109,7 +128,7 @@ public class SoundManager : MonoBehaviour
     public void BossMusic(bool activate)
     {
         if (aux == activate) return;
-        combatAudio.clip = bossMusic;
+        combatAudio.clip = music[(int)Music.BOSS_MUSIC];
         aux = activate;
         musicVolume *= 1.2f;
         StartCoroutine(CombatMusicCorroutine(activate));
@@ -142,7 +161,7 @@ public class SoundManager : MonoBehaviour
 }
  namespace Sound
 {
-    public enum MiscSound
+    public enum Objects
     {
         CHECKPOINT_PASS,
         CHECKPOINT_START,
@@ -155,24 +174,7 @@ public class SoundManager : MonoBehaviour
         BARREL_BREAK
     }
 
-    public enum EntitySound
-    {
-        TAKE_SWORD,
-        SAVE_SWORD,
-        SWING_1,
-        SWING_2,
-        SWING_3,
-        BODY_IMPACT_1,
-        BODY_IMPACT_2,
-        ROAR,
-        MONSTER_ATTACK1,
-        MONSTER_ATTACK2,
-        MONSTER_ATTACK3,
-        SMASH,
-        FIREBALL
-    }
-
-    public enum Voice
+    public enum Entity
     {
         DIE_1,
         DIE_2,
@@ -183,6 +185,34 @@ public class SoundManager : MonoBehaviour
         DAMAGE_4,
         DAMAGE_5,
         DAMAGE_6,
-        LAST_COMBO_HIT
+        BODY_IMPACT_1,
+        BODY_IMPACT_2,
+        FIREBALL
+    }
+
+    public enum Boss
+    {
+        ROAR,
+        MONSTER_ATTACK1,
+        MONSTER_ATTACK2,
+        MONSTER_ATTACK3,
+        SMASH
+    }
+
+    public enum Player
+    {
+        TAKE_SWORD,
+        SAVE_SWORD,
+        SWING_1,
+        SWING_2,
+        SWING_3
+    }
+
+    public enum Music
+    {
+        LEVEL_1,
+        LEVEL_2,
+        BATTLE_MUSIC,
+        BOSS_MUSIC
     }
 }

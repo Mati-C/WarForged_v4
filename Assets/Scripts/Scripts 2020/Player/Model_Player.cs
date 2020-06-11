@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Sound;
 
 public class Model_Player : MonoBehaviour
 {
@@ -563,6 +564,7 @@ public class Model_Player : MonoBehaviour
     {
         var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
 
+        SoundManager.instance.PlayRandom(SoundManager.instance.swing, transform.position, true);
 
         foreach (var item in enemies)
         {
@@ -713,6 +715,7 @@ public class Model_Player : MonoBehaviour
                 {
                     DefenceOff();
                     BlockEvent(true);
+                    SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
                     StartCoroutine(OnActionState(0.9f));                   
                 }
 

@@ -148,7 +148,7 @@ public class CombatArea : MonoBehaviour
             target = close ? new Vector3(90, 0, 0) : new Vector3(90, 0, -175);
             if (!soundPlayed && !close)
             {
-                SoundManager.instance.Play(MiscSound.DOOR_OPEN, obj.position, true);
+                SoundManager.instance.Play(Objects.DOOR_OPEN, obj.position, true);
                 soundPlayed = true;
             }
 
@@ -158,7 +158,7 @@ public class CombatArea : MonoBehaviour
                 obj.localRotation = Quaternion.Euler(Vector3.Lerp(start, target, t));
                 if (!soundPlayed && t >= 0.7f && close)
                 {
-                    SoundManager.instance.Play(MiscSound.DOOR_CLOSE, obj.position, true);
+                    SoundManager.instance.Play(Objects.DOOR_CLOSE, obj.position, true);
                     soundPlayed = true;
                 }
 
@@ -172,9 +172,9 @@ public class CombatArea : MonoBehaviour
             start = obj.localPosition;
 
             if (close)
-                SoundManager.instance.Play(MiscSound.IRON_BARS, obj.parent.position, true, 1);
+                SoundManager.instance.Play(Objects.IRON_BARS, obj.parent.position, true, 1);
             else
-                SoundManager.instance.Play(MiscSound.IRON_BARS, obj.parent.position, true, 1);
+                SoundManager.instance.Play(Objects.IRON_BARS, obj.parent.position, true, 1);
 
             while (t <= 1)
             {

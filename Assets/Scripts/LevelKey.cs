@@ -41,7 +41,7 @@ public class LevelKey : MonoBehaviour
         {
             UIKey.SetActive(true);
             player.hasKey = true;
-            SoundManager.instance.Play(Sound.MiscSound.KEY_COLLECTED, new Vector3(), false, 0.5f);
+            SoundManager.instance.Play(Sound.Objects.KEY_COLLECTED, new Vector3(), false, 0.5f);
             Destroy(gameObject);
         }
     }

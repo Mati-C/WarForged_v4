@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sound;
 
 public class ViewB_Cyclops : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class ViewB_Cyclops : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
         if (!auxAwake)
         {
-            SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
+            SoundManager.instance.Play(Boss.ROAR, transform.position, true, 1);
             auxAwake = true;
         }
         SoundManager.instance.BossMusic(true);
@@ -91,7 +92,7 @@ public class ViewB_Cyclops : MonoBehaviour
     public void SmashParticlesActive()
     {      
         smashParticles.Play();
-        SoundManager.instance.Play(Sound.EntitySound.SMASH, transform.position, true, 1);
+        SoundManager.instance.Play(Boss.SMASH, transform.position, true, 1);
     }
 
     public void HeavyParticlesActive()
@@ -121,13 +122,7 @@ public class ViewB_Cyclops : MonoBehaviour
 
     public void Attack1OnPlaceAnimation()
     {
-        int r = Random.Range(0, 3);
-
-        if(r == 0) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK1, transform.position, true, 1);
-
-        if(r == 1) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK2, transform.position, true, 1);
-
-        if(r == 2) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK3, transform.position, true, 1);
+        SoundManager.instance.PlayRandom(SoundManager.instance.bossAttack, transform.position, true);
 
         anim.SetBool("Attack1OnPlace", true);
         anim.SetBool("Move", false);
@@ -135,13 +130,7 @@ public class ViewB_Cyclops : MonoBehaviour
 
     public void Attack2OnPlaceAnimation()
     {
-        int r = Random.Range(0, 3);
-
-        if (r == 0) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK1, transform.position, true, 1);
-
-        if (r == 1) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK2, transform.position, true, 1);
-
-        if (r == 2) SoundManager.instance.Play(Sound.EntitySound.MONSTER_ATTACK3, transform.position, true, 1);
+        SoundManager.instance.PlayRandom(SoundManager.instance.bossAttack, transform.position, true);
 
         anim.SetBool("Smash", true);
         anim.SetBool("Move", false);
@@ -149,7 +138,7 @@ public class ViewB_Cyclops : MonoBehaviour
 
     public void Attack3Combo()
     {
-        SoundManager.instance.Play(Sound.EntitySound.ROAR, transform.position, true, 1);
+        SoundManager.instance.Play(Boss.ROAR, transform.position, true, 1);
 
         furyParticles.Play();
         anim.SetBool("Combo", true);

@@ -919,7 +919,7 @@ public class Model : MonoBehaviour
             if (classType == PlayerClass.Warrior)
             {
                 view.SaveSwordAnim2();
-                SoundManager.instance.Play(EntitySound.SAVE_SWORD, new Vector3(), true, 0.5f);
+                SoundManager.instance.Play(Player.SAVE_SWORD, new Vector3(), true, 0.5f);
             }
             else
                 view.ToggleHandEffect(false);
@@ -1279,7 +1279,7 @@ public class Model : MonoBehaviour
                 StartCoroutine(view.PowerEffect(2, true));
                 StartCoroutine(PowerColdown(5, 2));
                 StartCoroutine(SpellCD_Fire1());
-                SoundManager.instance.Play(EntitySound.FIREBALL, transform.position, true, 0.5f);
+                SoundManager.instance.Play(Entity.FIREBALL, transform.position, true, 0.5f);
                 StartCoroutine(DealyToCastAgain());
             }
 
@@ -1288,7 +1288,7 @@ public class Model : MonoBehaviour
                 StartCoroutine(view.PowerEffect(1, true));
                 StartCoroutine(PowerColdown(5, 1));
                 StartCoroutine(SpellCD_Fire2());
-                SoundManager.instance.Play(EntitySound.FIREBALL, transform.position, true, 0.5f);
+                SoundManager.instance.Play(Entity.FIREBALL, transform.position, true, 0.5f);
                 StartCoroutine(DealyToCastAgain());
             }
 
@@ -1346,7 +1346,6 @@ public class Model : MonoBehaviour
 
                 if ((animClipName == view.AnimDictionary[Viewer.AnimPlayerNames.Attack3_End]))
                 {
-                    SoundManager.instance.Play(Voice.LAST_COMBO_HIT, transform.position, true, 1);
                     view.EndDodge();
                     view.AwakeTrail();
                     countAnimAttack++;
@@ -1500,9 +1499,9 @@ public class Model : MonoBehaviour
         view.UpdateLifeBar(life / maxLife);
 
         if (life <= 0)
-            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1);
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true);
         else if (val < 0 && !isDead)
-            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true, 1);
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
     }
 
     public void MakeDamage(EnemyEntity.DamageType typeOfDamage)
@@ -1535,7 +1534,7 @@ public class Model : MonoBehaviour
                     view.ParryAnim();
                     view.Sparks();
                     wallHit = true;
-                    SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
+                    SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
                 }
             }
 
@@ -1620,7 +1619,7 @@ public class Model : MonoBehaviour
                 if (isInCombat)
                 {
                     view.SaveSwordAnim2();
-                    SoundManager.instance.Play(EntitySound.SAVE_SWORD, transform.position, true);
+                    SoundManager.instance.Play(Player.SAVE_SWORD, transform.position, true);
                     view.ToggleHandEffect(true);
                    
                 }
@@ -1638,7 +1637,7 @@ public class Model : MonoBehaviour
                 if (isInCombat)
                 {
                     view.TakeSword2();
-                    SoundManager.instance.Play(EntitySound.TAKE_SWORD, transform.position, true);
+                    SoundManager.instance.Play(Player.TAKE_SWORD, transform.position, true);
                   
                 }
                 break;
@@ -1712,7 +1711,7 @@ public class Model : MonoBehaviour
         if (!isInCombat && classType == PlayerClass.Warrior && !isDead)
         {          
             view.TakeSword2();
-            SoundManager.instance.Play(EntitySound.TAKE_SWORD, transform.position, true);
+            SoundManager.instance.Play(Player.TAKE_SWORD, transform.position, true);
         }
         isInCombat = true;
     }
@@ -1766,7 +1765,7 @@ public class Model : MonoBehaviour
 
         if (!isBehind && !isProyectile && onDefence &&  damageType == DamagePlayerType.Normal)
         {
-            if(!isDead && life>0)SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
+            if(!isDead && life>0)SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
 
             if (perfectParryTimer <= 0.5f)
             {
@@ -1794,7 +1793,7 @@ public class Model : MonoBehaviour
             timeToHeal = maxTimeToHeal;
             OnDamage();
             impulse = false;
-            if (!isDead && life > 0) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            if (!isDead && life > 0) SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
         }
 
         if (damageType == DamagePlayerType.Heavy && onDefence)
@@ -1813,7 +1812,7 @@ public class Model : MonoBehaviour
             UpdateLife(-damage);
             timeToHeal = maxTimeToHeal;
             impulse = false;
-            if (!isDead && life > 0) SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            if (!isDead && life > 0) SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
 
             if (life > 0 && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.RollAttack]
                         && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.Dodge_Back]

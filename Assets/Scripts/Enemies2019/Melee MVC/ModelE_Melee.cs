@@ -1019,7 +1019,7 @@ public class ModelE_Melee : EnemyMeleeClass
             healthBar.SetActive(false);
 
             DropKey();
-            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 1.1f);
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1.1f);
 
             if (EnemyMeleeFriends.Count > 0)
             {
@@ -1289,7 +1289,7 @@ public class ModelE_Melee : EnemyMeleeClass
             _view.EndChainAttack();
             _view.HeavyAttackFalse();
             onDefence = false;
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
+            SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
         }
 
         if (onDefence && angle > 90)
@@ -1314,7 +1314,7 @@ public class ModelE_Melee : EnemyMeleeClass
         }
 
         if (!onDefence)
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0 && !isDead)
         {

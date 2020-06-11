@@ -456,7 +456,7 @@ public class ModelE_Sniper : EnemyEntity
             navMeshAgent.enabled = false;
             DeadEvent();
             currentAction = null;
-            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 0.9f);
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 0.9f);
 
             if (nearEntities.Count > 0)
             {
@@ -539,7 +539,7 @@ public class ModelE_Sniper : EnemyEntity
             newArrow.transform.forward = dir;
             timeToShoot = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
             view.BackFromAttackRange();
-            SoundManager.instance.Play(EntitySound.FIREBALL, transform.position, true, 0.5f);
+            SoundManager.instance.Play(Entity.FIREBALL, transform.position, true, 0.5f);
         }
     }
 
@@ -588,7 +588,7 @@ public class ModelE_Sniper : EnemyEntity
             view.CreatePopText(damage);
         }
 
-        SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+        SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0)
         {

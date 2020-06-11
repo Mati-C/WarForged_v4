@@ -841,7 +841,7 @@ public class ModelE_Shield : EnemyMeleeClass
             currentAction = null;
             timeToAttack = false;
             healthBar.SetActive(false);
-            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 1, 0.9f);
+            SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, true, 0.9f);
 
             if (EnemyMeleeFriends.Count > 0)
             {
@@ -1038,7 +1038,7 @@ public class ModelE_Shield : EnemyMeleeClass
         if (angle > 90 && (typeOfDamage == DamageType.Normal || typeOfDamage == DamageType.Proyectile) && !isKnock && animClipName != view.animDictionary[ViewerE_Shield.EnemyMeleeAnim.Attack1] && !onCharge)
         {
             BlockEvent();
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_1, transform.position, true);
+            SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
             timesToCounterAttack++;
             if (timesToCounterAttack > 4)
             {
@@ -1088,7 +1088,7 @@ public class ModelE_Shield : EnemyMeleeClass
         }
 
         if (isKnock)
-            SoundManager.instance.Play(EntitySound.BODY_IMPACT_2, transform.position, true);
+            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
 
         if (life <= 0 && !isDead)
         {

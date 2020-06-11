@@ -74,12 +74,12 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
                 ButtonManager.OnNotify(ph);
                 StartCoroutine(Message());
                 checkPointActivated = true;
-                SoundManager.instance.Play(MiscSound.CHECKPOINT_PASS, new Vector3(), false, 0.4f);
-                SoundManager.instance.Play(MiscSound.CHECKPOINT_IDLE, fire.transform.position, false, 0.3f, true);
+                SoundManager.instance.Play(Objects.CHECKPOINT_PASS, new Vector3(), false, 0.4f);
+                SoundManager.instance.Play(Objects.CHECKPOINT_IDLE, fire.transform.position, false, 0.3f, true);
             }
             else if (player.life != player.maxLife)
             {
-                SoundManager.instance.Play(MiscSound.CHECKPOINT_PASS, new Vector3(), false, 0.4f);
+                SoundManager.instance.Play(Objects.CHECKPOINT_PASS, new Vector3(), false, 0.4f);
             }
         }
     }

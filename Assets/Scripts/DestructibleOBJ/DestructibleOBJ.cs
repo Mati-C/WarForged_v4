@@ -42,9 +42,9 @@ public class DestructibleOBJ : MonoBehaviour
             anim.SetBool("IsHit", true);
             myBox.isTrigger = true;
             if (gameObject.name.Contains("Barrel"))
-                SoundManager.instance.Play(MiscSound.BARREL_BREAK, transform.position, true);
+                SoundManager.instance.Play(Objects.BARREL_BREAK, transform.position, true);
             else
-                SoundManager.instance.Play(MiscSound.JUGS_BREAK, transform.position, true);
+                SoundManager.instance.Play(Objects.JUGS_BREAK, transform.position, true);
 
             yield return new WaitForSeconds(5);
             col.isTrigger = true;
