@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Sound;
 
 public class Model_E_Mage : ClassEnemy
 {
@@ -290,7 +291,11 @@ public class Model_E_Mage : ClassEnemy
             shooting = false;
         };
 
-   
+        takeDamage.OnEnter += () =>
+        {
+            
+        };
+
         takeDamage.OnUpdate += () =>
         {
             attackFinish = false;
@@ -327,6 +332,29 @@ public class Model_E_Mage : ClassEnemy
         m.damage = attackDamage;
         m.transform.position = phShoot.position;
         m.transform.forward = _dir;
+
+    }
+
+    public override void GetDamage(float d)
+    {
+        life -= d;
+        onDamageTime = damageDelayTime;
+
+        if (life <= 0) DieEvent();
+
+        else
+        {
+            _view.CreatePopText(d);
+            GetHitEvent();
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
+            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
+        }
+
+        Vector3 toTarget = (player.transform.position - transform.position).normalized;
+
+        if (Vector3.Dot(toTarget, transform.forward) > 0) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
+
+        else rb.AddForce(transform.forward * 2, ForceMode.Impulse);
 
     }
 

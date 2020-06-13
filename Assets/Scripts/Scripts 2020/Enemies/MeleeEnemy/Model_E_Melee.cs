@@ -163,8 +163,7 @@ public class Model_E_Melee : ClassEnemy
             timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
-            if (obs.Count() > 0) rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
-
+            
             if (surroundBehaviourID == 0)
             {
                 IdleEvent();
@@ -184,6 +183,7 @@ public class Model_E_Melee : ClassEnemy
                 targetRotation = Quaternion.LookRotation(dir, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
                 rb.MovePosition(rb.position + transform.right * surroundSpeed * Time.deltaTime);
+                if (obs.Count() > 0) rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
             }
 
             if (surroundBehaviourID == 2)
@@ -195,6 +195,7 @@ public class Model_E_Melee : ClassEnemy
                 targetRotation = Quaternion.LookRotation(dir, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
                 rb.MovePosition(rb.position - transform.right * surroundSpeed * Time.deltaTime);
+                if (obs.Count() > 0) rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
 
             }
 
@@ -320,8 +321,6 @@ public class Model_E_Melee : ClassEnemy
         takeDamage.OnEnter += () =>
         {                        
             timeToRetreat = 0;
-            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
-            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
         };
 
         takeDamage.OnUpdate += () =>
@@ -387,6 +386,28 @@ public class Model_E_Melee : ClassEnemy
 
     public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }
 
+    public override void GetDamage(float d)
+    {
+        life -= d;
+        onDamageTime = damageDelayTime;
+
+        if (life <= 0) DieEvent();
+
+        else
+        {
+            _view.CreatePopText(d);
+            GetHitEvent();
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
+            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
+        }
+
+        Vector3 toTarget = (player.transform.position - transform.position).normalized;
+
+        if (Vector3.Dot(toTarget, transform.forward) > 0) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
+
+        else rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+
+    }
 
     IEnumerator MoveOnAttack()
     {

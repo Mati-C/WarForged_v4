@@ -713,6 +713,7 @@ public class Model_Player : MonoBehaviour
             {
                 if (defenceTimer <= 0.5f && !onAction && onDefence)
                 {
+                    
                     DefenceOff();
                     BlockEvent(true);
                     StartCoroutine(OnActionState(0.9f));
