@@ -16,6 +16,7 @@ public class IKCharacter : MonoBehaviour
     public float DistanceToGround;
 
     [Header("Ik target:")]
+    public bool SwordIK;
     public float timeToIkHand = 0.5f;
     public Transform IkLeftHand;
     public float _ikWeight = 1;
@@ -84,18 +85,22 @@ public class IKCharacter : MonoBehaviour
                 }
             }
             //hand
-            if (_Player.isInCombat)
+            if (SwordIK)
             {
-                if (_currentTime >= timeToIkHand)
+                if (_Player.isInCombat)
                 {
-                    anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, _ikWeight);
-                    anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, _ikWeight);
+                    if (_currentTime >= timeToIkHand)
+                    {
+                        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, _ikWeight);
+                        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, _ikWeight);
 
-                    anim.SetIKPosition(AvatarIKGoal.LeftHand, IkLeftHand.position);
-                    anim.SetIKRotation(AvatarIKGoal.LeftHand, IkLeftHand.rotation);
+                        anim.SetIKPosition(AvatarIKGoal.LeftHand, IkLeftHand.position);
+                        anim.SetIKRotation(AvatarIKGoal.LeftHand, IkLeftHand.rotation);
+                    }
                 }
             }
         }
+            
     }
 
 }
