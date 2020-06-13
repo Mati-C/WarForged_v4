@@ -131,9 +131,6 @@ public class Model_E_Melee : ClassEnemy
         persuit.OnExit += () =>
         {
 
-            if (aggressiveLevel == 1) viewDistanceSurround = 3.5f;
-
-            if (aggressiveLevel == 2) viewDistanceSurround = 7f;
         };
 
         surround.OnEnter += () =>
@@ -219,7 +216,9 @@ public class Model_E_Melee : ClassEnemy
 
         surround.OnExit += () =>
         {
-            
+            if (aggressiveLevel == 1) viewDistanceSurround = 3.5f;
+
+            if (aggressiveLevel == 2) viewDistanceSurround = 7f;
         };
 
         attack.OnEnter += () =>
@@ -237,6 +236,14 @@ public class Model_E_Melee : ClassEnemy
             if (!onAttackAnimation && !canAttack && !waitingForRetreat)
             {
                 RunEvent();
+
+                Vector3 _dir = Vector3.zero;
+                Quaternion targetRotation;
+                _dir = (player.transform.position - transform.position).normalized;
+                _dir.y = 0;
+                targetRotation = Quaternion.LookRotation(_dir, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+
                 MoveToTarget(player.transform);
             }
 
@@ -249,10 +256,13 @@ public class Model_E_Melee : ClassEnemy
 
                 else HeavyAttackEvent();
 
-                var dir = Vector3.zero;
-                dir = (player.transform.position - transform.position).normalized;
-                dir.y = 0;
-                transform.forward = dir;
+                Vector3 _dir = Vector3.zero;
+                Quaternion targetRotation;
+                _dir = (player.transform.position - transform.position).normalized;
+                _dir.y = 0;
+                targetRotation = Quaternion.LookRotation(_dir, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
+
                 if (ID_Attack == 1) StartCoroutine(OnAttackAnimationCorrutine(2));
 
                 else StartCoroutine(OnAttackAnimationCorrutine(1.2f));
@@ -274,8 +284,6 @@ public class Model_E_Melee : ClassEnemy
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
                 if (aggressiveLevel == 2) timeToAttack += 1;
             }
-
-            surroundBehaviourID = UnityEngine.Random.Range(0, 2);
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
 
