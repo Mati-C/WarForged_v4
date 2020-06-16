@@ -34,11 +34,6 @@ public class Model_E_Shield : ClassEnemy
 
     [Header("Enemy Attack Variables:")]
 
-    public int ID_Attack;
-
-    [Range(10, 100)]
-    public int singleAttackProbability;
-
     public float timeToAttack;
     public float maxTimeToAttack;
     public float minTimeToAttack;
@@ -257,10 +252,7 @@ public class Model_E_Shield : ClassEnemy
 
         attack.OnEnter += () =>
         {
-            int r = UnityEngine.Random.Range(1, 101);
-
-            if (r < singleAttackProbability) ID_Attack = 1;
-            else ID_Attack = 2;
+         
         };
 
         attack.OnUpdate += () =>
