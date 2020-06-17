@@ -30,7 +30,7 @@ public class Viewer_Player : MonoBehaviour
 
     [Header("Layer Up Active:")]
     public bool layerUpActive;
-
+    public float timeLayerUp;
     bool _lockParticleUp;
     bool _changeSwordBoneParent;
     bool _slowedTime;
@@ -48,16 +48,29 @@ public class Viewer_Player : MonoBehaviour
         anim.SetBool(animName, !r);
     }
 
-    public IEnumerator DelayActivateLayers(float time)
+    public IEnumerator DelayActivateLayers()
     {
+        while(true)
+        {
+            timeLayerUp -= Time.deltaTime;
 
-        anim.SetLayerWeight(0, 1);
-        anim.SetLayerWeight(1, 1);
-        layerUpActive = true;
-        yield return new WaitForSeconds(time);
-        anim.SetLayerWeight(0, 1);
-        anim.SetLayerWeight(1, 0);
-        layerUpActive = false;
+            if(timeLayerUp >0)
+            {
+                anim.SetLayerWeight(0, 1);
+                anim.SetLayerWeight(1, 1);
+                layerUpActive = true;
+            }
+
+            else
+            {
+                anim.SetLayerWeight(0, 1);
+                anim.SetLayerWeight(1, 0);
+                layerUpActive = false;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+        
 
     }
 
@@ -89,6 +102,7 @@ public class Viewer_Player : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(DelayActivateLayers());
         _mainCam = _player.GetPlayerCam().GetComponent<Camera>();
     }
 
@@ -195,13 +209,21 @@ public class Viewer_Player : MonoBehaviour
     {
         swordBack.SetActive(false);
         swordHand.SetActive(true);
-
     }
 
     public void DesactivateSword()
     {
         swordBack.SetActive(true);
         swordHand.SetActive(false);
+    }
+
+    public void FailAttackAnim()
+    {
+        StartCoroutine(DelayAnimationActivate("FailAttack", true, 1f));
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
+
     }
 
     public void BlockAnim(bool b)
@@ -252,16 +274,31 @@ public class Viewer_Player : MonoBehaviour
 
     public void TakeSwordAnim()
     {
-        StartCoroutine(DelayActivateLayers(0.8f));
+        timeLayerUp = 0.8f;
+        StartCoroutine(TakeSword());
         StartCoroutine(DelayAnimationActivate("TakeSword", true, 0.6f));
+    }
+
+    IEnumerator TakeSword()
+    {
+        yield return new WaitForSeconds(0.42f);
+        ActivateSword();
     }
 
     public void SaveSwordAnim()
     {
-        StartCoroutine(DelayActivateLayers(0.8f));
+        timeLayerUp = 0.8f;
+        StartCoroutine(SaveSword());
         StartCoroutine(DelayAnimationActivate("SaveSword", true, 0.6f));
     }
 
+    IEnumerator SaveSword()
+    {
+        yield return new WaitForSeconds(0.42f);
+        DesactivateSword();
+    }
+
+  
     public void CombatStateAnimator(bool r)
     {
         anim.SetBool("CombatState", r);

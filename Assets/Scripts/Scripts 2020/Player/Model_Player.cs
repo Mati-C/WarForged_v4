@@ -80,12 +80,17 @@ public class Model_Player : MonoBehaviour
     public float impulseAttackMovement4;
     public float impulseChargeAttackMovement;
 
+    [Header("Player Fail Attack Values:")]
+    public bool onFailAttack;
+    public float timeOnFailAttack;
+
     [Header("Player LockEnemies:")]
 
     public bool onLock;
     public List<ClassEnemy> lockedEnemies = new List<ClassEnemy>();
     public ClassEnemy targetEnemy;
     int _indexEnemyLock;
+
 
     float _onAttackAnimationTimer;
     float _timeToWaitBeforeAttack;
@@ -105,12 +110,29 @@ public class Model_Player : MonoBehaviour
     public Action ChargeAttackEvent;
     public Action<bool> DefenceEvent;
     public Action<bool> BlockEvent;
+    public Action FailAttackEvent;
 
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
 
     public PlayerCamera GetPlayerCam() { return _playerCamera; }
     public IA_CombatManager GetIA_CombatManager() { return _IA_CM; }
+
+    IEnumerator FailAttackTimer()
+    {
+        while(true)
+        {
+            if (timeOnFailAttack > 0)
+            {
+                timeOnFailAttack -= Time.deltaTime;
+                onFailAttack = true;
+            }
+
+            else onFailAttack = false;
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     IEnumerator AttackRotation(Vector3 dir)
     {
@@ -247,7 +269,7 @@ public class Model_Player : MonoBehaviour
         CombatStateEvent(true);
       
         TakeSwordEvent();
-       
+
         while (timeOnCombat >0)
         {
             timeOnCombat -= Time.deltaTime;
@@ -301,6 +323,7 @@ public class Model_Player : MonoBehaviour
         StartCoroutine(AttackMovement());
         StartCoroutine(AttackSword());
         StartCoroutine(AttackAnimationTimer());
+        StartCoroutine(FailAttackTimer());
     }
 
     
@@ -334,6 +357,16 @@ public class Model_Player : MonoBehaviour
                 _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
             }
         }
+    }
+
+    public void FailAttack()
+    {
+
+        cantAttack = false;
+        onAttackAnimation = false;
+        attackCombo=0;
+        timeOnFailAttack = 1f;
+        FailAttackEvent();
     }
 
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)

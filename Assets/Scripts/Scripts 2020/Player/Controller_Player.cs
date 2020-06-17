@@ -43,7 +43,7 @@ public class Controller_Player
         _model.HitEnemyEvent += _viewer.OnHit;
         _model.ChargeAttackEvent += _viewer.ChargeAttackAnim;
         _model.BlockEvent += _viewer.BlockAnim;
-        
+        _model.FailAttackEvent += _viewer.FailAttackAnim;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -216,7 +216,7 @@ public class Controller_Player
         if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
 
         //-------------------------ATTACKS------------------------
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && !_model.onFailAttack)
         {
             if (_model.chargeAttackAmount >= 0.2f) _model.ChangeActionState(true);
             _model.ChargingAttack();
@@ -226,11 +226,11 @@ public class Controller_Player
 
         if (Input.GetKeyDown(KeyCode.Mouse0)) auxTimer = Time.time;
      
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0) && !_model.onFailAttack)
         {
             _model.ChargeAttackZero();
 
-            if (Time.time - auxTimer < 0.2f && !_model.onDodge)
+            if (Time.time - auxTimer < 0.2f && !_model.onDodge && !_model.onFailAttack)
             {
 
                 if (!_model.onDodge && !W && !S && !A && !D) _model.SwordAttack(_model.transform.forward);
@@ -307,7 +307,7 @@ public class Controller_Player
 
         if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
 
-        if (Input.GetKeyDown(KeyCode.Q)) _model.PowerWeapon();
+        if (Input.GetKeyDown(KeyCode.Q) && !_model.onFailAttack) _model.PowerWeapon();
 
         if (Input.GetKeyDown(KeyCode.Tab)) _model.ChangeTarget();
 

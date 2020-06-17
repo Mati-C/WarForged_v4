@@ -22,6 +22,7 @@ public class Model_E_Lancer : ClassEnemy
     public Action WalkRightEvent;
     public Action AttackEvent;
     public Action ParryEvent;
+    public Action CounterAttackEvent;
 
     Viewer_E_Lancer _view;
 
@@ -59,6 +60,7 @@ public class Model_E_Lancer : ClassEnemy
     public int timesToParry;
     public int maxTimesToParry;
     public int minTimesToParry;
+    public bool counterAttack;
 
 
     IEnumerator OnAttackAnimationCorrutine(float time)
@@ -69,7 +71,15 @@ public class Model_E_Lancer : ClassEnemy
         if (onDamageTime <= 0) attackFinish = true;
     }
 
- 
+    IEnumerator OnCounterAttackCorrutine(float time)
+    {     
+        onAttackAnimation = true;
+        yield return new WaitForSeconds(time);
+        onAttackAnimation = false;
+        if (onDamageTime <= 0) attackFinish = true;
+        counterAttack = false;
+    }
+
     void Start()
     {
         _view = GetComponent<Viewer_E_Lancer>();
@@ -83,6 +93,7 @@ public class Model_E_Lancer : ClassEnemy
         var patrol = new N_FSM_State("PATROL");
         var takeDamage = new N_FSM_State("TAKE_DAMAGE");
         var parry = new N_FSM_State("PARRY");
+        var blocked = new N_FSM_State("BLOCKED");
         var die = new N_FSM_State("DIE");
 
         IdleEvent += _view.AnimIdleCombat;
@@ -96,6 +107,7 @@ public class Model_E_Lancer : ClassEnemy
         ParryEvent += _view.AnimParry;
         BlockedEvent += _view.BlockedAnim;
         KnockedEvent += _view.KnockedAnim;
+        CounterAttackEvent += _view.AnimCounterAttack;
         DieEvent += _view.AnimDie;
 
         StartCoroutine(MoveOnAttack());
@@ -128,6 +140,8 @@ public class Model_E_Lancer : ClassEnemy
             if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
             if (timeOnParry > 0) myFSM_EventMachine.ChangeState(parry);
+
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
@@ -215,6 +229,8 @@ public class Model_E_Lancer : ClassEnemy
 
             if (timeOnParry > 0) myFSM_EventMachine.ChangeState(parry);
 
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
+
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
@@ -263,7 +279,7 @@ public class Model_E_Lancer : ClassEnemy
                 targetRotation = Quaternion.LookRotation(_dir, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
 
-                 StartCoroutine(OnAttackAnimationCorrutine(0.5f));
+                StartCoroutine(OnAttackAnimationCorrutine(0.7f));
                 
             }
 
@@ -272,6 +288,8 @@ public class Model_E_Lancer : ClassEnemy
             if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
             if (timeOnParry > 0) myFSM_EventMachine.ChangeState(parry);
+
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
@@ -322,6 +340,8 @@ public class Model_E_Lancer : ClassEnemy
 
             if (timeOnParry > 0) myFSM_EventMachine.ChangeState(parry);
 
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
+
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
@@ -343,6 +363,8 @@ public class Model_E_Lancer : ClassEnemy
 
             if (timeOnParry > 0) myFSM_EventMachine.ChangeState(parry);
 
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
+
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
@@ -361,8 +383,15 @@ public class Model_E_Lancer : ClassEnemy
             waitingForRetreat = false;
             attackFinish = false;
 
-            ParryEvent();
+            if(!counterAttack) ParryEvent();
 
+            if(counterAttack && !onAttackAnimation)
+            {
+                CounterAttackEvent();
+                timeOnParry = 0;
+                StartCoroutine(OnCounterAttackCorrutine(1));
+            }
+            
             timeOnParry -= Time.deltaTime;
 
             Vector3 dir = (player.transform.position - transform.position).normalized;
@@ -370,11 +399,13 @@ public class Model_E_Lancer : ClassEnemy
             Quaternion rotationToTarget = Quaternion.LookRotation(dir, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, 7 * Time.deltaTime);
 
-            if (canPersuit && !canSurround && timeOnParry <= 0 && life > 0) myFSM_EventMachine.ChangeState(persuit);
+            if (canPersuit && !canSurround && timeOnParry <= 0 && !counterAttack && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
-            if (timeToAttack > 0 && canSurround && timeOnParry <= 0 && life > 0) myFSM_EventMachine.ChangeState(surround);
+            if (timeToAttack > 0 && canSurround && timeOnParry <= 0 && !counterAttack && life > 0) myFSM_EventMachine.ChangeState(surround);
 
-            if (timeToAttack <= 0 && timeOnParry <= 0 && life > 0) myFSM_EventMachine.ChangeState(attack);
+            if (timeToAttack <= 0 && timeOnParry <= 0 &&  !counterAttack && life > 0) myFSM_EventMachine.ChangeState(attack);
+
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
@@ -383,6 +414,32 @@ public class Model_E_Lancer : ClassEnemy
         {
             timeToRetreat = 0;
             timesToParry = UnityEngine.Random.Range(minTimesToParry, maxTimesToParry);
+        };
+
+        blocked.OnEnter += () =>
+        {
+            timeToRetreat = 0;
+        };
+
+        blocked.OnUpdate += () =>
+        {
+            waitingForRetreat = false;
+            attackFinish = false;
+
+            if (canPersuit && !canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(persuit);
+
+            if (timeToAttack > 0 && canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(surround);
+
+            if (timeToAttack <= 0 && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(attack);
+
+            if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
+        };
+
+        blocked.OnExit += () =>
+        {
+            timeToRetreat = 0;
         };
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);
@@ -399,31 +456,40 @@ public class Model_E_Lancer : ClassEnemy
         canAttack = CanSee(player.transform, viewDistanceAttack, angleToAttack, layersCanSee);
 
         myFSM_EventMachine.Update();
+
+        
     }
 
     public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }
 
     public override void GetDamage(float d)
     {
+        
         if (timeOnParry <= 0)
         {
             life -= d;
             onDamageTime = damageDelayTime;
-
-           if(!blockedAttack) timesToParry--;
+            if(!blockedAttack) timesToParry--;           
         }
-
-        if (timesToParry <= 0 && timeOnParry <=0) timeOnParry = maxTimeOnParry;
 
         if (life <= 0) DieEvent();
 
-        if(life >0 && timeOnParry <=0)
+        if (life > 0 && timeOnParry > 0 && !counterAttack)
+        {
+            player.FailAttack();
+            counterAttack = true;
+        }
+
+       
+        if (life >0 && timeOnParry <= 0)
         {
             _view.CreatePopText(d);
             GetHitEvent();
             SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
             SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
         }
+
+        if (timesToParry <= 0 && timeOnParry <= 0) timeOnParry = maxTimeOnParry;
 
         Vector3 toTarget = (player.transform.position - transform.position).normalized;
 

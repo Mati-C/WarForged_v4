@@ -102,6 +102,11 @@ public abstract class ClassEnemy : MonoBehaviour
         StartCoroutine(BlockedState(4.3f));
     }
 
+    public void OnFire()
+    {
+
+    }
+
     IEnumerator KnockedMovement()
     {
         yield return new WaitForSeconds(0.6f);

@@ -16,6 +16,13 @@ public class Viewer_E_Lancer : ClassEnemyViewer
         anim.SetBool(animName, false);
     }
 
+    public IEnumerator DelayCounterAnimActive(float t)
+    {
+        anim.SetBool("Counter", true);
+        yield return new WaitForSeconds(t);
+        anim.SetBool("Counter", false);
+    }
+
     IEnumerator DamageTimerAnim()
     {
         while (true)
@@ -139,13 +146,24 @@ public class Viewer_E_Lancer : ClassEnemyViewer
 
     public void AnimComboAttack()
     {
-        StartCoroutine(DelayAnimActive("AttackCombo", 2));
+        StartCoroutine(DelayAnimActive("AttackCombo", 0.6f));
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Run", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Parry", false);
+    }
+
+    public void AnimCounterAttack()
+    {
+        StartCoroutine(DelayCounterAnimActive(1f));
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
+        anim.SetInteger("GetHit", 0);
     }
 
     public void AnimRetreat()
@@ -169,6 +187,7 @@ public class Viewer_E_Lancer : ClassEnemyViewer
         anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
+        anim.SetBool("Counter", false);
         bloodParticle.Clear();
         bloodParticle.Play();
 
