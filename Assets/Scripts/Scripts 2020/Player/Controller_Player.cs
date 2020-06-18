@@ -44,6 +44,8 @@ public class Controller_Player
         _model.ChargeAttackEvent += _viewer.ChargeAttackAnim;
         _model.BlockEvent += _viewer.BlockAnim;
         _model.FailAttackEvent += _viewer.FailAttackAnim;
+        _model.GetHitEvent += _viewer.AnimGetHit;
+        _model.GetHitHeavyEvent += _viewer.AnimGetHitHeavy;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

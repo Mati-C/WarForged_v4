@@ -41,7 +41,7 @@ public class MageMissile : MonoBehaviour
     {
         if (c.GetComponent<Model_Player>())
         {
-            c.GetComponent<Model_Player>().GetDamage(damage, transform);
+            c.GetComponent<Model_Player>().GetDamage(damage, transform, Model_Player.DamageType.Heavy);
             StartCoroutine(DestroyMissile());
         }
 

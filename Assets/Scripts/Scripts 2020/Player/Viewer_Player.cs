@@ -7,6 +7,8 @@ public class Viewer_Player : MonoBehaviour
 {
     public Animator anim;
     Model_Player _player;
+    public ParticleSystem bloodParticle;
+    public ParticleSystem sparksParticle;
     Camera _mainCam;
 
     [Header("Player Sprites:")]
@@ -40,6 +42,21 @@ public class Viewer_Player : MonoBehaviour
     [Header("Player AxisValues:")]
 
     public float axisX;
+
+    IEnumerator DamageTimerAnim()
+    {
+        while (true)
+        {            
+
+            if (_player.onDamageTime <= 0)
+            {
+                anim.SetInteger("GetHit", 0);
+                anim.SetInteger("GetHitHeavy", 0);
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     IEnumerator DelayAnimationActivate(string animName, bool r, float time)
     {
@@ -103,6 +120,7 @@ public class Viewer_Player : MonoBehaviour
     void Start()
     {
         StartCoroutine(DelayActivateLayers());
+        StartCoroutine(DamageTimerAnim());
         _mainCam = _player.GetPlayerCam().GetComponent<Camera>();
     }
 
@@ -220,6 +238,7 @@ public class Viewer_Player : MonoBehaviour
     public void FailAttackAnim()
     {
         StartCoroutine(DelayAnimationActivate("FailAttack", true, 1f));
+        sparksParticle.Play();
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Run", false);
@@ -307,6 +326,54 @@ public class Viewer_Player : MonoBehaviour
     public void DefenceAnim(bool d)
     {
         anim.SetBool("Defence", d);
+    }
+
+    public void AnimGetHit()
+    {
+        if (_player.chargeAttackAmount <0.2f)
+        {
+            anim.SetBool("Walk", false);
+            anim.SetBool("Idle", false);
+            anim.SetBool("Run", false);
+            bloodParticle.Play();
+
+            switch (anim.GetInteger("GetHit"))
+            {
+                case 0:
+                    anim.SetInteger("GetHit", 1);
+                    break;
+
+                case 1:
+                    anim.SetInteger("GetHit", 2);
+                    break;
+
+                case 2:
+                    anim.SetInteger("GetHit", 1);
+                    break;
+            }
+        }
+
+
+    }
+
+    public void AnimGetHitHeavy(bool d)
+    {        
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
+        bloodParticle.Play();
+
+        switch (d)
+        {
+            case true:
+                anim.SetInteger("GetHitHeavy", 1);
+                break;
+
+            case false:
+                anim.SetInteger("GetHitHeavy", 2);
+                break;
+        }
+
     }
 
     public void DodgeAnims(Model_Player.DogeDirecctions dir)

@@ -36,6 +36,7 @@ public class Model_E_Lancer : ClassEnemy
 
     [Header("Enemy Attack Variables:")]
 
+    public float attackDamage;
     public float timeToAttack;
     public float maxTimeToAttack;
     public float minTimeToAttack;
@@ -403,8 +404,6 @@ public class Model_E_Lancer : ClassEnemy
 
             if (timeToAttack > 0 && canSurround && timeOnParry <= 0 && !counterAttack && life > 0) myFSM_EventMachine.ChangeState(surround);
 
-            if (timeToAttack <= 0 && timeOnParry <= 0 &&  !counterAttack && life > 0) myFSM_EventMachine.ChangeState(attack);
-
             if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
@@ -514,13 +513,13 @@ public class Model_E_Lancer : ClassEnemy
         }
     }
 
-    public void MakeDamage(float d)
+    public void MakeDamage()
     {
         var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
 
         if (p.Count() > 0)
         {
-            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(d, transform);
+            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamage ,transform, Model_Player.DamageType.Light);
         }
 
     }

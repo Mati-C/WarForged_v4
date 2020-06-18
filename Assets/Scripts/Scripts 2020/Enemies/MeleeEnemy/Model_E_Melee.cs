@@ -39,6 +39,8 @@ public class Model_E_Melee : ClassEnemy
     [Range(10, 100)]
     public int singleAttackProbability;
 
+    public float attackDamageLight;
+    public float attackDamageHeavy;
     public float timeToAttack;
     public float maxTimeToAttack;
     public float minTimeToAttack;
@@ -432,14 +434,25 @@ public class Model_E_Melee : ClassEnemy
         }
     }
 
-    public void MakeDamage(float d)
+    public void MakeDamage()
     {
         var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
 
         if(p.Count() >0)
         {
-            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(d, transform);
+            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamageLight, transform, Model_Player.DamageType.Light);
         } 
+
+    }
+
+    public void MakeHeavyDamage()
+    {
+        var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
+
+        if (p.Count() > 0)
+        {
+            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamageLight, transform, Model_Player.DamageType.Heavy);
+        }
 
     }
 

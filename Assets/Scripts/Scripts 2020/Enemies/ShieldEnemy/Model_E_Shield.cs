@@ -35,6 +35,7 @@ public class Model_E_Shield : ClassEnemy
     [Header("Enemy Attack Variables:")]
 
     public float timeToAttack;
+    public float attackDamage;
     public float maxTimeToAttack;
     public float minTimeToAttack;
     public float angleToAttack;
@@ -510,13 +511,13 @@ public class Model_E_Shield : ClassEnemy
         }
     }
 
-    public void MakeDamage(float d)
+    public void MakeDamage()
     {
         var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
 
         if (p.Count() > 0)
         {
-            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(d, transform);
+            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamage, transform, Model_Player.DamageType.Light);
         }
 
     }

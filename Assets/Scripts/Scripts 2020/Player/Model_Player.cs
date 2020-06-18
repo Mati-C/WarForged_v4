@@ -38,6 +38,7 @@ public class Model_Player : MonoBehaviour
     public bool onAttackAnimation;
     public bool onDefence;
     public bool onAction;
+    public bool OnDamage;
 
     [Header("Player Layers:")]
 
@@ -56,6 +57,7 @@ public class Model_Player : MonoBehaviour
     public float viewDistanceAttack;
     public float angleToAttack;
     public float defenceTimer;
+    public float onDamageTime;
     bool _chargeAttackCasted;
 
     [Header("Player Powers Values:")]
@@ -72,6 +74,9 @@ public class Model_Player : MonoBehaviour
 
     public enum DogeDirecctions { Left, Right, Back, Roll };
     public DogeDirecctions dirToDodge;
+
+    public enum DamageType { Light,Heavy };
+    public DamageType damageType;
 
     [Header("Player AttackMovementImpulses:")]
     public float impulseAttackMovement1;
@@ -110,6 +115,8 @@ public class Model_Player : MonoBehaviour
     public Action ChargeAttackEvent;
     public Action<bool> DefenceEvent;
     public Action<bool> BlockEvent;
+    public Action GetHitEvent;
+    public Action<bool> GetHitHeavyEvent;
     public Action FailAttackEvent;
 
     public Action<bool> CombatStateEvent;
@@ -117,6 +124,22 @@ public class Model_Player : MonoBehaviour
 
     public PlayerCamera GetPlayerCam() { return _playerCamera; }
     public IA_CombatManager GetIA_CombatManager() { return _IA_CM; }
+
+    public IEnumerator OnDamageTimer()
+    {
+        while (true)
+        {
+            if (onDamageTime > 0)
+            {
+                onDamageTime -= Time.deltaTime;
+                OnDamage = true;
+            }
+
+            if (onDamageTime <= 0) OnDamage = false;
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     IEnumerator FailAttackTimer()
     {
@@ -324,6 +347,7 @@ public class Model_Player : MonoBehaviour
         StartCoroutine(AttackSword());
         StartCoroutine(AttackAnimationTimer());
         StartCoroutine(FailAttackTimer());
+        StartCoroutine(OnDamageTimer());
     }
 
     
@@ -372,13 +396,13 @@ public class Model_Player : MonoBehaviour
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
     {
 
-        if(!onDodge && !onAttackAnimation && onLock  && !onAction)
+        if(!onDodge && !onAttackAnimation && onLock  && !onAction && !OnDamage && !onFailAttack)
         {
             WalkEvent();
             _rb.MovePosition(_rb.position + d  * speed * Time.deltaTime);
         }
 
-        if (!onDodge && !onAttackAnimation && !onLock && !onAction)
+        if (!onDodge && !onAttackAnimation && !onLock && !onAction && !OnDamage && !onFailAttack)
         {
             Quaternion targetRotation;
 
@@ -439,14 +463,14 @@ public class Model_Player : MonoBehaviour
     public void Dodge(DogeDirecctions direction)
     {
         attackCombo = 0;
-        if (direction == DogeDirecctions.Roll)
+        if (direction == DogeDirecctions.Roll && !OnDamage)
         {
             DodgeEvent(DogeDirecctions.Roll);
 
             StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
         }
 
-        if (direction == DogeDirecctions.Back)
+        if (direction == DogeDirecctions.Back && !OnDamage)
         {
             if (!isInCombat)
             {
@@ -471,7 +495,7 @@ public class Model_Player : MonoBehaviour
             }
         }
 
-        if (direction == DogeDirecctions.Right)
+        if (direction == DogeDirecctions.Right && !OnDamage)
         {
             if (!isInCombat)
             {
@@ -495,7 +519,7 @@ public class Model_Player : MonoBehaviour
             }
         }
 
-        if (direction == DogeDirecctions.Left)
+        if (direction == DogeDirecctions.Left && !OnDamage)
         {
             if (!isInCombat)
             {
@@ -526,54 +550,51 @@ public class Model_Player : MonoBehaviour
     {
         dir.y = 0;
 
-        if (isInCombat && !onAction)
-        {        
-            if (!cantAttack)
+        if (isInCombat && !onAction && !OnDamage && !cantAttack)
+        {
+
+            if (attackCombo == 2)
             {
-              
-                if (attackCombo == 2)
-                {
-   
-                    resetAttackTimer = 0.8f;
-                    StartCoroutine(AttackRotation(dir));
-                    _onAttackAnimationTimer = 1f;
-                    _timeToWaitBeforeAttack = 0.1f;
-                    _movementAttackTime = 0.25f;
-                    StartCoroutine(MakeAttackDamageDelay2(AttackDamageCombo3));
-                    cantAttack = true;
-                    onAttackAnimation = true;                   
-                    attackCombo++;
-                }
 
-                if (attackCombo == 1)
-                {
-
-                    resetAttackTimer = 0.7f;
-                    StartCoroutine(AttackRotation(dir));
-                    _onAttackAnimationTimer = 1f;
-                    _timeToWaitBeforeAttack = 0.1f;
-                    _movementAttackTime = 0.35f;
-                    StartCoroutine(MakeAttackDamageDelay1(AttackDamageCombo2));
-                    cantAttack = true;
-                    onAttackAnimation = true;
-                    attackCombo++;
-                }
-
-                if (attackCombo == 0)
-                {
-                    
-                    resetAttackTimer = 0.4f;
-                    StartCoroutine(AttackRotation(dir));                   
-                    _onAttackAnimationTimer = 0.65f;
-                    _timeToWaitBeforeAttack = 0.2f;
-                    _movementAttackTime = 0.35f;
-                    MakeDamage(AttackDamageCombo1);
-                    cantAttack = true;
-                    onAttackAnimation = true;  
-                    attackCombo++;
-                }
+                resetAttackTimer = 0.8f;
+                StartCoroutine(AttackRotation(dir));
+                _onAttackAnimationTimer = 1f;
+                _timeToWaitBeforeAttack = 0.1f;
+                _movementAttackTime = 0.25f;
+                StartCoroutine(MakeAttackDamageDelay2(AttackDamageCombo3));
+                cantAttack = true;
+                onAttackAnimation = true;
+                attackCombo++;
             }
-       
+
+            if (attackCombo == 1)
+            {
+
+                resetAttackTimer = 0.7f;
+                StartCoroutine(AttackRotation(dir));
+                _onAttackAnimationTimer = 1f;
+                _timeToWaitBeforeAttack = 0.1f;
+                _movementAttackTime = 0.35f;
+                StartCoroutine(MakeAttackDamageDelay1(AttackDamageCombo2));
+                cantAttack = true;
+                onAttackAnimation = true;
+                attackCombo++;
+            }
+
+            if (attackCombo == 0)
+            {
+
+                resetAttackTimer = 0.4f;
+                StartCoroutine(AttackRotation(dir));
+                _onAttackAnimationTimer = 0.65f;
+                _timeToWaitBeforeAttack = 0.2f;
+                _movementAttackTime = 0.35f;
+                MakeDamage(AttackDamageCombo1);
+                cantAttack = true;
+                onAttackAnimation = true;
+                attackCombo++;
+            }
+
         }
 
         if(!_viewer.layerUpActive) CombatStateUp();
@@ -645,7 +666,7 @@ public class Model_Player : MonoBehaviour
 
     public void Defence()
     {
-        if (isInCombat && chargeAttackAmount <=0 && !onAction)
+        if (isInCombat && chargeAttackAmount <=0 && !onAction && !OnDamage)
         {
             defenceTimer += Time.deltaTime; 
             attackCombo = 0;
@@ -680,7 +701,7 @@ public class Model_Player : MonoBehaviour
    
     public void ChargeAttack(float time)
     {       
-        if (time >= chargeAttackTime && !_chargeAttackCasted)
+        if (time >= chargeAttackTime && !_chargeAttackCasted && !OnDamage)
         {
             resetAttackTimer = 0.6f;
             attackCombo = -1;
@@ -736,17 +757,17 @@ public class Model_Player : MonoBehaviour
         attackCombo = 0;
     }
 
-    public void GetDamage(float d, Transform target)
+    public void GetDamage(float d, Transform target, DamageType type)
     {
-        if (target.GetComponent<ClassEnemy>())
+        if (target.GetComponent<ClassEnemy>() && !onDodge)
         {
             Vector3 toTarget = (target.transform.position - transform.position).normalized;
 
-            if (Vector3.Dot(toTarget, transform.forward) > 0)
+            if (Vector3.Dot(toTarget, transform.forward) > 0 && type == DamageType.Light)
             {
                 if (defenceTimer <= 0.5f && !onAction && onDefence)
                 {
-                    
+
                     DefenceOff();
                     BlockEvent(true);
                     StartCoroutine(OnActionState(0.9f));
@@ -760,8 +781,42 @@ public class Model_Player : MonoBehaviour
                     StartCoroutine(OnActionState(0.4f));
                     target.GetComponent<ClassEnemy>().BlockedAttack();
                 }
+
+                if (!onDefence)
+                {
+                    life -= d;
+                    onDamageTime = 0.5f;
+                    _rb.AddForce(-transform.forward * 80, ForceMode.Impulse);
+                    GetHitEvent();
+                }
+            }
+
+            if (Vector3.Dot(toTarget, transform.forward) < 0 && type == DamageType.Light)
+            {
+                life -= d;
+                onDamageTime = 0.5f;
+                _rb.AddForce(transform.forward * 80, ForceMode.Impulse);
+                GetHitEvent();
+            }
+
+            if (Vector3.Dot(toTarget, transform.forward) > 0 && type == DamageType.Heavy)
+            {
+                life -= d;
+                if (onDamageTime <= 0) onDamageTime = 2f;
+                _rb.AddForce(-transform.forward * 250, ForceMode.Impulse);
+                GetHitHeavyEvent(false);
+            }
+
+            if (Vector3.Dot(toTarget, transform.forward) < 0 && type == DamageType.Heavy)
+            {
+                life -= d;
+                if(onDamageTime <= 0) onDamageTime = 1.9f;
+                _rb.AddForce(transform.forward * 250, ForceMode.Impulse);
+                GetHitHeavyEvent(true);
             }
         }
+
+       
     }
 
     public void LockEnemies()
