@@ -50,7 +50,7 @@ public class Viewer_Player : MonoBehaviour
 
             if (_player.onDamageTime <= 0)
             {
-                anim.SetInteger("GetHit", 0);
+                anim.SetBool("GetHit", false);
                 anim.SetInteger("GetHitHeavy", 0);
             }
 
@@ -167,7 +167,15 @@ public class Viewer_Player : MonoBehaviour
         anim.SetFloat("Mouse X", axisX);
 
         anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
-       
+
+        if (anim.GetBool("Roll") || anim.GetBool("DodgeRight") || anim.GetBool("DodgeLeft") || anim.GetBool("DodgeBack")) anim.SetBool("Dodge", true);
+
+        if (!anim.GetBool("Roll") && !anim.GetBool("DodgeRight") && !anim.GetBool("DodgeLeft") && !anim.GetBool("DodgeBack")) anim.SetBool("Dodge", false);
+
+        if (anim.GetInteger("AttackCombo") > 0 || anim.GetFloat("ChargeAttack") >= 0.2f) anim.SetBool("OnAttack", true);
+
+        if (anim.GetInteger("AttackCombo") <= 0 && anim.GetFloat("ChargeAttack") < 0.2f) anim.SetBool("OnAttack", false);
+
     }
 
 
@@ -183,6 +191,7 @@ public class Viewer_Player : MonoBehaviour
     public void PowerSwordActivated()
     {
         swordFire.Play();
+        StartCoroutine(DelayAnimationActivate("FireSword", true, 1));
         StartCoroutine(DecreesPowerBar());
     }
 
@@ -263,6 +272,7 @@ public class Viewer_Player : MonoBehaviour
         anim.SetBool("Idle", false);
         anim.SetBool("Run", false);
         anim.SetBool("Blocked", true);
+        sparksParticle.Play();
         yield return new WaitForSeconds(0.4f);
         anim.SetBool("Blocked", false);
         anim.SetBool("Kick", true);
@@ -332,25 +342,11 @@ public class Viewer_Player : MonoBehaviour
     {
         if (_player.chargeAttackAmount <0.2f)
         {
+            anim.SetBool("GetHit", true);
             anim.SetBool("Walk", false);
             anim.SetBool("Idle", false);
             anim.SetBool("Run", false);
             bloodParticle.Play();
-
-            switch (anim.GetInteger("GetHit"))
-            {
-                case 0:
-                    anim.SetInteger("GetHit", 1);
-                    break;
-
-                case 1:
-                    anim.SetInteger("GetHit", 2);
-                    break;
-
-                case 2:
-                    anim.SetInteger("GetHit", 1);
-                    break;
-            }
         }
 
 
@@ -373,6 +369,11 @@ public class Viewer_Player : MonoBehaviour
                 anim.SetInteger("GetHitHeavy", 2);
                 break;
         }
+
+    }
+
+    public void SwordPowerAnim()
+    {
 
     }
 

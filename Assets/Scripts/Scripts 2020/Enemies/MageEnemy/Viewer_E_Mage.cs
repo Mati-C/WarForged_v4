@@ -8,7 +8,6 @@ public class Viewer_E_Mage : ClassEnemyViewer
     public Animator anim;
     public Model_E_Mage myModel;
     public ParticleSystem heavyHitParticle;
-    public ParticleSystem bloodParticle;
 
     public IEnumerator DelayAnimActive(string animName, float t)
     {

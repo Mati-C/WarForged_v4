@@ -6,6 +6,8 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 {
     Camera _cam;
     public PopText prefabTextDamage;
+    public ParticleSystem bloodParticle;
+    public ParticleSystem burnParticle;
     GameObject _levelUI;
 
     private void Awake()
@@ -33,6 +35,13 @@ public abstract class ClassEnemyViewer : MonoBehaviour
         text.transform.SetParent(_levelUI.transform, false);
         text.SetDamage(damage);
 
+    }
+
+    public void BurnOn_Off(bool b)
+    {
+        if (b) burnParticle.Play();
+
+        else burnParticle.Stop();
     }
 
     IEnumerator FollowEnemy(PopText text)

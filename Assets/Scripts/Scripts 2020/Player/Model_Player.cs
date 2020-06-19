@@ -61,6 +61,7 @@ public class Model_Player : MonoBehaviour
     bool _chargeAttackCasted;
 
     [Header("Player Powers Values:")]
+    public bool  flamesOn;
     public float powerAmount;
     public float powerMax;
     public float powerCurrentTime;
@@ -302,6 +303,7 @@ public class Model_Player : MonoBehaviour
         isInCombat = false;
         SaveSwordEvent();
         CombatStateEvent(false);
+        DefenceOff();
 
     }
 
@@ -624,7 +626,7 @@ public class Model_Player : MonoBehaviour
         {
             if (CanSee(item.transform, viewDistanceAttack, angleToAttack, layersCanSee))
             {
-                item.GetDamage(d);
+                item.GetDamage(d,DamageType.Light);
                 if (powerCurrentTime <= 0)
                 {
                     HitEnemyEvent(d / powerMax);
@@ -647,7 +649,7 @@ public class Model_Player : MonoBehaviour
 
         foreach (var item in enemies)
         {
-            item.GetDamage(ChargeAttackDamage);
+            item.GetDamage(ChargeAttackDamage, DamageType.Heavy);
             if (powerCurrentTime <= 0)
             {
                 HitEnemyEvent(ChargeAttackDamage / powerMax);
@@ -740,6 +742,8 @@ public class Model_Player : MonoBehaviour
     public IEnumerator PowerOn()
     {
         powerAmount = 0;
+        flamesOn = true;
+        StartCoroutine(OnActionState(1));
         while(powerCurrentTime < powerCurrentMaxTime)
         {
             powerCurrentTime += Time.deltaTime;
@@ -747,6 +751,7 @@ public class Model_Player : MonoBehaviour
         }
         PowerDesactivatedEvent();
         powerCurrentTime = 0;
+        flamesOn = false;
     }
 
     public IEnumerator CanCastChargeAttack()
@@ -785,34 +790,50 @@ public class Model_Player : MonoBehaviour
                 if (!onDefence)
                 {
                     life -= d;
-                    onDamageTime = 0.5f;
-                    _rb.AddForce(-transform.forward * 80, ForceMode.Impulse);
-                    GetHitEvent();
+                    if (!onAction)
+                    {
+                        onDamageTime = 0.5f;
+                        DefenceOff();
+                        _rb.AddForce(-transform.forward * 80, ForceMode.Impulse);
+                        GetHitEvent();
+                    }
                 }
             }
 
             if (Vector3.Dot(toTarget, transform.forward) < 0 && type == DamageType.Light)
             {
                 life -= d;
-                onDamageTime = 0.5f;
-                _rb.AddForce(transform.forward * 80, ForceMode.Impulse);
-                GetHitEvent();
+                if (!onAction)
+                {
+                    onDamageTime = 0.5f;
+                    DefenceOff();
+                    _rb.AddForce(transform.forward * 80, ForceMode.Impulse);
+                    GetHitEvent();
+                }
             }
 
             if (Vector3.Dot(toTarget, transform.forward) > 0 && type == DamageType.Heavy)
             {
                 life -= d;
-                if (onDamageTime <= 0) onDamageTime = 2f;
-                _rb.AddForce(-transform.forward * 250, ForceMode.Impulse);
-                GetHitHeavyEvent(false);
+                if (onDamageTime <= 0 && !onAction)
+                {
+                    onDamageTime = 2f;
+                    DefenceOff();
+                    _rb.AddForce(-transform.forward * 250, ForceMode.Impulse);
+                    GetHitHeavyEvent(false);
+                }
             }
 
             if (Vector3.Dot(toTarget, transform.forward) < 0 && type == DamageType.Heavy)
             {
                 life -= d;
-                if(onDamageTime <= 0) onDamageTime = 1.9f;
-                _rb.AddForce(transform.forward * 250, ForceMode.Impulse);
-                GetHitHeavyEvent(true);
+                if (onDamageTime <= 0 && !onAction)
+                {
+                    DefenceOff();
+                    onDamageTime = 1.9f;
+                    _rb.AddForce(transform.forward * 250, ForceMode.Impulse);
+                    GetHitHeavyEvent(true);
+                }
             }
         }
 

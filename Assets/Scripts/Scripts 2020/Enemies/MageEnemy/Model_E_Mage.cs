@@ -335,11 +335,11 @@ public class Model_E_Mage : ClassEnemy
 
     }
 
-    public override void GetDamage(float d)
+    public override void GetDamage(float d, Model_Player.DamageType t)
     {
         life -= d;
         onDamageTime = damageDelayTime;
-
+        if (player.flamesOn) StartBurning();
         if (life <= 0) DieEvent();
 
         else
@@ -352,9 +352,19 @@ public class Model_E_Mage : ClassEnemy
 
         Vector3 toTarget = (player.transform.position - transform.position).normalized;
 
-        if (Vector3.Dot(toTarget, transform.forward) > 0) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
+        if (Vector3.Dot(toTarget, transform.forward) > 0)
+        {
+            if (t == Model_Player.DamageType.Light) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
 
-        else rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+            else rb.AddForce(-transform.forward * 5, ForceMode.Impulse);
+        }
+
+        else
+        {
+            if (t == Model_Player.DamageType.Light) rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+
+            else rb.AddForce(transform.forward * 5, ForceMode.Impulse);
+        }
 
     }
 

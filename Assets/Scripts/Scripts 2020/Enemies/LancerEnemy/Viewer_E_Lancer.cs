@@ -6,9 +6,7 @@ public class Viewer_E_Lancer : ClassEnemyViewer
 {
     public Animator anim;
     public Model_E_Lancer myModel;
-    public ParticleSystem heavyHitParticle;
-    public ParticleSystem bloodParticle;
-
+    
     public IEnumerator DelayAnimActive(string animName, float t)
     {
         anim.SetBool(animName, true);
@@ -52,12 +50,6 @@ public class Viewer_E_Lancer : ClassEnemyViewer
     {
         myModel = GetComponent<Model_E_Lancer>();
         StartCoroutine(DamageTimerAnim());
-    }
-
-    public void HeavyHitAntisipation()
-    {
-        heavyHitParticle.Clear();
-        heavyHitParticle.Play();
     }
 
     public void AnimDie()

@@ -448,7 +448,7 @@ public class Model_E_Shield : ClassEnemy
 
         canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, layersCanSee);
 
-        canAttack = CanSee(player.transform, viewDistanceAttack, angleToAttack, layersCanSee);
+        canAttack = CanSee(player.transform, viewDistanceAttack, 360, layersCanSee);
 
         myFSM_EventMachine.Update();
     }
@@ -457,21 +457,21 @@ public class Model_E_Shield : ClassEnemy
 
     public void DefenceBrokenStart() { StartCoroutine(DefenceBrokenTimer()); }
 
-    public override void GetDamage(float d)
+    public override void GetDamage(float d, Model_Player.DamageType t)
     {
         Vector3 toTarget = (player.transform.position - transform.position).normalized;
 
-        if (onAttackAnimation)
+        if (onAttackAnimation || t == Model_Player.DamageType.Heavy)
         {
             DefenceBrokenStart();
             defenceBroken = true;
         }
 
-        if (defenceBroken)
+        if (defenceBroken || knocked)
         {
             life -= d;
             onDamageTime = damageDelayTime;
-
+            if (player.flamesOn) StartBurning();
             if (life <= 0) DieEvent();
 
             else
@@ -482,14 +482,25 @@ public class Model_E_Shield : ClassEnemy
                 SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
             }
 
-            if (Vector3.Dot(toTarget, transform.forward) < 0) rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+            if (Vector3.Dot(toTarget, transform.forward) > 0)
+            {
+                if (t == Model_Player.DamageType.Light) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
 
-            else rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
+                else rb.AddForce(-transform.forward * 5, ForceMode.Impulse);
+            }
+
+            else
+            {
+                if (t == Model_Player.DamageType.Light) rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+
+                else rb.AddForce(transform.forward * 5, ForceMode.Impulse);
+            }
         }
 
         else
         {
             ParryEvent();
+            player.FailAttack();
             timeOnParry = timeOnParryMax;
             rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
         }

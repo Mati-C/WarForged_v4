@@ -452,7 +452,7 @@ public class Model_E_Lancer : ClassEnemy
 
         canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, layersCanSee);
 
-        canAttack = CanSee(player.transform, viewDistanceAttack, angleToAttack, layersCanSee);
+        canAttack = CanSee(player.transform, viewDistanceAttack, 360, layersCanSee);
 
         myFSM_EventMachine.Update();
 
@@ -461,12 +461,13 @@ public class Model_E_Lancer : ClassEnemy
 
     public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }
 
-    public override void GetDamage(float d)
+    public override void GetDamage(float d, Model_Player.DamageType t)
     {
         
         if (timeOnParry <= 0)
         {
             life -= d;
+            if (player.flamesOn) StartBurning();
             onDamageTime = damageDelayTime;
             if(!blockedAttack) timesToParry--;           
         }
@@ -492,10 +493,19 @@ public class Model_E_Lancer : ClassEnemy
 
         Vector3 toTarget = (player.transform.position - transform.position).normalized;
 
-        if (Vector3.Dot(toTarget, transform.forward) > 0) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
+        if (Vector3.Dot(toTarget, transform.forward) > 0)
+        {
+            if (t == Model_Player.DamageType.Light) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
 
-        else rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+            else rb.AddForce(-transform.forward * 5, ForceMode.Impulse);
+        }
 
+        else
+        {
+            if (t == Model_Player.DamageType.Light) rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+
+            else rb.AddForce(transform.forward * 5, ForceMode.Impulse);
+        }
     }
 
     IEnumerator MoveOnAttack()

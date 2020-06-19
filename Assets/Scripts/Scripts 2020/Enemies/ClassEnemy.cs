@@ -46,16 +46,58 @@ public abstract class ClassEnemy : MonoBehaviour
     public bool canSurround;
     public bool OnDamage;
     public bool blockedAttack;
+    public bool burning;
+    public bool knocked;
     public int currentIndex;
 
     [Header("Enemy GetHit Variables:")]
     public float onDamageTime;
     public float damageDelayTime;
+    public float burnDamage;
+    public float timeBurning;
+    public float maxTimeBurning;
+    
 
     public Action GetHitEvent;
     public Action DieEvent;
     public Action BlockedEvent;
     public Action KnockedEvent;
+
+    public IEnumerator BurnDamageTimer()
+    {
+        burning = true;
+        float tic = 1;
+        timeBurning = maxTimeBurning;
+        _viewer.BurnOn_Off(true);
+
+        while (timeBurning > 0)
+        {
+            timeBurning -= Time.deltaTime;
+            tic -= Time.deltaTime;
+            if (tic <= 0)
+            {              
+                _viewer.CreatePopText(burnDamage);
+                life -= burnDamage;
+                tic = 1;
+                if(life<= 0)
+                {
+                    DieEvent();
+                    timeBurning = 0;
+                }
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        _viewer.BurnOn_Off(false);
+        burning = false;
+    }
+
+    public void StartBurning()
+    {
+        timeBurning = maxTimeBurning;
+        if (!burning) StartCoroutine(BurnDamageTimer());
+    }
 
     public IEnumerator OnDamageTimer()
     {
@@ -102,13 +144,9 @@ public abstract class ClassEnemy : MonoBehaviour
         StartCoroutine(BlockedState(4.3f));
     }
 
-    public void OnFire()
-    {
-
-    }
-
     IEnumerator KnockedMovement()
     {
+        knocked = true;
         yield return new WaitForSeconds(0.6f);
         var t = 0.4f;
         while(t >0)
@@ -117,6 +155,8 @@ public abstract class ClassEnemy : MonoBehaviour
             rb.MovePosition(transform.position + player.transform.forward * 5 * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        yield return new WaitForSeconds(3.3f);
+        knocked = false;
     }
 
     IEnumerator BlockedState(float t)
@@ -126,7 +166,7 @@ public abstract class ClassEnemy : MonoBehaviour
         blockedAttack = false;
     }
 
-    public abstract void GetDamage(float d);
+    public abstract void GetDamage(float d, Model_Player.DamageType t);
 
     private Vector3 FindNearNode(Vector3 pos)
     {

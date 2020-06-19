@@ -6,8 +6,6 @@ public class Viewer_E_Shield : ClassEnemyViewer
 {
     public Animator anim;
     public Model_E_Shield myModel;
-    public ParticleSystem heavyHitParticle;
-    public ParticleSystem bloodParticle;
 
     public IEnumerator DelayAnimActive(string animName, float t)
     {
@@ -48,11 +46,6 @@ public class Viewer_E_Shield : ClassEnemyViewer
         StartCoroutine(DamageTimerAnim());
     }
 
-    public void HeavyHitAntisipation()
-    {
-        heavyHitParticle.Clear();
-        heavyHitParticle.Play();
-    }
 
     public void AnimDie()
     {

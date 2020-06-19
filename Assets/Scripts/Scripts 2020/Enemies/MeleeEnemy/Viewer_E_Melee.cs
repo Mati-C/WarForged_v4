@@ -10,8 +10,6 @@ public class Viewer_E_Melee : ClassEnemyViewer
     public Animator anim;
     public Model_E_Melee myModel;
     public ParticleSystem heavyHitParticle;
-    public ParticleSystem fireDamageParticles;
-    public ParticleSystem bloodParticle;
 
     public IEnumerator DelayAnimActive(string animName, float t)
     {
