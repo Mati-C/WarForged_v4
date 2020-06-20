@@ -104,6 +104,7 @@ public class Model_E_Shield : ClassEnemy
     {
         _view = GetComponent<Viewer_E_Shield>();
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
+        ia_Manager = FindObjectOfType<IA_CombatManager>();
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");

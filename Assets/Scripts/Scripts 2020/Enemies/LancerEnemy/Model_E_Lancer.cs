@@ -96,6 +96,7 @@ public class Model_E_Lancer : ClassEnemy
         _view = GetComponent<Viewer_E_Lancer>();
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         timesToParry = UnityEngine.Random.Range(minTimesToParry, maxTimesToParry);
+        ia_Manager = FindObjectOfType<IA_CombatManager>();
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");

@@ -84,6 +84,7 @@ public class Model_E_Mage : ClassEnemy
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         _view = GetComponent<Viewer_E_Mage>();
         ListNodesToRetreat.AddRange(nodesToRetreat.GetComponentsInChildren<Transform>());
+        ia_Manager = FindObjectOfType<IA_CombatManager>();
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
