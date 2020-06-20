@@ -41,9 +41,6 @@ public class Model_E_Melee : ClassEnemy
 
     public float attackDamageLight;
     public float attackDamageHeavy;
-    public float timeToAttack;
-    public float maxTimeToAttack;
-    public float minTimeToAttack;
     public float angleToAttack;
     public float viewDistanceAttack;
     public bool canAttack;
@@ -58,20 +55,34 @@ public class Model_E_Melee : ClassEnemy
     public float retreatSpeed;
     public bool waitingForRetreat;
 
-  
+
 
     IEnumerator OnAttackAnimationCorrutine(float time)
     {
         onAttackAnimation = true;
         yield return new WaitForSeconds(time);
         onAttackAnimation = false;
-        if(onDamageTime <=0 )attackFinish = true;
+        if (onDamageTime <= 0) attackFinish = true;
+
+
+        yield return new WaitForSeconds(3);
+
+        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
+
+        if (permissionToAttack)
+        {
+            StartCoroutine(CanAttackAgain());
+            ia_Manager.PermissionsMelee(false);
+            ia_Manager.DecisionTake(false);
+            permissionToAttack = false;
+        }
     }
 
     void Start()
     {
         _view = GetComponent<Viewer_E_Melee>();
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
+        ia_Manager = FindObjectOfType<IA_CombatManager>();
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
@@ -117,7 +128,9 @@ public class Model_E_Melee : ClassEnemy
             WalkEvent();
             player.CombatStateUp();
 
-            if (aggressiveLevel == 1) MoveToTarget(player.transform);
+            if (aggressiveLevel == 2) viewDistanceSurround = 8f;
+
+            if (aggressiveLevel == 1) MoveToTarget(FindNearAggressiveNode().transform);
 
             else MoveToTarget(FindNearNon_AggressiveNode().transform);
            
@@ -145,21 +158,23 @@ public class Model_E_Melee : ClassEnemy
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
                 if (aggressiveLevel == 2) timeToAttack += 1;
-            }           
+            }
 
+            
         };
 
         surround.OnUpdate += () =>
         {
-            if (aggressiveLevel == 1) viewDistanceSurround = 5f;
+           
+            if (aggressiveLevel == 1) viewDistanceSurround = 6f;
 
-            if (aggressiveLevel == 2) viewDistanceSurround = 8f;
+            if (aggressiveLevel == 2) viewDistanceSurround = 10f;
 
             player.CombatStateUp();
 
             surroundTimer -= Time.deltaTime;
 
-            timeToAttack -= Time.deltaTime;
+            if(!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain && ia_Manager.enemiesListOnAttack.Count <=0) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
             
@@ -218,13 +233,25 @@ public class Model_E_Melee : ClassEnemy
 
         surround.OnExit += () =>
         {
-            if (aggressiveLevel == 1) viewDistanceSurround = 3.5f;
+            if (aggressiveLevel == 1) viewDistanceSurround = 4.5f;
 
             if (aggressiveLevel == 2) viewDistanceSurround = 7f;
         };
 
         attack.OnEnter += () =>
         {
+            if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.PermissionsMelee(true);
+                permissionToAttack = true;
+            }
+
+            if (!ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.SetOrderAttack(this);
+                ia_Manager.DecisionTake(true);
+            }
+
             int r = UnityEngine.Random.Range(1, 101);
 
             if (r < singleAttackProbability) ID_Attack = 1;
@@ -281,6 +308,7 @@ public class Model_E_Melee : ClassEnemy
 
         attack.OnExit += () =>
         {
+            
             if (timeToAttack <= 0)
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);

@@ -15,7 +15,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public Model_Player player;
     public Grid grid;
     public Rigidbody rb;
-   
+    public IA_CombatManager ia_Manager;
 
     [Header("EnemyRoom ID:")]
 
@@ -48,7 +48,15 @@ public abstract class ClassEnemy : MonoBehaviour
     public bool blockedAttack;
     public bool burning;
     public bool knocked;
+    public bool permissionToAttack;
+    public bool cantAskAgain;
     public int currentIndex;
+
+    [Header("EnemyClass Attack Variables:")]
+
+    public float timeToAttack;
+    public float maxTimeToAttack;
+    public float minTimeToAttack;
 
     [Header("Enemy GetHit Variables:")]
     public float onDamageTime;
@@ -62,6 +70,13 @@ public abstract class ClassEnemy : MonoBehaviour
     public Action DieEvent;
     public Action BlockedEvent;
     public Action KnockedEvent;
+
+    public IEnumerator CanAttackAgain()
+    {
+        cantAskAgain = true;
+        yield return new WaitForSeconds(0.5f);
+        cantAskAgain = false;
+    }
 
     public IEnumerator BurnDamageTimer()
     {

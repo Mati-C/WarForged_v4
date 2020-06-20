@@ -32,12 +32,9 @@ public class Model_E_Shield : ClassEnemy
     public float surroundTimerMax;
     public int surroundBehaviourID;
 
-    [Header("Enemy Attack Variables:")]
+    [Header("EnemyShield Attack Variables:")]
 
-    public float timeToAttack;
     public float attackDamage;
-    public float maxTimeToAttack;
-    public float minTimeToAttack;
     public float angleToAttack;
     public float viewDistanceAttack;
     public bool canAttack;
@@ -88,6 +85,19 @@ public class Model_E_Shield : ClassEnemy
         yield return new WaitForSeconds(time);
         onAttackAnimation = false;
         if (onDamageTime <= 0) attackFinish = true;
+
+
+        yield return new WaitForSeconds(3);
+
+        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
+
+        if (permissionToAttack)
+        {
+            StartCoroutine(CanAttackAgain());
+            ia_Manager.PermissionsMelee(false);
+            ia_Manager.DecisionTake(false);
+            permissionToAttack = false;
+        }
     }
 
     void Start()
@@ -141,7 +151,7 @@ public class Model_E_Shield : ClassEnemy
             WalkEvent();
             player.CombatStateUp();
 
-            if (aggressiveLevel == 1) MoveToTarget(player.transform);
+            if (aggressiveLevel == 1) MoveToTarget(FindNearAggressiveNode().transform);
 
             else MoveToTarget(FindNearNon_AggressiveNode().transform);
 
@@ -185,7 +195,7 @@ public class Model_E_Shield : ClassEnemy
 
             surroundTimer -= Time.deltaTime;
 
-            timeToAttack -= Time.deltaTime;
+            if (!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
             
@@ -246,14 +256,24 @@ public class Model_E_Shield : ClassEnemy
 
         surround.OnExit += () =>
         {
-            if (aggressiveLevel == 1) viewDistanceSurround = 3.5f;
+            if (aggressiveLevel == 1) viewDistanceSurround = 4.5f;
 
             if (aggressiveLevel == 2) viewDistanceSurround = 7f;
         };
 
         attack.OnEnter += () =>
         {
-         
+            if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttack) 
+            {
+                ia_Manager.PermissionsMelee(true);
+                permissionToAttack = true;
+            }
+
+            if (!ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.SetOrderAttack(this);
+                ia_Manager.DecisionTake(true);
+            }
         };
 
         attack.OnUpdate += () =>

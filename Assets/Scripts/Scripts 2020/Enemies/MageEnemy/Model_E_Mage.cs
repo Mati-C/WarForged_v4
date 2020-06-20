@@ -30,14 +30,11 @@ public class Model_E_Mage : ClassEnemy
     public float surroundTimerMax;
     public int surroundBehaviourID;
 
-    [Header("Enemy Attack Variables:")]
+    [Header("EnemyMage Attack Variables:")]
 
     public Transform phShoot;
     public MageMissile missile;
     public float attackDamage;
-    public float timeToAttack;
-    public float maxTimeToAttack;
-    public float minTimeToAttack;
     public bool onAttackAnimation;
     public bool attackFinish;
     public bool shooting;
@@ -67,6 +64,19 @@ public class Model_E_Mage : ClassEnemy
         yield return new WaitForSeconds(time);
         onAttackAnimation = false;
         if (onDamageTime <= 0) attackFinish = true;
+
+
+        yield return new WaitForSeconds(3);
+
+        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
+
+        if (permissionToAttack)
+        {
+            StartCoroutine(CanAttackAgain());
+            ia_Manager.PermissionsRange(false);
+            ia_Manager.DecisionTake(false);
+            permissionToAttack = false;
+        }
     }
 
     void Start()
@@ -114,7 +124,7 @@ public class Model_E_Mage : ClassEnemy
             WalkEvent();
             player.CombatStateUp();
 
-            MoveToTarget(player.transform);
+            MoveToTarget(FindNearNon_AggressiveNode().transform);
 
             if (canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
@@ -152,7 +162,7 @@ public class Model_E_Mage : ClassEnemy
 
             surroundTimer -= Time.deltaTime;
 
-            timeToAttack -= Time.deltaTime;
+            if (!ia_Manager.enemyRangePermisionAttack && !cantAskAgain) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
             if (obs.Count() > 0) rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
@@ -277,7 +287,19 @@ public class Model_E_Mage : ClassEnemy
         };
 
         attack.OnExit += () =>
-        {        
+        {
+            if (!permissionToAttack && !ia_Manager.enemyRangePermisionAttack && !ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.PermissionsRange(true);
+                permissionToAttack = true;
+            }
+
+            if (!ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.SetOrderAttack(this);
+                ia_Manager.DecisionTake(true);
+            }
+
             if (timeToAttack <= 0)
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);                
