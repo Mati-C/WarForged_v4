@@ -68,18 +68,6 @@ public class Model_E_Lancer : ClassEnemy
         onAttackAnimation = false;
         if (onDamageTime <= 0) attackFinish = true;
 
-
-        yield return new WaitForSeconds(3);
-
-        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
-
-        if (permissionToAttack)
-        {
-            StartCoroutine(CanAttackAgain());
-            ia_Manager.PermissionsMelee(false);
-            ia_Manager.DecisionTake(false);
-            permissionToAttack = false;
-        }
     }
 
     IEnumerator OnCounterAttackCorrutine(float time)
@@ -326,7 +314,17 @@ public class Model_E_Lancer : ClassEnemy
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
 
-            attackFinish = false;
+            if (!permissionToAttack && !ia_Manager.enemyRangePermisionAttack && !ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.PermissionsRange(true);
+                permissionToAttack = true;
+            }
+
+            if (!ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.SetOrderAttack(this);
+                ia_Manager.DecisionTake(true);
+            }
         };
 
         retreat.OnEnter += () =>

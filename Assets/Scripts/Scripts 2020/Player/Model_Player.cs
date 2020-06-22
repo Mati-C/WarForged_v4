@@ -591,7 +591,7 @@ public class Model_Player : MonoBehaviour
                 _onAttackAnimationTimer = 0.65f;
                 _timeToWaitBeforeAttack = 0.2f;
                 _movementAttackTime = 0.35f;
-                MakeDamage(AttackDamageCombo1);
+                StartCoroutine(MakeAttackDamageDelay3(AttackDamageCombo1));
                 cantAttack = true;
                 onAttackAnimation = true;
                 attackCombo++;
@@ -613,6 +613,13 @@ public class Model_Player : MonoBehaviour
     {
        
         yield return new WaitForSeconds(0.3f);
+        MakeDamage(d);
+    }
+
+    IEnumerator MakeAttackDamageDelay3(float d)
+    {
+
+        yield return new WaitForSeconds(0.2f);
         MakeDamage(d);
     }
 

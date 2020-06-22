@@ -50,7 +50,7 @@ public class Viewer_Player : MonoBehaviour
 
             if (_player.onDamageTime <= 0)
             {
-                anim.SetBool("GetHit", false);
+                anim.SetInteger("GetHit", 0);
                 anim.SetInteger("GetHitHeavy", 0);
             }
 
@@ -342,11 +342,25 @@ public class Viewer_Player : MonoBehaviour
     {
         if (_player.chargeAttackAmount <0.2f)
         {
-            anim.SetBool("GetHit", true);
             anim.SetBool("Walk", false);
             anim.SetBool("Idle", false);
             anim.SetBool("Run", false);
             bloodParticle.Play();
+
+            switch (anim.GetInteger("GetHit"))
+            {
+                case 0:
+                    anim.SetInteger("GetHit", 1);
+                    break;
+
+                case 1:
+                    anim.SetInteger("GetHit", 2);
+                    break;
+
+                case 2:
+                    anim.SetInteger("GetHit", 1);
+                    break;
+            }
         }
 
 

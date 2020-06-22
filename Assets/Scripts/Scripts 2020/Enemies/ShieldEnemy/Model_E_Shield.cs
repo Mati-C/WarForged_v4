@@ -85,19 +85,6 @@ public class Model_E_Shield : ClassEnemy
         yield return new WaitForSeconds(time);
         onAttackAnimation = false;
         if (onDamageTime <= 0) attackFinish = true;
-
-
-        yield return new WaitForSeconds(3);
-
-        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
-
-        if (permissionToAttack)
-        {
-            StartCoroutine(CanAttackAgain());
-            ia_Manager.PermissionsMelee(false);
-            ia_Manager.DecisionTake(false);
-            permissionToAttack = false;
-        }
     }
 
     void Start()
@@ -331,7 +318,9 @@ public class Model_E_Shield : ClassEnemy
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
 
-            attackFinish = false;
+            if (attackFinish) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f));
+
+            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission));
         };
 
         retreat.OnEnter += () =>

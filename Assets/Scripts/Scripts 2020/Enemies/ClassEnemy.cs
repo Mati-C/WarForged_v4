@@ -57,6 +57,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public float timeToAttack;
     public float maxTimeToAttack;
     public float minTimeToAttack;
+    public float TimeToRrturnPermission;
 
     [Header("Enemy GetHit Variables:")]
     public float onDamageTime;
@@ -70,6 +71,21 @@ public abstract class ClassEnemy : MonoBehaviour
     public Action DieEvent;
     public Action BlockedEvent;
     public Action KnockedEvent;
+
+    public IEnumerator ReturnIA_Manager(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
+
+        if (permissionToAttack)
+        {
+            StartCoroutine(CanAttackAgain());
+            ia_Manager.PermissionsMelee(false);
+            ia_Manager.DecisionTake(false);
+            permissionToAttack = false;
+        }
+    }
 
     public IEnumerator CanAttackAgain()
     {

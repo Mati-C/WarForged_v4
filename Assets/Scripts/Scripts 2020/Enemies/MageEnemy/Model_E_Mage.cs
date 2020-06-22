@@ -65,18 +65,6 @@ public class Model_E_Mage : ClassEnemy
         onAttackAnimation = false;
         if (onDamageTime <= 0) attackFinish = true;
 
-
-        yield return new WaitForSeconds(3);
-
-        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
-
-        if (permissionToAttack)
-        {
-            StartCoroutine(CanAttackAgain());
-            ia_Manager.PermissionsRange(false);
-            ia_Manager.DecisionTake(false);
-            permissionToAttack = false;
-        }
     }
 
     void Start()
@@ -260,6 +248,18 @@ public class Model_E_Mage : ClassEnemy
         attack.OnEnter += () =>
         {
             shooting = true;
+
+            if (!permissionToAttack && !ia_Manager.enemyRangePermisionAttack && !ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.PermissionsRange(true);
+                permissionToAttack = true;
+            }
+
+            if (!ia_Manager.decisionOnAttack)
+            {
+                ia_Manager.SetOrderAttack(this);
+                ia_Manager.DecisionTake(true);
+            }
         };
 
         attack.OnUpdate += () =>
@@ -289,17 +289,7 @@ public class Model_E_Mage : ClassEnemy
 
         attack.OnExit += () =>
         {
-            if (!permissionToAttack && !ia_Manager.enemyRangePermisionAttack && !ia_Manager.decisionOnAttack)
-            {
-                ia_Manager.PermissionsRange(true);
-                permissionToAttack = true;
-            }
-
-            if (!ia_Manager.decisionOnAttack)
-            {
-                ia_Manager.SetOrderAttack(this);
-                ia_Manager.DecisionTake(true);
-            }
+           
 
             if (timeToAttack <= 0)
             {
@@ -310,7 +300,10 @@ public class Model_E_Mage : ClassEnemy
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
 
-            attackFinish = false;
+            if (attackFinish) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f));
+
+            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission));
+
             shooting = false;
         };
 

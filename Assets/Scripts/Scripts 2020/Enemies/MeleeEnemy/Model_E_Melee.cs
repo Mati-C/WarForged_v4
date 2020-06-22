@@ -35,7 +35,7 @@ public class Model_E_Melee : ClassEnemy
     [Header("Enemy Attack Variables:")]
 
     public int ID_Attack;
-
+   
     [Range(10, 100)]
     public int singleAttackProbability;
 
@@ -62,21 +62,10 @@ public class Model_E_Melee : ClassEnemy
         onAttackAnimation = true;
         yield return new WaitForSeconds(time);
         onAttackAnimation = false;
-        if (onDamageTime <= 0) attackFinish = true;
-
-
-        yield return new WaitForSeconds(3);
-
-        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
-
-        if (permissionToAttack)
-        {
-            StartCoroutine(CanAttackAgain());
-            ia_Manager.PermissionsMelee(false);
-            ia_Manager.DecisionTake(false);
-            permissionToAttack = false;
-        }
+        if (onDamageTime <= 0) attackFinish = true;      
     }
+
+  
 
     void Start()
     {
@@ -308,7 +297,6 @@ public class Model_E_Melee : ClassEnemy
 
         attack.OnExit += () =>
         {
-            
             if (timeToAttack <= 0)
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
@@ -317,7 +305,15 @@ public class Model_E_Melee : ClassEnemy
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
 
-            attackFinish = false;
+            if (attackFinish)
+            {
+                if (ID_Attack == 1) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f)); 
+
+                if (ID_Attack == 2) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 2)); 
+            }
+
+            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission));
+
         };
 
         retreat.OnEnter += () =>
