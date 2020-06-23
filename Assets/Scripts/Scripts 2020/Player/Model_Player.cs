@@ -13,9 +13,7 @@ public class Model_Player : MonoBehaviour
     PlayerCamera _playerCamera;
     Camera _mainCam;
     IA_CombatManager _IA_CM;
-    public LayerMask layersCanSee;
-
-  
+ 
     [Header("Player Life:")]
     public float life;
     public float maxLife;
@@ -552,7 +550,7 @@ public class Model_Player : MonoBehaviour
     {
         dir.y = 0;
 
-        if (isInCombat && !onAction && !OnDamage && !cantAttack)
+        if (isInCombat && !onAction && !OnDamage && !cantAttack && !onDefence && timeOnFailAttack <=0)
         {
 
             if (attackCombo == 2)
@@ -631,7 +629,7 @@ public class Model_Player : MonoBehaviour
 
         foreach (var item in enemies)
         {
-            if (CanSee(item.transform, viewDistanceAttack, angleToAttack, layersCanSee))
+            if (CanSee(item.transform, viewDistanceAttack, angleToAttack, playerCanSee))
             {
                 item.GetDamage(d,DamageType.Light);
                 if (powerCurrentTime <= 0)
@@ -1006,6 +1004,14 @@ public class Model_Player : MonoBehaviour
 
         Vector3 leftLimit2 = Quaternion.AngleAxis(-angleToAttack, transform.up) * transform.forward;
         Gizmos.DrawLine(transform.position, transform.position + (leftLimit2 * viewDistanceAttack));
+
+        Gizmos.color = Color.black;
+
+        Vector3 rightLimit = Quaternion.AngleAxis(60, transform.up) * transform.forward;
+        Gizmos.DrawLine(transform.position, transform.position + (rightLimit * viewDistanceAttack));
+
+        Vector3 leftLimit = Quaternion.AngleAxis(-60, transform.up) * transform.forward;
+        Gizmos.DrawLine(transform.position, transform.position + (leftLimit * viewDistanceAttack));
     }
 
 }

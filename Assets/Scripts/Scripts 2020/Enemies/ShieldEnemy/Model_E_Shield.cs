@@ -471,6 +471,8 @@ public class Model_E_Shield : ClassEnemy
     {
         Vector3 toTarget = (player.transform.position - transform.position).normalized;
 
+        Vector3 fowardPlayer = (transform.position - player.transform.position).normalized;
+
         if (onAttackAnimation || t == Model_Player.DamageType.Heavy)
         {
             DefenceBrokenStart();
@@ -507,7 +509,7 @@ public class Model_E_Shield : ClassEnemy
             }
         }
 
-        else
+        if(!defenceBroken && !knocked && player.CanSee(transform,player.viewDistanceAttack, 60, player.playerCanSee))
         {
             ParryEvent();
             player.FailAttack();

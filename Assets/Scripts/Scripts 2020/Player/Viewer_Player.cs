@@ -172,9 +172,9 @@ public class Viewer_Player : MonoBehaviour
 
         if (!anim.GetBool("Roll") && !anim.GetBool("DodgeRight") && !anim.GetBool("DodgeLeft") && !anim.GetBool("DodgeBack")) anim.SetBool("Dodge", false);
 
-        if (anim.GetInteger("AttackCombo") > 0 || anim.GetFloat("ChargeAttack") >= 0.2f) anim.SetBool("OnAttack", true);
+        if (anim.GetInteger("AttackCombo") > 0 || anim.GetFloat("ChargeAttack") >= 0.2f || anim.GetBool("FailAttack")) anim.SetBool("OnAttack", true);
 
-        if (anim.GetInteger("AttackCombo") <= 0 && anim.GetFloat("ChargeAttack") < 0.2f) anim.SetBool("OnAttack", false);
+        if (anim.GetInteger("AttackCombo") <= 0 && anim.GetFloat("ChargeAttack") < 0.2f && !anim.GetBool("FailAttack")) anim.SetBool("OnAttack", false);
 
     }
 

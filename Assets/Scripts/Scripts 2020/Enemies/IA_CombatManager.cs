@@ -80,13 +80,11 @@ public class IA_CombatManager : MonoBehaviour
         {
             case 0:
                 {
-                    Debug.Log(1);
                     break;
                 }
 
             case 1:
                 {
-                    Debug.Log(2);
                     enemiesListOnAttack.Add(e);
                     if (e.sameID_Enemies.Count > 0)
                     {
@@ -99,7 +97,6 @@ public class IA_CombatManager : MonoBehaviour
 
             case 2:
                 {
-                    Debug.Log(3);
                     enemiesListOnAttack.Add(e);
                     if (e.sameID_Enemies.Count > 0)
                     {
