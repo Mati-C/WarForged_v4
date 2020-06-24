@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3359568}
   - component: {fileID: 2359568}
   - component: {fileID: 6588870}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cupboard_Preset_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 461198}
   - component: {fileID: 19861200}
   - component: {fileID: 19961200}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4799,7 +4799,7 @@ GameObject:
   - component: {fileID: 461200}
   - component: {fileID: 19861202}
   - component: {fileID: 19961202}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9471,7 +9471,7 @@ GameObject:
   - component: {fileID: 461202}
   - component: {fileID: 19861204}
   - component: {fileID: 19961204}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14143,7 +14143,7 @@ GameObject:
   - component: {fileID: 461204}
   - component: {fileID: 19861206}
   - component: {fileID: 19961206}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18833,7 +18833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 461206}
   - component: {fileID: 10861206}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Orange light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

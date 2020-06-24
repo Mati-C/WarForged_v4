@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 448562}
   - component: {fileID: 19848564}
   - component: {fileID: 19948564}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4702,7 +4702,7 @@ GameObject:
   - component: {fileID: 448564}
   - component: {fileID: 19848566}
   - component: {fileID: 19948566}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9373,7 +9373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 448566}
   - component: {fileID: 10848566}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Orange light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9466,7 +9466,7 @@ GameObject:
   - component: {fileID: 3371690}
   - component: {fileID: 2371690}
   - component: {fileID: 6588870}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Shelf_Preset_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

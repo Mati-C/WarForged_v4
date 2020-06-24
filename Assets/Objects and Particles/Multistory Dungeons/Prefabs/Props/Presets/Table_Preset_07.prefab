@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3359074}
   - component: {fileID: 2359074}
   - component: {fileID: 6572602}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Table_Preset_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 485956}
   - component: {fileID: 19885960}
   - component: {fileID: 19985960}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Halo_FX_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4782,7 +4782,7 @@ GameObject:
   - component: {fileID: 485958}
   - component: {fileID: 19885962}
   - component: {fileID: 19985962}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Lamp_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9472,7 +9472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 485960}
   - component: {fileID: 10885968}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Orange light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9564,7 +9564,7 @@ GameObject:
   - component: {fileID: 485962}
   - component: {fileID: 19885964}
   - component: {fileID: 19985964}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14255,7 +14255,7 @@ GameObject:
   - component: {fileID: 485964}
   - component: {fileID: 19885966}
   - component: {fileID: 19985966}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18927,7 +18927,7 @@ GameObject:
   - component: {fileID: 485966}
   - component: {fileID: 19885968}
   - component: {fileID: 19985968}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Halo_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23599,7 +23599,7 @@ GameObject:
   - component: {fileID: 485968}
   - component: {fileID: 19885970}
   - component: {fileID: 19985970}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Candle_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28289,7 +28289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 485970}
   - component: {fileID: 10885970}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Orange light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

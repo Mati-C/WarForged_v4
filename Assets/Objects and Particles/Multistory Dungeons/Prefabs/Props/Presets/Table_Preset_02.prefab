@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3369384}
   - component: {fileID: 2369384}
   - component: {fileID: 6572602}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Table_Preset_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479102}
   - component: {fileID: 10879106}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Orange light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 479104}
   - component: {fileID: 19879104}
   - component: {fileID: 19979104}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Lamp_Fire_FX_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4889,7 +4889,7 @@ GameObject:
   - component: {fileID: 479106}
   - component: {fileID: 19879106}
   - component: {fileID: 19979106}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Halo_FX_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

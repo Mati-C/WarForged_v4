@@ -8,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Portal
-  m_Shader: {fileID: 4800000, guid: 6b55c30d781029a40be1b7bbc7170043, type: 3}
+  m_Shader: {fileID: 4800000, guid: 70e5f811d3d22ff42a235125008483be, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -21,6 +21,26 @@ Material:
     m_TexEnvs:
     - _BasseTex:
         m_Texture: {fileID: 2800000, guid: ab37ff13379cdc5459f43d1145819094, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Flowmap:
+        m_Texture: {fileID: 2800000, guid: 1903f5f8212195b4e9c128b41e6fd696, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: eb58c36f965ff024cb94d9bba46e33e7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseBreak:
+        m_Texture: {fileID: 2800000, guid: f0a9ea1c2a35ccd4cb94fb9bc85e7c49, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseLines:
+        m_Texture: {fileID: 2800000, guid: 138ae4b08ba7f89438effbd67e97ccef, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PortalNoise:
+        m_Texture: {fileID: 2800000, guid: 3b0290eb3a0bb884990fd384e3373469, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture0:
@@ -32,11 +52,27 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _DepthFadeDistance: 0.002
+    - _DepthFadeGradient: 0.001
+    - _EdgeLength: 35
+    - _EmissionMultiplier: 2.44
     - _Float0: -15.44
+    - _MaxOpacity: 1
+    - _NoiseAmount: 2.03
+    - _NoiseBaseWhite: 0.13
+    - _NoiseMapPannerSpeed: 0
+    - _NoiseMapSize: 0.5
     - _NoiseMapStrength: 0.1308148
-    - _Opacity: 0.51803607
+    - _Opacity: 0.75
+    - _OpacityDepthFadeDistance: 0.472
+    - _PannerSpeed: 0.0806525
+    - _RingPannerSpeed: 0.5
+    - _TesselAmount: 0.118
     - __dirty: 0
     m_Colors:
     - _NoiseMapPannerSpeed: {r: 0.45, g: 0.21, b: 0, a: 0}
     - _NoiseMapSize: {r: 0.43, g: 1.79, b: 0, a: 0}
+    - _PortalLinesColor: {r: 0, g: 0, b: 0, a: 0}
+    - _PortalNoiseColor1: {r: 0.44811314, g: 0.49356276, b: 1, a: 0}
+    - _PortalNoiseColor2: {r: 0.06711891, g: 0, b: 0.27358484, a: 0}
     - _RingPannerSpeed: {r: -0.5, g: 0.5, b: 0, a: 0}
