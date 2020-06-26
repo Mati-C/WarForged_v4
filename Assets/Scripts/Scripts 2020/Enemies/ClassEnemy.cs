@@ -59,6 +59,17 @@ public abstract class ClassEnemy : MonoBehaviour
     public float minTimeToAttack;
     public float TimeToRrturnPermission;
 
+    [Header("EnemyClass Surround Variables:")]
+     public float viewDistancePersuit;
+     public float angleToPersuit;
+     
+
+    [Header("EnemyClass Persuit Variables:")]
+    public float viewDistanceSurround;
+    public float angleToSurround;
+    public int surroundBehaviourID;
+    public bool cantAvoid;
+
     [Header("Enemy GetHit Variables:")]
     public float onDamageTime;
     public float damageDelayTime;
@@ -66,13 +77,42 @@ public abstract class ClassEnemy : MonoBehaviour
     public float timeBurning;
     public float maxTimeBurning;
     
-
     public Action GetHitEvent;
     public Action DieEvent;
     public Action BlockedEvent;
     public Action KnockedEvent;
 
-    public IEnumerator ReturnIA_Manager(float time)
+
+    public bool NearEnemy()
+    {
+        
+        var enemies = Physics.OverlapSphere(transform.position, 1f).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>()).Where(x => x != this);
+
+        if (enemies.Count() > 0) return true;
+
+        else return false;
+    }
+
+    public IEnumerator AvoidNearEntity()
+    {
+
+        cantAvoid = true;
+        switch (surroundBehaviourID)
+        {
+            case 1:
+                surroundBehaviourID = 2;
+                break;
+
+            case 2:
+                surroundBehaviourID = 1;
+                break;
+        }
+
+        yield return new WaitForSeconds(0.7f);
+        cantAvoid = false;
+    }
+
+    public IEnumerator ReturnIA_Manager(float time, bool b)
     {
         yield return new WaitForSeconds(time);
 
@@ -81,8 +121,16 @@ public abstract class ClassEnemy : MonoBehaviour
         if (permissionToAttack)
         {
             StartCoroutine(CanAttackAgain());
-            ia_Manager.PermissionsMelee(false);
-            ia_Manager.DecisionTake(false);
+            if (b)
+            {
+                ia_Manager.PermissionsMelee(false);
+                ia_Manager.DecisionTakeMelee(false);
+            }
+            else
+            {
+                ia_Manager.PermissionsRange(false);
+                ia_Manager.DecisionTakeRange(false);
+            }
             permissionToAttack = false;
         }
     }

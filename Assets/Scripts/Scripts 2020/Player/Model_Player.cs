@@ -550,7 +550,7 @@ public class Model_Player : MonoBehaviour
     {
         dir.y = 0;
 
-        if (isInCombat && !onAction && !OnDamage && !cantAttack && !onDefence && timeOnFailAttack <=0)
+        if (isInCombat && !onAction && !OnDamage && !cantAttack && !onDefence && !onFailAttack)
         {
 
             if (attackCombo == 2)
@@ -564,7 +564,7 @@ public class Model_Player : MonoBehaviour
                 StartCoroutine(MakeAttackDamageDelay2(AttackDamageCombo3));
                 cantAttack = true;
                 onAttackAnimation = true;
-                attackCombo++;
+                if (!onFailAttack) attackCombo++;
             }
 
             if (attackCombo == 1)
@@ -578,7 +578,7 @@ public class Model_Player : MonoBehaviour
                 StartCoroutine(MakeAttackDamageDelay1(AttackDamageCombo2));
                 cantAttack = true;
                 onAttackAnimation = true;
-                attackCombo++;
+                if (!onFailAttack) attackCombo++;
             }
 
             if (attackCombo == 0)
@@ -592,7 +592,7 @@ public class Model_Player : MonoBehaviour
                 StartCoroutine(MakeAttackDamageDelay3(AttackDamageCombo1));
                 cantAttack = true;
                 onAttackAnimation = true;
-                attackCombo++;
+                if(!onFailAttack) attackCombo++;
             }
 
         }
@@ -697,7 +697,7 @@ public class Model_Player : MonoBehaviour
 
     public void ChargingAttack()
     {
-        if (chargeAttackColdown <= 0)
+        if (chargeAttackColdown <= 0 && !onDefence)
         {
             DefenceOff();
             chargeAttackAmount += Time.deltaTime;

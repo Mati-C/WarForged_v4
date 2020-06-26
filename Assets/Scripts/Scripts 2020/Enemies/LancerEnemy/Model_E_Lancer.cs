@@ -8,12 +8,6 @@ using Sound;
 public class Model_E_Lancer : ClassEnemy
 {
 
-    [Header("EnemyRoom Distances and Angles:")]
-    public float viewDistancePersuit;
-    public float angleToPersuit;
-    public float viewDistanceSurround;
-    public float angleToSurround;
-
     public Action IdleEvent;
     public Action WalkEvent;
     public Action RunEvent;
@@ -32,7 +26,6 @@ public class Model_E_Lancer : ClassEnemy
     public float surroundTimer;
     public float surroundTimerMin;
     public float surroundTimerMax;
-    public int surroundBehaviourID;
 
     [Header("EnemyLancer Attack Variables:")]
 
@@ -123,6 +116,13 @@ public class Model_E_Lancer : ClassEnemy
             viewDistancePersuit = 100;
             angleToPersuit = 360;
             angleToSurround = 360;
+
+            foreach (var item in sameID_Enemies)
+            {
+                item.viewDistancePersuit = 100;
+                item.angleToPersuit = 360;
+                item.angleToSurround = 360;
+            }
         };
 
         persuit.OnUpdate += () =>
@@ -175,7 +175,7 @@ public class Model_E_Lancer : ClassEnemy
 
             surroundTimer -= Time.deltaTime;
 
-            if (!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain) timeToAttack -= Time.deltaTime;
+            if (!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain && ia_Manager.enemiesListOnAttack.Count <= 0) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
 
@@ -191,6 +191,7 @@ public class Model_E_Lancer : ClassEnemy
 
             if (surroundBehaviourID == 1)
             {
+                if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkRightEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
@@ -203,6 +204,7 @@ public class Model_E_Lancer : ClassEnemy
 
             if (surroundBehaviourID == 2)
             {
+                if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkLeftEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
@@ -243,16 +245,16 @@ public class Model_E_Lancer : ClassEnemy
 
         attack.OnEnter += () =>
         {
-            if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttack)
+            if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttackMelee)
             {
                 ia_Manager.PermissionsMelee(true);
                 permissionToAttack = true;
             }
 
-            if (!ia_Manager.decisionOnAttack)
+            if (!ia_Manager.decisionOnAttackMelee)
             {
                 ia_Manager.SetOrderAttack(this);
-                ia_Manager.DecisionTake(true);
+                ia_Manager.DecisionTakeMelee(true);
             }
 
         };
@@ -263,7 +265,8 @@ public class Model_E_Lancer : ClassEnemy
 
             if (!onAttackAnimation && !canAttack && !waitingForRetreat)
             {
-                RunEvent();
+                var d = Vector3.Distance(transform.position, player.transform.position);
+                if (d > 0.5f) RunEvent();
 
                 Vector3 _dir = Vector3.zero;
                 Quaternion targetRotation;
@@ -314,17 +317,9 @@ public class Model_E_Lancer : ClassEnemy
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
 
-            if (!permissionToAttack && !ia_Manager.enemyRangePermisionAttack && !ia_Manager.decisionOnAttack)
-            {
-                ia_Manager.PermissionsRange(true);
-                permissionToAttack = true;
-            }
+            if (attackFinish) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f, true));
 
-            if (!ia_Manager.decisionOnAttack)
-            {
-                ia_Manager.SetOrderAttack(this);
-                ia_Manager.DecisionTake(true);
-            }
+            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission, true));
         };
 
         retreat.OnEnter += () =>
@@ -338,6 +333,10 @@ public class Model_E_Lancer : ClassEnemy
         retreat.OnUpdate += () =>
         {
             timeToRetreat -= Time.deltaTime;
+
+            var d = Vector3.Distance(transform.position, player.transform.position);
+
+            if (d > 2) timeToRetreat = 0;
 
             if (timeToRetreat > 0)
             {

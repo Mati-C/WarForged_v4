@@ -228,7 +228,7 @@ public class Controller_Player
 
         if (Input.GetKeyDown(KeyCode.Mouse0)) auxTimer = Time.time;
      
-        if (Input.GetKeyUp(KeyCode.Mouse0) && !_model.onFailAttack)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && !_model.onFailAttack && !_model.onDefence)
         {
             _model.ChargeAttackZero();
 

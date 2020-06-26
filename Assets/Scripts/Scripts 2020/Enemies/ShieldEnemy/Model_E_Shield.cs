@@ -7,11 +7,6 @@ using Sound;
 
 public class Model_E_Shield : ClassEnemy
 {
-    [Header("EnemyRoom Distances and Angles:")]
-    public float viewDistancePersuit;
-    public float angleToPersuit;
-    public float viewDistanceSurround;
-    public float angleToSurround;
 
     public Action IdleEvent;
     public Action WalkEvent;
@@ -30,7 +25,6 @@ public class Model_E_Shield : ClassEnemy
     public float surroundTimer;
     public float surroundTimerMin;
     public float surroundTimerMax;
-    public int surroundBehaviourID;
 
     [Header("EnemyShield Attack Variables:")]
 
@@ -55,6 +49,15 @@ public class Model_E_Shield : ClassEnemy
     public bool onParry;
     public float timeOnParry;
     public float timeOnParryMax;
+
+    [Header("Enemy FSM States:")]
+    public bool Spersuit;
+    public bool Ssurround;
+    public bool Sattack;
+    public bool Sretraet;
+    public bool Stakedamage;
+    public bool Sblocked;
+    public bool Sparry;
 
     IEnumerator DefenceBrokenTimer()
     {
@@ -131,11 +134,18 @@ public class Model_E_Shield : ClassEnemy
             viewDistancePersuit = 100;
             angleToPersuit = 360;
             angleToSurround = 360;
+
+            foreach (var item in sameID_Enemies)
+            {
+                item.viewDistancePersuit = 100;
+                item.angleToPersuit = 360;
+                item.angleToSurround = 360;
+            }
         };
 
         persuit.OnUpdate += () =>
         {
-
+            Spersuit = true;
             WalkEvent();
             player.CombatStateUp();
 
@@ -156,11 +166,12 @@ public class Model_E_Shield : ClassEnemy
 
         persuit.OnExit += () =>
         {
-            
+            Spersuit = false;   
         };
 
         surround.OnEnter += () =>
         {
+            Ssurround = true;
             surroundBehaviourID = UnityEngine.Random.Range(0, 2);
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
@@ -199,6 +210,7 @@ public class Model_E_Shield : ClassEnemy
 
             if (surroundBehaviourID == 1)
             {
+                if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkRightEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
@@ -211,6 +223,7 @@ public class Model_E_Shield : ClassEnemy
 
             if (surroundBehaviourID == 2)
             {
+                if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkLeftEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
@@ -247,20 +260,23 @@ public class Model_E_Shield : ClassEnemy
             if (aggressiveLevel == 1) viewDistanceSurround = 4.5f;
 
             if (aggressiveLevel == 2) viewDistanceSurround = 7f;
+
+            Ssurround = false;
         };
 
         attack.OnEnter += () =>
         {
-            if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttack) 
+            Sattack = true;
+            if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttackMelee) 
             {
                 ia_Manager.PermissionsMelee(true);
                 permissionToAttack = true;
             }
 
-            if (!ia_Manager.decisionOnAttack)
+            if (!ia_Manager.decisionOnAttackMelee)
             {
                 ia_Manager.SetOrderAttack(this);
-                ia_Manager.DecisionTake(true);
+                ia_Manager.DecisionTakeMelee(true);
             }
         };
 
@@ -270,7 +286,8 @@ public class Model_E_Shield : ClassEnemy
 
             if (!onAttackAnimation && !canAttack && !waitingForRetreat)
             {
-                RunEvent();
+                var d = Vector3.Distance(transform.position, player.transform.position);
+                if(d>0.5f) RunEvent();
                 Vector3 _dir = Vector3.zero;
                 Quaternion targetRotation;
                 _dir = (player.transform.position - transform.position).normalized;
@@ -310,6 +327,7 @@ public class Model_E_Shield : ClassEnemy
 
         attack.OnExit += () =>
         {
+            Sattack = false;
             if (timeToAttack <= 0)
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
@@ -318,13 +336,14 @@ public class Model_E_Shield : ClassEnemy
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
 
-            if (attackFinish) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f));
+            if (attackFinish) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f, true));
 
-            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission));
+            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission, true));
         };
 
         retreat.OnEnter += () =>
         {
+            Sretraet = true;
             attackFinish = false;
             timeToRetreat = maxTimeToRetreat;
             waitingForRetreat = false;
@@ -334,6 +353,10 @@ public class Model_E_Shield : ClassEnemy
         retreat.OnUpdate += () =>
         {
             timeToRetreat -= Time.deltaTime;
+
+            var d = Vector3.Distance(transform.position, player.transform.position);
+
+            if (d > 2) timeToRetreat = 0;
 
             if (timeToRetreat > 0)
             {
@@ -361,9 +384,16 @@ public class Model_E_Shield : ClassEnemy
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
+        retreat.OnExit += () =>
+        {
+            timeToRetreat = 0;
+            Sretraet = false;
+        };
+
         takeDamage.OnEnter += () =>                           
         {
-            timeToRetreat = 0;           
+            timeToRetreat = 0;
+            Stakedamage = true;
         };
 
         takeDamage.OnUpdate += () =>
@@ -383,11 +413,13 @@ public class Model_E_Shield : ClassEnemy
         takeDamage.OnExit += () =>
         {
             timeToRetreat = 0;
+            Stakedamage = false;
         };
 
         blocked.OnEnter += () =>
         {
             timeToRetreat = 0;
+            Sblocked = true;
         };
 
         blocked.OnUpdate += () =>
@@ -411,6 +443,7 @@ public class Model_E_Shield : ClassEnemy
         blocked.OnExit += () =>
         {
             timeToRetreat = 0;
+            Sblocked = false;
         };
 
         parry.OnEnter += () =>
@@ -420,6 +453,7 @@ public class Model_E_Shield : ClassEnemy
 
         parry.OnUpdate += () =>
         {
+            Sparry = true;
             waitingForRetreat = false;
             attackFinish = false;
 
@@ -444,6 +478,7 @@ public class Model_E_Shield : ClassEnemy
 
         parry.OnExit += () =>
         {
+            Sparry = false;
             timeToRetreat = 0;
         };
 

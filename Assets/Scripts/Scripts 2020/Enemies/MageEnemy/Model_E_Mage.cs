@@ -9,12 +9,6 @@ public class Model_E_Mage : ClassEnemy
 {
     Viewer_E_Mage _view;
 
-    [Header("EnemyRoom Distances and Angles:")]
-    public float viewDistancePersuit;
-    public float angleToPersuit;
-    public float viewDistanceSurround;
-    public float angleToSurround;
-
     public Action IdleEvent;
     public Action WalkEvent;
     public Action RetreatEvent;
@@ -28,7 +22,6 @@ public class Model_E_Mage : ClassEnemy
     public float surroundTimer;
     public float surroundTimerMin;
     public float surroundTimerMax;
-    public int surroundBehaviourID;
 
     [Header("EnemyMage Attack Variables:")]
 
@@ -105,11 +98,18 @@ public class Model_E_Mage : ClassEnemy
            viewDistancePersuit = 100;
            angleToPersuit = 360;
            angleToSurround = 360;
+
+            foreach (var item in sameID_Enemies)
+            {
+                item.viewDistancePersuit = 100;
+                item.angleToPersuit = 360;
+                item.angleToSurround = 360;
+            }
         };
 
         persuit.OnUpdate += () =>
         {
-            viewDistanceSurround = 6f;
+            viewDistanceSurround = 8.5f;
             WalkEvent();
             player.CombatStateUp();
 
@@ -143,7 +143,7 @@ public class Model_E_Mage : ClassEnemy
 
         surround.OnUpdate += () =>
         {
-            viewDistanceSurround = 7f;
+            viewDistanceSurround = 9f;
 
             var d = Vector3.Distance(player.transform.position, transform.position);
 
@@ -151,7 +151,7 @@ public class Model_E_Mage : ClassEnemy
 
             surroundTimer -= Time.deltaTime;
 
-            if (!ia_Manager.enemyRangePermisionAttack && !cantAskAgain) timeToAttack -= Time.deltaTime;
+            if (!ia_Manager.enemyRangePermisionAttack && !cantAskAgain && ia_Manager.enemiesListOnAttack.Count <= 0) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
             if (obs.Count() > 0) rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
@@ -168,6 +168,7 @@ public class Model_E_Mage : ClassEnemy
 
             if (surroundBehaviourID == 1)
             {
+                if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkRightEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
@@ -179,6 +180,7 @@ public class Model_E_Mage : ClassEnemy
 
             if (surroundBehaviourID == 2)
             {
+                if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkLeftEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
@@ -232,8 +234,6 @@ public class Model_E_Mage : ClassEnemy
 
             var d = Vector3.Distance(nearNodeToRetreat.transform.position, transform.position);
 
-            Debug.Log(d);
-
             if (d <= 1 && onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
             if (d <= 1 && !canSurround && life > 0) myFSM_EventMachine.ChangeState(persuit);
@@ -249,16 +249,16 @@ public class Model_E_Mage : ClassEnemy
         {
             shooting = true;
 
-            if (!permissionToAttack && !ia_Manager.enemyRangePermisionAttack && !ia_Manager.decisionOnAttack)
+            if (!permissionToAttack && !ia_Manager.enemyRangePermisionAttack && !ia_Manager.decisionOnAttackRange)
             {
                 ia_Manager.PermissionsRange(true);
                 permissionToAttack = true;
             }
 
-            if (!ia_Manager.decisionOnAttack)
+            if (!ia_Manager.decisionOnAttackRange)
             {
                 ia_Manager.SetOrderAttack(this);
-                ia_Manager.DecisionTake(true);
+                ia_Manager.DecisionTakeRange(true);
             }
         };
 
@@ -290,7 +290,6 @@ public class Model_E_Mage : ClassEnemy
         attack.OnExit += () =>
         {
            
-
             if (timeToAttack <= 0)
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);                
@@ -300,11 +299,12 @@ public class Model_E_Mage : ClassEnemy
 
             surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
 
-            if (attackFinish) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f));
+            if (attackFinish) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f, false));
 
-            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission));
+            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission, false));
 
             shooting = false;
+            attackFinish = false;
         };
 
         takeDamage.OnEnter += () =>

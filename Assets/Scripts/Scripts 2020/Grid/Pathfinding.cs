@@ -18,6 +18,7 @@ public class Pathfinding : MonoBehaviour {
     }
 
 	public void FindPath(Vector3 startPos, Vector3 targetPos) {
+
 		Node2 startNode = grid.NodeFromWorldPoint(startPos);
 		Node2 targetNode = grid.NodeFromWorldPoint(targetPos);
 

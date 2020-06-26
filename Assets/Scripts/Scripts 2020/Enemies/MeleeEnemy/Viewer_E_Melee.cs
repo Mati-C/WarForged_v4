@@ -166,33 +166,29 @@ public class Viewer_E_Melee : ClassEnemyViewer
 
     public void AnimGetHit()
     {
-        if (myModel.ID_Attack != 2)
+        bloodParticle.Clear();
+        bloodParticle.Play();
+        anim.SetBool("Walk", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
+        anim.SetBool("Retreat", false);
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
+
+        switch (anim.GetInteger("GetHit"))
         {
-            anim.SetBool("Walk", false);
-            anim.SetBool("Idle", false);
-            anim.SetBool("Run", false);
-            anim.SetBool("Retreat", false);
-            anim.SetBool("WalkLeft", false);
-            anim.SetBool("WalkRight", false);
-            bloodParticle.Clear();
-            bloodParticle.Play();
-       
-            switch (anim.GetInteger("GetHit"))
-            {
-                case 0:
-                    anim.SetInteger("GetHit", 1);
-                    break;
+            case 0:
+                anim.SetInteger("GetHit", 1);
+                break;
 
-                case 1:
-                    anim.SetInteger("GetHit", 2);
-                    break;
+            case 1:
+                anim.SetInteger("GetHit", 2);
+                break;
 
-                case 2:
-                    anim.SetInteger("GetHit", 1);
-                    break;
-            }
+            case 2:
+                anim.SetInteger("GetHit", 1);
+                break;
         }
-
        
     }
 }

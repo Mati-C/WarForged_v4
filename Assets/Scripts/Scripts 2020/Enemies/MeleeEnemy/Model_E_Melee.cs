@@ -7,11 +7,6 @@ using Sound;
 
 public class Model_E_Melee : ClassEnemy
 {
-    [Header("EnemyRoom Distances and Angles:")]
-    public float viewDistancePersuit;
-    public float angleToPersuit;
-    public float viewDistanceSurround;
-    public float angleToSurround;
 
     public Action IdleEvent;
     public Action WalkEvent;
@@ -30,7 +25,6 @@ public class Model_E_Melee : ClassEnemy
     public float surroundTimer;
     public float surroundTimerMin;
     public float surroundTimerMax;
-    public int surroundBehaviourID;
 
     [Header("Enemy Attack Variables:")]
 
@@ -109,6 +103,13 @@ public class Model_E_Melee : ClassEnemy
             viewDistancePersuit = 100;
             angleToPersuit = 360;
             angleToSurround = 360;
+
+            foreach (var item in sameID_Enemies)
+            {
+                item.viewDistancePersuit = 100;
+                item.angleToPersuit = 360;
+                item.angleToSurround = 360;
+            }
         };
 
         persuit.OnUpdate += () =>
@@ -179,6 +180,7 @@ public class Model_E_Melee : ClassEnemy
 
             if (surroundBehaviourID == 1)
             {
+                if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkRightEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
@@ -191,6 +193,7 @@ public class Model_E_Melee : ClassEnemy
 
             if (surroundBehaviourID == 2)
             {
+                if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkLeftEvent();
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
@@ -229,16 +232,16 @@ public class Model_E_Melee : ClassEnemy
 
         attack.OnEnter += () =>
         {
-            if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttack)
+            if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttackMelee)
             {
                 ia_Manager.PermissionsMelee(true);
                 permissionToAttack = true;
             }
 
-            if (!ia_Manager.decisionOnAttack)
+            if (!ia_Manager.decisionOnAttackMelee)
             {
                 ia_Manager.SetOrderAttack(this);
-                ia_Manager.DecisionTake(true);
+                ia_Manager.DecisionTakeMelee(true);
             }
 
             int r = UnityEngine.Random.Range(1, 101);
@@ -253,7 +256,8 @@ public class Model_E_Melee : ClassEnemy
 
             if (!onAttackAnimation && !canAttack && !waitingForRetreat)
             {
-                RunEvent();
+                var d = Vector3.Distance(transform.position, player.transform.position);
+                if (d > 0.5f) RunEvent();
 
                 Vector3 _dir = Vector3.zero;
                 Quaternion targetRotation;
@@ -267,7 +271,6 @@ public class Model_E_Melee : ClassEnemy
 
             if(canAttack && !onAttackAnimation && !waitingForRetreat)
             {
-
                 waitingForRetreat = true;
 
                 if (ID_Attack == 1) ComboAttackEvent();
@@ -297,6 +300,8 @@ public class Model_E_Melee : ClassEnemy
 
         attack.OnExit += () =>
         {
+            ID_Attack = 0;
+
             if (timeToAttack <= 0)
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
@@ -307,12 +312,12 @@ public class Model_E_Melee : ClassEnemy
 
             if (attackFinish)
             {
-                if (ID_Attack == 1) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f)); 
+                if (ID_Attack == 1) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 1.2f, true)); 
 
-                if (ID_Attack == 2) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 2)); 
+                if (ID_Attack == 2) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 2, true)); 
             }
 
-            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission));
+            else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission, true));
 
         };
 
@@ -327,6 +332,10 @@ public class Model_E_Melee : ClassEnemy
         retreat.OnUpdate += () =>
         {
             timeToRetreat -= Time.deltaTime;
+
+            var d = Vector3.Distance(transform.position, player.transform.position);
+
+            if (d > 2) timeToRetreat = 0;
 
             if (timeToRetreat >0)
             {
@@ -424,6 +433,7 @@ public class Model_E_Melee : ClassEnemy
     {
         life -= d;
         if (player.flamesOn) StartBurning();
+
         if (life <= 0) DieEvent();
 
         else

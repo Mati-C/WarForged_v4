@@ -19,7 +19,8 @@ public class IA_CombatManager : MonoBehaviour
 
     public bool enemyMeleePermisionAttack;
     public bool enemyRangePermisionAttack;
-    public bool decisionOnAttack;
+    public bool decisionOnAttackMelee;
+    public bool decisionOnAttackRange;
 
     private void Start()
     {
@@ -67,9 +68,14 @@ public class IA_CombatManager : MonoBehaviour
         enemyRangePermisionAttack = b;
     }
 
-    public void DecisionTake(bool b)
+    public void DecisionTakeMelee(bool b)
     {
-        decisionOnAttack = b;
+        decisionOnAttackMelee = b;
+    }
+
+    public void DecisionTakeRange(bool b)
+    {
+        decisionOnAttackRange = b;
     }
 
     public void SetOrderAttack(ClassEnemy e)
