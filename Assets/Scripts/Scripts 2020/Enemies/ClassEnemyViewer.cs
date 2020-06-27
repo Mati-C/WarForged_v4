@@ -10,6 +10,8 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     public ParticleSystem burnParticle;
     GameObject _levelUI;
 
+    public GameObject ragdoll;
+
     private void Awake()
     {
         _cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();

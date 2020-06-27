@@ -49,6 +49,9 @@ public class Viewer_E_Shield : ClassEnemyViewer
 
     public void AnimDie()
     {
+        Instantiate(ragdoll, transform.position, transform.rotation);
+        gameObject.SetActive(false);
+
         anim.SetBool("Die", true);
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
