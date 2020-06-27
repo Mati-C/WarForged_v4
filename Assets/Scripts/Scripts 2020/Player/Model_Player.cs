@@ -13,7 +13,8 @@ public class Model_Player : MonoBehaviour
     PlayerCamera _playerCamera;
     Camera _mainCam;
     IA_CombatManager _IA_CM;
- 
+    FireSword _fireSword;
+
     [Header("Player Life:")]
     public float life;
     public float maxLife;
@@ -60,10 +61,8 @@ public class Model_Player : MonoBehaviour
 
     [Header("Player Powers Values:")]
     public bool  flamesOn;
-    public float powerAmount;
-    public float powerMax;
-    public float powerCurrentTime;
-    public float powerCurrentMaxTime;
+    public float fireEnergy;
+    public float fireSwordCurrentTime;
 
     [Header("Player Damage Values:")]
     public float AttackDamageCombo1;
@@ -337,6 +336,7 @@ public class Model_Player : MonoBehaviour
         _IA_CM = FindObjectOfType<IA_CombatManager>();
         _controller = new Controller_Player(this,_viewer);
         _rb = GetComponent<Rigidbody>();
+        _fireSword = GetComponent<FireSword>();
 
         ModifyNodes();
     }
@@ -632,10 +632,10 @@ public class Model_Player : MonoBehaviour
             if (CanSee(item.transform, viewDistanceAttack, angleToAttack, playerCanSee))
             {
                 item.GetDamage(d,DamageType.Light);
-                if (powerCurrentTime <= 0)
+                if (fireSwordCurrentTime <= 0)
                 {
-                    HitEnemyEvent(d / powerMax);
-                    powerAmount += d;
+                    HitEnemyEvent(d / _fireSword.energyToUseFireSword);
+                    fireEnergy += d;
                 }
             }
         }
@@ -655,10 +655,10 @@ public class Model_Player : MonoBehaviour
         foreach (var item in enemies)
         {
             item.GetDamage(ChargeAttackDamage, DamageType.Heavy);
-            if (powerCurrentTime <= 0)
+            if (fireSwordCurrentTime <= 0)
             {
-                HitEnemyEvent(ChargeAttackDamage / powerMax);
-                powerAmount += ChargeAttackDamage;
+                HitEnemyEvent(ChargeAttackDamage / _fireSword.energyToUseFireSword);
+                fireEnergy += ChargeAttackDamage;
             }
         }
     }
@@ -737,7 +737,7 @@ public class Model_Player : MonoBehaviour
  
     public void PowerWeapon()
     {
-        if(powerAmount >= powerMax)
+        if(fireEnergy >= _fireSword.energyToUseFireSword)
         {
             StartCoroutine(PowerOn());
             PowerActivatedEvent();
@@ -746,16 +746,16 @@ public class Model_Player : MonoBehaviour
 
     public IEnumerator PowerOn()
     {
-        powerAmount = 0;
+        fireEnergy = 0;
         flamesOn = true;
         StartCoroutine(OnActionState(1));
-        while(powerCurrentTime < powerCurrentMaxTime)
+        while(fireSwordCurrentTime < _fireSword.fireSwordTime)
         {
-            powerCurrentTime += Time.deltaTime;
+            fireSwordCurrentTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         PowerDesactivatedEvent();
-        powerCurrentTime = 0;
+        fireSwordCurrentTime = 0;
         flamesOn = false;
     }
 
@@ -842,7 +842,18 @@ public class Model_Player : MonoBehaviour
             }
         }
 
-       
+        if (target.GetComponent<MageMissile>() && !onDodge)
+        {
+            life -= d;
+            if (!onAction)
+            {
+                onDamageTime = 0.5f;
+                DefenceOff();
+                GetHitEvent();
+            }
+        }
+
+
     }
 
     public void LockEnemies()

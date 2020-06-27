@@ -16,6 +16,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public Grid grid;
     public Rigidbody rb;
     public IA_CombatManager ia_Manager;
+    public FireSword playerFireSowrd;
 
     [Header("EnemyRoom ID:")]
 
@@ -36,6 +37,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public float life;
     public float maxLife;
+    public float exp;
     public float speed;
     public int aggressiveLevel;
 
@@ -73,9 +75,7 @@ public abstract class ClassEnemy : MonoBehaviour
     [Header("Enemy GetHit Variables:")]
     public float onDamageTime;
     public float damageDelayTime;
-    public float burnDamage;
     public float timeBurning;
-    public float maxTimeBurning;
     
     public Action GetHitEvent;
     public Action DieEvent;
@@ -146,7 +146,7 @@ public abstract class ClassEnemy : MonoBehaviour
     {
         burning = true;
         float tic = 1;
-        timeBurning = maxTimeBurning;
+        timeBurning = playerFireSowrd.fireSwordBurnTimeOnEnemy;
         _viewer.BurnOn_Off(true);
 
         while (timeBurning > 0)
@@ -155,8 +155,8 @@ public abstract class ClassEnemy : MonoBehaviour
             tic -= Time.deltaTime;
             if (tic <= 0)
             {              
-                _viewer.CreatePopText(burnDamage);
-                life -= burnDamage;
+                _viewer.CreatePopText(playerFireSowrd.fireSwordBurnDamage);
+                life -= playerFireSowrd.fireSwordBurnDamage;
                 tic = 1;
                 if(life<= 0)
                 {
@@ -174,7 +174,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public void StartBurning()
     {
-        timeBurning = maxTimeBurning;
+        timeBurning = playerFireSowrd.fireSwordBurnTimeOnEnemy;
         if (!burning) StartCoroutine(BurnDamageTimer());
     }
 

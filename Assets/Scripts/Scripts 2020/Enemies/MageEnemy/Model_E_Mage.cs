@@ -66,6 +66,7 @@ public class Model_E_Mage : ClassEnemy
         _view = GetComponent<Viewer_E_Mage>();
         ListNodesToRetreat.AddRange(nodesToRetreat.GetComponentsInChildren<Transform>());
         ia_Manager = FindObjectOfType<IA_CombatManager>();
+        playerFireSowrd = FindObjectOfType<FireSword>();
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
@@ -324,7 +325,11 @@ public class Model_E_Mage : ClassEnemy
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
-    
+
+        die.OnEnter += () =>
+        {
+            playerFireSowrd.SwordExp(exp);
+        };
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);
 

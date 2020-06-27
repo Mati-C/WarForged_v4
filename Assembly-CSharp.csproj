@@ -515,6 +515,7 @@
     <Compile Include="Assets\Scripts\Scripts 2020\Grid\Node2.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Grid\Pathfinding.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Controller_Player.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Player\FireSword.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Model_Player.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\PlayerSword.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Viewer_Player.cs" />

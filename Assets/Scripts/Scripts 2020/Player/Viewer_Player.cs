@@ -7,6 +7,7 @@ public class Viewer_Player : MonoBehaviour
 {
     public Animator anim;
     Model_Player _player;
+    FireSword _fireSword;
     public ParticleSystem bloodParticle;
     public ParticleSystem sparksParticle;
     Camera _mainCam;
@@ -113,6 +114,7 @@ public class Viewer_Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         _player = GetComponent<Model_Player>();
+        _fireSword = FindObjectOfType<FireSword>();
         powerBar.fillAmount = 0;
         DesactivateSword();
     }
@@ -224,9 +226,9 @@ public class Viewer_Player : MonoBehaviour
 
     IEnumerator DecreesPowerBar()
     {
-        while(_player.powerCurrentTime < _player.powerCurrentMaxTime)
+        while(_player.fireSwordCurrentTime < _fireSword.fireSwordTime)
         {
-            powerBar.fillAmount -= Time.deltaTime / _player.powerCurrentMaxTime;
+            powerBar.fillAmount -= Time.deltaTime / _fireSword.fireSwordTime;
             yield return new WaitForEndOfFrame();
         }
         powerBar.fillAmount = 0;

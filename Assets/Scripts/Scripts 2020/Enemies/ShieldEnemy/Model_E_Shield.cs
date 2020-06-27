@@ -95,6 +95,7 @@ public class Model_E_Shield : ClassEnemy
         _view = GetComponent<Viewer_E_Shield>();
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         ia_Manager = FindObjectOfType<IA_CombatManager>();
+        playerFireSowrd = FindObjectOfType<FireSword>();
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
@@ -480,6 +481,11 @@ public class Model_E_Shield : ClassEnemy
         {
             Sparry = false;
             timeToRetreat = 0;
+        };
+
+        die.OnEnter += () =>
+        {
+            playerFireSowrd.SwordExp(exp);
         };
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);
