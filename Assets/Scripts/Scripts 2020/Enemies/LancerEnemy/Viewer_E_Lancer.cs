@@ -54,10 +54,7 @@ public class Viewer_E_Lancer : ClassEnemyViewer
 
     public void AnimDie()
     {
-        Instantiate(ragdoll, transform.position, transform.rotation);
-        gameObject.SetActive(false);
-
-        anim.SetBool("Die", true);
+      
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Retreat", false);
@@ -65,6 +62,7 @@ public class Viewer_E_Lancer : ClassEnemyViewer
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
         anim.SetBool("Parry", false);
+        AnimRagdollActivate(anim);
     }
 
     public void BlockedAnim()

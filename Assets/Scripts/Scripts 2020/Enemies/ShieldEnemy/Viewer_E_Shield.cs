@@ -48,17 +48,14 @@ public class Viewer_E_Shield : ClassEnemyViewer
 
 
     public void AnimDie()
-    {
-        Instantiate(ragdoll, transform.position, transform.rotation);
-        gameObject.SetActive(false);
-
-        anim.SetBool("Die", true);
+    {       
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
+        AnimRagdollActivate(anim);
     }
 
     public void BlockedAnim()

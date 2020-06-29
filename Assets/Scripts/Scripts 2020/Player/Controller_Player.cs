@@ -38,7 +38,7 @@ public class Controller_Player
         _model.CombatStateEvent += _camera.SetCameraState;
         _model.DefenceEvent += _viewer.DefenceAnim;
         _model.DefenceEvent += _viewer.ChangeLayer;
-        _model.PowerActivatedEvent += _viewer.PowerSwordActivated;
+        _model.FireSwordEvent += _viewer.PowerSwordActivated;
         _model.PowerDesactivatedEvent += _viewer.PowerSwordDesactivated;
         _model.HitEnemyEvent += _viewer.OnHit;
         _model.ChargeAttackEvent += _viewer.ChargeAttackAnim;

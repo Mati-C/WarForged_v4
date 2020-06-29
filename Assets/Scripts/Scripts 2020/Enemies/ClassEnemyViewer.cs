@@ -6,6 +6,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 {
     Camera _cam;
     public PopText prefabTextDamage;
+    public Transform ragdollBones;
     public ParticleSystem bloodParticle;
     public ParticleSystem burnParticle;
     GameObject _levelUI;
@@ -27,6 +28,13 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void AnimRagdollActivate(Animator anim)
+    {
+        anim.enabled = false;
+        ragdollBones.parent = null;
+        ragdollBones.GetComponent<Rigidbody>().AddForce(-transform.forward * 40, ForceMode.Impulse);
     }
 
     public void CreatePopText(float damage)

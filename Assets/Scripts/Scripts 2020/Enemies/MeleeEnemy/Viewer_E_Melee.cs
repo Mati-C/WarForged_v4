@@ -9,8 +9,7 @@ public class Viewer_E_Melee : ClassEnemyViewer
     public Animator anim;
     public Model_E_Melee myModel;
     public ParticleSystem heavyHitParticle;
-
-    CapsuleCollider mainCollider;
+    public CapsuleCollider mainCollider;
 
     public IEnumerator DelayAnimActive(string animName, float t)
     {
@@ -45,11 +44,21 @@ public class Viewer_E_Melee : ClassEnemyViewer
         anim.SetBool("Knocked", false);
     }
 
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     private void Start()
     {
         myModel = GetComponent<Model_E_Melee>();
         mainCollider = GetComponent<CapsuleCollider>();
         StartCoroutine(DamageTimerAnim());
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) ActivateAnim();
     }
 
     public void HeavyHitAntisipation()
@@ -60,20 +69,22 @@ public class Viewer_E_Melee : ClassEnemyViewer
 
     public void AnimDie()
     {
-        Instantiate(ragdoll, transform.position, transform.rotation);
-        gameObject.SetActive(false);
-
-        anim.SetBool("Die", true);
+      
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
+        AnimRagdollActivate(anim);        
+    }
 
-//         transform.position += Vector3.up * 0.2f;
-//         anim.enabled = false;
-//         mainCollider.enabled = false;
+    public void ActivateAnim()
+    {
+        transform.position = new Vector3(ragdollBones.position.x, transform.position.y, ragdollBones.position.z);
+        ragdollBones.SetParent(transform);        
+        anim.enabled = true;
+     
     }
 
     public void BlockedAnim()

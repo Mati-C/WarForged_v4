@@ -115,6 +115,7 @@ public class Model_E_Melee : ClassEnemy
 
         persuit.OnUpdate += () =>
         {
+            if (aggressiveLevel == 1) viewDistanceSurround = 5.5f;
 
             WalkEvent();
             player.CombatStateUp();

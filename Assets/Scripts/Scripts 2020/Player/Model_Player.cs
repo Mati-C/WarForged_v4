@@ -107,7 +107,7 @@ public class Model_Player : MonoBehaviour
     public Action SaveSwordEvent;
     public Action LockedOnEvent;
     public Action LockedOffEvent;
-    public Action PowerActivatedEvent;
+    public Action FireSwordEvent;
     public Action PowerDesactivatedEvent;
     public Action <float>HitEnemyEvent;
     public Action ChargeAttackEvent;
@@ -740,7 +740,7 @@ public class Model_Player : MonoBehaviour
         if(fireEnergy >= _fireSword.energyToUseFireSword)
         {
             StartCoroutine(PowerOn());
-            PowerActivatedEvent();
+            FireSwordEvent();
         }
     }
 
