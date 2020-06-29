@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Viewer_E_Lancer : ClassEnemyViewer
 {
-    public Animator anim;
+
     public Model_E_Lancer myModel;
-    
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
+        levelUI = GameObject.Find("LEVEL UI");
+    }
+
     public IEnumerator DelayAnimActive(string animName, float t)
     {
         anim.SetBool(animName, true);
@@ -211,5 +218,10 @@ public class Viewer_E_Lancer : ClassEnemyViewer
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
 
-    }  
+    }
+
+    public override void GetUpAnim()
+    {
+        throw new System.NotImplementedException();
+    }
 }

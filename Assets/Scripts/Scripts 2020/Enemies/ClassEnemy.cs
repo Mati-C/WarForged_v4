@@ -178,6 +178,13 @@ public abstract class ClassEnemy : MonoBehaviour
         if (!burning) StartCoroutine(BurnDamageTimer());
     }
 
+    public void PushRagdoll()
+    {
+        onDamageTime = 3;
+        _viewer.DesactivateAnimator();
+    }
+
+
     public IEnumerator OnDamageTimer()
     {
         while(true)

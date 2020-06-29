@@ -5,7 +5,6 @@ using UnityEngine;
 public class Viewer_E_Mage : ClassEnemyViewer
 {
 
-    public Animator anim;
     public Model_E_Mage myModel;
     public ParticleSystem heavyHitParticle;
 
@@ -24,6 +23,13 @@ public class Viewer_E_Mage : ClassEnemyViewer
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
+        levelUI = GameObject.Find("LEVEL UI");
     }
 
     private void Start()
@@ -137,5 +143,10 @@ public class Viewer_E_Mage : ClassEnemyViewer
                 break;
         }
 
+    }
+
+    public override void GetUpAnim()
+    {
+        throw new System.NotImplementedException();
     }
 }

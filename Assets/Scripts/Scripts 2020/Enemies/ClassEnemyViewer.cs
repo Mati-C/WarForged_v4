@@ -4,19 +4,24 @@ using UnityEngine;
 
 public abstract class ClassEnemyViewer : MonoBehaviour
 {
-    Camera _cam;
+    [Header("Enemy Camera and UI:")]
+    public Camera cam;
     public PopText prefabTextDamage;
-    public Transform ragdollBones;
+    public GameObject levelUI;
+
+    [Header("Enemy Particles:")]
     public ParticleSystem bloodParticle;
     public ParticleSystem burnParticle;
-    GameObject _levelUI;
 
-    public GameObject ragdoll;
+    [Header("Enemy Animator:")]
+    public Animator anim;
+    public RuntimeAnimatorController defaultAnimator;
+    public RuntimeAnimatorController getUpAnimator;
+    public Transform ragdollBones;
 
     private void Awake()
     {
-        _cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
-        _levelUI = GameObject.Find("LEVEL UI");
+        
     }
 
     void Start()
@@ -42,10 +47,32 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 
         PopText text = Instantiate(prefabTextDamage);
         StartCoroutine(FollowEnemy(text));
-        text.transform.SetParent(_levelUI.transform, false);
+        text.transform.SetParent(levelUI.transform, false);
         text.SetDamage(damage);
 
     }
+
+    public void DesactivateAnimator()
+    {
+        StartCoroutine(AnimatorDesactivateCorrutine());
+    }
+
+    IEnumerator AnimatorDesactivateCorrutine()
+    {
+        anim.runtimeAnimatorController = getUpAnimator;
+        anim.enabled = false;
+        ragdollBones.parent = null;
+        transform.SetParent(ragdollBones);
+        ragdollBones.GetComponent<Rigidbody>().AddForce(-transform.forward * 90, ForceMode.Impulse);
+        yield return new WaitForSeconds(2);
+        transform.parent = null;
+        ragdollBones.SetParent(transform);
+        anim.enabled = true;
+        GetUpAnim();
+    }
+
+
+    public abstract void GetUpAnim(); 
 
     public void BurnOn_Off(bool b)
     {
@@ -58,7 +85,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     {
         while (text != null)
         {
-            Vector2 screenPos = _cam.WorldToScreenPoint(transform.position + (Vector3.up * 2));
+            Vector2 screenPos = cam.WorldToScreenPoint(transform.position + (Vector3.up * 2));
             text.transform.position = screenPos;
             yield return new WaitForEndOfFrame();
         }

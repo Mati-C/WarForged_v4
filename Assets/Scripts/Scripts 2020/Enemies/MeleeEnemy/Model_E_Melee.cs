@@ -115,6 +115,7 @@ public class Model_E_Melee : ClassEnemy
 
         persuit.OnUpdate += () =>
         {
+
             if (aggressiveLevel == 1) viewDistanceSurround = 5.5f;
 
             WalkEvent();
@@ -302,7 +303,7 @@ public class Model_E_Melee : ClassEnemy
 
         attack.OnExit += () =>
         {
-            ID_Attack = 0;
+           
 
             if (timeToAttack <= 0)
             {
@@ -319,7 +320,10 @@ public class Model_E_Melee : ClassEnemy
                 if (ID_Attack == 2) StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission + 2, true)); 
             }
 
+            
             else StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission, true));
+
+            ID_Attack = 0;
 
         };
 

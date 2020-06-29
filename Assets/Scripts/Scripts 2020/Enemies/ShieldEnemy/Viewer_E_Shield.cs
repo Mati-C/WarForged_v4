@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Viewer_E_Shield : ClassEnemyViewer
 {
-    public Animator anim;
     public Model_E_Shield myModel;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
+        levelUI = GameObject.Find("LEVEL UI");
+    }
 
     public IEnumerator DelayAnimActive(string animName, float t)
     {
@@ -39,6 +45,7 @@ public class Viewer_E_Shield : ClassEnemyViewer
         yield return new WaitForSeconds(2.5f);
         anim.SetBool("Knocked", false);
     }
+
 
     private void Start()
     {
@@ -195,5 +202,10 @@ public class Viewer_E_Shield : ClassEnemyViewer
                 anim.SetInteger("Parry", 1);
                 break;
         }
+    }
+
+    public override void GetUpAnim()
+    {
+        throw new System.NotImplementedException();
     }
 }

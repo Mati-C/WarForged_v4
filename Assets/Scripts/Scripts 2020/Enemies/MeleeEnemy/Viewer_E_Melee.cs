@@ -6,7 +6,6 @@ using System.Linq;
 
 public class Viewer_E_Melee : ClassEnemyViewer
 {
-    public Animator anim;
     public Model_E_Melee myModel;
     public ParticleSystem heavyHitParticle;
     public CapsuleCollider mainCollider;
@@ -47,6 +46,8 @@ public class Viewer_E_Melee : ClassEnemyViewer
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
+        levelUI = GameObject.Find("LEVEL UI");
     }
 
     private void Start()
@@ -58,13 +59,26 @@ public class Viewer_E_Melee : ClassEnemyViewer
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) ActivateAnim();
+        
     }
 
     public void HeavyHitAntisipation()
     {
         heavyHitParticle.Clear();
         heavyHitParticle.Play();
+    }
+
+    public override void GetUpAnim()
+    {
+        StartCoroutine(GetUpCorrutine());
+    }
+
+    IEnumerator GetUpCorrutine()
+    {
+        anim.SetBool("Blocked", false);
+        anim.SetBool("Knocked", true);
+        yield return new WaitForSeconds(1.6f);
+        anim.SetBool("Knocked", false);
     }
 
     public void AnimDie()
