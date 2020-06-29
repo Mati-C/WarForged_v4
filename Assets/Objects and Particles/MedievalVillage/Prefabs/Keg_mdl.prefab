@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 476864}
   - component: {fileID: 3368312}
   - component: {fileID: 2372280}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Keg_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ MeshRenderer:
   m_GameObject: {fileID: 114838}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -89,7 +89,6 @@ GameObject:
   m_Component:
   - component: {fileID: 420962}
   - component: {fileID: 20520076}
-  - component: {fileID: 6529496}
   m_Layer: 0
   m_Name: Keg_mdl
   m_TagString: Untagged
@@ -141,19 +140,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2309214}
   m_Enabled: 1
---- !u!65 &6529496
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156488}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.6473596, z: 0.83939976}
-  m_Center: {x: 0, y: 0.8183106, z: 0.00772056}
 --- !u!1 &188216
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +151,7 @@ GameObject:
   - component: {fileID: 487762}
   - component: {fileID: 3312650}
   - component: {fileID: 2309214}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Keg_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +189,7 @@ MeshRenderer:
   m_GameObject: {fileID: 188216}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -244,7 +230,8 @@ GameObject:
   - component: {fileID: 458408}
   - component: {fileID: 3337720}
   - component: {fileID: 2338362}
-  m_Layer: 0
+  - component: {fileID: 4873288922869377938}
+  m_Layer: 16
   m_Name: Keg_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +269,7 @@ MeshRenderer:
   m_GameObject: {fileID: 190448}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -312,3 +299,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4873288922869377938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1940141, y: 1.7388755, z: 0.9757772}
+  m_Center: {x: -0.0013130903, y: 0.86601, z: 0}

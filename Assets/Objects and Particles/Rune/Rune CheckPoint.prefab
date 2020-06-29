@@ -66,6 +66,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -178,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Landmark LOD_2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 858b4b76b9e5de84ea073842bcfec908, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 858b4b76b9e5de84ea073842bcfec908, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -262,6 +267,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 6eaa86a66fadc774bb9615f10286086a, type: 3}
       propertyPath: m_Name
       value: Landmark LOD_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6eaa86a66fadc774bb9615f10286086a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6eaa86a66fadc774bb9615f10286086a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -353,6 +362,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: b8cff35e96e4e84498dbffbb8b10d988, type: 3}
       propertyPath: m_Name
       value: Landmark LOD_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b8cff35e96e4e84498dbffbb8b10d988, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b8cff35e96e4e84498dbffbb8b10d988, type: 3}
       propertyPath: m_LocalPosition.x

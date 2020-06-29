@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 4443360837223266042}
   - component: {fileID: 8857529245953127435}
   - component: {fileID: 8546074355247029655}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 58f3bb8232b1ee14596066e77ad1eed2, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 58f3bb8232b1ee14596066e77ad1eed2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -165,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 58f3bb8232b1ee14596066e77ad1eed2, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 58f3bb8232b1ee14596066e77ad1eed2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 58f3bb8232b1ee14596066e77ad1eed2, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 58f3bb8232b1ee14596066e77ad1eed2, type: 3}
       propertyPath: m_StaticEditorFlags

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2335793619305795912}
   m_Layer: 0
   m_Name: BrokenBridge
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2335793619305795912
 Transform:
@@ -43,12 +43,13 @@ GameObject:
   - component: {fileID: 5134738079107026953}
   - component: {fileID: 4614792268969697498}
   - component: {fileID: 3632119621894333538}
+  - component: {fileID: 3481495751935101890}
   m_Layer: 0
   m_Name: Broken Bridge 01
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5134738079107026953
 Transform:
@@ -110,6 +111,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3481495751935101890
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537142283918095590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -7132309915882254780, guid: ffba7f3e3d171b948a4a5a6513061d82, type: 3}
 --- !u!1 &7593160564051975547
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,12 +136,13 @@ GameObject:
   - component: {fileID: 9147869433660364553}
   - component: {fileID: 5418445016263380904}
   - component: {fileID: 4287580725653050067}
+  - component: {fileID: 4686855809207776738}
   m_Layer: 0
   m_Name: Broken Bridge 02
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9147869433660364553
 Transform:
@@ -188,3 +204,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4686855809207776738
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593160564051975547}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -1183053653749403305, guid: ffba7f3e3d171b948a4a5a6513061d82, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 468864}
   - component: {fileID: 3334866}
   - component: {fileID: 2335148}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Crate_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.80791736
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -89,7 +89,8 @@ GameObject:
   - component: {fileID: 430752}
   - component: {fileID: 3398638}
   - component: {fileID: 2341000}
-  m_Layer: 0
+  - component: {fileID: 709387320600082940}
+  m_Layer: 16
   m_Name: Crate_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,6 +157,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &709387320600082940
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0115367, y: 0.99308175, z: 1.0117728}
+  m_Center: {x: -0.0015550256, y: 0.49686942, z: -0.0061697513}
 --- !u!1 &167210
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 495798}
   - component: {fileID: 20577120}
-  - component: {fileID: 6584812}
   m_Layer: 0
   m_Name: Crate_mdl
   m_TagString: Untagged
@@ -205,32 +218,19 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.03953872
+  - screenRelativeHeight: 0.40395868
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2341000}
-  - screenRelativeHeight: 0.009590114
+  - screenRelativeHeight: 0.13980639
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2335148}
-  - screenRelativeHeight: 0.001882753
+  - screenRelativeHeight: 0.058396388
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2321954}
   m_Enabled: 1
---- !u!65 &6584812
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167210}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &187834
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 467356}
   - component: {fileID: 3320984}
   - component: {fileID: 2321954}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Crate_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.55922556
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0

@@ -4688,7 +4688,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8252016135844896393
 Transform:
@@ -4736,7 +4736,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.4666354
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -4793,7 +4793,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.033018887, g: 0.14298946, b: 1, a: 1}
   m_Intensity: 1.5
-  m_Range: 5
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -4896,15 +4896,15 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.058975015
+  - screenRelativeHeight: 0.2333177
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7586433362130399305}
-  - screenRelativeHeight: 0.03399699
+  - screenRelativeHeight: 0.09931983
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6780960780163102494}
-  - screenRelativeHeight: 0.006230783
+  - screenRelativeHeight: 0.045284983
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5175592236042513526}
@@ -4930,7 +4930,6 @@ MonoBehaviour:
   checkPointActivated: 0
   particles: {fileID: 7447285462504290579}
   runeCircle: {fileID: 5831890257712408830}
-  _AuraLight: {fileID: 0}
 --- !u!135 &2496061675681922985
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4984,7 +4983,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8362377239943574146}
   - component: {fileID: 6759272838478899662}
-  - component: {fileID: 64529046523581359}
   m_Layer: 0
   m_Name: Aura Point Light
   m_TagString: Untagged
@@ -5017,8 +5015,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.25485048, g: 0.34529018, b: 0.7830189, a: 1}
-  m_Intensity: 0.5
-  m_Range: 3
+  m_Intensity: 0.17
+  m_Range: 2.43
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -5049,14 +5047,14 @@ Light:
       e33: 1
     m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
+  m_DrawHalo: 1
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -5066,39 +5064,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &64529046523581359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5771852816540968612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01d29d88278f45458d99e6b5199e920, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength: 1
-  useScattering: 0
-  overrideScattering: 0
-  overridingScattering: 1
-  scatteringBias: 0
-  useColorTemperatureTint: 0
-  overrideColor: 1
-  overridingColor: {r: 0.08005247, g: 0.13518079, b: 0.999999, a: 1}
-  useShadow: 0
-  useCookie: 1
-  cookieMapRenderTexture: {fileID: 0}
-  enableOutOfPhaseColor: 0
-  outOfPhaseColorStrength: 0.1
-  outOfPhaseColor: {r: 0, g: 1, b: 1, a: 1}
-  customDistanceFalloffThreshold: 1
-  customDistanceFalloffPower: 15
-  customCookieDistanceFalloffStartThreshold: 0.1
-  customCookieDistanceFalloffEndThreshold: 0.25
-  customCookieDistanceFalloffPower: 2
-  customAngularFalloffThreshold: 0.8
-  customAngularFalloffPower: 2
 --- !u!1 &5831829329780767645
 GameObject:
   m_ObjectHideFlags: 0
@@ -5115,7 +5080,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8389480154955480328
 Transform:
@@ -5163,7 +5128,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.39727932
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -14632,7 +14597,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5129568256837858950
 Transform:
