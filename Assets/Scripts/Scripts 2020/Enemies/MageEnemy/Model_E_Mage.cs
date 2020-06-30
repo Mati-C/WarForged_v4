@@ -67,6 +67,7 @@ public class Model_E_Mage : ClassEnemy
         ListNodesToRetreat.AddRange(nodesToRetreat.GetComponentsInChildren<Transform>());
         ia_Manager = FindObjectOfType<IA_CombatManager>();
         playerFireSowrd = FindObjectOfType<FireSword>();
+        exp = playerFireSowrd.mageExp;
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");

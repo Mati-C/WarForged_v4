@@ -33,6 +33,12 @@ public class FireSword: MonoBehaviour
     public float fireWaveExpansionTimeLV2;
     public bool pushEnemies;
 
+    [Header("Enemy Exp:")]
+    public float warriorExp;
+    public float shieldExp;
+    public float spearExp;
+    public float mageExp;
+
     Action GetEnergy;
     float _fireGizmo;
 

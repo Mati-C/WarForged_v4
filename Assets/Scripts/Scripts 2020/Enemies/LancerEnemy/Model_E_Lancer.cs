@@ -79,6 +79,7 @@ public class Model_E_Lancer : ClassEnemy
         timesToParry = UnityEngine.Random.Range(minTimesToParry, maxTimesToParry);
         ia_Manager = FindObjectOfType<IA_CombatManager>();
         playerFireSowrd = FindObjectOfType<FireSword>();
+        exp = playerFireSowrd.spearExp;
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
