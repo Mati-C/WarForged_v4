@@ -52,7 +52,7 @@ public class Viewer_E_Mage : ClassEnemyViewer
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
-        AnimRagdollActivate(anim);
+        AnimRagdollActivate();
     }
 
     public void AnimWalkCombat()

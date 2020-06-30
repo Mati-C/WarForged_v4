@@ -116,7 +116,7 @@ public class FireSword: MonoBehaviour
                     enemies.Add(item);
                     item.StartBurning();
                     item.GetDamage(fireWaveDamage, Model_Player.DamageType.Heavy);
-                    if (pushEnemies) item.PushRagdoll();
+//                     if (pushEnemies) item.PushRagdoll();
                 }
             }
         

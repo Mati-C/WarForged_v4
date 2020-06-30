@@ -8,7 +8,6 @@ public class Viewer_E_Melee : ClassEnemyViewer
 {
     public Model_E_Melee myModel;
     public ParticleSystem heavyHitParticle;
-    public CapsuleCollider mainCollider;
 
     public IEnumerator DelayAnimActive(string animName, float t)
     {
@@ -53,7 +52,6 @@ public class Viewer_E_Melee : ClassEnemyViewer
     private void Start()
     {
         myModel = GetComponent<Model_E_Melee>();
-        mainCollider = GetComponent<CapsuleCollider>();
         StartCoroutine(DamageTimerAnim());
     }
 
@@ -90,16 +88,16 @@ public class Viewer_E_Melee : ClassEnemyViewer
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
-        AnimRagdollActivate(anim);        
+        AnimRagdollActivate();        
     }
 
-    public void ActivateAnim()
-    {
-        transform.position = new Vector3(ragdollBones.position.x, transform.position.y, ragdollBones.position.z);
-        ragdollBones.SetParent(transform);        
-        anim.enabled = true;
-     
-    }
+//     public void ActivateAnim()
+//     {
+//         transform.position = new Vector3(ragdollBones.position.x, transform.position.y, ragdollBones.position.z);
+//         ragdollBones.SetParent(transform);        
+//         anim.enabled = true;
+//      
+//     }
 
     public void BlockedAnim()
     {

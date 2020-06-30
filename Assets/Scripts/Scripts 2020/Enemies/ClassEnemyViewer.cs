@@ -17,7 +17,8 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     public Animator anim;
     public RuntimeAnimatorController defaultAnimator;
     public RuntimeAnimatorController getUpAnimator;
-    public Transform ragdollBones;
+//     public Transform ragdollBones;
+    public GameObject ragdollPrefab;
 
     private void Awake()
     {
@@ -35,11 +36,13 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 
     }
 
-    public void AnimRagdollActivate(Animator anim)
+    public void AnimRagdollActivate()
     {
-        anim.enabled = false;
-        ragdollBones.parent = null;
-        ragdollBones.GetComponent<Rigidbody>().AddForce(-transform.forward * 40, ForceMode.Impulse);
+        Instantiate(ragdollPrefab, transform.position, transform.rotation);
+        gameObject.SetActive(false);
+//         anim.enabled = false;
+//         ragdollBones.parent = null;
+//         ragdollBones.GetComponent<Rigidbody>().AddForce(-transform.forward * 40, ForceMode.Impulse);
     }
 
     public void CreatePopText(float damage)
@@ -52,24 +55,24 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 
     }
 
-    public void DesactivateAnimator()
-    {
-        StartCoroutine(AnimatorDesactivateCorrutine());
-    }
-
-    IEnumerator AnimatorDesactivateCorrutine()
-    {
-        anim.runtimeAnimatorController = getUpAnimator;
-        anim.enabled = false;
-        ragdollBones.parent = null;
-        transform.SetParent(ragdollBones);
-        ragdollBones.GetComponent<Rigidbody>().AddForce(-transform.forward * 90, ForceMode.Impulse);
-        yield return new WaitForSeconds(2);
-        transform.parent = null;
-        ragdollBones.SetParent(transform);
-        anim.enabled = true;
-        GetUpAnim();
-    }
+//     public void DesactivateAnimator()
+//     {
+//         StartCoroutine(AnimatorDesactivateCorrutine());
+//     }
+// 
+//     IEnumerator AnimatorDesactivateCorrutine()
+//     {
+//         anim.runtimeAnimatorController = getUpAnimator;
+//         anim.enabled = false;
+//         ragdollBones.parent = null;
+//         transform.SetParent(ragdollBones);
+//         ragdollBones.GetComponent<Rigidbody>().AddForce(-transform.forward * 90, ForceMode.Impulse);
+//         yield return new WaitForSeconds(2);
+//         transform.parent = null;
+//         ragdollBones.SetParent(transform);
+//         anim.enabled = true;
+//         GetUpAnim();
+//     }
 
 
     public abstract void GetUpAnim(); 

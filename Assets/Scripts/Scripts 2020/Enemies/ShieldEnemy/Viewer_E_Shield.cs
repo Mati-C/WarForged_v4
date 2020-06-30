@@ -62,7 +62,7 @@ public class Viewer_E_Shield : ClassEnemyViewer
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
-        AnimRagdollActivate(anim);
+        AnimRagdollActivate();
     }
 
     public void BlockedAnim()

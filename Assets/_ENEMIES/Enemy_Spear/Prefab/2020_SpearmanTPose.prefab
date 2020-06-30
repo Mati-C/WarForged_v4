@@ -6251,11 +6251,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6132590f9a72ec54194fd5f9779a3e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
     type: 3}
+  levelUI: {fileID: 0}
   bloodParticle: {fileID: 0}
   burnParticle: {fileID: 0}
   anim: {fileID: 8065126914986448503}
+  defaultAnimator: {fileID: 0}
+  getUpAnimator: {fileID: 0}
+  ragdollPrefab: {fileID: 6137512055469483608, guid: 2515d08845849a84ca3c9bc47f90d848,
+    type: 3}
   myModel: {fileID: 0}
 --- !u!114 &4634046697856451771
 MonoBehaviour:
@@ -6274,6 +6280,7 @@ MonoBehaviour:
   grid: {fileID: 0}
   rb: {fileID: 0}
   ia_Manager: {fileID: 0}
+  playerFireSowrd: {fileID: 0}
   ID: 0
   layersCanSee:
     serializedVersion: 2
@@ -6288,6 +6295,7 @@ MonoBehaviour:
   distanceToOcupateNodes: 1.5
   life: 75
   maxLife: 75
+  exp: 0
   speed: 4
   aggressiveLevel: 0
   isDead: 0
@@ -6304,20 +6312,19 @@ MonoBehaviour:
   maxTimeToAttack: 1
   minTimeToAttack: 2
   TimeToRrturnPermission: 0
-  onDamageTime: 0
-  damageDelayTime: 0.8
-  burnDamage: 0
-  timeBurning: 0
-  maxTimeBurning: 0
   viewDistancePersuit: 7
   angleToPersuit: 100
   viewDistanceSurround: 6
   angleToSurround: 100
+  surroundBehaviourID: 0
+  cantAvoid: 0
+  onDamageTime: 0
+  damageDelayTime: 0.8
+  timeBurning: 0
   surroundSpeed: 1
   surroundTimer: 0
   surroundTimerMin: 5
   surroundTimerMax: 10
-  surroundBehaviourID: 0
   attackDamage: 0
   angleToAttack: 100
   viewDistanceAttack: 1.7

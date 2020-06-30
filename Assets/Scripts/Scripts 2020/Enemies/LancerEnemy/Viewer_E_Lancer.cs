@@ -69,7 +69,7 @@ public class Viewer_E_Lancer : ClassEnemyViewer
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
         anim.SetBool("Parry", false);
-        AnimRagdollActivate(anim);
+        AnimRagdollActivate();
     }
 
     public void BlockedAnim()
