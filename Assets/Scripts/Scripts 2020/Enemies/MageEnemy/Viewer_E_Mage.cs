@@ -145,8 +145,4 @@ public class Viewer_E_Mage : ClassEnemyViewer
 
     }
 
-    public override void GetUpAnim()
-    {
-        throw new System.NotImplementedException();
-    }
 }

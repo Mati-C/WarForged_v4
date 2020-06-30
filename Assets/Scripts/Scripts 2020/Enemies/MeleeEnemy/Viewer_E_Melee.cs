@@ -66,19 +66,6 @@ public class Viewer_E_Melee : ClassEnemyViewer
         heavyHitParticle.Play();
     }
 
-    public override void GetUpAnim()
-    {
-        StartCoroutine(GetUpCorrutine());
-    }
-
-    IEnumerator GetUpCorrutine()
-    {
-        anim.SetBool("Blocked", false);
-        anim.SetBool("Knocked", true);
-        yield return new WaitForSeconds(1.6f);
-        anim.SetBool("Knocked", false);
-    }
-
     public void AnimDie()
     {
       

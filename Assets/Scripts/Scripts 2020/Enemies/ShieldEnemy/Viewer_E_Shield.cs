@@ -204,8 +204,4 @@ public class Viewer_E_Shield : ClassEnemyViewer
         }
     }
 
-    public override void GetUpAnim()
-    {
-        throw new System.NotImplementedException();
-    }
 }

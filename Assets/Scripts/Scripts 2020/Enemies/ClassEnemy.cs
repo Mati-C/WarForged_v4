@@ -178,12 +178,15 @@ public abstract class ClassEnemy : MonoBehaviour
         if (!burning) StartCoroutine(BurnDamageTimer());
     }
 
-//     public void PushRagdoll()
-//     {
-//         onDamageTime = 3;
-//         _viewer.DesactivateAnimator();
-//     }
 
+    public void PushKnocked()
+    {
+        Debug.Log("asdasd");
+        var dir = (player.transform.position - transform.position).normalized;
+        rb.AddForce(-dir * 1.5f, ForceMode.Impulse);
+        StartCoroutine(BlockedState(3.4f));
+        _viewer.PushKnockedAnim();
+    }
 
     public IEnumerator OnDamageTimer()
     {

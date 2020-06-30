@@ -40,9 +40,6 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     {
         Instantiate(ragdollPrefab, transform.position, transform.rotation);
         gameObject.SetActive(false);
-//         anim.enabled = false;
-//         ragdollBones.parent = null;
-//         ragdollBones.GetComponent<Rigidbody>().AddForce(-transform.forward * 40, ForceMode.Impulse);
     }
 
     public void CreatePopText(float damage)
@@ -55,27 +52,17 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 
     }
 
-//     public void DesactivateAnimator()
-//     {
-//         StartCoroutine(AnimatorDesactivateCorrutine());
-//     }
-// 
-//     IEnumerator AnimatorDesactivateCorrutine()
-//     {
-//         anim.runtimeAnimatorController = getUpAnimator;
-//         anim.enabled = false;
-//         ragdollBones.parent = null;
-//         transform.SetParent(ragdollBones);
-//         ragdollBones.GetComponent<Rigidbody>().AddForce(-transform.forward * 90, ForceMode.Impulse);
-//         yield return new WaitForSeconds(2);
-//         transform.parent = null;
-//         ragdollBones.SetParent(transform);
-//         anim.enabled = true;
-//         GetUpAnim();
-//     }
+    public void PushKnockedAnim()
+    {
+        StartCoroutine(PushCorrutine());
+    }
 
-
-    public abstract void GetUpAnim(); 
+    IEnumerator PushCorrutine()
+    {
+        anim.SetBool("Knocked", true);
+        yield return new WaitForSeconds(3f);
+        anim.SetBool("Knocked", false);
+    }
 
     public void BurnOn_Off(bool b)
     {

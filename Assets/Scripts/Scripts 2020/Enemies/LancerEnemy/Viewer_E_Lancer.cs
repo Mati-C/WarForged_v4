@@ -220,8 +220,4 @@ public class Viewer_E_Lancer : ClassEnemyViewer
 
     }
 
-    public override void GetUpAnim()
-    {
-        throw new System.NotImplementedException();
-    }
 }
