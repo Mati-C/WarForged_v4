@@ -91,16 +91,38 @@ public class Model_E_Mage : ClassEnemy
 
         StartCoroutine(OnDamageTimer());
 
+        patrol.OnEnter += () =>
+        {
+            isInCombat = false;
+            onPatrol = true;
+            RestartDistances_Angles();
+        };
+
         patrol.OnUpdate += () =>
         {
-            if (canPersuit) myFSM_EventMachine.ChangeState(persuit);
+            var distance = Vector3.Distance(transform.position, patrolPosition);
+
+            if (distance > 1)
+            {
+                WalkEvent();
+                MoveToTarget(patrolPosition);
+            }
+
+            if (distance <= 1)
+            {
+                IdleEvent();
+                Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+            }
+
+            if (canPersuit && !PlayerOnGrid()) myFSM_EventMachine.ChangeState(persuit);
         };
 
         patrol.OnExit += () =>
         {
-           viewDistancePersuit = 100;
-           angleToPersuit = 360;
-           angleToSurround = 360;
+            viewDistancePersuit = 100;
+            angleToPersuit = 360;
+            angleToSurround = 360;
 
             foreach (var item in sameID_Enemies)
             {
@@ -108,6 +130,8 @@ public class Model_E_Mage : ClassEnemy
                 item.angleToPersuit = 360;
                 item.angleToSurround = 360;
             }
+            isInCombat = true;
+            onPatrol = false;
         };
 
         persuit.OnUpdate += () =>
@@ -116,7 +140,9 @@ public class Model_E_Mage : ClassEnemy
             WalkEvent();
             player.CombatStateUp();
 
-            MoveToTarget(FindNearNon_AggressiveNode().transform);
+            MoveToTarget(FindNearNon_AggressiveNode().transform.position);
+
+            if(PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
 
             if (canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
@@ -203,6 +229,8 @@ public class Model_E_Mage : ClassEnemy
                 surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
             }
 
+            if (PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
+
             if (!canSurround && canPersuit && timeToAttack > 0 && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
             if (timeToAttack <= 0 && life > 0) myFSM_EventMachine.ChangeState(attack);
@@ -235,11 +263,13 @@ public class Model_E_Mage : ClassEnemy
         retreat.OnUpdate += () =>
         {
 
-            MoveToTarget(nearNodeToRetreat);
+            MoveToTarget(nearNodeToRetreat.position);
 
             WalkEvent();
 
             var d = Vector3.Distance(nearNodeToRetreat.transform.position, transform.position);
+
+            if (PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
 
             if (d <= 1 && onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
@@ -278,7 +308,9 @@ public class Model_E_Mage : ClassEnemy
             var _dir = (player.transform.position - transform.position);
             _dir.y = 0;
             transform.forward = _dir;
-                     
+
+            if (PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
+
             if (!canSurround && canPersuit && attackFinish && life >0) myFSM_EventMachine.ChangeState(persuit);
 
             if (canSurround && attackFinish && life > 0) myFSM_EventMachine.ChangeState(surround);
@@ -325,6 +357,8 @@ public class Model_E_Mage : ClassEnemy
        
             attackFinish = false;
 
+            if (PlayerOnGrid() && !blockedAttack) myFSM_EventMachine.ChangeState(patrol);
+
             if (canPersuit && !canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
             if (timeToAttack > 0 && canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(surround);
@@ -345,6 +379,8 @@ public class Model_E_Mage : ClassEnemy
         takeDamage.OnUpdate += () =>
         {
             attackFinish = false;
+
+            if (PlayerOnGrid() && onDamageTime <=0) myFSM_EventMachine.ChangeState(patrol);
 
             if (canPersuit && !canSurround && onDamageTime <= 0 && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
@@ -393,6 +429,7 @@ public class Model_E_Mage : ClassEnemy
 
         if (life <= 0)
         {
+            StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission, true));
             playerFireSowrd.SwordExp(exp);
             DieEvent();
         }

@@ -126,9 +126,31 @@ public class Model_E_Shield : ClassEnemy
         StartCoroutine(OnDamageTimer());
         StartCoroutine(OnParryTimer());
 
+        patrol.OnEnter += () =>
+        {
+            isInCombat = false;
+            onPatrol = true;
+            RestartDistances_Angles();
+        };
+
         patrol.OnUpdate += () =>
         {
-            if (canPersuit) myFSM_EventMachine.ChangeState(persuit);
+            var distance = Vector3.Distance(transform.position, patrolPosition);
+
+            if(distance >1)
+            {
+                WalkEvent();
+                MoveToTarget(patrolPosition);
+            }
+
+            if(distance <=1)
+            {
+                IdleEvent();
+                Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+            }
+
+            if (canPersuit && !PlayerOnGrid()) myFSM_EventMachine.ChangeState(persuit);
         };
 
         patrol.OnExit += () =>
@@ -143,6 +165,8 @@ public class Model_E_Shield : ClassEnemy
                 item.angleToPersuit = 360;
                 item.angleToSurround = 360;
             }
+            isInCombat = true;
+            onPatrol = false;
         };
 
         persuit.OnUpdate += () =>
@@ -151,9 +175,11 @@ public class Model_E_Shield : ClassEnemy
             WalkEvent();
             player.CombatStateUp();
 
-            if (aggressiveLevel == 1) MoveToTarget(FindNearAggressiveNode().transform);
+            if (aggressiveLevel == 1) MoveToTarget(FindNearAggressiveNode().transform.position);
 
-            else MoveToTarget(FindNearNon_AggressiveNode().transform);
+            else MoveToTarget(FindNearNon_AggressiveNode().transform.position);
+
+            if(PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
 
             if (canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
@@ -244,6 +270,8 @@ public class Model_E_Shield : ClassEnemy
                 surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
             }
 
+            if (PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
+
             if (!canSurround && canPersuit && timeToAttack > 0 && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
             if (timeToAttack <= 0 && life > 0) myFSM_EventMachine.ChangeState(attack);
@@ -296,7 +324,7 @@ public class Model_E_Shield : ClassEnemy
                 _dir.y = 0;
                 targetRotation = Quaternion.LookRotation(_dir, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
-                MoveToTarget(player.transform);
+                MoveToTarget(player.transform.position);
             }
 
             if (canAttack && !onAttackAnimation && !waitingForRetreat)
@@ -315,6 +343,8 @@ public class Model_E_Shield : ClassEnemy
 
                 StartCoroutine(OnAttackAnimationCorrutine(1.2f));    
             }
+
+            if (PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
 
             if (attackFinish && life > 0) myFSM_EventMachine.ChangeState(retreat);
 
@@ -373,6 +403,8 @@ public class Model_E_Shield : ClassEnemy
                 rb.MovePosition(rb.position - _dir * retreatSpeed * Time.deltaTime);
             }
 
+            if (PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
+
             if (timeToRetreat <= 0 && canPersuit && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
             if (timeToRetreat <= 0 && canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
@@ -403,6 +435,8 @@ public class Model_E_Shield : ClassEnemy
             waitingForRetreat = false;
             attackFinish = false;
 
+            if (PlayerOnGrid() && timeToAttack >0) myFSM_EventMachine.ChangeState(patrol);
+
             if (canPersuit && !canSurround && onDamageTime <= 0 && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
             if (timeToAttack > 0 && canSurround && onDamageTime <= 0 && life > 0) myFSM_EventMachine.ChangeState(surround);
@@ -428,6 +462,8 @@ public class Model_E_Shield : ClassEnemy
         {
             waitingForRetreat = false;
             attackFinish = false;
+
+            if(PlayerOnGrid() && !blockedAttack) myFSM_EventMachine.ChangeState(patrol);
 
             if (canPersuit && !canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
@@ -467,6 +503,8 @@ public class Model_E_Shield : ClassEnemy
             targetRotation = Quaternion.LookRotation(_dir, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
 
+            if (PlayerOnGrid() && !onParry) myFSM_EventMachine.ChangeState(patrol);
+
             if (canPersuit && !canSurround && !onParry && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
             if (timeToAttack > 0 && canSurround && !onParry && life > 0) myFSM_EventMachine.ChangeState(surround);
@@ -502,6 +540,8 @@ public class Model_E_Shield : ClassEnemy
 
         canAttack = CanSee(player.transform, viewDistanceAttack, 360, layersCanSee);
 
+        //notOnGrid = PlayerOnGrid();
+
         myFSM_EventMachine.Update();
     }
 
@@ -525,9 +565,12 @@ public class Model_E_Shield : ClassEnemy
         {
             life -= d;
             onDamageTime = damageDelayTime;
+
             if (player.flamesOn) StartBurning();
+
             if (life <= 0)
             {
+                StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission, true));
                 playerFireSowrd.SwordExp(exp);
                 DieEvent();
             }

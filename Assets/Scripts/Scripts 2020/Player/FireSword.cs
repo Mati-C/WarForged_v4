@@ -116,29 +116,6 @@ public class FireSword: MonoBehaviour
         fireWaveParticle.Play();
         yield return new WaitForSeconds(2);
         fireWaveParticle.Stop();
-        /*float time = 0;
-        var enemies = new List<ClassEnemy>();
-        fireWaveParticle.Play();
-        while(time< fireWaveExpansionTime)
-        {
-            time += Time.deltaTime;
-            var e = Physics.OverlapSphere(transform.position, 1 * fireWaveSpeed * time).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
-            _fireGizmo = 1 * fireWaveSpeed * time;
-            foreach (var item in e)
-            {
-                if (!enemies.Any(x => x == item) && item.life > 0)
-                {
-                    enemies.Add(item);
-                    item.StartBurning();
-                    item.GetDamage(fireWaveDamage, Model_Player.DamageType.Heavy);
-                    if (pushEnemies) item.PushKnocked();
-                }
-            }
-        
-            yield return new WaitForEndOfFrame();
-        }
-        fireWaveParticle.Stop();
-        */
     }
         
     public void MoreTimeFireSword()

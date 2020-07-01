@@ -6,6 +6,7 @@ using System;
 
 public class Grid : MonoBehaviour {
 
+    public int ID;
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;

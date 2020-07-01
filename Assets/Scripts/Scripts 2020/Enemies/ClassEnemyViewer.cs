@@ -15,9 +15,6 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 
     [Header("Enemy Animator:")]
     public Animator anim;
-    public RuntimeAnimatorController defaultAnimator;
-    public RuntimeAnimatorController getUpAnimator;
-//     public Transform ragdollBones;
     public GameObject ragdollPrefab;
 
     private void Awake()

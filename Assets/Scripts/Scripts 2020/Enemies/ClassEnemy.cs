@@ -43,9 +43,11 @@ public abstract class ClassEnemy : MonoBehaviour
 
     [Header("Enemy States:")]
 
+    public bool isInCombat;
     public bool isDead;
     public bool canPersuit;
     public bool canSurround;
+    public bool onPatrol;
     public bool OnDamage;
     public bool blockedAttack;
     public bool burning;
@@ -61,16 +63,23 @@ public abstract class ClassEnemy : MonoBehaviour
     public float minTimeToAttack;
     public float TimeToRrturnPermission;
 
-    [Header("EnemyClass Surround Variables:")]
+    [Header("EnemyClass Persuit Variables:")]
      public float viewDistancePersuit;
      public float angleToPersuit;
-     
+    float _startAngleToPersuit;
+    float _startDistanceToPersuit;
 
-    [Header("EnemyClass Persuit Variables:")]
+    [Header("EnemyClass Surround Variables:")]
     public float viewDistanceSurround;
     public float angleToSurround;
     public int surroundBehaviourID;
     public bool cantAvoid;
+    float _startAngleToSurround;
+    float _startDistanceToSurround;
+
+    [Header("EnemyClass Patrol Variables:")]
+    public Vector3 patrolPosition;
+    public Vector3 patrolForward;
 
     [Header("Enemy GetHit Variables:")]
     public float onDamageTime;
@@ -206,14 +215,30 @@ public abstract class ClassEnemy : MonoBehaviour
 
     private void Awake()
     {
+        grid = FindObjectsOfType<Grid>().Where(x => x.ID == ID).First();
         player = FindObjectOfType<Model_Player>();
         pathfinding = GetComponent<Pathfinding>();
         playerNodes.AddRange(FindObjectsOfType<CombatNode>());
         sameID_Enemies.AddRange(FindObjectsOfType<ClassEnemy>().Where(x => x.ID == ID && x != this));
         _viewer = GetComponent<ClassEnemyViewer>();
         rb = GetComponent<Rigidbody>();
+        patrolPosition = transform.position;
+        patrolForward = transform.forward;
+        patrolForward.y = 0;
+
+        _startDistanceToPersuit = viewDistancePersuit;
+        _startAngleToPersuit = angleToPersuit;
+        _startDistanceToSurround = viewDistanceSurround;
+        _startAngleToSurround = angleToSurround;
     }
 
+    public void RestartDistances_Angles()
+    {
+        viewDistancePersuit = _startDistanceToPersuit;
+        angleToPersuit = _startAngleToPersuit;
+        viewDistanceSurround = _startDistanceToSurround;
+        angleToSurround = _startAngleToSurround;
+    }
 
     void RemoveSameID_Enemy(ClassEnemy e)
     {
@@ -275,9 +300,26 @@ public abstract class ClassEnemy : MonoBehaviour
         pathfinding.FindPath(FindNearNode(transform.position), FindNearNode(endPos));
     }
 
-    public void MoveToTarget(Transform target)
+    public bool PlayerOnGrid()
     {
-        FindPath(target.position);
+        if (isInCombat)
+        {
+            Vector3 targetNearestNode = Vector3.zero;
+            targetNearestNode = FindNearNode(player.transform.position);
+
+            var distance = Vector3.Distance(targetNearestNode, player.transform.position);
+
+            if (distance > 1.5f) return true;
+
+            else return false;
+        }
+
+        return false;
+    }
+
+    public void MoveToTarget(Vector3 target)
+    {
+        FindPath(target);
 
         pathToTarget.Clear();
         pathToTarget.AddRange(pathfinding.myPath);
