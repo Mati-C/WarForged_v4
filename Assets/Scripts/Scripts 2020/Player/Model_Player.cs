@@ -390,6 +390,7 @@ public class Model_Player : MonoBehaviour
         onAttackAnimation = false;
         attackCombo=0;
         timeOnFailAttack = 1f;
+        chargeAttackAmount = 0;
         FailAttackEvent();
     }
 
@@ -673,7 +674,7 @@ public class Model_Player : MonoBehaviour
 
     public void Defence()
     {
-        if (isInCombat && chargeAttackAmount <=0 && !onAction && !OnDamage)
+        if (isInCombat && chargeAttackAmount <=0.1f && !onAction && !OnDamage)
         {
             defenceTimer += Time.deltaTime; 
             attackCombo = 0;
@@ -697,7 +698,7 @@ public class Model_Player : MonoBehaviour
 
     public void ChargingAttack()
     {
-        if (chargeAttackColdown <= 0 && !onDefence)
+        if (chargeAttackColdown <= 0 && !onDefence && timeOnFailAttack <=0)
         {
             DefenceOff();
             chargeAttackAmount += Time.deltaTime;

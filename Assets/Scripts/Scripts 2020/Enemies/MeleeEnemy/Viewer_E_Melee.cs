@@ -78,13 +78,6 @@ public class Viewer_E_Melee : ClassEnemyViewer
         AnimRagdollActivate();        
     }
 
-//     public void ActivateAnim()
-//     {
-//         transform.position = new Vector3(ragdollBones.position.x, transform.position.y, ragdollBones.position.z);
-//         ragdollBones.SetParent(transform);        
-//         anim.enabled = true;
-//      
-//     }
 
     public void BlockedAnim()
     {

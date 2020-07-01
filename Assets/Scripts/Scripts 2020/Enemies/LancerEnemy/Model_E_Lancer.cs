@@ -497,7 +497,11 @@ public class Model_E_Lancer : ClassEnemy
             if(!blockedAttack) timesToParry--;           
         }
 
-        if (life <= 0) DieEvent();
+        if (life <= 0)
+        {
+            playerFireSowrd.SwordExp(exp);
+            DieEvent();
+        }
 
         if (life > 0 && timeOnParry > 0 && !counterAttack)
         {

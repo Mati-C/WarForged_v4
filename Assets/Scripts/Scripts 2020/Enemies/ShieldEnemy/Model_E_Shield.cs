@@ -526,7 +526,11 @@ public class Model_E_Shield : ClassEnemy
             life -= d;
             onDamageTime = damageDelayTime;
             if (player.flamesOn) StartBurning();
-            if (life <= 0) DieEvent();
+            if (life <= 0)
+            {
+                playerFireSowrd.SwordExp(exp);
+                DieEvent();
+            }
 
             else
             {

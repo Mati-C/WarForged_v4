@@ -108,7 +108,7 @@ public abstract class ClassEnemy : MonoBehaviour
                 break;
         }
 
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1.7f);
         cantAvoid = false;
     }
 
@@ -160,6 +160,7 @@ public abstract class ClassEnemy : MonoBehaviour
                 tic = 1;
                 if(life<= 0)
                 {
+                    playerFireSowrd.SwordExp(exp);
                     DieEvent();
                     timeBurning = 0;
                 }
@@ -181,7 +182,6 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public void PushKnocked()
     {
-        Debug.Log("asdasd");
         var dir = (player.transform.position - transform.position).normalized;
         rb.AddForce(-dir * 1.5f, ForceMode.Impulse);
         StartCoroutine(BlockedState(3.4f));

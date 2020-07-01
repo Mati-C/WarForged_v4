@@ -420,7 +420,7 @@ public class Model_E_Melee : ClassEnemy
 
         die.OnEnter += () =>
         {
-            playerFireSowrd.SwordExp(exp);
+            
         };
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);
@@ -446,7 +446,11 @@ public class Model_E_Melee : ClassEnemy
         life -= d;
         if (player.flamesOn) StartBurning();
 
-        if (life <= 0) DieEvent();
+        if (life <= 0)
+        {
+            playerFireSowrd.SwordExp(exp);
+            DieEvent();
+        }
 
         else
         {

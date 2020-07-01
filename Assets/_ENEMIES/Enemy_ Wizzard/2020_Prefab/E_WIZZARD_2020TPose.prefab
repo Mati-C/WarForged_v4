@@ -4934,10 +4934,10 @@ GameObject:
   - component: {fileID: 3525152791203046705}
   - component: {fileID: 6800954445283117131}
   - component: {fileID: 5696358299740014648}
-  - component: {fileID: 7832430157058238576}
-  - component: {fileID: 2373676005232046243}
-  - component: {fileID: 2584107518879283542}
-  - component: {fileID: 4223448085299228941}
+  - component: {fileID: 5804657692548308786}
+  - component: {fileID: 1801208742859206377}
+  - component: {fileID: 8105086264034461990}
+  - component: {fileID: 7038876436798429244}
   m_Layer: 0
   m_Name: E_WIZZARD_2020TPose
   m_TagString: Untagged
@@ -5006,45 +5006,7 @@ CapsuleCollider:
   m_Height: 0.6290613
   m_Direction: 1
   m_Center: {x: 0.0022215643, y: 0.31487772, z: 0.009999998}
---- !u!114 &7832430157058238576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 482028172694820642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f1e50755e62ad64abe2293687c10d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
-    type: 3}
-  levelUI: {fileID: 0}
-  bloodParticle: {fileID: 0}
-  burnParticle: {fileID: 0}
-  anim: {fileID: 6800954445283117131}
-  defaultAnimator: {fileID: 0}
-  getUpAnimator: {fileID: 0}
-  ragdollPrefab: {fileID: 7435274016679336257, guid: e2a473276b66cb94fab5499eb330f293,
-    type: 3}
-  myModel: {fileID: 0}
-  heavyHitParticle: {fileID: 0}
---- !u!114 &2373676005232046243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 482028172694820642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f087f42dcc7cd344baae11ee7b632df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 0}
---- !u!114 &2584107518879283542
+--- !u!114 &5804657692548308786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5076,7 +5038,7 @@ MonoBehaviour:
   distanceToOcupateNodes: 1.5
   life: 50
   maxLife: 50
-  exp: 0
+  exp: 50
   speed: 4
   aggressiveLevel: 0
   isDead: 0
@@ -5092,10 +5054,10 @@ MonoBehaviour:
   timeToAttack: 0
   maxTimeToAttack: 1
   minTimeToAttack: 3
-  TimeToRrturnPermission: 0
-  viewDistancePersuit: 7
+  TimeToRrturnPermission: 3
+  viewDistancePersuit: 9
   angleToPersuit: 100
-  viewDistanceSurround: 6
+  viewDistanceSurround: 8
   angleToSurround: 100
   surroundBehaviourID: 0
   cantAvoid: 0
@@ -5119,7 +5081,45 @@ MonoBehaviour:
   timeToRetreatAgain: 0
   maxTimeToRetreatAgain: 15
   distanceToRetreat: 1
---- !u!54 &4223448085299228941
+--- !u!114 &1801208742859206377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482028172694820642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f087f42dcc7cd344baae11ee7b632df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+--- !u!114 &8105086264034461990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482028172694820642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1e50755e62ad64abe2293687c10d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
+    type: 3}
+  levelUI: {fileID: 0}
+  bloodParticle: {fileID: 2020257436728353735}
+  burnParticle: {fileID: 8627597406982700885}
+  anim: {fileID: 6800954445283117131}
+  defaultAnimator: {fileID: 0}
+  getUpAnimator: {fileID: 0}
+  ragdollPrefab: {fileID: 7435274016679336257, guid: e2a473276b66cb94fab5499eb330f293,
+    type: 3}
+  myModel: {fileID: 0}
+  heavyHitParticle: {fileID: 1344790358002936212}
+--- !u!54 &7038876436798429244
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21466,6 +21466,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1182413593739847794}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1344790358002936212 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198546866522440166, guid: e23ea7314a7e0ee43bfe911c288243a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1182413593739847794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5891998455319831172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21573,6 +21579,12 @@ PrefabInstance:
 --- !u!4 &8627597407001049107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2774207757100636823, guid: 89713ad0792da8a43a9db5c60aa25246,
+    type: 3}
+  m_PrefabInstance: {fileID: 5891998455319831172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8627597406982700885 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
     type: 3}
   m_PrefabInstance: {fileID: 5891998455319831172}
   m_PrefabAsset: {fileID: 0}

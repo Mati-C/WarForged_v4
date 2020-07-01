@@ -75,6 +75,7 @@ public class Model_E_Mage : ClassEnemy
         var persuit = new N_FSM_State("PERSUIT");
         var patrol = new N_FSM_State("PATROL");
         var takeDamage = new N_FSM_State("TAKE_DAMAGE");
+        var blocked = new N_FSM_State("BLOCKED");
         var die = new N_FSM_State("DIE");
 
 
@@ -120,6 +121,8 @@ public class Model_E_Mage : ClassEnemy
             if (canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
             if (onDamageTime > 0 && life >0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
@@ -206,6 +209,8 @@ public class Model_E_Mage : ClassEnemy
 
             if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
+
             if (d <= distanceToRetreat && timeToRetreatAgain <=0 && life >0) myFSM_EventMachine.ChangeState(retreat);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
@@ -244,6 +249,8 @@ public class Model_E_Mage : ClassEnemy
 
             if (d <= 1 && canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
+
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
@@ -275,6 +282,8 @@ public class Model_E_Mage : ClassEnemy
             if (!canSurround && canPersuit && attackFinish && life >0) myFSM_EventMachine.ChangeState(persuit);
 
             if (canSurround && attackFinish && life > 0) myFSM_EventMachine.ChangeState(surround);
+
+            if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 
             if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
@@ -308,6 +317,25 @@ public class Model_E_Mage : ClassEnemy
             shooting = false;
             attackFinish = false;
         };
+
+
+
+        blocked.OnUpdate += () =>
+        {
+       
+            attackFinish = false;
+
+            if (canPersuit && !canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(persuit);
+
+            if (timeToAttack > 0 && canSurround && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(surround);
+
+            if (timeToAttack <= 0 && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(attack);
+
+            if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
+        };
+
 
         takeDamage.OnEnter += () =>
         {
@@ -362,7 +390,12 @@ public class Model_E_Mage : ClassEnemy
         life -= d;
         onDamageTime = damageDelayTime;
         if (player.flamesOn) StartBurning();
-        if (life <= 0) DieEvent();
+
+        if (life <= 0)
+        {
+            playerFireSowrd.SwordExp(exp);
+            DieEvent();
+        }
 
         else
         {

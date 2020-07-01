@@ -7,6 +7,7 @@ using System.Linq;
 public class FireSword: MonoBehaviour
 {
     Model_Player _player;
+    public ParticleSystem fireWaveParticle;
     [Header("Fire Sword Level and Exp:")]
     public int fireSwordLevel;
     public float currentExp;
@@ -27,10 +28,9 @@ public class FireSword: MonoBehaviour
     public float timeForDead;
     public float timeForDeadLV2;
     public float plusEnergy;
-    public float fireWaveExpansionTime;
-    public float fireWaveSpeed;
+    public float fireWaveExpansion;
     public float fireWaveDamage;
-    public float fireWaveExpansionTimeLV2;
+    public float fireWaveExpansionLV2;
     public bool pushEnemies;
 
     [Header("Enemy Exp:")]
@@ -60,7 +60,7 @@ public class FireSword: MonoBehaviour
 
         Action Lv6 = () => { timeForDead = timeForDeadLV2; };
 
-        Action Lv7 = () => { fireWaveExpansionTime = fireWaveExpansionTimeLV2; };
+        Action Lv7 = () => { fireWaveExpansion = fireWaveExpansionLV2; };
 
         Action Lv8 = () => { timeForDead = timeForDeadLV2; };
 
@@ -68,16 +68,16 @@ public class FireSword: MonoBehaviour
 
         Action Lv10 = () => { GetEnergy += () => { currentExp += plusEnergy; }; };
 
-        LevelUpdates.Add(1, Lv1);
-        LevelUpdates.Add(2, Lv2);
-        LevelUpdates.Add(3, Lv3);
-        LevelUpdates.Add(4, Lv4);
-        LevelUpdates.Add(5, Lv5);
-        LevelUpdates.Add(6, Lv6);
-        LevelUpdates.Add(7, Lv7);
-        LevelUpdates.Add(8, Lv8);
-        LevelUpdates.Add(9, Lv9);
-        LevelUpdates.Add(10, Lv10);
+        LevelUpdates.Add(0, Lv1);
+        LevelUpdates.Add(1, Lv2);
+        LevelUpdates.Add(2, Lv3);
+        LevelUpdates.Add(3, Lv4);
+        LevelUpdates.Add(4, Lv5);
+        LevelUpdates.Add(5, Lv6);
+        LevelUpdates.Add(6, Lv7);
+        LevelUpdates.Add(7, Lv8);
+        LevelUpdates.Add(8, Lv9);
+        LevelUpdates.Add(9, Lv10);
 
         for (int i = 0; i < fireSwordLevel; i++)
         {
@@ -91,7 +91,7 @@ public class FireSword: MonoBehaviour
     {
         GetEnergy();
         currentExp += exp;
-        if (currentExp >= expForEachLevel[fireSwordLevel])
+        if (currentExp >= expForEachLevel[fireSwordLevel] && fireSwordLevel <9)
         {
             fireSwordLevel++;
             currentExp = 0;
@@ -101,15 +101,24 @@ public class FireSword: MonoBehaviour
 
     public void FireWave()
     {
-       
+        var e = Physics.OverlapSphere(transform.position, fireWaveExpansion).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
+        foreach (var item in e)
+        {
+            item.StartBurning();
+            item.GetDamage(fireWaveDamage, Model_Player.DamageType.Heavy);
+            if (pushEnemies) item.PushKnocked();
+        }
         StartCoroutine(FireWaveExpansion());
     }
 
     IEnumerator FireWaveExpansion()
     {
-        float time = 0;
+        fireWaveParticle.Play();
+        yield return new WaitForSeconds(2);
+        fireWaveParticle.Stop();
+        /*float time = 0;
         var enemies = new List<ClassEnemy>();
-
+        fireWaveParticle.Play();
         while(time< fireWaveExpansionTime)
         {
             time += Time.deltaTime;
@@ -128,8 +137,10 @@ public class FireSword: MonoBehaviour
         
             yield return new WaitForEndOfFrame();
         }
+        fireWaveParticle.Stop();
+        */
     }
-
+        
     public void MoreTimeFireSword()
     {
         _player.fireSwordCurrentTime -= timeForDead;
