@@ -39826,11 +39826,8 @@ GameObject:
   - component: {fileID: 6369717002041567453}
   - component: {fileID: 6369717002041567454}
   - component: {fileID: 6369717002041567426}
-  - component: {fileID: 6369717002041567429}
-  - component: {fileID: 6369717002041567428}
-  - component: {fileID: 6369717002041567427}
   m_Layer: 9
-  m_Name: E_WIZZARD_2020TPose (3)
+  m_Name: E_WIZZARD 2020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39932,9 +39929,11 @@ MonoBehaviour:
   exp: 50
   speed: 4
   aggressiveLevel: 0
+  isInCombat: 0
   isDead: 0
   canPersuit: 0
   canSurround: 0
+  onPatrol: 0
   OnDamage: 0
   blockedAttack: 0
   burning: 0
@@ -39952,6 +39951,8 @@ MonoBehaviour:
   angleToSurround: 100
   surroundBehaviourID: 0
   cantAvoid: 0
+  patrolPosition: {x: 0, y: 0, z: 0}
+  patrolForward: {x: 0, y: 0, z: 0}
   onDamageTime: 0
   damageDelayTime: 0.8
   timeBurning: 0
@@ -40004,8 +40005,6 @@ MonoBehaviour:
   bloodParticle: {fileID: 6369717000799214754}
   burnParticle: {fileID: 6369717000394676739}
   anim: {fileID: 6369717002041567424}
-  defaultAnimator: {fileID: 0}
-  getUpAnimator: {fileID: 0}
   ragdollPrefab: {fileID: 7435274016679336257, guid: e2a473276b66cb94fab5499eb330f293,
     type: 3}
   myModel: {fileID: 0}
@@ -40026,119 +40025,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6369717002041567429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6369717002041567430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f1e50755e62ad64abe2293687c10d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
-    type: 3}
-  levelUI: {fileID: 0}
-  bloodParticle: {fileID: 6369717000799214754}
-  burnParticle: {fileID: 6369717000394676739}
-  anim: {fileID: 6369717002041567424}
-  defaultAnimator: {fileID: 0}
-  getUpAnimator: {fileID: 0}
-  ragdollPrefab: {fileID: 7435274016679336257, guid: e2a473276b66cb94fab5499eb330f293,
-    type: 3}
-  myModel: {fileID: 0}
-  heavyHitParticle: {fileID: 6369717000229522297}
---- !u!114 &6369717002041567428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6369717002041567430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f087f42dcc7cd344baae11ee7b632df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 0}
---- !u!114 &6369717002041567427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6369717002041567430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4864bacc5003d334bbc3dd796e4019e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathfinding: {fileID: 0}
-  player: {fileID: 0}
-  grid: {fileID: 0}
-  rb: {fileID: 0}
-  ia_Manager: {fileID: 0}
-  playerFireSowrd: {fileID: 0}
-  ID: 0
-  layersCanSee:
-    serializedVersion: 2
-    m_Bits: 65793
-  layersObstacles:
-    serializedVersion: 2
-    m_Bits: 65536
-  sameID_Enemies: []
-  myCombatNode: {fileID: 0}
-  lastCombatNode: {fileID: 0}
-  playerNodes: []
-  distanceToOcupateNodes: 1.5
-  life: 50
-  maxLife: 50
-  exp: 50
-  speed: 4
-  aggressiveLevel: 0
-  isDead: 0
-  canPersuit: 0
-  canSurround: 0
-  OnDamage: 0
-  blockedAttack: 0
-  burning: 0
-  knocked: 0
-  permissionToAttack: 0
-  cantAskAgain: 0
-  currentIndex: 0
-  timeToAttack: 0
-  maxTimeToAttack: 1
-  minTimeToAttack: 3
-  TimeToRrturnPermission: 3
-  viewDistancePersuit: 9
-  angleToPersuit: 100
-  viewDistanceSurround: 8
-  angleToSurround: 100
-  surroundBehaviourID: 0
-  cantAvoid: 0
-  onDamageTime: 0
-  damageDelayTime: 0.8
-  timeBurning: 0
-  surroundSpeed: 1
-  surroundTimer: 0
-  surroundTimerMin: 5
-  surroundTimerMax: 10
-  phShoot: {fileID: 6369717000380620487}
-  missile: {fileID: 6863702854761140710, guid: c1685a1e9e77d5a418a3853eb5afa1e5, type: 3}
-  attackDamage: 0
-  onAttackAnimation: 0
-  attackFinish: 0
-  shooting: 0
-  nodesToRetreat: {fileID: 0}
-  nearNodeToRetreat: {fileID: 0}
-  ListNodesToRetreat:
-  - {fileID: 6369717000380620487}
-  timeToRetreatAgain: 0
-  maxTimeToRetreatAgain: 15
-  distanceToRetreat: 1
 --- !u!1 &6369717002055091912
 GameObject:
   m_ObjectHideFlags: 0

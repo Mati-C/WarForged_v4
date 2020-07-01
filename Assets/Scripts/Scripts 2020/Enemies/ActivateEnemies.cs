@@ -33,7 +33,11 @@ public class ActivateEnemies : MonoBehaviour
 
             if (activateEnemies)
             {
-                foreach (var item in myEnemies) if (item.life > 0) item.gameObject.SetActive(false);
+                foreach (var item in myEnemies) if (item.life > 0)
+                {
+                   item.ReturnIA_Manager();
+                   item.gameObject.SetActive(false);
+                }
             }
 
         }

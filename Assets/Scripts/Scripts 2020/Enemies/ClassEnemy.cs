@@ -121,6 +121,16 @@ public abstract class ClassEnemy : MonoBehaviour
         cantAvoid = false;
     }
 
+    public void ReturnIA_Manager()
+    {
+        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
+        ia_Manager.PermissionsMelee(false);
+        ia_Manager.DecisionTakeMelee(false);
+        ia_Manager.PermissionsRange(false);
+        ia_Manager.DecisionTakeRange(false);
+        permissionToAttack = false;
+    }
+
     public IEnumerator ReturnIA_Manager(float time, bool b)
     {
         yield return new WaitForSeconds(time);
