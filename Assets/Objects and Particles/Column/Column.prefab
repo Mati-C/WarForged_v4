@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 8513325699904712441}
   - component: {fileID: 255155149758548215}
   - component: {fileID: 7274824538900051221}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2217746072806140487
 Transform:
@@ -104,12 +104,12 @@ GameObject:
   - component: {fileID: 5508899985245203436}
   - component: {fileID: 7058774238644084220}
   - component: {fileID: 4186928343260559216}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2666038721216482010
 Transform:
@@ -196,12 +196,12 @@ GameObject:
   - component: {fileID: 7988979564248906839}
   - component: {fileID: 5379141438960880209}
   - component: {fileID: 8618307342969191706}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7321854906269803005
 Transform:
@@ -288,12 +288,12 @@ GameObject:
   - component: {fileID: 4329376385420759005}
   - component: {fileID: 5912171974401001868}
   - component: {fileID: 2699702713853026500}
-  m_Layer: 21
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6781430098101281991
 Transform:
@@ -377,12 +377,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8009329394896573046}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8009329394896573046
 Transform:
