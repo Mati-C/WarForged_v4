@@ -17,7 +17,7 @@ public class Viewer_E_Melee : ClassEnemyViewer
     }
 
 
-    IEnumerator DamageTimerAnim()
+    public IEnumerator DamageTimerAnim()
     {
         while(true)
         {         

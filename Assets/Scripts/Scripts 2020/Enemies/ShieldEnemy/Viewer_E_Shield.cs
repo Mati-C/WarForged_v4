@@ -20,7 +20,7 @@ public class Viewer_E_Shield : ClassEnemyViewer
         anim.SetBool(animName, false);
     }
 
-    IEnumerator DamageTimerAnim()
+    public IEnumerator DamageTimerAnim()
     {
         while (true)
         {

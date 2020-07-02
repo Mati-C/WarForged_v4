@@ -9,6 +9,7 @@ public class ActivateEnemies : MonoBehaviour
     public bool activateEnemies;
     public List<ClassEnemy> myEnemies = new List<ClassEnemy>();
 
+
     private void Awake()
     {
         myEnemies.AddRange(FindObjectsOfType<ClassEnemy>().Where(x => x.ID == ID));
@@ -17,9 +18,15 @@ public class ActivateEnemies : MonoBehaviour
 
     private void Start()
     {
-        foreach (var item in myEnemies) item.gameObject.SetActive(false);
+        StartCoroutine(StartDesactivate());
         var mesh = GetComponent<MeshRenderer>();
         mesh.enabled = false;
+    }
+
+    IEnumerator StartDesactivate()
+    {
+        yield return new WaitForSeconds(1);
+        foreach (var item in myEnemies) item.gameObject.SetActive(false);
     }
 
     public void OnTriggerEnter(Collider c)
@@ -28,15 +35,26 @@ public class ActivateEnemies : MonoBehaviour
         {
             if (!activateEnemies)
             {
-                foreach (var item in myEnemies) if (item.life > 0) item.gameObject.SetActive(true);
+                foreach (var item in myEnemies)
+                {
+                    if (item.life > 0)
+                    {
+                        item.gameObject.SetActive(true);
+                        item.Resume();
+
+                    }
+                }
             }
 
             if (activateEnemies)
             {
-                foreach (var item in myEnemies) if (item.life > 0)
+                foreach (var item in myEnemies)
                 {
-                   item.ReturnIA_Manager();
-                   item.gameObject.SetActive(false);
+                    if (item.life > 0)
+                    {
+                        item.ReturnIA_Manager();
+                        item.gameObject.SetActive(false);
+                    }
                 }
             }
 

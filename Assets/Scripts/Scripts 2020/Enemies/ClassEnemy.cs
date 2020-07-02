@@ -21,8 +21,10 @@ public abstract class ClassEnemy : MonoBehaviour
     [Header("EnemyRoom ID:")]
 
     public float ID;
+    public LayerMask enemyLayer;
     public LayerMask layersCanSee;
     public LayerMask layersObstacles;
+    public LayerMask layersPlayer;
 
     public List<ClassEnemy> sameID_Enemies = new List<ClassEnemy>();
 
@@ -80,6 +82,7 @@ public abstract class ClassEnemy : MonoBehaviour
     [Header("EnemyClass Patrol Variables:")]
     public Vector3 patrolPosition;
     public Vector3 patrolForward;
+    public bool onGrid;
 
     [Header("Enemy GetHit Variables:")]
     public float onDamageTime;
@@ -223,6 +226,8 @@ public abstract class ClassEnemy : MonoBehaviour
         }
     }
 
+    public abstract void Resume();
+
     private void Awake()
     {
         grid = FindObjectsOfType<Grid>().Where(x => x.ID == ID).First();
@@ -240,6 +245,8 @@ public abstract class ClassEnemy : MonoBehaviour
         _startAngleToPersuit = angleToPersuit;
         _startDistanceToSurround = viewDistanceSurround;
         _startAngleToSurround = angleToSurround;
+       
+        StartCoroutine(OnDamageTimer());
     }
 
     public void RestartDistances_Angles()
@@ -312,19 +319,22 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public bool PlayerOnGrid()
     {
-        if (isInCombat)
+        Vector3 targetNearestNode = Vector3.zero;
+        targetNearestNode = FindNearNode(player.transform.position);
+
+        var distance = Vector3.Distance(targetNearestNode, player.transform.position);
+
+        if (distance > 1.5f)
         {
-            Vector3 targetNearestNode = Vector3.zero;
-            targetNearestNode = FindNearNode(player.transform.position);
-
-            var distance = Vector3.Distance(targetNearestNode, player.transform.position);
-
-            if (distance > 1.5f) return true;
-
-            else return false;
+            onGrid = true;
+            return true;
         }
 
-        return false;
+        else
+        {
+            onGrid = false;
+            return false;
+        }
     }
 
     public void MoveToTarget(Vector3 target)

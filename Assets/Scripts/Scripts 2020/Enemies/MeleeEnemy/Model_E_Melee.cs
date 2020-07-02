@@ -68,6 +68,7 @@ public class Model_E_Melee : ClassEnemy
         ia_Manager = FindObjectOfType<IA_CombatManager>();
         playerFireSowrd = FindObjectOfType<FireSword>();
         exp = playerFireSowrd.warriorExp;
+        enemyLayer = layersCanSee;
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
@@ -92,14 +93,14 @@ public class Model_E_Melee : ClassEnemy
         KnockedEvent += _view.KnockedAnim;
         DieEvent += _view.AnimDie;
 
-        StartCoroutine(MoveOnAttack());
-        StartCoroutine(OnDamageTimer());
+        StartCoroutine(MoveOnAttack());      
 
         patrol.OnEnter += () =>
         {
             isInCombat = false;
             onPatrol = true;
             RestartDistances_Angles();
+            enemyLayer = layersCanSee;
         };
 
         patrol.OnUpdate += () =>
@@ -136,6 +137,7 @@ public class Model_E_Melee : ClassEnemy
             }
             isInCombat = true;
             onPatrol = false;
+            enemyLayer = layersPlayer;
         };
 
         persuit.OnUpdate += () =>
@@ -444,7 +446,7 @@ public class Model_E_Melee : ClassEnemy
 
             if (timeToAttack <= 0 && !blockedAttack && life > 0) myFSM_EventMachine.ChangeState(attack);
 
-            if (onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+            if (onDamageTime > 0 && life > 0 && !blockedAttack) myFSM_EventMachine.ChangeState(takeDamage);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
@@ -466,16 +468,23 @@ public class Model_E_Melee : ClassEnemy
     void Update()
     {
        
-        canPersuit = CanSee(player.transform, viewDistancePersuit, angleToPersuit, layersCanSee);
+        canPersuit = CanSee(player.transform, viewDistancePersuit, angleToPersuit, enemyLayer);
 
-        canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, layersCanSee);
+        canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, enemyLayer);
 
-        canAttack = CanSee(player.transform, viewDistanceAttack, 360, layersCanSee);
+        canAttack = CanSee(player.transform, viewDistanceAttack, 360, enemyLayer);
 
         myFSM_EventMachine.Update();
     }
 
     public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }
+
+    public override void Resume()
+    {
+        StartCoroutine(OnDamageTimer());
+        StartCoroutine(MoveOnAttack());
+        _view.StartCoroutine(_view.DamageTimerAnim());
+    }
 
     public override void GetDamage(float d, Model_Player.DamageType t)
     {
@@ -588,4 +597,6 @@ public class Model_E_Melee : ClassEnemy
         Gizmos.DrawLine(transform.position, transform.position + (leftLimit3 * viewDistanceAttack));
 
     }
+
+   
 }

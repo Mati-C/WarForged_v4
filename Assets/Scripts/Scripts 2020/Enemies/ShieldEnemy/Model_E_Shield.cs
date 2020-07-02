@@ -97,6 +97,7 @@ public class Model_E_Shield : ClassEnemy
         ia_Manager = FindObjectOfType<IA_CombatManager>();
         playerFireSowrd = FindObjectOfType<FireSword>();
         exp = playerFireSowrd.shieldExp;
+        enemyLayer = layersCanSee;
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
@@ -131,6 +132,7 @@ public class Model_E_Shield : ClassEnemy
             isInCombat = false;
             onPatrol = true;
             RestartDistances_Angles();
+            enemyLayer = layersCanSee;
         };
 
         patrol.OnUpdate += () =>
@@ -167,6 +169,7 @@ public class Model_E_Shield : ClassEnemy
             }
             isInCombat = true;
             onPatrol = false;
+            enemyLayer = layersPlayer;
         };
 
         persuit.OnUpdate += () =>
@@ -534,15 +537,22 @@ public class Model_E_Shield : ClassEnemy
     void Update()
     {
 
-        canPersuit = CanSee(player.transform, viewDistancePersuit, angleToPersuit, layersCanSee);
+        canPersuit = CanSee(player.transform, viewDistancePersuit, angleToPersuit, enemyLayer);
 
-        canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, layersCanSee);
+        canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, enemyLayer);
 
-        canAttack = CanSee(player.transform, viewDistanceAttack, 360, layersCanSee);
+        canAttack = CanSee(player.transform, viewDistanceAttack, 360, enemyLayer);
 
         //notOnGrid = PlayerOnGrid();
 
         myFSM_EventMachine.Update();
+    }
+
+    public override void Resume()
+    {
+        StartCoroutine(OnDamageTimer());
+        StartCoroutine(MoveOnAttack());
+        _view.StartCoroutine(_view.DamageTimerAnim());
     }
 
     public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }
@@ -665,4 +675,6 @@ public class Model_E_Shield : ClassEnemy
 
 
     }
+
+
 }

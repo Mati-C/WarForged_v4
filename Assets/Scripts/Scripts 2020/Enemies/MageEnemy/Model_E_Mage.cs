@@ -65,9 +65,11 @@ public class Model_E_Mage : ClassEnemy
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         _view = GetComponent<Viewer_E_Mage>();
         ListNodesToRetreat.AddRange(nodesToRetreat.GetComponentsInChildren<Transform>());
+        ListNodesToRetreat.Remove(ListNodesToRetreat[0]);
         ia_Manager = FindObjectOfType<IA_CombatManager>();
         playerFireSowrd = FindObjectOfType<FireSword>();
         exp = playerFireSowrd.mageExp;
+        enemyLayer = layersCanSee;
 
         var surround = new N_FSM_State("SURROUND");
         var attack = new N_FSM_State("ATTACK");
@@ -96,6 +98,7 @@ public class Model_E_Mage : ClassEnemy
             isInCombat = false;
             onPatrol = true;
             RestartDistances_Angles();
+            enemyLayer = layersCanSee;
         };
 
         patrol.OnUpdate += () =>
@@ -132,6 +135,7 @@ public class Model_E_Mage : ClassEnemy
             }
             isInCombat = true;
             onPatrol = false;
+            enemyLayer = layersPlayer;
         };
 
         persuit.OnUpdate += () =>
@@ -403,11 +407,17 @@ public class Model_E_Mage : ClassEnemy
    
     void Update()
     {
-        canPersuit = CanSee(player.transform, viewDistancePersuit, angleToPersuit, layersCanSee);
+        canPersuit = CanSee(player.transform, viewDistancePersuit, angleToPersuit, enemyLayer);
 
-        canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, layersCanSee);
+        canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, enemyLayer);
 
         myFSM_EventMachine.Update();
+    }
+
+    public override void Resume()
+    {
+        StartCoroutine(OnDamageTimer());
+        _view.StartCoroutine(_view.DamageTimerAnim());
     }
 
     public void Shoot()
@@ -481,4 +491,5 @@ public class Model_E_Mage : ClassEnemy
         Gizmos.DrawLine(transform.position, transform.position + (leftLimit2 * viewDistanceSurround));
 
     }
+
 }

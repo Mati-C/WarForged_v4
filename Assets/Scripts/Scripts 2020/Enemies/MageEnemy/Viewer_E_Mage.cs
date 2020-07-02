@@ -15,7 +15,7 @@ public class Viewer_E_Mage : ClassEnemyViewer
         anim.SetBool(animName, false);
     }
 
-    IEnumerator DamageTimerAnim()
+    public IEnumerator DamageTimerAnim()
     {
         while (true)
         {

@@ -28,7 +28,7 @@ public class Viewer_E_Lancer : ClassEnemyViewer
         anim.SetBool("Counter", false);
     }
 
-    IEnumerator DamageTimerAnim()
+    public IEnumerator DamageTimerAnim()
     {
         while (true)
         {
