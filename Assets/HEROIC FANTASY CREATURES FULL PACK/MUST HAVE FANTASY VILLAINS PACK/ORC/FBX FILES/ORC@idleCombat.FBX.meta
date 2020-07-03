@@ -1,156 +1,409 @@
 fileFormatVersion: 2
 guid: 9a62904f84362ff4ea64d9841cedc2d4
-timeCreated: 1481319194
-licenseType: Store
 ModelImporter:
-  serializedVersion: 18
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: ORC_
-    100004: ORC_ Head
-    100006: ORC_ L Calf
-    100008: ORC_ L Clavicle
-    100010: ORC_ L Finger0
-    100012: ORC_ L Finger01
-    100014: ORC_ L Finger02
-    100016: ORC_ L Finger1
-    100018: ORC_ L Finger11
-    100020: ORC_ L Finger12
-    100022: ORC_ L Finger2
-    100024: ORC_ L Finger21
-    100026: ORC_ L Finger22
-    100028: ORC_ L Finger3
-    100030: ORC_ L Finger31
-    100032: ORC_ L Finger32
-    100034: ORC_ L Foot
-    100036: ORC_ L Forearm
-    100038: ORC_ L Hand
-    100040: ORC_ L Thigh
-    100042: ORC_ L Toe0
-    100044: ORC_ L UpperArm
-    100046: ORC_ Neck
-    100048: ORC_ Pelvis
-    100050: ORC_ Queue de cheval 1
-    100052: ORC_ Queue de cheval 11
-    100054: ORC_ Queue de cheval 12
-    100056: ORC_ Queue de cheval 13
-    100058: ORC_ Queue de cheval 2
-    100060: ORC_ R Calf
-    100062: ORC_ R Clavicle
-    100064: ORC_ R Finger0
-    100066: ORC_ R Finger01
-    100068: ORC_ R Finger02
-    100070: ORC_ R Finger1
-    100072: ORC_ R Finger11
-    100074: ORC_ R Finger12
-    100076: ORC_ R Finger2
-    100078: ORC_ R Finger21
-    100080: ORC_ R Finger22
-    100082: ORC_ R Finger3
-    100084: ORC_ R Finger31
-    100086: ORC_ R Finger32
-    100088: ORC_ R Foot
-    100090: ORC_ R Forearm
-    100092: ORC_ R Hand
-    100094: ORC_ R Thigh
-    100096: ORC_ R Toe0
-    100098: ORC_ R UpperArm
-    100100: ORC_ Spine
-    100102: ORC_ Spine1
-    100104: PELT_SKIN_BACK_1
-    100106: PELT_SKIN_BACK_2
-    100108: PELT_SKIN_BACK_3
-    100110: PELT_SKIN_FRONT_1
-    100112: PELT_SKIN_FRONT_2
-    100114: PELT_SKIN_FRONT_3
-    100116: SHOULDER_PAD_L
-    100118: SHOULDER_PAD_R
-    400000: //RootNode
-    400002: ORC_
-    400004: ORC_ Head
-    400006: ORC_ L Calf
-    400008: ORC_ L Clavicle
-    400010: ORC_ L Finger0
-    400012: ORC_ L Finger01
-    400014: ORC_ L Finger02
-    400016: ORC_ L Finger1
-    400018: ORC_ L Finger11
-    400020: ORC_ L Finger12
-    400022: ORC_ L Finger2
-    400024: ORC_ L Finger21
-    400026: ORC_ L Finger22
-    400028: ORC_ L Finger3
-    400030: ORC_ L Finger31
-    400032: ORC_ L Finger32
-    400034: ORC_ L Foot
-    400036: ORC_ L Forearm
-    400038: ORC_ L Hand
-    400040: ORC_ L Thigh
-    400042: ORC_ L Toe0
-    400044: ORC_ L UpperArm
-    400046: ORC_ Neck
-    400048: ORC_ Pelvis
-    400050: ORC_ Queue de cheval 1
-    400052: ORC_ Queue de cheval 11
-    400054: ORC_ Queue de cheval 12
-    400056: ORC_ Queue de cheval 13
-    400058: ORC_ Queue de cheval 2
-    400060: ORC_ R Calf
-    400062: ORC_ R Clavicle
-    400064: ORC_ R Finger0
-    400066: ORC_ R Finger01
-    400068: ORC_ R Finger02
-    400070: ORC_ R Finger1
-    400072: ORC_ R Finger11
-    400074: ORC_ R Finger12
-    400076: ORC_ R Finger2
-    400078: ORC_ R Finger21
-    400080: ORC_ R Finger22
-    400082: ORC_ R Finger3
-    400084: ORC_ R Finger31
-    400086: ORC_ R Finger32
-    400088: ORC_ R Foot
-    400090: ORC_ R Forearm
-    400092: ORC_ R Hand
-    400094: ORC_ R Thigh
-    400096: ORC_ R Toe0
-    400098: ORC_ R UpperArm
-    400100: ORC_ Spine
-    400102: ORC_ Spine1
-    400104: PELT_SKIN_BACK_1
-    400106: PELT_SKIN_BACK_2
-    400108: PELT_SKIN_BACK_3
-    400110: PELT_SKIN_FRONT_1
-    400112: PELT_SKIN_FRONT_2
-    400114: PELT_SKIN_FRONT_3
-    400116: SHOULDER_PAD_L
-    400118: SHOULDER_PAD_R
-    7400000: idleCombat
-    9500000: //RootNode
-    11100000: //RootNode
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: ORC_
+  - first:
+      1: 100004
+    second: ORC_ Head
+  - first:
+      1: 100006
+    second: ORC_ L Calf
+  - first:
+      1: 100008
+    second: ORC_ L Clavicle
+  - first:
+      1: 100010
+    second: ORC_ L Finger0
+  - first:
+      1: 100012
+    second: ORC_ L Finger01
+  - first:
+      1: 100014
+    second: ORC_ L Finger02
+  - first:
+      1: 100016
+    second: ORC_ L Finger1
+  - first:
+      1: 100018
+    second: ORC_ L Finger11
+  - first:
+      1: 100020
+    second: ORC_ L Finger12
+  - first:
+      1: 100022
+    second: ORC_ L Finger2
+  - first:
+      1: 100024
+    second: ORC_ L Finger21
+  - first:
+      1: 100026
+    second: ORC_ L Finger22
+  - first:
+      1: 100028
+    second: ORC_ L Finger3
+  - first:
+      1: 100030
+    second: ORC_ L Finger31
+  - first:
+      1: 100032
+    second: ORC_ L Finger32
+  - first:
+      1: 100034
+    second: ORC_ L Foot
+  - first:
+      1: 100036
+    second: ORC_ L Forearm
+  - first:
+      1: 100038
+    second: ORC_ L Hand
+  - first:
+      1: 100040
+    second: ORC_ L Thigh
+  - first:
+      1: 100042
+    second: ORC_ L Toe0
+  - first:
+      1: 100044
+    second: ORC_ L UpperArm
+  - first:
+      1: 100046
+    second: ORC_ Neck
+  - first:
+      1: 100048
+    second: ORC_ Pelvis
+  - first:
+      1: 100050
+    second: ORC_ Queue de cheval 1
+  - first:
+      1: 100052
+    second: ORC_ Queue de cheval 11
+  - first:
+      1: 100054
+    second: ORC_ Queue de cheval 12
+  - first:
+      1: 100056
+    second: ORC_ Queue de cheval 13
+  - first:
+      1: 100058
+    second: ORC_ Queue de cheval 2
+  - first:
+      1: 100060
+    second: ORC_ R Calf
+  - first:
+      1: 100062
+    second: ORC_ R Clavicle
+  - first:
+      1: 100064
+    second: ORC_ R Finger0
+  - first:
+      1: 100066
+    second: ORC_ R Finger01
+  - first:
+      1: 100068
+    second: ORC_ R Finger02
+  - first:
+      1: 100070
+    second: ORC_ R Finger1
+  - first:
+      1: 100072
+    second: ORC_ R Finger11
+  - first:
+      1: 100074
+    second: ORC_ R Finger12
+  - first:
+      1: 100076
+    second: ORC_ R Finger2
+  - first:
+      1: 100078
+    second: ORC_ R Finger21
+  - first:
+      1: 100080
+    second: ORC_ R Finger22
+  - first:
+      1: 100082
+    second: ORC_ R Finger3
+  - first:
+      1: 100084
+    second: ORC_ R Finger31
+  - first:
+      1: 100086
+    second: ORC_ R Finger32
+  - first:
+      1: 100088
+    second: ORC_ R Foot
+  - first:
+      1: 100090
+    second: ORC_ R Forearm
+  - first:
+      1: 100092
+    second: ORC_ R Hand
+  - first:
+      1: 100094
+    second: ORC_ R Thigh
+  - first:
+      1: 100096
+    second: ORC_ R Toe0
+  - first:
+      1: 100098
+    second: ORC_ R UpperArm
+  - first:
+      1: 100100
+    second: ORC_ Spine
+  - first:
+      1: 100102
+    second: ORC_ Spine1
+  - first:
+      1: 100104
+    second: PELT_SKIN_BACK_1
+  - first:
+      1: 100106
+    second: PELT_SKIN_BACK_2
+  - first:
+      1: 100108
+    second: PELT_SKIN_BACK_3
+  - first:
+      1: 100110
+    second: PELT_SKIN_FRONT_1
+  - first:
+      1: 100112
+    second: PELT_SKIN_FRONT_2
+  - first:
+      1: 100114
+    second: PELT_SKIN_FRONT_3
+  - first:
+      1: 100116
+    second: SHOULDER_PAD_L
+  - first:
+      1: 100118
+    second: SHOULDER_PAD_R
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: ORC_
+  - first:
+      4: 400004
+    second: ORC_ Head
+  - first:
+      4: 400006
+    second: ORC_ L Calf
+  - first:
+      4: 400008
+    second: ORC_ L Clavicle
+  - first:
+      4: 400010
+    second: ORC_ L Finger0
+  - first:
+      4: 400012
+    second: ORC_ L Finger01
+  - first:
+      4: 400014
+    second: ORC_ L Finger02
+  - first:
+      4: 400016
+    second: ORC_ L Finger1
+  - first:
+      4: 400018
+    second: ORC_ L Finger11
+  - first:
+      4: 400020
+    second: ORC_ L Finger12
+  - first:
+      4: 400022
+    second: ORC_ L Finger2
+  - first:
+      4: 400024
+    second: ORC_ L Finger21
+  - first:
+      4: 400026
+    second: ORC_ L Finger22
+  - first:
+      4: 400028
+    second: ORC_ L Finger3
+  - first:
+      4: 400030
+    second: ORC_ L Finger31
+  - first:
+      4: 400032
+    second: ORC_ L Finger32
+  - first:
+      4: 400034
+    second: ORC_ L Foot
+  - first:
+      4: 400036
+    second: ORC_ L Forearm
+  - first:
+      4: 400038
+    second: ORC_ L Hand
+  - first:
+      4: 400040
+    second: ORC_ L Thigh
+  - first:
+      4: 400042
+    second: ORC_ L Toe0
+  - first:
+      4: 400044
+    second: ORC_ L UpperArm
+  - first:
+      4: 400046
+    second: ORC_ Neck
+  - first:
+      4: 400048
+    second: ORC_ Pelvis
+  - first:
+      4: 400050
+    second: ORC_ Queue de cheval 1
+  - first:
+      4: 400052
+    second: ORC_ Queue de cheval 11
+  - first:
+      4: 400054
+    second: ORC_ Queue de cheval 12
+  - first:
+      4: 400056
+    second: ORC_ Queue de cheval 13
+  - first:
+      4: 400058
+    second: ORC_ Queue de cheval 2
+  - first:
+      4: 400060
+    second: ORC_ R Calf
+  - first:
+      4: 400062
+    second: ORC_ R Clavicle
+  - first:
+      4: 400064
+    second: ORC_ R Finger0
+  - first:
+      4: 400066
+    second: ORC_ R Finger01
+  - first:
+      4: 400068
+    second: ORC_ R Finger02
+  - first:
+      4: 400070
+    second: ORC_ R Finger1
+  - first:
+      4: 400072
+    second: ORC_ R Finger11
+  - first:
+      4: 400074
+    second: ORC_ R Finger12
+  - first:
+      4: 400076
+    second: ORC_ R Finger2
+  - first:
+      4: 400078
+    second: ORC_ R Finger21
+  - first:
+      4: 400080
+    second: ORC_ R Finger22
+  - first:
+      4: 400082
+    second: ORC_ R Finger3
+  - first:
+      4: 400084
+    second: ORC_ R Finger31
+  - first:
+      4: 400086
+    second: ORC_ R Finger32
+  - first:
+      4: 400088
+    second: ORC_ R Foot
+  - first:
+      4: 400090
+    second: ORC_ R Forearm
+  - first:
+      4: 400092
+    second: ORC_ R Hand
+  - first:
+      4: 400094
+    second: ORC_ R Thigh
+  - first:
+      4: 400096
+    second: ORC_ R Toe0
+  - first:
+      4: 400098
+    second: ORC_ R UpperArm
+  - first:
+      4: 400100
+    second: ORC_ Spine
+  - first:
+      4: 400102
+    second: ORC_ Spine1
+  - first:
+      4: 400104
+    second: PELT_SKIN_BACK_1
+  - first:
+      4: 400106
+    second: PELT_SKIN_BACK_2
+  - first:
+      4: 400108
+    second: PELT_SKIN_BACK_3
+  - first:
+      4: 400110
+    second: PELT_SKIN_FRONT_1
+  - first:
+      4: 400112
+    second: PELT_SKIN_FRONT_2
+  - first:
+      4: 400114
+    second: PELT_SKIN_FRONT_3
+  - first:
+      4: 400116
+    second: SHOULDER_PAD_L
+  - first:
+      4: 400118
+    second: SHOULDER_PAD_R
+  - first:
+      74: 7400000
+    second: idleCombat
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      111: 11100000
+    second: //RootNode
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 0
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: idleCombat
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -158,7 +411,8 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -338,19 +592,30 @@ ModelImporter:
         weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -358,12 +623,17 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 1
   humanDescription:
+    serializedVersion: 3
     human:
     - boneName: ORC_ Pelvis
       humanName: Hips
@@ -735,351 +1005,356 @@ ModelImporter:
         modified: 0
     skeleton:
     - name: ORC(Clone)
+      parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: BELLY_ARMOR
-      position: {x: -.000917358382, y: 1.95997596, z: .0138361789}
-      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      parentName: 
+      position: {x: -0.0009173584, y: 1.959976, z: 0.013836179}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: ORC_
-      position: {x: 0, y: 1.28100002, z: 0}
-      rotation: {x: -.500000417, y: .499999613, z: .499999613, w: .500000417}
-      scale: {x: .99999994, y: .99999994, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: 0, y: 1.281, z: 0}
+      rotation: {x: -0.5000004, y: 0.4999996, z: 0.4999996, w: 0.5000004}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
     - name: ORC_ Pelvis
+      parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: .5, y: -.500000715, z: -.499999374, w: -.49999994}
+      rotation: {x: 0.5, y: -0.5000007, z: -0.49999937, w: -0.49999994}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: PELT_SKIN_BACK_1
-      position: {x: -.0457427986, y: -.241776511, z: 9.15527323e-07}
-      rotation: {x: .0853787214, y: .996348619, z: -1.51991844e-06, w: 4.76837158e-07}
-      scale: {x: .999999762, y: 1, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.0457428, y: -0.24177651, z: 0.0000009155273}
+      rotation: {x: 0.08537872, y: 0.9963486, z: -0.0000015199184, w: 0.00000047683716}
+      scale: {x: 0.99999976, y: 1, z: 0.9999999}
     - name: PELT_SKIN_BACK_2
-      position: {x: -.140618891, y: -2.47955313e-06, z: 0}
-      rotation: {x: -1.49011598e-07, y: -1.49011598e-07, z: -.039367076, w: .999224901}
+      parentName: 
+      position: {x: -0.14061889, y: -0.0000024795531, z: 0}
+      rotation: {x: -0.0000001490116, y: -0.0000001490116, z: -0.039367076, w: 0.9992249}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: PELT_SKIN_BACK_3
-      position: {x: -.148542553, y: 2.28881822e-06, z: 1.36831657e-09}
-      rotation: {x: -5.96046377e-08, y: 8.94069601e-08, z: -.0461032651, w: .998936713}
-      scale: {x: 1, y: 1, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.14854255, y: 0.0000022888182, z: 0.0000000013683166}
+      rotation: {x: -0.000000059604638, y: 0.00000008940696, z: -0.046103265, w: 0.9989367}
+      scale: {x: 1, y: 1, z: 0.9999999}
     - name: PELT_SKIN_FRONT_1
-      position: {x: .0388608538, y: .251239866, z: -7.56401164e-07}
-      rotation: {x: .0246260315, y: .999696732, z: -1.43051147e-06, w: 5.96046448e-07}
-      scale: {x: 1, y: .999999881, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: 0.038860854, y: 0.25123987, z: -0.00000075640116}
+      rotation: {x: 0.024626032, y: 0.99969673, z: -0.0000014305115, w: 0.00000059604645}
+      scale: {x: 1, y: 0.9999999, z: 1}
     - name: PELT_SKIN_FRONT_2
-      position: {x: -.120943218, y: 3.81469718e-08, z: 7.83388199e-09}
-      rotation: {x: 1.19209275e-07, y: -1.19209275e-07, z: -.00518631889, w: .999986529}
-      scale: {x: 1.00000024, y: 1.00000012, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.12094322, y: 0.000000038146972, z: 0.000000007833882}
+      rotation: {x: 0.000000119209275, y: -0.000000119209275, z: -0.005186319, w: 0.9999865}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000002}
     - name: PELT_SKIN_FRONT_3
-      position: {x: -.11566513, y: 1.90734859e-08, z: 6.54836157e-13}
-      rotation: {x: -2.98023224e-08, y: 0, z: -.00568149984, w: .999983907}
-      scale: {x: 1, y: 1.00000012, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.11566513, y: 0.000000019073486, z: 6.5483616e-13}
+      rotation: {x: -0.000000029802322, y: 0, z: -0.0056815, w: 0.9999839}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
     - name: ORC_ L Thigh
-      position: {x: 1.52587887e-07, y: 2.15981089e-07, z: .11536397}
-      rotation: {x: -.00447000563, y: .995562792, z: .00490117073, w: .0938661397}
-      scale: {x: .999999881, y: .99999994, z: .999999642}
-      transformModified: 1
+      parentName: 
+      position: {x: 0.00000015258789, y: 0.00000021598109, z: 0.11536397}
+      rotation: {x: -0.0044700056, y: 0.9955628, z: 0.0049011707, w: 0.09386614}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.99999964}
     - name: ORC_ L Calf
-      position: {x: -.625062644, y: 1.19209287e-09, z: -3.81469718e-08}
-      rotation: {x: -1.49011594e-08, y: -2.98023188e-08, z: .0669978186, w: .997753143}
-      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.62506264, y: 0.0000000011920929, z: -0.000000038146972}
+      rotation: {x: -0.000000014901159, y: -0.000000029802319, z: 0.06699782, w: 0.99775314}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
     - name: ORC_ L Foot
-      position: {x: -.52944839, y: -1.43051144e-08, z: 3.81469718e-08}
-      rotation: {x: .00659951475, y: .020436449, z: -.0628914759, w: .997789264}
-      scale: {x: .999999881, y: .999999881, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.5294484, y: -0.000000014305114, z: 0.000000038146972}
+      rotation: {x: 0.0065995147, y: 0.020436449, z: -0.062891476, w: 0.99778926}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
     - name: ORC_ L Toe0
-      position: {x: -.132668585, y: .274518877, z: -3.81469718e-08}
-      rotation: {x: 0, y: 8.00937343e-08, z: -.707106769, w: .707106888}
-      scale: {x: .999999583, y: 1.00000012, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.13266858, y: 0.27451888, z: -0.000000038146972}
+      rotation: {x: 0, y: 0.000000080093734, z: -0.70710677, w: 0.7071069}
+      scale: {x: 0.9999996, y: 1.0000001, z: 0.9999999}
     - name: ORC_ Spine
-      position: {x: -.132668599, y: -.000197992587, z: 1.84259406e-07}
-      rotation: {x: 2.07126163e-06, y: 7.15255794e-07, z: .00039820376, w: -.99999994}
-      scale: {x: 1, y: 1, z: .999999821}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.1326686, y: -0.00019799259, z: 0.0000001842594}
+      rotation: {x: 0.0000020712616, y: 0.0000007152558, z: 0.00039820376, w: -0.99999994}
+      scale: {x: 1, y: 1, z: 0.9999998}
     - name: ORC_ Spine1
-      position: {x: -.248726502, y: -.000258131768, z: -7.1595424e-10}
+      parentName: 
+      position: {x: -0.2487265, y: -0.00025813177, z: -7.1595424e-10}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: .99999994, y: .99999994, z: 1}
-      transformModified: 1
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
     - name: SHOULDER_PAD_R
-      position: {x: -.320566237, y: -.0570832603, z: -.314000249}
-      rotation: {x: -.446822733, y: -.548040926, z: -.547685802, w: .447259277}
-      scale: {x: 1.00000024, y: 1.00000012, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.32056624, y: -0.05708326, z: -0.31400025}
+      rotation: {x: -0.44682273, y: -0.5480409, z: -0.5476858, w: 0.44725928}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1}
     - name: SHOULDER_PAD_L
-      position: {x: -.320566237, y: -.0570840016, z: .314042836}
-      rotation: {x: .44725877, y: -.547685266, z: -.548041642, w: -.44682321}
-      scale: {x: 1, y: .999999821, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.32056624, y: -0.057084, z: 0.31404284}
+      rotation: {x: 0.44725877, y: -0.54768527, z: -0.54804164, w: -0.4468232}
+      scale: {x: 1, y: 0.9999998, z: 0.9999999}
     - name: ORC_ Neck
-      position: {x: -.340607136, y: -.0353675149, z: -4.98092945e-08}
-      rotation: {x: 2.98023224e-08, y: 4.47034836e-07, z: -.155442894, w: .987844884}
-      scale: {x: 1, y: 1.00000024, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.34060714, y: -0.035367515, z: -0.000000049809294}
+      rotation: {x: 0.000000029802322, y: 0.00000044703484, z: -0.1554429, w: 0.9878449}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
     - name: ORC_ Head
-      position: {x: -.174801484, y: 0, z: -1.45519149e-13}
-      rotation: {x: -1.49011612e-08, y: -8.94069672e-08, z: .0226111859, w: .999744415}
-      scale: {x: .99999994, y: .999999762, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.17480148, y: 0, z: -1.4551915e-13}
+      rotation: {x: -0.000000014901161, y: -0.00000008940697, z: 0.022611186, w: 0.9997444}
+      scale: {x: 0.99999994, y: 0.99999976, z: 0.9999999}
     - name: ORC_ Queue de cheval 1
-      position: {x: -.18791458, y: -.156954765, z: -4.32779046e-07}
-      rotation: {x: 8.94069601e-08, y: 1.44541241e-06, z: -.504980028, w: -.863131046}
-      scale: {x: 1.00000012, y: 1.00000012, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.18791458, y: -0.15695477, z: -0.00000043277905}
+      rotation: {x: 0.00000008940696, y: 0.0000014454124, z: -0.50498, w: -0.86313105}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: ORC_ Queue de cheval 11
-      position: {x: -.0609591678, y: -5.79833977e-05, z: -1.60944175e-10}
-      rotation: {x: -4.47034836e-08, y: -1.49011612e-08, z: .00058016181, w: .999999881}
-      scale: {x: .999999821, y: .999999881, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.060959168, y: -0.000057983398, z: -1.6094417e-10}
+      rotation: {x: -0.000000044703484, y: -0.000000014901161, z: 0.0005801618, w: 0.9999999}
+      scale: {x: 0.9999998, y: 0.9999999, z: 0.9999999}
     - name: ORC_ Queue de cheval 12
-      position: {x: -.0729110688, y: -6.36291516e-05, z: -1.76660242e-10}
-      rotation: {x: 1.49011594e-08, y: -2.98023188e-08, z: .000580131949, w: .999999821}
-      scale: {x: 1.00000024, y: 1, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.07291107, y: -0.00006362915, z: -1.7666024e-10}
+      rotation: {x: 0.000000014901159, y: -0.000000029802319, z: 0.00058013195, w: 0.9999998}
+      scale: {x: 1.0000002, y: 1, z: 1.0000001}
     - name: ORC_ Queue de cheval 13
-      position: {x: -.0801504478, y: -5.58471656e-05, z: -1.54832369e-10}
-      rotation: {x: 1.49011594e-08, y: -5.21540571e-08, z: .000580191554, w: .999999821}
-      scale: {x: .999999881, y: .999999881, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.08015045, y: -0.000055847166, z: -1.5483237e-10}
+      rotation: {x: 0.000000014901159, y: -0.000000052154057, z: 0.00058019155, w: 0.9999998}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
     - name: ORC_ Queue de cheval 2
-      position: {x: .00457397429, y: .0491513796, z: -1.78900223e-07}
-      rotation: {x: 0, y: -1.99675537e-06, z: .732814491, w: -.680428565}
-      scale: {x: .999999881, y: .999999762, z: .999999821}
-      transformModified: 1
+      parentName: 
+      position: {x: 0.0045739743, y: 0.04915138, z: -0.00000017890022}
+      rotation: {x: 0, y: -0.0000019967554, z: 0.7328145, w: -0.68042856}
+      scale: {x: 0.9999999, y: 0.99999976, z: 0.9999998}
     - name: ORC_ L Clavicle
-      position: {x: .0115893548, y: .0176531598, z: .0759161189}
-      rotation: {x: .607457578, y: .0958357751, z: -.778916061, w: .122883841}
-      scale: {x: 1, y: 1.00000048, z: 1.00000036}
-      transformModified: 1
+      parentName: 
+      position: {x: 0.011589355, y: 0.01765316, z: 0.07591612}
+      rotation: {x: 0.6074576, y: 0.095835775, z: -0.77891606, w: 0.12288384}
+      scale: {x: 1, y: 1.0000005, z: 1.0000004}
     - name: ORC_ L UpperArm
-      position: {x: -.249598294, y: 2.38418574e-09, z: 1.52587887e-07}
-      rotation: {x: .00630599307, y: .0933907181, z: -.00124289095, w: .995608807}
-      scale: {x: .99999994, y: .999999881, z: .999999642}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.2495983, y: 0.0000000023841857, z: 0.00000015258789}
+      rotation: {x: 0.006305993, y: 0.09339072, z: -0.001242891, w: 0.9956088}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999964}
     - name: ORC_ L Forearm
-      position: {x: -.43627584, y: -4.76837148e-09, z: 0}
-      rotation: {x: 7.45057971e-09, y: -1.49011598e-07, z: .000598072947, w: .999999821}
-      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.43627584, y: -0.0000000047683715, z: 0}
+      rotation: {x: 0.0000000074505797, y: -0.0000001490116, z: 0.00059807295, w: 0.9999998}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
     - name: FOREARM_PAD_L
-      position: {x: -.145541415, y: .0103922654, z: .140304253}
-      rotation: {x: -.00600587949, y: .273309052, z: .00368002872, w: .961900532}
-      scale: {x: 1, y: .99999994, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.14554141, y: 0.010392265, z: 0.14030425}
+      rotation: {x: -0.0060058795, y: 0.27330905, z: 0.0036800287, w: 0.96190053}
+      scale: {x: 1, y: 0.99999994, z: 0.9999999}
     - name: ORC_ L Hand
-      position: {x: -.35532251, y: 0, z: 0}
-      rotation: {x: .705972612, y: -.0347461179, z: -.0348615758, w: -.706526816}
-      scale: {x: .999999762, y: .999999583, z: .999999583}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.3553225, y: 0, z: 0}
+      rotation: {x: 0.7059726, y: -0.034746118, z: -0.034861576, w: -0.7065268}
+      scale: {x: 0.99999976, y: 0.9999996, z: 0.9999996}
     - name: ORC_ L Finger0
-      position: {x: -.0426991656, y: .0129507445, z: -.0493068695}
-      rotation: {x: .59827131, y: -.161664069, z: .136479571, w: .772858024}
-      scale: {x: 1, y: .999999702, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.042699166, y: 0.0129507445, z: -0.04930687}
+      rotation: {x: 0.5982713, y: -0.16166407, z: 0.13647957, w: 0.772858}
+      scale: {x: 1, y: 0.9999997, z: 1.0000001}
     - name: ORC_ L Finger01
-      position: {x: -.0656461865, y: 1.14440915e-07, z: 1.52587887e-07}
-      rotation: {x: 5.40166916e-08, y: 1.72853413e-06, z: -.037924774, w: .999280632}
-      scale: {x: 1.00000012, y: 1.00000024, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.06564619, y: 0.000000114440915, z: 0.00000015258789}
+      rotation: {x: 0.00000005401669, y: 0.0000017285341, z: -0.037924774, w: 0.99928063}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
     - name: ORC_ L Finger02
-      position: {x: -.0673968494, y: 0, z: -1.52587887e-07}
-      rotation: {x: -5.96046377e-08, y: -8.94069601e-08, z: .338455915, w: -.940982282}
-      scale: {x: 1.00000024, y: 1, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.06739685, y: 0, z: -0.00000015258789}
+      rotation: {x: -0.000000059604638, y: -0.00000008940696, z: 0.33845592, w: -0.9409823}
+      scale: {x: 1.0000002, y: 1, z: 1.0000001}
     - name: ORC_ L Finger1
-      position: {x: -.151194945, y: -.0107867429, z: -.0476282761}
-      rotation: {x: -.000395877112, y: -.106894217, z: 4.2527914e-05, w: .994270384}
-      scale: {x: 1, y: 1.0000006, z: 1.00000036}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.15119494, y: -0.010786743, z: -0.047628276}
+      rotation: {x: -0.0003958771, y: -0.10689422, z: 0.000042527914, w: 0.9942704}
+      scale: {x: 1, y: 1.0000006, z: 1.0000004}
     - name: ORC_ L Finger11
-      position: {x: -.075790897, y: -1.52587887e-07, z: -9.53674295e-09}
-      rotation: {x: 2.22120406e-07, y: -3.20374937e-07, z: -.035130877, w: .999382794}
-      scale: {x: 1.00000012, y: .999999523, z: .999999404}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.0757909, y: -0.00000015258789, z: -0.000000009536743}
+      rotation: {x: 0.0000002221204, y: -0.00000032037494, z: -0.035130877, w: 0.9993828}
+      scale: {x: 1.0000001, y: 0.9999995, z: 0.9999994}
     - name: ORC_ L Finger12
-      position: {x: -.056155622, y: 0, z: 1.90734859e-08}
-      rotation: {x: -1.117587e-08, y: 7.45057971e-09, z: -.188129544, w: .982144237}
-      scale: {x: 1.00000012, y: 1.0000006, z: 1.00000048}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.056155622, y: 0, z: 0.000000019073486}
+      rotation: {x: -0.00000001117587, y: 0.0000000074505797, z: -0.18812954, w: 0.98214424}
+      scale: {x: 1.0000001, y: 1.0000006, z: 1.0000005}
     - name: ORC_ L Finger2
-      position: {x: -.152004808, y: -.00456161471, z: .0199060962}
-      rotation: {x: -.0339407809, y: -.0846318081, z: -.0100105479, w: .995783746}
-      scale: {x: 1.00000012, y: 1, z: .999999583}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.15200481, y: -0.0045616147, z: 0.019906096}
+      rotation: {x: -0.03394078, y: -0.08463181, z: -0.010010548, w: 0.99578375}
+      scale: {x: 1.0000001, y: 1, z: 0.9999996}
     - name: ORC_ L Finger21
-      position: {x: -.0773474872, y: 0, z: -2.38418574e-09}
-      rotation: {x: -2.235174e-08, y: -2.98023195e-07, z: -.0377714448, w: .999286473}
-      scale: {x: .999999881, y: 1.00000024, z: 1.00000036}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.07734749, y: 0, z: -0.0000000023841857}
+      rotation: {x: -0.00000002235174, y: -0.0000002980232, z: -0.037771445, w: 0.9992865}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000004}
     - name: ORC_ L Finger22
-      position: {x: -.064447552, y: -1.52587887e-07, z: 4.76837148e-09}
-      rotation: {x: -1.47847441e-08, y: 1.86264493e-09, z: -.146500483, w: .989210606}
-      scale: {x: .99999994, y: .999999762, z: .999999344}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.06444755, y: -0.00000015258789, z: 0.0000000047683715}
+      rotation: {x: -0.000000014784744, y: 0.0000000018626449, z: -0.14650048, w: 0.9892106}
+      scale: {x: 0.99999994, y: 0.99999976, z: 0.99999934}
     - name: ORC_ L Finger3
-      position: {x: -.152013466, y: .00128814694, z: .0853667632}
-      rotation: {x: -.0679262057, y: -.0884594992, z: -.015438797, w: .993641078}
-      scale: {x: .999999881, y: 1.00000012, z: .999999762}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.15201347, y: 0.001288147, z: 0.08536676}
+      rotation: {x: -0.067926206, y: -0.0884595, z: -0.015438797, w: 0.9936411}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.99999976}
     - name: ORC_ L Finger31
-      position: {x: -.0709784701, y: 0, z: 9.53674295e-09}
-      rotation: {x: 1.57160628e-07, y: -9.68575122e-08, z: -.0377712175, w: .999286413}
-      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.07097847, y: 0, z: 0.000000009536743}
+      rotation: {x: 0.00000015716063, y: -0.00000009685751, z: -0.037771218, w: 0.9992864}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
     - name: ORC_ L Finger32
-      position: {x: -.0583914928, y: 0, z: 0}
-      rotation: {x: 7.45057971e-09, y: -5.587935e-09, z: -.146882042, w: .989153981}
-      scale: {x: .99999994, y: 1.00000012, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.058391493, y: 0, z: 0}
+      rotation: {x: 0.0000000074505797, y: -0.000000005587935, z: -0.14688204, w: 0.989154}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
     - name: ORC_ R Clavicle
-      position: {x: .0115893548, y: .0176535789, z: -.0759161189}
-      rotation: {x: .60745734, y: .0958336666, z: .778916419, w: -.122885473}
-      scale: {x: .999999344, y: .999999464, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: 0.011589355, y: 0.017653579, z: -0.07591612}
+      rotation: {x: 0.60745734, y: 0.09583367, z: 0.7789164, w: -0.12288547}
+      scale: {x: 0.99999934, y: 0.99999946, z: 1}
     - name: ORC_ R UpperArm
-      position: {x: -.249598294, y: -2.38418574e-09, z: -1.52587887e-07}
-      rotation: {x: -.00630602008, y: -.0933908373, z: -.00124290818, w: .995608866}
-      scale: {x: .999999881, y: .99999994, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.2495983, y: -0.0000000023841857, z: -0.00000015258789}
+      rotation: {x: -0.00630602, y: -0.09339084, z: -0.0012429082, w: 0.99560887}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
     - name: ORC_ R Forearm
-      position: {x: -.436275929, y: 0, z: 1.52587887e-07}
-      rotation: {x: -1.19209275e-07, y: -2.98023188e-08, z: .000598117651, w: .999999881}
-      scale: {x: 1.00000036, y: 1.00000012, z: 1.00000024}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.43627593, y: 0, z: 0.00000015258789}
+      rotation: {x: -0.000000119209275, y: -0.000000029802319, z: 0.00059811765, w: 0.9999999}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000002}
     - name: FOREARM_PAD_L001
-      position: {x: -.145541415, y: .0103951069, z: -.140304253}
-      rotation: {x: -.273309052, y: -.0060062618, z: .961900532, w: -.00367841334}
-      scale: {x: -1.00000012, y: -1.00000012, z: -1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.14554141, y: 0.010395107, z: -0.14030425}
+      rotation: {x: -0.27330905, y: -0.006006262, z: 0.96190053, w: -0.0036784133}
+      scale: {x: -1.0000001, y: -1.0000001, z: -1}
     - name: ORC_ R Hand
-      position: {x: -.35532245, y: 0, z: -1.52587887e-07}
-      rotation: {x: -.705972672, y: .0347468406, z: -.0348621234, w: -.706526756}
-      scale: {x: 1.00000036, y: 1.00000012, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.35532245, y: 0, z: -0.00000015258789}
+      rotation: {x: -0.7059727, y: 0.03474684, z: -0.034862123, w: -0.70652676}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1}
     - name: axe001
-      position: {x: -.112948604, y: .0448654182, z: .0204328913}
-      rotation: {x: -.0533614196, y: -.0256876051, z: .995224357, w: .0775965378}
-      scale: {x: 1.00000012, y: 1, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.112948604, y: 0.04486542, z: 0.020432891}
+      rotation: {x: -0.05336142, y: -0.025687605, z: 0.99522436, w: 0.07759654}
+      scale: {x: 1.0000001, y: 1, z: 1}
     - name: ORC_ R Finger2
-      position: {x: -.152004883, y: -.00456146244, z: -.0199060962}
-      rotation: {x: .0339406915, y: .0846315473, z: -.0100104753, w: .995783746}
-      scale: {x: .999999881, y: .999999762, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.15200488, y: -0.0045614624, z: -0.019906096}
+      rotation: {x: 0.03394069, y: 0.08463155, z: -0.010010475, w: 0.99578375}
+      scale: {x: 0.9999999, y: 0.99999976, z: 0.99999994}
     - name: ORC_ R Finger21
-      position: {x: -.0773474872, y: 0, z: 4.76837148e-09}
-      rotation: {x: -4.09781649e-08, y: 1.71363226e-07, z: -.0377698876, w: .999286473}
-      scale: {x: .999999702, y: .999999881, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.07734749, y: 0, z: 0.0000000047683715}
+      rotation: {x: -0.000000040978165, y: 0.00000017136323, z: -0.037769888, w: 0.9992865}
+      scale: {x: 0.9999997, y: 0.9999999, z: 1.0000001}
     - name: ORC_ R Finger22
-      position: {x: -.0644476339, y: 1.52587887e-07, z: -4.76837148e-09}
-      rotation: {x: 3.72528985e-09, y: -4.65661232e-10, z: -.146500498, w: .989210606}
-      scale: {x: 1.00000012, y: 1.00000012, z: .999999821}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.064447634, y: 0.00000015258789, z: -0.0000000047683715}
+      rotation: {x: 0.0000000037252899, y: -4.6566123e-10, z: -0.1465005, w: 0.9892106}
+      scale: {x: 1.0000001, y: 1.0000001, z: 0.9999998}
     - name: ORC_ R Finger0
-      position: {x: -.0426992401, y: .0129507445, z: .0493068695}
-      rotation: {x: -.598272026, y: .161660984, z: .136479825, w: .772858024}
-      scale: {x: .999999881, y: .999999642, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.04269924, y: 0.0129507445, z: 0.04930687}
+      rotation: {x: -0.598272, y: 0.16166098, z: 0.13647982, w: 0.772858}
+      scale: {x: 0.9999999, y: 0.99999964, z: 0.9999999}
     - name: ORC_ R Finger01
-      position: {x: -.0656462088, y: 0, z: 0}
-      rotation: {x: -2.98023046e-08, y: -8.19563368e-08, z: -.0379244611, w: .999280572}
-      scale: {x: 1.00000024, y: 1.0000006, z: 1.00000036}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.06564621, y: 0, z: 0}
+      rotation: {x: -0.000000029802305, y: -0.00000008195634, z: -0.03792446, w: 0.9992806}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000004}
     - name: ORC_ R Finger02
-      position: {x: -.0673968866, y: 3.81469718e-08, z: 0}
-      rotation: {x: 0, y: 0, z: .338455915, w: -.940982282}
-      scale: {x: .999999523, y: 1.00000024, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.06739689, y: 0.000000038146972, z: 0}
+      rotation: {x: 0, y: 0, z: 0.33845592, w: -0.9409823}
+      scale: {x: 0.9999995, y: 1.0000002, z: 1}
     - name: ORC_ R Finger3
-      position: {x: -.15201363, y: .00128814694, z: -.0853667632}
-      rotation: {x: .06792593, y: .0884590372, z: -.0154394014, w: .993641198}
-      scale: {x: .999999702, y: .999999821, z: 1.00000036}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.15201363, y: 0.001288147, z: -0.08536676}
+      rotation: {x: 0.06792593, y: 0.08845904, z: -0.015439401, w: 0.9936412}
+      scale: {x: 0.9999997, y: 0.9999998, z: 1.0000004}
     - name: ORC_ R Finger31
-      position: {x: -.0709785447, y: 0, z: -9.53674295e-09}
-      rotation: {x: 8.94068961e-08, y: 2.98022975e-08, z: -.0377714857, w: .999286413}
-      scale: {x: .999999762, y: 1.00000012, z: .999999881}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.070978545, y: 0, z: -0.000000009536743}
+      rotation: {x: 0.000000089406896, y: 0.000000029802298, z: -0.037771486, w: 0.9992864}
+      scale: {x: 0.99999976, y: 1.0000001, z: 0.9999999}
     - name: ORC_ R Finger32
-      position: {x: -.0583914183, y: 0, z: 9.53674295e-09}
-      rotation: {x: -1.15483971e-07, y: 2.98023153e-08, z: -.146881878, w: .9891541}
-      scale: {x: .999999821, y: 1.00000048, z: .99999994}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.05839142, y: 0, z: 0.000000009536743}
+      rotation: {x: -0.00000011548397, y: 0.000000029802315, z: -0.14688188, w: 0.9891541}
+      scale: {x: 0.9999998, y: 1.0000005, z: 0.99999994}
     - name: ORC_ R Finger1
-      position: {x: -.151194945, y: -.0107867429, z: .0476282761}
-      rotation: {x: .000395774754, y: .106894217, z: 4.25432117e-05, w: .994270384}
-      scale: {x: .999999583, y: .999999821, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.15119494, y: -0.010786743, z: 0.047628276}
+      rotation: {x: 0.00039577475, y: 0.10689422, z: 0.00004254321, w: 0.9942704}
+      scale: {x: 0.9999996, y: 0.9999998, z: 1.0000001}
     - name: ORC_ R Finger11
-      position: {x: -.075790979, y: 1.52587887e-07, z: -9.53674295e-09}
-      rotation: {x: -3.25962581e-08, y: -1.78813764e-07, z: -.0351334773, w: .999382615}
-      scale: {x: .999999523, y: .99999994, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.07579098, y: 0.00000015258789, z: -0.000000009536743}
+      rotation: {x: -0.000000032596258, y: -0.00000017881376, z: -0.035133477, w: 0.9993826}
+      scale: {x: 0.9999995, y: 0.99999994, z: 1}
     - name: ORC_ R Finger12
-      position: {x: -.0561554693, y: -1.52587887e-07, z: 0}
-      rotation: {x: 9.87201574e-08, y: 1.49011559e-08, z: -.1881295, w: .982144237}
-      scale: {x: .999999702, y: 1.00000024, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.05615547, y: -0.00000015258789, z: 0}
+      rotation: {x: 0.00000009872016, y: 0.000000014901156, z: -0.1881295, w: 0.98214424}
+      scale: {x: 0.9999997, y: 1.0000002, z: 1}
     - name: ORC_ R Thigh
-      position: {x: -1.52587887e-07, y: -1.03992498e-07, z: -.11536397}
-      rotation: {x: -.00448599504, y: .995561004, z: -.00507414388, w: -.0938745216}
-      scale: {x: .999999821, y: .999999762, z: .999999404}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.00000015258789, y: -0.0000001039925, z: -0.11536397}
+      rotation: {x: -0.004485995, y: 0.995561, z: -0.005074144, w: -0.09387452}
+      scale: {x: 0.9999998, y: 0.99999976, z: 0.9999994}
     - name: ORC_ R Calf
-      position: {x: -.625062704, y: 1.19209287e-09, z: -3.81469718e-08}
-      rotation: {x: -2.98023188e-08, y: -5.96046377e-08, z: .0669978037, w: .997753143}
-      scale: {x: 1.00000012, y: 1.00000024, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.6250627, y: 0.0000000011920929, z: -0.000000038146972}
+      rotation: {x: -0.000000029802319, y: -0.000000059604638, z: 0.066997804, w: 0.99775314}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000001}
     - name: ORC_ R Foot
-      position: {x: -.529448509, y: 0, z: 3.81469718e-08}
-      rotation: {x: -.0067721596, y: -.0204347949, z: -.0628878847, w: .997788429}
-      scale: {x: 1, y: .99999994, z: 1}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.5294485, y: 0, z: 0.000000038146972}
+      rotation: {x: -0.0067721596, y: -0.020434795, z: -0.062887885, w: 0.9977884}
+      scale: {x: 1, y: 0.99999994, z: 1}
     - name: ORC_ R Toe0
-      position: {x: -.132668599, y: .274518877, z: 0}
-      rotation: {x: -2.98023188e-08, y: 3.91155446e-08, z: -.707106769, w: .707106829}
-      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
-      transformModified: 1
+      parentName: 
+      position: {x: -0.1326686, y: 0.27451888, z: 0}
+      rotation: {x: -0.000000029802319, y: 0.000000039115545, z: -0.70710677, w: 0.7071068}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: ORC_BODY
+      parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: ORC_PONYTAIL
-      position: {x: 0, y: 2.34873796, z: -.0491686985}
-      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      parentName: 
+      position: {x: 0, y: 2.348738, z: -0.0491687}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
     - name: SHOULDER_PADS
-      position: {x: -.000917358382, y: 1.95997596, z: .0138361789}
-      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      parentName: 
+      position: {x: -0.0009173584, y: 1.959976, z: 0.013836179}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: aa476cf34d3d46d478aa560a935400c6,
     type: 3}
   animationType: 3
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

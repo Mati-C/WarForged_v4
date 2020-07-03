@@ -129,7 +129,6 @@ public class Model_E_Shield : ClassEnemy
 
         patrol.OnEnter += () =>
         {
-            isInCombat = false;
             onPatrol = true;
             RestartDistances_Angles();
             enemyLayer = layersCanSee;
@@ -167,7 +166,6 @@ public class Model_E_Shield : ClassEnemy
                 item.angleToPersuit = 360;
                 item.angleToSurround = 360;
             }
-            isInCombat = true;
             onPatrol = false;
             enemyLayer = layersPlayer;
         };

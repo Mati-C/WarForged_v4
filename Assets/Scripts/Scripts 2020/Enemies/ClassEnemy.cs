@@ -7,6 +7,7 @@ using Sound;
 
 public abstract class ClassEnemy : MonoBehaviour
 {
+
     ClassEnemyViewer _viewer;
     public N_FSM_EventMachine myFSM_EventMachine;
     public List<Node2> nodes = new List<Node2>();
@@ -45,7 +46,6 @@ public abstract class ClassEnemy : MonoBehaviour
 
     [Header("Enemy States:")]
 
-    public bool isInCombat;
     public bool isDead;
     public bool canPersuit;
     public bool canSurround;
@@ -230,6 +230,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
     private void Awake()
     {
+       
         grid = FindObjectsOfType<Grid>().Where(x => x.ID == ID).First();
         player = FindObjectOfType<Model_Player>();
         pathfinding = GetComponent<Pathfinding>();

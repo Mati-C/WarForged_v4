@@ -95,7 +95,6 @@ public class Model_E_Mage : ClassEnemy
 
         patrol.OnEnter += () =>
         {
-            isInCombat = false;
             onPatrol = true;
             RestartDistances_Angles();
             enemyLayer = layersCanSee;
@@ -133,7 +132,6 @@ public class Model_E_Mage : ClassEnemy
                 item.angleToPersuit = 360;
                 item.angleToSurround = 360;
             }
-            isInCombat = true;
             onPatrol = false;
             enemyLayer = layersPlayer;
         };

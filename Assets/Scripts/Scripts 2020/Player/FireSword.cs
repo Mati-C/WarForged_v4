@@ -34,6 +34,7 @@ public class FireSword: MonoBehaviour
     public bool pushEnemies;
 
     [Header("Enemy Exp:")]
+    public float BossOgre1Exp;
     public float warriorExp;
     public float shieldExp;
     public float spearExp;
