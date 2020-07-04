@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 9138229855003911745}
   - component: {fileID: 3309313162606238392}
   - component: {fileID: 7037051426771229356}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &255162692421000311
 Transform:
