@@ -871,6 +871,7 @@ GameObject:
   - component: {fileID: 7433472380071997365}
   - component: {fileID: 2865823916734940160}
   - component: {fileID: 530588682186429856}
+  - component: {fileID: 5892202474908960661}
   m_Layer: 0
   m_Name: Jug_2
   m_TagString: Untagged
@@ -918,7 +919,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156989788447595369}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -959,7 +960,7 @@ Animator:
   m_GameObject: {fileID: 9156989788447595369}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1adff7ed21f72224da151af7a97dad44, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a304f628296e57a41b6620c2407fe198, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -981,3 +982,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3308325, y: 1.3308322, z: 1.485927}
   m_Center: {x: 0, y: 0, z: 0.7429636}
+--- !u!114 &5892202474908960661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156989788447595369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85adb504cf86fe64784af25539f67f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMesh: {fileID: 0}
+  destructibleMesh: {fileID: 9156989788447595369}

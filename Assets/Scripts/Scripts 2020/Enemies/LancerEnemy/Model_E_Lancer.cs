@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
-using Sound;
 
 public class Model_E_Lancer : ClassEnemy
 {
@@ -552,7 +551,7 @@ public class Model_E_Lancer : ClassEnemy
 
         if (life > 0 && timeOnParry > 0 && !counterAttack)
         {
-            player.FailAttack();
+            player.FailAttack("Enemy");
             counterAttack = true;
         }
 
@@ -561,8 +560,6 @@ public class Model_E_Lancer : ClassEnemy
         {
             _view.CreatePopText(d);
             GetHitEvent();
-            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
-            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
         }
 
         if (timesToParry <= 0 && timeOnParry <= 0) timeOnParry = maxTimeOnParry;

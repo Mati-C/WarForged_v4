@@ -1534,7 +1534,7 @@ public class Model : MonoBehaviour
                     view.ParryAnim();
                     view.Sparks();
                     wallHit = true;
-                    SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
+                    //SoundManager.instance.Play(Entity.HIT_1, transform.position, true);
                 }
             }
 
@@ -1596,7 +1596,7 @@ public class Model : MonoBehaviour
 
         foreach (var item in destructibleMesh)
         {
-            item.StartCoroutine(item.startDisolve());
+            item.Break();
             makingDamage = false;
         }
 
@@ -1651,7 +1651,7 @@ public class Model : MonoBehaviour
 
         foreach (var item in desMesh)
         {
-            item.StartCoroutine(item.startDisolve());
+            item.Break();
             makingDamage = false;
         }
 
@@ -1765,7 +1765,7 @@ public class Model : MonoBehaviour
 
         if (!isBehind && !isProyectile && onDefence &&  damageType == DamagePlayerType.Normal)
         {
-            if(!isDead && life>0)SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
+            if(!isDead && life>0)SoundManager.instance.Play(Hit.SOFT, transform.position, true);
 
             if (perfectParryTimer <= 0.5f)
             {
@@ -1793,7 +1793,7 @@ public class Model : MonoBehaviour
             timeToHeal = maxTimeToHeal;
             OnDamage();
             impulse = false;
-            if (!isDead && life > 0) SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
+            if (!isDead && life > 0) SoundManager.instance.Play(Hit.SOFT, transform.position, true);
         }
 
         if (damageType == DamagePlayerType.Heavy && onDefence)
@@ -1812,7 +1812,7 @@ public class Model : MonoBehaviour
             UpdateLife(-damage);
             timeToHeal = maxTimeToHeal;
             impulse = false;
-            if (!isDead && life > 0) SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
+            if (!isDead && life > 0) SoundManager.instance.Play(Hit.SOFT, transform.position, true);
 
             if (life > 0 && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.RollAttack]
                         && animClipName != view.AnimDictionary[Viewer.AnimPlayerNames.Dodge_Back]

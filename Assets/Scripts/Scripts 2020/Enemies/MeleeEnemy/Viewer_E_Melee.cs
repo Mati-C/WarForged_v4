@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Sound;
 
 public class Viewer_E_Melee : ClassEnemyViewer
 {
@@ -68,14 +69,16 @@ public class Viewer_E_Melee : ClassEnemyViewer
 
     public void AnimDie()
     {
-      
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
-        AnimRagdollActivate();        
+        AnimRagdollActivate();
+
+        SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, false, 1, 0.5f);
+        SoundManager.instance.Play(Hit.SOFT, transform.position, true);
     }
 
 
@@ -201,6 +204,8 @@ public class Viewer_E_Melee : ClassEnemyViewer
                 anim.SetInteger("GetHit", 1);
                 break;
         }
-       
+
+        SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 1, 0.5f);
+        SoundManager.instance.Play(Hit.SOFT, transform.position, true);
     }
 }

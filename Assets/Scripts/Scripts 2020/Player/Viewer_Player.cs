@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sound;
 
 public class Viewer_Player : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Viewer_Player : MonoBehaviour
     FireSword _fireSword;
     public ParticleSystem bloodParticle;
     public ParticleSystem sparksParticle;
+    public ParticleSystem woodParticle;
+    public ParticleSystem burlapParticle;
     Camera _mainCam;
 
     [Header("Player Sprites:")]
@@ -17,6 +20,8 @@ public class Viewer_Player : MonoBehaviour
     public Image lockImage;
     public Image powerBar;
     public Image chargeAttackBar;
+    public Image lifeBar;
+    public Image tempLifeBar;
 
     [Header("Player Bones:")]
 
@@ -30,6 +35,8 @@ public class Viewer_Player : MonoBehaviour
     public GameObject swordHand;
     public GameObject swordBack;
     public ParticleSystem swordFire;
+    public GameObject normalTrail;
+    public GameObject fireTrail;
 
     [Header("Layer Up Active:")]
     public bool layerUpActive;
@@ -117,6 +124,10 @@ public class Viewer_Player : MonoBehaviour
         _fireSword = FindObjectOfType<FireSword>();
         powerBar.fillAmount = 0;
         DesactivateSword();
+        lifeBar.material.SetFloat("_InnerGlow", 0);
+        lifeBar.material.SetFloat("_BeatRate", 0);
+        lifeBar.material.SetFloat("_BeatColorIntensity", 0);
+        powerBar.material.SetFloat("_InsideGlowOpacity", 0);
     }
 
     void Start()
@@ -178,6 +189,8 @@ public class Viewer_Player : MonoBehaviour
 
         if (anim.GetInteger("AttackCombo") <= 0 && anim.GetFloat("ChargeAttack") < 0.2f && !anim.GetBool("FailAttack")) anim.SetBool("OnAttack", false);
 
+        normalTrail.SetActive(_player.onAttackAnimation);
+        fireTrail.SetActive(_player.onAttackAnimation);
     }
 
 
@@ -190,16 +203,67 @@ public class Viewer_Player : MonoBehaviour
         }
     }
 
+    public void UpdateLife(float target)
+    {
+        if (target == 1)
+            lifeBar.material.SetFloat("_InnerGlow", 1);
+        else
+        {
+            lifeBar.material.SetFloat("_InnerGlow", 0);
+            if (target <= 0.3f)
+            {
+                float val = 1 - (target / 3) * 10;
+                lifeBar.material.SetFloat("_BeatRate", Mathf.Lerp(3, 10, val));
+                lifeBar.material.SetFloat("_BeatColorIntensity", Mathf.Lerp(0.2f, 1f, val));
+            }
+            else
+            {
+                lifeBar.material.SetFloat("_BeatRate", 0);
+                lifeBar.material.SetFloat("_BeatColorIntensity", 0);
+            }
+        }
+
+        StartCoroutine(UpdateLifeBar(target));
+    }
+
+    public IEnumerator UpdateLifeBar(float target)
+    {
+        if (lifeBar.fillAmount > target)
+        {
+            lifeBar.fillAmount = target;
+            yield return new WaitForSeconds(0.2f);
+            while (tempLifeBar.fillAmount > target)
+            {
+                tempLifeBar.fillAmount -= Time.deltaTime / 10;
+                yield return new WaitForEndOfFrame();
+            }
+            tempLifeBar.fillAmount = target;
+        }
+        else
+        {
+            while (lifeBar.fillAmount < target)
+            {
+                lifeBar.fillAmount += Time.deltaTime / 2;
+                yield return new WaitForEndOfFrame();
+            }
+            tempLifeBar.fillAmount = target;
+        }
+    }
+
     public void PowerSwordActivated()
     {
         swordFire.Play();
         StartCoroutine(DelayAnimationActivate("FireSword", true, 1));
         StartCoroutine(DecreesPowerBar());
+        normalTrail.transform.parent.gameObject.SetActive(false);
+        fireTrail.transform.parent.gameObject.SetActive(true);
     }
 
     public void PowerSwordDesactivated()
     {
         swordFire.Stop();
+        normalTrail.transform.parent.gameObject.SetActive(true);
+        fireTrail.transform.parent.gameObject.SetActive(false);
     }
 
     public void ChargeAttackAnim()
@@ -220,8 +284,23 @@ public class Viewer_Player : MonoBehaviour
 
     public void OnHit(float target)
     {
-        powerBar.fillAmount += target;
-        if(powerBar.fillAmount > 1) powerBar.fillAmount = 1;
+        StartCoroutine(FillPowerBar(powerBar.fillAmount + target));
+    }
+    
+    IEnumerator FillPowerBar(float target)
+    {
+        while (powerBar.fillAmount < target && powerBar.fillAmount < 1)
+        {
+            powerBar.fillAmount += Time.deltaTime / 10;
+            yield return new WaitForEndOfFrame();
+        }
+        powerBar.fillAmount = target;
+
+        if (powerBar.fillAmount >= 1)
+        {
+            powerBar.fillAmount = 1;
+            powerBar.material.SetFloat("_InsideGlowOpacity", 1);
+        }
     }
 
     IEnumerator DecreesPowerBar()
@@ -232,6 +311,7 @@ public class Viewer_Player : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         powerBar.fillAmount = 0;
+        powerBar.material.SetFloat("_InsideGlowOpacity", 0);
     }
 
     public void ActivateSword()
@@ -246,14 +326,29 @@ public class Viewer_Player : MonoBehaviour
         swordHand.SetActive(false);
     }
 
-    public void FailAttackAnim()
+    public void FailAttackAnim(string objName)
     {
         StartCoroutine(DelayAnimationActivate("FailAttack", true, 1f));
-        sparksParticle.Play();
+
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Run", false);
 
+        if (objName.StartsWith("Grain"))
+        {
+            burlapParticle.Play();
+            SoundManager.instance.Play(Hit.SOFT, transform.position + transform.forward.normalized, true);
+        }
+        else if (objName.StartsWith("Crate"))
+        {
+            woodParticle.Play();
+            SoundManager.instance.Play(Hit.WOOD, transform.position + transform.forward.normalized, true);
+        }
+        else
+        {
+            sparksParticle.Play();
+            SoundManager.instance.Play(Hit.HARD, transform.position + transform.forward.normalized, true);
+        }
     }
 
     public void BlockAnim(bool b)
@@ -274,10 +369,12 @@ public class Viewer_Player : MonoBehaviour
         anim.SetBool("Idle", false);
         anim.SetBool("Run", false);
         anim.SetBool("Blocked", true);
+        SoundManager.instance.Play(Hit.HARD, transform.position, true);
         sparksParticle.Play();
         yield return new WaitForSeconds(0.4f);
         anim.SetBool("Blocked", false);
         anim.SetBool("Kick", true);
+        SoundManager.instance.Play(Hit.SOFT, transform.position, true, 0.4f);
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("Kick", false);
     }
@@ -312,6 +409,7 @@ public class Viewer_Player : MonoBehaviour
 
     IEnumerator TakeSword()
     {
+        SoundManager.instance.Play(Player.TAKE_SWORD, transform.position, true);
         yield return new WaitForSeconds(0.42f);
         ActivateSword();
     }
@@ -325,6 +423,7 @@ public class Viewer_Player : MonoBehaviour
 
     IEnumerator SaveSword()
     {
+        SoundManager.instance.Play(Player.SAVE_SWORD, transform.position, true);
         yield return new WaitForSeconds(0.42f);
         DesactivateSword();
     }
@@ -365,7 +464,8 @@ public class Viewer_Player : MonoBehaviour
             }
         }
 
-
+        SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 1, 0.7f);
+        SoundManager.instance.Play(Hit.SOFT, transform.position, true);
     }
 
     public void AnimGetHitHeavy(bool d)
@@ -385,7 +485,8 @@ public class Viewer_Player : MonoBehaviour
                 anim.SetInteger("GetHitHeavy", 2);
                 break;
         }
-
+        SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false);
+        SoundManager.instance.Play(Hit.SOFT, transform.position, true);
     }
 
     public void SwordPowerAnim()

@@ -1138,7 +1138,7 @@ public class ModelE_Lancer : EnemyMeleeClass
         }
 
         if (canBeHit)
-            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
+            SoundManager.instance.Play(Hit.SOFT, transform.position, true);
 
         if (life <= 0)
             isDead = true;
@@ -1207,7 +1207,7 @@ public class ModelE_Lancer : EnemyMeleeClass
 
         foreach (var item in desMesh)
         {
-            item.StartCoroutine(item.startDisolve());
+            item.Break();
         }
     }
 

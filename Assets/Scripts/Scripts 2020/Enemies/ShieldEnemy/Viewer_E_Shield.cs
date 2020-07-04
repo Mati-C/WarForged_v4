@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sound;
 
 public class Viewer_E_Shield : ClassEnemyViewer
 {
@@ -63,6 +64,9 @@ public class Viewer_E_Shield : ClassEnemyViewer
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
         AnimRagdollActivate();
+
+        SoundManager.instance.PlayRandom(SoundManager.instance.deathVoice, transform.position, false, 0.8f, 0.5f);
+        SoundManager.instance.Play(Hit.SOFT, transform.position, true);
     }
 
     public void BlockedAnim()
@@ -177,6 +181,9 @@ public class Viewer_E_Shield : ClassEnemyViewer
                 anim.SetInteger("GetHit", 1);
                 break;
         }
+
+        SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 0.8f, 0.5f);
+        SoundManager.instance.Play(Hit.SOFT, transform.position, true);
     }
 
     public void AnimParry()

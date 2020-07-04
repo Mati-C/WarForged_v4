@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
-using Sound;
 
 public class Model_E_Mage : ClassEnemy
 {
@@ -446,8 +445,6 @@ public class Model_E_Mage : ClassEnemy
         {
             _view.CreatePopText(d);
             GetHitEvent();
-            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
-            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
         }
 
         Vector3 toTarget = (player.transform.position - transform.position).normalized;

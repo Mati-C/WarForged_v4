@@ -675,7 +675,7 @@ public class Model_B_Ogre : EnemyEntity
     {
         if (!bossStage)
         {
-            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
+            SoundManager.instance.Play(Hit.SOFT, transform.position, true);
             _view.ActiveBloodParticles();
             _view.CreatePopText(damage);
             life -= damage;

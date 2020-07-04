@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
-using Sound;
 
 public class Model_Player : MonoBehaviour
 {
@@ -13,7 +12,9 @@ public class Model_Player : MonoBehaviour
     PlayerCamera _playerCamera;
     Camera _mainCam;
     IA_CombatManager _IA_CM;
-    FireSword _fireSword;
+
+    [HideInInspector]
+    public FireSword _fireSword;
 
     [Header("Player Life:")]
     public float life;
@@ -115,7 +116,7 @@ public class Model_Player : MonoBehaviour
     public Action<bool> BlockEvent;
     public Action GetHitEvent;
     public Action<bool> GetHitHeavyEvent;
-    public Action FailAttackEvent;
+    public Action<string> FailAttackEvent;
 
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
@@ -383,15 +384,14 @@ public class Model_Player : MonoBehaviour
         }
     }
 
-    public void FailAttack()
+    public void FailAttack(string objName)
     {
-
         cantAttack = false;
         onAttackAnimation = false;
         attackCombo=0;
         timeOnFailAttack = 1f;
         chargeAttackAmount = 0;
-        FailAttackEvent();
+        FailAttackEvent(objName);
     }
 
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
@@ -553,7 +553,6 @@ public class Model_Player : MonoBehaviour
 
         if (isInCombat && !onAction && !OnDamage && !cantAttack && !onDefence && !onFailAttack)
         {
-
             if (attackCombo == 2)
             {
 
@@ -596,6 +595,7 @@ public class Model_Player : MonoBehaviour
                 if(!onFailAttack) attackCombo++;
             }
 
+            SoundManager.instance.PlayRandom(SoundManager.instance.swing, transform.position, true);
         }
 
         if(!_viewer.layerUpActive) CombatStateUp();
@@ -626,7 +626,12 @@ public class Model_Player : MonoBehaviour
     {
         var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
 
-        SoundManager.instance.PlayRandom(SoundManager.instance.swing, transform.position, true);
+        if (enemies.Count() == 0)
+        {
+            var obstacles = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.gameObject.layer == 16 && !x.GetComponent<DestructibleOBJ>());
+            if (obstacles.Count() != 0)
+                FailAttack(obstacles.First().gameObject.name);
+        }
 
         foreach (var item in enemies)
         {
@@ -640,6 +645,11 @@ public class Model_Player : MonoBehaviour
                 }
             }
         }
+
+        var destructibles = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.GetComponent<DestructibleOBJ>()).Select(x => x.GetComponent<DestructibleOBJ>());
+
+        foreach (var item in destructibles)
+            item.Break();
     }
 
     public void MakeDamageChargeAttack()
@@ -768,6 +778,13 @@ public class Model_Player : MonoBehaviour
         attackCombo = 0;
     }
 
+    public void UpdateLife(float val)
+    {
+        life += val;
+        if (life > maxLife) life = maxLife;
+        _viewer.UpdateLife(life / maxLife);
+    }
+
     public void GetDamage(float d, Transform target, DamageType type)
     {
         if (target.GetComponent<ClassEnemy>() && !onDodge)
@@ -795,7 +812,7 @@ public class Model_Player : MonoBehaviour
 
                 if (!onDefence)
                 {
-                    life -= d;
+                    UpdateLife(-d);
                     if (!onAction)
                     {
                         onDamageTime = 0.5f;
@@ -808,7 +825,7 @@ public class Model_Player : MonoBehaviour
 
             if (Vector3.Dot(toTarget, transform.forward) < 0 && type == DamageType.Light)
             {
-                life -= d;
+                UpdateLife(-d);
                 if (!onAction)
                 {
                     onDamageTime = 0.5f;
@@ -820,7 +837,7 @@ public class Model_Player : MonoBehaviour
 
             if (Vector3.Dot(toTarget, transform.forward) > 0 && type == DamageType.Heavy)
             {
-                life -= d;
+                UpdateLife(-d);
                 if (onDamageTime <= 0 && !onAction)
                 {
                     onDamageTime = 2f;
@@ -832,7 +849,7 @@ public class Model_Player : MonoBehaviour
 
             if (Vector3.Dot(toTarget, transform.forward) < 0 && type == DamageType.Heavy)
             {
-                life -= d;
+                UpdateLife(-d);
                 if (onDamageTime <= 0 && !onAction)
                 {
                     DefenceOff();
@@ -845,7 +862,7 @@ public class Model_Player : MonoBehaviour
 
         if (target.GetComponent<MageMissile>() && !onDodge)
         {
-            life -= d;
+            UpdateLife(-d);
             if (!onAction)
             {
                 onDamageTime = 0.5f;

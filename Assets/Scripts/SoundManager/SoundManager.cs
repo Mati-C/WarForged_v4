@@ -16,20 +16,23 @@ public class SoundManager : MonoBehaviour
 
     bool aux;
 
-    [NamedArrayAttribute(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_START", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK" })]
+    [NamedArrayAttribute(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK" })]
     public AudioClip[] objects;
 
-    [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "BODY_IMPACT_1", "BODY_IMPACT_2" })]
+    [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "FIREBALL"})]
     public AudioClip[] entity;
 
     [NamedArrayAttribute(new string[] { "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH" })]
     public AudioClip[] boss;
 
-    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "FIREBALL" })]
+    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3"})]
     public AudioClip[] player;
 
     [NamedArrayAttribute(new string[] { "LEVEL_1", "LEVEL_2", "BATTLE_MUSIC", "BOSS_MUSIC" })]
     public AudioClip[] music;
+
+    [NamedArrayAttribute(new string[] { "HARD", "SOFT", "WOOD" })]
+    public AudioClip[] hit;
 
     #region SFX Lists
     [HideInInspector]
@@ -76,6 +79,8 @@ public class SoundManager : MonoBehaviour
             audioSource.clip = player[id];
         else if (soundType.GetType() == typeof(Music))
             audioSource.clip = music[id];
+        else if (soundType.GetType() == typeof(Hit))
+            audioSource.clip = hit[id];
 
         audioSource.loop = loop;
         s.transform.position = position;
@@ -109,6 +114,8 @@ public class SoundManager : MonoBehaviour
             audioSource.clip = player[id];
         else if (soundType.GetType() == typeof(Music))
             audioSource.clip = music[id];
+        else if (soundType.GetType() == typeof(Hit))
+            audioSource.clip = hit[id];
 
         audioSource.loop = loop;
         s.transform.position = position;
@@ -164,7 +171,6 @@ public class SoundManager : MonoBehaviour
     public enum Objects
     {
         CHECKPOINT_PASS,
-        CHECKPOINT_START,
         CHECKPOINT_IDLE,
         DOOR_OPEN,
         DOOR_CLOSE,
@@ -185,8 +191,6 @@ public class SoundManager : MonoBehaviour
         DAMAGE_4,
         DAMAGE_5,
         DAMAGE_6,
-        BODY_IMPACT_1,
-        BODY_IMPACT_2,
         FIREBALL
     }
 
@@ -214,5 +218,12 @@ public class SoundManager : MonoBehaviour
         LEVEL_2,
         BATTLE_MUSIC,
         BOSS_MUSIC
+    }
+
+    public enum Hit
+    {
+        HARD,
+        SOFT,
+        WOOD
     }
 }

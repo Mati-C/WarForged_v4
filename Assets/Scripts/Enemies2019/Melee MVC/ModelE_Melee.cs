@@ -1289,7 +1289,7 @@ public class ModelE_Melee : EnemyMeleeClass
             _view.EndChainAttack();
             _view.HeavyAttackFalse();
             onDefence = false;
-            SoundManager.instance.Play(Entity.BODY_IMPACT_1, transform.position, true);
+            SoundManager.instance.Play(Hit.SOFT, transform.position, true);
         }
 
         if (onDefence && angle > 90)
@@ -1314,7 +1314,7 @@ public class ModelE_Melee : EnemyMeleeClass
         }
 
         if (!onDefence)
-            SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
+            SoundManager.instance.Play(Hit.SOFT, transform.position, true);
 
         if (life <= 0 && !isDead)
         {
@@ -1350,7 +1350,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
         foreach (var item in desMesh)
         {
-            item.StartCoroutine(item.startDisolve());
+            item.Break();
         }
     }
 
@@ -1373,7 +1373,7 @@ public class ModelE_Melee : EnemyMeleeClass
 
         foreach (var item in desMesh)
         {
-            item.StartCoroutine(item.startDisolve());
+            item.Break();
         }
     }
 

@@ -13,16 +13,13 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     public GameObject buttonRespawn;
     public Transform ph;
     ButtonManager ButtonManager;
-    Model player;
+    Model_Player player;
     public bool checkPointActivated = false;
 
     public ParticleSystem particles;
     CheckPoint myCheckPoint;
     public ParticleSystem runeCircle;
     ButtonManager buttonManager;
-
-
-
 
     bool move1;
   
@@ -31,14 +28,14 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     public IEnumerator Message()
     {
         move1 = true;
-        textCheck.SetActive(true);
+        //textCheck.SetActive(true);
         fire.emissionRate *= 2;
         fire.startLifetime *= 1.5f;
         halo.startSize *= 2;
         StartCoroutine(Light());
         yield return new WaitForSeconds(3.5f);
         move1 = false;
-        textCheck.SetActive(false);      
+        //textCheck.SetActive(false);      
     }
 
     public IEnumerator Respawn()
@@ -60,14 +57,14 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
     void Start ()
     {
-        player = FindObjectOfType<Model>();
+        player = FindObjectOfType<Model_Player>();
         ButtonManager = FindObjectOfType<ButtonManager>();
         Subscribe(ButtonManager);
     }
 
     public void OnTriggerEnter(Collider c)
     {
-        if (c.gameObject.GetComponent<Model>())
+        if (c.gameObject.GetComponent<Model_Player>())
         {
             if (!checkPointActivated)
             {
@@ -86,11 +83,12 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
     void OnTriggerStay(Collider c)
     {
-        if (checkPointActivated && c.GetComponent<Model>())
+        if (checkPointActivated && c.GetComponent<Model_Player>())
         {
-            if (player.life != player.maxLife)
+            if (player.life != player.maxLife || player.fireEnergy <= player._fireSword.energyToUseFireSword)
             {
                 player.UpdateLife(player.maxLife);
+                player.HitEnemyEvent(player._fireSword.energyToUseFireSword);
                 StartCoroutine(PlayParticles());
             }
         }

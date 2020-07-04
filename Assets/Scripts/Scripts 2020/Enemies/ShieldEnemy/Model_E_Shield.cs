@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-using Sound;
 
 public class Model_E_Shield : ClassEnemy
 {
@@ -587,8 +586,6 @@ public class Model_E_Shield : ClassEnemy
             {
                 _view.CreatePopText(d);
                 GetHitEvent();
-                SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, true);
-                SoundManager.instance.Play(Entity.BODY_IMPACT_2, transform.position, true);
             }
 
             if (Vector3.Dot(toTarget, transform.forward) > 0)
@@ -609,7 +606,7 @@ public class Model_E_Shield : ClassEnemy
         if(!defenceBroken && !knocked && player.CanSee(transform,player.viewDistanceAttack, 60, player.playerCanSee))
         {
             ParryEvent();
-            player.FailAttack();
+            player.FailAttack("Enemy");
             timeOnParry = timeOnParryMax;
             rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
         }
