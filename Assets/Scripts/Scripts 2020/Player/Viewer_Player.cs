@@ -124,7 +124,7 @@ public class Viewer_Player : MonoBehaviour
         _fireSword = FindObjectOfType<FireSword>();
         powerBar.fillAmount = 0;
         DesactivateSword();
-        lifeBar.material.SetFloat("_InnerGlow", 0);
+        lifeBar.material.SetFloat("_InnerGlow", 1);
         lifeBar.material.SetFloat("_BeatRate", 0);
         lifeBar.material.SetFloat("_BeatColorIntensity", 0);
         powerBar.material.SetFloat("_InsideGlowOpacity", 0);
@@ -282,9 +282,10 @@ public class Viewer_Player : MonoBehaviour
         if (chargeAttackBar.fillAmount > 1) chargeAttackBar.fillAmount = 1;
     }
 
-    public void OnHit(float target)
+    public void OnHit(float val)
     {
-        StartCoroutine(FillPowerBar(powerBar.fillAmount + target));
+        _player.fireEnergy += val;
+        StartCoroutine(FillPowerBar(_player.fireEnergy / _fireSword.energyToUseFireSword));
     }
     
     IEnumerator FillPowerBar(float target)

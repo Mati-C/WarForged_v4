@@ -285,7 +285,6 @@ public class Model_Player : MonoBehaviour
 
     IEnumerator SetTimerCombat()
     {
-
         isInCombat = true;
         
         CombatStateEvent(true);
@@ -639,10 +638,7 @@ public class Model_Player : MonoBehaviour
             {
                 item.GetDamage(d,DamageType.Light);
                 if (fireSwordCurrentTime <= 0)
-                {
                     HitEnemyEvent(d / _fireSword.energyToUseFireSword);
-                    fireEnergy += d;
-                }
             }
         }
 
@@ -667,10 +663,7 @@ public class Model_Player : MonoBehaviour
         {
             item.GetDamage(ChargeAttackDamage, DamageType.Heavy);
             if (fireSwordCurrentTime <= 0)
-            {
                 HitEnemyEvent(ChargeAttackDamage / _fireSword.energyToUseFireSword);
-                fireEnergy += ChargeAttackDamage;
-            }
         }
     }
 
