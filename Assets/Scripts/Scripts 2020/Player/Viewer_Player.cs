@@ -119,9 +119,17 @@ public class Viewer_Player : MonoBehaviour
 
     private void Awake()
     {
+
         anim = GetComponent<Animator>();
         _player = GetComponent<Model_Player>();
         _fireSword = FindObjectOfType<FireSword>();
+        powerBar = GameObject.Find("PowerBar").GetComponent<Image>();
+        chargeAttackBar = GameObject.Find("Stamina").GetComponent<Image>();
+        lifeBar = GameObject.Find("LifeBar").GetComponent<Image>();
+        tempLifeBar = GameObject.Find("TempLifeBar").GetComponent<Image>();       
+        normalTrail = GameObject.Find("Vfx_SwordTrail");       
+        fireTrail = GameObject.Find("FireSword_FX");
+        fireTrail.gameObject.SetActive(false);
         powerBar.fillAmount = 0;
         DesactivateSword();
         lifeBar.material.SetFloat("_InnerGlow", 1);
@@ -152,7 +160,7 @@ public class Viewer_Player : MonoBehaviour
             layerUpActive = false;
         }
     }
- 
+
     void Update()
     {
 
@@ -190,7 +198,10 @@ public class Viewer_Player : MonoBehaviour
         if (anim.GetInteger("AttackCombo") <= 0 && anim.GetFloat("ChargeAttack") < 0.2f && !anim.GetBool("FailAttack")) anim.SetBool("OnAttack", false);
 
         normalTrail.SetActive(_player.onAttackAnimation);
-        fireTrail.SetActive(_player.onAttackAnimation);
+        if (_player.flamesOn)
+        {
+            fireTrail.SetActive(_player.onAttackAnimation);
+        }
     }
 
 

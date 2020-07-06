@@ -117,6 +117,8 @@ public class Model_Player : MonoBehaviour
     public Action GetHitEvent;
     public Action<bool> GetHitHeavyEvent;
     public Action<string> FailAttackEvent;
+    public Action MakeDamageTutorialEvent;
+    public Action DefendTutorialEvent;
 
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
@@ -338,6 +340,7 @@ public class Model_Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _fireSword = GetComponent<FireSword>();
 
+        MakeDamageTutorialEvent += () => { };
         ModifyNodes();
     }
 
@@ -386,11 +389,11 @@ public class Model_Player : MonoBehaviour
     public void FailAttack(string objName)
     {
         cantAttack = false;
-        onAttackAnimation = false;
-        attackCombo=0;
+        onAttackAnimation = false;       
         timeOnFailAttack = 1f;
         chargeAttackAmount = 0;
         FailAttackEvent(objName);
+        attackCombo = 0;
     }
 
     public void CombatMovement(Vector3 d, bool turnDir, bool opposite)
@@ -550,11 +553,11 @@ public class Model_Player : MonoBehaviour
     {
         dir.y = 0;
 
-        if (isInCombat && !onAction && !OnDamage && !cantAttack && !onDefence && !onFailAttack)
+        if (isInCombat && !onAction && !OnDamage && !cantAttack && !onDefence && !onFailAttack && !_viewer.anim.GetBool("FailAttack"))
         {
-            if (attackCombo == 2)
-            {
 
+            if (attackCombo == 2 && !_viewer.anim.GetBool("FailAttack"))
+            {
                 resetAttackTimer = 0.8f;
                 StartCoroutine(AttackRotation(dir));
                 _onAttackAnimationTimer = 1f;
@@ -563,12 +566,11 @@ public class Model_Player : MonoBehaviour
                 StartCoroutine(MakeAttackDamageDelay2(AttackDamageCombo3));
                 cantAttack = true;
                 onAttackAnimation = true;
-                if (!onFailAttack) attackCombo++;
+                if (!onFailAttack && !_viewer.anim.GetBool("FailAttack")) attackCombo++;
             }
 
-            if (attackCombo == 1)
+            if (attackCombo == 1 && !_viewer.anim.GetBool("FailAttack"))
             {
-
                 resetAttackTimer = 0.7f;
                 StartCoroutine(AttackRotation(dir));
                 _onAttackAnimationTimer = 1f;
@@ -577,12 +579,11 @@ public class Model_Player : MonoBehaviour
                 StartCoroutine(MakeAttackDamageDelay1(AttackDamageCombo2));
                 cantAttack = true;
                 onAttackAnimation = true;
-                if (!onFailAttack) attackCombo++;
+                if (!onFailAttack && !_viewer.anim.GetBool("FailAttack")) attackCombo++;
             }
 
-            if (attackCombo == 0)
+            if (attackCombo == 0 && !_viewer.anim.GetBool("FailAttack"))
             {
-
                 resetAttackTimer = 0.4f;
                 StartCoroutine(AttackRotation(dir));
                 _onAttackAnimationTimer = 0.65f;
@@ -591,7 +592,7 @@ public class Model_Player : MonoBehaviour
                 StartCoroutine(MakeAttackDamageDelay3(AttackDamageCombo1));
                 cantAttack = true;
                 onAttackAnimation = true;
-                if(!onFailAttack) attackCombo++;
+                if(!onFailAttack && !_viewer.anim.GetBool("FailAttack")) attackCombo++;
             }
 
             SoundManager.instance.PlayRandom(SoundManager.instance.swing, transform.position, true);
@@ -636,6 +637,7 @@ public class Model_Player : MonoBehaviour
         {
             if (CanSee(item.transform, viewDistanceAttack, angleToAttack, playerCanSee))
             {
+                MakeDamageTutorialEvent();
                 item.GetDamage(d,DamageType.Light);
                 if (fireSwordCurrentTime <= 0)
                     HitEnemyEvent(d / _fireSword.energyToUseFireSword);
@@ -799,6 +801,7 @@ public class Model_Player : MonoBehaviour
                 if (onDefence && defenceTimer > 0.5f)
                 {
                     BlockEvent(false);
+                    DefendTutorialEvent();
                     StartCoroutine(OnActionState(0.4f));
                     target.GetComponent<ClassEnemy>().BlockedAttack();
                 }

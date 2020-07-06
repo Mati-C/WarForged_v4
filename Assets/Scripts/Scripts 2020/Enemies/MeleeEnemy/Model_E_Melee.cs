@@ -6,6 +6,9 @@ using System;
 
 public class Model_E_Melee : ClassEnemy
 {
+    //[Header("Tutorial Variables:")]
+
+
 
     public Action IdleEvent;
     public Action WalkEvent;

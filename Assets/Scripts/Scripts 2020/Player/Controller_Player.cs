@@ -307,7 +307,7 @@ public class Controller_Player
 
         if (Input.GetKeyUp(KeyCode.Mouse1)) _model.DefenceOff();
 
-        if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
+        //if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
 
         if (Input.GetKeyDown(KeyCode.Q) && !_model.onFailAttack) _model.PowerWeapon();
 

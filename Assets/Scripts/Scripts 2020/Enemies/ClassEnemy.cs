@@ -266,7 +266,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public void BlockedAttack()
     {
         BlockedEvent();
-        StartCoroutine(BlockedState(0.7f));
+        StartCoroutine(BlockedState(1.3f));
     }
 
     public void Knocked()
@@ -322,8 +322,11 @@ public abstract class ClassEnemy : MonoBehaviour
     {
         Vector3 targetNearestNode = Vector3.zero;
         targetNearestNode = FindNearNode(player.transform.position);
+        targetNearestNode.y = 0;
+        var playerPos = player.transform.position;
+        playerPos.y = 0;
 
-        var distance = Vector3.Distance(targetNearestNode, player.transform.position);
+        var distance = Vector3.Distance(targetNearestNode, playerPos);
 
         if (distance > 1.5f)
         {
