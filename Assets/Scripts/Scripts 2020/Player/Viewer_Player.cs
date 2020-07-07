@@ -187,7 +187,9 @@ public class Viewer_Player : MonoBehaviour
         anim.SetFloat("VelZ", velocityZ);
         anim.SetFloat("Mouse X", axisX);
 
-        anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
+        if(!_player.chargeAttackCasted) anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
+
+        else anim.SetFloat("ChargeAttack", 0);
 
         if (anim.GetBool("Roll") || anim.GetBool("DodgeRight") || anim.GetBool("DodgeLeft") || anim.GetBool("DodgeBack")) anim.SetBool("Dodge", true);
 
@@ -278,7 +280,8 @@ public class Viewer_Player : MonoBehaviour
     }
 
     public void ChargeAttackAnim()
-    {        
+    {
+        StartCoroutine(DelayAnimationActivate("ChargeAttackB", true, 0.2f));
         StartCoroutine(DecreesChargeAttackBar());
     }
 
@@ -294,8 +297,7 @@ public class Viewer_Player : MonoBehaviour
     }
 
     public void OnHit(float val)
-    {
-        _player.fireEnergy += val;
+    {        
         StartCoroutine(FillPowerBar(_player.fireEnergy / _fireSword.energyToUseFireSword));
     }
     

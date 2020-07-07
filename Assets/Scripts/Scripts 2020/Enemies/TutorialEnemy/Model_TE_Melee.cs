@@ -56,7 +56,7 @@ public class Model_TE_Melee : ClassEnemy
         onAttackAnimation = true;
         yield return new WaitForSeconds(time);
         onAttackAnimation = false;
-        if (onDamageTime <= 0) attackFinish = true;
+        if (onDamageTime <= 0 && !onAttackAnimation) attackFinish = true;
     }
 
 
@@ -123,7 +123,7 @@ public class Model_TE_Melee : ClassEnemy
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
             }
 
-            if (canPersuit && !PlayerOnGrid()) myFSM_EventMachine.ChangeState(persuit);
+            if (canPersuit && !PlayerOnGrid() && _TM.attacksTutorialFinish) myFSM_EventMachine.ChangeState(persuit);
         };
 
         patrol.OnExit += () =>
@@ -174,9 +174,14 @@ public class Model_TE_Melee : ClassEnemy
 
         surround.OnEnter += () =>
         {
-            surroundBehaviourID = UnityEngine.Random.Range(0, 2);
+            if (_TM.canMove)
+            {
+                surroundBehaviourID = UnityEngine.Random.Range(0, 2);
 
-            surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
+                surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
+            }
+
+            else surroundTimer = 0;
 
             if (timeToAttack <= 0)
             {
@@ -239,7 +244,7 @@ public class Model_TE_Melee : ClassEnemy
 
             }
 
-            if (surroundTimer <= 0)
+            if (surroundTimer <= 0 && _TM.canMove)
             {
                 surroundBehaviourID = UnityEngine.Random.Range(0, 3);
 
@@ -268,6 +273,8 @@ public class Model_TE_Melee : ClassEnemy
 
         attack.OnEnter += () =>
         {
+            attackFinish = false;
+
             if (!permissionToAttack && !ia_Manager.enemyMeleePermisionAttack && !ia_Manager.decisionOnAttackMelee)
             {
                 ia_Manager.PermissionsMelee(true);
@@ -282,8 +289,12 @@ public class Model_TE_Melee : ClassEnemy
 
             int r = UnityEngine.Random.Range(1, 101);
 
-            if (r < singleAttackProbability) ID_Attack = 1;
-            else ID_Attack = 2;
+            if (!_TM)
+            {
+                if (r < singleAttackProbability) ID_Attack = 1;
+                else ID_Attack = 2;
+            }
+            else ID_Attack = 1;
         };
 
         attack.OnUpdate += () =>
@@ -339,7 +350,6 @@ public class Model_TE_Melee : ClassEnemy
         attack.OnExit += () =>
         {
 
-
             if (timeToAttack <= 0)
             {
                 timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
@@ -372,6 +382,7 @@ public class Model_TE_Melee : ClassEnemy
 
         retreat.OnUpdate += () =>
         {
+            
             timeToRetreat -= Time.deltaTime;
 
             var d = Vector3.Distance(transform.position, player.transform.position);

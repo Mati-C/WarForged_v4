@@ -510,6 +510,7 @@
     <Compile Include="Assets\Scripts\Scripts 2020\Player\FireSword.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Model_Player.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\PlayerSword.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Player\Roots.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Viewer_Player.cs" />
     <Compile Include="Assets\Scripts\SkillNode.cs" />
     <Compile Include="Assets\Scripts\Skills.cs" />
@@ -609,6 +610,7 @@
     <None Include="Assets\Objects and Particles\Rune\Shader\Landmark.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\ShaderLibrary\ShaderLibrary.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCIf.shader" />
+    <None Include="Assets\Objects and Particles\_Shaders\Plant Obstacle\Plant Dissolve.shader" />
     <None Include="Assets\Final UI\Test\HUDHolderShader.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_VertexTangentNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />

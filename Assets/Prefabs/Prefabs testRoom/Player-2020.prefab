@@ -19450,6 +19450,7 @@ MonoBehaviour:
   angleToAttack: 100
   defenceTimer: 0
   onDamageTime: 0
+  chargeAttackCasted: 0
   flamesOn: 0
   fireEnergy: 0
   fireSwordCurrentTime: 0
@@ -19463,7 +19464,7 @@ MonoBehaviour:
   impulseAttackMovement2: 2
   impulseAttackMovement3: 3
   impulseAttackMovement4: 0
-  impulseChargeAttackMovement: 2
+  impulseChargeAttackMovement: 4
   onFailAttack: 0
   timeOnFailAttack: 0
   onLock: 0
@@ -19482,8 +19483,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireWaveParticle: {fileID: 2122526480491615588}
-  fireSwordLevel: 9
-  currentExp: 0
+  fireSwordLevel: 0
+  currentExp: 150
+  expEarned: 0
   expForEachLevel:
   - 100
   - 200
@@ -19505,9 +19507,9 @@ MonoBehaviour:
   timeForDead: 2
   timeForDeadLV2: 4
   plusEnergy: 5
-  fireWaveExpansion: 0
+  fireWaveExpansion: 2
   fireWaveDamage: 10
-  fireWaveExpansionLV2: 0
+  fireWaveExpansionLV2: 3
   pushEnemies: 0
   BossOgre1Exp: 0
   warriorExp: 20
@@ -79455,6 +79457,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5015600734154120621}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: be2d9b0b72bea494c8009040f4fef910,
+        type: 3}
+      propertyPath: m_Name
+      value: Holster
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be2d9b0b72bea494c8009040f4fef910,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -79524,11 +79531,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.16213301
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: be2d9b0b72bea494c8009040f4fef910,
-        type: 3}
-      propertyPath: m_Name
-      value: Holster
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: be2d9b0b72bea494c8009040f4fef910,
         type: 3}

@@ -58,7 +58,7 @@ public class Model_Player : MonoBehaviour
     public float angleToAttack;
     public float defenceTimer;
     public float onDamageTime;
-    bool _chargeAttackCasted;
+    public bool chargeAttackCasted;
 
     [Header("Player Powers Values:")]
     public bool  flamesOn;
@@ -119,6 +119,7 @@ public class Model_Player : MonoBehaviour
     public Action<string> FailAttackEvent;
     public Action MakeDamageTutorialEvent;
     public Action DefendTutorialEvent;
+    public Action KickTutorialEvent;
 
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
@@ -341,6 +342,8 @@ public class Model_Player : MonoBehaviour
         _fireSword = GetComponent<FireSword>();
 
         MakeDamageTutorialEvent += () => { };
+        DefendTutorialEvent += () => { };
+        KickTutorialEvent += () => { };
         ModifyNodes();
     }
 
@@ -625,6 +628,7 @@ public class Model_Player : MonoBehaviour
     public void MakeDamage(float d)
     {
         var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
+        var roots = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Roots>()).Select(x => x.GetComponent<Roots>());
 
         if (enemies.Count() == 0)
         {
@@ -633,14 +637,27 @@ public class Model_Player : MonoBehaviour
                 FailAttack(obstacles.First().gameObject.name);
         }
 
+        if (roots.Count() > 0 )
+        {
+
+            if (flamesOn) foreach (var item in roots) item.StartDissolve();
+
+            else FailAttack("Crate");
+        }
+
         foreach (var item in enemies)
         {
             if (CanSee(item.transform, viewDistanceAttack, angleToAttack, playerCanSee))
             {
                 MakeDamageTutorialEvent();
                 item.GetDamage(d,DamageType.Light);
+
                 if (fireSwordCurrentTime <= 0)
+                {
+                    fireEnergy += d;
                     HitEnemyEvent(d / _fireSword.energyToUseFireSword);
+                }
+                    
             }
         }
 
@@ -665,7 +682,11 @@ public class Model_Player : MonoBehaviour
         {
             item.GetDamage(ChargeAttackDamage, DamageType.Heavy);
             if (fireSwordCurrentTime <= 0)
+            {
+                fireEnergy += ChargeAttackDamage;
                 HitEnemyEvent(ChargeAttackDamage / _fireSword.energyToUseFireSword);
+            }
+                
         }
     }
 
@@ -714,16 +735,18 @@ public class Model_Player : MonoBehaviour
    
     public void ChargeAttack(float time)
     {       
-        if (time >= chargeAttackTime && !_chargeAttackCasted && !OnDamage)
+        if (time >= chargeAttackTime && !chargeAttackCasted && !OnDamage)
         {
-            resetAttackTimer = 0.6f;
+            CombatStateUp();
+            ChargeAttackEvent();
             attackCombo = -1;
+            resetAttackTimer = 0.7f;
             _movementAttackTime = 0.05f;
             StartCoroutine(CanCastChargeAttack());
-            ChargeAttackEvent();
-            if(chargeAttackColdown <= 0) StartCoroutine(DecressChargeAttackColdown());
+            StartCoroutine(DecressChargeAttackColdown());
             StartCoroutine(OnActionState(0.3f));
             MakeDamageChargeAttack();
+
         }
         chargeAttackAmount = 0;
     }
@@ -767,9 +790,9 @@ public class Model_Player : MonoBehaviour
 
     public IEnumerator CanCastChargeAttack()
     {
-        _chargeAttackCasted = true;       
-        yield return new WaitForSeconds(0.8f);
-        _chargeAttackCasted = false;
+        chargeAttackCasted = true;       
+        yield return new WaitForSeconds(3f);
+        chargeAttackCasted = false;
         attackCombo = 0;
     }
 
@@ -788,11 +811,23 @@ public class Model_Player : MonoBehaviour
 
             if (Vector3.Dot(toTarget, transform.forward) > 0 && type == DamageType.Light)
             {
+                if (!onDefence)
+                {
+                    UpdateLife(-d);
+                    if (!onAction)
+                    {
+                        onDamageTime = 0.5f;
+                        DefenceOff();
+                        _rb.AddForce(-transform.forward * 80, ForceMode.Impulse);
+                        GetHitEvent();
+                    }
+                }
+
                 if (defenceTimer <= 0.5f && !onAction && onDefence)
                 {
-
                     DefenceOff();
                     BlockEvent(true);
+                    KickTutorialEvent();
                     StartCoroutine(OnActionState(0.9f));
                     target.GetComponent<ClassEnemy>().Knocked();
 
@@ -805,25 +840,14 @@ public class Model_Player : MonoBehaviour
                     StartCoroutine(OnActionState(0.4f));
                     target.GetComponent<ClassEnemy>().BlockedAttack();
                 }
-
-                if (!onDefence)
-                {
-                    UpdateLife(-d);
-                    if (!onAction)
-                    {
-                        onDamageTime = 0.5f;
-                        DefenceOff();
-                        _rb.AddForce(-transform.forward * 80, ForceMode.Impulse);
-                        GetHitEvent();
-                    }
-                }
+           
             }
 
             if (Vector3.Dot(toTarget, transform.forward) < 0 && type == DamageType.Light)
             {
                 UpdateLife(-d);
                 if (!onAction)
-                {
+                {               
                     onDamageTime = 0.5f;
                     DefenceOff();
                     _rb.AddForce(transform.forward * 80, ForceMode.Impulse);

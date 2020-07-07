@@ -5,6 +5,7 @@ using Sound;
 
 public class CheckPoint : MonoBehaviour, ICheckObservable
 {
+    FireSword _fireSword;
     public ParticleSystem fire;
     public ParticleSystem halo;
     public float lightIntensity;
@@ -57,6 +58,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
     void Start ()
     {
+        _fireSword = FindObjectOfType<FireSword>();
         player = FindObjectOfType<Model_Player>();
         ButtonManager = FindObjectOfType<ButtonManager>();
         Subscribe(ButtonManager);
@@ -90,6 +92,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
                 player.UpdateLife(player.maxLife);
                 player.HitEnemyEvent(player._fireSword.energyToUseFireSword);
                 StartCoroutine(PlayParticles());
+                _fireSword.UpdateSword();
             }
         }
     }

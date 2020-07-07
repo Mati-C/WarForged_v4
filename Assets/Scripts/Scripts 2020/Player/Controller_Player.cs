@@ -218,11 +218,11 @@ public class Controller_Player
         if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
 
         //-------------------------ATTACKS------------------------
-        if (Input.GetKey(KeyCode.Mouse0) && !_model.onFailAttack)
+        if (Input.GetKey(KeyCode.Mouse0) && !_model.onFailAttack && !_model.chargeAttackCasted)
         {
             if (_model.chargeAttackAmount >= 0.2f) _model.ChangeActionState(true);
             _model.ChargingAttack();
-            if (_model.chargeAttackAmount >= _model.chargeAttackTime - 0.1f ) _viewer.SlowTinme();
+            if (_model.chargeAttackAmount >= _model.chargeAttackTime - 0.1f  ) _viewer.SlowTinme();
             if (_model.chargeAttackAmount >= _model.chargeAttackTime ) _model.ChargeAttack(_model.chargeAttackAmount); 
         }
 

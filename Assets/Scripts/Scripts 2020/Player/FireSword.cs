@@ -11,6 +11,7 @@ public class FireSword: MonoBehaviour
     [Header("Fire Sword Level and Exp:")]
     public int fireSwordLevel;
     public float currentExp;
+    public float expEarned;
 
     public List<float> expForEachLevel = new List<float>();
     public List<ClassEnemy> allEnemies = new List<ClassEnemy>();
@@ -42,6 +43,7 @@ public class FireSword: MonoBehaviour
 
     Action GetEnergy;
     float _fireGizmo;
+    bool _onExpUpdate;
 
     private void Awake()
     {
@@ -85,18 +87,64 @@ public class FireSword: MonoBehaviour
             LevelUpdates[i+1]();
         }
      
-
     }
 
     public void SwordExp(float exp)
     {
         GetEnergy();
         currentExp += exp;
-        if (currentExp >= expForEachLevel[fireSwordLevel] && fireSwordLevel <9)
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Y)) UpdateSword();
+    }
+
+    public void UpdateSword()
+    {
+       if(!_onExpUpdate)StartCoroutine(FireSwordExpUpdate());
+    }
+
+    IEnumerator FireSwordExpUpdate()
+    {
+        if (currentExp > 0 && !_onExpUpdate)
         {
-            fireSwordLevel++;
-            currentExp = 0;
-            LevelUpdates[fireSwordLevel]();
+            _onExpUpdate = true;
+            float newExp = 0;
+
+            if (currentExp >= expForEachLevel[fireSwordLevel])
+            {
+                newExp = expForEachLevel[fireSwordLevel];
+            }
+
+            else newExp = currentExp;
+
+            float t = 2;
+            while (t > 0)
+            {
+                expEarned += Time.deltaTime * (newExp / 2);
+                currentExp -= Time.deltaTime * (newExp / 2);
+                t -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            int e = (int)expEarned;
+            expEarned = e;
+            int c = (int)currentExp;
+            currentExp = c;
+
+            if (expEarned >= expForEachLevel[fireSwordLevel] && fireSwordLevel < 9)
+            {
+                fireSwordLevel++;
+                expEarned = 0;
+                LevelUpdates[fireSwordLevel]();
+            }
+
+            if (currentExp > 0)
+            {
+                _onExpUpdate = false;
+                StartCoroutine(FireSwordExpUpdate());
+            }
         }
     }
 
