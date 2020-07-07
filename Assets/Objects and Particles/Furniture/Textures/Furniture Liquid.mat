@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Furniture Liquid
+  m_Shader: {fileID: 4800000, guid: f43a99349a5786c459f2f0b5fc7761fd, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2001
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FurnitureStuff_AO_2K:
+        m_Texture: {fileID: 2800000, guid: ac90404453047e4408009914cc4ffd8b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FurnitureStuff_AlbedoTR_2K:
+        m_Texture: {fileID: 2800000, guid: a1cbfb89eec76a9458a9eb8a38c5ed45, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FurnitureStuff_Emission_2K:
+        m_Texture: {fileID: 2800000, guid: 2a325b8b142c32e4f9645cb55feea609, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FurnitureStuff_MetallicSM_2K:
+        m_Texture: {fileID: 2800000, guid: 37ce2728db75e7341aa3a847e1dec340, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FurnitureStuff_Normal_2K:
+        m_Texture: {fileID: 2800000, guid: e69a58399f06f2149b9ee29a3b61c16f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0.5
+    - _EmissionIntensity: 0.8
+    - _NormalScale: 1
+    - __dirty: 0
+    m_Colors: []
