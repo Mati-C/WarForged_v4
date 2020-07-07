@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 1932348631675330924}
   - component: {fileID: 7460795973732096858}
   - component: {fileID: 3798393777068746659}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Painting [Small]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1932348631675330924
 Transform:
@@ -90,12 +90,12 @@ GameObject:
   - component: {fileID: 4982121924663935143}
   - component: {fileID: 3386243414143597628}
   - component: {fileID: 6943650897012374232}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Painting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4982121924663935143
 Transform:
