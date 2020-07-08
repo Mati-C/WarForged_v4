@@ -10,9 +10,13 @@ public class TutorialManager : MonoBehaviour
     Model_Player _player;
     Model_TE_Melee _te;
 
+    public List<ClassEnemy> secondEnemies = new List<ClassEnemy>();
+
     public bool attacksTutorialFinish;
     public bool defendTutorialFinish;
     public bool canMove;
+    public bool fireSword;
+    public bool checkpoint;
 
     public int hitCounts;
     public int hitCountsMax;
@@ -24,15 +28,17 @@ public class TutorialManager : MonoBehaviour
     public int heavyAttackCountsMax;
     public float moveDefenceAmount;
     public float moveDefenceAmountMax;
+    public float timerCheckpoint;
+    public float timerCheckpointMax;
+    public int secondEnemiesAlive;
 
+    TextMeshPro _tutorialText;
 
-    TextMeshPro _tutorialHitText;
-    TextMeshPro _tutorialDefenceText;
-    TextMeshPro _tutorialQuickDefenceText;
-    TextMeshPro _tutorialMoveDefenceText;
-    TextMeshPro _tutorialHeavyAttackText;
-    TextMeshPro _tutorialFireSwordText;
     public Transform objective1;
+    public Transform objective2;
+    public Transform objective3;
+    public Transform objective4;
+    public Transform objective5;
     Transform _objective;
     GameObject _arrow;
 
@@ -53,24 +59,9 @@ public class TutorialManager : MonoBehaviour
 
         StartCoroutine(HeavyAttack());
 
-        _tutorialHitText = GameObject.Find("Text Tutorial Hit").GetComponent<TextMeshPro>();
-        _tutorialDefenceText = GameObject.Find("Text Tutorial Defend").GetComponent<TextMeshPro>();
-        _tutorialQuickDefenceText = GameObject.Find("Text Tutorial Quick Defend").GetComponent<TextMeshPro>();
-        _tutorialMoveDefenceText = GameObject.Find("Text Tutorial Move Defend ").GetComponent<TextMeshPro>();
-        _tutorialHeavyAttackText = GameObject.Find("Text Tutorial Heavy Attack").GetComponent<TextMeshPro>();
-        _tutorialFireSwordText = GameObject.Find("Text Tutorial Fire Sword").GetComponent<TextMeshPro>();
+        _tutorialText = GameObject.Find("Text Tutorial").GetComponent<TextMeshPro>();
+        _tutorialText.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
         _arrow = GameObject.Find("PointerPrefab");
-        _tutorialDefenceText.gameObject.SetActive(false);
-        _tutorialQuickDefenceText.gameObject.SetActive(false);
-        _tutorialMoveDefenceText.gameObject.SetActive(false);
-        _tutorialHeavyAttackText.gameObject.SetActive(false);
-        _tutorialFireSwordText.gameObject.SetActive(false);
-        _tutorialHitText.text = "Use Left Click to Hit enemies " + hitCounts +"/" + hitCountsMax;
-        _tutorialDefenceText.text = "Use Right Click to Defend " + defendCounts + "/"+ defendCountsMax;
-        _tutorialQuickDefenceText.text = "Use Left Click quick when enemies attack you to kick them " + quickDefendCounts + "/"+ quickDefendCountsMax;
-        _tutorialHeavyAttackText.text = "Keep Left Click to make an area attack " + heavyAttackCounts + "/"+ heavyAttackCountsMax;
-        _tutorialMoveDefenceText.text = "You can move while you are defending";
-        _tutorialFireSwordText.text = "Press Q to use the Fire Sword when the bar is full and kill the enemy";
 
 
     }
@@ -87,6 +78,8 @@ public class TutorialManager : MonoBehaviour
         _arrow.transform.position = _player.transform.position + Vector3.up/2;
         var dir = (_objective.position - _arrow.transform.position).normalized;
         _arrow.transform.forward = -dir;
+
+        PlusCheckpoint();
     }
 
     void PlusFireSword()
@@ -96,7 +89,12 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator FlamesOn()
     {
-        _player.fireEnergy = 100;
+        yield return new WaitForSeconds(2);
+        _player.fireEnergy = _player.fireSword.energyToUseFireSword;
+        _player.HitEnemyEvent(_player.fireSword.energyToUseFireSword);
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        _tutorialText.text = "When the Ability Bar is full press Q to use the Fire Sword and kill the enemy";
         while(!_player.flamesOn)
         { 
             yield return new WaitForEndOfFrame();
@@ -109,9 +107,101 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        _tutorialFireSwordText.faceColor = colorSucsess;
-        _tutorialFireSwordText.outlineColor = colorSucsessOutline;
+        _tutorialText.faceColor = colorSucsess;
+        _tutorialText.outlineColor = colorSucsessOutline;
+        yield return new WaitForSeconds(2);
+        _tutorialText.text = "When you Kill enemies they will give you experience to update the Fire Sword";
+        yield return new WaitForSeconds(5);
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        _objective = objective2;
+        _tutorialText.GetComponent<TextTutorial>().target = objective2;
+        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0,2,0);
+        _tutorialText.text = "These sources will serve as checkpoints, where you will recover life and change the sword experience to level it up and improve it";
+        fireSword = true;
+    }
 
+    IEnumerator SecondEnemies()
+    {
+        yield return new WaitForSeconds(2);
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        _tutorialText.GetComponent<TextTutorial>().target = objective5;
+        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0, 0, 0);
+        _tutorialText.text = "Kill all the enemies " + secondEnemiesAlive + "/2";
+        bool alive = false;
+        while(!alive)
+        {
+            if (secondEnemiesAlive >= 2) alive = true;
+
+            for (int i = 0; i < secondEnemies.Count; i++)
+            {
+                if (secondEnemies[i].life <= 0)
+                {
+                    secondEnemiesAlive++;
+                    secondEnemies.Remove(secondEnemies[i]);
+                }
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        _tutorialText.faceColor = colorSucsess;
+        _tutorialText.outlineColor = colorSucsessOutline;
+
+    }
+
+    IEnumerator Destructibles()
+    {
+        yield return new WaitForSeconds(2);
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        _tutorialText.GetComponent<TextTutorial>().target = objective3;
+        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0, 1.5f, 0);
+        _tutorialText.text = "You can destroy objects on the level to recover life and gain energy to use the Fire Sword";
+        _objective = objective3;
+        var destructible = objective3.GetComponent<DestructibleOBJ>();
+        while(!destructible.destroyed)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        _tutorialText.faceColor = colorSucsess;
+        _tutorialText.outlineColor = colorSucsessOutline;
+        yield return new WaitForSeconds(2);
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        _tutorialText.text = "Charge Fire Energy and use the Fire Sword to burn the Roots";
+        _objective = objective4;
+        _tutorialText.GetComponent<TextTutorial>().target = objective4;
+        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(1, 1, 0.5f);
+        var root = objective4.GetComponent<Roots>();
+        while(!root.burned)
+        {
+            _player.fireSwordCurrentTime = 1;
+            yield return new WaitForEndOfFrame();
+        }
+        _tutorialText.faceColor = colorSucsess;
+        _tutorialText.outlineColor = colorSucsessOutline;
+        StartCoroutine(SecondEnemies());
+    }
+
+    IEnumerator CheckPointTimer()
+    {
+        yield return new WaitForSeconds(7);
+        _tutorialText.faceColor = colorSucsess;
+        _tutorialText.outlineColor = colorSucsessOutline;
+        StartCoroutine(Destructibles());
+    }
+
+    void PlusCheckpoint()
+    {
+        if (!checkpoint && fireSword)
+        {
+            var d = Vector3.Distance(_player.transform.position, objective2.position);
+            if (d < 1.5f)
+            {
+                checkpoint = true;
+                StartCoroutine(CheckPointTimer());
+            }
+        }
     }
 
     void PlusHeavyAttack()
@@ -119,13 +209,12 @@ public class TutorialManager : MonoBehaviour
         if (heavyAttackCounts < heavyAttackCountsMax)
         {
             heavyAttackCounts++;
-            _tutorialHeavyAttackText.text = "Keep Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
+            _tutorialText.text = "Keep Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
             if (heavyAttackCounts >= heavyAttackCountsMax)
             {
-                _tutorialHeavyAttackText.faceColor = colorSucsess;
-                _tutorialHeavyAttackText.outlineColor = colorSucsessOutline;
+                _tutorialText.faceColor = colorSucsess;
+                _tutorialText.outlineColor = colorSucsessOutline;
                 StartCoroutine(FlamesOn());
-                StartCoroutine(DesactivateText(_tutorialHeavyAttackText.gameObject, _tutorialFireSwordText.gameObject));
             }
         }
     }
@@ -137,9 +226,10 @@ public class TutorialManager : MonoBehaviour
             moveDefenceAmount += Time.deltaTime * 2;
             if(moveDefenceAmount >= moveDefenceAmountMax)
             {
-                _tutorialMoveDefenceText.faceColor = colorSucsess;
-                _tutorialMoveDefenceText.outlineColor = colorSucsessOutline;
-                StartCoroutine(DesactivateText(_tutorialMoveDefenceText.gameObject, _tutorialHeavyAttackText.gameObject));
+                _tutorialText.faceColor = colorSucsess;
+                _tutorialText.outlineColor = colorSucsessOutline;
+                StartCoroutine(ChangeText(3));
+
             }
         }
     }
@@ -149,14 +239,14 @@ public class TutorialManager : MonoBehaviour
         if (quickDefendCounts < defendCountsMax)
         {
             quickDefendCounts++;
-            _tutorialQuickDefenceText.text = "Use Left Click quick when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
+            _tutorialText.text = "Use Left Click quick when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
             if (quickDefendCounts >= defendCountsMax)
             {
                 canMove = true;
-                _tutorialQuickDefenceText.faceColor = colorSucsess;
-                _tutorialQuickDefenceText.outlineColor = colorSucsessOutline;
+                _tutorialText.faceColor = colorSucsess;
+                _tutorialText.outlineColor = colorSucsessOutline;
                 _player.WalkEvent += PlusDefenceMove;
-                StartCoroutine(DesactivateText(_tutorialQuickDefenceText.gameObject, _tutorialMoveDefenceText.gameObject));
+                StartCoroutine(ChangeText(2));
             }
         }
     }
@@ -166,13 +256,13 @@ public class TutorialManager : MonoBehaviour
         if (defendCounts < defendCountsMax)
         {
             defendCounts++;
-            _tutorialDefenceText.text = "Use Right Click to Defend " + defendCounts + "/" + defendCountsMax;
+            _tutorialText.text = "Use Right Click to Defend " + defendCounts + "/" + defendCountsMax;
             if (defendCounts >= defendCountsMax)
             {
                 defendTutorialFinish = true;
-                _tutorialDefenceText.faceColor = colorSucsess;
-                _tutorialDefenceText.outlineColor = colorSucsessOutline;
-                StartCoroutine(DesactivateText(_tutorialDefenceText.gameObject, _tutorialQuickDefenceText.gameObject));
+                _tutorialText.faceColor = colorSucsess;
+                _tutorialText.outlineColor = colorSucsessOutline;
+                StartCoroutine(ChangeText(1));
             }
         }
     }
@@ -182,14 +272,13 @@ public class TutorialManager : MonoBehaviour
         if (hitCounts < hitCountsMax)
         {
             hitCounts++;
-            _tutorialHitText.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
+            _tutorialText.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
             if (hitCounts >= hitCountsMax)
             {
-                _tutorialHitText.faceColor = colorSucsess;
-                _tutorialHitText.outlineColor = colorSucsessOutline;
+                _tutorialText.faceColor = colorSucsess;
+                _tutorialText.outlineColor = colorSucsessOutline;
                 attacksTutorialFinish = true;
-                StartCoroutine(DefendTutorial());
-                StartCoroutine(DesactivateText(_tutorialHitText.gameObject, _tutorialDefenceText.gameObject));
+                StartCoroutine(DefendTutorial());            
             }
         }
     }
@@ -204,21 +293,28 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    IEnumerator ChangeText(int id)
+    {
+        _tutorialText.faceColor = colorSucsess;
+        _tutorialText.outlineColor = colorSucsessOutline;
+        yield return new WaitForSeconds(2);
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        if (id ==1) _tutorialText.text = "Use Left Click quick when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
+        if (id ==2) _tutorialText.text = "You can Defend when you are moving";
+        if (id ==3) _tutorialText.text = "Keep Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
+    }
+
     IEnumerator DefendTutorial()
     {
-        _tutorialDefenceText.faceColor = colorIncomplite;
-        _tutorialDefenceText.outlineColor = colorIncompliteOutline;
+        yield return new WaitForSeconds(2f);
+        _tutorialText.text = "Use Right Click to Defend " + defendCounts + "/" + defendCountsMax;
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
         while(!defendTutorialFinish)
         {
             _player.defenceTimer = 1;
             yield return new WaitForEndOfFrame();
         }
-    }
-
-    IEnumerator DesactivateText(GameObject g, GameObject g2)
-    {
-        yield return new WaitForSeconds(2f);
-        g.SetActive(false);
-        g2.SetActive(true);
-    }
+    }  
 }

@@ -548,6 +548,9 @@
     <Compile Include="Assets\Invector-3rdPersonController\Shooter\Scripts\Shooter\Editor\vMenuComponent.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Shooter\Scripts\Shooter\Editor\vShooterManagerEditor.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Shooter\Scripts\Weapon\Editor\vCreateShooterWeaponEditor.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Components\Editor\MeshBrushEditor.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Components\Editor\SaveCombinedMeshEditor.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Wizards\Editor\EditRangeLimitsWizard.cs" />
     <Compile Include="Assets\Path Painter\Editor\CompMgr.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Attributes\PostProcessingModelEditorAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Models\AmbientOcclusionModelEditor.cs" />
@@ -590,6 +593,7 @@
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
     <Compile Include="Assets\Ultimate Game Tools\ConcaveCollider\Editor\ConcaveColliderEditor.cs" />
     <None Include="Assets\Path Painter\Editor\Resources\Path Painter Brush Vis.shader" />
+    <None Include="Assets\MeshBrush\Scripts\Classes\Components\Editor\FavouriteTemplates.xml" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/Users/Lucas/Documents/GitHub/WarForged_v4/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>

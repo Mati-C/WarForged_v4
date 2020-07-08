@@ -80,7 +80,11 @@ public class IA_CombatManager : MonoBehaviour
 
     public void SetOrderAttack(ClassEnemy e)
     {
-        int option = StartAttackStrategy();
+        int option = 0;
+        if (e.sameID_Enemies.Count > 1)
+        {
+            option = StartAttackStrategy();
+        }
 
         switch (option)
         {

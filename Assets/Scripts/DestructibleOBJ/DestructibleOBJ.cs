@@ -9,19 +9,23 @@ public class DestructibleOBJ : MonoBehaviour
     public GameObject destructibleMesh;
     BoxCollider myBox;
     Animator anim;
-    bool first;
+    public bool destroyed;
+    Model_Player _player;
+    Viewer_Player _playerView;
 
     Vector3 startpos;
 
     public void Break()
     {
-        if (!first)
+        if (!destroyed)
         {
-            first = true;
+            destroyed = true;
             destructibleMesh.SetActive(true);
             anim.SetBool("IsHit", true);
             myBox.isTrigger = true;
-
+            _player.fireEnergy += 5;
+            if (_player.fireEnergy > _player.fireSword.energyToUseFireSword) _player.fireEnergy = _player.fireSword.energyToUseFireSword;
+            _playerView.OnHit(5/ _player.fireSword.energyToUseFireSword);
             if (gameObject.name.Contains("Barrel") || gameObject.name.Contains("Jugs"))
             {
                 mainMesh.SetActive(false);
@@ -38,7 +42,7 @@ public class DestructibleOBJ : MonoBehaviour
     public void RecoverDes()
     {
         transform.position = startpos;
-        first = false;
+        destroyed = false;
         if (gameObject.name.Contains("Barrel") || gameObject.name.Contains("Jugs"))
         {
             mainMesh.SetActive(true);
@@ -50,6 +54,8 @@ public class DestructibleOBJ : MonoBehaviour
 
     public void Start()
     {
+        _player = FindObjectOfType<Model_Player>();
+        _playerView = FindObjectOfType<Viewer_Player>();
         startpos = transform.position;
         anim = destructibleMesh.GetComponent<Animator>();
         myBox = GetComponent<BoxCollider>();

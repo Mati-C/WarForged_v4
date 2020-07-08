@@ -18,6 +18,6 @@ public class TextTutorial : MonoBehaviour
     {
         var dir = (_cam.position - transform.position).normalized;
         transform.forward = -dir;
-        transform.position = target.transform.position + plusPos;
+        transform.position = target.position + target.right/1.7f + plusPos;
     }
 }

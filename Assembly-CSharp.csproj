@@ -275,6 +275,17 @@
     <Compile Include="Assets\Invector-3rdPersonController\Shooter\Scripts\Weapon\vShooterEquipment.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Shooter\Scripts\Weapon\vShooterWeapon.cs" />
     <Compile Include="Assets\Logo\How To Play\Menu_Controlls.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Components\Examples\RuntimeExample.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Components\MeshBrush.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Components\MeshBrushParent.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Components\SaveCombinedMesh.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Data\EditorIcons.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Utilities\CombineUtility.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Utilities\FavouriteTemplatesUtility.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Utilities\MeshTransformationUtility.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Utilities\TemplateMigrationUtility.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Classes\Utilities\VectorClampingUtility.cs" />
+    <Compile Include="Assets\MeshBrush\Scripts\Enums\BrushMode.cs" />
     <Compile Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Scripts\particleAttractorLinear.cs" />
     <Compile Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Scripts\particleAttractorMove.cs" />
     <Compile Include="Assets\Objects and Particles\_Particles\Healing particle\Particle Attractor\Scripts\particleAttractorSelf.cs" />
@@ -618,6 +629,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldSpaceLightPosNode.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\RFX4_MobileDiffuse.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Objects and Particles\Furniture\Textures\Furniture Stuff.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_GetLocalVarNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Log2OpNode.shader" />
     <None Include="Assets\UI Boss Bar\Boss Bar.shader" />
@@ -698,6 +710,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_BlendOpsNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TanOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TFHCCompareGreaterEqual.shader" />
+    <None Include="Assets\MeshBrush\Templates\Examples\Terrain Example.xml" />
     <None Include="Assets\Objects and Particles\Castle Props + Textures\Carpet\Usar un Quad 1x1 como modelo.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_EncodeViewNormalStereoHlpNode.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Snow\Snow.shader" />
@@ -721,6 +734,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Templates\Unlit.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Bloom\Resources\RFX4_Bloom.shader" />
+    <None Include="Assets\MeshBrush\Templates\Examples\Scale Curve Example 1.xml" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_DynamicAppendNode.shader" />
     <None Include="Assets\Shaders\Water\WaterShader.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SimpleRemainderNode.shader" />
@@ -742,6 +756,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LogOpNode.shader" />
     <None Include="Assets\Final UI\UI Sprite Noise.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_AppendNode.shader" />
+    <None Include="Assets\MeshBrush\Templates\Examples\Stroke Alignment Example.xml" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Portal\RFX4_PortalStandard.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Water\RFX4_WaterSplashMobile.shader" />
@@ -752,8 +767,10 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Decal\RFX4_ProjectorBlendedMobile.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_GammaToLinearNode.shader" />
+    <None Include="Assets\MeshBrush\Fonts\Michroma\OFL.txt" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WorldReflectionVector.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\TextureArrayInspector.shader" />
+    <None Include="Assets\MeshBrush\Templates\Examples\Scale Curve Example 2.xml" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\LinearPreviews.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_WeightedBlendNode.shader" />
@@ -796,6 +813,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_VertexIdVariableNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_ObjectScaleNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_GradientSample.shader" />
+    <None Include="Assets\MeshBrush\Templates\Readme.txt" />
     <None Include="Assets\Objects and Particles\Potions\Cork\Cork.shader" />
     <None Include="Assets\Objects and Particles\_Shaders\Post Process\Main Post Process.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_Texture2D.shader" />
@@ -833,6 +851,7 @@
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_LerpOp.shader" />
     <None Include="Assets\Objects and Particles\Realistic Effects Pack v4\Shaders\Portal\RFX4_TranperentDiffuse.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
+    <None Include="Assets\MeshBrush\Templates\Examples\Test Asteroid Example.xml" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_StepOpNode.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
     <None Include="Assets\Objects and Particles\NatureManufacture Assets\Foliage Shaders\Tree_Leaves_Specular.shader" />

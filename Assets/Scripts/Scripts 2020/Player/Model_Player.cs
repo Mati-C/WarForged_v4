@@ -14,7 +14,7 @@ public class Model_Player : MonoBehaviour
     IA_CombatManager _IA_CM;
 
     [HideInInspector]
-    public FireSword _fireSword;
+    public FireSword fireSword;
 
     [Header("Player Life:")]
     public float life;
@@ -339,7 +339,7 @@ public class Model_Player : MonoBehaviour
         _IA_CM = FindObjectOfType<IA_CombatManager>();
         _controller = new Controller_Player(this,_viewer);
         _rb = GetComponent<Rigidbody>();
-        _fireSword = GetComponent<FireSword>();
+        fireSword = GetComponent<FireSword>();
 
         MakeDamageTutorialEvent += () => { };
         DefendTutorialEvent += () => { };
@@ -639,7 +639,6 @@ public class Model_Player : MonoBehaviour
 
         if (roots.Count() > 0 )
         {
-
             if (flamesOn) foreach (var item in roots) item.StartDissolve();
 
             else FailAttack("Crate");
@@ -655,7 +654,7 @@ public class Model_Player : MonoBehaviour
                 if (fireSwordCurrentTime <= 0)
                 {
                     fireEnergy += d;
-                    HitEnemyEvent(d / _fireSword.energyToUseFireSword);
+                    HitEnemyEvent(d / fireSword.energyToUseFireSword);
                 }
                     
             }
@@ -684,7 +683,7 @@ public class Model_Player : MonoBehaviour
             if (fireSwordCurrentTime <= 0)
             {
                 fireEnergy += ChargeAttackDamage;
-                HitEnemyEvent(ChargeAttackDamage / _fireSword.energyToUseFireSword);
+                HitEnemyEvent(ChargeAttackDamage / fireSword.energyToUseFireSword);
             }
                 
         }
@@ -766,7 +765,7 @@ public class Model_Player : MonoBehaviour
  
     public void PowerWeapon()
     {
-        if(fireEnergy >= _fireSword.energyToUseFireSword)
+        if(fireEnergy >= fireSword.energyToUseFireSword)
         {
             StartCoroutine(PowerOn());
             FireSwordEvent();
@@ -778,7 +777,7 @@ public class Model_Player : MonoBehaviour
         fireEnergy = 0;
         flamesOn = true;
         StartCoroutine(OnActionState(1));
-        while(fireSwordCurrentTime < _fireSword.fireSwordTime)
+        while(fireSwordCurrentTime < fireSword.fireSwordTime)
         {
             fireSwordCurrentTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();

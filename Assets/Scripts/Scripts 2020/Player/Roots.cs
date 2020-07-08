@@ -5,6 +5,7 @@ using UnityEngine;
 public class Roots : MonoBehaviour
 {
     public MeshRenderer mesh;
+    public bool burned;
     Material _mat;
     BoxCollider _box;
 
@@ -16,6 +17,7 @@ public class Roots : MonoBehaviour
 
     public void StartDissolve()
     {
+        burned = true;
         StartCoroutine(DissolveRoot());
     }
 
