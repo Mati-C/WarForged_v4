@@ -9,6 +9,7 @@ public abstract class ClassEnemy : MonoBehaviour
 {
 
     ClassEnemyViewer _viewer;
+    public Portal portal;
     public N_FSM_EventMachine myFSM_EventMachine;
     public List<Node2> nodes = new List<Node2>();
     public List<Node2> pathToTarget = new List<Node2>();
@@ -56,6 +57,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public bool knocked;
     public bool permissionToAttack;
     public bool cantAskAgain;
+    public bool portalOrder;
     public int currentIndex;
 
     [Header("EnemyClass Attack Variables:")]
@@ -157,6 +159,27 @@ public abstract class ClassEnemy : MonoBehaviour
         }
     }
 
+    public void RuturnIA_ManagerInstant(bool b)
+    {
+        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
+
+        if (permissionToAttack)
+        {
+            cantAskAgain = false;
+            if (b)
+            {
+                ia_Manager.PermissionsMelee(false);
+                ia_Manager.DecisionTakeMelee(false);
+            }
+            else
+            {
+                ia_Manager.PermissionsRange(false);
+                ia_Manager.DecisionTakeRange(false);
+            }
+            permissionToAttack = false;
+        }
+    }
+
     public IEnumerator CanAttackAgain()
     {
         cantAskAgain = true;
@@ -230,7 +253,8 @@ public abstract class ClassEnemy : MonoBehaviour
 
     private void Awake()
     {
-       
+
+        portal = FindObjectsOfType<Portal>().Where(x => x.ID == ID).FirstOrDefault();
         grid = FindObjectsOfType<Grid>().Where(x => x.ID == ID).First();
         player = FindObjectOfType<Model_Player>();
         pathfinding = GetComponent<Pathfinding>();

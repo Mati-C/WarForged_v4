@@ -123,11 +123,12 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator SecondEnemies()
     {
+        _objective = objective5;
         yield return new WaitForSeconds(2);
         _tutorialText.faceColor = colorIncomplite;
         _tutorialText.outlineColor = colorIncompliteOutline;
         _tutorialText.GetComponent<TextTutorial>().target = objective5;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0, 0, 0);
+        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0, 1.5f, 0);
         _tutorialText.text = "Kill all the enemies " + secondEnemiesAlive + "/2";
         bool alive = false;
         while(!alive)
@@ -139,6 +140,7 @@ public class TutorialManager : MonoBehaviour
                 if (secondEnemies[i].life <= 0)
                 {
                     secondEnemiesAlive++;
+                    _tutorialText.text = "Kill all the enemies " + secondEnemiesAlive + "/2";
                     secondEnemies.Remove(secondEnemies[i]);
                 }
             }
@@ -155,7 +157,7 @@ public class TutorialManager : MonoBehaviour
         _tutorialText.faceColor = colorIncomplite;
         _tutorialText.outlineColor = colorIncompliteOutline;
         _tutorialText.GetComponent<TextTutorial>().target = objective3;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0, 1.5f, 0);
+        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0, 2.5f, 0);
         _tutorialText.text = "You can destroy objects on the level to recover life and gain energy to use the Fire Sword";
         _objective = objective3;
         var destructible = objective3.GetComponent<DestructibleOBJ>();
@@ -186,8 +188,6 @@ public class TutorialManager : MonoBehaviour
     IEnumerator CheckPointTimer()
     {
         yield return new WaitForSeconds(7);
-        _tutorialText.faceColor = colorSucsess;
-        _tutorialText.outlineColor = colorSucsessOutline;
         StartCoroutine(Destructibles());
     }
 
@@ -198,6 +198,8 @@ public class TutorialManager : MonoBehaviour
             var d = Vector3.Distance(_player.transform.position, objective2.position);
             if (d < 1.5f)
             {
+                _tutorialText.faceColor = colorSucsess;
+                _tutorialText.outlineColor = colorSucsessOutline;
                 checkpoint = true;
                 StartCoroutine(CheckPointTimer());
             }
@@ -289,6 +291,7 @@ public class TutorialManager : MonoBehaviour
         {
             _player.chargeAttackAmount = 0;
             _player.fireEnergy = 0;
+            _player.HitEnemyEvent(0);
             yield return new WaitForEndOfFrame();
         }
     }

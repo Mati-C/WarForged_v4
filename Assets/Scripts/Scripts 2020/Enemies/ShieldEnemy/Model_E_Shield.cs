@@ -135,15 +135,35 @@ public class Model_E_Shield : ClassEnemy
 
         patrol.OnUpdate += () =>
         {
-            var distance = Vector3.Distance(transform.position, patrolPosition);
+            var distancePH_patrol = Vector3.Distance(transform.position, patrolPosition);
+            float distancePortalPH = 0;
 
-            if(distance >1)
+            if (portal)
+            {
+                distancePortalPH = Vector3.Distance(transform.position, portal.phRune.position);
+
+                if (distancePortalPH > 1 && portalOrder)
+                {
+                    WalkEvent();
+                    MoveToTarget(portal.phRune.position);
+                }
+
+                if (distancePortalPH <= 1 && portalOrder)
+                {
+                    portalOrder = false;
+                    IdleEvent();
+                    Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                }
+            }
+
+            if (distancePH_patrol > 1 && !portalOrder)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if(distance <=1)
+            if (distancePH_patrol <= 1 && !portalOrder)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
@@ -577,7 +597,7 @@ public class Model_E_Shield : ClassEnemy
 
             if (life <= 0)
             {
-                StartCoroutine(ReturnIA_Manager(TimeToRrturnPermission, true));
+                RuturnIA_ManagerInstant(false);
                 playerFireSowrd.SwordExp(exp);
                 DieEvent();
             }

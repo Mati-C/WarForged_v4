@@ -128,8 +128,8 @@ public class Viewer_Player : MonoBehaviour
         lifeBar = GameObject.Find("LifeBar").GetComponent<Image>();
         tempLifeBar = GameObject.Find("TempLifeBar").GetComponent<Image>();       
         normalTrail = GameObject.Find("Vfx_SwordTrail");       
-        fireTrail = GameObject.Find("FireSword_FX");
         fireTrail.gameObject.SetActive(false);
+        swordFire.Stop();
         powerBar.fillAmount = 0;
         DesactivateSword();
         lifeBar.material.SetFloat("_InnerGlow", 1);
@@ -199,11 +199,10 @@ public class Viewer_Player : MonoBehaviour
 
         if (anim.GetInteger("AttackCombo") <= 0 && anim.GetFloat("ChargeAttack") < 0.2f && !anim.GetBool("FailAttack")) anim.SetBool("OnAttack", false);
 
-        normalTrail.SetActive(_player.onAttackAnimation);
-        if (_player.flamesOn)
-        {
-            fireTrail.SetActive(_player.onAttackAnimation);
-        }
+        if(!_player.flamesOn) normalTrail.SetActive(_player.onAttackAnimation);
+
+        if (_player.flamesOn) fireTrail.SetActive(_player.onAttackAnimation);
+
     }
 
 
@@ -268,15 +267,14 @@ public class Viewer_Player : MonoBehaviour
         swordFire.Play();
         StartCoroutine(DelayAnimationActivate("FireSword", true, 1));
         StartCoroutine(DecreesPowerBar());
-        normalTrail.transform.parent.gameObject.SetActive(false);
-        fireTrail.transform.parent.gameObject.SetActive(true);
+        normalTrail.SetActive(false);
+    
     }
 
     public void PowerSwordDesactivated()
     {
         swordFire.Stop();
-        normalTrail.transform.parent.gameObject.SetActive(true);
-        fireTrail.transform.parent.gameObject.SetActive(false);
+        normalTrail.SetActive(true);
     }
 
     public void ChargeAttackAnim()

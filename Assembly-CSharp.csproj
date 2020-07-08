@@ -505,6 +505,7 @@
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\MageEnemy\Viewer_E_Mage.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\MeleeEnemy\Model_E_Melee.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\MeleeEnemy\Viewer_E_Melee.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Enemies\Portal.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\ShieldEnemy\Model_E_Shield.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\ShieldEnemy\Viewer_E_Shield.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\TextTutorial.cs" />

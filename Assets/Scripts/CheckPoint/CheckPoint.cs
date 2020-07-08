@@ -90,6 +90,8 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
             if (player.life != player.maxLife || player.fireEnergy <= player.fireSword.energyToUseFireSword)
             {
                 player.UpdateLife(player.maxLife);
+                player.fireEnergy += 0.3f;
+                if (player.fireEnergy > player.fireSword.energyToUseFireSword) player.fireEnergy = player.fireSword.energyToUseFireSword;
                 player.HitEnemyEvent(player.fireSword.energyToUseFireSword);
                 StartCoroutine(PlayParticles());
                 _fireSword.UpdateSword();
