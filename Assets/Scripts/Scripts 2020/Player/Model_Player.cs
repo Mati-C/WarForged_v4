@@ -628,13 +628,19 @@ public class Model_Player : MonoBehaviour
     public void MakeDamage(float d)
     {
         var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
+        var destructibles = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.GetComponent<DestructibleOBJ>()).Select(x => x.GetComponent<DestructibleOBJ>());
         var roots = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Roots>()).Select(x => x.GetComponent<Roots>());
+        var rune = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.GetComponent<Portal_Rune>()).Select(x => x.GetComponent<Portal_Rune>());
 
-        if (enemies.Count() == 0)
+        if (enemies.Count() == 0 && destructibles.Count() == 0)
         {
             var obstacles = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.gameObject.layer == 16 && !x.GetComponent<DestructibleOBJ>());
-            if (obstacles.Count() != 0)
-                FailAttack(obstacles.First().gameObject.name);
+            if (obstacles.Count() > 0 || rune.Count() > 0)
+            {
+                FailAttack(obstacles.FirstOrDefault().gameObject.name);
+                if (rune.FirstOrDefault() != null)
+                    rune.First().Damage();
+            }
         }
 
         if (roots.Count() > 0 )
@@ -659,8 +665,6 @@ public class Model_Player : MonoBehaviour
                     
             }
         }
-
-        var destructibles = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.GetComponent<DestructibleOBJ>()).Select(x => x.GetComponent<DestructibleOBJ>());
 
         foreach (var item in destructibles)
             item.Break();

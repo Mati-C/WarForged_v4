@@ -137,6 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMesh: {fileID: 0}
   destructibleMesh: {fileID: 1029970281494003151}
+  destroyed: 0
+  xp: 3
 --- !u!1 &1767485845593160032
 GameObject:
   m_ObjectHideFlags: 0

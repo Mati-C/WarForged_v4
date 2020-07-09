@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Landmark
+  m_Shader: {fileID: 4800000, guid: ce533debc26d30d47a09e00118f682f0, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _EmisionMask:
+        m_Texture: {fileID: 2800000, guid: f043182ab489c1c4cab15336c5d9ce0b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Landmarkv3_AO:
+        m_Texture: {fileID: 2800000, guid: 857ea839299c02448be64dfccb9c4546, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Landmarkv3_AlbedoTR:
+        m_Texture: {fileID: 2800000, guid: af74fd7c4aad0dc4e8affa7a949fd90e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Landmarkv3_MetallicSM:
+        m_Texture: {fileID: 2800000, guid: 0e58a76e30f0cf34b8ada8936bebffe7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Landmarkv3_Normal:
+        m_Texture: {fileID: 2800000, guid: c0e45f83643fc404e96422b3f31c2c99, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ColorLerp: 0
+    - _EmissionIntensity: 1.09
+    - _FillAmount: 1
+    - _Float0: -100.5
+    - _Gradient: 1.68
+    - _MaskFix: -0.68
+    - _MaxY: 106.8
+    - _MinY: 100
+    - __dirty: 0
+    m_Colors:
+    - _EmissionColor: {r: 1, g: 0.8207309, b: 0, a: 0}
+    - _EmissionColor1: {r: 1, g: 0.7778548, b: 0, a: 0}
+    - _EmissionColor2: {r: 0, g: 1, b: 0, a: 1}

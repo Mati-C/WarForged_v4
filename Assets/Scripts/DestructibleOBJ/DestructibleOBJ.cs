@@ -14,6 +14,7 @@ public class DestructibleOBJ : MonoBehaviour
     Viewer_Player _playerView;
 
     Vector3 startpos;
+    public float xp;
 
     public void Break()
     {
@@ -23,9 +24,7 @@ public class DestructibleOBJ : MonoBehaviour
             destructibleMesh.SetActive(true);
             anim.SetBool("IsHit", true);
             myBox.isTrigger = true;
-            _player.fireEnergy += 5;
-            if (_player.fireEnergy > _player.fireSword.energyToUseFireSword) _player.fireEnergy = _player.fireSword.energyToUseFireSword;
-            _playerView.OnHit(5/ _player.fireSword.energyToUseFireSword);
+            _player.fireSword.SwordExp(xp);
             if (gameObject.name.Contains("Barrel") || gameObject.name.Contains("Jugs"))
             {
                 mainMesh.SetActive(false);

@@ -8,7 +8,8 @@ public class particleAttractorLinear : MonoBehaviour {
 	public float speed = 5f;
 	int numParticlesAlive;
 	void Start () {
-        target = FindObjectOfType<Model_Player>().transform;
+        if (!gameObject.name.Contains("Rune"))
+            target = FindObjectOfType<Model_Player>().transform;
 		ps = GetComponent<ParticleSystem>();
 		if (!GetComponent<Transform>()){
 			GetComponent<Transform>();

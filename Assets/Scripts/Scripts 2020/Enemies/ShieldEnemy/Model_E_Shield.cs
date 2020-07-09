@@ -140,12 +140,12 @@ public class Model_E_Shield : ClassEnemy
 
             if (portal)
             {
-                distancePortalPH = Vector3.Distance(transform.position, portal.phRune.position);
+                distancePortalPH = Vector3.Distance(transform.position, portal.phPortal.position);
 
                 if (distancePortalPH > 1 && portalOrder)
                 {
                     WalkEvent();
-                    MoveToTarget(portal.phRune.position);
+                    MoveToTarget(portal.phPortal.position);
                 }
 
                 if (distancePortalPH <= 1 && portalOrder)
