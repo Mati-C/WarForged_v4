@@ -96,11 +96,21 @@ public class IA_CombatManager : MonoBehaviour
             case 1:
                 {
                     enemiesListOnAttack.Add(e);
+
                     if (e.sameID_Enemies.Count > 0)
                     {
-                        int r = Random.Range(0, e.sameID_Enemies.Count);
-                        e.sameID_Enemies[r].timeToAttack =0;
-                        enemiesListOnAttack.Add(e.sameID_Enemies[r]);
+                        var newEnemies = new List<ClassEnemy>();
+
+                        if (e.melee) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.melee));
+
+                        if (e.range) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.range));
+
+                        if (newEnemies.Count > 0)
+                        {
+                            int r = Random.Range(0, newEnemies.Count);
+                            newEnemies[r].timeToAttack = 0;
+                            enemiesListOnAttack.Add(newEnemies[r]);
+                        }
                     }
                     break;
                 }
@@ -110,9 +120,18 @@ public class IA_CombatManager : MonoBehaviour
                     enemiesListOnAttack.Add(e);
                     if (e.sameID_Enemies.Count > 0)
                     {
-                        int r = Random.Range(0, e.sameID_Enemies.Count);
-                        StartCoroutine(DelayAttackEnemy(e.sameID_Enemies[r]));
-                        enemiesListOnAttack.Add(e.sameID_Enemies[r]);
+                        var newEnemies = new List<ClassEnemy>();
+
+                        if (e.melee) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.melee));
+
+                        if (e.range) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.range));
+
+                        if (newEnemies.Count > 0)
+                        {
+                            int r = Random.Range(0, newEnemies.Count);
+                            StartCoroutine(DelayAttackEnemy(newEnemies[r]));
+                            enemiesListOnAttack.Add(newEnemies[r]);
+                        }
                     }
                     break;
                 }

@@ -91,6 +91,7 @@ public class Model_E_Shield : ClassEnemy
 
     void Start()
     {
+        melee = true;
         _view = GetComponent<Viewer_E_Shield>();
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         ia_Manager = FindObjectOfType<IA_CombatManager>();

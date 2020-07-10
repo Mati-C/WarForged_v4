@@ -120,6 +120,7 @@ public class Model_Player : MonoBehaviour
     public Action MakeDamageTutorialEvent;
     public Action DefendTutorialEvent;
     public Action KickTutorialEvent;
+    public Action DodgeTutorialEvent;
 
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
@@ -337,13 +338,14 @@ public class Model_Player : MonoBehaviour
         _playerCamera = FindObjectOfType<PlayerCamera>();
         _mainCam = _playerCamera.GetComponent<Camera>();
         _IA_CM = FindObjectOfType<IA_CombatManager>();
-        _controller = new Controller_Player(this,_viewer);
+        _controller = new Controller_Player(this, _viewer, FindObjectOfType<FadeLevel>());
         _rb = GetComponent<Rigidbody>();
         fireSword = GetComponent<FireSword>();
 
         MakeDamageTutorialEvent += () => { };
         DefendTutorialEvent += () => { };
         KickTutorialEvent += () => { };
+        DodgeTutorialEvent += () => { };
         ModifyNodes();
     }
 
@@ -468,6 +470,7 @@ public class Model_Player : MonoBehaviour
 
     public void Dodge(DogeDirecctions direction)
     {
+        DodgeTutorialEvent();
         attackCombo = 0;
         if (direction == DogeDirecctions.Roll && !OnDamage)
         {

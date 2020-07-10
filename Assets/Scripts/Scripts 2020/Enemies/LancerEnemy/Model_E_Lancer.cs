@@ -73,6 +73,7 @@ public class Model_E_Lancer : ClassEnemy
 
     void Start()
     {
+        melee = true;
         _view = GetComponent<Viewer_E_Lancer>();
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         timesToParry = UnityEngine.Random.Range(minTimesToParry, maxTimesToParry);

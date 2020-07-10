@@ -61,6 +61,7 @@ public class Model_E_Mage : ClassEnemy
 
     void Start()
     {
+        range = true;
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         _view = GetComponent<Viewer_E_Mage>();
         ListNodesToRetreat.AddRange(nodesToRetreat.GetComponentsInChildren<Transform>());
@@ -125,6 +126,7 @@ public class Model_E_Mage : ClassEnemy
            
             if (distancePH_patrol > 1 && !portalOrder)
             {
+                Debug.Log(2);
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }

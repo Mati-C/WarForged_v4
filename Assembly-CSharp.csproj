@@ -491,6 +491,8 @@
     <Compile Include="Assets\Scripts\Powers\PowerManager.cs" />
     <Compile Include="Assets\Scripts\Powers\Powers.cs" />
     <Compile Include="Assets\Scripts\RocksTrigger.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Camera\ChangeLevelManager.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Camera\FadeLevel.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Camera\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\ActivateEnemies.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\Bosses\Model_B_Ogre1.cs" />
@@ -506,6 +508,7 @@
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\MeleeEnemy\Model_E_Melee.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\MeleeEnemy\Viewer_E_Melee.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\Portal.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Enemies\Portal_Rune.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\ShieldEnemy\Model_E_Shield.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\ShieldEnemy\Viewer_E_Shield.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\TextTutorial.cs" />
@@ -806,6 +809,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_FresnelNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_HSVToRGBNode.shader" />
+    <None Include="Assets\Objects and Particles\Landmark\Art\Textures\Landmark.shader" />
     <None Include="Assets\Objects and Particles\Rune Stone\Textures\Runic Circle.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_SqrtOpNode.shader" />
     <None Include="Assets\AmplifyShaderEditor\Plugins\EditorResources\Previews\Preview_TimeNode.shader" />

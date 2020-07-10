@@ -39,6 +39,8 @@ public abstract class ClassEnemy : MonoBehaviour
 
     [Header("Enemy Stats:")]
 
+    public bool range;
+    public bool melee;
     public float life;
     public float maxLife;
     public float exp;
@@ -128,7 +130,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public void ReturnIA_Manager()
     {
-        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
+        ia_Manager.enemiesListOnAttack.Remove(this);
         ia_Manager.PermissionsMelee(false);
         ia_Manager.DecisionTakeMelee(false);
         ia_Manager.PermissionsRange(false);
@@ -140,7 +142,7 @@ public abstract class ClassEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
+        ia_Manager.enemiesListOnAttack.Remove(this);
 
         if (permissionToAttack)
         {

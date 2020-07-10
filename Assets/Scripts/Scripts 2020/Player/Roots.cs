@@ -17,8 +17,11 @@ public class Roots : MonoBehaviour
 
     public void StartDissolve()
     {
-        burned = true;
-        StartCoroutine(DissolveRoot());
+        if (!burned)
+        {
+            burned = true;
+            StartCoroutine(DissolveRoot());
+        }
     }
 
     IEnumerator DissolveRoot()

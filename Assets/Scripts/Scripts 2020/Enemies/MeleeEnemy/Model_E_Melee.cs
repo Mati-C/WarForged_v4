@@ -62,6 +62,7 @@ public class Model_E_Melee : ClassEnemy
 
     void Start()
     {
+        melee = true;
         _view = GetComponent<Viewer_E_Melee>();
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         ia_Manager = FindObjectOfType<IA_CombatManager>();

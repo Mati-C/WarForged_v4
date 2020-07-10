@@ -9,8 +9,9 @@ public class TutorialManager : MonoBehaviour
 {
     Model_Player _player;
     Model_TE_Melee _te;
-
+    public Model_E_Mage mage1;
     public List<ClassEnemy> secondEnemies = new List<ClassEnemy>();
+    public List<ClassEnemy> thirdEnemies = new List<ClassEnemy>();
 
     public bool attacksTutorialFinish;
     public bool defendTutorialFinish;
@@ -26,6 +27,8 @@ public class TutorialManager : MonoBehaviour
     public int quickDefendCountsMax;
     public int heavyAttackCounts;
     public int heavyAttackCountsMax;
+    public int dodgeCounts;
+    public int dodgeCountsMax;
     public float moveDefenceAmount;
     public float moveDefenceAmountMax;
     public float timerCheckpoint;
@@ -39,6 +42,9 @@ public class TutorialManager : MonoBehaviour
     public Transform objective3;
     public Transform objective4;
     public Transform objective5;
+    public Transform objective6;
+    public Transform objective7;
+
     Transform _objective;
     GameObject _arrow;
 
@@ -58,6 +64,7 @@ public class TutorialManager : MonoBehaviour
         _player.ChargeAttackEvent += PlusHeavyAttack;
 
         StartCoroutine(HeavyAttack());
+        StartCoroutine(MageInmortal());
 
         _tutorialText = GameObject.Find("Text Tutorial").GetComponent<TextMeshPro>();
         _tutorialText.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
@@ -148,7 +155,85 @@ public class TutorialManager : MonoBehaviour
         }
         _tutorialText.faceColor = colorSucsess;
         _tutorialText.outlineColor = colorSucsessOutline;
+        yield return new WaitForSeconds(2);
+        _player.DodgeTutorialEvent += PlusDodge;
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        _tutorialText.text = "You can dodge the fire balls pressing SPACE to dodge " + dodgeCounts + "/" + dodgeCountsMax;
+        mage1.portalOrder = true;
 
+        while(dodgeCounts < dodgeCountsMax)
+        {
+            _tutorialText.text = "You can dodge the fire balls pressing SPACE to dodge " + dodgeCounts + "/" + dodgeCountsMax;
+            yield return new WaitForEndOfFrame();
+        }
+
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        _tutorialText.text = "Kill all enemies 0/3";
+
+        foreach (var item in thirdEnemies) item.portalOrder= true;
+
+        int allEnemiesDead =0;
+        bool alive2 = false;
+        while (!alive2)
+        {
+            if (allEnemiesDead >= 3) alive2 = true;
+
+            for (int i = 0; i < thirdEnemies.Count; i++)
+            {
+                if (thirdEnemies[i].life <= 0)
+                {
+                    allEnemiesDead++;
+                    _tutorialText.text = "Kill all the enemies " + allEnemiesDead + "/3";
+                    thirdEnemies.Remove(thirdEnemies[i]);
+                }
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        StartCoroutine(DestroyRune());
+    }
+
+    IEnumerator DestroyRune()
+    {
+        _tutorialText.faceColor = colorSucsess;
+        _tutorialText.outlineColor = colorSucsessOutline;
+        yield return new WaitForSeconds(2);
+        _tutorialText.faceColor = colorIncomplite;
+        _tutorialText.outlineColor = colorIncompliteOutline;
+        _tutorialText.text = "Destroy the rune to close the portal and stop the enemies spawn";
+        _objective = objective6;
+        _tutorialText.GetComponent<TextTutorial>().target = objective6;
+        _tutorialText.GetComponent<TextTutorial>().plusPos = objective6.transform.forward;
+        var rune = objective6.GetComponent<Portal_Rune>();
+
+        while(!rune.portalOff)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        _tutorialText.faceColor = colorSucsess;
+        _tutorialText.outlineColor = colorSucsessOutline;
+        _objective = objective7;
+    }
+
+    public void PlusDodge()
+    {
+        if(dodgeCounts < dodgeCountsMax)
+        {
+            dodgeCounts++;
+            _tutorialText.faceColor = colorSucsess;
+            _tutorialText.outlineColor = colorSucsessOutline;
+        }
+    }
+
+
+    IEnumerator MageInmortal()
+    {
+        while(dodgeCounts < dodgeCountsMax)
+        {
+            mage1.life = mage1.maxLife;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     IEnumerator Destructibles()
@@ -208,7 +293,7 @@ public class TutorialManager : MonoBehaviour
 
     void PlusHeavyAttack()
     {
-        if (heavyAttackCounts < heavyAttackCountsMax)
+        if (heavyAttackCounts < heavyAttackCountsMax && moveDefenceAmount >= moveDefenceAmountMax)
         {
             heavyAttackCounts++;
             _tutorialText.text = "Keep Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;

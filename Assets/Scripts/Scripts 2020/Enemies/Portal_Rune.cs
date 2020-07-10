@@ -11,6 +11,7 @@ public class Portal_Rune : MonoBehaviour
     public GameObject destructibleMesh;
     public GameObject orb;
     public ParticleSystem particles;
+    public bool portalOff;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class Portal_Rune : MonoBehaviour
             portal.TurnOff();
             GetComponent<Collider>().enabled = false;
             StartCoroutine(DisableCollision());
+            portalOff = true;
         }
     }
 
