@@ -97,7 +97,16 @@ public abstract class ClassEnemy : MonoBehaviour
     public Action DieEvent;
     public Action BlockedEvent;
     public Action KnockedEvent;
+    public N_FSM_State patrolState;
 
+    public void ReturnToLife()
+    {
+        life = maxLife;
+        PatrolState();
+        _viewer.ReturnToIdleAnim();
+    }
+
+    public abstract void PatrolState();
 
     public bool NearEnemy()
     {
@@ -130,7 +139,6 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public void ReturnIA_Manager()
     {
-        ia_Manager.enemiesListOnAttack.Remove(this);
         ia_Manager.PermissionsMelee(false);
         ia_Manager.DecisionTakeMelee(false);
         ia_Manager.PermissionsRange(false);
@@ -141,8 +149,6 @@ public abstract class ClassEnemy : MonoBehaviour
     public IEnumerator ReturnIA_Manager(float time, bool b)
     {
         yield return new WaitForSeconds(time);
-
-        ia_Manager.enemiesListOnAttack.Remove(this);
 
         if (permissionToAttack)
         {
@@ -163,7 +169,6 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public void RuturnIA_ManagerInstant(bool b)
     {
-        if (ia_Manager.enemiesListOnAttack.Any(x => x == this)) ia_Manager.enemiesListOnAttack.Remove(this);
 
         if (permissionToAttack)
         {

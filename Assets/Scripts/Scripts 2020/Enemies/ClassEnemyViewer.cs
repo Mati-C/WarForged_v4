@@ -17,21 +17,12 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     public Animator anim;
     public GameObject ragdollPrefab;
 
-    private void Awake()
+    public void ReturnToIdleAnim()
     {
-        
+        anim.SetBool("Die", false);
+        anim.SetBool("true", true);
     }
 
-    void Start()
-    {
-
-    }
-
-
-    void Update()
-    {
-
-    }
 
     public void AnimRagdollActivate()
     {

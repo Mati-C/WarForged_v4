@@ -80,7 +80,7 @@ public class Model_E_Mage : ClassEnemy
         var blocked = new N_FSM_State("BLOCKED");
         var die = new N_FSM_State("DIE");
 
-
+        patrolState = patrol;
         IdleEvent += _view.AnimIdleCombat;
         WalkEvent += _view.AnimWalkCombat;
         RetreatEvent += _view.AnimRetreat;
@@ -205,7 +205,7 @@ public class Model_E_Mage : ClassEnemy
 
             surroundTimer -= Time.deltaTime;
 
-            if (!ia_Manager.enemyRangePermisionAttack && !cantAskAgain && ia_Manager.enemiesListOnAttack.Count <= 0) timeToAttack -= Time.deltaTime;
+            if (!ia_Manager.enemyRangePermisionAttack && !cantAskAgain) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
             if (obs.Count() > 0) rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
@@ -448,6 +448,11 @@ public class Model_E_Mage : ClassEnemy
         m.transform.position = phShoot.position;
         m.transform.forward = _dir;
 
+    }
+
+    public override void PatrolState()
+    {
+        myFSM_EventMachine.ChangeState(patrolState);
     }
 
     public override void GetDamage(float d, Model_Player.DamageType t)

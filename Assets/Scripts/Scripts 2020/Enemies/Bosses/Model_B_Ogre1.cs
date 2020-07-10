@@ -62,6 +62,7 @@ public class Model_B_Ogre1 : ClassEnemy
         var persuit = new N_FSM_State("PERSUIT");
         var patrol = new N_FSM_State("PATROL");
 
+        patrolState = patrol;
         IdleEvent += _view.AnimIdle;
         WalkEvent += _view.AnimWalk;
         WalkLeftEvent += _view.animWalkLeft;
@@ -271,6 +272,11 @@ public class Model_B_Ogre1 : ClassEnemy
     public override void Resume()
     {
 
+    }
+
+    public override void PatrolState()
+    {
+        myFSM_EventMachine.ChangeState(patrolState);
     }
 
     void OnDrawGizmos()

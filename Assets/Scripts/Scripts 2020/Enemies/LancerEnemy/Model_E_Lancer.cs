@@ -92,6 +92,7 @@ public class Model_E_Lancer : ClassEnemy
         var blocked = new N_FSM_State("BLOCKED");
         var die = new N_FSM_State("DIE");
 
+        patrolState = patrol;
         IdleEvent += _view.AnimIdleCombat;
         WalkEvent += _view.AnimWalkCombat;
         RunEvent += _view.AnimRunCombat;
@@ -224,7 +225,7 @@ public class Model_E_Lancer : ClassEnemy
 
             surroundTimer -= Time.deltaTime;
 
-            if (!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain && ia_Manager.enemiesListOnAttack.Count <= 0) timeToAttack -= Time.deltaTime;
+            if (!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
 
@@ -548,6 +549,11 @@ public class Model_E_Lancer : ClassEnemy
         StartCoroutine(OnDamageTimer());
         StartCoroutine(MoveOnAttack());
         _view.StartCoroutine(_view.DamageTimerAnim());
+    }
+
+    public override void PatrolState()
+    {
+        myFSM_EventMachine.ChangeState(patrolState);
     }
 
     public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }

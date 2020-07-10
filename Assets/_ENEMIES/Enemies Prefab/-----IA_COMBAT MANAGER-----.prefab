@@ -43,10 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac27e5c2be69004da91cd782faafc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesListOnAttack: []
   singleAttack: 5.84
-  doubleDelayAttack: 4.72
-  doubleAttack: 3.69
+  tripleAttack: 3.43
+  doubleAttack: 4.22
   enemyMeleePermisionAttack: 0
   enemyRangePermisionAttack: 0
-  decisionOnAttack: 0
+  decisionOnAttackMelee: 0
+  decisionOnAttackRange: 0

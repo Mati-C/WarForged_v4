@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7410739979593487593}
   - component: {fileID: 6793117013983740933}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: PORTAL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,8 +140,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   phPortal: {fileID: 5854462201899894830}
+  phSpawn: {fileID: 0}
   portalMR: {fileID: 3262016515339014628}
   phParticles: {fileID: 3539728544550628358}
+  myEnemies: []
+  enemiesAlive: 0
+  timerRespawn: 0
+  timerRespawnMax: 10
+  distanceToSpawnEnemies: 8.8
+  myRuneDestroy: 0
 --- !u!1 &7537815810306226397
 GameObject:
   m_ObjectHideFlags: 0

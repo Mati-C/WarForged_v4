@@ -7,13 +7,13 @@ public class IA_CombatManager : MonoBehaviour
 {
 
     List<ClassEnemy> enemiesList = new List<ClassEnemy>();
-    public List<ClassEnemy> enemiesListOnAttack = new List<ClassEnemy>();
+
     Model_Player _player;
 
     [Range (1,10)]
     public float singleAttack;
     [Range(1, 10)]
-    public float doubleDelayAttack;
+    public float tripleAttack;
     [Range(1, 10)]
     public float doubleAttack;
 
@@ -95,21 +95,19 @@ public class IA_CombatManager : MonoBehaviour
 
             case 1:
                 {
-                    enemiesListOnAttack.Add(e);
 
                     if (e.sameID_Enemies.Count > 0)
                     {
                         var newEnemies = new List<ClassEnemy>();
 
-                        if (e.melee) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.melee));
+                        if (e.melee) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.melee && x.life >0));
 
-                        if (e.range) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.range));
+                        if (e.range) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.range && x.life > 0));
 
                         if (newEnemies.Count > 0)
                         {
                             int r = Random.Range(0, newEnemies.Count);
                             newEnemies[r].timeToAttack = 0;
-                            enemiesListOnAttack.Add(newEnemies[r]);
                         }
                     }
                     break;
@@ -117,31 +115,30 @@ public class IA_CombatManager : MonoBehaviour
 
             case 2:
                 {
-                    enemiesListOnAttack.Add(e);
                     if (e.sameID_Enemies.Count > 0)
                     {
                         var newEnemies = new List<ClassEnemy>();
 
-                        if (e.melee) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.melee));
+                        if (e.melee) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.melee && x.life > 0));
 
-                        if (e.range) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.range));
+                        if (e.range) newEnemies.AddRange(e.sameID_Enemies.Where(x => x.range && x.life > 0));
 
                         if (newEnemies.Count > 0)
                         {
                             int r = Random.Range(0, newEnemies.Count);
-                            StartCoroutine(DelayAttackEnemy(newEnemies[r]));
-                            enemiesListOnAttack.Add(newEnemies[r]);
+                            newEnemies[r].timeToAttack = 0;
+                            newEnemies.Remove(newEnemies[r]);
+                        }
+
+                        if (newEnemies.Count > 0)
+                        {
+                            int r = Random.Range(0, newEnemies.Count);
+                            newEnemies[r].timeToAttack = 0;
                         }
                     }
                     break;
                 }
         }
-    }
-
-    IEnumerator DelayAttackEnemy(ClassEnemy e)
-    {
-        yield return new WaitForSeconds(1f);
-        e.timeToAttack = 0;
     }
 
     int StartAttackStrategy()
@@ -150,7 +147,7 @@ public class IA_CombatManager : MonoBehaviour
 
         values.Add(singleAttack);
         values.Add(doubleAttack);
-        values.Add(doubleDelayAttack);
+        values.Add(tripleAttack);
 
         var coefList = new List<float>();
 

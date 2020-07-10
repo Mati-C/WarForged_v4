@@ -109,6 +109,7 @@ public class Model_E_Shield : ClassEnemy
         var blocked = new N_FSM_State("BLOCKED");
         var parry = new N_FSM_State("Parry");
 
+        patrolState = patrol;
         IdleEvent += _view.AnimIdleCombat;
         WalkEvent += _view.AnimWalkCombat;
         RunEvent += _view.AnimRunCombat;
@@ -571,6 +572,11 @@ public class Model_E_Shield : ClassEnemy
         StartCoroutine(OnDamageTimer());
         StartCoroutine(MoveOnAttack());
         _view.StartCoroutine(_view.DamageTimerAnim());
+    }
+
+    public override void PatrolState()
+    {
+        myFSM_EventMachine.ChangeState(patrolState);
     }
 
     public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }

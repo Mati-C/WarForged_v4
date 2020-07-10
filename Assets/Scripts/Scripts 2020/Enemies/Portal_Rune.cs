@@ -35,6 +35,7 @@ public class Portal_Rune : MonoBehaviour
             destructibleMesh.SetActive(true);
             particles.Stop();
             portal.TurnOff();
+            portal.myRuneDestroy = true;
             GetComponent<Collider>().enabled = false;
             StartCoroutine(DisableCollision());
             portalOff = true;

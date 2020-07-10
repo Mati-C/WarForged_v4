@@ -81,6 +81,7 @@ public class Model_TE_Melee : ClassEnemy
         var die = new N_FSM_State("DIE");
         var blocked = new N_FSM_State("BLOCKED");
 
+        patrolState = patrol;
         IdleEvent += _view.AnimIdleCombat;
         WalkEvent += _view.AnimWalkCombat;
         RunEvent += _view.AnimRunCombat;
@@ -222,7 +223,7 @@ public class Model_TE_Melee : ClassEnemy
 
             surroundTimer -= Time.deltaTime;
 
-            if (!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain && ia_Manager.enemiesListOnAttack.Count <= 0 && _TM.attacksTutorialFinish) timeToAttack -= Time.deltaTime;
+            if (!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain && _TM.attacksTutorialFinish) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
 
@@ -510,6 +511,11 @@ public class Model_TE_Melee : ClassEnemy
     }
 
     public void PlusAttackMove(float t) { _timeToMoveOnAttack = t; }
+
+    public override void PatrolState()
+    {
+        myFSM_EventMachine.ChangeState(patrolState);
+    }
 
     public override void Resume()
     {

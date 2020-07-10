@@ -79,6 +79,7 @@ public class Model_E_Melee : ClassEnemy
         var die = new N_FSM_State("DIE");
         var blocked = new N_FSM_State("BLOCKED");
 
+        patrolState = patrol;
         IdleEvent += _view.AnimIdleCombat;
         WalkEvent += _view.AnimWalkCombat;
         RunEvent += _view.AnimRunCombat;
@@ -214,7 +215,7 @@ public class Model_E_Melee : ClassEnemy
 
             surroundTimer -= Time.deltaTime;
 
-            if(!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain && ia_Manager.enemiesListOnAttack.Count <=0) timeToAttack -= Time.deltaTime;
+            if(!ia_Manager.enemyMeleePermisionAttack && !cantAskAgain) timeToAttack -= Time.deltaTime;
 
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
             
@@ -509,10 +510,14 @@ public class Model_E_Melee : ClassEnemy
         life -= d;
         if (player.flamesOn) StartBurning();
 
+        angleToPersuit = 360;
+
         if (life <= 0)
         {
+            if (portal) portal.PortalRemove();
             RuturnIA_ManagerInstant(true);
             playerFireSowrd.SwordExp(exp);
+            
             DieEvent();
         }
 
@@ -558,6 +563,11 @@ public class Model_E_Melee : ClassEnemy
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public override void PatrolState()
+    {
+        myFSM_EventMachine.ChangeState(patrolState);
     }
 
     public void MakeDamage()
