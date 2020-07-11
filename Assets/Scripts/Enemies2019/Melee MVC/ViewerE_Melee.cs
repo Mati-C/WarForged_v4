@@ -515,7 +515,6 @@ public class ViewerE_Melee : MonoBehaviour
 
     public void LifeBar(float val)
     {
-        ess.timer = 3;
         StartCoroutine(ess.UpdateLifeBar(val));
     }
 }

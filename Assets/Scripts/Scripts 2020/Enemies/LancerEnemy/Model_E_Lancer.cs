@@ -566,7 +566,8 @@ public class Model_E_Lancer : ClassEnemy
             life -= d;
             if (player.flamesOn) StartBurning();
             onDamageTime = damageDelayTime;
-            if(!blockedAttack) timesToParry--;           
+            if(!blockedAttack) timesToParry--;
+            _view.UpdateLifeBar(life / maxLife);
         }
 
         if (life <= 0)

@@ -599,6 +599,7 @@ public class Model_E_Shield : ClassEnemy
         {
             life -= d;
             onDamageTime = damageDelayTime;
+            _view.UpdateLifeBar(life / maxLife);
 
             if (player.flamesOn) StartBurning();
 

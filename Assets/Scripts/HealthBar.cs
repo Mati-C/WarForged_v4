@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    public EnemyEntity enemy;
+    public ClassEnemy enemy;
 
     // Update is called once per frame
     void Update()
     {
-        if(enemy.isDead || enemy.life <= 0)
+        if (enemy.isDead)
             gameObject.SetActive(false);
     }
 }

@@ -49,6 +49,7 @@ public class Viewer_TE_Melee : ClassEnemyViewer
         anim = GetComponent<Animator>();
         cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
         levelUI = GameObject.Find("LEVEL UI");
+        ess = GetComponent<EnemyScreenSpace>();
     }
 
     private void Start()

@@ -367,7 +367,11 @@ public class Viewer_Player : MonoBehaviour
     {
         if (b == false)
         {
-            if (!anim.GetBool("Blocked")) StartCoroutine(DelayAnimationActivate("Blocked", true, 0.3f));
+            if (!anim.GetBool("Blocked"))
+            {
+                StartCoroutine(DelayAnimationActivate("Blocked", true, 0.3f));
+                SoundManager.instance.Play(Hit.HARD, transform.position + transform.forward.normalized, true);
+            }
         }
         else
         {

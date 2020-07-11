@@ -311,7 +311,7 @@ public class Controller_Player
 
             //if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();
 
-            if (Input.GetKeyDown(KeyCode.Q) && !_model.onFailAttack) _model.PowerWeapon();
+            if (Input.GetKeyDown(KeyCode.Q) && !_model.onFailAttack && _model.isInCombat) _model.PowerWeapon();
 
             if (Input.GetKeyDown(KeyCode.Tab)) _model.ChangeTarget();
 

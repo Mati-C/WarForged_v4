@@ -8,7 +8,7 @@ using TMPro;
 public class TutorialManager : MonoBehaviour
 {
     Model_Player _player;
-    Model_TE_Melee _te;
+    public Model_TE_Melee _te;
     public Model_E_Mage mage1;
     public List<ClassEnemy> secondEnemies = new List<ClassEnemy>();
     public List<ClassEnemy> thirdEnemies = new List<ClassEnemy>();
@@ -101,7 +101,7 @@ public class TutorialManager : MonoBehaviour
         _player.HitEnemyEvent(_player.fireSword.energyToUseFireSword);
         _tutorialText.faceColor = colorIncomplite;
         _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.text = "When the Ability Bar is full press Q to use the Fire Sword and kill the enemy";
+        _tutorialText.text = "When the Ability Bar is full, press Q to use the Fire Sword and kill the enemy";
         while(!_player.flamesOn)
         { 
             yield return new WaitForEndOfFrame();
@@ -117,14 +117,14 @@ public class TutorialManager : MonoBehaviour
         _tutorialText.faceColor = colorSucsess;
         _tutorialText.outlineColor = colorSucsessOutline;
         yield return new WaitForSeconds(2);
-        _tutorialText.text = "When you Kill enemies they will give you experience to update the Fire Sword";
+        _tutorialText.text = "When you Kill enemies, they give you experience to update the Fire Sword";
         yield return new WaitForSeconds(5);
         _tutorialText.faceColor = colorIncomplite;
         _tutorialText.outlineColor = colorIncompliteOutline;
         _objective = objective2;
         _tutorialText.GetComponent<TextTutorial>().target = objective2;
         _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0,2,0);
-        _tutorialText.text = "These sources will serve as checkpoints, where you will recover life and change the sword experience to level it up and improve it";
+        _tutorialText.text = "These sources will serve as checkpoints, where you recover life and exchange the sword experience to level it up and improve it";
         fireSword = true;
     }
 
@@ -201,7 +201,7 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         _tutorialText.faceColor = colorIncomplite;
         _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.text = "Destroy the rune to close the portal and stop the enemies spawn";
+        _tutorialText.text = "Destroy the rune to close the portal and stop the enemies from appearing";
         _objective = objective6;
         _tutorialText.GetComponent<TextTutorial>().target = objective6;
         _tutorialText.GetComponent<TextTutorial>().plusPos = objective6.transform.forward;
@@ -296,7 +296,7 @@ public class TutorialManager : MonoBehaviour
         if (heavyAttackCounts < heavyAttackCountsMax && moveDefenceAmount >= moveDefenceAmountMax)
         {
             heavyAttackCounts++;
-            _tutorialText.text = "Keep Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
+            _tutorialText.text = "Hold Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
             if (heavyAttackCounts >= heavyAttackCountsMax)
             {
                 _tutorialText.faceColor = colorSucsess;
@@ -326,7 +326,7 @@ public class TutorialManager : MonoBehaviour
         if (quickDefendCounts < defendCountsMax)
         {
             quickDefendCounts++;
-            _tutorialText.text = "Use Left Click quick when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
+            _tutorialText.text = "Use Right Click quickly when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
             if (quickDefendCounts >= defendCountsMax)
             {
                 canMove = true;
@@ -388,9 +388,9 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         _tutorialText.faceColor = colorIncomplite;
         _tutorialText.outlineColor = colorIncompliteOutline;
-        if (id ==1) _tutorialText.text = "Use Left Click quick when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
-        if (id ==2) _tutorialText.text = "You can Defend when you are moving";
-        if (id ==3) _tutorialText.text = "Keep Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
+        if (id ==1) _tutorialText.text = "Use Right Click quick when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
+        if (id ==2) _tutorialText.text = "You can Defend while moving";
+        if (id ==3) _tutorialText.text = "Hold Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
     }
 
     IEnumerator DefendTutorial()

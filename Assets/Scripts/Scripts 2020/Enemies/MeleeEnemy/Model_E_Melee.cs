@@ -510,6 +510,8 @@ public class Model_E_Melee : ClassEnemy
 
         angleToPersuit = 360;
 
+        _view.UpdateLifeBar(life / maxLife);
+
         if (life <= 0)
         {
             if (portal) portal.PortalRemove();

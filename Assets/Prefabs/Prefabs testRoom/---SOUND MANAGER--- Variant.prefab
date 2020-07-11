@@ -436,7 +436,7 @@ PrefabInstance:
         type: 3}
       propertyPath: music.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: a190a76265403264dac26758e370b266, type: 3}
+      objectReference: {fileID: 8300000, guid: c204156b4ae509f4fb9bcd7975d6222a, type: 3}
     - target: {fileID: 3684640056247174965, guid: cb5a4dd7ad361cc4eb0053363b48c043,
         type: 3}
       propertyPath: music.Array.data[1]
@@ -471,6 +471,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 7f48859916a26fc499a1e4a6e02bb117, type: 3}
+      objectReference: {fileID: 8300000, guid: c204156b4ae509f4fb9bcd7975d6222a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb5a4dd7ad361cc4eb0053363b48c043, type: 3}

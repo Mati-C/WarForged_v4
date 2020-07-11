@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2e79fe34cc62c4f9f0c6e524f45db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portal: {fileID: 0}
   pathfinding: {fileID: 633464139}
   player: {fileID: 0}
   grid: {fileID: 0}
@@ -79,17 +80,25 @@ MonoBehaviour:
   ia_Manager: {fileID: 0}
   playerFireSowrd: {fileID: 0}
   ID: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   layersCanSee:
     serializedVersion: 2
     m_Bits: 65793
   layersObstacles:
     serializedVersion: 2
     m_Bits: 65536
+  layersPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   sameID_Enemies: []
   myCombatNode: {fileID: 0}
   lastCombatNode: {fileID: 0}
   playerNodes: []
   distanceToOcupateNodes: 1.5
+  range: 0
+  melee: 0
   life: 75
   maxLife: 75
   exp: 0
@@ -98,12 +107,14 @@ MonoBehaviour:
   isDead: 0
   canPersuit: 0
   canSurround: 0
+  onPatrol: 0
   OnDamage: 0
   blockedAttack: 0
   burning: 0
   knocked: 0
   permissionToAttack: 0
   cantAskAgain: 0
+  portalOrder: 0
   currentIndex: 0
   timeToAttack: 0
   maxTimeToAttack: 1
@@ -115,6 +126,9 @@ MonoBehaviour:
   angleToSurround: 100
   surroundBehaviourID: 0
   cantAvoid: 0
+  patrolPosition: {x: 0, y: 0, z: 0}
+  patrolForward: {x: 0, y: 0, z: 0}
+  onGrid: 0
   onDamageTime: 0
   damageDelayTime: 0.8
   timeBurning: 0
@@ -154,13 +168,14 @@ MonoBehaviour:
   prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
     type: 3}
   levelUI: {fileID: 0}
+  ess: {fileID: 0}
   bloodParticle: {fileID: 6218353628164129808}
   burnParticle: {fileID: 6390627902073415297}
   anim: {fileID: 1234816725295711590}
-  defaultAnimator: {fileID: 0}
-  getUpAnimator: {fileID: 0}
   ragdollPrefab: {fileID: 6137512055469483608, guid: 2515d08845849a84ca3c9bc47f90d848,
     type: 3}
+  myMeshes: []
+  mySkinedMeshes: []
   myModel: {fileID: 633464137}
 --- !u!114 &633464139
 MonoBehaviour:
@@ -175,6 +190,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
+--- !u!114 &6393999424651379566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5328789003966880271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a1b81ea6d5884429f722c92699e838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barPrefab: {fileID: 8210444943204114891, guid: 435981f1896240d4f96ebe9c129b35cd,
+    type: 3}
 --- !u!1001 &9137774464314909914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 3980139920499394846, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
       propertyPath: m_Name
-      value: 2020_SpearmanTPose (1)
+      value: E_SPEAR 2020
       objectReference: {fileID: 0}
     - target: {fileID: 3980139920499394846, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
@@ -953,7 +982,7 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757100271285, guid: 89713ad0792da8a43a9db5c60aa25246,
+    - target: {fileID: 2774207757100458149, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: m_Layer
       value: 9
@@ -963,7 +992,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757100458149, guid: 89713ad0792da8a43a9db5c60aa25246,
+    - target: {fileID: 2774207757100271285, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: m_Layer
       value: 9

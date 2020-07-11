@@ -461,6 +461,8 @@ public class Model_E_Mage : ClassEnemy
         onDamageTime = damageDelayTime;
         if (player.flamesOn) StartBurning();
 
+        _view.UpdateLifeBar(life / maxLife);
+
         if (life <= 0)
         {
             RuturnIA_ManagerInstant(false);

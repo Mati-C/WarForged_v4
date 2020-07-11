@@ -159,7 +159,6 @@ public class ViewerE_Lancer : MonoBehaviour
 
     public void LifeBar(float val)
     {
-        ess.timer = 3;
         StartCoroutine(ess.UpdateLifeBar(val));
     }
 

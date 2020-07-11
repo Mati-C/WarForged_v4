@@ -539,6 +539,8 @@ public class Model_TE_Melee : ClassEnemy
         else
         {
             _view.CreatePopText(d);
+            if (maxLife != 99999)
+                _view.UpdateLifeBar(life / maxLife);
 
             if (!onAttackAnimation)
             {

@@ -160,7 +160,6 @@ public class ViewerE_Shield : MonoBehaviour
 
     public void LifeBar(float val)
     {
-        ess.timer = 3;
         StartCoroutine(ess.UpdateLifeBar(val));
     }
 

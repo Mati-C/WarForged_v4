@@ -387,7 +387,6 @@ public class ViewerE_Sniper : MonoBehaviour
 
     public void LifeBar(float val)
     {
-        ess.timer = 3;
         StartCoroutine(ess.UpdateLifeBar(val));
     }
 }

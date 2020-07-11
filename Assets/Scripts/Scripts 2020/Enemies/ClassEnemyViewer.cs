@@ -8,6 +8,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     public Camera cam;
     public PopText prefabTextDamage;
     public GameObject levelUI;
+    public EnemyScreenSpace ess;
 
     [Header("Enemy Particles:")]
     public ParticleSystem bloodParticle;
@@ -23,8 +24,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 
     private void Awake()
     {
-        
-      
+
     }
 
     public void GetMeshes()
@@ -92,6 +92,11 @@ public abstract class ClassEnemyViewer : MonoBehaviour
             text.transform.position = screenPos;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void UpdateLifeBar(float val)
+    {
+        StartCoroutine(ess.UpdateLifeBar(val));
     }
 }
 

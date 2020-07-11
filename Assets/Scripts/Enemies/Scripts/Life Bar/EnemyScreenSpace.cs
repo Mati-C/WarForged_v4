@@ -5,36 +5,35 @@ using UnityEngine.UI;
 
 public class EnemyScreenSpace : MonoBehaviour
 {
-    EnemyEntity enemy;
+    ClassEnemy enemy;
 
-    public Canvas canvas;
-    GameObject levelUI;
+    Canvas canvas;
     public HealthBar barPrefab;
-
-    public LayerMask lm;
+    GameObject levelUI;
 
     HealthBar healthBar;
     Image tempHealthFill;
     Image healthFill;
-    public Camera cam;
+    Camera cam;
     DepthUI depthUI;
 
-    public float timer;
+    float timer;
 
     void Start()
     {
-        enemy = GetComponent<EnemyEntity>();
         levelUI = GameObject.Find("LEVEL UI");
+        enemy = GetComponent<ClassEnemy>();
         healthBar = Instantiate(barPrefab);
         healthBar.transform.SetParent(levelUI.transform, false);
         tempHealthFill = healthBar.transform.GetChild(0).GetComponent<Image>();
         healthFill = healthBar.transform.GetChild(1).GetComponent<Image>();
+        canvas = FindObjectOfType<Canvas>();
 
         depthUI = healthBar.GetComponent<DepthUI>();
         canvas.GetComponent<ScreenSpaceCanvas>().AddToCanvas(healthBar.gameObject);
+        cam = FindObjectOfType<Camera>();
         healthBar.gameObject.SetActive(false);
         timer = 0;
-        enemy.healthBar = healthBar.gameObject;
 
         healthBar.enemy = enemy;
     }
@@ -65,7 +64,7 @@ public class EnemyScreenSpace : MonoBehaviour
 
     public IEnumerator UpdateLifeBar(float target)
     {
-        bool timerRunning = true;
+        timer = 3;
         float smoothTimer = 0;
 
         float current = tempHealthFill.fillAmount;
@@ -74,20 +73,11 @@ public class EnemyScreenSpace : MonoBehaviour
         if (current - target <= 0.025f)
             tempHealthFill.fillAmount = target;
 
-        while (timerRunning)
+        while (smoothTimer <= 1)
         {
             smoothTimer += Time.deltaTime;
             tempHealthFill.fillAmount = Mathf.Lerp(current, target, smoothTimer);
-            if (smoothTimer > 1)
-                timerRunning = false;
             yield return new WaitForEndOfFrame();
         }
-    }
-
-    void OnDestroy()
-    {
-        if (canvas)
-            canvas.GetComponent<ScreenSpaceCanvas>().RemoveFromCanvas(healthBar.gameObject);
-        Destroy(healthBar);
     }
 }

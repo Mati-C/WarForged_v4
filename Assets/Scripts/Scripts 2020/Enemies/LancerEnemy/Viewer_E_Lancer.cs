@@ -13,6 +13,7 @@ public class Viewer_E_Lancer : ClassEnemyViewer
         anim = GetComponent<Animator>();
         cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
         levelUI = GameObject.Find("LEVEL UI");
+        ess = GetComponent<EnemyScreenSpace>();
     }
 
     public IEnumerator DelayAnimActive(string animName, float t)

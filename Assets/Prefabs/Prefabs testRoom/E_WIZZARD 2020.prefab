@@ -39826,6 +39826,7 @@ GameObject:
   - component: {fileID: 6369717002041567453}
   - component: {fileID: 6369717002041567454}
   - component: {fileID: 6369717002041567426}
+  - component: {fileID: 8636520024400648278}
   m_Layer: 9
   m_Name: E_WIZZARD 2020
   m_TagString: Untagged
@@ -39931,6 +39932,8 @@ MonoBehaviour:
   lastCombatNode: {fileID: 0}
   playerNodes: []
   distanceToOcupateNodes: 1.5
+  range: 0
+  melee: 0
   life: 50
   maxLife: 50
   exp: 50
@@ -40010,11 +40013,14 @@ MonoBehaviour:
   prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
     type: 3}
   levelUI: {fileID: 0}
+  ess: {fileID: 0}
   bloodParticle: {fileID: 6369717000799214754}
   burnParticle: {fileID: 6369717000394676739}
   anim: {fileID: 6369717002041567424}
   ragdollPrefab: {fileID: 7435274016679336257, guid: e2a473276b66cb94fab5499eb330f293,
     type: 3}
+  myMeshes: []
+  mySkinedMeshes: []
   myModel: {fileID: 0}
   heavyHitParticle: {fileID: 6369717000229522297}
 --- !u!54 &6369717002041567426
@@ -40033,6 +40039,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8636520024400648278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6369717002041567430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a1b81ea6d5884429f722c92699e838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barPrefab: {fileID: 8210444943204114891, guid: 435981f1896240d4f96ebe9c129b35cd,
+    type: 3}
 --- !u!1 &6369717002055091912
 GameObject:
   m_ObjectHideFlags: 0
