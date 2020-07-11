@@ -115,13 +115,13 @@ public class Model_TE_Melee : ClassEnemy
             {
                 distancePortalPH = Vector3.Distance(transform.position, portal.phPortal.position);
 
-                if (distancePortalPH > 1 && portalOrder)
+                if (distancePortalPH > 0.5f && portalOrder)
                 {
                     WalkEvent();
                     MoveToTarget(portal.phPortal.position);
                 }
 
-                if (distancePortalPH <= 1 && portalOrder)
+                if (distancePortalPH <= 0.5f && portalOrder)
                 {
                     portalOrder = false;
                     IdleEvent();
@@ -130,13 +130,13 @@ public class Model_TE_Melee : ClassEnemy
                 }
             }
 
-            if (distancePH_patrol > 1 && !portalOrder)
+            if (distancePH_patrol > 0.5f && !portalOrder)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if (distancePH_patrol <= 1 && !portalOrder)
+            if (distancePH_patrol <= 0.5f && !portalOrder)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);

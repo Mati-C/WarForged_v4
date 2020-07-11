@@ -126,13 +126,13 @@ public class Model_E_Lancer : ClassEnemy
             {
                 distancePortalPH = Vector3.Distance(transform.position, portal.phPortal.position);
 
-                if (distancePortalPH > 1 && portalOrder)
+                if (distancePortalPH > 0.5f && portalOrder)
                 {
                     WalkEvent();
                     MoveToTarget(portal.phPortal.position);
                 }
 
-                if (distancePortalPH <= 1 && portalOrder)
+                if (distancePortalPH <= 0.5f && portalOrder)
                 {
                     portalOrder = false;
                     IdleEvent();
@@ -141,13 +141,13 @@ public class Model_E_Lancer : ClassEnemy
                 }
             }
 
-            if (distancePH_patrol > 1 && !portalOrder)
+            if (distancePH_patrol > 0.5f && !portalOrder)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if (distancePH_patrol <= 1 && !portalOrder)
+            if (distancePH_patrol <= 0.5f && !portalOrder)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
@@ -625,13 +625,15 @@ public class Model_E_Lancer : ClassEnemy
 
     public void MakeDamage()
     {
-        var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
-
-        if (p.Count() > 0)
+        if (life > 0)
         {
-            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamage ,transform, Model_Player.DamageType.Light);
-        }
+            var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
 
+            if (p.Count() > 0)
+            {
+                if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamage, transform, Model_Player.DamageType.Light);
+            }
+        }
     }
 
     void OnDrawGizmos()

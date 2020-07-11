@@ -630,7 +630,7 @@ public class Model_Player : MonoBehaviour
 
     public void MakeDamage(float d)
     {
-        var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
+        var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>()).Where(x=> x.life >0);
         var destructibles = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.GetComponent<DestructibleOBJ>()).Select(x => x.GetComponent<DestructibleOBJ>());
         var roots = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Roots>()).Select(x => x.GetComponent<Roots>());
         var rune = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.GetComponent<Portal_Rune>()).Select(x => x.GetComponent<Portal_Rune>());

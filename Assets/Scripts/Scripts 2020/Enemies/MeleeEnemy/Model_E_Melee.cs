@@ -106,19 +106,17 @@ public class Model_E_Melee : ClassEnemy
         patrol.OnUpdate += () =>
         {
             var distancePH_patrol = Vector3.Distance(transform.position, patrolPosition);
-            float distancePortalPH = 0;
 
             if (portal)
             {
-                distancePortalPH = Vector3.Distance(transform.position, portal.phPortal.position);
-
-                if (distancePortalPH > 1 && portalOrder)
+                
+                if (distancePH_patrol > 0.6f && portalOrder)
                 {
                     WalkEvent();
-                    MoveToTarget(portal.phPortal.position);
+                    MoveToTarget(patrolPosition);
                 }
 
-                if (distancePortalPH <= 1 && portalOrder)
+                if (distancePH_patrol <= 0.6f && portalOrder)
                 {
                     portalOrder = false;
                     IdleEvent();
@@ -127,13 +125,13 @@ public class Model_E_Melee : ClassEnemy
                 }
             }
 
-            if (distancePH_patrol > 1 && !portalOrder)
+            if (distancePH_patrol > 0.6f && !portalOrder)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if (distancePH_patrol <= 1 && !portalOrder)
+            if (distancePH_patrol <= 0.6f && !portalOrder)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
@@ -517,7 +515,7 @@ public class Model_E_Melee : ClassEnemy
             if (portal) portal.PortalRemove();
             RuturnIA_ManagerInstant(true);
             playerFireSowrd.SwordExp(exp);
-            
+          
             DieEvent();
         }
 
@@ -572,24 +570,28 @@ public class Model_E_Melee : ClassEnemy
 
     public void MakeDamage()
     {
-        var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
-
-        if(p.Count() >0)
+        if (life > 0)
         {
-            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamageLight, transform, Model_Player.DamageType.Light);
-        } 
+            var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
 
+            if (p.Count() > 0)
+            {
+                if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamageLight, transform, Model_Player.DamageType.Light);
+            }
+        }
     }
 
     public void MakeHeavyDamage()
     {
-        var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
-
-        if (p.Count() > 0)
+        if (life > 0)
         {
-            if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamageLight, transform, Model_Player.DamageType.Heavy);
-        }
+            var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>()).Select(x => x.GetComponent<Model_Player>());
 
+            if (p.Count() > 0)
+            {
+                if (CanSee(p.First().transform, viewDistanceAttack, angleToAttack, layersCanSee)) p.First().GetDamage(attackDamageLight, transform, Model_Player.DamageType.Heavy);
+            }
+        }
     }
 
     void OnDrawGizmos()

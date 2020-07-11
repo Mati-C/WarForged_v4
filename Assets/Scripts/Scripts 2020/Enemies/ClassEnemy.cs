@@ -102,6 +102,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public void ReturnToLife()
     {
         life = maxLife;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         PatrolState();
         _viewer.ReturnToIdleAnim();
     }
@@ -268,6 +269,7 @@ public abstract class ClassEnemy : MonoBehaviour
         playerNodes.AddRange(FindObjectsOfType<CombatNode>());
         sameID_Enemies.AddRange(FindObjectsOfType<ClassEnemy>().Where(x => x.ID == ID && x != this));
         _viewer = GetComponent<ClassEnemyViewer>();
+        _viewer.GetMeshes();
         rb = GetComponent<Rigidbody>();
         patrolPosition = transform.position;
         patrolForward = transform.forward;
@@ -386,7 +388,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
             var _dir = Vector3.zero;
 
-            if (d > 0.5f)
+            if (d >= 0.5f)
             {
                 Quaternion targetRotation;
                 _dir = (pathToTarget[currentIndex].worldPosition - transform.position).normalized;

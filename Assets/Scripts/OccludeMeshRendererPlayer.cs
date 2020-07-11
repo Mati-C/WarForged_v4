@@ -5,8 +5,15 @@ using UnityEngine;
 public class OccludeMeshRendererPlayer : MonoBehaviour
 {
     public List<SkinnedMeshRenderer> _SkinMeshRenderPlayer = new List<SkinnedMeshRenderer>();
-
+    Model_Player _player;
     public MeshRenderer _meshRenderPlayer;
+
+    private void Awake()
+    {
+        _player = FindObjectOfType<Model_Player>();
+        _SkinMeshRenderPlayer.AddRange(_player.GetComponentsInChildren<SkinnedMeshRenderer>());
+        _meshRenderPlayer = _player.GetComponentInChildren<MeshRenderer>();
+    }
 
     private void OnTriggerEnter(Collider BoxCollisionWhithPlayer)
     {

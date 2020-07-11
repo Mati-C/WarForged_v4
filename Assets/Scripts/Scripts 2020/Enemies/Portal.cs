@@ -42,6 +42,7 @@ public class Portal : MonoBehaviour
 
     IEnumerator ReSpawnEnemies()
     {
+
         timerRespawn = timerRespawnMax;
         while(timerRespawn > 0 && !myRuneDestroy)
         {
@@ -59,12 +60,14 @@ public class Portal : MonoBehaviour
 
         foreach (var item in myEnemies)
         {
-            item.gameObject.SetActive(true);
-            item.transform.position = phSpawn.position;
-            item.ReturnToLife();
-            item.portalOrder = true;
-            item.sameID_Enemies.AddRange(FindObjectsOfType<ClassEnemy>().Where(x => x.ID == ID && x != this));
-            yield return new WaitForSeconds(3f);
+            if (myRuneDestroy == false)
+            {              
+                item.transform.position = phSpawn.position;
+                item.ReturnToLife();
+                item.portalOrder = true;
+                item.sameID_Enemies.AddRange(FindObjectsOfType<ClassEnemy>().Where(x => x.ID == ID && x != this));
+                yield return new WaitForSeconds(3f);
+            }
         }
 
         enemiesAlive = myEnemies.Count;

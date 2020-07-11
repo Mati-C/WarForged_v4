@@ -17,8 +17,28 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     public Animator anim;
     public GameObject ragdollPrefab;
 
+    [Header("Enemy Meshes:")]
+    public List<MeshRenderer> myMeshes = new List<MeshRenderer>();
+    public List<SkinnedMeshRenderer> mySkinedMeshes = new List<SkinnedMeshRenderer>();
+
+    private void Awake()
+    {
+        
+      
+    }
+
+    public void GetMeshes()
+    {
+        myMeshes.AddRange(GetComponentsInChildren<MeshRenderer>());
+        mySkinedMeshes.AddRange(GetComponentsInChildren<SkinnedMeshRenderer>());
+    }
+
     public void ReturnToIdleAnim()
     {
+        foreach (var item in myMeshes) item.enabled = true;
+        foreach (var item in mySkinedMeshes) item.enabled = true;
+        var capsuleCol = GetComponent<CapsuleCollider>();
+        capsuleCol.isTrigger = false;
         anim.SetBool("Die", false);
         anim.SetBool("true", true);
     }
@@ -27,7 +47,12 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     public void AnimRagdollActivate()
     {
         Instantiate(ragdollPrefab, transform.position, transform.rotation);
-        gameObject.SetActive(false);
+        foreach (var item in myMeshes) item.enabled = false;
+        foreach (var item in mySkinedMeshes) item.enabled = false;
+        var rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        var capsuleCol = GetComponent<CapsuleCollider>();
+        capsuleCol.isTrigger = true;
     }
 
     public void CreatePopText(float damage)
