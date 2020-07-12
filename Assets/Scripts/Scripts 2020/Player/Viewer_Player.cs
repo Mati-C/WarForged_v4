@@ -6,9 +6,12 @@ using Sound;
 
 public class Viewer_Player : MonoBehaviour
 {
+    [Header("Player Animator:")]
     public Animator anim;
     Model_Player _player;
     FireSword _fireSword;
+
+    [Header("Player Particles:")]
     public ParticleSystem bloodParticle;
     public ParticleSystem sparksParticle;
     public ParticleSystem woodParticle;
@@ -22,6 +25,9 @@ public class Viewer_Player : MonoBehaviour
     public Image chargeAttackBar;
     public Image lifeBar;
     public Image tempLifeBar;
+    public Text swordLevel;
+    public Text swordExp;
+    public float timertAlphaSwordExp;
 
     [Header("Player Bones:")]
 
@@ -50,6 +56,29 @@ public class Viewer_Player : MonoBehaviour
     [Header("Player AxisValues:")]
 
     public float axisX;
+
+    IEnumerator PlayerAlphaExp()
+    {
+        while(true)
+        {
+            if(timertAlphaSwordExp>0)
+            {
+                var tempColor = swordExp.color;
+                tempColor.a = 1;
+                swordExp.color = tempColor;
+                timertAlphaSwordExp -= Time.deltaTime;
+            }
+
+            if(timertAlphaSwordExp <=0)
+            {
+                var tempColor = swordExp.color;
+                tempColor.a -= Time.deltaTime * 3;
+                if (tempColor.a < 0) tempColor.a = 0;
+                swordExp.color = tempColor;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     IEnumerator DamageTimerAnim()
     {
@@ -140,9 +169,19 @@ public class Viewer_Player : MonoBehaviour
 
     void Start()
     {
+        swordLevel = GameObject.Find("Sword Level").GetComponent<Text>();
+        swordExp = GameObject.Find("Sword Exp").GetComponent<Text>();
+
+        var tempColor = swordExp.color;
+        tempColor.a = 0;
+        swordExp.color = tempColor;
+
+        int l = _player.fireSword.fireSwordLevel + 1;
+        swordLevel.text = "Level-" + l;
         StartCoroutine(DelayActivateLayers());
         StartCoroutine(DamageTimerAnim());
         _mainCam = _player.GetPlayerCam().GetComponent<Camera>();
+        StartCoroutine(PlayerAlphaExp());
     }
 
     public void ChangeLayer(bool b)

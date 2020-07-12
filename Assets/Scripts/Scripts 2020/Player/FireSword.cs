@@ -7,6 +7,7 @@ using System.Linq;
 public class FireSword: MonoBehaviour
 {
     Model_Player _player;
+    Viewer_Player _viewer;
     public ParticleSystem fireWaveParticle;
     [Header("Fire Sword Level and Exp:")]
     public int fireSwordLevel;
@@ -49,6 +50,7 @@ public class FireSword: MonoBehaviour
     {
         GetEnergy += () => {};
         _player = GetComponent<Model_Player>();
+        _viewer = GetComponent<Viewer_Player>();
         allEnemies.AddRange(FindObjectsOfType<ClassEnemy>());
 
         Action Lv1 = () => { };
@@ -95,6 +97,7 @@ public class FireSword: MonoBehaviour
         currentExp += exp;
     }
 
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Y)) UpdateSword();
@@ -136,6 +139,8 @@ public class FireSword: MonoBehaviour
             if (expEarned >= expForEachLevel[fireSwordLevel] && fireSwordLevel < 9)
             {
                 fireSwordLevel++;
+                int level = fireSwordLevel + 1;
+                _viewer.swordLevel.text = "Level-" + level;
                 expEarned = 0;
                 LevelUpdates[fireSwordLevel]();
             }

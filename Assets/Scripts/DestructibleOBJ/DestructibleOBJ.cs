@@ -5,13 +5,18 @@ using Sound;
 
 public class DestructibleOBJ : MonoBehaviour
 {
+    Camera cam;
     public GameObject mainMesh;
     public GameObject destructibleMesh;
+    public GameObject prefabHealthOrb;
+    public PopExpText prefabExpTextDamage;
+    public GameObject levelUI;
     BoxCollider myBox;
     Animator anim;
     public bool destroyed;
     Model_Player _player;
     Viewer_Player _playerView;
+    FireSword _sowrd;
 
     Vector3 startpos;
     public float xp;
@@ -22,8 +27,10 @@ public class DestructibleOBJ : MonoBehaviour
         {
             destroyed = true;
             destructibleMesh.SetActive(true);
+            var orb = Instantiate(prefabHealthOrb, transform.position, transform.rotation, transform);
             anim.SetBool("IsHit", true);
             myBox.isTrigger = true;
+            CreateExpPopText(xp);
             _player.fireSword.SwordExp(xp);
             if (gameObject.name.Contains("Barrel") || gameObject.name.Contains("Jugs"))
             {
@@ -55,9 +62,12 @@ public class DestructibleOBJ : MonoBehaviour
     {
         _player = FindObjectOfType<Model_Player>();
         _playerView = FindObjectOfType<Viewer_Player>();
+        _sowrd = FindObjectOfType<FireSword>();
+        levelUI = GameObject.Find("LEVEL UI");
         startpos = transform.position;
         anim = destructibleMesh.GetComponent<Animator>();
         myBox = GetComponent<BoxCollider>();
+        cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
     }
 
     private void OnCollisionEnter(Collision c)
@@ -66,5 +76,39 @@ public class DestructibleOBJ : MonoBehaviour
             if (c.gameObject.GetComponent<Model_Player>())
                 if (c.gameObject.GetComponent<Model_Player>().run)
                     Break();
+    }
+
+    public void CreateExpPopText(float exp)
+    {
+        StartCoroutine(ChargeExpFireText(exp));
+        PopExpText text = Instantiate(prefabExpTextDamage);
+        StartCoroutine(FollowEnemyExp(text));
+        text.transform.SetParent(levelUI.transform, false);
+        text.SetExp(exp);
+    }
+
+    IEnumerator ChargeExpFireText(float exp)
+    {
+        float t = 0.5f;
+        float newExp = _sowrd.currentExp;
+        _playerView.timertAlphaSwordExp = 2;
+        while (t > 0)
+        {
+            t -= Time.deltaTime;
+            newExp += Time.deltaTime * (exp / 0.5f);
+            int n = (int)newExp;
+            _playerView.swordExp.text = n + "Exp";
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator FollowEnemyExp(PopExpText text)
+    {
+        while (text != null)
+        {
+            Vector2 screenPos = cam.WorldToScreenPoint(transform.position + (Vector3.up * 2));
+            text.transform.position = screenPos;
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

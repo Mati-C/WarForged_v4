@@ -138,19 +138,18 @@ public class Model_E_Shield : ClassEnemy
         patrol.OnUpdate += () =>
         {
             var distancePH_patrol = Vector3.Distance(transform.position, patrolPosition);
-            float distancePortalPH = 0;
+            var distacePlayer = Vector3.Distance(transform.position, player.transform.position);
 
             if (portal)
             {
-                distancePortalPH = Vector3.Distance(transform.position, portal.phPortal.position);
 
-                if (distancePortalPH > 0.5f && portalOrder)
+                if (distancePH_patrol > 0.6f && portalOrder)
                 {
                     WalkEvent();
                     MoveToTarget(portal.phPortal.position);
                 }
 
-                if (distancePortalPH <= 0.5f && portalOrder)
+                if (distancePH_patrol <= 0.7f && portalOrder)
                 {
                     portalOrder = false;
                     IdleEvent();
@@ -159,20 +158,20 @@ public class Model_E_Shield : ClassEnemy
                 }
             }
 
-            if (distancePH_patrol > 0.5f && !portalOrder)
+            if (distancePH_patrol > 0.6f && !portalOrder)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if (distancePH_patrol <= 0.5f && !portalOrder)
+            if (distancePH_patrol <= 0.7f && !portalOrder)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
             }
 
-            if (canPersuit && !PlayerOnGrid()) myFSM_EventMachine.ChangeState(persuit);
+            if (canPersuit && !PlayerOnGrid() || distacePlayer<=1.5f && !PlayerOnGrid()) myFSM_EventMachine.ChangeState(persuit);
         };
 
         patrol.OnExit += () =>
@@ -603,10 +602,13 @@ public class Model_E_Shield : ClassEnemy
 
             if (player.flamesOn) StartBurning();
 
-            if (life <= 0)
+            if (life <= 0 && !isDead)
             {
+                isDead = true;
+                if (portal) portal.PortalRemove();
                 RuturnIA_ManagerInstant(false);
-                playerFireSowrd.SwordExp(exp);
+                _view.CreateExpPopText(exp);
+                playerFireSowrd.SwordExp(exp);               
                 DieEvent();
             }
 

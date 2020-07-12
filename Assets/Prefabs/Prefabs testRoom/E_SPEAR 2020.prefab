@@ -167,6 +167,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
     type: 3}
+  prefabExpTextDamage: {fileID: 451666971698016870, guid: b5c6d7f44403ac948b1de4e8a8be5219,
+    type: 3}
   levelUI: {fileID: 0}
   ess: {fileID: 0}
   bloodParticle: {fileID: 6218353628164129808}
@@ -305,6 +307,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8065126914986448503, guid: 3435664b42a3ae34984d9e806627fba0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 436b06e337405bd4a93ca84415965cd0, type: 2}
     - target: {fileID: 3980139920499394846, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
       propertyPath: m_Name
@@ -375,11 +382,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8065126914986448503, guid: 3435664b42a3ae34984d9e806627fba0,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 436b06e337405bd4a93ca84415965cd0, type: 2}
     - target: {fileID: 8924297595740714821, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
       propertyPath: m_RootOrder
@@ -882,6 +884,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9198866694534260764}
     m_Modifications:
+    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2774207757100271287, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: m_Name
@@ -961,11 +968,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.30769244
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2774207757085433299, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}

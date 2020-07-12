@@ -8,10 +8,10 @@ public class HealthOrb : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(Effect(FindObjectOfType<Model>()));
+        StartCoroutine(Effect(FindObjectOfType<Model_Player>()));
     }
 
-    IEnumerator Effect(Model player)
+    IEnumerator Effect(Model_Player player)
     {
         Vector3 initialPos = transform.position;
 

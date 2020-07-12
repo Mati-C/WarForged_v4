@@ -529,9 +529,11 @@ public class Model_TE_Melee : ClassEnemy
         life -= d;
         if (player.flamesOn) StartBurning();
 
-        if (life <= 0)
+        if (life <= 0 && !isDead)
         {
+            isDead = true;
             RuturnIA_ManagerInstant(true);
+            _view.CreateExpPopText(exp);
             playerFireSowrd.SwordExp(exp);
             DieEvent();
         }

@@ -92,7 +92,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public float onDamageTime;
     public float damageDelayTime;
     public float timeBurning;
-    
+
     public Action GetHitEvent;
     public Action DieEvent;
     public Action BlockedEvent;
@@ -101,6 +101,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public void ReturnToLife()
     {
+        isDead = false;
         life = maxLife;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         PatrolState();
@@ -211,8 +212,12 @@ public abstract class ClassEnemy : MonoBehaviour
                 _viewer.CreatePopText(playerFireSowrd.fireSwordBurnDamage);
                 life -= playerFireSowrd.fireSwordBurnDamage;
                 tic = 1;
-                if(life<= 0)
+                if(life<= 0 && !isDead)
                 {
+                    isDead = true;
+                    if (portal) portal.PortalRemove();
+                    RuturnIA_ManagerInstant(true);
+                    _viewer.CreateExpPopText(exp);
                     playerFireSowrd.SwordExp(exp);
                     DieEvent();
                     timeBurning = 0;
@@ -270,6 +275,7 @@ public abstract class ClassEnemy : MonoBehaviour
         sameID_Enemies.AddRange(FindObjectsOfType<ClassEnemy>().Where(x => x.ID == ID && x != this));
         _viewer = GetComponent<ClassEnemyViewer>();
         _viewer.GetMeshes();
+        _viewer.AwakeViewer();
         rb = GetComponent<Rigidbody>();
         patrolPosition = transform.position;
         patrolForward = transform.forward;
@@ -396,9 +402,8 @@ public abstract class ClassEnemy : MonoBehaviour
                 targetRotation = Quaternion.LookRotation(_dir, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
                 rb.MovePosition(rb.position + _dir * speed * Time.deltaTime);
-
             }
-            else
+            if(d < 0.5f)
                 currentIndex++;
         }
 

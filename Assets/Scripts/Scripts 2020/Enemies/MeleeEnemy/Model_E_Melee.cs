@@ -106,17 +106,18 @@ public class Model_E_Melee : ClassEnemy
         patrol.OnUpdate += () =>
         {
             var distancePH_patrol = Vector3.Distance(transform.position, patrolPosition);
+            var distacePlayer = Vector3.Distance(transform.position, player.transform.position);
 
             if (portal)
             {
                 
-                if (distancePH_patrol > 0.6f && portalOrder)
+                if (distancePH_patrol > 0.7f && portalOrder)
                 {
                     WalkEvent();
                     MoveToTarget(patrolPosition);
                 }
 
-                if (distancePH_patrol <= 0.6f && portalOrder)
+                if (distancePH_patrol < 0.8f && portalOrder)
                 {
                     portalOrder = false;
                     IdleEvent();
@@ -125,20 +126,20 @@ public class Model_E_Melee : ClassEnemy
                 }
             }
 
-            if (distancePH_patrol > 0.6f && !portalOrder)
+            if (distancePH_patrol > 0.7f && !portalOrder)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if (distancePH_patrol <= 0.6f && !portalOrder)
+            if (distancePH_patrol < 0.8f && !portalOrder)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
             }
 
-            if (canPersuit && !PlayerOnGrid()) myFSM_EventMachine.ChangeState(persuit);
+            if (canPersuit && !PlayerOnGrid() || distacePlayer<1.5f && !PlayerOnGrid()) myFSM_EventMachine.ChangeState(persuit);
         };
 
         patrol.OnExit += () =>
@@ -204,7 +205,14 @@ public class Model_E_Melee : ClassEnemy
 
         surround.OnUpdate += () =>
         {
-           
+            foreach (var item in sameID_Enemies)
+            {
+                item.viewDistancePersuit = 100;
+                item.angleToPersuit = 360;
+                item.angleToSurround = 360;
+                enemyLayer = layersPlayer;
+            }
+
             if (aggressiveLevel == 1) viewDistanceSurround = 6f;
 
             if (aggressiveLevel == 2) viewDistanceSurround = 10f;
@@ -512,12 +520,13 @@ public class Model_E_Melee : ClassEnemy
 
         _view.UpdateLifeBar(life / maxLife);
 
-        if (life <= 0)
+        if (life <= 0 && !isDead)
         {
+            isDead = true;
             if (portal) portal.PortalRemove();
             RuturnIA_ManagerInstant(true);
+            _view.CreateExpPopText(exp);
             playerFireSowrd.SwordExp(exp);
-          
             DieEvent();
         }
 

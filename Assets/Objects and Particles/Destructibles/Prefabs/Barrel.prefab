@@ -90,6 +90,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMesh: {fileID: 8744382916685943511}
   destructibleMesh: {fileID: 8744382916248918414}
+  prefabHealthOrb: {fileID: 6600163854666151337, guid: d3a36e13175cc1a4aaf59fa5a7c8065d,
+    type: 3}
+  prefabExpTextDamage: {fileID: 451666971698016870, guid: b5c6d7f44403ac948b1de4e8a8be5219,
+    type: 3}
+  levelUI: {fileID: 0}
   destroyed: 0
   xp: 3
 --- !u!1001 &8744382916248952622

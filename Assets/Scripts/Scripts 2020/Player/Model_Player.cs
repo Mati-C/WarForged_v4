@@ -475,7 +475,6 @@ public class Model_Player : MonoBehaviour
         if (direction == DogeDirecctions.Roll && !OnDamage)
         {
             DodgeEvent(DogeDirecctions.Roll);
-
             StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedRoll, false));
         }
 
@@ -490,7 +489,7 @@ public class Model_Player : MonoBehaviour
             else if (!onDodge)
             {
                 if (!run)
-                {
+                {                   
                     DodgeEvent(DogeDirecctions.Back);
                     StartCoroutine(DodgeMovement(0.4f, -transform.forward, dodgeSpeedBack, true));
                 }
@@ -498,7 +497,7 @@ public class Model_Player : MonoBehaviour
                 else
                 {
                     DodgeEvent(DogeDirecctions.Roll);
-                    StartCoroutine(DodgeMovement(0.7f, -transform.forward, dodgeSpeedBack, false));
+                    StartCoroutine(DodgeMovement(0.7f, transform.forward, dodgeSpeedBack, false));
                 }
 
             }
@@ -772,7 +771,7 @@ public class Model_Player : MonoBehaviour
  
     public void PowerWeapon()
     {
-        if(fireEnergy >= fireSword.energyToUseFireSword)
+        if(fireEnergy >= fireSword.energyToUseFireSword && isInCombat)
         {
             StartCoroutine(PowerOn());
             FireSwordEvent();

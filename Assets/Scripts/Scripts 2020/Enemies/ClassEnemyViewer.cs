@@ -7,6 +7,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     [Header("Enemy Camera and UI:")]
     public Camera cam;
     public PopText prefabTextDamage;
+    public PopExpText prefabExpTextDamage;
     public GameObject levelUI;
     public EnemyScreenSpace ess;
 
@@ -22,9 +23,14 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     public List<MeshRenderer> myMeshes = new List<MeshRenderer>();
     public List<SkinnedMeshRenderer> mySkinedMeshes = new List<SkinnedMeshRenderer>();
 
-    private void Awake()
-    {
+    Viewer_Player _player;
+    FireSword _sowrd;
 
+
+    public void AwakeViewer()
+    {
+        _player = FindObjectOfType<Viewer_Player>();
+        _sowrd = FindObjectOfType<FireSword>();
     }
 
     public void GetMeshes()
@@ -57,12 +63,34 @@ public abstract class ClassEnemyViewer : MonoBehaviour
 
     public void CreatePopText(float damage)
     {
-
         PopText text = Instantiate(prefabTextDamage);
         StartCoroutine(FollowEnemy(text));
         text.transform.SetParent(levelUI.transform, false);
         text.SetDamage(damage);
+    }
 
+    public void CreateExpPopText(float exp)
+    {
+        StartCoroutine(ChargeExpFireText(exp));
+        PopExpText text = Instantiate(prefabExpTextDamage);
+        StartCoroutine(FollowEnemyExp(text));
+        text.transform.SetParent(levelUI.transform, false);
+        text.SetExp(exp);
+    }
+
+    IEnumerator ChargeExpFireText(float exp)
+    {
+        float t = 0.5f;
+        float newExp = _sowrd.currentExp;
+        _player.timertAlphaSwordExp = 2;
+        while(t>0)
+        {
+            t -= Time.deltaTime;
+            newExp += Time.deltaTime * (exp / 0.5f);
+            int n = (int)newExp;
+            _player.swordExp.text = n + "Exp";
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void PushKnockedAnim()
@@ -85,6 +113,16 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     }
 
     IEnumerator FollowEnemy(PopText text)
+    {
+        while (text != null)
+        {
+            Vector2 screenPos = cam.WorldToScreenPoint(transform.position + (Vector3.up * 2));
+            text.transform.position = screenPos;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator FollowEnemyExp(PopExpText text)
     {
         while (text != null)
         {
