@@ -86,7 +86,8 @@ public abstract class ClassEnemy : MonoBehaviour
     [Header("EnemyClass Patrol Variables:")]
     public Vector3 patrolPosition;
     public Vector3 patrolForward;
-    public bool onGrid;
+    public bool onPlace;
+
 
     [Header("Enemy GetHit Variables:")]
     public float onDamageTime;
@@ -367,17 +368,10 @@ public abstract class ClassEnemy : MonoBehaviour
 
         var distance = Vector3.Distance(targetNearestNode, playerPos);
 
-        if (distance > 1.5f)
-        {
-            onGrid = true;
-            return true;
-        }
+        if (distance > 1.5f) return true;
+        
+        else return false;
 
-        else
-        {
-            onGrid = false;
-            return false;
-        }
     }
 
     public void MoveToTarget(Vector3 target)
@@ -389,12 +383,11 @@ public abstract class ClassEnemy : MonoBehaviour
 
         if (currentIndex < pathToTarget.Count)
         {
-
             float d = Vector3.Distance(pathToTarget[currentIndex].worldPosition, transform.position);
 
             var _dir = Vector3.zero;
 
-            if (d >= 0.5f)
+            if (d >= 0.4f)
             {
                 Quaternion targetRotation;
                 _dir = (pathToTarget[currentIndex].worldPosition - transform.position).normalized;
@@ -403,7 +396,7 @@ public abstract class ClassEnemy : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
                 rb.MovePosition(rb.position + _dir * speed * Time.deltaTime);
             }
-            if(d < 0.5f)
+            if(d < 0.4f)
                 currentIndex++;
         }
 

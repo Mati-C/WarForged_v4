@@ -7,7 +7,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     [Header("Enemy Camera and UI:")]
     public Camera cam;
     public PopText prefabTextDamage;
-    public PopExpText prefabExpTextDamage;
+    public PopExpText prefabExpText;
     public GameObject levelUI;
     public EnemyScreenSpace ess;
 
@@ -72,7 +72,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     public void CreateExpPopText(float exp)
     {
         StartCoroutine(ChargeExpFireText(exp));
-        PopExpText text = Instantiate(prefabExpTextDamage);
+        PopExpText text = Instantiate(prefabExpText);
         StartCoroutine(FollowEnemyExp(text));
         text.transform.SetParent(levelUI.transform, false);
         text.SetExp(exp);

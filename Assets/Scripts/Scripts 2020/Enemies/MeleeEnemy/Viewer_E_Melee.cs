@@ -206,7 +206,5 @@ public class Viewer_E_Melee : ClassEnemyViewer
                 break;
         }
 
-        SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 1, 0.5f);
-        SoundManager.instance.Play(Hit.SOFT, transform.position, true);
     }
 }

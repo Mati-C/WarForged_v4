@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Sound;
 
 public class Model_TE_Melee : ClassEnemy
 {
@@ -115,13 +116,13 @@ public class Model_TE_Melee : ClassEnemy
             {
                 distancePortalPH = Vector3.Distance(transform.position, portal.phPortal.position);
 
-                if (distancePortalPH > 0.5f && portalOrder)
+                if (distancePortalPH > 0.5f && portalOrder && _TM.attacksTutorialFinish)
                 {
                     WalkEvent();
                     MoveToTarget(portal.phPortal.position);
                 }
 
-                if (distancePortalPH <= 0.5f && portalOrder)
+                if (distancePortalPH <= 0.5f && portalOrder && _TM.attacksTutorialFinish)
                 {
                     portalOrder = false;
                     IdleEvent();
@@ -130,13 +131,13 @@ public class Model_TE_Melee : ClassEnemy
                 }
             }
 
-            if (distancePH_patrol > 0.5f && !portalOrder)
+            if (distancePH_patrol > 0.5f && !portalOrder && _TM.attacksTutorialFinish)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if (distancePH_patrol <= 0.5f && !portalOrder)
+            if (distancePH_patrol <= 0.5f && !portalOrder && _TM.attacksTutorialFinish)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
@@ -558,6 +559,9 @@ public class Model_TE_Melee : ClassEnemy
             if (t == Model_Player.DamageType.Light) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
 
             else rb.AddForce(-transform.forward * 5, ForceMode.Impulse);
+
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 1, 0.5f);
+            SoundManager.instance.Play(Hit.SOFT, transform.position, true);
         }
 
         else
@@ -565,6 +569,9 @@ public class Model_TE_Melee : ClassEnemy
             if (t == Model_Player.DamageType.Light) rb.AddForce(transform.forward * 2, ForceMode.Impulse);
 
             else rb.AddForce(transform.forward * 5, ForceMode.Impulse);
+
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 1, 0.5f);
+            SoundManager.instance.Play(Hit.SOFT, transform.position, true);
         }
 
     }

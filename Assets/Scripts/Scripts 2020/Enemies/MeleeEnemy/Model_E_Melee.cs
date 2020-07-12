@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using Sound;
 
 public class Model_E_Melee : ClassEnemy
 {
@@ -117,7 +118,7 @@ public class Model_E_Melee : ClassEnemy
                     MoveToTarget(patrolPosition);
                 }
 
-                if (distancePH_patrol < 0.8f && portalOrder)
+                if (distancePH_patrol < 1.2f && portalOrder)
                 {
                     portalOrder = false;
                     IdleEvent();
@@ -126,13 +127,13 @@ public class Model_E_Melee : ClassEnemy
                 }
             }
 
-            if (distancePH_patrol > 0.7f && !portalOrder)
+            if (distancePH_patrol > 0.7f && !portalOrder && !onPlace)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if (distancePH_patrol < 0.8f && !portalOrder)
+            if (distancePH_patrol < 1.2f && !portalOrder && !onPlace)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
@@ -548,6 +549,9 @@ public class Model_E_Melee : ClassEnemy
             if (t == Model_Player.DamageType.Light) rb.AddForce(-transform.forward * 2, ForceMode.Impulse);
 
             else rb.AddForce(-transform.forward * 5, ForceMode.Impulse);
+
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 1, 0.5f);
+            SoundManager.instance.Play(Hit.SOFT, transform.position, true);
         }
 
         else
@@ -555,6 +559,9 @@ public class Model_E_Melee : ClassEnemy
             if (t == Model_Player.DamageType.Light) rb.AddForce(transform.forward * 2, ForceMode.Impulse);
 
             else rb.AddForce(transform.forward * 5, ForceMode.Impulse);
+
+            SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 1, 0.5f);
+            SoundManager.instance.Play(Hit.SOFT, transform.position, true);
         }
 
     }

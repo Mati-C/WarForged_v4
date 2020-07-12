@@ -127,14 +127,16 @@ public class FireSword: MonoBehaviour
             {
                 expEarned += Time.deltaTime * (newExp / 2);
                 currentExp -= Time.deltaTime * (newExp / 2);
+                int c = (int)currentExp;
+                _viewer.timertAlphaSwordExp = 2;
+                _viewer.swordExp.text = c + "Exp";
                 t -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
 
             int e = (int)expEarned;
             expEarned = e;
-            int c = (int)currentExp;
-            currentExp = c;
+           
 
             if (expEarned >= expForEachLevel[fireSwordLevel] && fireSwordLevel < 9)
             {

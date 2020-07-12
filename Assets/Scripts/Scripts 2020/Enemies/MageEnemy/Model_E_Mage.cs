@@ -111,10 +111,10 @@ public class Model_E_Mage : ClassEnemy
                 if (distancePH_patrol > 0.7f && portalOrder)
                 {
                     WalkEvent();
-                    MoveToTarget(portal.phPortal.position);
+                    MoveToTarget(patrolPosition);
                 }
 
-                if (distancePH_patrol <= 0.8f && portalOrder)
+                if (distancePH_patrol <= 1.2f && portalOrder)
                 {
                     portalOrder = false;
                     IdleEvent();
@@ -123,13 +123,13 @@ public class Model_E_Mage : ClassEnemy
                 }
             }
            
-            if (distancePH_patrol > 0.7f && !portalOrder)
+            if (distancePH_patrol > 0.7f && !portalOrder && !onPlace)
             {
                 WalkEvent();
                 MoveToTarget(patrolPosition);
             }
 
-            if (distancePH_patrol <= 0.8f && !portalOrder)
+            if (distancePH_patrol <= 1.2f && !portalOrder && !onPlace)
             {
                 IdleEvent();
                 Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
@@ -292,13 +292,13 @@ public class Model_E_Mage : ClassEnemy
 
             if (PlayerOnGrid()) myFSM_EventMachine.ChangeState(patrol);
 
-            if (d <= 1 && onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
+            if (d <= 1.2f && onDamageTime > 0 && life > 0) myFSM_EventMachine.ChangeState(takeDamage);
 
-            if (d <= 1 && !canSurround && life > 0) myFSM_EventMachine.ChangeState(persuit);
+            if (d <= 1.2f && !canSurround && life > 0) myFSM_EventMachine.ChangeState(persuit);
 
-            if (d <= 1 && timeToAttack <= 0 && life > 0) myFSM_EventMachine.ChangeState(attack);
+            if (d <= 1.2f && timeToAttack <= 0 && life > 0) myFSM_EventMachine.ChangeState(attack);
 
-            if (d <= 1 && canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
+            if (d <= 1.2f && canSurround && life > 0) myFSM_EventMachine.ChangeState(surround);
 
             if (blockedAttack && life > 0) myFSM_EventMachine.ChangeState(blocked);
 

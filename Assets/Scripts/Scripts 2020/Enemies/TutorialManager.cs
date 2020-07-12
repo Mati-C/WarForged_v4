@@ -12,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     public Model_E_Mage mage1;
     public List<ClassEnemy> secondEnemies = new List<ClassEnemy>();
     public List<ClassEnemy> thirdEnemies = new List<ClassEnemy>();
+    public List<Transform> phPos = new List<Transform>();
 
     public bool attacksTutorialFinish;
     public bool defendTutorialFinish;
@@ -44,6 +45,7 @@ public class TutorialManager : MonoBehaviour
     public Transform objective5;
     public Transform objective6;
     public Transform objective7;
+    public Transform objective8;
 
     Transform _objective;
     GameObject _arrow;
@@ -69,7 +71,7 @@ public class TutorialManager : MonoBehaviour
         _tutorialText = GameObject.Find("Text Tutorial").GetComponent<TextMeshPro>();
         _tutorialText.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
         _arrow = GameObject.Find("PointerPrefab");
-
+        _player.chargeAttackCasted = true;
 
     }
 
@@ -78,6 +80,11 @@ public class TutorialManager : MonoBehaviour
         _objective = objective1;
         _te.life = 99999;
         _te.maxLife = 99999;
+
+        for (int i = 0; i < thirdEnemies.Count; i++)
+        {
+            thirdEnemies[i].transform.position = phPos[i].position;
+        }
     }
     
     void Update()
@@ -160,6 +167,7 @@ public class TutorialManager : MonoBehaviour
         _tutorialText.faceColor = colorIncomplite;
         _tutorialText.outlineColor = colorIncompliteOutline;
         _tutorialText.text = "You can dodge the fire balls pressing SPACE to dodge " + dodgeCounts + "/" + dodgeCountsMax;
+        _tutorialText.GetComponent<TextTutorial>().target = mage1.transform;
         mage1.portalOrder = true;
 
         while(dodgeCounts < dodgeCountsMax)
@@ -204,16 +212,29 @@ public class TutorialManager : MonoBehaviour
         _tutorialText.text = "Destroy the rune to close the portal and stop the enemies from appearing";
         _objective = objective6;
         _tutorialText.GetComponent<TextTutorial>().target = objective6;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = objective6.transform.forward;
-        var rune = objective6.GetComponent<Portal_Rune>();
+        _tutorialText.GetComponent<TextTutorial>().plusPos = -objective6.transform.forward + new Vector3(0,1.5f,0);
+        var rune = FindObjectOfType<Portal_Rune>();
 
-        while(!rune.portalOff)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        var root2 = objective6.GetComponent<Roots>();
+
+        while(!root2.burned) yield return new WaitForEndOfFrame();
+
+        _objective = objective7;
+        _tutorialText.GetComponent<TextTutorial>().target = objective7;
+        _tutorialText.GetComponent<TextTutorial>().plusPos = -objective7.transform.forward;
+
+        while (!rune.portalOff) yield return new WaitForEndOfFrame();
+
         _tutorialText.faceColor = colorSucsess;
         _tutorialText.outlineColor = colorSucsessOutline;
-        _objective = objective7;
+
+        yield return new WaitForSeconds(2);
+
+        _objective = objective8;
+        _tutorialText.GetComponent<TextTutorial>().target = objective8;
+        _tutorialText.GetComponent<TextTutorial>().plusPos = Vector3.zero;
+        _tutorialText.text = "Go through the tunnel";
+
     }
 
     public void PlusDodge()
@@ -316,7 +337,7 @@ public class TutorialManager : MonoBehaviour
                 _tutorialText.faceColor = colorSucsess;
                 _tutorialText.outlineColor = colorSucsessOutline;
                 StartCoroutine(ChangeText(3));
-
+                _player.chargeAttackCasted = false;
             }
         }
     }

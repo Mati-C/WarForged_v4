@@ -14,6 +14,7 @@ public class Portal : MonoBehaviour
     Material portalShader;
     bool canSpawn;
     public Transform phParticles;
+    public BoxCollider portalCollider;
     public List<ClassEnemy> myEnemies = new List<ClassEnemy>();
     public int enemiesAlive;
     public float timerRespawn;
@@ -82,6 +83,7 @@ public class Portal : MonoBehaviour
     IEnumerator TurnOffEffect()
     {
         float t = 0.1f;
+        portalCollider.isTrigger = true;
         while (t > 0)
         {
             t -= Time.deltaTime / 10;

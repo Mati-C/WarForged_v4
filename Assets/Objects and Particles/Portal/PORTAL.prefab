@@ -143,6 +143,7 @@ MonoBehaviour:
   phSpawn: {fileID: 0}
   portalMR: {fileID: 3262016515339014628}
   phParticles: {fileID: 3539728544550628358}
+  portalCollider: {fileID: 3361822920989770258}
   myEnemies: []
   enemiesAlive: 0
   timerRespawn: 0

@@ -39963,7 +39963,7 @@ MonoBehaviour:
   cantAvoid: 0
   patrolPosition: {x: 0, y: 0, z: 0}
   patrolForward: {x: 0, y: 0, z: 0}
-  onGrid: 0
+  onPlace: 0
   onDamageTime: 0
   damageDelayTime: 0.8
   timeBurning: 0
@@ -40012,7 +40012,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
     type: 3}
-  prefabExpTextDamage: {fileID: 451666971698016870, guid: b5c6d7f44403ac948b1de4e8a8be5219,
+  prefabExpText: {fileID: 451666971698016870, guid: b5c6d7f44403ac948b1de4e8a8be5219,
     type: 3}
   levelUI: {fileID: 0}
   ess: {fileID: 0}
