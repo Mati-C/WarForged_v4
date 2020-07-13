@@ -53,7 +53,7 @@ public class Controller_Player
 
     public void ControllerUpdate()
     {
-        if (!_fade.playerCantMove)
+        if (!_fade.playerCantMove && !_model.onCinematic)
         {
             if (Input.GetKey(KeyCode.W))
             {

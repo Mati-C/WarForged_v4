@@ -39,6 +39,7 @@ public class Model_Player : MonoBehaviour
     public bool onDefence;
     public bool onAction;
     public bool OnDamage;
+    public bool onCinematic;
 
     [Header("Player Layers:")]
 

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class FireSword: MonoBehaviour
+public class FireSword : MonoBehaviour
 {
     Model_Player _player;
     Viewer_Player _viewer;
@@ -13,7 +13,7 @@ public class FireSword: MonoBehaviour
     public int fireSwordLevel;
     public float currentExp;
     public float expEarned;
-
+    
     public List<float> expForEachLevel = new List<float>();
     public List<ClassEnemy> allEnemies = new List<ClassEnemy>();
     public Dictionary<int, Action> LevelUpdates = new Dictionary<int, Action>(); 
