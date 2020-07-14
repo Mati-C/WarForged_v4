@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2567764760471148518}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: StructurePortalBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3539728544550628358}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Particles PH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5854462201899894830}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: PH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  phPortal: {fileID: 5854462201899894830}
   phSpawn: {fileID: 0}
   portalMR: {fileID: 3262016515339014628}
   phParticles: {fileID: 3539728544550628358}
@@ -162,7 +161,7 @@ GameObject:
   - component: {fileID: 3782763446043648973}
   - component: {fileID: 4368246386555375074}
   - component: {fileID: 2174633368615111749}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: Orb (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +253,7 @@ GameObject:
   - component: {fileID: 8877157837099615917}
   - component: {fileID: 6486398626330055403}
   - component: {fileID: 884962008096413471}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Column001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +347,7 @@ GameObject:
   - component: {fileID: 4908042578119301859}
   - component: {fileID: 3262016515339014628}
   - component: {fileID: 3361822920989770258}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +439,7 @@ GameObject:
   - component: {fileID: 3197179203417020253}
   - component: {fileID: 1332383693709916742}
   - component: {fileID: 261424246863580444}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

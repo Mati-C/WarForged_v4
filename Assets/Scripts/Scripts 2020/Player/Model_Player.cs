@@ -682,7 +682,7 @@ public class Model_Player : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
-
+        var destructibles = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.GetComponent<DestructibleOBJ>()).Select(x => x.GetComponent<DestructibleOBJ>());
 
         foreach (var item in enemies)
         {
@@ -694,6 +694,9 @@ public class Model_Player : MonoBehaviour
             }
                 
         }
+
+        foreach (var item in destructibles)
+            item.Break();
     }
 
     public void CombatStateUp()

@@ -110,19 +110,17 @@ public class Model_TE_Melee : ClassEnemy
         {
 
             var distancePH_patrol = Vector3.Distance(transform.position, patrolPosition);
-            float distancePortalPH = 0;
 
             if (portal)
             {
-                distancePortalPH = Vector3.Distance(transform.position, portal.phPortal.position);
 
-                if (distancePortalPH > 0.5f && portalOrder && _TM.attacksTutorialFinish)
+                if (distancePH_patrol > 0.5f && portalOrder && _TM.attacksTutorialFinish)
                 {
                     WalkEvent();
-                    MoveToTarget(portal.phPortal.position);
+                    MoveToTarget(patrolPosition);
                 }
 
-                if (distancePortalPH <= 0.5f && portalOrder && _TM.attacksTutorialFinish)
+                if (distancePH_patrol <= 0.5f && portalOrder && _TM.attacksTutorialFinish)
                 {
                     portalOrder = false;
                     IdleEvent();

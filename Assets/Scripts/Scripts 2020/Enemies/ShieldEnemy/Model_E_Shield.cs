@@ -146,7 +146,7 @@ public class Model_E_Shield : ClassEnemy
                 if (distancePH_patrol > 0.6f && portalOrder)
                 {
                     WalkEvent();
-                    MoveToTarget(portal.phPortal.position);
+                    MoveToTarget(patrolPosition);
                 }
 
                 if (distancePH_patrol <= 1.2f && portalOrder)
@@ -182,6 +182,7 @@ public class Model_E_Shield : ClassEnemy
 
             foreach (var item in sameID_Enemies)
             {
+                item.enemyLayer = layersPlayer;
                 item.viewDistancePersuit = 100;
                 item.angleToPersuit = 360;
                 item.angleToSurround = 360;
@@ -571,6 +572,7 @@ public class Model_E_Shield : ClassEnemy
         StartCoroutine(OnDamageTimer());
         StartCoroutine(MoveOnAttack());
         _view.StartCoroutine(_view.DamageTimerAnim());
+        StartCoroutine(OnParryTimer());
     }
 
     public override void PatrolState()

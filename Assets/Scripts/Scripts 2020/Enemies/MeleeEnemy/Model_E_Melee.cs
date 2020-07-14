@@ -151,6 +151,7 @@ public class Model_E_Melee : ClassEnemy
 
             foreach (var item in sameID_Enemies)
             {
+                item.enemyLayer = layersPlayer;
                 item.viewDistancePersuit = 100;
                 item.angleToPersuit = 360;
                 item.angleToSurround = 360;

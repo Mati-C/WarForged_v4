@@ -31,6 +31,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
     {
         _player = FindObjectOfType<Viewer_Player>();
         _sowrd = FindObjectOfType<FireSword>();
+
     }
 
     public void GetMeshes()

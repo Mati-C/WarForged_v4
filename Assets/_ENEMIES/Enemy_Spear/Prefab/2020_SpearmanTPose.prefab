@@ -6117,7 +6117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964850939766963579}
-  m_LocalRotation: {x: 0.0000012878438, y: -0.0001252912, z: -0.0008184924, w: 0.99999964}
+  m_LocalRotation: {x: 0.0000012878439, y: -0.0001252912, z: -0.00081849244, w: 0.99999964}
   m_LocalPosition: {x: -0.00014498307, y: 0.011319357, z: 7.128738e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6140,6 +6140,7 @@ GameObject:
   - component: {fileID: 6142939207659847490}
   - component: {fileID: 4028050285478817631}
   - component: {fileID: 4634046697856451771}
+  - component: {fileID: 4080955411841746199}
   m_Layer: 0
   m_Name: 2020_SpearmanTPose
   m_TagString: Untagged
@@ -6187,7 +6188,7 @@ Animator:
   m_GameObject: {fileID: 3980139920499394846}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7af475388c539e0478739221d00dcf8a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 436b06e337405bd4a93ca84415965cd0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6254,14 +6255,17 @@ MonoBehaviour:
   cam: {fileID: 0}
   prefabTextDamage: {fileID: 5008892037884293611, guid: eec94c02507c1a544885cd026583901b,
     type: 3}
+  prefabExpText: {fileID: 451666971698016870, guid: b5c6d7f44403ac948b1de4e8a8be5219,
+    type: 3}
   levelUI: {fileID: 0}
+  ess: {fileID: 0}
   bloodParticle: {fileID: 0}
   burnParticle: {fileID: 0}
   anim: {fileID: 8065126914986448503}
-  defaultAnimator: {fileID: 0}
-  getUpAnimator: {fileID: 0}
   ragdollPrefab: {fileID: 6137512055469483608, guid: 2515d08845849a84ca3c9bc47f90d848,
     type: 3}
+  myMeshes: []
+  mySkinedMeshes: []
   myModel: {fileID: 0}
 --- !u!114 &4634046697856451771
 MonoBehaviour:
@@ -6275,6 +6279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2e79fe34cc62c4f9f0c6e524f45db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portal: {fileID: 0}
   pathfinding: {fileID: 6142939207659847490}
   player: {fileID: 0}
   grid: {fileID: 0}
@@ -6282,17 +6287,25 @@ MonoBehaviour:
   ia_Manager: {fileID: 0}
   playerFireSowrd: {fileID: 0}
   ID: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   layersCanSee:
     serializedVersion: 2
     m_Bits: 65793
   layersObstacles:
     serializedVersion: 2
     m_Bits: 65536
+  layersPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   sameID_Enemies: []
   myCombatNode: {fileID: 0}
   lastCombatNode: {fileID: 0}
   playerNodes: []
   distanceToOcupateNodes: 1.5
+  range: 0
+  melee: 0
   life: 75
   maxLife: 75
   exp: 0
@@ -6301,12 +6314,14 @@ MonoBehaviour:
   isDead: 0
   canPersuit: 0
   canSurround: 0
+  onPatrol: 0
   OnDamage: 0
   blockedAttack: 0
   burning: 0
   knocked: 0
   permissionToAttack: 0
   cantAskAgain: 0
+  portalOrder: 0
   currentIndex: 0
   timeToAttack: 0
   maxTimeToAttack: 1
@@ -6318,6 +6333,9 @@ MonoBehaviour:
   angleToSurround: 100
   surroundBehaviourID: 0
   cantAvoid: 0
+  patrolPosition: {x: 0, y: 0, z: 0}
+  patrolForward: {x: 0, y: 0, z: 0}
+  onPlace: 0
   onDamageTime: 0
   damageDelayTime: 0.8
   timeBurning: 0
@@ -6341,6 +6359,20 @@ MonoBehaviour:
   maxTimesToParry: 4
   minTimesToParry: 2
   counterAttack: 0
+--- !u!114 &4080955411841746199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3980139920499394846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a1b81ea6d5884429f722c92699e838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barPrefab: {fileID: 8210444943204114891, guid: 435981f1896240d4f96ebe9c129b35cd,
+    type: 3}
 --- !u!1 &4402314057009804922
 GameObject:
   m_ObjectHideFlags: 0

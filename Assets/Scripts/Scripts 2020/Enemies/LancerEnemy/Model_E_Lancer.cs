@@ -127,7 +127,7 @@ public class Model_E_Lancer : ClassEnemy
                 if (distancePH_patrol > 0.6f && portalOrder)
                 {
                     WalkEvent();
-                    MoveToTarget(portal.phPortal.position);
+                    MoveToTarget(patrolPosition);
                 }
 
                 if (distancePH_patrol <= 1.2f && portalOrder)
@@ -163,6 +163,7 @@ public class Model_E_Lancer : ClassEnemy
 
             foreach (var item in sameID_Enemies)
             {
+                item.enemyLayer = layersPlayer;
                 item.viewDistancePersuit = 100;
                 item.angleToPersuit = 360;
                 item.angleToSurround = 360;

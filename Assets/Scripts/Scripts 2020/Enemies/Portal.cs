@@ -7,7 +7,6 @@ using System.Linq;
 public class Portal : MonoBehaviour
 {
     public int ID;
-    public Transform phPortal;
     public Transform phSpawn;
     public MeshRenderer portalMR;
     Model_Player _player;

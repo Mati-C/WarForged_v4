@@ -81,7 +81,9 @@ public class DestructibleOBJ : MonoBehaviour
     public void CreateExpPopText(float exp)
     {
         StartCoroutine(ChargeExpFireText(exp));
-        PopExpText text = Instantiate(prefabExpTextDamage);
+        Quaternion rot = Quaternion.LookRotation(Vector3.zero, Vector3.up);
+        Vector2 screenPos = cam.WorldToScreenPoint(transform.position + Vector3.up);
+        PopExpText text = Instantiate(prefabExpTextDamage, screenPos, rot);
         StartCoroutine(FollowEnemyExp(text));
         text.transform.SetParent(levelUI.transform, false);
         text.SetExp(exp);
@@ -106,7 +108,7 @@ public class DestructibleOBJ : MonoBehaviour
     {
         while (text != null)
         {
-            Vector2 screenPos = cam.WorldToScreenPoint(transform.position + (Vector3.up * 2));
+            Vector2 screenPos = cam.WorldToScreenPoint(transform.position + Vector3.up);
             text.transform.position = screenPos;
             yield return new WaitForEndOfFrame();
         }

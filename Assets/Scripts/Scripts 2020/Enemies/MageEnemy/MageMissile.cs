@@ -49,8 +49,7 @@ public class MageMissile : MonoBehaviour
 
         }
 
-        else StartCoroutine(DestroyMissile());
-
+        if(c.gameObject.layer == LayerMask.NameToLayer("Obstacles") || c.gameObject.layer == LayerMask.NameToLayer("Portal")) StartCoroutine(DestroyMissile());
 
     }
 }
