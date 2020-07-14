@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sound;
+using UnityEngine.UI;
 
 public class CheckPoint : MonoBehaviour, ICheckObservable
 {
     FireSword _fireSword;
+    Camera _cam;
+    public Text expText;
+    public Text expTextPrefab;
+    public Text swordLevelText;
+    public Text swordLevelTextPrefab;
     public ParticleSystem fire;
     public ParticleSystem halo;
     public float lightIntensity;
   
     public GameObject textCheck;
     public GameObject buttonRespawn;
+    GameObject _levelUI;
     public Transform ph;
     ButtonManager ButtonManager;
     Model_Player player;
@@ -23,7 +30,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     ButtonManager buttonManager;
 
     bool move1;
-  
+
     List<ICheckObserver> _allObservers = new List<ICheckObserver>();
 
     public IEnumerator Message()
@@ -36,7 +43,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         StartCoroutine(Light());
         yield return new WaitForSeconds(3.5f);
         move1 = false;
-        //textCheck.SetActive(false);      
+  
     }
 
     public IEnumerator Respawn()
@@ -60,7 +67,16 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     {
         _fireSword = FindObjectOfType<FireSword>();
         player = FindObjectOfType<Model_Player>();
+        _cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
         ButtonManager = FindObjectOfType<ButtonManager>();
+        expText = Instantiate(expTextPrefab);
+        swordLevelText = Instantiate(swordLevelTextPrefab);
+        expText.gameObject.SetActive(false);
+        swordLevelText.gameObject.SetActive(false);
+        _levelUI = GameObject.Find("LEVEL UI");
+        expText.transform.SetParent(_levelUI.transform, false);
+        swordLevelText.transform.SetParent(_levelUI.transform, false);
+        StartCoroutine(FollowText());
         Subscribe(ButtonManager);
     }
 
@@ -85,17 +101,52 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
     void OnTriggerStay(Collider c)
     {
+        if (c.GetComponent<Model_Player>())
+        {
+            _fireSword.UpdateSword();
+
+            if (!expText.IsActive()) expText.gameObject.SetActive(true);
+
+            if (!swordLevelText.IsActive()) swordLevelText.gameObject.SetActive(true);
+
+            int expInt = (int)_fireSword.expEarned;
+
+            expText.text = expInt + "-Exp / " + _fireSword.expForEachLevel[_fireSword.fireSwordLevel + 1] + "-Exp";
+
+            int l = _fireSword.fireSwordLevel + 1;
+
+            swordLevelText.text = "Level-" + l;
+        }
+
         if (checkPointActivated && c.GetComponent<Model_Player>())
         {
+                     
             if (player.life != player.maxLife || player.fireEnergy <= player.fireSword.energyToUseFireSword)
             {
                 player.UpdateLife(player.maxLife);
                 player.fireEnergy += 0.3f;
                 if (player.fireEnergy > player.fireSword.energyToUseFireSword) player.fireEnergy = player.fireSword.energyToUseFireSword;
                 player.HitEnemyEvent(player.fireSword.energyToUseFireSword);
-                StartCoroutine(PlayParticles());
-                _fireSword.UpdateSword();
+                StartCoroutine(PlayParticles());               
             }
+        }
+    }
+
+    public void OnTriggerExit(Collider c)
+    {
+        if (expText.IsActive()) expText.gameObject.SetActive(false);
+        if (swordLevelText.IsActive()) swordLevelText.gameObject.SetActive(false);
+    }
+
+    IEnumerator FollowText()
+    {
+        while (true)
+        {
+            Vector2 screenPos = _cam.WorldToScreenPoint(transform.position + Vector3.up * 1.4f);
+            Vector2 screenPos2 = _cam.WorldToScreenPoint(transform.position + Vector3.up * 1.8f);
+            expText.transform.position = screenPos;
+            swordLevelText.transform.position = screenPos2;
+            yield return new WaitForEndOfFrame();
         }
     }
 

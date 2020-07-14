@@ -44,7 +44,7 @@ public class FireSword : MonoBehaviour
 
     Action GetEnergy;
     float _fireGizmo;
-    bool _onExpUpdate;
+    public bool onExpUpdate;
 
     private void Awake()
     {
@@ -100,19 +100,19 @@ public class FireSword : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y)) UpdateSword();
+
     }
 
     public void UpdateSword()
     {
-       if(!_onExpUpdate)StartCoroutine(FireSwordExpUpdate());
+       if(!onExpUpdate)StartCoroutine(FireSwordExpUpdate());
     }
 
     IEnumerator FireSwordExpUpdate()
     {
-        if (currentExp > 0 && !_onExpUpdate)
+        if (currentExp > 0 && !onExpUpdate)
         {
-            _onExpUpdate = true;
+            onExpUpdate = true;
             float newExp = 0;
 
             if (currentExp >= expForEachLevel[fireSwordLevel])
@@ -136,7 +136,7 @@ public class FireSword : MonoBehaviour
 
             int e = (int)expEarned;
             expEarned = e;
-           
+
 
             if (expEarned >= expForEachLevel[fireSwordLevel] && fireSwordLevel < 9)
             {
@@ -149,8 +149,15 @@ public class FireSword : MonoBehaviour
 
             if (currentExp > 0)
             {
-                _onExpUpdate = false;
+                onExpUpdate = false;
+                currentExp = 0;
                 StartCoroutine(FireSwordExpUpdate());
+            }
+
+            if (currentExp <= 0)
+            {
+                currentExp = 0;
+                onExpUpdate = false;
             }
         }
     }

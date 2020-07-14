@@ -4921,6 +4921,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28064d62c44063418b26fcab31126bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  expText: {fileID: 0}
+  expTextPrefab: {fileID: 3499474651691966371, guid: 38296d64220f8ac4f82189531bfe9f43,
+    type: 3}
+  swordLevelText: {fileID: 0}
+  swordLevelTextPrefab: {fileID: 3499474651691966371, guid: c7013bf47416f4a4db1690754e3b09b1,
+    type: 3}
   fire: {fileID: 764648886497381474}
   halo: {fileID: 1870772272983015680}
   lightIntensity: 3
