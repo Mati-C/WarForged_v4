@@ -210,7 +210,7 @@ Material:
     - _EnableSpecularOcclusion: 0
     - _EnableWind: 1
     - _EnergyConservingSpecularColor: 1
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _HeightAmplitude: 0.02
@@ -283,7 +283,7 @@ Material:
     - __dirty: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.4716981, g: 0.30036306, b: 0, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _DryColor: {r: 0.8897059, g: 0.8831639, b: 0.8831639, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
