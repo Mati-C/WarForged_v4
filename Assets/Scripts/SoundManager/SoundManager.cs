@@ -12,27 +12,30 @@ public class SoundManager : MonoBehaviour
     public float musicVolume;
 
     AudioSource ambienceAudio;
-    public AudioSource combatAudio;
+    AudioSource combatAudio;
 
     bool aux;
 
-    [NamedArrayAttribute(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK" })]
+    [NamedArray(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK" })]
     public AudioClip[] objects;
 
-    [NamedArrayAttribute(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "FIREBALL"})]
+    [NamedArray(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "FIREBALL"})]
     public AudioClip[] entity;
 
-    [NamedArrayAttribute(new string[] { "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH" })]
+    [NamedArray(new string[] { "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH" })]
     public AudioClip[] boss;
 
-    [NamedArrayAttribute(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3"})]
+    [NamedArray(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "FIRE_SWORD", "SHORT_YELL" })]
     public AudioClip[] player;
 
-    [NamedArrayAttribute(new string[] { "LEVEL_1", "LEVEL_2", "BATTLE_MUSIC", "BOSS_MUSIC" })]
+    [NamedArray(new string[] { "LEVEL_1", "LEVEL_2", "BATTLE_MUSIC", "BOSS_MUSIC" })]
     public AudioClip[] music;
 
-    [NamedArrayAttribute(new string[] { "HARD", "SOFT", "WOOD" })]
+    [NamedArray(new string[] { "HARD", "SOFT", "WOOD" })]
     public AudioClip[] hit;
+
+    [NamedArray(new string[] { "ROCKS_1", "ROCKS_2", "ROCKS_3", "ROCKS_4" })]
+    public AudioClip[] rocks;
 
     #region SFX Lists
     [HideInInspector]
@@ -46,6 +49,9 @@ public class SoundManager : MonoBehaviour
 
     [HideInInspector]
     public List<Boss> bossAttack = new List<Boss>() { Boss.MONSTER_ATTACK1, Boss.MONSTER_ATTACK2, Boss.MONSTER_ATTACK3 };
+
+    [HideInInspector]
+    public List<Rocks> fallingRocks = new List<Rocks>() { Rocks.ROCKS_1, Rocks.ROCKS_2, Rocks.ROCKS_3, Rocks.ROCKS_4 };
     #endregion
 
     void Awake()
@@ -80,6 +86,8 @@ public class SoundManager : MonoBehaviour
         else if (soundType.GetType() == typeof(Music))
             audioSource.clip = music[id];
         else if (soundType.GetType() == typeof(Hit))
+            audioSource.clip = hit[id];
+        else if (soundType.GetType() == typeof(Rocks))
             audioSource.clip = hit[id];
 
         audioSource.loop = loop;
@@ -116,6 +124,8 @@ public class SoundManager : MonoBehaviour
             audioSource.clip = music[id];
         else if (soundType.GetType() == typeof(Hit))
             audioSource.clip = hit[id];
+        else if (soundType.GetType() == typeof(Rocks))
+            audioSource.clip = hit[id];
 
         audioSource.loop = loop;
         s.transform.position = position;
@@ -151,13 +161,13 @@ public class SoundManager : MonoBehaviour
             {
                 if (!combatAudio.isPlaying)
                     combatAudio.Play();
-                combatAudio.volume = t * (musicVolume * 0.75f);
-                ambienceAudio.volume = Mathf.Lerp(musicVolume, musicVolume * 0.75f, t);
+                combatAudio.volume = t * (musicVolume);
+                ambienceAudio.volume = Mathf.Lerp(musicVolume, 0.75f, t);
             }
             else
             {
-                combatAudio.volume = Mathf.Lerp(musicVolume * 0.75f, 0, t);
-                ambienceAudio.volume = t * musicVolume;
+                combatAudio.volume = Mathf.Lerp(musicVolume, 0, t);
+                ambienceAudio.volume = t;
             }
             yield return new WaitForEndOfFrame();
         }
@@ -209,7 +219,9 @@ public class SoundManager : MonoBehaviour
         SAVE_SWORD,
         SWING_1,
         SWING_2,
-        SWING_3
+        SWING_3,
+        FIRE_SWORD,
+        SHORT_YELL
     }
 
     public enum Music
@@ -225,5 +237,13 @@ public class SoundManager : MonoBehaviour
         HARD,
         SOFT,
         WOOD
+    }
+
+    public enum Rocks
+    {
+        ROCKS_1,
+        ROCKS_2,
+        ROCKS_3,
+        ROCKS_4
     }
 }

@@ -47,9 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundCuePrefab: {fileID: 4106424612570318043, guid: 09b0041a76e51924883640a6394add19,
     type: 3}
-  musicTransitionTime: 3
-  musicVolume: 0.5
-  combatAudio: {fileID: 0}
+  musicTransitionTime: 2
+  musicVolume: 0.4
   objects:
   - {fileID: 8300000, guid: a71f45a608948a945b148e588f118e5f, type: 3}
   - {fileID: 8300000, guid: 7956c47b5868003419d31664ac5b087a, type: 3}
@@ -69,19 +68,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 53e08b4b4aab4e54caeaff9993d3c170, type: 3}
   - {fileID: 8300000, guid: 2cd4e003457efaf4d9088c81e27786cd, type: 3}
   - {fileID: 8300000, guid: 88e54977dedda7846b29e60122f005aa, type: 3}
-  - {fileID: 8300000, guid: a5d914d91d474de49898bf8f01cc6852, type: 3}
+  - {fileID: 8300000, guid: f9d17101198c63843a54c62017c3a1ff, type: 3}
   boss:
   - {fileID: 8300000, guid: efe92388a3fe5fb428a687dafe38bbf7, type: 3}
-  - {fileID: 8300000, guid: f78125c6b6654954caf2c3a4c279ba9a, type: 3}
-  - {fileID: 8300000, guid: 0e8f1a04977bce1489b2fa228baf5e96, type: 3}
-  - {fileID: 8300000, guid: 0411ec5e2e22b4946b2bbfce38bfa179, type: 3}
+  - {fileID: 8300000, guid: 0a7ac1946e1985640b93af19eca0813d, type: 3}
+  - {fileID: 8300000, guid: 8759a7fb9eee9d0468e83437bcea2d92, type: 3}
+  - {fileID: 8300000, guid: beb1a91716ae31c46a5d0a2e8dfd9863, type: 3}
   - {fileID: 8300000, guid: 441fde390f9270b4883fbd9830ef9444, type: 3}
   player:
-  - {fileID: 8300000, guid: 4cbba9b0e550db94a8442937c6215fd4, type: 3}
   - {fileID: 8300000, guid: 009870f2264e1484383a494012ffd39b, type: 3}
+  - {fileID: 8300000, guid: 4cbba9b0e550db94a8442937c6215fd4, type: 3}
   - {fileID: 8300000, guid: bba099341bc20bb4aac218de006cabac, type: 3}
   - {fileID: 8300000, guid: 3daf6c36fe15b1443945c139c16b4f91, type: 3}
   - {fileID: 8300000, guid: 61949c8e1b076cb4ab9577f17f4e8a6d, type: 3}
+  - {fileID: 8300000, guid: 38f5644c93db2f742bbd9f07ee0a51dc, type: 3}
+  - {fileID: 8300000, guid: 970cedfa3181cef4dae2d46ca1601157, type: 3}
   music:
   - {fileID: 8300000, guid: c204156b4ae509f4fb9bcd7975d6222a, type: 3}
   - {fileID: 8300000, guid: 7f48859916a26fc499a1e4a6e02bb117, type: 3}
@@ -91,10 +92,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b6220adf287326f418f3fc613da5daff, type: 3}
   - {fileID: 8300000, guid: 5491a03aeb2a3fe40beacfc25b3f71da, type: 3}
   - {fileID: 8300000, guid: 2cf55c2c1e7babf4c9d0465c2c8a3974, type: 3}
+  rocks:
+  - {fileID: 8300000, guid: 4cd21e55c9a99454b8c76cc2c51d28df, type: 3}
+  - {fileID: 8300000, guid: 5138a72cec9b635418a75a976adfb97f, type: 3}
+  - {fileID: 8300000, guid: 327f783a742f2714fa2696aae53ebd43, type: 3}
+  - {fileID: 8300000, guid: ebf0292a8c42c694db211e26bbf18feb, type: 3}
   deathVoice: 000000000100000002000000
   damageVoice: 030000000400000005000000060000000700000008000000
   swing: 020000000300000004000000
   bossAttack: 010000000200000003000000
+  fallingRocks: 00000000010000000200000003000000
 --- !u!82 &6948447854700371291
 AudioSource:
   m_ObjectHideFlags: 0
@@ -109,7 +116,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -201,11 +208,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d70aa3f0c1b88c749ba6bd465e6a5a9c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7aa4de4e436516f4a9e32af50b999e88, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

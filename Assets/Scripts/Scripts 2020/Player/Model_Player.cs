@@ -604,7 +604,7 @@ public class Model_Player : MonoBehaviour
             SoundManager.instance.PlayRandom(SoundManager.instance.swing, transform.position, true);
         }
 
-        if(!_viewer.layerUpActive) CombatStateUp();
+        if(!_viewer.layerUpActive) CombatStateUp(false);
        
     }
      
@@ -699,8 +699,11 @@ public class Model_Player : MonoBehaviour
             item.Break();
     }
 
-    public void CombatStateUp()
+    public void CombatStateUp(bool causedByEnemy = true)
     {
+        if (causedByEnemy)
+            SoundManager.instance.CombatMusic(true);
+
         timeOnCombat = maxTimeOnCombat;
 
         if (!isInCombat) StartCoroutine(SetTimerCombat());
@@ -746,7 +749,7 @@ public class Model_Player : MonoBehaviour
     {       
         if (time >= chargeAttackTime && !chargeAttackCasted && !OnDamage)
         {
-            CombatStateUp();
+            CombatStateUp(false);
             ChargeAttackEvent();
             attackCombo = -1;
             resetAttackTimer = 0.7f;

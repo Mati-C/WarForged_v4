@@ -38,6 +38,7 @@ namespace Invector
             if (randomSource == null)
                 randomSource = new vFisherYatesRandom();
 
+            /*
             // find a random clip and play it.
             GameObject audioObject = null;
             if (audioSource != null)
@@ -65,6 +66,7 @@ namespace Invector
                 StepMark(footStepObject);
 
             source.PlayOneShot(audioClips[index]);
+            */
         }
 
         void StepMark(FootStepObject footStep)

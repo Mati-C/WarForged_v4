@@ -238,10 +238,12 @@ public class Viewer_Player : MonoBehaviour
 
         if (anim.GetInteger("AttackCombo") <= 0 && anim.GetFloat("ChargeAttack") < 0.2f && !anim.GetBool("FailAttack")) anim.SetBool("OnAttack", false);
 
-        if(!_player.flamesOn) normalTrail.SetActive(_player.onAttackAnimation);
+        normalTrail.SetActive(_player.onAttackAnimation && !_player.flamesOn);
 
-        if (_player.flamesOn) fireTrail.SetActive(_player.onAttackAnimation);
+        fireTrail.SetActive(_player.onAttackAnimation && _player.flamesOn);
 
+        if (_player.timeOnCombat < _player.maxTimeOnCombat * 0.5f)
+            SoundManager.instance.CombatMusic(false);
     }
 
 
@@ -303,11 +305,11 @@ public class Viewer_Player : MonoBehaviour
 
     public void PowerSwordActivated()
     {
+        SoundManager.instance.Play(Player.FIRE_SWORD, transform.position, false, 0.5f);
         swordFire.Play();
         StartCoroutine(DelayAnimationActivate("FireSword", true, 1));
         StartCoroutine(DecreesPowerBar());
         normalTrail.SetActive(false);
-    
     }
 
     public void PowerSwordDesactivated()
@@ -318,6 +320,8 @@ public class Viewer_Player : MonoBehaviour
 
     public void ChargeAttackAnim()
     {
+        SoundManager.instance.PlayRandom(SoundManager.instance.swing, transform.position, true);
+        SoundManager.instance.Play(Player.SHORT_YELL, transform.position, true);
         StartCoroutine(DelayAnimationActivate("ChargeAttackB", true, 0.2f));
         StartCoroutine(DecreesChargeAttackBar());
     }

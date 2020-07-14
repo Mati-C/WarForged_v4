@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,12 +6,15 @@ using UnityEngine.SceneManagement;
 public class LoadingScreen : MonoBehaviour
 {
     public static LoadingScreen instance;
-    public GameObject loadingScreen;
-    Image loadingBar;
+    Image loadingScreen;
+    public Sprite tutorialScreen;
+    public Sprite level1Screen;
+    public Sprite level2Screen;
 
     void Awake()
     {
         MakeSingleton();
+        loadingScreen = transform.GetChild(0).GetComponent<Image>();
     }
 
     void MakeSingleton()
@@ -33,16 +35,20 @@ public class LoadingScreen : MonoBehaviour
 
     IEnumerator LoadLevelAsync(int level)
     {
+        if (level == 1)
+            loadingScreen.sprite = tutorialScreen;
+        else if (level == 2)
+            loadingScreen.sprite = level1Screen;
+        else if (level == 3)
+            loadingScreen.sprite = level2Screen;
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(level);
-        loadingScreen.SetActive(true);
-        loadingBar = loadingScreen.transform.GetChild(0).GetComponent<Image>();
+        loadingScreen.gameObject.SetActive(true);
 
         while (!operation.isDone)
         {
-            float progress = operation.progress;
-            loadingBar.fillAmount = progress;
-            if (progress >= 1)
-                loadingScreen.SetActive(false);
+            if (operation.progress >= 1)
+                loadingScreen.gameObject.SetActive(false);
             yield return null;
         }
     }
