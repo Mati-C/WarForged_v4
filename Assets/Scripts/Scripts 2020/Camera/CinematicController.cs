@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using System;
 using System.Linq;
+using UnityEngine.PostProcessing;
 
 public class CinematicController : MonoBehaviour
 {
@@ -15,7 +15,8 @@ public class CinematicController : MonoBehaviour
     Viewer_Player _viewer;
     MeshRenderer _meshRenderPlayer;
     List<SkinnedMeshRenderer> _SkinMeshRenderPlayer = new List<SkinnedMeshRenderer>();
-
+    public GameObject playerHolder;
+    
     [Header("Tutorial Variables:")]
 
     public bool startTutoCinematic;
@@ -24,6 +25,7 @@ public class CinematicController : MonoBehaviour
     public CinemachineVirtualCamera cinematicTutorialCam;    
     public List<Transform> npcsTuto = new List<Transform>();
     public GameObject arrow;
+    public PostProcessingProfile levelTutoPost;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class CinematicController : MonoBehaviour
         _SkinMeshRenderPlayer.AddRange(_player.GetComponentsInChildren<SkinnedMeshRenderer>());
         _meshRenderPlayer = _player.GetComponentInChildren<MeshRenderer>();
         mainCamera = GameObject.Find("CM Main View").GetComponent<CinemachineFreeLook>();
+        playerHolder = GameObject.Find("Player Holder");
         _fade = FindObjectOfType<FadeLevel>();
 
         if (startTutoCinematic)
@@ -54,7 +57,8 @@ public class CinematicController : MonoBehaviour
 
     IEnumerator TutorialCinematic()
     {
-       
+        levelTutoPost.vignette.enabled = true;
+        playerHolder.gameObject.SetActive(false);
         foreach (var item in _SkinMeshRenderPlayer)
         {
             item.enabled = false;
@@ -110,6 +114,7 @@ public class CinematicController : MonoBehaviour
         _fade.FadeIn(false);
         yield return new WaitForSeconds(4);
         _fade.FadeOut(false);
+        levelTutoPost.vignette.enabled = false;
         leaderRB.gameObject.SetActive(false);
 
         foreach (var item in _SkinMeshRenderPlayer)
@@ -123,6 +128,7 @@ public class CinematicController : MonoBehaviour
         _viewer.anim.SetBool("TutoKnocked", false);
         _viewer.anim.SetBool("Idle", true);
         arrow.SetActive(true);
+        playerHolder.gameObject.SetActive(true);
         onCinematic = false;
     }
 }

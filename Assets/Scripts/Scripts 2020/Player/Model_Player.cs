@@ -648,7 +648,14 @@ public class Model_Player : MonoBehaviour
 
         if (roots.Count() > 0 )
         {
-            if (flamesOn) foreach (var item in roots) item.StartDissolve();
+            if (flamesOn)
+
+                foreach (var item in roots)
+                {
+                    if(!item.tutoRoot) item.StartDissolve();
+
+                    else FailAttack("Crate");
+                }
 
             else FailAttack("Crate");
         }
@@ -792,6 +799,7 @@ public class Model_Player : MonoBehaviour
         StartCoroutine(OnActionState(1));
         while(fireSwordCurrentTime < fireSword.fireSwordTime)
         {
+            CombatStateUp();
             fireSwordCurrentTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

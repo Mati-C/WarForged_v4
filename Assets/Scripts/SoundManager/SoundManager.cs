@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
 
     bool aux;
 
-    [NamedArray(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK" })]
+    [NamedArray(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK", "ROOT_BURNED" })]
     public AudioClip[] objects;
 
     [NamedArray(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "FIREBALL"})]
@@ -187,7 +187,8 @@ public class SoundManager : MonoBehaviour
         IRON_BARS,
         KEY_COLLECTED,
         JUGS_BREAK,
-        BARREL_BREAK
+        BARREL_BREAK,
+        ROOT_BURNED
     }
 
     public enum Entity

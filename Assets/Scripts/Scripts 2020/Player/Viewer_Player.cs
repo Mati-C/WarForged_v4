@@ -165,13 +165,12 @@ public class Viewer_Player : MonoBehaviour
         lifeBar.material.SetFloat("_BeatRate", 0);
         lifeBar.material.SetFloat("_BeatColorIntensity", 0);
         powerBar.material.SetFloat("_InsideGlowOpacity", 0);
+        swordLevel = GameObject.Find("Sword Level").GetComponent<Text>();
+        swordExp = GameObject.Find("Sword Exp").GetComponent<Text>();
     }
 
     void Start()
-    {
-        swordLevel = GameObject.Find("Sword Level").GetComponent<Text>();
-        swordExp = GameObject.Find("Sword Exp").GetComponent<Text>();
-
+    {       
         var tempColor = swordExp.color;
         tempColor.a = 0;
         swordExp.color = tempColor;

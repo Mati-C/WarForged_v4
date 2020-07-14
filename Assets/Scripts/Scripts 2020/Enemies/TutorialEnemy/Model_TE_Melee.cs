@@ -109,38 +109,10 @@ public class Model_TE_Melee : ClassEnemy
         patrol.OnUpdate += () =>
         {
 
-            var distancePH_patrol = Vector3.Distance(transform.position, patrolPosition);
-
-            if (portal)
-            {
-
-                if (distancePH_patrol > 0.5f && portalOrder && _TM.attacksTutorialFinish)
-                {
-                    WalkEvent();
-                    MoveToTarget(patrolPosition);
-                }
-
-                if (distancePH_patrol <= 0.5f && portalOrder && _TM.attacksTutorialFinish)
-                {
-                    portalOrder = false;
-                    IdleEvent();
-                    Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
-                }
-            }
-
-            if (distancePH_patrol > 0.5f && !portalOrder && _TM.attacksTutorialFinish)
-            {
-                WalkEvent();
-                MoveToTarget(patrolPosition);
-            }
-
-            if (distancePH_patrol <= 0.5f && !portalOrder && _TM.attacksTutorialFinish)
-            {
-                IdleEvent();
-                Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
-            }
+            IdleEvent();
+            var dir = (player.transform.position - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
 
             if (canPersuit && !PlayerOnGrid() && _TM.attacksTutorialFinish) myFSM_EventMachine.ChangeState(persuit);
         };

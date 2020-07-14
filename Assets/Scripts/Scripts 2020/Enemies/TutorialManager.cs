@@ -8,6 +8,7 @@ using TMPro;
 public class TutorialManager : MonoBehaviour
 {
     Model_Player _player;
+    Viewer_Player _view;
     public Model_TE_Melee _te;
     public Model_E_Mage mage1;
     public List<ClassEnemy> secondEnemies = new List<ClassEnemy>();
@@ -59,6 +60,7 @@ public class TutorialManager : MonoBehaviour
     {
         _player = FindObjectOfType<Model_Player>();
         _te = FindObjectOfType<Model_TE_Melee>();
+        _view = FindObjectOfType<Viewer_Player>();
 
         _player.MakeDamageTutorialEvent += PlusHitCounts;
         _player.DefendTutorialEvent += PlusDefendCounts;
@@ -72,6 +74,7 @@ public class TutorialManager : MonoBehaviour
         _tutorialText.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
         _arrow = GameObject.Find("PointerPrefab");
         _player.chargeAttackCasted = true;
+      
 
     }
 
@@ -105,12 +108,13 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         _player.fireEnergy = _player.fireSword.energyToUseFireSword;
-        _player.HitEnemyEvent(_player.fireSword.energyToUseFireSword);
+        
         _tutorialText.faceColor = colorIncomplite;
         _tutorialText.outlineColor = colorIncompliteOutline;
         _tutorialText.text = "When the Ability Bar is full, press Q to use the Fire Sword and kill the enemy";
         while(!_player.flamesOn)
-        { 
+        {
+            _view.powerBar.fillAmount = 1;
             yield return new WaitForEndOfFrame();
         }
         _te.life = 50;
@@ -216,6 +220,7 @@ public class TutorialManager : MonoBehaviour
         var rune = FindObjectOfType<Portal_Rune>();
 
         var root2 = objective6.GetComponent<Roots>();
+        root2.tutoRoot = false;
 
         while(!root2.burned) yield return new WaitForEndOfFrame();
 
@@ -281,6 +286,7 @@ public class TutorialManager : MonoBehaviour
         _tutorialText.GetComponent<TextTutorial>().target = objective4;
         _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(1, 1, 0.5f);
         var root = objective4.GetComponent<Roots>();
+        root.tutoRoot = false;
         while(!root.burned)
         {
             _player.fireSwordCurrentTime = 1;
@@ -397,7 +403,7 @@ public class TutorialManager : MonoBehaviour
         {
             _player.chargeAttackAmount = 0;
             _player.fireEnergy = 0;
-            _player.HitEnemyEvent(0);
+            _view.powerBar.fillAmount = 0;
             yield return new WaitForEndOfFrame();
         }
     }

@@ -48,7 +48,7 @@ MonoBehaviour:
   soundCuePrefab: {fileID: 4106424612570318043, guid: 09b0041a76e51924883640a6394add19,
     type: 3}
   musicTransitionTime: 2
-  musicVolume: 0.4
+  musicVolume: 0.3
   objects:
   - {fileID: 8300000, guid: a71f45a608948a945b148e588f118e5f, type: 3}
   - {fileID: 8300000, guid: 7956c47b5868003419d31664ac5b087a, type: 3}
@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d8fd010a56481924fb71689654a8afdd, type: 3}
   - {fileID: 8300000, guid: 1815680fc21bd8841bcb123235a47d9e, type: 3}
   - {fileID: 8300000, guid: c6a94326f10e5b747b5d6d1ec76087e2, type: 3}
+  - {fileID: 8300000, guid: d098e2a48536793448401d575bed852c, type: 3}
   entity:
   - {fileID: 8300000, guid: f1e87da66cf948c449065ae7199d2609, type: 3}
   - {fileID: 8300000, guid: c130fbcc14bb5694ca0aeadfbd24ec8a, type: 3}
