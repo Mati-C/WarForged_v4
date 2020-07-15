@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 4608345263016880088}
   - component: {fileID: 4480786940444927140}
   - component: {fileID: 8470136999746328247}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: BorderStair (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 7951293838016114953}
   - component: {fileID: 4600092480621326745}
   - component: {fileID: 778676815828220313}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: CameraNoCollision (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 2575112353493027416}
   - component: {fileID: 8264024331114599580}
   - component: {fileID: 7577032101657521979}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Stair (short)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   - component: {fileID: 7389319642620168644}
   - component: {fileID: 5616570220147725890}
   - component: {fileID: 8962847770928691182}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: CameraNoCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 4999054892523819652}
   - component: {fileID: 8263139737311802410}
   - component: {fileID: 7451515730895810504}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: BorderStair (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1592,7 +1592,7 @@ GameObject:
   - component: {fileID: 7753288784470639222}
   - component: {fileID: 8446987846664934925}
   - component: {fileID: 7206560298680877484}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: BorderStair (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1684,7 +1684,7 @@ GameObject:
   - component: {fileID: 2528556749546514464}
   - component: {fileID: 5519713053987817145}
   - component: {fileID: 4606538563123296863}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: BorderStair (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2420,7 +2420,7 @@ GameObject:
   - component: {fileID: 8588250697780807254}
   - component: {fileID: 1111663085063851183}
   - component: {fileID: 1496642422448540642}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: BorderStair (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2788,7 +2788,7 @@ GameObject:
   - component: {fileID: 295076622018813410}
   - component: {fileID: 8521288969092693673}
   - component: {fileID: 2986824968355731130}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: BorderStair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
