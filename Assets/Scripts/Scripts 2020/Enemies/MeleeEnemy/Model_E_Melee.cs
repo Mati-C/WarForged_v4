@@ -130,13 +130,13 @@ public class Model_E_Melee : ClassEnemy
                     }
                 }
 
-                if (distancePH_patrol > 0.7f && !portalOrder && !onPlace)
+                if (distancePH_patrol > 0.7f && !portalOrder)
                 {
                     WalkEvent();
                     MoveToTarget(patrolPosition);
                 }
 
-                if (distancePH_patrol < 1.2f && !portalOrder && !onPlace)
+                if (distancePH_patrol < 1.2f && !portalOrder)
                 {
                     IdleEvent();
                     Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);

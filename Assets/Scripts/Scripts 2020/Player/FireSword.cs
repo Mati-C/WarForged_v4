@@ -140,17 +140,16 @@ public class FireSword : MonoBehaviour
 
             if (expEarned >= expForEachLevel[fireSwordLevel] && fireSwordLevel < 9)
             {
-                fireSwordLevel++;
+                expEarned -= expForEachLevel[fireSwordLevel];
+                fireSwordLevel++;              
                 int level = fireSwordLevel + 1;
-                _viewer.swordLevel.text = "Level-" + level;
-                expEarned = 0;
+                _viewer.swordLevel.text = "Level-" + level;               
                 LevelUpdates[fireSwordLevel]();
             }
 
             if (currentExp > 0)
             {
                 onExpUpdate = false;
-                currentExp = 0;
                 StartCoroutine(FireSwordExpUpdate());
             }
 

@@ -111,7 +111,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
             int expInt = (int)_fireSword.expEarned;
 
-            expText.text = expInt + "-Exp / " + _fireSword.expForEachLevel[_fireSword.fireSwordLevel + 1] + "-Exp";
+            expText.text = expInt + "-Exp / " + _fireSword.expForEachLevel[_fireSword.fireSwordLevel] + "-Exp";
 
             int l = _fireSword.fireSwordLevel + 1;
 

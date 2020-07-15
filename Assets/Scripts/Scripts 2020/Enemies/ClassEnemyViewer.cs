@@ -79,7 +79,9 @@ public abstract class ClassEnemyViewer : MonoBehaviour
         text.SetExp(exp);
     }
 
-    IEnumerator ChargeExpFireText(float exp)
+
+
+    public IEnumerator ChargeExpFireText(float exp)
     {
         float t = 0.5f;
         float newExp = _sowrd.currentExp;
@@ -99,7 +101,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
         StartCoroutine(PushCorrutine());
     }
 
-    IEnumerator PushCorrutine()
+    public IEnumerator PushCorrutine()
     {
         anim.SetBool("Knocked", true);
         yield return new WaitForSeconds(3f);
@@ -113,7 +115,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
         else burnParticle.Stop();
     }
 
-    IEnumerator FollowEnemy(PopText text)
+    public IEnumerator FollowEnemy(PopText text)
     {
         while (text != null)
         {
@@ -123,7 +125,7 @@ public abstract class ClassEnemyViewer : MonoBehaviour
         }
     }
 
-    IEnumerator FollowEnemyExp(PopExpText text)
+    public IEnumerator FollowEnemyExp(PopExpText text)
     {
         while (text != null)
         {

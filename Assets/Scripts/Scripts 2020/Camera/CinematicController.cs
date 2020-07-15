@@ -46,6 +46,7 @@ public class CinematicController : MonoBehaviour
 
     [Header("Level-2 Variables:")]
     public bool cinematicLevel2;
+    public Animator barsAnimators;
     public CinemachineVirtualCamera cinematicBossCam;
     public CinemachineVirtualCamera cinematicBarCam1;
     public CinemachineVirtualCamera cinematicBarCam2;
@@ -130,6 +131,48 @@ public class CinematicController : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         cinematicBossCam.Priority = 0;
+        mainCamera.Priority = 1;
+        postProcess.vignette.enabled = false;
+        playerHolder.gameObject.SetActive(true);
+        _player.onCinematic = false;
+        onCinematic = false;
+
+        while(boss.life >0)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        bool enemiesAlive = false;
+        var enemies = new List<ClassEnemy>();
+        enemies.AddRange(boss.wave1);
+        enemies.AddRange(boss.wave2);
+
+        while(!enemiesAlive)
+        {
+            int count =0;
+            foreach (var item in enemies)
+            {
+                if (item.life <= 0) count++;
+            }
+            if (count >= enemies.Count) enemiesAlive = true;
+            yield return new WaitForEndOfFrame();
+        }
+
+        _viewer.anim.SetBool("Walk", false);
+        _viewer.anim.SetBool("Run", false);
+        _viewer.anim.SetBool("Idle", true);
+        _player.run = false;
+        postProcess.vignette.enabled = true;
+        playerHolder.gameObject.SetActive(false);
+        _player.onCinematic = true;
+        onCinematic = true;
+        cinematicBarCam2.Priority = 1;
+        mainCamera.Priority = 0;
+        barsAnimators.SetBool("Activate", true);
+
+        yield return new WaitForSeconds(3);
+
+        cinematicBarCam2.Priority = 0;
         mainCamera.Priority = 1;
         postProcess.vignette.enabled = false;
         playerHolder.gameObject.SetActive(true);
@@ -250,6 +293,8 @@ public class CinematicController : MonoBehaviour
         playerHolder.gameObject.SetActive(true);
         _player.onCinematic = false;
         onCinematic = false;
+        boss.GetComponent<Viewerl_B_Ogre1>().CreateExpPopTextScapeBoss(boss.exp);
+        boss.playerFireSowrd.SwordExp(boss.exp);
     }
 
     IEnumerator Level_1BossCinematic()

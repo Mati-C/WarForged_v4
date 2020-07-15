@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Sound;
 
 public class Model_B_Ogre1 : ClassEnemy
 {
@@ -121,6 +122,7 @@ public class Model_B_Ogre1 : ClassEnemy
         var persuit = new N_FSM_State("PERSUIT");
         var patrol = new N_FSM_State("PATROL");
         var scape = new N_FSM_State("SCAPE");
+        var die = new N_FSM_State("DIE");
 
         patrolState = patrol;
         IdleEvent += _view.AnimIdle;
@@ -132,6 +134,7 @@ public class Model_B_Ogre1 : ClassEnemy
         LightAttackEvent += _view.AnimLightAttack;
         HeavyAttackEvent += _view.AnimHeavyAttack;
         ComboAttackEvent += _view.AnimComboAttack;
+        DieEvent += _view.AnimDie;
 
 
         scape.OnEnter += () =>
@@ -181,6 +184,8 @@ public class Model_B_Ogre1 : ClassEnemy
             }
 
             if(canPersuit && !portalOrder && !_onTaunt) myFSM_EventMachine.ChangeState(persuit);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         patrol.OnExit += () =>
@@ -188,8 +193,6 @@ public class Model_B_Ogre1 : ClassEnemy
             var dir = (player.transform.position - transform.position).normalized;
             dir.y = 0;
             transform.forward = dir;
-            TauntEvent();
-            StartCoroutine(TauntCorrutine());
         };
 
         persuit.OnEnter += () =>
@@ -199,6 +202,11 @@ public class Model_B_Ogre1 : ClassEnemy
 
         persuit.OnUpdate += () =>
         {
+            var d = Vector3.Distance(player.transform.position, transform.position);
+
+            if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+            if (d >2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
+
             player.CombatStateUp();
             if (!_onTaunt)
             {
@@ -209,6 +217,8 @@ public class Model_B_Ogre1 : ClassEnemy
             if(canSurround) myFSM_EventMachine.ChangeState(surround);
 
             if(canScape) myFSM_EventMachine.ChangeState(scape);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         persuit.OnExit += () =>
@@ -226,6 +236,8 @@ public class Model_B_Ogre1 : ClassEnemy
 
         surround.OnUpdate += () =>
         {
+            var d = Vector3.Distance(player.transform.position, transform.position);
+           
             player.CombatStateUp();
 
             surroundTimer -= Time.deltaTime;
@@ -248,6 +260,8 @@ public class Model_B_Ogre1 : ClassEnemy
             {
                 if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkRightEvent();
+                if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+                if (d > 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
@@ -261,6 +275,8 @@ public class Model_B_Ogre1 : ClassEnemy
             {
                 if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkLeftEvent();
+                if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+                if (d > 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
@@ -283,12 +299,15 @@ public class Model_B_Ogre1 : ClassEnemy
             if(canPersuit && !canSurround && !_onTaunt) myFSM_EventMachine.ChangeState(persuit);
 
             if (canScape) myFSM_EventMachine.ChangeState(scape);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         surround.OnExit += () =>
         {
             surroundTimer = 1f;
             viewDistanceSurround -= 1;
+            if (!_view.onSmashAttack) playerCamera.CameraShake(0, 0);
         };
 
         attack.OnEnter += () =>
@@ -300,9 +319,13 @@ public class Model_B_Ogre1 : ClassEnemy
         {
             player.CombatStateUp();
 
+            var d = Vector3.Distance(player.transform.position, transform.position);
+
+            if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+            if (d > 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
+
             if (!canAttack && !onAttackAnimation && !_onTaunt && !attackFinish)
             {
-                var d = Vector3.Distance(transform.position, player.transform.position);
                 if (d > 0.5f) WalkEvent();
 
                 Vector3 _dir = Vector3.zero;
@@ -349,14 +372,19 @@ public class Model_B_Ogre1 : ClassEnemy
             if(canSurround && attackFinish) myFSM_EventMachine.ChangeState(surround);
 
             if (canScape) myFSM_EventMachine.ChangeState(scape);
+
+            if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
         attack.OnExit += () =>
         {
             attackFinish = false;
+            if (!_view.onSmashAttack) playerCamera.CameraShake(0, 0);
         };
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);
+
+        
     }
 
     
@@ -425,7 +453,7 @@ public class Model_B_Ogre1 : ClassEnemy
 
     public void MakeLightDamage()
     {
-        if(canAttack) player.GetDamage(lightAttackDamage, transform, Model_Player.DamageType.Light);
+        if(canAttack) player.GetDamage(lightAttackDamage, transform, Model_Player.DamageType.Heavy);
     }
 
     public void MakeComboDamage()
@@ -436,17 +464,20 @@ public class Model_B_Ogre1 : ClassEnemy
             {
                 case 0:
                     _comboAmount++;
-                    player.GetDamage(combo1AttackDamage, transform, Model_Player.DamageType.Light);
+                    player.GetDamage(combo1AttackDamage, transform, Model_Player.DamageType.Heavy);
+                    SoundManager.instance.Play(Boss.MONSTER_ATTACK1, transform.position, true, 1.3f);
                     break;
 
                 case 1:
                     _comboAmount++;
-                    player.GetDamage(combo2AttackDamage, transform, Model_Player.DamageType.Light);
+                    player.GetDamage(combo2AttackDamage, transform, Model_Player.DamageType.Heavy);
+                    SoundManager.instance.Play(Boss.MONSTER_ATTACK2, transform.position, true, 1.3f);
                     break;
 
                 case 2:
                     _comboAmount = 0;
-                    player.GetDamage(combo3AttackDamage, transform, Model_Player.DamageType.Light);
+                    player.GetDamage(combo3AttackDamage, transform, Model_Player.DamageType.Heavy);
+                    SoundManager.instance.Play(Boss.MONSTER_ATTACK3, transform.position, true, 1.3f);
                     break;
             }
         }
@@ -454,11 +485,20 @@ public class Model_B_Ogre1 : ClassEnemy
 
     public override void GetDamage(float d, Model_Player.DamageType t)
     {
-        if (!_onTaunt)
+
+        if (!_onTaunt && life >0)
         {
             GetHitEvent();
             life -= d;
             _view.CreatePopText(d);
+            if (player.flamesOn) StartBurning();
+
+            if (life <= 0)
+            {
+                _view.CreateExpPopText(exp);
+                playerFireSowrd.SwordExp(exp);
+                DieEvent();
+            }
         }
 
         else player.FailAttack("");
@@ -473,6 +513,7 @@ public class Model_B_Ogre1 : ClassEnemy
             foreach (var item in wave1)
             {
                 item.gameObject.SetActive(true);
+                item.Resume();
                 item.dontMove = false;
             }
         }
@@ -488,6 +529,7 @@ public class Model_B_Ogre1 : ClassEnemy
             foreach (var item in wave2)
             {
                 item.gameObject.SetActive(true);
+                item.Resume();
                 item.dontMove = false;
             }
         }

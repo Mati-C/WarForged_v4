@@ -161,13 +161,13 @@ public class Model_E_Shield : ClassEnemy
                     }
                 }
 
-                if (distancePH_patrol > 0.6f && !portalOrder && !onPlace)
+                if (distancePH_patrol > 0.6f && !portalOrder)
                 {
                     WalkEvent();
                     MoveToTarget(patrolPosition);
                 }
 
-                if (distancePH_patrol <= 1.2f && !portalOrder && !onPlace)
+                if (distancePH_patrol <= 1.2f && !portalOrder)
                 {
                     IdleEvent();
                     Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);

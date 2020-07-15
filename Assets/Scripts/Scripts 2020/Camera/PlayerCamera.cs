@@ -10,6 +10,7 @@ public class PlayerCamera : MonoBehaviour
     [Header("Cameras:")]
     public CinemachineFreeLook mainCamera;
     public CinemachineFreeLook lockOnCamera;
+    CinemachineBasicMultiChannelPerlin _noise;
 
     CinemachineComposer middleRig;
     CinemachineComposer topRig;
@@ -47,6 +48,7 @@ public class PlayerCamera : MonoBehaviour
         middleRig = mainCamera.GetRig(1).GetCinemachineComponent<CinemachineComposer>();
         topRig = mainCamera.GetRig(0).GetCinemachineComponent<CinemachineComposer>();
         bottonRig = mainCamera.GetRig(2).GetCinemachineComponent<CinemachineComposer>();
+        _noise = mainCamera.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
   
     void Update()
@@ -59,6 +61,12 @@ public class PlayerCamera : MonoBehaviour
         if (onCombat) StartCoroutine(CombatCameraView());
 
         else StartCoroutine(NormalCameraView());
+    }
+
+    public void CameraShake(float amplitude, float frequency)
+    {
+        _noise.m_AmplitudeGain = amplitude;
+        _noise.m_FrequencyGain = frequency;
     }
 
     public void LockOnCam()

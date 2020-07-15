@@ -19,6 +19,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public Rigidbody rb;
     public IA_CombatManager ia_Manager;
     public FireSword playerFireSowrd;
+    public PlayerCamera playerCamera;
 
     [Header("EnemyRoom ID:")]
 
@@ -87,7 +88,6 @@ public abstract class ClassEnemy : MonoBehaviour
     [Header("EnemyClass Patrol Variables:")]
     public Vector3 patrolPosition;
     public Vector3 patrolForward;
-    public bool onPlace;
 
 
     [Header("Enemy GetHit Variables:")]
@@ -282,6 +282,7 @@ public abstract class ClassEnemy : MonoBehaviour
         patrolPosition = transform.position;
         patrolForward = transform.forward;
         patrolForward.y = 0;
+        playerCamera = FindObjectOfType<PlayerCamera>();
 
         _startDistanceToPersuit = viewDistancePersuit;
         _startAngleToPersuit = angleToPersuit;
