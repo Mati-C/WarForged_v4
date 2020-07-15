@@ -315,6 +315,8 @@ public class Controller_Player
 
             if (Input.GetKeyDown(KeyCode.Tab)) _model.ChangeTarget();
 
+            if (Input.GetKeyDown(KeyCode.Escape)) _viewer.TogglePauseMenu();
+
         }
     }
 }

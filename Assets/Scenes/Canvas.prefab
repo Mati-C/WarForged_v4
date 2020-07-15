@@ -550,12 +550,12 @@ RectTransform:
   - {fileID: 901550102217751956}
   - {fileID: 7894337524078427800}
   - {fileID: 901550102391109072}
-  - {fileID: 4087447093962399717}
   - {fileID: 5238617640174611648}
   - {fileID: 901550102350119352}
-  - {fileID: 3462102247661833940}
   - {fileID: 523241140821631210}
   - {fileID: 901550103571084348}
+  - {fileID: 4087447093962399717}
+  - {fileID: 3462102247661833940}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -923,7 +923,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 901550102120366637}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1204,7 +1204,6 @@ MonoBehaviour:
   CheckTransform: {fileID: 0}
   firstCheck: {fileID: 0}
   player: {fileID: 0}
-  cam: {fileID: 0}
   pauseMenu: {fileID: 4087447093962399716}
   buttonRespawn: {fileID: 0}
   Starting: 0
@@ -1626,7 +1625,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 901550102120366637}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2115,7 +2114,7 @@ RectTransform:
   m_Children:
   - {fileID: 4087447094076059186}
   m_Father: {fileID: 901550102120366637}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2617,7 +2616,7 @@ Transform:
   - {fileID: 5501638863910093912}
   - {fileID: 3710486330011332363}
   m_Father: {fileID: 901550102120366637}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6381712172032533098
 GameObject:
@@ -2750,7 +2749,7 @@ PrefabInstance:
     - target: {fileID: 3525338097931171273, guid: f273ebbbd9720724c87159e4e2aefd39,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3525338097931171273, guid: f273ebbbd9720724c87159e4e2aefd39,
         type: 3}
@@ -2816,6 +2815,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702687393159936964, guid: f273ebbbd9720724c87159e4e2aefd39,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f273ebbbd9720724c87159e4e2aefd39, type: 3}
@@ -3342,6 +3346,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fe94a9cf9641264381c4974399726e2, type: 3}
+--- !u!224 &4709491150639353016 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5609666771631253653, guid: 4fe94a9cf9641264381c4974399726e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 901550103961068589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7894337524078427800 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6993141531992119989, guid: 4fe94a9cf9641264381c4974399726e2,
@@ -3351,12 +3361,6 @@ RectTransform:
 --- !u!224 &6081135724883190167 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6405943524504192442, guid: 4fe94a9cf9641264381c4974399726e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 901550103961068589}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4709491150639353016 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5609666771631253653, guid: 4fe94a9cf9641264381c4974399726e2,
     type: 3}
   m_PrefabInstance: {fileID: 901550103961068589}
   m_PrefabAsset: {fileID: 0}
@@ -3410,7 +3414,7 @@ PrefabInstance:
     - target: {fileID: 1364591900416036554, guid: b04f49e06be699b4e8602eb8c470f8a5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1364591900416036554, guid: b04f49e06be699b4e8602eb8c470f8a5,
         type: 3}

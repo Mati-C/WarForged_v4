@@ -23,7 +23,7 @@ public class ChangeLevelManager : MonoBehaviour
             StartCoroutine(WaitingForChange());
         }
 
-        if(changeSceneInstant) SceneManager.LoadScene(sceneID);
+        if (changeSceneInstant) LoadingScreen.instance.LoadLevel(sceneID);
     }
 
     private void OnTriggerEnter(Collider c)
@@ -40,6 +40,6 @@ public class ChangeLevelManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        SceneManager.LoadScene(sceneID);
+        LoadingScreen.instance.LoadLevel(sceneID);
     }
 }

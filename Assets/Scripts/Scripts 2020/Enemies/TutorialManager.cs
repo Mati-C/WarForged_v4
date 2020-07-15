@@ -135,7 +135,7 @@ public class TutorialManager : MonoBehaviour
         _objective = objective2;
         _tutorialText.GetComponent<TextTutorial>().target = objective2;
         _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0,2,0);
-        _tutorialText.text = "These sources will serve as checkpoints, where you recover life and exchange the sword experience to level it up and improve it";
+        _tutorialText.text = "These sources will serve as checkpoints, where you recover life and exchange the sword experience to improve it";
         fireSword = true;
     }
 

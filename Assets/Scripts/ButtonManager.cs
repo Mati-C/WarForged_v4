@@ -10,7 +10,6 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
     public Transform CheckTransform;
     public Transform firstCheck;
     public Model player;
-    public CamController cam;
     public GameObject pauseMenu;
     public GameObject buttonRespawn;
     bool _GameOver;
@@ -36,8 +35,6 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
 
     public void Awake()
     {
-        cam = FindObjectOfType<CamController>();
-
         enemies.AddRange(FindObjectsOfType<EnemyEntity>());
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -45,10 +42,6 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             controlsMat = controls.material;
-        }
-        else
-        {
-            cam = FindObjectOfType<CamController>();
         }
     }
     public void Update()
@@ -80,7 +73,6 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         pause = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
-        cam.blockMouse = true;
     }
 
     public void Restart()
@@ -220,7 +212,6 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         startRespawn = false;
         StartCoroutine(Fade());
 
-        cam.blockMouse = true;
         player.fadeTimer = 0;
 
         foreach (var item in enemies)

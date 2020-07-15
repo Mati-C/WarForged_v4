@@ -35,15 +35,17 @@ public class LoadingScreen : MonoBehaviour
 
     IEnumerator LoadLevelAsync(int level)
     {
+        loadingScreen.gameObject.SetActive(true);
         if (level == 1)
             loadingScreen.sprite = tutorialScreen;
         else if (level == 2)
             loadingScreen.sprite = level1Screen;
         else if (level == 3)
             loadingScreen.sprite = level2Screen;
+        else
+            loadingScreen.color = Color.black;
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(level);
-        loadingScreen.gameObject.SetActive(true);
 
         while (!operation.isDone)
         {

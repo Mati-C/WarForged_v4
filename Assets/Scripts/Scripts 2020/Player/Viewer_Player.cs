@@ -28,6 +28,7 @@ public class Viewer_Player : MonoBehaviour
     public Text swordLevel;
     public Text swordExp;
     public float timertAlphaSwordExp;
+    public GameObject pauseMenu;
 
     [Header("Player Bones:")]
 
@@ -59,9 +60,9 @@ public class Viewer_Player : MonoBehaviour
 
     IEnumerator PlayerAlphaExp()
     {
-        while(true)
+        while (true)
         {
-            if(timertAlphaSwordExp>0)
+            if (timertAlphaSwordExp > 0)
             {
                 var tempColor = swordExp.color;
                 tempColor.a = 1;
@@ -69,7 +70,7 @@ public class Viewer_Player : MonoBehaviour
                 timertAlphaSwordExp -= Time.deltaTime;
             }
 
-            if(timertAlphaSwordExp <=0)
+            if (timertAlphaSwordExp <= 0)
             {
                 var tempColor = swordExp.color;
                 tempColor.a -= Time.deltaTime * 3;
@@ -83,7 +84,7 @@ public class Viewer_Player : MonoBehaviour
     IEnumerator DamageTimerAnim()
     {
         while (true)
-        {            
+        {
 
             if (_player.onDamageTime <= 0)
             {
@@ -98,17 +99,17 @@ public class Viewer_Player : MonoBehaviour
     IEnumerator DelayAnimationActivate(string animName, bool r, float time)
     {
         anim.SetBool(animName, r);
-        yield return new WaitForSeconds(time);       
+        yield return new WaitForSeconds(time);
         anim.SetBool(animName, !r);
     }
 
     public IEnumerator DelayActivateLayers()
     {
-        while(true)
+        while (true)
         {
             timeLayerUp -= Time.deltaTime;
 
-            if(timeLayerUp >0)
+            if (timeLayerUp > 0)
             {
                 anim.SetLayerWeight(0, 1);
                 anim.SetLayerWeight(1, 1);
@@ -124,19 +125,19 @@ public class Viewer_Player : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-        
+
 
     }
 
     IEnumerator LockOnParticlePosition()
     {
-        while(_lockParticleUp)
+        while (_lockParticleUp)
         {
             Vector2 screenPos = _mainCam.WorldToScreenPoint(_player.targetEnemy.transform.position + Vector3.up);
             lockImage.transform.position = screenPos;
             yield return new WaitForEndOfFrame();
         }
-      
+
     }
 
     IEnumerator DelayBone()
@@ -155,8 +156,8 @@ public class Viewer_Player : MonoBehaviour
         powerBar = GameObject.Find("PowerBar").GetComponent<Image>();
         chargeAttackBar = GameObject.Find("Stamina").GetComponent<Image>();
         lifeBar = GameObject.Find("LifeBar").GetComponent<Image>();
-        tempLifeBar = GameObject.Find("TempLifeBar").GetComponent<Image>();       
-        normalTrail = GameObject.Find("Vfx_SwordTrail");       
+        tempLifeBar = GameObject.Find("TempLifeBar").GetComponent<Image>();
+        normalTrail = GameObject.Find("Vfx_SwordTrail");
         fireTrail.gameObject.SetActive(false);
         swordFire.Stop();
         powerBar.fillAmount = 0;
@@ -170,7 +171,7 @@ public class Viewer_Player : MonoBehaviour
     }
 
     void Start()
-    {       
+    {
         var tempColor = swordExp.color;
         tempColor.a = 0;
         swordExp.color = tempColor;
@@ -185,7 +186,7 @@ public class Viewer_Player : MonoBehaviour
 
     public void ChangeLayer(bool b)
     {
-        if(b)
+        if (b)
         {
             anim.SetLayerWeight(0, 0);
             anim.SetLayerWeight(1, 1);
@@ -225,7 +226,7 @@ public class Viewer_Player : MonoBehaviour
         anim.SetFloat("VelZ", velocityZ);
         anim.SetFloat("Mouse X", axisX);
 
-        if(!_player.chargeAttackCasted) anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
+        if (!_player.chargeAttackCasted) anim.SetFloat("ChargeAttack", _player.chargeAttackAmount);
 
         else anim.SetFloat("ChargeAttack", 0);
 
@@ -237,11 +238,11 @@ public class Viewer_Player : MonoBehaviour
 
         if (anim.GetInteger("AttackCombo") <= 0 && anim.GetFloat("ChargeAttack") < 0.2f && !anim.GetBool("FailAttack")) anim.SetBool("OnAttack", false);
 
-        normalTrail.SetActive(_player.onAttackAnimation && !_player.flamesOn);
+        normalTrail.SetActive((_player.onAttackAnimation || _player.onAction) && !_player.flamesOn);
 
-        fireTrail.SetActive(_player.onAttackAnimation && _player.flamesOn);
+        fireTrail.SetActive((_player.onAttackAnimation || _player.onAction) && _player.flamesOn);
 
-        if (_player.timeOnCombat < _player.maxTimeOnCombat * 0.5f)
+        if (_player.timeOnCombat < _player.maxTimeOnCombat * 0.55f)
             SoundManager.instance.CombatMusic(false);
     }
 
@@ -304,7 +305,7 @@ public class Viewer_Player : MonoBehaviour
 
     public void PowerSwordActivated()
     {
-        SoundManager.instance.Play(Player.FIRE_SWORD, transform.position, false, 0.5f);
+        SoundManager.instance.Play(Player.FIRE_SWORD, transform.position);
         swordFire.Play();
         StartCoroutine(DelayAnimationActivate("FireSword", true, 1));
         StartCoroutine(DecreesPowerBar());
@@ -576,6 +577,22 @@ public class Viewer_Player : MonoBehaviour
     {
         _lockParticleUp = false;
         lockImage.gameObject.SetActive(false);
+    }
+
+    public void TogglePauseMenu()
+    {
+        if (pauseMenu.activeSelf)
+        {
+            Time.timeScale = 1;
+            pauseMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void SlowTinme()

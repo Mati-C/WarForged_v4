@@ -16,10 +16,10 @@ public class SoundManager : MonoBehaviour
 
     bool aux;
 
-    [NamedArray(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK", "ROOT_BURNED" })]
+    [NamedArray(new string[] { "CHECKPOINT_PASS", "CHECKPOINT_IDLE", "DOOR_OPEN", "DOOR_CLOSE", "IRON_BARS", "KEY_COLLECTED", "JUGS_BREAK", "BARREL_BREAK", "ROOT_BURNED", "FALLING_ROCKS" })]
     public AudioClip[] objects;
 
-    [NamedArray(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "FIREBALL"})]
+    [NamedArray(new string[] { "DIE_1", "DIE_2", "DIE_3", "DAMAGE_1", "DAMAGE_2", "DAMAGE_3", "DAMAGE_4", "DAMAGE_5", "DAMAGE_6", "FIREBALL", "WILHELM_SCREAM" })]
     public AudioClip[] entity;
 
     [NamedArray(new string[] { "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH" })]
@@ -34,9 +34,6 @@ public class SoundManager : MonoBehaviour
     [NamedArray(new string[] { "HARD", "SOFT", "WOOD" })]
     public AudioClip[] hit;
 
-    [NamedArray(new string[] { "ROCKS_1", "ROCKS_2", "ROCKS_3", "ROCKS_4" })]
-    public AudioClip[] rocks;
-
     #region SFX Lists
     [HideInInspector]
     public List<Entity> deathVoice = new List<Entity>() { Entity.DIE_1, Entity.DIE_2, Entity.DIE_3 };
@@ -49,9 +46,6 @@ public class SoundManager : MonoBehaviour
 
     [HideInInspector]
     public List<Boss> bossAttack = new List<Boss>() { Boss.MONSTER_ATTACK1, Boss.MONSTER_ATTACK2, Boss.MONSTER_ATTACK3 };
-
-    [HideInInspector]
-    public List<Rocks> fallingRocks = new List<Rocks>() { Rocks.ROCKS_1, Rocks.ROCKS_2, Rocks.ROCKS_3, Rocks.ROCKS_4 };
     #endregion
 
     void Awake()
@@ -87,8 +81,6 @@ public class SoundManager : MonoBehaviour
             audioSource.clip = music[id];
         else if (soundType.GetType() == typeof(Hit))
             audioSource.clip = hit[id];
-        else if (soundType.GetType() == typeof(Rocks))
-            audioSource.clip = hit[id];
 
         audioSource.loop = loop;
         s.transform.position = position;
@@ -123,8 +115,6 @@ public class SoundManager : MonoBehaviour
         else if (soundType.GetType() == typeof(Music))
             audioSource.clip = music[id];
         else if (soundType.GetType() == typeof(Hit))
-            audioSource.clip = hit[id];
-        else if (soundType.GetType() == typeof(Rocks))
             audioSource.clip = hit[id];
 
         audioSource.loop = loop;
@@ -188,7 +178,8 @@ public class SoundManager : MonoBehaviour
         KEY_COLLECTED,
         JUGS_BREAK,
         BARREL_BREAK,
-        ROOT_BURNED
+        ROOT_BURNED,
+        FALLING_ROCKS
     }
 
     public enum Entity
@@ -202,7 +193,8 @@ public class SoundManager : MonoBehaviour
         DAMAGE_4,
         DAMAGE_5,
         DAMAGE_6,
-        FIREBALL
+        FIREBALL,
+        WILHELM_SCREAM
     }
 
     public enum Boss
@@ -238,13 +230,5 @@ public class SoundManager : MonoBehaviour
         HARD,
         SOFT,
         WOOD
-    }
-
-    public enum Rocks
-    {
-        ROCKS_1,
-        ROCKS_2,
-        ROCKS_3,
-        ROCKS_4
     }
 }

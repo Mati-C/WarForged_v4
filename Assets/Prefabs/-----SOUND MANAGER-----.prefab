@@ -59,6 +59,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1815680fc21bd8841bcb123235a47d9e, type: 3}
   - {fileID: 8300000, guid: c6a94326f10e5b747b5d6d1ec76087e2, type: 3}
   - {fileID: 8300000, guid: d098e2a48536793448401d575bed852c, type: 3}
+  - {fileID: 8300000, guid: 61f1449d7cf6f674380b6b433b4edbf7, type: 3}
   entity:
   - {fileID: 8300000, guid: f1e87da66cf948c449065ae7199d2609, type: 3}
   - {fileID: 8300000, guid: c130fbcc14bb5694ca0aeadfbd24ec8a, type: 3}
@@ -70,6 +71,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2cd4e003457efaf4d9088c81e27786cd, type: 3}
   - {fileID: 8300000, guid: 88e54977dedda7846b29e60122f005aa, type: 3}
   - {fileID: 8300000, guid: f9d17101198c63843a54c62017c3a1ff, type: 3}
+  - {fileID: 8300000, guid: b054193c363eb0944ae8f4594b5b9244, type: 3}
   boss:
   - {fileID: 8300000, guid: efe92388a3fe5fb428a687dafe38bbf7, type: 3}
   - {fileID: 8300000, guid: 0a7ac1946e1985640b93af19eca0813d, type: 3}
@@ -93,16 +95,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b6220adf287326f418f3fc613da5daff, type: 3}
   - {fileID: 8300000, guid: 5491a03aeb2a3fe40beacfc25b3f71da, type: 3}
   - {fileID: 8300000, guid: 2cf55c2c1e7babf4c9d0465c2c8a3974, type: 3}
-  rocks:
-  - {fileID: 8300000, guid: 4cd21e55c9a99454b8c76cc2c51d28df, type: 3}
-  - {fileID: 8300000, guid: 5138a72cec9b635418a75a976adfb97f, type: 3}
-  - {fileID: 8300000, guid: 327f783a742f2714fa2696aae53ebd43, type: 3}
-  - {fileID: 8300000, guid: ebf0292a8c42c694db211e26bbf18feb, type: 3}
   deathVoice: 000000000100000002000000
   damageVoice: 030000000400000005000000060000000700000008000000
   swing: 020000000300000004000000
   bossAttack: 010000000200000003000000
-  fallingRocks: 00000000010000000200000003000000
 --- !u!82 &6948447854700371291
 AudioSource:
   m_ObjectHideFlags: 0

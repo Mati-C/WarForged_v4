@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using System.Linq;
 using UnityEngine.PostProcessing;
+using Sound;
 
 public class CinematicController : MonoBehaviour
 {
@@ -314,6 +315,7 @@ public class CinematicController : MonoBehaviour
         var leaderAnim = leaderRB.GetComponent<Animator>();
         leaderAnim.SetBool("TutoKnocked", true);
 
+        bool auxAudio = false;
         bool auxDirt = false;
         float t = 3;
         while (t >0)
@@ -333,15 +335,21 @@ public class CinematicController : MonoBehaviour
                 item.SetBool("Run", true);
             }
 
-            if(t<=2.3f) rocks.SetBool("RockActivate", true);
+            if (t <= 2.3f && !auxAudio)
+            {
+                auxAudio = true;
+                rocks.SetBool("RockActivate", true);
+                SoundManager.instance.Play(Objects.FALLING_ROCKS, rocks.bodyPosition, true);
+            }
 
-            if(t<=0.5f && !auxDirt)
+            if (t <= 0.5f && !auxDirt)
             {
                 auxDirt = true;
                 particlesDirt.Play();
                 foreach (var item in anim_Npcs) item.SetBool("Die", true);
-                
+
                 leaderAnim.SetInteger("GetHitHeavy", 1);
+                SoundManager.instance.Play(Entity.WILHELM_SCREAM, leaderRB.position, false, 1);
             }
             yield return new WaitForEndOfFrame();
         }

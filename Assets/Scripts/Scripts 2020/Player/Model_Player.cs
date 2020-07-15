@@ -799,7 +799,7 @@ public class Model_Player : MonoBehaviour
         StartCoroutine(OnActionState(1));
         while(fireSwordCurrentTime < fireSword.fireSwordTime)
         {
-            CombatStateUp();
+            CombatStateUp(false);
             fireSwordCurrentTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
