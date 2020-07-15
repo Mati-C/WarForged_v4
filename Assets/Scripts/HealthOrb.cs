@@ -1,11 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthOrb : MonoBehaviour
 {
-    public float healAmount;
-
     void Start()
     {
         StartCoroutine(Effect(FindObjectOfType<Model_Player>()));
@@ -22,7 +19,6 @@ public class HealthOrb : MonoBehaviour
             transform.position = Vector3.Lerp(initialPos, player.transform.position + (Vector3.up * 1), t);
             yield return new WaitForEndOfFrame();
         }
-        player.UpdateLife(healAmount);
         Destroy(gameObject);
     }
 }

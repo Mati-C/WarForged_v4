@@ -1,56 +1,123 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject title;
-    public GameObject buttons;
+    PlayableDirector pd;
 
-    public Material titleMat;
-    public float timeToUnveilMenu;
-    public float menuFillAmount;
-    public float fillSpeed;
-    // Start is called before the first frame update
+    public GameObject title;
+    public GameObject pressAnyKey;
+    public GameObject buttons;
+    public GameObject swordLevels;
+    public RawImage fade;
+    public float titleTime;
+
+    Material titleMat;
+    GameObject flame;
+    bool isInTitle;
+
     void Start()
     {
-        menuFillAmount = 0;
         buttons.SetActive(false);
-        //StartCoroutine(TitleEffect());
-        //StartCoroutine(TitleFlame());
+        pressAnyKey.SetActive(false);
+        StartCoroutine(TitleEffect());
         titleMat = title.GetComponent<Renderer>().material;
+        pd = FindObjectOfType<PlayableDirector>();
+        isInTitle = false;
+        flame = title.transform.GetChild(0).gameObject;
     }
 
-    private void Update()
+    void Update()
     {
-        timeToUnveilMenu -= Time.deltaTime;
-        if (timeToUnveilMenu <= 0)
+        if (Input.anyKey && isInTitle)
         {
-            timeToUnveilMenu = 0;
-            if (menuFillAmount < 1) menuFillAmount += Time.deltaTime * fillSpeed;
-            if (menuFillAmount >= 0.85) buttons.SetActive(true);
-            titleMat.SetFloat("_DissolveAmount", menuFillAmount);
+            isInTitle = false;
+            StartCoroutine(AdvanceCamera(false));
         }
     }
 
-    //IEnumerator TitleEffect()
-    //{
-    //    Material titleMat = title.GetComponent<Renderer>().material;
-    //    float timer = titleTime * 0.3f;
-    //    while (timer < titleTime)
-    //    {
-    //        timer += Time.deltaTime;
-    //        titleMat.SetFloat("_Life", timer / titleTime);
-    //        yield return new WaitForEndOfFrame();
-    //    }
-    //}
+    IEnumerator TitleEffect()
+    {
+        yield return new WaitForEndOfFrame();
+        pd.Pause();
 
-    //IEnumerator TitleFlame()
-    //{
-    //    GameObject flame = title.transform.GetChild(0).gameObject;
-    //    yield return new WaitForSeconds(titleTime * 0.7f);
-    //    flame.SetActive(true);
-    //    buttons.SetActive(true);
-    //}
+        float timer = 0;
+        while (timer < titleTime)
+        {
+            timer += Time.deltaTime;
+            titleMat.SetFloat("_Life", Mathf.Lerp(0.6f, 0.9f, timer / titleTime));
+            yield return new WaitForEndOfFrame();
+        }
+        isInTitle = true;
+        pressAnyKey.SetActive(true);
+        flame.SetActive(true);
+    }
+
+    public void Play()
+    {
+        StartCoroutine(AdvanceCamera(true));
+    }
+
+    IEnumerator AdvanceCamera(bool toPlay)
+    {
+        pressAnyKey.SetActive(false);
+        pd.Play();
+        if (toPlay)
+        {
+            float t = 1;
+            flame.SetActive(false);
+            while (t > 0)
+            {
+                t -= Time.deltaTime;
+                titleMat.SetFloat("_Life", Mathf.Lerp(0.6f, 0.9f, t));
+                Image[] sprites = buttons.GetComponentsInChildren<Image>();
+                foreach (var i in sprites)
+                {
+                    var tempColor = i.color;
+                    tempColor.a -= Time.deltaTime;
+                    i.color = tempColor;
+                }
+                yield return new WaitForEndOfFrame();
+            }
+            buttons.SetActive(false);
+
+            yield return new WaitForSeconds(2);
+
+            float t2 = 0;
+            fade.gameObject.SetActive(true);
+            while (t2 < 1)
+            {
+                t2 += Time.deltaTime;
+                var tempColor = fade.color;
+                tempColor.a += Time.deltaTime;
+                fade.color = tempColor;
+                yield return new WaitForEndOfFrame();
+            }
+            LoadingScreen.instance.LoadLevel(1);
+        }
+        else
+        {
+            yield return new WaitForSeconds(4);
+            pd.Pause();
+            buttons.SetActive(true);
+        }
+    }
+
+    public void OpenWindow(GameObject window)
+    {
+        window.SetActive(true);
+    }
+
+    public void CloseWindow(GameObject window)
+    {
+        window.SetActive(false);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

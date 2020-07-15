@@ -232,6 +232,7 @@ public class CinematicController : MonoBehaviour
             {
                 auxRocks = true;
                 rocksLevel1Animator.SetBool("RockActivate", true);
+				SoundManager.instance.Play(Objects.FALLING_ROCKS, rocksLevel1Animator.bodyPosition, true);
             } 
 
             yield return new WaitForEndOfFrame();

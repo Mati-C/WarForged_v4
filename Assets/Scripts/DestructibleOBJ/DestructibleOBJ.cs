@@ -67,7 +67,8 @@ public class DestructibleOBJ : MonoBehaviour
         startpos = transform.position;
         anim = destructibleMesh.GetComponent<Animator>();
         myBox = GetComponent<BoxCollider>();
-        cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+            cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
     }
 
     private void OnCollisionEnter(Collision c)
