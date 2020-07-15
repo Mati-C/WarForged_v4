@@ -15,8 +15,11 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
 
     private void Awake()
     {
+        AwakeViewer();
         anim = GetComponent<Animator>();
         myModel = GetComponent<Model_B_Ogre1>();
+        levelUI = GameObject.Find("LEVEL UI");
+        ess = GetComponent<EnemyScreenSpace>();
     }
 
     void Start()
@@ -33,6 +36,33 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
     private void LateUpdate()
     {
       
+    }
+
+    public void AnimLightAttack()
+    {
+        StartCoroutine(DelayAnimActive("LightAttack", 1.2f));
+        anim.SetBool("WalkLeft", false);       
+        anim.SetBool("WalkRight", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Walk", false);
+    }
+
+    public void AnimHeavyAttack()
+    {
+        StartCoroutine(DelayAnimActive("HeavyAttack", 1.3f));
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Walk", false);
+    }
+
+    public void AnimComboAttack()
+    {
+        StartCoroutine(DelayAnimActive("ComboAttack", 2.3f));
+        anim.SetBool("WalkLeft", false);
+        anim.SetBool("WalkRight", false);
+        anim.SetBool("Idle", false);
+        anim.SetBool("Walk", false);
     }
 
     public void AnimIdle()
@@ -65,6 +95,12 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
         anim.SetBool("WalkRight", true);
         anim.SetBool("Idle", false);
         anim.SetBool("Walk", false);
+    }
+
+    public void AnimGetHit()
+    {
+        bloodParticle.Clear();
+        bloodParticle.Play();
     }
 
     public void AnimTaunt()

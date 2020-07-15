@@ -9,22 +9,29 @@ public class Model_B_Ogre1 : ClassEnemy
     Viewerl_B_Ogre1 _view;
 
     [Header("Boss Faces:")]
-    public bool face1;
-    public bool face2;
-    public bool face3;
-    [Range(10, 100)]
+    public bool fase1;
+    public bool fase2;
+    public bool fase3;
+    [Range(0, 100)]
     public float lightAttackCoef;
-    [Range(10, 100)]
+    [Range(0, 100)]
     public float HeavyAttackCoef;
-    [Range(10, 100)]
+    [Range(0, 100)]
     public float ComboAttackCoef;
 
     [Header("Boss Attack Variables:")]
-
+    public float heavyAttackDamage;
+    public float lightAttackDamage;
+    public float combo1AttackDamage;
+    public float combo2AttackDamage;
+    public float combo3AttackDamage;
     public float angleToAttack;
     public float viewDistanceAttack;
     public bool canAttack;
+    public bool onAttackAnimation;
+    public bool attackFinish;
     public int attackID;
+    int _comboAmount;
 
     [Header("Boss Surround Variables:")]
 
@@ -33,34 +40,60 @@ public class Model_B_Ogre1 : ClassEnemy
     public float surroundTimerMin;
     public float surroundTimerMax;
 
+    [Header("Boss Portal Variables:")]
+    public Transform phPortal;
+    public bool canScape;
+    bool _heavyEnd;
+    public Vector3 phScape;
+
     public Action IdleEvent;
     public Action WalkEvent;
     public Action WalkRightEvent;
     public Action WalkLeftEvent;
     public Action TauntEvent;
+    public Action LightAttackEvent;
+    public Action ComboAttackEvent;
+    public Action HeavyAttackEvent;
 
     bool _onTaunt;
 
     IEnumerator TauntCorrutine()
     {
         _onTaunt = true;
-        yield return new WaitForSeconds(2.3f);
+        yield return new WaitForSeconds(2f);
         _onTaunt = false;
     }
 
+    IEnumerator OnAttackAnimationCorrutine(float time)
+    {
+        onAttackAnimation = true;
+        yield return new WaitForSeconds(time);
+        onAttackAnimation = false;
+        _comboAmount = 0;
+        attackFinish = true;
+    }
+
+    IEnumerator HeavyAttackScape()
+    {
+        yield return new WaitForSeconds(2.3f);
+        HeavyAttackEvent();
+        yield return new WaitForSeconds(1);
+        _heavyEnd = true;
+    }
 
     void Start()
     {
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         _view = GetComponent<Viewerl_B_Ogre1>();
         playerFireSowrd = FindObjectOfType<FireSword>();
-        
         exp = playerFireSowrd.BossOgre1Exp;
+        phScape = transform.position;
 
         var attack = new N_FSM_State("ATTACK");
         var surround = new N_FSM_State("SURROUND");
         var persuit = new N_FSM_State("PERSUIT");
         var patrol = new N_FSM_State("PATROL");
+        var scape = new N_FSM_State("SCAPE");
 
         patrolState = patrol;
         IdleEvent += _view.AnimIdle;
@@ -68,6 +101,31 @@ public class Model_B_Ogre1 : ClassEnemy
         WalkLeftEvent += _view.animWalkLeft;
         WalkRightEvent += _view.animWalkRight;
         TauntEvent += _view.AnimTaunt;
+        GetHitEvent += _view.AnimGetHit;
+        LightAttackEvent += _view.AnimLightAttack;
+        HeavyAttackEvent += _view.AnimHeavyAttack;
+        ComboAttackEvent += _view.AnimComboAttack;
+
+
+        scape.OnEnter += () =>
+        {
+            _view.anim.SetBool("HeavyAttack", false);
+            _view.anim.SetBool("LightAttack", false);
+            _view.anim.SetBool("ComboAttack", false);
+            TauntEvent();
+            StartCoroutine(TauntCorrutine());
+            StartCoroutine(HeavyAttackScape());
+        };
+
+        scape.OnUpdate += () =>
+        {
+            if(!_onTaunt && _heavyEnd)
+            {
+                WalkEvent();
+                MoveToTarget(phScape);
+            }
+            viewDistancePersuit = 0;
+        };
 
         patrol.OnEnter += () =>
         {
@@ -76,7 +134,26 @@ public class Model_B_Ogre1 : ClassEnemy
 
         patrol.OnUpdate += () =>
         {
-            if(canPersuit) myFSM_EventMachine.ChangeState(persuit);
+            if (portalOrder)
+            {
+                float d = Vector3.Distance(transform.position, phPortal.position);
+
+                if (d > 1.2f)
+                {
+                    WalkEvent();
+                    MoveToTarget(phPortal.position);
+                }
+
+                else
+                {
+                    TauntEvent();
+                    viewDistancePersuit = 100;
+                    StartCoroutine(TauntCorrutine());
+                    portalOrder= false;
+                }
+            }
+
+            if(canPersuit && !portalOrder && !_onTaunt) myFSM_EventMachine.ChangeState(persuit);
         };
 
         patrol.OnExit += () =>
@@ -103,6 +180,8 @@ public class Model_B_Ogre1 : ClassEnemy
             }
 
             if(canSurround) myFSM_EventMachine.ChangeState(surround);
+
+            if(canScape) myFSM_EventMachine.ChangeState(scape);
         };
 
         persuit.OnExit += () =>
@@ -113,6 +192,9 @@ public class Model_B_Ogre1 : ClassEnemy
         surround.OnEnter += () =>
         {
             viewDistanceSurround += 1;
+
+            if (timeToAttack <= 0) timeToAttack = UnityEngine.Random.Range(minTimeToAttack, maxTimeToAttack);
+
         };
 
         surround.OnUpdate += () =>
@@ -123,7 +205,9 @@ public class Model_B_Ogre1 : ClassEnemy
            
             var obs = Physics.OverlapSphere(transform.position, 1, layersObstacles);
 
-            if (surroundBehaviourID == 0)
+            timeToAttack -= Time.deltaTime;
+
+            if (surroundBehaviourID == 0 && !_onTaunt)
             {
                 IdleEvent();
                 Quaternion targetRotation;
@@ -133,7 +217,7 @@ public class Model_B_Ogre1 : ClassEnemy
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
             }
 
-            if (surroundBehaviourID == 1)
+            if (surroundBehaviourID == 1 && !_onTaunt)
             {
                 if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkRightEvent();
@@ -146,7 +230,7 @@ public class Model_B_Ogre1 : ClassEnemy
                 if (obs.Count() > 0) rb.MovePosition(transform.position + transform.forward * 2 * Time.deltaTime);
             }
 
-            if (surroundBehaviourID == 2)
+            if (surroundBehaviourID == 2 && !_onTaunt)
             {
                 if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkLeftEvent();
@@ -160,16 +244,23 @@ public class Model_B_Ogre1 : ClassEnemy
 
             }
 
-            if (surroundTimer <= 0)
+            if (surroundTimer <= 0 && !_onTaunt)
             {
                 surroundBehaviourID = UnityEngine.Random.Range(0, 3);
 
                 surroundTimer = UnityEngine.Random.Range(surroundTimerMin, surroundTimerMax);
             }
+
+            if(timeToAttack <=0 && !_onTaunt) myFSM_EventMachine.ChangeState(attack);
+
+            if(canPersuit && !canSurround && !_onTaunt) myFSM_EventMachine.ChangeState(persuit);
+
+            if (canScape) myFSM_EventMachine.ChangeState(scape);
         };
 
         surround.OnExit += () =>
         {
+            surroundTimer = 1f;
             viewDistanceSurround -= 1;
         };
 
@@ -182,7 +273,7 @@ public class Model_B_Ogre1 : ClassEnemy
         {
             player.CombatStateUp();
 
-            if (!canAttack)
+            if (!canAttack && !onAttackAnimation && !_onTaunt && !attackFinish)
             {
                 var d = Vector3.Distance(transform.position, player.transform.position);
                 if (d > 0.5f) WalkEvent();
@@ -197,8 +288,8 @@ public class Model_B_Ogre1 : ClassEnemy
                 MoveToTarget(player.transform.position);
             }
 
-            if (canAttack)
-            {                
+            if (canAttack && !onAttackAnimation && !attackFinish && !_onTaunt)
+            {
                 Vector3 _dir = Vector3.zero;
                 Quaternion targetRotation;
                 _dir = (player.transform.position - transform.position).normalized;
@@ -206,12 +297,36 @@ public class Model_B_Ogre1 : ClassEnemy
                 targetRotation = Quaternion.LookRotation(_dir, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7 * Time.deltaTime);
 
+                if (attackID == 0)
+                {
+                    LightAttackEvent();
+                    StartCoroutine(OnAttackAnimationCorrutine(1.2f));
+                }
+
+                if (attackID == 1)
+                {
+                    HeavyAttackEvent();
+                    StartCoroutine(OnAttackAnimationCorrutine(1.3f));
+                }
+
+                if (attackID == 2)
+                {
+                    ComboAttackEvent();
+                    StartCoroutine(MoveOnAttack());
+                    StartCoroutine(OnAttackAnimationCorrutine(2.3f));
+                }
             }
+
+            if(canPersuit && !canSurround && attackFinish) myFSM_EventMachine.ChangeState(persuit);
+
+            if(canSurround && attackFinish) myFSM_EventMachine.ChangeState(surround);
+
+            if (canScape) myFSM_EventMachine.ChangeState(scape);
         };
 
         attack.OnExit += () =>
         {
-
+            attackFinish = false;
         };
 
         myFSM_EventMachine = new N_FSM_EventMachine(patrol);
@@ -224,7 +339,7 @@ public class Model_B_Ogre1 : ClassEnemy
 
         canSurround = CanSee(player.transform, viewDistanceSurround, angleToSurround, layersCanSee);
 
-        canAttack = CanSee(player.transform, viewDistanceAttack, 360, layersCanSee);
+        canAttack = CanSee(player.transform, viewDistanceAttack, angleToAttack, layersCanSee);
 
         myFSM_EventMachine.Update();
     }
@@ -264,8 +379,81 @@ public class Model_B_Ogre1 : ClassEnemy
         return -1;
     }
 
+    IEnumerator MoveOnAttack()
+    {
+        yield return new WaitForSeconds(0.14f);
+        rb.AddForce(transform.forward * 50, ForceMode.Impulse);
+        yield return new WaitForSeconds(0.3f);
+        rb.AddForce(transform.forward * 50, ForceMode.Impulse);
+        yield return new WaitForSeconds(0.3f);
+        rb.AddForce(transform.forward * 50, ForceMode.Impulse);
+    }
+
+    public void MakeHeavyAttack()
+    {
+        var p = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<Model_Player>());
+
+        if (p.Count() > 0) player.GetDamage(heavyAttackDamage, transform, Model_Player.DamageType.Heavy);
+    }
+
+    public void MakeLightDamage()
+    {
+        if(canAttack) player.GetDamage(lightAttackDamage, transform, Model_Player.DamageType.Light);
+    }
+
+    public void MakeComboDamage()
+    {
+        if (canAttack)
+        {
+            switch (_comboAmount)
+            {
+                case 0:
+                    _comboAmount++;
+                    player.GetDamage(combo1AttackDamage, transform, Model_Player.DamageType.Light);
+                    break;
+
+                case 1:
+                    _comboAmount++;
+                    player.GetDamage(combo2AttackDamage, transform, Model_Player.DamageType.Light);
+                    break;
+
+                case 2:
+                    _comboAmount = 0;
+                    player.GetDamage(combo3AttackDamage, transform, Model_Player.DamageType.Light);
+                    break;
+            }
+        }
+    }
+
     public override void GetDamage(float d, Model_Player.DamageType t)
     {
+        if (!_onTaunt)
+        {
+            GetHitEvent();
+            life -= d;
+            _view.CreatePopText(d);
+        }
+
+        else player.FailAttack("");
+
+        if(fase1 && life<=130 && !fase2)
+        {
+            TauntEvent();
+            StartCoroutine(TauntCorrutine());
+            fase2 = true;
+            lightAttackCoef = 30;
+            HeavyAttackCoef = 45;
+        }
+
+        if(fase2 && life <=80 && !fase3)
+        {
+            TauntEvent();
+            StartCoroutine(TauntCorrutine());
+            fase3 = true;
+            lightAttackCoef = 20;
+            HeavyAttackCoef = 45;
+            ComboAttackCoef = 55;
+        }
 
     }
 

@@ -15,20 +15,16 @@ public class DamageControll : MonoBehaviour
 
     public List<EnemyEntity> enemies = new List<EnemyEntity>();
 
-    Model _player;
+    Model_Player _player;
 
 
     private void Awake()
     {
-        _player = FindObjectOfType<Model>();
+        _player = FindObjectOfType<Model_Player>();
     }
     // Update is called once per frame
     void Update()
     {
-        foreach (var item in enemies)
-        {
-            item.gameObject.SetActive(false);
-        }
 
         if (teleport1)
         {

@@ -387,33 +387,19 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.51324683
-        functionName: SmashParticlesActive
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.5785908
-        functionName: MakeDamageBossUnstopable
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.90243906
-        functionName: Attack2OnPlaceAnimationFalse
+      - time: 0.55401665
+        functionName: MakeHeavyAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -461,266 +447,616 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
+  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
-    human: []
+    human:
+    - boneName: CYCLOPS_ Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Calf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Calf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Clavicle
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Clavicle
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Forearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Forearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Toe0
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Toe0
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger0
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger01
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger02
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger11
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger12
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger2
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger21
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger22
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger3
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger31
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ L Finger32
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger0
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger01
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger02
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger11
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger12
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger2
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger21
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger22
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger3
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger31
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOPS_ R Finger32
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
-    - name: CYCLOPS(Clone)
+    - name: CYCLOPS@2fistsSmashAttack90Left(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0.0000007566786, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: CYCLOPS
-      parentName: CYCLOPS(Clone)
-      position: {x: -0, y: 0, z: -0.0000000059877383}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      rotation: {x: 0, y: 0.00000071379316, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ROOT_
-      parentName: CYCLOPS(Clone)
+      parentName: CYCLOPS@2fistsSmashAttack90Left(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: CYCLOPS_
       parentName: ROOT_
-      position: {x: -0, y: -0.040999997, z: 2.001}
-      rotation: {x: 0, y: 0, z: 0.7071062, w: 0.70710737}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      position: {x: -0, y: 0.24499999, z: 1.8531696}
+      rotation: {x: 0.004707306, y: -0.0047073145, z: 0.7070905, w: 0.70709175}
+      scale: {x: 0.99999994, y: 1, z: 1}
     - name: CYCLOPS_ Pelvis
       parentName: CYCLOPS_
-      position: {x: -0.00000013038516, y: -2.273737e-13, z: 0.11865902}
+      position: {x: 0.0035964795, y: 2.5757174e-14, z: 0.27010277}
       rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
-      scale: {x: 1.0000006, y: 1.0000004, z: 1}
-    - name: CYCLOPS_ L Thigh
-      parentName: CYCLOPS_ Pelvis
-      position: {x: 0.00000061035155, y: 0.000000629425, z: 0.3942411}
-      rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
-      scale: {x: 1.0000001, y: 1.0000006, z: 1.0000007}
-    - name: CYCLOPS_ L Calf
-      parentName: CYCLOPS_ L Thigh
-      position: {x: -0.9901557, y: 0, z: 0.000000076293944}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000007, y: 1.000001, z: 1.0000008}
-    - name: CYCLOPS_ L Foot
-      parentName: CYCLOPS_ L Calf
-      position: {x: -0.7053407, y: 0.000000057220458, z: -0.000000076293944}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1, z: 1.0000002}
-    - name: CYCLOPS_ L Toe0
-      parentName: CYCLOPS_ L Foot
-      position: {x: -0.36242205, y: 0.2791, z: -0.000000076293944}
-      rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
-      scale: {x: 1.0000002, y: 0.9999998, z: 0.9999998}
+      scale: {x: 1, y: 1, z: 1}
     - name: CYCLOPS_ Spine
       parentName: CYCLOPS_ Pelvis
-      position: {x: -0.3104271, y: -0.00050533295, z: 0.00000043120087}
+      position: {x: -0.31039536, y: -0.0005043793, z: 0.00000043115577}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000006, y: 1.0000005, z: 1.0000006}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: CYCLOPS_ Spine1
       parentName: CYCLOPS_ Spine
-      position: {x: -0.634745, y: -0.00062731025, z: -0.0000000017399133}
+      position: {x: -0.63505733, y: -0.00054418563, z: -0.00000000150927}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000004, y: 1, z: 1.0000002}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: CYCLOPS_ Neck
+      parentName: CYCLOPS_ Spine1
+      position: {x: -0.9812445, y: -0.010719452, z: 0.000000108789536}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1}
+    - name: CYCLOPS_ Head
+      parentName: CYCLOPS_ Neck
+      position: {x: -0.6524846, y: 0, z: 5.820766e-13}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: CYCLOPS_ Ponytail1
+      parentName: CYCLOPS_ Head
+      position: {x: -0.0006549072, y: 0.11800766, z: 0.00000035850738}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: CYCLOPS_ R Clavicle
+      parentName: CYCLOPS_ Spine1
+      position: {x: -0.99441284, y: 0.10200348, z: -0.20972928}
+      rotation: {x: 0.7071068, y: -0.000000030908623, z: 0.7071068, w: -0.000000030908623}
+      scale: {x: 1, y: 0.9999998, z: 0.99999976}
+    - name: CYCLOPS_ R UpperArm
+      parentName: CYCLOPS_ R Clavicle
+      position: {x: -0.4851924, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000001}
+    - name: CYCLOPS_ R Forearm
+      parentName: CYCLOPS_ R UpperArm
+      position: {x: -1.1399993, y: -0.00000015258789, z: -0.00000015258789}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999998, y: 1, z: 0.99999994}
+    - name: CYCLOPS_ R Hand
+      parentName: CYCLOPS_ R Forearm
+      position: {x: -1.016123, y: 0.000000076293944, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: CYCLOPS_ R Finger0
+      parentName: CYCLOPS_ R Hand
+      position: {x: -0.12163665, y: 0.122711636, z: 0.23045707}
+      rotation: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CYCLOPS_ R Finger01
+      parentName: CYCLOPS_ R Finger0
+      position: {x: -0.17811996, y: 0.000000076293944, z: -0.000000114440915}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: CYCLOPS_ R Finger02
+      parentName: CYCLOPS_ R Finger01
+      position: {x: -0.16549927, y: -0.000000038146972, z: 0.000000038146972}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 0.99999994, z: 0.99999994}
+    - name: CYCLOPS_ R Finger1
+      parentName: CYCLOPS_ R Hand
+      position: {x: -0.49718183, y: -0.036384888, z: 0.19239013}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: CYCLOPS_ R Finger11
+      parentName: CYCLOPS_ R Finger1
+      position: {x: -0.15709716, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: CYCLOPS_ R Finger12
+      parentName: CYCLOPS_ R Finger11
+      position: {x: -0.15709701, y: -0.00000015258789, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: CYCLOPS_ R Finger2
+      parentName: CYCLOPS_ R Hand
+      position: {x: -0.50503063, y: 0, z: 0.00000015258789}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: CYCLOPS_ R Finger21
+      parentName: CYCLOPS_ R Finger2
+      position: {x: -0.18851654, y: 0.000000076293944, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+    - name: CYCLOPS_ R Finger22
+      parentName: CYCLOPS_ R Finger21
+      position: {x: -0.18851645, y: 0.000000038146972, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CYCLOPS_ R Finger3
+      parentName: CYCLOPS_ R Hand
+      position: {x: -0.46403822, y: 0.02893402, z: -0.19911896}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: CYCLOPS_ R Finger31
+      parentName: CYCLOPS_ R Finger3
+      position: {x: -0.15709716, y: 0, z: -0.00000015258789}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: CYCLOPS_ R Finger32
+      parentName: CYCLOPS_ R Finger31
+      position: {x: -0.15709701, y: 0, z: -0.00000015258789}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: CYCLOPS_ L Clavicle
       parentName: CYCLOPS_ Spine1
-      position: {x: -0.99441314, y: 0.10200229, z: 0.20972985}
+      position: {x: -0.99441284, y: 0.10200241, z: 0.20972985}
       rotation: {x: 0.7071068, y: -0.000000030908623, z: -0.7071068, w: 0.000000030908623}
-      scale: {x: 0.99999946, y: 0.9999994, z: 1}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999976}
     - name: CYCLOPS_ L UpperArm
       parentName: CYCLOPS_ L Clavicle
-      position: {x: -0.48519236, y: 0, z: 0.00000030517577}
+      position: {x: -0.48519248, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 1.0000004, z: 1.0000005}
+      scale: {x: 1, y: 1, z: 1}
     - name: CYCLOPS_ L Forearm
       parentName: CYCLOPS_ L UpperArm
-      position: {x: -1.1399989, y: 0.00000015258789, z: 0}
+      position: {x: -1.1399989, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1.0000001, z: 1}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.9999999}
     - name: CYCLOPS_ L Hand
       parentName: CYCLOPS_ L Forearm
-      position: {x: -1.0161227, y: -0.000000076293944, z: -0.00000030517577}
+      position: {x: -1.016123, y: 0.000000038146972, z: 0}
       rotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
-      scale: {x: 0.99999994, y: 1.0000006, z: 1.000001}
+      scale: {x: 1.0000001, y: 1, z: 1}
     - name: CYCLOPS_ L Finger0
       parentName: CYCLOPS_ L Hand
-      position: {x: -0.1216362, y: 0.12271149, z: -0.23045704}
+      position: {x: -0.12163635, y: 0.122711636, z: -0.230457}
       rotation: {x: 0, y: 0.3826835, z: 0, w: -0.9238795}
-      scale: {x: 1.0000007, y: 1.0000008, z: 1.0000002}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: CYCLOPS_ L Finger01
       parentName: CYCLOPS_ L Finger0
-      position: {x: -0.17811996, y: 0, z: 0}
+      position: {x: -0.17811966, y: 0.000000076293944, z: -0.000000038146972}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000005, y: 1.0000006, z: 1}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
     - name: CYCLOPS_ L Finger02
       parentName: CYCLOPS_ L Finger01
-      position: {x: -0.1654991, y: 0.000000076293944, z: 0}
+      position: {x: -0.16549942, y: -0.00000015258789, z: -0.000000038146972}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1.0000002, z: 0.99999976}
+      scale: {x: 1, y: 0.99999994, z: 1}
     - name: CYCLOPS_ L Finger1
       parentName: CYCLOPS_ L Hand
-      position: {x: -0.49718168, y: -0.036385193, z: -0.1923901}
+      position: {x: -0.49718168, y: -0.036384962, z: -0.19239005}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000006, y: 1.000001, z: 1.0000012}
+      scale: {x: 1, y: 1, z: 1.0000001}
     - name: CYCLOPS_ L Finger11
       parentName: CYCLOPS_ L Finger1
-      position: {x: -0.15709716, y: -0.00000030517577, z: -0.000000076293944}
+      position: {x: -0.15709701, y: 0.000000076293944, z: -0.000000076293944}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000004, z: 1.000001}
+      scale: {x: 1, y: 1, z: 1}
     - name: CYCLOPS_ L Finger12
       parentName: CYCLOPS_ L Finger11
-      position: {x: -0.15709731, y: 0, z: 0}
+      position: {x: -0.15709701, y: 0.000000038146972, z: 0.000000076293944}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.000001, y: 1.0000008, z: 1.0000007}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: CYCLOPS_ L Finger2
       parentName: CYCLOPS_ L Hand
-      position: {x: -0.5050305, y: -0.00000030517577, z: 0.000000019073486}
+      position: {x: -0.5050305, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000005, y: 1.0000012, z: 1.0000018}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: CYCLOPS_ L Finger21
       parentName: CYCLOPS_ L Finger2
       position: {x: -0.18851654, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999964, y: 0.9999999, z: 0.99999917}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1}
     - name: CYCLOPS_ L Finger22
       parentName: CYCLOPS_ L Finger21
-      position: {x: -0.18851654, y: 0, z: 0.000000038146972}
+      position: {x: -0.18851654, y: -0.00000015258789, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000008}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1}
     - name: CYCLOPS_ L Finger3
       parentName: CYCLOPS_ L Hand
-      position: {x: -0.46403793, y: 0.02893402, z: 0.19911917}
+      position: {x: -0.46403816, y: 0.028933868, z: 0.1991191}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.000001, y: 1.0000012, z: 1.000002}
+      scale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
     - name: CYCLOPS_ L Finger31
       parentName: CYCLOPS_ L Finger3
-      position: {x: -0.15709731, y: 0, z: 0.000000076293944}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000011, z: 1.0000011}
-    - name: CYCLOPS_ L Finger32
-      parentName: CYCLOPS_ L Finger31
       position: {x: -0.15709716, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1, z: 1.0000002}
-    - name: CYCLOPS_ Neck
-      parentName: CYCLOPS_ Spine1
-      position: {x: -0.9812152, y: -0.010799697, z: 0.00000010843748}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: CYCLOPS_ L Finger32
+      parentName: CYCLOPS_ L Finger31
+      position: {x: -0.15709731, y: -0.000000038146972, z: -0.00000015258789}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 1.0000006, z: 1.0000001}
-    - name: CYCLOPS_ Head
-      parentName: CYCLOPS_ Neck
-      position: {x: -0.6524847, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000007, y: 1.0000008, z: 1.0000006}
-    - name: CYCLOPS_ Ponytail1
-      parentName: CYCLOPS_ Head
-      position: {x: -0.00061401364, y: 0.11810638, z: 0.00000035878153}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000006, y: 1.0000006, z: 1}
-    - name: CYCLOPS_Eye
-      parentName: CYCLOPS_ Head
-      position: {x: -0.2694107, y: 0.43483794, z: -0.0000024414069}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.9999994, y: 0.99999917, z: 0.99999905}
-    - name: CYCLOPS_ R Clavicle
-      parentName: CYCLOPS_ Spine1
-      position: {x: -0.99441314, y: 0.102003455, z: -0.20972928}
-      rotation: {x: 0.7071068, y: -0.000000030908623, z: 0.7071068, w: -0.000000030908623}
-      scale: {x: 1.000001, y: 1.000001, z: 1.0000006}
-    - name: CYCLOPS_ R UpperArm
-      parentName: CYCLOPS_ R Clavicle
-      position: {x: -0.4851923, y: 0, z: 0.00000030517577}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000004, y: 1.0000005, z: 1.000001}
-    - name: CYCLOPS_ R Forearm
-      parentName: CYCLOPS_ R UpperArm
-      position: {x: -1.139999, y: 0.00000015258789, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.000001, y: 1.000001, z: 1.0000007}
-    - name: CYCLOPS_ R Hand
-      parentName: CYCLOPS_ R Forearm
-      position: {x: -1.0161227, y: 0.000000076293944, z: 0}
-      rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-      scale: {x: 0.9999993, y: 0.99999994, z: 0.9999998}
-    - name: CYCLOPS_ R Finger0
-      parentName: CYCLOPS_ R Hand
-      position: {x: -0.1216362, y: 0.12271179, z: 0.230457}
-      rotation: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
-      scale: {x: 1.0000001, y: 1.0000007, z: 1.0000002}
-    - name: CYCLOPS_ R Finger01
-      parentName: CYCLOPS_ R Finger0
-      position: {x: -0.17811981, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000017}
-    - name: CYCLOPS_ R Finger02
-      parentName: CYCLOPS_ R Finger01
-      position: {x: -0.16549927, y: 0.000000076293944, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 1.0000005, z: 1.0000004}
-    - name: CYCLOPS_ R Finger3
-      parentName: CYCLOPS_ R Hand
-      position: {x: -0.46403807, y: 0.02893402, z: -0.1991192}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000002}
-    - name: CYCLOPS_ R Finger31
-      parentName: CYCLOPS_ R Finger3
-      position: {x: -0.1570974, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000006, y: 1.0000011, z: 1.0000002}
-    - name: CYCLOPS_ R Finger32
-      parentName: CYCLOPS_ R Finger31
-      position: {x: -0.15709709, y: 0, z: -0.000000038146972}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000006, y: 1.0000013, z: 1.0000001}
-    - name: CYCLOPS_ R Finger2
-      parentName: CYCLOPS_ R Hand
-      position: {x: -0.5050305, y: 0, z: -0.000000057220458}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000004, y: 0.99999994, z: 1.0000001}
-    - name: CYCLOPS_ R Finger21
-      parentName: CYCLOPS_ R Finger2
-      position: {x: -0.18851654, y: 0.00000030517577, z: -0.000000019073486}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000001, y: 1.0000005, z: 0.9999999}
-    - name: CYCLOPS_ R Finger22
-      parentName: CYCLOPS_ R Finger21
-      position: {x: -0.18851654, y: 0, z: 0.00000020980835}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: CYCLOPS_ L Thigh
+      parentName: CYCLOPS_ Pelvis
+      position: {x: 0.00000061035155, y: 0.000000629425, z: 0.39424106}
+      rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
       scale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
-    - name: CYCLOPS_ R Finger1
-      parentName: CYCLOPS_ R Hand
-      position: {x: -0.49718153, y: -0.036384888, z: 0.19239013}
+    - name: CYCLOPS_ L Calf
+      parentName: CYCLOPS_ L Thigh
+      position: {x: -0.9901557, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000001}
-    - name: CYCLOPS_ R Finger11
-      parentName: CYCLOPS_ R Finger1
-      position: {x: -0.15709701, y: 0, z: 0.000000076293944}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: CYCLOPS_ L Foot
+      parentName: CYCLOPS_ L Calf
+      position: {x: -0.7053407, y: 0, z: 0.000000076293944}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000005, y: 1.0000011, z: 1.0000002}
-    - name: CYCLOPS_ R Finger12
-      parentName: CYCLOPS_ R Finger11
-      position: {x: -0.15709724, y: 0, z: -0.000000038146972}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000004}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: CYCLOPS_ L Toe0
+      parentName: CYCLOPS_ L Foot
+      position: {x: -0.3624221, y: 0.27909994, z: 0}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
     - name: CYCLOPS_ R Thigh
       parentName: CYCLOPS_ Pelvis
-      position: {x: -0.00000061035155, y: -0.00000045776366, z: -0.394241}
+      position: {x: -0.00000045776366, y: -0.00000047683716, z: -0.39424112}
       rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
-      scale: {x: 1.0000005, y: 1, z: 1.0000001}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1}
     - name: CYCLOPS_ R Calf
       parentName: CYCLOPS_ R Thigh
-      position: {x: -0.99015564, y: 0, z: 0}
+      position: {x: -0.9901555, y: -0.000000076293944, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000005}
+      scale: {x: 1.0000001, y: 1, z: 1}
     - name: CYCLOPS_ R Foot
       parentName: CYCLOPS_ R Calf
-      position: {x: -0.7053406, y: -0.000000014305114, z: -0.000000076293944}
+      position: {x: -0.7053407, y: -0.000000028610229, z: -0.000000076293944}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000004}
+      scale: {x: 1, y: 1, z: 1}
     - name: CYCLOPS_ R Toe0
       parentName: CYCLOPS_ R Foot
-      position: {x: -0.3624221, y: 0.2791, z: 0}
+      position: {x: -0.36242214, y: 0.27910003, z: 0}
       rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
-      scale: {x: 1.0000002, y: 0.99999964, z: 1.0000006}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -734,7 +1070,7 @@ ModelImporter:
     hasExtraRoot: 1
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

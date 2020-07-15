@@ -8,7 +8,7 @@ public class Model_Player : MonoBehaviour
 {
     Controller_Player _controller;
     Viewer_Player _viewer;
-    Rigidbody _rb;
+    public Rigidbody rb;
     PlayerCamera _playerCamera;
     Camera _mainCam;
     IA_CombatManager _IA_CM;
@@ -318,7 +318,7 @@ public class Model_Player : MonoBehaviour
         while (timer >0)
         {
             timer -= Time.deltaTime;
-            _rb.MovePosition(transform.position + dir * dodgeSpeed * Time.deltaTime);
+            rb.MovePosition(transform.position + dir * dodgeSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
@@ -340,7 +340,7 @@ public class Model_Player : MonoBehaviour
         _mainCam = _playerCamera.GetComponent<Camera>();
         _IA_CM = FindObjectOfType<IA_CombatManager>();
         _controller = new Controller_Player(this, _viewer, FindObjectOfType<FadeLevel>());
-        _rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         fireSword = GetComponent<FireSword>();
 
         MakeDamageTutorialEvent += () => { };
@@ -381,13 +381,13 @@ public class Model_Player : MonoBehaviour
             if (!run)
             {
                 WalkEvent();
-                _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
+                rb.MovePosition(transform.position + d * speed * Time.deltaTime);
             }
 
             else
             {
                 RunEvent();
-                _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+                rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
             }
         }
     }
@@ -408,7 +408,7 @@ public class Model_Player : MonoBehaviour
         if(!onDodge && !onAttackAnimation && onLock  && !onAction && !OnDamage && !onFailAttack)
         {
             WalkEvent();
-            _rb.MovePosition(_rb.position + d  * speed * Time.deltaTime);
+            rb.MovePosition(rb.position + d  * speed * Time.deltaTime);
         }
 
         if (!onDodge && !onAttackAnimation && !onLock && !onAction && !OnDamage && !onFailAttack)
@@ -448,7 +448,7 @@ public class Model_Player : MonoBehaviour
             if (!run)
             {
                 WalkEvent();
-                _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
+                rb.MovePosition(transform.position + d * speed * Time.deltaTime);
             }
 
             else
@@ -457,13 +457,13 @@ public class Model_Player : MonoBehaviour
                 if (!onDefence)
                 {
                     RunEvent();
-                    _rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
+                    rb.MovePosition(transform.position + d * runSpeed * Time.deltaTime);
                 }
 
                 else
                 {
                     WalkEvent();
-                    _rb.MovePosition(transform.position + d * speed * Time.deltaTime);
+                    rb.MovePosition(transform.position + d * speed * Time.deltaTime);
                 }
             }
         }
@@ -838,12 +838,12 @@ public class Model_Player : MonoBehaviour
                     {
                         onDamageTime = 0.5f;
                         DefenceOff();
-                        _rb.AddForce(-transform.forward * 80, ForceMode.Impulse);
+                        rb.AddForce(-transform.forward * 80, ForceMode.Impulse);
                         GetHitEvent();
                     }
                 }
 
-                if (defenceTimer <= 0.5f && !onAction && onDefence)
+                if (defenceTimer <= 0.5f && !onAction && onDefence && !target.GetComponent<Model_B_Ogre1>())
                 {
                     DefenceOff();
                     BlockEvent(true);
@@ -853,12 +853,12 @@ public class Model_Player : MonoBehaviour
 
                 }
 
-                if (onDefence && defenceTimer > 0.5f)
+                if (onDefence && defenceTimer > 0.5f || onDefence && target.GetComponent<Model_B_Ogre1>())
                 {
                     BlockEvent(false);
                     DefendTutorialEvent();
                     StartCoroutine(OnActionState(0.4f));
-                    target.GetComponent<ClassEnemy>().BlockedAttack();
+                    if(!target.GetComponent<Model_B_Ogre1>()) target.GetComponent<ClassEnemy>().BlockedAttack();
                 }
            
             }
@@ -870,7 +870,7 @@ public class Model_Player : MonoBehaviour
                 {               
                     onDamageTime = 0.5f;
                     DefenceOff();
-                    _rb.AddForce(transform.forward * 80, ForceMode.Impulse);
+                    rb.AddForce(transform.forward * 80, ForceMode.Impulse);
                     GetHitEvent();
                 }
             }
@@ -882,7 +882,7 @@ public class Model_Player : MonoBehaviour
                 {
                     onDamageTime = 2f;
                     DefenceOff();
-                    _rb.AddForce(-transform.forward * 250, ForceMode.Impulse);
+                    rb.AddForce(-transform.forward * 250, ForceMode.Impulse);
                     GetHitHeavyEvent(false);
                 }
             }
@@ -894,7 +894,7 @@ public class Model_Player : MonoBehaviour
                 {
                     DefenceOff();
                     onDamageTime = 1.9f;
-                    _rb.AddForce(transform.forward * 250, ForceMode.Impulse);
+                    rb.AddForce(transform.forward * 250, ForceMode.Impulse);
                     GetHitHeavyEvent(true);
                 }
             }

@@ -8,6 +8,7 @@ public class ChangeLevelManager : MonoBehaviour
     bool _sceneChange;
     public int sceneID;
     FadeLevel _fade;
+    public bool changeSceneInstant;
 
     private void Awake()
     {
@@ -16,11 +17,13 @@ public class ChangeLevelManager : MonoBehaviour
 
     public void ChangeScene()
     {
-        if (!_sceneChange)
+        if (!_sceneChange && !changeSceneInstant)
         {
             _fade.FadeIn(true);
             StartCoroutine(WaitingForChange());
         }
+
+        if(changeSceneInstant) SceneManager.LoadScene(sceneID);
     }
 
     private void OnTriggerEnter(Collider c)
