@@ -60,6 +60,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public bool permissionToAttack;
     public bool cantAskAgain;
     public bool portalOrder;
+    public bool dontMove;
     public int currentIndex;
 
     [Header("EnemyClass Attack Variables:")]
@@ -306,7 +307,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public void BlockedAttack()
     {
         BlockedEvent();
-        StartCoroutine(BlockedState(1.3f));
+        StartCoroutine(BlockedState(0.7f));
     }
 
     public void Knocked()

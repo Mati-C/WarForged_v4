@@ -43,6 +43,12 @@ public class CinematicController : MonoBehaviour
     public Animator rocksLevel1Animator;
     public CinemachineVirtualCamera cinematicRocksCamera;
 
+    [Header("Level-2 Variables:")]
+    public bool cinematicLevel2;
+    public CinemachineVirtualCamera cinematicBossCam;
+    public CinemachineVirtualCamera cinematicBarCam1;
+    public CinemachineVirtualCamera cinematicBarCam2;
+
     private void Awake()
     {
         _player = FindObjectOfType<Model_Player>();
@@ -90,6 +96,44 @@ public class CinematicController : MonoBehaviour
             cinematicRocksLevel1 = false;
             StartCoroutine(Level_1RocksCinematic());
         }
+
+        if(cinematicLevel2 && c.GetComponent<Model_Player>())
+        {
+            cinematicLevel2 = false;
+            StartCoroutine(Level2_BossCinematic());
+        }
+    }
+
+    IEnumerator Level2_BossCinematic()
+    {
+        _viewer.anim.SetBool("Walk", false);
+        _viewer.anim.SetBool("Run", false);
+        _viewer.anim.SetBool("Idle", true);
+        _player.run = false;
+        postProcess.vignette.enabled = true;
+        playerHolder.gameObject.SetActive(false);
+        _player.onCinematic = true;
+        onCinematic = true;
+        cinematicBarCam1.Priority = 1;
+        mainCamera.Priority = 0;
+
+        yield return new WaitForSeconds(1);
+        barsAnimator.SetBool("Activate", true);
+
+        yield return new WaitForSeconds(2);
+
+        cinematicBarCam1.Priority = 0;
+        cinematicBossCam.Priority = 1;
+        boss.portalOrder = true;
+
+        yield return new WaitForSeconds(5);
+
+        cinematicBossCam.Priority = 0;
+        mainCamera.Priority = 1;
+        postProcess.vignette.enabled = false;
+        playerHolder.gameObject.SetActive(true);
+        _player.onCinematic = false;
+        onCinematic = false;
     }
 
     IEnumerator Level_1RocksCinematic()
@@ -161,6 +205,8 @@ public class CinematicController : MonoBehaviour
         onCinematic = false;
 
     }
+
+
 
     IEnumerator BossScapeLevel_1()
     {

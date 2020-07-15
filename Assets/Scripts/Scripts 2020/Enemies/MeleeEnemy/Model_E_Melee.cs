@@ -109,35 +109,39 @@ public class Model_E_Melee : ClassEnemy
             var distancePH_patrol = Vector3.Distance(transform.position, patrolPosition);
             var distacePlayer = Vector3.Distance(transform.position, player.transform.position);
 
-            if (portal)
+            if (!dontMove)
             {
-                
-                if (distancePH_patrol > 0.7f && portalOrder)
+
+                if (portal)
+                {
+
+                    if (distancePH_patrol > 0.7f && portalOrder)
+                    {
+                        WalkEvent();
+                        MoveToTarget(patrolPosition);
+                    }
+
+                    if (distancePH_patrol < 1.2f && portalOrder)
+                    {
+                        portalOrder = false;
+                        IdleEvent();
+                        Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
+                        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                    }
+                }
+
+                if (distancePH_patrol > 0.7f && !portalOrder && !onPlace)
                 {
                     WalkEvent();
                     MoveToTarget(patrolPosition);
                 }
 
-                if (distancePH_patrol < 1.2f && portalOrder)
+                if (distancePH_patrol < 1.2f && !portalOrder && !onPlace)
                 {
-                    portalOrder = false;
                     IdleEvent();
                     Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
                     transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
                 }
-            }
-
-            if (distancePH_patrol > 0.7f && !portalOrder && !onPlace)
-            {
-                WalkEvent();
-                MoveToTarget(patrolPosition);
-            }
-
-            if (distancePH_patrol < 1.2f && !portalOrder && !onPlace)
-            {
-                IdleEvent();
-                Quaternion targetRotation = Quaternion.LookRotation(patrolForward, Vector3.up);
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
             }
 
             if (canPersuit && !PlayerOnGrid() || distacePlayer<1.5f && !PlayerOnGrid()) myFSM_EventMachine.ChangeState(persuit);

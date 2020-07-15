@@ -29,9 +29,15 @@ public class Model_B_Ogre1 : ClassEnemy
     public float viewDistanceAttack;
     public bool canAttack;
     public bool onAttackAnimation;
+    public bool enemyWavesStrategy;
     public bool attackFinish;
     public int attackID;
+    public int enemyWavesCount;
     int _comboAmount;
+    public List<ClassEnemy> wave1 = new List<ClassEnemy>();
+    public List<ClassEnemy> wave2 = new List<ClassEnemy>();
+    public List<Transform> phWave1 = new List<Transform>();
+    public List<Transform> phWave2 = new List<Transform>();
 
     [Header("Boss Surround Variables:")]
 
@@ -81,8 +87,29 @@ public class Model_B_Ogre1 : ClassEnemy
         _heavyEnd = true;
     }
 
+    IEnumerator WavesStart()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        for (int i = 0; i < wave1.Count; i++)
+        {
+            wave1[i].dontMove = true;
+            wave1[i].gameObject.SetActive(false);
+            wave1[i].transform.position = phWave1[i].position;
+        }
+
+        for (int i = 0; i < wave2.Count; i++)
+        {
+            wave2[i].dontMove = true;
+            wave2[i].gameObject.SetActive(false);
+            wave2[i].transform.position = phWave2[i].position;
+        }
+    }
+
+
     void Start()
     {
+        if (enemyWavesStrategy) StartCoroutine(WavesStart());
         nodes.AddRange(grid.GetNodesList().Where(x => x.walkable));
         _view = GetComponent<Viewerl_B_Ogre1>();
         playerFireSowrd = FindObjectOfType<FireSword>();
@@ -443,6 +470,11 @@ public class Model_B_Ogre1 : ClassEnemy
             fase2 = true;
             lightAttackCoef = 30;
             HeavyAttackCoef = 45;
+            foreach (var item in wave1)
+            {
+                item.gameObject.SetActive(true);
+                item.dontMove = false;
+            }
         }
 
         if(fase2 && life <=80 && !fase3)
@@ -453,6 +485,11 @@ public class Model_B_Ogre1 : ClassEnemy
             lightAttackCoef = 20;
             HeavyAttackCoef = 45;
             ComboAttackCoef = 55;
+            foreach (var item in wave2)
+            {
+                item.gameObject.SetActive(true);
+                item.dontMove = false;
+            }
         }
 
     }

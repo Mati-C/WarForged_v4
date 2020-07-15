@@ -72,7 +72,7 @@ public class Viewer_E_Shield : ClassEnemyViewer
 
     public void BlockedAnim()
     {
-        StartCoroutine(DelayAnimActive("Blocked", 0.7f));
+        StartCoroutine(DelayAnimActive("Blocked", 0.55f));
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Retreat", false);
@@ -138,7 +138,7 @@ public class Viewer_E_Shield : ClassEnemyViewer
 
     public void AnimComboAttack()
     {
-        StartCoroutine(DelayAnimActive("Attack", 2));
+        StartCoroutine(DelayAnimActive("Attack", 0.8f));
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Run", false);
