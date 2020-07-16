@@ -30,7 +30,7 @@ public class Viewer_Player : MonoBehaviour
     public Text swordExp;
     public float timertAlphaSwordExp;
     public GameObject pauseMenu;
-    GameObject powerEffect;
+    public GameObject powerEffect;
 
     [Header("Player Bones:")]
 
@@ -157,11 +157,6 @@ public class Viewer_Player : MonoBehaviour
         anim = GetComponent<Animator>();
         _player = GetComponent<Model_Player>();
         _fireSword = FindObjectOfType<FireSword>();
-        powerBar = GameObject.Find("PowerBar").GetComponent<Image>();
-        chargeAttackBar = GameObject.Find("Stamina").GetComponent<Image>();
-        lifeBar = GameObject.Find("LifeBar").GetComponent<Image>();
-        tempLifeBar = GameObject.Find("TempLifeBar").GetComponent<Image>();
-        normalTrail = GameObject.Find("Vfx_SwordTrail");
         fireTrail.gameObject.SetActive(false);
         swordFire.Stop();
         powerBar.fillAmount = 0;
@@ -170,12 +165,7 @@ public class Viewer_Player : MonoBehaviour
         lifeBar.material.SetFloat("_BeatRate", 0);
         lifeBar.material.SetFloat("_BeatColorIntensity", 0);
         powerBar.material.SetFloat("_InsideGlowOpacity", 0);
-        swordLevel = GameObject.Find("Sword Level").GetComponent<Text>();
-        swordExp = GameObject.Find("Sword Exp").GetComponent<Text>();
-        powerEffect = GameObject.Find("FX Fire Camera").transform.GetChild(0).gameObject;
         postProcess = FindObjectOfType<MainPostProcessController>();
-        pauseMenu = GameObject.Find("Pause Menu");
-        pauseMenu.SetActive(false);
     }
 
     void Start()
