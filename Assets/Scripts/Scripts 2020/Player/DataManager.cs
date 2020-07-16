@@ -8,6 +8,21 @@ public class DataManager : MonoBehaviour
     public PlayerData data;
 
     public string file = "player.text";
+    public bool resetOnPlay;
+
+    private void Awake()
+    {
+        if (resetOnPlay) ResetData();
+    }
+
+    public void ResetData()
+    {
+        Load();
+        data.swordLevel = 0;
+        data.currentExp = 0;
+        data.expEarned = 0;
+        Save();
+    }
 
     public void Save()
     {
