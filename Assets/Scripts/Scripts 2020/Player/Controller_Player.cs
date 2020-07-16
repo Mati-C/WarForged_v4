@@ -46,6 +46,7 @@ public class Controller_Player
         _model.FailAttackEvent += _viewer.FailAttackAnim;
         _model.GetHitEvent += _viewer.AnimGetHit;
         _model.GetHitHeavyEvent += _viewer.AnimGetHitHeavy;
+        _model.DieEvent += _viewer.AnimDie;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -53,7 +54,12 @@ public class Controller_Player
 
     public void ControllerUpdate()
     {
-        if (!_fade.playerCantMove && !_model.onCinematic)
+        if (Input.GetKeyUp(KeyCode.W)) W = false;
+        if (Input.GetKeyUp(KeyCode.S)) S = false;
+        if (Input.GetKeyUp(KeyCode.D)) D = false;
+        if (Input.GetKeyUp(KeyCode.A)) A = false;
+
+        if (!_fade.playerCantMove && !_model.onCinematic && _model.life>0)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -207,12 +213,7 @@ public class Controller_Player
 
             }
 
-            if (Input.GetKeyUp(KeyCode.W)) W = false;
-            if (Input.GetKeyUp(KeyCode.S)) S = false;
-            if (Input.GetKeyUp(KeyCode.D)) D = false;
-            if (Input.GetKeyUp(KeyCode.A)) A = false;
-
-
+          
             if (Input.GetKeyDown(KeyCode.LeftShift)) _model.run = true;
 
             if (!W && !S && !D && !A) _model.idleEvent();
@@ -317,6 +318,6 @@ public class Controller_Player
 
             if (Input.GetKeyDown(KeyCode.Escape)) _viewer.TogglePauseMenu();
 
-        }
+        }        
     }
 }

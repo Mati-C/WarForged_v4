@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 2806326332295483385, guid: e3b33c4a0ed22444296fa521c124c509,
         type: 3}
       propertyPath: expForDestroy
-      value: 200
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2806326332295483385, guid: e3b33c4a0ed22444296fa521c124c509,
         type: 3}

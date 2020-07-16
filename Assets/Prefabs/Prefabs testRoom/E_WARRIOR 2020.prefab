@@ -19464,6 +19464,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireEnemyTakeDamage
       objectReference: {fileID: 0}
+    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2774207757100636823, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19534,12 +19539,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.29996854
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433299, guid: 89713ad0792da8a43a9db5c60aa25246,
+    - target: {fileID: 2774207757085360069, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -19549,7 +19549,7 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085360069, guid: 89713ad0792da8a43a9db5c60aa25246,
+    - target: {fileID: 2774207757085433299, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -19772,6 +19772,16 @@ PrefabInstance:
         type: 3}
       propertyPath: TimeToRrturnPermission
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798223269467728371, guid: fbdc019d74764704d8b9d6c967a94da1,
+        type: 3}
+      propertyPath: attackDamageLight
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798223269467728371, guid: fbdc019d74764704d8b9d6c967a94da1,
+        type: 3}
+      propertyPath: attackDamageHeavy
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2798223269812728226, guid: fbdc019d74764704d8b9d6c967a94da1, type: 3}

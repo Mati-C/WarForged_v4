@@ -172,12 +172,20 @@ public class FireSword : MonoBehaviour
     public void FireWave()
     {
         var e = Physics.OverlapSphere(transform.position, fireWaveExpansion).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
+        var destructibles = Physics.OverlapSphere(transform.position, fireWaveExpansion).Where(x => x.GetComponent<DestructibleOBJ>()).Select(x => x.GetComponent<DestructibleOBJ>());
+        var roots = Physics.OverlapSphere(transform.position, fireWaveExpansion).Where(x => x.GetComponent<Roots>()).Select(x => x.GetComponent<Roots>());
+
+        foreach (var item in destructibles) item.Break();
+
         foreach (var item in e)
         {
             item.StartBurning();
             item.GetDamage(fireWaveDamage, Model_Player.DamageType.Heavy);
             if (pushEnemies) item.PushKnocked();
         }
+
+        foreach (var item in roots) item.StartDissolve();
+
         StartCoroutine(FireWaveExpansion());
     }
 

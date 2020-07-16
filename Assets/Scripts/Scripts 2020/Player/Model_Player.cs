@@ -12,6 +12,7 @@ public class Model_Player : MonoBehaviour
     PlayerCamera _playerCamera;
     Camera _mainCam;
     IA_CombatManager _IA_CM;
+    FadeLevel _levelFade;
 
     [HideInInspector]
     public FireSword fireSword;
@@ -21,6 +22,7 @@ public class Model_Player : MonoBehaviour
     public float maxLife;
     public float distanceAggressiveNodes;
     public float distanceNon_AggressiveNodes;
+    public Vector3 revivePos;
 
     [Header("Player Speeds:")]
     public float speed;
@@ -40,6 +42,7 @@ public class Model_Player : MonoBehaviour
     public bool onAction;
     public bool OnDamage;
     public bool onCinematic;
+    public bool isDead;
 
     [Header("Player Layers:")]
 
@@ -122,6 +125,7 @@ public class Model_Player : MonoBehaviour
     public Action DefendTutorialEvent;
     public Action KickTutorialEvent;
     public Action DodgeTutorialEvent;
+    public Action DieEvent;
 
     public Action<bool> CombatStateEvent;
     public Action<DogeDirecctions> DodgeEvent;
@@ -339,9 +343,11 @@ public class Model_Player : MonoBehaviour
         _playerCamera = FindObjectOfType<PlayerCamera>();
         _mainCam = _playerCamera.GetComponent<Camera>();
         _IA_CM = FindObjectOfType<IA_CombatManager>();
-        _controller = new Controller_Player(this, _viewer, FindObjectOfType<FadeLevel>());
+        _levelFade = FindObjectOfType<FadeLevel>();
+        _controller = new Controller_Player(this, _viewer, _levelFade);
         rb = GetComponent<Rigidbody>();
         fireSword = GetComponent<FireSword>();
+        revivePos = transform.position;
 
         MakeDamageTutorialEvent += () => { };
         DefendTutorialEvent += () => { };
@@ -362,8 +368,7 @@ public class Model_Player : MonoBehaviour
     
     void Update()
     {
-        _controller.ControllerUpdate();
-       
+        _controller.ControllerUpdate();       
     }
 
     public void Movement(Vector3 d)
@@ -825,7 +830,7 @@ public class Model_Player : MonoBehaviour
 
     public void GetDamage(float d, Transform target, DamageType type)
     {
-        if (target.GetComponent<ClassEnemy>() && !onDodge)
+        if (target.GetComponent<ClassEnemy>() && !onDodge && !isDead)
         {
             Vector3 toTarget = (target.transform.position - transform.position).normalized;
 
@@ -911,7 +916,31 @@ public class Model_Player : MonoBehaviour
             }
         }
 
+        if (life<=0 && !isDead)
+        {
+            DieEvent();
+            StartCoroutine(DeadCorrutine());
+        }
 
+    }
+
+    IEnumerator DeadCorrutine()
+    {
+        isDead = true;
+        yield return new WaitForSeconds(1);
+        _levelFade.FadeIn(false);
+        while (_levelFade.fadeIn)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = revivePos;
+        _viewer.AnimRevive();
+        UpdateLife(100);
+        fireSword.currentExp = 0;
+        yield return new WaitForSeconds(1);
+        timeOnCombat = 0;
+        _levelFade.FadeOut(false);
+        isDead = false;
     }
 
     public void LockEnemies()

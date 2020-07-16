@@ -84,6 +84,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     {
         if (c.gameObject.GetComponent<Model_Player>())
         {
+            player.revivePos = ph.position;
             if (!checkPointActivated)
             {
                 ButtonManager.OnNotify(ph);

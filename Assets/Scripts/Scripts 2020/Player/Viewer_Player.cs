@@ -502,6 +502,17 @@ public class Viewer_Player : MonoBehaviour
         anim.SetBool("Defence", d);
     }
 
+    public void AnimDie()
+    {
+        anim.SetBool("Die", true);
+    }
+
+    public void AnimRevive()
+    {
+        anim.SetBool("Die", false);
+        anim.SetBool("Idle", true);
+    }
+
     public void AnimGetHit()
     {
         if (_player.chargeAttackAmount <0.2f)
