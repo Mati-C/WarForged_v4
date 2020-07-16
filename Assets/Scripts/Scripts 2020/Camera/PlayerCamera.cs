@@ -69,6 +69,24 @@ public class PlayerCamera : MonoBehaviour
         _noise.m_FrequencyGain = frequency;
     }
 
+    public void CameraShakeSmooth(float amplitude, float frequency, float duration)
+    {
+        StartCoroutine(CamShakeSmooth(amplitude, frequency, duration));
+    }
+
+    IEnumerator CamShakeSmooth(float amplitude, float frequency, float duration)
+    {
+        CameraShake(amplitude, frequency);
+        yield return new WaitForSeconds(duration / 2);
+        float t = duration / 2;
+        while (t > 0)
+        {
+            t -= Time.deltaTime;
+            CameraShake(Mathf.Lerp(0, amplitude, t), Mathf.Lerp(0, frequency, t));
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public void LockOnCam()
     {
         mainCamera.Priority = 0;

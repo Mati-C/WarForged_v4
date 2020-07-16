@@ -169,7 +169,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 16e6deb3fdc26ec409a73b2da5506140, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 123bbb811a89210449727f3f7986cc66, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -296,6 +296,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 659567496575419333}
     m_Modifications:
+    - target: {fileID: 4128558647060624708, guid: e14b2f0575c341645b7143b601b82685,
+        type: 3}
+      propertyPath: m_Name
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 4128558647060624711, guid: e14b2f0575c341645b7143b601b82685,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -401,11 +406,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4128558647060624708, guid: e14b2f0575c341645b7143b601b82685,
-        type: 3}
-      propertyPath: m_Name
-      value: Play
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14b2f0575c341645b7143b601b82685, type: 3}
 --- !u!224 &1337257973976972449 stripped
@@ -421,6 +421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1337257973269370377}
     m_Modifications:
+    - target: {fileID: 6243842381581597439, guid: 76c64c0110a66aa4d8d4e190183c11fc,
+        type: 3}
+      propertyPath: m_Name
+      value: Press Any Key
+      objectReference: {fileID: 0}
     - target: {fileID: 6243842381581597438, guid: 76c64c0110a66aa4d8d4e190183c11fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -526,11 +531,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6243842381581597439, guid: 76c64c0110a66aa4d8d4e190183c11fc,
-        type: 3}
-      propertyPath: m_Name
-      value: Press Any Key
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76c64c0110a66aa4d8d4e190183c11fc, type: 3}
 --- !u!224 &1337257973326726986 stripped
@@ -546,6 +546,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6491603579817960695}
     m_Modifications:
+    - target: {fileID: 7042653593495515906, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
+        type: 3}
+      propertyPath: m_Name
+      value: Close
+      objectReference: {fileID: 0}
     - target: {fileID: 7042653593495515909, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -604,12 +609,12 @@ PrefabInstance:
     - target: {fileID: 7042653593495515909, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 752
+      value: 710
       objectReference: {fileID: 0}
     - target: {fileID: 7042653593495515909, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -631
+      value: -613
       objectReference: {fileID: 0}
     - target: {fileID: 7042653593495515909, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
         type: 3}
@@ -665,11 +670,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7042653593495515906, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
-        type: 3}
-      propertyPath: m_Name
-      value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 7042653593495515911, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
         type: 3}
@@ -868,7 +868,7 @@ PrefabInstance:
     - target: {fileID: 8369559012102941707, guid: f273ebbbd9720724c87159e4e2aefd39,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3702687393159936964, guid: f273ebbbd9720724c87159e4e2aefd39,
         type: 3}
@@ -920,6 +920,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 659567496575419333}
     m_Modifications:
+    - target: {fileID: 4128558647060624708, guid: e14b2f0575c341645b7143b601b82685,
+        type: 3}
+      propertyPath: m_Name
+      value: Sword Levels
+      objectReference: {fileID: 0}
     - target: {fileID: 4128558647060624711, guid: e14b2f0575c341645b7143b601b82685,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1040,17 +1045,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
-    - target: {fileID: 4128558647060624708, guid: e14b2f0575c341645b7143b601b82685,
-        type: 3}
-      propertyPath: m_Name
-      value: Sword Levels
-      objectReference: {fileID: 0}
-    - target: {fileID: 4128558647060624729, guid: e14b2f0575c341645b7143b601b82685,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 9ba806adf75164b45b0b613e1dd97dd8,
-        type: 3}
     - target: {fileID: 4128558647060624710, guid: e14b2f0575c341645b7143b601b82685,
         type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
@@ -1069,6 +1063,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a15ac417039320246b9971a931e9706f,
         type: 3}
+    - target: {fileID: 4128558647060624729, guid: e14b2f0575c341645b7143b601b82685,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ba806adf75164b45b0b613e1dd97dd8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14b2f0575c341645b7143b601b82685, type: 3}
 --- !u!224 &6611729042547907035 stripped
@@ -1084,6 +1084,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 659567496575419333}
     m_Modifications:
+    - target: {fileID: 7042653593495515906, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
+        type: 3}
+      propertyPath: m_Name
+      value: Exit
+      objectReference: {fileID: 0}
     - target: {fileID: 7042653593495515909, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1188,11 +1193,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7042653593495515906, guid: 6f9a333aacd5c124eb1d5f320f2fc957,
-        type: 3}
-      propertyPath: m_Name
-      value: Exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f9a333aacd5c124eb1d5f320f2fc957, type: 3}

@@ -29,6 +29,7 @@ public class Viewer_Player : MonoBehaviour
     public Text swordExp;
     public float timertAlphaSwordExp;
     public GameObject pauseMenu;
+    GameObject powerEffect;
 
     [Header("Player Bones:")]
 
@@ -168,6 +169,7 @@ public class Viewer_Player : MonoBehaviour
         powerBar.material.SetFloat("_InsideGlowOpacity", 0);
         swordLevel = GameObject.Find("Sword Level").GetComponent<Text>();
         swordExp = GameObject.Find("Sword Exp").GetComponent<Text>();
+        powerEffect = GameObject.Find("FX Fire Camera").transform.GetChild(0).gameObject;
     }
 
     void Start()
@@ -355,6 +357,7 @@ public class Viewer_Player : MonoBehaviour
         {
             powerBar.fillAmount = 1;
             powerBar.material.SetFloat("_InsideGlowOpacity", 1);
+            powerEffect.SetActive(true);
         }
     }
 
@@ -367,6 +370,7 @@ public class Viewer_Player : MonoBehaviour
         }
         powerBar.fillAmount = 0;
         powerBar.material.SetFloat("_InsideGlowOpacity", 0);
+        powerEffect.SetActive(false);
     }
 
     public void ActivateSword()
