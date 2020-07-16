@@ -220,20 +220,24 @@ public class Controller_Player
 
             if (Input.GetKeyUp(KeyCode.LeftShift)) _model.run = false;
 
+            if (Input.GetKeyDown(KeyCode.Mouse0)) auxTimer = Time.time;
+
+            if (Input.GetKeyUp(KeyCode.Mouse0) && Time.time - auxTimer > 0.3f && _model.chargeAttackCasted) _model.CantChargeAttack();
+
             //-------------------------ATTACKS------------------------
             if (Input.GetKey(KeyCode.Mouse0) && !_model.onFailAttack && !_model.chargeAttackCasted)
             {
                 if (_model.chargeAttackAmount >= 0.2f) _model.ChangeActionState(true);
                 _model.ChargingAttack();
                 if (_model.chargeAttackAmount >= _model.chargeAttackTime - 0.1f) _viewer.SlowTinme();
+                if (_model.chargeAttackAmount >= _model.chargeAttackTime -0.2f) _viewer.SlowSound();
                 if (_model.chargeAttackAmount >= _model.chargeAttackTime) _model.ChargeAttack(_model.chargeAttackAmount);
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0)) auxTimer = Time.time;
-
+            
             if (Input.GetKeyUp(KeyCode.Mouse0) && !_model.onFailAttack && !_model.onDefence)
             {
-                _model.ChargeAttackZero();
+                _model.ChargeAttackZero();              
 
                 if (Time.time - auxTimer < 0.2f && !_model.onDodge && !_model.onFailAttack)
                 {

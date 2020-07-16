@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Sound;
 
 public class Model_Player : MonoBehaviour
 {
@@ -63,6 +64,7 @@ public class Model_Player : MonoBehaviour
     public float defenceTimer;
     public float onDamageTime;
     public bool chargeAttackCasted;
+    bool _chargeAttackSound;
 
     [Header("Player Powers Values:")]
     public bool  flamesOn;
@@ -699,6 +701,8 @@ public class Model_Player : MonoBehaviour
         var enemies = Physics.OverlapSphere(transform.position, viewDistanceAttack).Where(x => x.GetComponent<ClassEnemy>()).Select(x => x.GetComponent<ClassEnemy>());
         var destructibles = Physics.OverlapSphere(transform.position, viewDistanceAttack / 2).Where(x => x.GetComponent<DestructibleOBJ>()).Select(x => x.GetComponent<DestructibleOBJ>());
 
+        
+
         foreach (var item in enemies)
         {
             item.GetDamage(ChargeAttackDamage, DamageType.Heavy);
@@ -758,8 +762,16 @@ public class Model_Player : MonoBehaviour
         }
     }
 
-    public void ChargeAttackZero() { chargeAttackAmount = 0; }
+    public void ChargeAttackZero()
+    {
+        chargeAttackAmount = 0;
+    }
    
+    public void CantChargeAttack()
+    {
+       if(!_chargeAttackSound) SoundManager.instance.Play(Player.CANT_HEAVY_ATTACK, transform.position, true);
+    }
+
     public void ChargeAttack(float time)
     {       
         if (time >= chargeAttackTime && !chargeAttackCasted && !OnDamage)
@@ -773,9 +785,16 @@ public class Model_Player : MonoBehaviour
             StartCoroutine(DecressChargeAttackColdown());
             StartCoroutine(OnActionState(0.3f));
             MakeDamageChargeAttack();
-
+            StartCoroutine(CanChargeAttackSound());
         }
         chargeAttackAmount = 0;
+    }
+
+    IEnumerator CanChargeAttackSound()
+    {
+        _chargeAttackSound = true;
+        yield return new WaitForSeconds(0.4f);
+        _chargeAttackSound = false;
     }
 
     IEnumerator DecressChargeAttackColdown()

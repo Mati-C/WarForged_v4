@@ -53,7 +53,9 @@ public class Viewer_Player : MonoBehaviour
     bool _lockParticleUp;
     bool _changeSwordBoneParent;
     bool _slowedTime;
+    bool _slowSound;
     bool _boneMove;
+    bool _soundPowerFull;
     Quaternion _swordBackSaveRotation;
 
     [Header("Player AxisValues:")]
@@ -326,7 +328,7 @@ public class Viewer_Player : MonoBehaviour
     public void ChargeAttackAnim()
     {
         SoundManager.instance.PlayRandom(SoundManager.instance.swing, transform.position, true);
-        SoundManager.instance.Play(Player.SHORT_YELL, transform.position, true);
+        
         StartCoroutine(DelayAnimationActivate("ChargeAttackB", true, 0.2f));
         StartCoroutine(DecreesChargeAttackBar());
     }
@@ -361,6 +363,8 @@ public class Viewer_Player : MonoBehaviour
             powerBar.fillAmount = 1;
             powerBar.material.SetFloat("_InsideGlowOpacity", 1);
             powerEffect.SetActive(true);
+            if(!_soundPowerFull)SoundManager.instance.Play(Player.POWER_FULL, transform.position, true);
+            _soundPowerFull = true;
         }
     }
 
@@ -374,6 +378,7 @@ public class Viewer_Player : MonoBehaviour
         powerBar.fillAmount = 0;
         powerBar.material.SetFloat("_InsideGlowOpacity", 0);
         powerEffect.SetActive(false);
+        _soundPowerFull = false;
     }
 
     public void ActivateSword()
@@ -579,11 +584,6 @@ public class Viewer_Player : MonoBehaviour
         _player._playerCamera.CameraShakeSmooth(4, 8, 0.75f);
     }
 
-    public void SwordPowerAnim()
-    {
-
-    }
-
     public void DodgeAnims(Model_Player.DogeDirecctions dir)
     {
         StartCoroutine(DelayBone());
@@ -631,8 +631,22 @@ public class Viewer_Player : MonoBehaviour
        if(!_slowedTime)StartCoroutine(SlowTimeCorrutine());
     }
 
+    public void SlowSound()
+    {
+       if(!_slowSound) StartCoroutine(SlowSoundTimer());
+    }
+
+    IEnumerator SlowSoundTimer()
+    {
+        _slowSound = true;
+        SoundManager.instance.Play(Player.HEAVY_ATTACK, transform.position, true);
+        yield return new WaitForSeconds(1);
+        _slowSound = false;
+    }
+
     IEnumerator SlowTimeCorrutine()
     {
+        
         postProcess.HeavyAttackEffect(true);
         Time.timeScale = 0.1f;
         _slowedTime = true;

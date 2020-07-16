@@ -17,6 +17,7 @@ public class FireSword : MonoBehaviour
     
     public List<float> expForEachLevel = new List<float>();
     public List<ClassEnemy> allEnemies = new List<ClassEnemy>();
+    public List<String> LevelsInfo = new List<String>();
     public Dictionary<int, Action> LevelUpdates = new Dictionary<int, Action>(); 
 
     [Header("Fire Sword Variables:")]
@@ -54,6 +55,16 @@ public class FireSword : MonoBehaviour
         _player = GetComponent<Model_Player>();
         _viewer = GetComponent<Viewer_Player>();
         allEnemies.AddRange(FindObjectsOfType<ClassEnemy>());
+
+        LevelsInfo.Add("More burning damage per second.");
+        LevelsInfo.Add("Unlock Fire Wave.");
+        LevelsInfo.Add("Longer duration of Fire Sword. Slightly recharges skill when killing enemies");
+        LevelsInfo.Add("Longer duration of Fire Sword");
+        LevelsInfo.Add("More damage per second. Recharges skill when killing enemies");
+        LevelsInfo.Add("Fire Wave whith more range");
+        LevelsInfo.Add("Longer Fire Wave damage duration. Recharges skill faster when killing enemies");
+        LevelsInfo.Add("Push enemies");
+        LevelsInfo.Add("Skill recharges faster");
 
         Action Lv1 = () => { };
 

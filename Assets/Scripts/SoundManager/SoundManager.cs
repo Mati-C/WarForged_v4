@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour
     [NamedArray(new string[] { "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH" })]
     public AudioClip[] boss;
 
-    [NamedArray(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "FIRE_SWORD", "SHORT_YELL" })]
+    [NamedArray(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "FIRE_SWORD", "SHORT_YELL", "HEAVY_ATTACK", "CANT_HEAVY_ATTACK", "POWER_FULL"})]
     public AudioClip[] player;
 
     [NamedArray(new string[] { "LEVEL_1", "LEVEL_2", "BATTLE_MUSIC", "BOSS_MUSIC" })]
@@ -92,6 +92,38 @@ public class SoundManager : MonoBehaviour
         if (volume > 1)
             audioSource.minDistance *= volume;
         audioSource.Play();
+    }
+
+    public AudioSource PlayAndCreate<T>(T soundType, Vector3 position = new Vector3(), bool randomPitch = false, float volume = 0.7f, bool loop = false)
+    {
+        int id = -1;
+        id = (int)Convert.ChangeType(soundType, typeof(Int32));
+
+        GameObject s = Instantiate(soundCuePrefab);
+        AudioSource audioSource = s.GetComponent<AudioSource>();
+
+        if (soundType.GetType() == typeof(Objects))
+            audioSource.clip = objects[id];
+        else if (soundType.GetType() == typeof(Entity))
+            audioSource.clip = entity[id];
+        else if (soundType.GetType() == typeof(Boss))
+            audioSource.clip = boss[id];
+        else if (soundType.GetType() == typeof(Player))
+            audioSource.clip = player[id];
+        else if (soundType.GetType() == typeof(Music))
+            audioSource.clip = music[id];
+        else if (soundType.GetType() == typeof(Hit))
+            audioSource.clip = hit[id];
+
+        audioSource.loop = loop;
+        s.transform.position = position;
+        audioSource.spatialBlend = position != new Vector3() ? 1 : 0;
+        audioSource.volume = volume;
+        audioSource.pitch = randomPitch ? UnityEngine.Random.Range(0.9f, 1.1f) : 1;
+        if (volume > 1)
+            audioSource.minDistance *= volume;
+        audioSource.Play();
+        return audioSource;
     }
 
     public void PlayRandom<T>(List<T> sounds, Vector3 position = new Vector3(), bool randomPitch = false, float pitch = 1f, float volume = 1f, bool loop = false)
@@ -221,7 +253,10 @@ public class SoundManager : MonoBehaviour
         SWING_2,
         SWING_3,
         FIRE_SWORD,
-        SHORT_YELL
+        SHORT_YELL,
+        HEAVY_ATTACK,
+        CANT_HEAVY_ATTACK,
+        POWER_FULL
     }
 
     public enum Music

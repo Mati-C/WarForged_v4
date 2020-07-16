@@ -948,6 +948,8 @@ MonoBehaviour:
   myMeshes: []
   mySkinedMeshes: []
   myModel: {fileID: 0}
+  smashParticles: {fileID: 0}
+  onSmashAttack: 0
 --- !u!114 &470016371485207963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,6 +969,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   ia_Manager: {fileID: 0}
   playerFireSowrd: {fileID: 0}
+  playerCamera: {fileID: 0}
   ID: 4
   enemyLayer:
     serializedVersion: 2
@@ -1017,7 +1020,6 @@ MonoBehaviour:
   cantAvoid: 0
   patrolPosition: {x: 0, y: 0, z: 0}
   patrolForward: {x: 0, y: 0, z: 0}
-  onPlace: 0
   onDamageTime: 0
   damageDelayTime: 0
   timeBurning: 0
@@ -1027,17 +1029,23 @@ MonoBehaviour:
   lightAttackCoef: 59.4
   HeavyAttackCoef: 0
   ComboAttackCoef: 0
-  heavyAttackDamage: 0
-  lightAttackDamage: 0
-  combo1AttackDamage: 0
-  combo2AttackDamage: 0
+  heavyAttackDamage: 12
+  lightAttackDamage: 10
+  combo1AttackDamage: 8
+  combo2AttackDamage: 10
   combo3AttackDamage: 0
   angleToAttack: 100
   viewDistanceAttack: 2.73
   canAttack: 0
   onAttackAnimation: 0
+  enemyWavesStrategy: 0
   attackFinish: 0
   attackID: 0
+  enemyWavesCount: 0
+  wave1: []
+  wave2: []
+  phWave1: []
+  phWave2: []
   surroundSpeed: 0.5
   surroundTimer: 0
   surroundTimerMin: 2
@@ -21405,16 +21413,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 8.54
-      objectReference: {fileID: 0}
     - target: {fileID: 2774207757100636823, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21485,6 +21483,31 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.79999995
       objectReference: {fileID: 0}
+    - target: {fileID: 2774207757100458149, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774207757100271285, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774207757100271281, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 8.54
+      objectReference: {fileID: 0}
     - target: {fileID: 2774207757085360069, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: playOnAwake
@@ -21499,21 +21522,6 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757100458149, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757100271281, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757100271285, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89713ad0792da8a43a9db5c60aa25246, type: 3}

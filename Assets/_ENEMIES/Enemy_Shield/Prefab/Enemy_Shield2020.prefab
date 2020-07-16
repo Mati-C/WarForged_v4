@@ -22307,6 +22307,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   ia_Manager: {fileID: 0}
   playerFireSowrd: {fileID: 0}
+  playerCamera: {fileID: 0}
   ID: 0
   enemyLayer:
     serializedVersion: 2
@@ -22343,6 +22344,7 @@ MonoBehaviour:
   permissionToAttack: 0
   cantAskAgain: 0
   portalOrder: 0
+  dontMove: 0
   currentIndex: 0
   timeToAttack: 0
   maxTimeToAttack: 1
@@ -22356,7 +22358,6 @@ MonoBehaviour:
   cantAvoid: 0
   patrolPosition: {x: 0, y: 0, z: 0}
   patrolForward: {x: 0, y: 0, z: 0}
-  onPlace: 0
   onDamageTime: 0
   damageDelayTime: 0.8
   timeBurning: 0
@@ -22364,7 +22365,7 @@ MonoBehaviour:
   surroundTimer: 0
   surroundTimerMin: 5
   surroundTimerMax: 10
-  attackDamage: 0
+  attackDamage: 10
   angleToAttack: 100
   viewDistanceAttack: 1.7
   canAttack: 0
@@ -23709,7 +23710,7 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433299, guid: 89713ad0792da8a43a9db5c60aa25246,
+    - target: {fileID: 2774207757085360069, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -23719,7 +23720,7 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085360069, guid: 89713ad0792da8a43a9db5c60aa25246,
+    - target: {fileID: 2774207757085433299, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: playOnAwake
       value: 0

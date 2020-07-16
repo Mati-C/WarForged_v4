@@ -101,6 +101,9 @@ public abstract class ClassEnemy : MonoBehaviour
     public Action KnockedEvent;
     public N_FSM_State patrolState;
 
+    bool _burnSound;
+    AudioSource _burnAudio;
+
     public void ReturnToLife()
     {
         isDead = false;
@@ -204,7 +207,12 @@ public abstract class ClassEnemy : MonoBehaviour
         float tic = 1;
         timeBurning = playerFireSowrd.fireSwordBurnTimeOnEnemy;
         _viewer.BurnOn_Off(true);
-
+        if (!_burnSound)
+        {
+            _burnAudio = SoundManager.instance.PlayAndCreate(Objects.CHECKPOINT_IDLE, transform.position, true);
+            _burnSound = true;
+        }
+       
         while (timeBurning > 0)
         {
             timeBurning -= Time.deltaTime;
@@ -229,6 +237,9 @@ public abstract class ClassEnemy : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        _burnSound = false;
+        _burnAudio.Stop();
+        Destroy(_burnAudio.gameObject);
         _viewer.BurnOn_Off(false);
         burning = false;
     }

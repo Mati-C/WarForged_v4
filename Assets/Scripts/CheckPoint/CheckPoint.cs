@@ -12,6 +12,8 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     public Text expTextPrefab;
     public Text swordLevelText;
     public Text swordLevelTextPrefab;
+    public Text swordInfoText;
+    public Text swordInfoTextPrefab;
     public ParticleSystem fire;
     public ParticleSystem halo;
     public float lightIntensity;
@@ -71,11 +73,14 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         ButtonManager = FindObjectOfType<ButtonManager>();
         expText = Instantiate(expTextPrefab);
         swordLevelText = Instantiate(swordLevelTextPrefab);
+        swordInfoText = Instantiate(swordInfoTextPrefab);
         expText.gameObject.SetActive(false);
         swordLevelText.gameObject.SetActive(false);
+        swordInfoText.gameObject.SetActive(false);
         _levelUI = GameObject.Find("LEVEL UI");
         expText.transform.SetParent(_levelUI.transform, false);
         swordLevelText.transform.SetParent(_levelUI.transform, false);
+        swordInfoText.transform.SetParent(_levelUI.transform, false);
         StartCoroutine(FollowText());
         Subscribe(ButtonManager);
     }
@@ -110,6 +115,8 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
             if (!swordLevelText.IsActive()) swordLevelText.gameObject.SetActive(true);
 
+            if (!swordInfoText.IsActive()) swordInfoText.gameObject.SetActive(true);
+
             int expInt = (int)_fireSword.expEarned;
 
             expText.text = expInt + "-Exp / " + _fireSword.expForEachLevel[_fireSword.fireSwordLevel] + "-Exp";
@@ -117,6 +124,8 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
             int l = _fireSword.fireSwordLevel + 1;
 
             swordLevelText.text = "Level-" + l;
+
+            swordInfoText.text = "Next Level: " + _fireSword.LevelsInfo[_fireSword.fireSwordLevel];
         }
 
         if (checkPointActivated && c.GetComponent<Model_Player>())
@@ -137,6 +146,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
     {
         if (expText.IsActive()) expText.gameObject.SetActive(false);
         if (swordLevelText.IsActive()) swordLevelText.gameObject.SetActive(false);
+        if (swordInfoText.IsActive()) swordInfoText.gameObject.SetActive(false);
     }
 
     IEnumerator FollowText()
@@ -144,9 +154,11 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         while (true)
         {
             Vector2 screenPos = _cam.WorldToScreenPoint(transform.position + Vector3.up * 1.4f);
-            Vector2 screenPos2 = _cam.WorldToScreenPoint(transform.position + Vector3.up * 1.8f);
+            Vector2 screenPos2 = _cam.WorldToScreenPoint(transform.position + Vector3.up * 1.9f);
+            Vector2 screenPos3 = _cam.WorldToScreenPoint(transform.position + Vector3.up * 1.6f);
             expText.transform.position = screenPos;
             swordLevelText.transform.position = screenPos2;
+            swordInfoText.transform.position = screenPos3;
             yield return new WaitForEndOfFrame();
         }
     }

@@ -79,6 +79,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   ia_Manager: {fileID: 0}
   playerFireSowrd: {fileID: 0}
+  playerCamera: {fileID: 0}
   ID: 0
   enemyLayer:
     serializedVersion: 2
@@ -115,6 +116,7 @@ MonoBehaviour:
   permissionToAttack: 0
   cantAskAgain: 0
   portalOrder: 0
+  dontMove: 0
   currentIndex: 0
   timeToAttack: 0
   maxTimeToAttack: 1
@@ -128,7 +130,6 @@ MonoBehaviour:
   cantAvoid: 0
   patrolPosition: {x: 0, y: 0, z: 0}
   patrolForward: {x: 0, y: 0, z: 0}
-  onPlace: 0
   onDamageTime: 0
   damageDelayTime: 0.8
   timeBurning: 0
@@ -136,7 +137,7 @@ MonoBehaviour:
   surroundTimer: 0
   surroundTimerMin: 5
   surroundTimerMax: 10
-  attackDamage: 0
+  attackDamage: 12
   angleToAttack: 100
   viewDistanceAttack: 1.7
   canAttack: 0
@@ -322,11 +323,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 8065126914986448503, guid: 3435664b42a3ae34984d9e806627fba0,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 436b06e337405bd4a93ca84415965cd0, type: 2}
     - target: {fileID: 101073651840924429, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -390,7 +386,7 @@ PrefabInstance:
     - target: {fileID: 2496140735024530165, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2496140735024530165, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
@@ -410,13 +406,18 @@ PrefabInstance:
     - target: {fileID: 1732627304141730447, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8871914486325645237, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8065126914986448503, guid: 3435664b42a3ae34984d9e806627fba0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 436b06e337405bd4a93ca84415965cd0, type: 2}
     - target: {fileID: 7588000343950929114, guid: 3435664b42a3ae34984d9e806627fba0,
         type: 3}
       propertyPath: m_Layer
@@ -964,27 +965,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.30769244
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433299, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085433303, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2774207757085360069, guid: 89713ad0792da8a43a9db5c60aa25246,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2774207757100458149, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774207757100271285, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
       propertyPath: m_Layer
       value: 9
@@ -994,10 +980,25 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 2774207757100271285, guid: 89713ad0792da8a43a9db5c60aa25246,
+    - target: {fileID: 2774207757085433297, guid: 89713ad0792da8a43a9db5c60aa25246,
         type: 3}
-      propertyPath: m_Layer
-      value: 9
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774207757085360069, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774207757085433303, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774207757085433299, guid: 89713ad0792da8a43a9db5c60aa25246,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89713ad0792da8a43a9db5c60aa25246, type: 3}

@@ -4927,6 +4927,9 @@ MonoBehaviour:
   swordLevelText: {fileID: 0}
   swordLevelTextPrefab: {fileID: 3499474651691966371, guid: c7013bf47416f4a4db1690754e3b09b1,
     type: 3}
+  swordInfoText: {fileID: 0}
+  swordInfoTextPrefab: {fileID: 3499474651691966371, guid: 31bba67f8509f85408efffe9ce1876c3,
+    type: 3}
   fire: {fileID: 764648886497381474}
   halo: {fileID: 1870772272983015680}
   lightIntensity: 3
