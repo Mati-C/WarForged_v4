@@ -8,6 +8,7 @@ public class FireSword : MonoBehaviour
 {
     Model_Player _player;
     Viewer_Player _viewer;
+    DataManager _dataManager;
     public ParticleSystem fireWaveParticle;
     [Header("Fire Sword Level and Exp:")]
     public int fireSwordLevel;
@@ -48,6 +49,7 @@ public class FireSword : MonoBehaviour
 
     private void Awake()
     {
+        _dataManager = FindObjectOfType<DataManager>();
         GetEnergy += () => {};
         _player = GetComponent<Model_Player>();
         _viewer = GetComponent<Viewer_Player>();
@@ -84,6 +86,11 @@ public class FireSword : MonoBehaviour
         LevelUpdates.Add(8, Lv9);
         LevelUpdates.Add(9, Lv10);
 
+        _dataManager.Load();
+        fireSwordLevel = _dataManager.data.swordLevel;
+        currentExp = _dataManager.data.currentExp;
+        expEarned = _dataManager.data.expEarned;
+
         for (int i = 0; i < fireSwordLevel; i++)
         {
             LevelUpdates[i+1]();
@@ -95,12 +102,8 @@ public class FireSword : MonoBehaviour
     {
         GetEnergy();
         currentExp += exp;
-    }
-
-
-    private void Update()
-    {
-
+        _dataManager.data.currentExp = currentExp;
+        _dataManager.Save();
     }
 
     public void UpdateSword()
@@ -158,6 +161,11 @@ public class FireSword : MonoBehaviour
                 currentExp = 0;
                 onExpUpdate = false;
             }
+
+            _dataManager.data.swordLevel = fireSwordLevel;
+            _dataManager.data.currentExp = currentExp;
+            _dataManager.data.expEarned = expEarned;
+            _dataManager.Save();
         }
     }
 

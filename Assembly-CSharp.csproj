@@ -525,8 +525,10 @@
     <Compile Include="Assets\Scripts\Scripts 2020\Grid\Node2.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Grid\Pathfinding.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Controller_Player.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Player\DataManager.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\FireSword.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Model_Player.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\Player\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\PlayerSword.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Roots.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Player\Viewer_Player.cs" />
