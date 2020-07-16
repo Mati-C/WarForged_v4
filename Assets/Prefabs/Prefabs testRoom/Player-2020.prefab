@@ -19491,14 +19491,14 @@ MonoBehaviour:
   expForEachLevel:
   - 100
   - 200
-  - 200
-  - 200
-  - 200
-  - 200
-  - 200
-  - 200
-  - 200
-  - 200
+  - 280
+  - 320
+  - 410
+  - 490
+  - 520
+  - 600
+  - 630
+  - 700
   allEnemies: []
   fireSwordTime: 10
   fireSwordBurnDamage: 3
@@ -79499,11 +79499,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5015600734154120621}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: be2d9b0b72bea494c8009040f4fef910,
-        type: 3}
-      propertyPath: m_Name
-      value: Holster
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be2d9b0b72bea494c8009040f4fef910,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -79574,6 +79569,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.16213301
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: be2d9b0b72bea494c8009040f4fef910,
+        type: 3}
+      propertyPath: m_Name
+      value: Holster
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: be2d9b0b72bea494c8009040f4fef910,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -79594,11 +79594,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5015600733568781236}
     m_Modifications:
-    - target: {fileID: 72571723047129756, guid: 584dec9ea41cecb4f82ba61c153ea459,
-        type: 3}
-      propertyPath: m_Name
-      value: Burlap Splinters
-      objectReference: {fileID: 0}
     - target: {fileID: 881611593975034346, guid: 584dec9ea41cecb4f82ba61c153ea459,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -79668,6 +79663,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 72571723047129756, guid: 584dec9ea41cecb4f82ba61c153ea459,
+        type: 3}
+      propertyPath: m_Name
+      value: Burlap Splinters
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 584dec9ea41cecb4f82ba61c153ea459, type: 3}
