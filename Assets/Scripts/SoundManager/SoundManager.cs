@@ -12,8 +12,10 @@ public class SoundManager : MonoBehaviour
     public float musicVolume;
     bool bossMusicPlaying;
 
-    AudioSource ambienceAudio;
-    AudioSource combatAudio;
+    [HideInInspector]
+    public AudioSource ambienceAudio;
+    [HideInInspector]
+    public AudioSource combatAudio;
 
     bool aux;
 

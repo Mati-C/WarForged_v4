@@ -73,6 +73,8 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         pause = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
+        SoundManager.instance.ambienceAudio.UnPause();
+        SoundManager.instance.combatAudio.UnPause();
     }
 
     public void Restart()

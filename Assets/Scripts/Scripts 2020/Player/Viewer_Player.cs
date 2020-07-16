@@ -624,12 +624,16 @@ public class Viewer_Player : MonoBehaviour
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            SoundManager.instance.ambienceAudio.UnPause();
+            SoundManager.instance.combatAudio.UnPause();
         }
         else
         {
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            SoundManager.instance.ambienceAudio.Pause();
+            SoundManager.instance.combatAudio.Pause();
         }
     }
 
