@@ -19424,6 +19424,7 @@ MonoBehaviour:
   distanceAggressiveNodes: 3.16
   distanceNon_AggressiveNodes: 7.56
   revivePos: {x: 0, y: 0, z: 0}
+  reviveForward: {x: 0, y: 0, z: 0}
   speed: 2.7
   runSpeed: 5.8
   dodgeSpeedRoll: 6
@@ -19550,6 +19551,7 @@ MonoBehaviour:
   swordExp: {fileID: 0}
   timertAlphaSwordExp: 0
   pauseMenu: {fileID: 0}
+  powerEffect: {fileID: 0}
   spineBone: {fileID: 5015600733141705249}
   headBone: {fileID: 5015600733640046240}
   defenceFroward: {fileID: 5015600733657036470}

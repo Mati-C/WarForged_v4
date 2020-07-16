@@ -90,6 +90,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         if (c.gameObject.GetComponent<Model_Player>())
         {
             player.revivePos = ph.position;
+            player.reviveForward = ph.forward;
             if (!checkPointActivated)
             {
                 ButtonManager.OnNotify(ph);

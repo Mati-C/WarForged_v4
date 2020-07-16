@@ -12,10 +12,14 @@ public class ChangeLevelManager : MonoBehaviour
     public bool changeSceneInstant;
     public bool endGame;
     public GameObject winMenu;
+    public Model_Player _player;
+    public Viewer_Player _viewer;
 
     private void Awake()
     {
         _fade = FindObjectOfType<FadeLevel>();
+        _player = FindObjectOfType<Model_Player>();
+        _viewer = FindObjectOfType<Viewer_Player>();
     }
 
     public void ChangeScene()
@@ -43,7 +47,12 @@ public class ChangeLevelManager : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         winMenu.SetActive(true);
+        _player.onCinematic = true;
+        if (_viewer.pauseMenu.activeSelf) _viewer.pauseMenu.SetActive(false);
+
     }
 
     IEnumerator WaitingForChange()

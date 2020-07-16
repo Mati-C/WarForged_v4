@@ -279,6 +279,12 @@ public class Viewer_Player : MonoBehaviour
             }
         }
 
+        if(_player.life>= _player.maxLife)
+        {
+            lifeBar.material.SetFloat("_BeatRate", 0);
+            lifeBar.material.SetFloat("_BeatColorIntensity", 0);
+        }
+
         StartCoroutine(UpdateLifeBar(target));
     }
 
@@ -614,6 +620,7 @@ public class Viewer_Player : MonoBehaviour
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             SoundManager.instance.ambienceAudio.UnPause();
             SoundManager.instance.combatAudio.UnPause();
         }
@@ -622,6 +629,7 @@ public class Viewer_Player : MonoBehaviour
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             SoundManager.instance.ambienceAudio.Pause();
             SoundManager.instance.combatAudio.Pause();
         }

@@ -558,6 +558,7 @@ public class Model_B_Ogre1 : ClassEnemy
                 _view.CreateExpPopText(exp);
                 playerFireSowrd.SwordExp(exp);
                 DieEvent();
+                if(!CC.cinematicLevel2) CC.barsAnimator.SetBool("Activate", false);
             }
         }
 

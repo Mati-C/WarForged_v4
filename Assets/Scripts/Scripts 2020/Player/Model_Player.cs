@@ -24,6 +24,7 @@ public class Model_Player : MonoBehaviour
     public float distanceAggressiveNodes;
     public float distanceNon_AggressiveNodes;
     public Vector3 revivePos;
+    public Vector3 reviveForward;
 
     [Header("Player Speeds:")]
     public float speed;
@@ -350,6 +351,7 @@ public class Model_Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         fireSword = GetComponent<FireSword>();
         revivePos = transform.position;
+        reviveForward = transform.forward;
 
         MakeDamageTutorialEvent += () => { };
         DefendTutorialEvent += () => { };
@@ -958,8 +960,10 @@ public class Model_Player : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = revivePos;
+        transform.forward = reviveForward;
         _viewer.AnimRevive();
-        UpdateLife(100);
+        life = maxLife;
+        UpdateLife(maxLife);
         fireSword.currentExp = 0;
         yield return new WaitForSeconds(1);
         timeOnCombat = 0;
