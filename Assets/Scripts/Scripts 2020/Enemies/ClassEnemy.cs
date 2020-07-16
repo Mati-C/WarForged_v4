@@ -309,6 +309,7 @@ public abstract class ClassEnemy : MonoBehaviour
         angleToPersuit = _startAngleToPersuit;
         viewDistanceSurround = _startDistanceToSurround;
         angleToSurround = _startAngleToSurround;
+        life = maxLife;
     }
 
     void RemoveSameID_Enemy(ClassEnemy e)

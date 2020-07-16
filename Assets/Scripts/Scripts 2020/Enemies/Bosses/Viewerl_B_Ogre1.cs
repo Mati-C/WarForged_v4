@@ -8,7 +8,7 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
 {
     public Model_B_Ogre1 myModel;
     Material _healthBarMat;
-    GameObject _healthBar;
+    public GameObject healthBar;
     public ParticleSystem smashParticles;
     PlayerCamera _cam;
     Model_Player _target;
@@ -28,9 +28,9 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
         myModel = GetComponent<Model_B_Ogre1>();
         levelUI = GameObject.Find("LEVEL UI");
         ess = GetComponent<EnemyScreenSpace>();
-        _healthBar = GameObject.Find("BossLifeBar");
-        _healthBarMat = _healthBar.GetComponent<Image>().material;
-        _healthBar.gameObject.SetActive(false);
+        healthBar = GameObject.Find("BossLifeBar");
+        _healthBarMat = healthBar.GetComponent<Image>().material;
+        healthBar.gameObject.SetActive(false);
         _cam = FindObjectOfType<PlayerCamera>();
         _target = FindObjectOfType<Model_Player>();
     }
@@ -43,8 +43,8 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
 
     void Update()
     {
-        if(_healthBar.activeSelf) _healthBarMat.SetFloat("_BossLifePercentage", myModel.life / myModel.maxLife * 200);
-        if(_healthBar.activeSelf) _healthBarMat.SetFloat("_ArrowBeatRatePercentage", myModel.life / myModel.maxLife * 100);
+        if(healthBar.activeSelf) _healthBarMat.SetFloat("_BossLifePercentage", myModel.life / myModel.maxLife * 200);
+        if(healthBar.activeSelf) _healthBarMat.SetFloat("_ArrowBeatRatePercentage", myModel.life / myModel.maxLife * 100);
     }
 
     private void LateUpdate()
@@ -191,7 +191,7 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
     public void AnimTaunt()
     {
         SoundManager.instance.Play(Boss.ROAR, transform.position, true, 3);
-        _healthBar.gameObject.SetActive(true);
+        healthBar.gameObject.SetActive(true);
         StartCoroutine(DelayAnimActive("Taunt", 2.3f));
         anim.SetBool("Idle", false);
         anim.SetBool("Walk", false);

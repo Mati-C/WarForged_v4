@@ -39,12 +39,16 @@ public class CinematicController : MonoBehaviour
     public GameObject winTrigger;
     public GameObject portal;
 
-    [Header("Level-1 Rocks Variables:")]
-    public bool cinematicRocksLevel1;
+    [Header("Level-1 Rocks Right Variables:")]
+    public bool cinematicRocksLevel1Right;
     public Transform PH_Rocks1;
     public Transform PH_Rocks2;
     public Animator rocksLevel1Animator;
     public CinemachineVirtualCamera cinematicRocksCamera;
+
+    [Header("Level-1 Rocks Left Variables:")]
+    public bool cinematicRocksLevel1Left;
+    public bool rocksOff;
 
     [Header("Level-2 Variables:")]
     public bool cinematicLevel2;
@@ -96,13 +100,28 @@ public class CinematicController : MonoBehaviour
             StartCoroutine(Level_1BossCinematic());
         }
 
-        if (cinematicRocksLevel1 && c.GetComponent<Model_Player>())
+        if (cinematicRocksLevel1Right && c.GetComponent<Model_Player>())
         {
-            cinematicRocksLevel1 = false;
-            StartCoroutine(Level_1RocksCinematic());
+            cinematicRocksLevel1Right = false;
+     
+            if (!rocksOff)StartCoroutine(Level_1RocksRightCinematic());
+
+            var cc = new List<CinematicController>();
+            cc.AddRange(FindObjectsOfType<CinematicController>());
+            foreach (var item in cc) item.rocksOff = true;
         }
 
-        if(cinematicLevel2 && c.GetComponent<Model_Player>())
+        if (cinematicRocksLevel1Left && c.GetComponent<Model_Player>())
+        {
+            cinematicRocksLevel1Left = false;
+            if (!rocksOff) StartCoroutine(Level_1RocksLeftCinematic());
+
+            var cc = new List<CinematicController>();
+            cc.AddRange(FindObjectsOfType<CinematicController>());
+            foreach (var item in cc) item.rocksOff = true;
+        }
+
+        if (cinematicLevel2 && c.GetComponent<Model_Player>())
         {
             cinematicLevel2 = false;
             StartCoroutine(Level2_BossCinematic());
@@ -111,6 +130,7 @@ public class CinematicController : MonoBehaviour
 
     IEnumerator Level2_BossCinematic()
     {
+        
         _viewer.anim.SetBool("Walk", false);
         _viewer.anim.SetBool("Run", false);
         _viewer.anim.SetBool("Idle", true);
@@ -131,6 +151,7 @@ public class CinematicController : MonoBehaviour
         cinematicBarCam1.Priority = 0;
         cinematicBossCam.Priority = 1;
         boss.portalOrder = true;
+        boss.dontMove = false;
 
         yield return new WaitForSeconds(5);
 
@@ -186,11 +207,19 @@ public class CinematicController : MonoBehaviour
         SoundManager.instance.BossMusic(true);
     }
 
-    IEnumerator Level_1RocksCinematic()
+    IEnumerator Level_1RocksLeftCinematic()
+    {
+        rocksLevel1Animator.SetBool("RockActivate", true);
+        SoundManager.instance.Play(Objects.FALLING_ROCKS, transform.position, true);
+        yield return new WaitForSeconds(1);
+        particlesDirt.Play();
+    }
+
+    IEnumerator Level_1RocksRightCinematic()
     {
         _viewer.anim.SetBool("Walk", false);
-        _viewer.anim.SetBool("Run", false);
-        _viewer.anim.SetBool("Idle", true);
+        _viewer.anim.SetBool("Run", true);
+        _viewer.anim.SetBool("Idle", false);
         _viewer.anim.SetBool("Cinematic", true);
         _player.run = false;
         postProcess.vignette.enabled = true;
@@ -248,6 +277,8 @@ public class CinematicController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         _viewer.anim.SetBool("Cinematic", false);
         _viewer.anim.SetBool("Idle", true);
+        _viewer.anim.SetBool("Walk", false);
+        _viewer.anim.SetBool("Run", false);
         cinematicRocksCamera.Priority = 0;
         mainCamera.Priority = 1;
         postProcess.vignette.enabled = false;
@@ -270,6 +301,7 @@ public class CinematicController : MonoBehaviour
 
     IEnumerator StartScapeBossLevel_1()
     {
+        boss.GetComponent<Viewerl_B_Ogre1>().healthBar.SetActive(false);
         SoundManager.instance.BossMusic(false);
         winTrigger.SetActive(true);
         boss.canScape = true;

@@ -8,6 +8,7 @@ using Sound;
 public class Model_B_Ogre1 : ClassEnemy
 {
     Viewerl_B_Ogre1 _view;
+    public CinematicController CC;
 
     [Header("Boss Faces:")]
     public bool fase1;
@@ -52,6 +53,7 @@ public class Model_B_Ogre1 : ClassEnemy
     public bool canScape;
     bool _heavyEnd;
     public Vector3 phScape;
+    bool _playerDead;
 
     public Action IdleEvent;
     public Action WalkEvent;
@@ -164,7 +166,7 @@ public class Model_B_Ogre1 : ClassEnemy
 
         patrol.OnUpdate += () =>
         {
-            if (portalOrder)
+            if (portalOrder && !dontMove)
             {
                 float d = Vector3.Distance(transform.position, phPortal.position);
 
@@ -183,7 +185,7 @@ public class Model_B_Ogre1 : ClassEnemy
                 }
             }
 
-            if(canPersuit && !portalOrder && !_onTaunt) myFSM_EventMachine.ChangeState(persuit);
+            if(canPersuit && !portalOrder && !_onTaunt && player.life>0 && !dontMove) myFSM_EventMachine.ChangeState(persuit);
 
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
@@ -300,6 +302,8 @@ public class Model_B_Ogre1 : ClassEnemy
 
             if (canScape) myFSM_EventMachine.ChangeState(scape);
 
+            if (_playerDead) myFSM_EventMachine.ChangeState(patrol);
+
             if (life <= 0) myFSM_EventMachine.ChangeState(die);
         };
 
@@ -317,6 +321,7 @@ public class Model_B_Ogre1 : ClassEnemy
 
         attack.OnUpdate += () =>
         {
+
             player.CombatStateUp(false);
 
             var d = Vector3.Distance(player.transform.position, transform.position);
@@ -396,7 +401,55 @@ public class Model_B_Ogre1 : ClassEnemy
 
         canAttack = CanSee(player.transform, viewDistanceAttack, angleToAttack, layersCanSee);
 
+        if (!_playerDead && player.life <= 0) StartCoroutine(StartRespawn());
+
         myFSM_EventMachine.Update();
+    }
+
+    IEnumerator StartRespawn()
+    {
+        _playerDead = true;
+        yield return new WaitForSeconds(5f);
+        transform.position = phScape;
+        dontMove = true;
+        portalOrder = true;
+        PatrolState();
+        _playerDead = false;
+        life = maxLife;
+        _view.healthBar.gameObject.SetActive(false);
+        fase2 = false;
+        fase3 = false;
+        if (!CC.cinematicLevel2)
+        {
+            CC.barsAnimator.SetBool("Activate", false);
+            CC.cinematicLevel2 = true;
+
+            foreach (var item in wave2)
+            {
+                item.gameObject.SetActive(false);
+                item.ReturnToLife();
+                item.Resume();
+                item.dontMove = true;
+                item.onPatrol = true;
+                item.PatrolState();
+                item.RestartDistances_Angles();
+                item.enemyLayer = layersCanSee;
+            }
+
+            foreach (var item in wave1)
+            {
+                item.gameObject.SetActive(false);
+                item.ReturnToLife();
+                item.Resume();
+                item.dontMove = true;
+                item.onPatrol = true;
+                item.PatrolState();
+                item.RestartDistances_Angles();
+                item.enemyLayer = layersCanSee;
+            }
+
+            StartCoroutine(WavesStart());
+        }
     }
 
     int StartAttackStrategy()
@@ -534,6 +587,7 @@ public class Model_B_Ogre1 : ClassEnemy
             }
         }
 
+        
     }
 
     public override void Resume()

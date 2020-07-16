@@ -312,6 +312,8 @@ public class Controller_Player
 
             if (Input.GetKey(KeyCode.Mouse1) && !_model.onDodge) _model.Defence();
 
+            if (Input.GetKey(KeyCode.Z)) _viewer.SeeCurentExp();
+
             if (Input.GetKeyUp(KeyCode.Mouse1)) _model.DefenceOff();
 
             //if (Input.GetKeyDown(KeyCode.E)) _model.LockEnemies();

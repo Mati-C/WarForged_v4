@@ -190,6 +190,11 @@ public class Viewer_Player : MonoBehaviour
         StartCoroutine(PlayerAlphaExp());
     }
 
+    public void SeeCurentExp()
+    {
+        timertAlphaSwordExp = 2;
+    }
+
     public void ChangeLayer(bool b)
     {
         if (b)
