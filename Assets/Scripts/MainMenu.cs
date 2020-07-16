@@ -34,6 +34,7 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.anyKey && isInTitle)
         {
+            SoundManager.instance.Play2D(3, 0.7f, false);
             isInTitle = false;
             StartCoroutine(AdvanceCamera(false));
         }
