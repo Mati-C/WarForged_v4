@@ -174,6 +174,8 @@ public class Viewer_Player : MonoBehaviour
         swordExp = GameObject.Find("Sword Exp").GetComponent<Text>();
         powerEffect = GameObject.Find("FX Fire Camera").transform.GetChild(0).gameObject;
         postProcess = FindObjectOfType<MainPostProcessController>();
+        pauseMenu = GameObject.Find("Pause Menu");
+        pauseMenu.SetActive(false);
     }
 
     void Start()

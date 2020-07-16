@@ -35,6 +35,11 @@ public class SoundManager : MonoBehaviour
     [NamedArray(new string[] { "HARD", "SOFT", "WOOD" })]
     public AudioClip[] hit;
 
+    [NamedArray(new string[] { "HIGHLIGHT", "PRESS", "BOOK", "PORTAL" })]
+    public AudioClip[] sounds2d;
+
+    List<AudioSource> channels2D = new List<AudioSource>();
+
     #region SFX Lists
     [HideInInspector]
     public List<Entity> deathVoice = new List<Entity>() { Entity.DIE_1, Entity.DIE_2, Entity.DIE_3 };
@@ -61,6 +66,12 @@ public class SoundManager : MonoBehaviour
         }
         aux = false;
         bossMusicPlaying = false;
+
+        for (int i = 0; i < sounds2d.Length; i++)
+        {
+            channels2D.Add(gameObject.AddComponent<AudioSource>());
+            channels2D[i].clip = sounds2d[i];
+        }
     }
 
     public void Play<T>(T soundType, Vector3 position = new Vector3(), bool randomPitch = false, float volume = 0.7f, bool loop = false)
@@ -161,6 +172,13 @@ public class SoundManager : MonoBehaviour
         if (volume > 1)
             audioSource.minDistance *= volume;
         audioSource.Play();
+    }
+
+    public void Play2D(int soundID, float volume, bool loop)
+    {
+        channels2D[soundID].Play();
+        channels2D[soundID].volume = volume;
+        channels2D[soundID].loop = loop;
     }
 
     public void CombatMusic(bool activate)
@@ -268,6 +286,13 @@ public class SoundManager : MonoBehaviour
     }
 
     public enum Hit
+    {
+        HARD,
+        SOFT,
+        WOOD
+    }
+
+    public enum Sounds2D
     {
         HARD,
         SOFT,

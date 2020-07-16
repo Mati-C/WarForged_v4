@@ -98,6 +98,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b6220adf287326f418f3fc613da5daff, type: 3}
   - {fileID: 8300000, guid: 5491a03aeb2a3fe40beacfc25b3f71da, type: 3}
   - {fileID: 8300000, guid: 2cf55c2c1e7babf4c9d0465c2c8a3974, type: 3}
+  sounds2d:
+  - {fileID: 8300000, guid: 6472d116ae9f38a4db978d3b81181640, type: 3}
+  - {fileID: 8300000, guid: b8206a7b5be1f164c97629c95d7046e7, type: 3}
+  - {fileID: 8300000, guid: 8eaeb86d1a91c1f46895a50e3ab537d5, type: 3}
+  - {fileID: 8300000, guid: 5ad7e43c09408f646b3ebe4b47e9da41, type: 3}
   deathVoice: 000000000100000002000000
   damageVoice: 030000000400000005000000060000000700000008000000
   swing: 020000000300000004000000

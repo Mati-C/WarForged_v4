@@ -41,7 +41,7 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            controlsMat = controls.material;
+            //controlsMat = controls.material;
         }
     }
     public void Update()
@@ -84,6 +84,11 @@ public class ButtonManager : MonoBehaviour, ICheckObserver
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void PlayButtonSound(int id)
+    {
+        SoundManager.instance.Play2D(id, 0.7f, false);
     }
 
     public void ToggleWindow(GameObject window)
