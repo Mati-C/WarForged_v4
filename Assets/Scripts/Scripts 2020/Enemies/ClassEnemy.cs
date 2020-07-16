@@ -308,7 +308,7 @@ public abstract class ClassEnemy : MonoBehaviour
     public void BlockedAttack()
     {
         BlockedEvent();
-        StartCoroutine(BlockedState(0.7f));
+        StartCoroutine(BlockedState(1.2f));
     }
 
     public void Knocked()

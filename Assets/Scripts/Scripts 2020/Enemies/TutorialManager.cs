@@ -4,11 +4,14 @@ using UnityEngine;
 using System;
 using System.Linq;
 using TMPro;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
     Model_Player _player;
     Viewer_Player _view;
+    public Camera _cam;
+    public Text texTutoUI;
     public Model_TE_Melee _te;
     public Model_E_Mage mage1;
     public List<ClassEnemy> secondEnemies = new List<ClassEnemy>();
@@ -37,6 +40,7 @@ public class TutorialManager : MonoBehaviour
     public float timerCheckpointMax;
     public int secondEnemiesAlive;
 
+    public float multiplierPos;
     TextMeshPro _tutorialText;
 
     public Transform objective1;
@@ -50,6 +54,9 @@ public class TutorialManager : MonoBehaviour
 
     Transform _objective;
     GameObject _arrow;
+    GameObject _levelUI;
+    public Vector3 plusPos;
+    bool _stopFollowText;
 
     public Color colorSucsess;
     public Color colorSucsessOutline;
@@ -61,6 +68,7 @@ public class TutorialManager : MonoBehaviour
         _player = FindObjectOfType<Model_Player>();
         _te = FindObjectOfType<Model_TE_Melee>();
         _view = FindObjectOfType<Viewer_Player>();
+        _cam = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
 
         _player.MakeDamageTutorialEvent += PlusHitCounts;
         _player.DefendTutorialEvent += PlusDefendCounts;
@@ -70,11 +78,17 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(HeavyAttack());
         StartCoroutine(MageInmortal());
 
+        _levelUI = GameObject.Find("LEVEL UI");
         _tutorialText = GameObject.Find("Text Tutorial").GetComponent<TextMeshPro>();
-        _tutorialText.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
+        texTutoUI.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        texTutoUI.transform.SetParent(_levelUI.transform);
+        texTutoUI.gameObject.SetActive(false);
+        _tutorialText.text = "";
         _arrow = GameObject.Find("PointerPrefab");
         _player.chargeAttackCasted = true;
-      
+        multiplierPos = 1;
 
     }
 
@@ -87,7 +101,9 @@ public class TutorialManager : MonoBehaviour
         for (int i = 0; i < thirdEnemies.Count; i++)
         {
             thirdEnemies[i].transform.position = phPos[i].position;
+            thirdEnemies[i].dontMove = true;
         }
+        StartCoroutine(FollowTutoText());
     }
     
     void Update()
@@ -99,19 +115,36 @@ public class TutorialManager : MonoBehaviour
         PlusCheckpoint();
     }
 
-    void PlusFireSword()
+    public IEnumerator FollowTutoText()
     {
+        _stopFollowText = false;
+        while (!_stopFollowText)
+        {
+            Vector2 screenPos = _cam.WorldToScreenPoint(_objective.transform.position + plusPos * multiplierPos + _objective.right);
+            texTutoUI.transform.position = screenPos;
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
+    public IEnumerator FollowTutoTextCenter()
+    {
+        _stopFollowText = false;
+        while (!_stopFollowText)
+        {
+            Vector2 screenPos = _cam.WorldToScreenPoint(_objective.transform.position + plusPos * multiplierPos);
+            texTutoUI.transform.position = screenPos;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     IEnumerator FlamesOn()
     {
         yield return new WaitForSeconds(2);
         _player.fireEnergy = _player.fireSword.energyToUseFireSword;
-        
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.text = "When the Ability Bar is full, press Q to use the Fire Sword and kill the enemy";
+
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        texTutoUI.text = "When the Ability Bar is full, press Q to use the Fire Sword and kill the enemy";
         while(!_player.flamesOn)
         {
             _view.powerBar.fillAmount = 1;
@@ -125,29 +158,29 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        _tutorialText.faceColor = colorSucsess;
-        _tutorialText.outlineColor = colorSucsessOutline;
+        texTutoUI.color = colorSucsess;
+        texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
         yield return new WaitForSeconds(2);
-        _tutorialText.text = "When you Kill enemies, they give you experience to update the Fire Sword";
+        texTutoUI.text = "When you Kill enemies, they give you experience to update the Fire Sword";
         yield return new WaitForSeconds(5);
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
         _objective = objective2;
-        _tutorialText.GetComponent<TextTutorial>().target = objective2;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0,2,0);
-        _tutorialText.text = "These sources will serve as checkpoints, where you recover life and exchange the sword experience to improve it";
+        multiplierPos = 1.5f;
+        texTutoUI.text = "These sources will serve as checkpoints, where you recover life and exchange the sword experience to improve it";
         fireSword = true;
     }
 
     IEnumerator SecondEnemies()
     {
         _objective = objective5;
+        multiplierPos = 1;
+        _stopFollowText = true;
         yield return new WaitForSeconds(2);
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.GetComponent<TextTutorial>().target = objective5;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0, 1.5f, 0);
-        _tutorialText.text = "Kill all the enemies " + secondEnemiesAlive + "/2";
+        StartCoroutine(FollowTutoText());
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        texTutoUI.text = "Kill all the enemies " + secondEnemiesAlive + "/2";
         bool alive = false;
         while(!alive)
         {
@@ -158,33 +191,38 @@ public class TutorialManager : MonoBehaviour
                 if (secondEnemies[i].life <= 0)
                 {
                     secondEnemiesAlive++;
-                    _tutorialText.text = "Kill all the enemies " + secondEnemiesAlive + "/2";
+                    texTutoUI.text = "Kill all the enemies " + secondEnemiesAlive + "/2";
                     secondEnemies.Remove(secondEnemies[i]);
                 }
             }
             yield return new WaitForEndOfFrame();
         }
-        _tutorialText.faceColor = colorSucsess;
-        _tutorialText.outlineColor = colorSucsessOutline;
+        texTutoUI.color = colorSucsess;
+        texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
         yield return new WaitForSeconds(2);
         _player.DodgeTutorialEvent += PlusDodge;
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.text = "You can dodge the fire balls pressing SPACE to dodge " + dodgeCounts + "/" + dodgeCountsMax;
-        _tutorialText.GetComponent<TextTutorial>().target = mage1.transform;
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        texTutoUI.text = "You can dodge the fire balls pressing SPACE to dodge " + dodgeCounts + "/" + dodgeCountsMax;
+        _objective = mage1.transform;
         mage1.portalOrder = true;
+        mage1.dontMove = false;
 
         while(dodgeCounts < dodgeCountsMax)
         {
-            _tutorialText.text = "You can dodge the fire balls pressing SPACE to dodge " + dodgeCounts + "/" + dodgeCountsMax;
+            texTutoUI.text = "You can dodge the fire balls pressing SPACE to dodge " + dodgeCounts + "/" + dodgeCountsMax;
             yield return new WaitForEndOfFrame();
         }
 
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.text = "Kill all enemies 0/3";
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        texTutoUI.text = "Kill all enemies 0/3";
 
-        foreach (var item in thirdEnemies) item.portalOrder= true;
+        foreach (var item in thirdEnemies)
+        {
+            item.portalOrder = true;
+            item.dontMove = false;
+        }
 
         int allEnemiesDead =0;
         bool alive2 = false;
@@ -197,7 +235,7 @@ public class TutorialManager : MonoBehaviour
                 if (thirdEnemies[i].life <= 0)
                 {
                     allEnemiesDead++;
-                    _tutorialText.text = "Kill all the enemies " + allEnemiesDead + "/3";
+                    texTutoUI.text = "Kill all the enemies " + allEnemiesDead + "/3";
                     thirdEnemies.Remove(thirdEnemies[i]);
                 }
             }
@@ -208,15 +246,16 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator DestroyRune()
     {
-        _tutorialText.faceColor = colorSucsess;
-        _tutorialText.outlineColor = colorSucsessOutline;
+        texTutoUI.color = colorSucsess;
+        texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
         yield return new WaitForSeconds(2);
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.text = "Destroy the rune to close the portal and stop the enemies from appearing";
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        texTutoUI.text = "Destroy the rune to close the portal and stop the enemies from appearing";
+        _stopFollowText = true;
+        StartCoroutine(FollowTutoTextCenter());
+        plusPos = Vector3.zero;
         _objective = objective6;
-        _tutorialText.GetComponent<TextTutorial>().target = objective6;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = -objective6.transform.forward + new Vector3(0,1.5f,0);
         var rune = FindObjectOfType<Portal_Rune>();
 
         var root2 = objective6.GetComponent<Roots>();
@@ -225,20 +264,16 @@ public class TutorialManager : MonoBehaviour
         while(!root2.burned) yield return new WaitForEndOfFrame();
 
         _objective = objective7;
-        _tutorialText.GetComponent<TextTutorial>().target = objective7;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = -objective7.transform.forward;
 
         while (!rune.portalOff) yield return new WaitForEndOfFrame();
 
-        _tutorialText.faceColor = colorSucsess;
-        _tutorialText.outlineColor = colorSucsessOutline;
+        texTutoUI.color = colorSucsess;
+        texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
 
         yield return new WaitForSeconds(2);
 
         _objective = objective8;
-        _tutorialText.GetComponent<TextTutorial>().target = objective8;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = Vector3.zero;
-        _tutorialText.text = "Go through the tunnel";
+        texTutoUI.text = "Go through the tunnel";
 
     }
 
@@ -247,8 +282,8 @@ public class TutorialManager : MonoBehaviour
         if(dodgeCounts < dodgeCountsMax)
         {
             dodgeCounts++;
-            _tutorialText.faceColor = colorSucsess;
-            _tutorialText.outlineColor = colorSucsessOutline;
+            texTutoUI.color = colorSucsess;
+            texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
         }
     }
 
@@ -265,35 +300,33 @@ public class TutorialManager : MonoBehaviour
     IEnumerator Destructibles()
     {
         yield return new WaitForSeconds(2);
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.GetComponent<TextTutorial>().target = objective3;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(0, 2.5f, 0);
-        _tutorialText.text = "You can destroy objects on the level to recover life and gain energy to use the Fire Sword";
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        texTutoUI.text = "You can destroy objects on the level to recover life and gain energy to use the Fire Sword";
         _objective = objective3;
         var destructible = objective3.GetComponent<DestructibleOBJ>();
         while(!destructible.destroyed)
         {
             yield return new WaitForEndOfFrame();
         }
-        _tutorialText.faceColor = colorSucsess;
-        _tutorialText.outlineColor = colorSucsessOutline;
+        texTutoUI.color = colorSucsess;
+        texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
         yield return new WaitForSeconds(2);
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        _tutorialText.text = "Charge Fire Energy and use the Fire Sword to burn the Roots";
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        texTutoUI.text = "Charge Fire Energy and use the Fire Sword to burn the Roots";
         _objective = objective4;
-        _tutorialText.GetComponent<TextTutorial>().target = objective4;
-        _tutorialText.GetComponent<TextTutorial>().plusPos = new Vector3(1, 1, 0.5f);
         var root = objective4.GetComponent<Roots>();
         root.tutoRoot = false;
+        _stopFollowText = true;
+        StartCoroutine(FollowTutoTextCenter());
         while(!root.burned)
         {
             _player.fireSwordCurrentTime = 1;
             yield return new WaitForEndOfFrame();
         }
-        _tutorialText.faceColor = colorSucsess;
-        _tutorialText.outlineColor = colorSucsessOutline;
+        texTutoUI.color = colorSucsess;
+        texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
         StartCoroutine(SecondEnemies());
     }
 
@@ -310,8 +343,8 @@ public class TutorialManager : MonoBehaviour
             var d = Vector3.Distance(_player.transform.position, objective2.position);
             if (d < 1.5f)
             {
-                _tutorialText.faceColor = colorSucsess;
-                _tutorialText.outlineColor = colorSucsessOutline;
+                texTutoUI.color = colorSucsess;
+                texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
                 checkpoint = true;
                 StartCoroutine(CheckPointTimer());
             }
@@ -323,11 +356,11 @@ public class TutorialManager : MonoBehaviour
         if (heavyAttackCounts < heavyAttackCountsMax && moveDefenceAmount >= moveDefenceAmountMax)
         {
             heavyAttackCounts++;
-            _tutorialText.text = "Hold Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
+            texTutoUI.text = "Hold Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
             if (heavyAttackCounts >= heavyAttackCountsMax)
             {
-                _tutorialText.faceColor = colorSucsess;
-                _tutorialText.outlineColor = colorSucsessOutline;
+                texTutoUI.color = colorSucsess;
+                texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
                 StartCoroutine(FlamesOn());
             }
         }
@@ -340,8 +373,8 @@ public class TutorialManager : MonoBehaviour
             moveDefenceAmount += Time.deltaTime * 2;
             if(moveDefenceAmount >= moveDefenceAmountMax)
             {
-                _tutorialText.faceColor = colorSucsess;
-                _tutorialText.outlineColor = colorSucsessOutline;
+                texTutoUI.color = colorSucsess;
+                texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
                 StartCoroutine(ChangeText(3));
                 _player.chargeAttackCasted = false;
             }
@@ -353,12 +386,12 @@ public class TutorialManager : MonoBehaviour
         if (quickDefendCounts < defendCountsMax)
         {
             quickDefendCounts++;
-            _tutorialText.text = "Use Right Click quickly when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
+            texTutoUI.text = "Use Right Click quickly when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
             if (quickDefendCounts >= defendCountsMax)
             {
                 canMove = true;
-                _tutorialText.faceColor = colorSucsess;
-                _tutorialText.outlineColor = colorSucsessOutline;
+                texTutoUI.color = colorSucsess;
+                texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
                 _player.WalkEvent += PlusDefenceMove;
                 StartCoroutine(ChangeText(2));
             }
@@ -370,12 +403,12 @@ public class TutorialManager : MonoBehaviour
         if (defendCounts < defendCountsMax)
         {
             defendCounts++;
-            _tutorialText.text = "Use Right Click to Defend " + defendCounts + "/" + defendCountsMax;
+            texTutoUI.text = "Use Right Click to Defend " + defendCounts + "/" + defendCountsMax;
             if (defendCounts >= defendCountsMax)
             {
                 defendTutorialFinish = true;
-                _tutorialText.faceColor = colorSucsess;
-                _tutorialText.outlineColor = colorSucsessOutline;
+                texTutoUI.color = colorSucsess;
+                texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
                 StartCoroutine(ChangeText(1));
             }
         }
@@ -386,11 +419,11 @@ public class TutorialManager : MonoBehaviour
         if (hitCounts < hitCountsMax)
         {
             hitCounts++;
-            _tutorialText.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
+            texTutoUI.text = "Use Left Click to Hit enemies " + hitCounts + "/9";
             if (hitCounts >= hitCountsMax)
             {
-                _tutorialText.faceColor = colorSucsess;
-                _tutorialText.outlineColor = colorSucsessOutline;
+                texTutoUI.color = colorSucsess;
+                texTutoUI.GetComponent<Outline>().effectColor = colorSucsessOutline;
                 attacksTutorialFinish = true;
                 StartCoroutine(DefendTutorial());            
             }
@@ -413,20 +446,20 @@ public class TutorialManager : MonoBehaviour
         _tutorialText.faceColor = colorSucsess;
         _tutorialText.outlineColor = colorSucsessOutline;
         yield return new WaitForSeconds(2);
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        if (id ==1) _tutorialText.text = "Use Right Click quick when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
-        if (id ==2) _tutorialText.text = "You can Defend while moving";
-        if (id ==3) _tutorialText.text = "Hold Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        if (id ==1) texTutoUI.text = "Use Right Click quick when enemies attack you to kick them " + quickDefendCounts + "/" + quickDefendCountsMax;
+        if (id ==2) texTutoUI.text = "You can Defend while moving";
+        if (id ==3) texTutoUI.text = "Hold Left Click to make an area attack " + heavyAttackCounts + "/" + heavyAttackCountsMax;
     }
 
     IEnumerator DefendTutorial()
     {
         yield return new WaitForSeconds(2f);
-        _tutorialText.text = "Use Right Click to Defend " + defendCounts + "/" + defendCountsMax;
-        _tutorialText.faceColor = colorIncomplite;
-        _tutorialText.outlineColor = colorIncompliteOutline;
-        while(!defendTutorialFinish)
+        texTutoUI.text = "Use Right Click to Defend " + defendCounts + "/" + defendCountsMax;
+        texTutoUI.color = colorIncomplite;
+        texTutoUI.GetComponent<Outline>().effectColor = colorIncompliteOutline;
+        while (!defendTutorialFinish)
         {
             _player.defenceTimer = 1;
             yield return new WaitForEndOfFrame();
