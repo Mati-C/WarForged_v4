@@ -450,6 +450,13 @@ public class Model_B_Ogre1 : ClassEnemy
 
             StartCoroutine(WavesStart());
         }
+
+        if(!CC.cinematicLevel1)
+        {
+            CC.barsAnimator.SetBool("Activate", false);
+            CC.cinematicLevel1 = true;
+        }
+        SoundManager.instance.BossMusic(false);
     }
 
     int StartAttackStrategy()

@@ -152,7 +152,7 @@ public class CinematicController : MonoBehaviour
         cinematicBossCam.Priority = 1;
         boss.portalOrder = true;
         boss.dontMove = false;
-
+        SoundManager.instance.BossMusic(true);
         yield return new WaitForSeconds(5);
 
         cinematicBossCam.Priority = 0;
@@ -161,8 +161,8 @@ public class CinematicController : MonoBehaviour
         playerHolder.gameObject.SetActive(true);
         _player.onCinematic = false;
         onCinematic = false;
-
-        while(boss.life >0)
+        
+        while (boss.life >0)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -204,7 +204,7 @@ public class CinematicController : MonoBehaviour
         playerHolder.gameObject.SetActive(true);
         _player.onCinematic = false;
         onCinematic = false;
-        SoundManager.instance.BossMusic(true);
+        
     }
 
     IEnumerator Level_1RocksLeftCinematic()
@@ -374,7 +374,11 @@ public class CinematicController : MonoBehaviour
         t = 5;
         while (t > 0)
         {
-            if (t <= 3f) boss.portalOrder = true;
+            if (t <= 3f)
+            {
+                boss.portalOrder = true;
+                boss.dontMove = false;
+            }
 
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
