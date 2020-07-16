@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour
     [NamedArray(new string[] { "ROAR", "MONSTER_ATTACK1", "MONSTER_ATTACK2", "MONSTER_ATTACK3", "SMASH" })]
     public AudioClip[] boss;
 
-    [NamedArray(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "FIRE_SWORD", "SHORT_YELL", "HEAVY_ATTACK", "CANT_HEAVY_ATTACK", "POWER_FULL"})]
+    [NamedArray(new string[] { "TAKE_SWORD", "SAVE_SWORD", "SWING_1", "SWING_2", "SWING_3", "FIRE_SWORD", "SHORT_YELL", "HEAVY_ATTACK", "CANT_HEAVY_ATTACK", "POWER_FULL", "LEVEL_UP"})]
     public AudioClip[] player;
 
     [NamedArray(new string[] { "LEVEL_1", "LEVEL_2", "BATTLE_MUSIC", "BOSS_MUSIC" })]
@@ -274,7 +274,8 @@ public class SoundManager : MonoBehaviour
         SHORT_YELL,
         HEAVY_ATTACK,
         CANT_HEAVY_ATTACK,
-        POWER_FULL
+        POWER_FULL,
+        LEVEL_UP
     }
 
     public enum Music

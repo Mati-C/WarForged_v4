@@ -948,7 +948,7 @@ public class Model_Player : MonoBehaviour
 
     }
 
-    IEnumerator DeadCorrutine()
+    public IEnumerator DeadCorrutine()
     {
         isDead = true;
         yield return new WaitForSeconds(1);

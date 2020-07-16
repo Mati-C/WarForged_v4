@@ -401,7 +401,7 @@ public class Model_B_Ogre1 : ClassEnemy
 
         canAttack = CanSee(player.transform, viewDistanceAttack, angleToAttack, layersCanSee);
 
-        if (!_playerDead && player.life <= 0) StartCoroutine(StartRespawn());
+        if (!_playerDead && player.life <= 0 && life >0) StartCoroutine(StartRespawn());
 
         myFSM_EventMachine.Update();
     }

@@ -497,6 +497,7 @@
     <Compile Include="Assets\Scripts\Scripts 2020\Camera\CinematicController.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Camera\FadeLevel.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Camera\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\Scripts 2020\DiePlayer.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\ActivateEnemies.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\Bosses\Model_B_Ogre1.cs" />
     <Compile Include="Assets\Scripts\Scripts 2020\Enemies\Bosses\Viewerl_B_Ogre1.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Sound;
 
 public class FireSword : MonoBehaviour
 {
@@ -157,7 +158,8 @@ public class FireSword : MonoBehaviour
                 expEarned -= expForEachLevel[fireSwordLevel];
                 fireSwordLevel++;              
                 int level = fireSwordLevel + 1;
-                _viewer.swordLevel.text = "Level-" + level;               
+                _viewer.swordLevel.text = "Level-" + level;
+                SoundManager.instance.Play(Player.LEVEL_UP, transform.position, true);
                 LevelUpdates[fireSwordLevel]();
             }
 

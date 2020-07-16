@@ -19503,6 +19503,7 @@ MonoBehaviour:
   - 630
   - 700
   allEnemies: []
+  LevelsInfo: []
   fireSwordTime: 10
   fireSwordBurnDamage: 3
   fireSwordBurnTimeOnEnemy: 3
@@ -19516,7 +19517,7 @@ MonoBehaviour:
   fireWaveDamage: 10
   fireWaveExpansionLV2: 3
   pushEnemies: 0
-  BossOgre1Exp: 0
+  BossOgre1Exp: 50
   warriorExp: 5
   shieldExp: 15
   spearExp: 10
@@ -79397,32 +79398,7 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5721992398662367084, guid: 82075392fcfe3274a825a08cc4de0397,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6811739316460248553, guid: 82075392fcfe3274a825a08cc4de0397,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8224228672692571699, guid: 82075392fcfe3274a825a08cc4de0397,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 309558716319252249, guid: 82075392fcfe3274a825a08cc4de0397,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2433269949855379899, guid: 82075392fcfe3274a825a08cc4de0397,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404646794357294034, guid: 82075392fcfe3274a825a08cc4de0397,
         type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -79480,6 +79456,31 @@ PrefabInstance:
     - target: {fileID: 1258143733068269411, guid: 82075392fcfe3274a825a08cc4de0397,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721992398662367084, guid: 82075392fcfe3274a825a08cc4de0397,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811739316460248553, guid: 82075392fcfe3274a825a08cc4de0397,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224228672692571699, guid: 82075392fcfe3274a825a08cc4de0397,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309558716319252249, guid: 82075392fcfe3274a825a08cc4de0397,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404646794357294034, guid: 82075392fcfe3274a825a08cc4de0397,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
