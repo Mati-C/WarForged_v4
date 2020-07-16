@@ -27,6 +27,7 @@ public class CinematicController : MonoBehaviour
     public List<Transform> npcsTuto = new List<Transform>();
     public GameObject arrow;
     public PostProcessingProfile postProcess;
+    public CinemachineBasicMultiChannelPerlin noiseCamTutorial;
 
     [Header("Level-1 Boss Variables:")]
     public Model_B_Ogre1 boss;
@@ -36,6 +37,7 @@ public class CinematicController : MonoBehaviour
     public CinemachineVirtualCamera cinematicBarCam;
     public CinemachineVirtualCamera cinematicBossLevel1Cam;
     public GameObject winTrigger;
+    public GameObject portal;
 
     [Header("Level-1 Rocks Variables:")]
     public bool cinematicRocksLevel1;
@@ -64,6 +66,7 @@ public class CinematicController : MonoBehaviour
         if (startTutoCinematic)
         {
             rocks = GameObject.Find("RockAnimation").GetComponent<Animator>();
+            noiseCamTutorial = cinematicTutorialCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             StartCoroutine(TutorialCinematic());
         }
 
@@ -296,6 +299,7 @@ public class CinematicController : MonoBehaviour
         playerHolder.gameObject.SetActive(true);
         _player.onCinematic = false;
         onCinematic = false;
+        portal.SetActive(false);
         boss.GetComponent<Viewerl_B_Ogre1>().CreateExpPopTextScapeBoss(boss.exp);
         boss.playerFireSowrd.SwordExp(boss.exp);
     }
@@ -394,6 +398,8 @@ public class CinematicController : MonoBehaviour
 
             if (t <= 2.3f && !auxAudio)
             {
+                noiseCamTutorial.m_AmplitudeGain = 1;
+                noiseCamTutorial.m_FrequencyGain = 1;
                 auxAudio = true;
                 rocks.SetBool("RockActivate", true);
                 SoundManager.instance.Play(Objects.FALLING_ROCKS, rocks.bodyPosition, true);
@@ -401,6 +407,7 @@ public class CinematicController : MonoBehaviour
 
             if (t <= 0.5f && !auxDirt)
             {
+                
                 auxDirt = true;
                 particlesDirt.Play();
                 foreach (var item in anim_Npcs) item.SetBool("Die", true);
@@ -412,6 +419,8 @@ public class CinematicController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1);
+        noiseCamTutorial.m_AmplitudeGain = 0;
+        noiseCamTutorial.m_FrequencyGain = 0;
         _fade.FadeIn(false);
         yield return new WaitForSeconds(4);
         _fade.FadeOut(false);

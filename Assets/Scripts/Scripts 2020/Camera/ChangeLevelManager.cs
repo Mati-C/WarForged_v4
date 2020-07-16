@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class ChangeLevelManager : MonoBehaviour
 {
     bool _sceneChange;
     public int sceneID;
     FadeLevel _fade;
     public bool changeSceneInstant;
+    public bool endGame;
+    public GameObject winMenu;
 
     private void Awake()
     {
@@ -28,7 +31,19 @@ public class ChangeLevelManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider c)
     {
-        if (c.GetComponent<Model_Player>()) ChangeScene();
+        if (c.GetComponent<Model_Player>() && !endGame) ChangeScene();
+
+        if (c.GetComponent<Model_Player>() && endGame)  StartCoroutine(WinGame());
+    }
+
+    IEnumerator WinGame()
+    {
+        _fade.FadeIn(false);
+        while(_fade.fadeIn)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        winMenu.SetActive(true);
     }
 
     IEnumerator WaitingForChange()
