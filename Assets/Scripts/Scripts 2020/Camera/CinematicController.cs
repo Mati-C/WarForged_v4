@@ -121,6 +121,7 @@ public class CinematicController : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         barsAnimator.SetBool("Activate", true);
+        SoundManager.instance.Play(Objects.IRON_BARS, barsAnimator.bodyPosition, true, 1);
 
         yield return new WaitForSeconds(2);
 
@@ -169,6 +170,7 @@ public class CinematicController : MonoBehaviour
         cinematicBarCam2.Priority = 1;
         mainCamera.Priority = 0;
         barsAnimators.SetBool("Activate", true);
+        SoundManager.instance.Play(Objects.IRON_BARS, _player.transform.position, true, 3);
 
         yield return new WaitForSeconds(3);
 
@@ -312,9 +314,18 @@ public class CinematicController : MonoBehaviour
         cinematicBarCam.Priority = 1;
         mainCamera.Priority = 0;
 
+        bool auxAudio = false;
         while(t>0)
         {
-            if (t <= 2.5f) barsAnimator.SetBool("Activate", true);
+            if (t <= 2.5f)
+            {
+                barsAnimator.SetBool("Activate", true);
+                if (!auxAudio)
+                {
+                    SoundManager.instance.Play(Objects.IRON_BARS, _player.transform.position, true, 3);
+                    auxAudio = true;
+                }
+            }
 
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();

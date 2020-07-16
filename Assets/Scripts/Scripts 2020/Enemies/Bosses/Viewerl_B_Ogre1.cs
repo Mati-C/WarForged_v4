@@ -54,7 +54,7 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
 
     public void AnimLightAttack()
     {
-        SoundManager.instance.Play(Boss.MONSTER_ATTACK1, transform.position, true, 1.3f);
+        SoundManager.instance.PlayRandom(SoundManager.instance.bossAttack, transform.position, true, 1, 3);
         StartCoroutine(DelayAnimActive("LightAttack", 1.2f));
         anim.SetBool("WalkLeft", false);       
         anim.SetBool("WalkRight", false);
@@ -64,6 +64,7 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
 
     public void AnimHeavyAttack()
     {
+        SoundManager.instance.Play(Boss.ROAR, transform.position, true, 3);
         smashParticles.Clear();
         smashParticles.Play();
         smashParticles.transform.position = transform.position + transform.forward;
@@ -120,7 +121,7 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
     IEnumerator SmashParticles()
     {
         yield return new WaitForSeconds(0.9f);        
-        SoundManager.instance.Play(Boss.SMASH, transform.position, true, 1.3f);
+        SoundManager.instance.Play(Boss.SMASH, transform.position, true, 3);
        
     }
 
@@ -175,7 +176,7 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
 
     public void AnimTaunt()
     {
-        SoundManager.instance.Play(Boss.ROAR, transform.position, true, 1, false);
+        SoundManager.instance.Play(Boss.ROAR, transform.position, true, 5);
         _healthBar.gameObject.SetActive(true);
         StartCoroutine(DelayAnimActive("Taunt", 2.3f));
         anim.SetBool("Idle", false);

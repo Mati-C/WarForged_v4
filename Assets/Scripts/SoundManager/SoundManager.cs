@@ -87,6 +87,8 @@ public class SoundManager : MonoBehaviour
         audioSource.spatialBlend = position != new Vector3() ? 1 : 0;
         audioSource.volume = volume;
         audioSource.pitch = randomPitch ? UnityEngine.Random.Range(0.9f, 1.1f) : 1;
+        if (volume > 1)
+            audioSource.minDistance *= volume;
         audioSource.Play();
     }
 
@@ -122,6 +124,8 @@ public class SoundManager : MonoBehaviour
         audioSource.spatialBlend = position != new Vector3() ? 1 : 0;
         audioSource.volume = volume;
         audioSource.pitch = randomPitch ? UnityEngine.Random.Range(pitch * 0.9f, pitch * 1.1f) : pitch;
+		if (volume > 1)
+			audioSource.minDistance *= volume;
         audioSource.Play();
     }
 
