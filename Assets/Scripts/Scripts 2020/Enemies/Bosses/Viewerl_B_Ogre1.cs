@@ -81,6 +81,7 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
     {
         anim.SetBool("Die", true);
         StartCoroutine(DieShake());
+        SoundManager.instance.BossMusic(false);
     }
 
     public void CreateExpPopTextScapeBoss(float exp)
@@ -194,6 +195,6 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
         StartCoroutine(DelayAnimActive("Taunt", 2.3f));
         anim.SetBool("Idle", false);
         anim.SetBool("Walk", false);
-        StartCoroutine(RoarShake());
+        _cam.CameraShakeSmooth(4, 10, 2);
     }
 }

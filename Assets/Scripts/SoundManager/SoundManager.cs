@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public GameObject soundCuePrefab;
     public float musicTransitionTime;
     public float musicVolume;
+    bool bossMusicPlaying;
 
     AudioSource ambienceAudio;
     AudioSource combatAudio;
@@ -59,6 +60,7 @@ public class SoundManager : MonoBehaviour
                 combatAudio = item;
         }
         aux = false;
+        bossMusicPlaying = false;
     }
 
     public void Play<T>(T soundType, Vector3 position = new Vector3(), bool randomPitch = false, float volume = 0.7f, bool loop = false)
@@ -124,14 +126,14 @@ public class SoundManager : MonoBehaviour
         audioSource.spatialBlend = position != new Vector3() ? 1 : 0;
         audioSource.volume = volume;
         audioSource.pitch = randomPitch ? UnityEngine.Random.Range(pitch * 0.9f, pitch * 1.1f) : pitch;
-		if (volume > 1)
-			audioSource.minDistance *= volume;
+        if (volume > 1)
+            audioSource.minDistance *= volume;
         audioSource.Play();
     }
 
     public void CombatMusic(bool activate)
     {
-        if (aux == activate) return;
+        if (aux == activate || bossMusicPlaying) return;
         aux = activate;
         StartCoroutine(CombatMusicCorroutine(activate));
     }
@@ -141,6 +143,7 @@ public class SoundManager : MonoBehaviour
         if (aux == activate) return;
         combatAudio.clip = music[(int)Music.BOSS_MUSIC];
         aux = activate;
+        bossMusicPlaying = true;
         musicVolume *= 1.2f;
         StartCoroutine(CombatMusicCorroutine(activate));
     }

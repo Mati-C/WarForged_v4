@@ -9,7 +9,7 @@ public class Model_Player : MonoBehaviour
     Controller_Player _controller;
     Viewer_Player _viewer;
     public Rigidbody rb;
-    PlayerCamera _playerCamera;
+    public PlayerCamera _playerCamera;
     Camera _mainCam;
     IA_CombatManager _IA_CM;
     FadeLevel _levelFade;
@@ -683,6 +683,9 @@ public class Model_Player : MonoBehaviour
 
         foreach (var item in destructibles)
             item.Break();
+
+        if (enemies.Count() > 0 || destructibles.Count() > 0)
+            _playerCamera.CameraShakeSmooth(0.5f, 5, 0.5f);
     }
 
     public void MakeDamageChargeAttack()
@@ -815,9 +818,11 @@ public class Model_Player : MonoBehaviour
 
     public IEnumerator CanCastChargeAttack()
     {
+        _viewer.chargeAttackBar.transform.GetChild(0).gameObject.SetActive(true);
         chargeAttackCasted = true;       
         yield return new WaitForSeconds(3f);
         chargeAttackCasted = false;
+        _viewer.chargeAttackBar.transform.GetChild(0).gameObject.SetActive(false);
         attackCombo = 0;
     }
 

@@ -207,7 +207,7 @@ public class Model_B_Ogre1 : ClassEnemy
             if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
             if (d >2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
 
-            player.CombatStateUp();
+            player.CombatStateUp(false);
             if (!_onTaunt)
             {
                 WalkEvent();
@@ -238,7 +238,7 @@ public class Model_B_Ogre1 : ClassEnemy
         {
             var d = Vector3.Distance(player.transform.position, transform.position);
            
-            player.CombatStateUp();
+            player.CombatStateUp(false);
 
             surroundTimer -= Time.deltaTime;
            
@@ -317,7 +317,7 @@ public class Model_B_Ogre1 : ClassEnemy
 
         attack.OnUpdate += () =>
         {
-            player.CombatStateUp();
+            player.CombatStateUp(false);
 
             var d = Vector3.Distance(player.transform.position, transform.position);
 

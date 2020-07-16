@@ -17,6 +17,7 @@ public class Viewer_Player : MonoBehaviour
     public ParticleSystem woodParticle;
     public ParticleSystem burlapParticle;
     Camera _mainCam;
+    public MainPostProcessController postProcess;
 
     [Header("Player Sprites:")]
 
@@ -170,6 +171,7 @@ public class Viewer_Player : MonoBehaviour
         swordLevel = GameObject.Find("Sword Level").GetComponent<Text>();
         swordExp = GameObject.Find("Sword Exp").GetComponent<Text>();
         powerEffect = GameObject.Find("FX Fire Camera").transform.GetChild(0).gameObject;
+        postProcess = FindObjectOfType<MainPostProcessController>();
     }
 
     void Start()
@@ -308,6 +310,7 @@ public class Viewer_Player : MonoBehaviour
     public void PowerSwordActivated()
     {
         SoundManager.instance.Play(Player.FIRE_SWORD, transform.position);
+        _player._playerCamera.CameraShakeSmooth(0.75f, 8, 1.7f);
         swordFire.Play();
         StartCoroutine(DelayAnimationActivate("FireSword", true, 1));
         StartCoroutine(DecreesPowerBar());
@@ -408,6 +411,7 @@ public class Viewer_Player : MonoBehaviour
             sparksParticle.Play();
             SoundManager.instance.Play(Hit.HARD, transform.position + transform.forward.normalized, true);
         }
+        _player._playerCamera.CameraShakeSmooth(0.5f, 8, 0.25f);
     }
 
     public void BlockAnim(bool b)
@@ -540,6 +544,12 @@ public class Viewer_Player : MonoBehaviour
 
         SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false, 1, 0.7f);
         SoundManager.instance.Play(Hit.SOFT, transform.position, true);
+
+        postProcess.HitEffect();
+        if (_player.life <= 40)
+            postProcess.LowLifeEffect();
+
+        _player._playerCamera.CameraShakeSmooth(2, 5, 0.5f);
     }
 
     public void AnimGetHitHeavy(bool d)
@@ -560,7 +570,13 @@ public class Viewer_Player : MonoBehaviour
                 break;
         }
         SoundManager.instance.PlayRandom(SoundManager.instance.damageVoice, transform.position, false);
-        SoundManager.instance.Play(Hit.SOFT, transform.position, true);
+        SoundManager.instance.Play(Hit.SOFT, transform.position, true, 1.2f);
+
+        postProcess.HitEffect();
+        if (_player.life <= 40)
+            postProcess.LowLifeEffect();
+
+        _player._playerCamera.CameraShakeSmooth(4, 8, 0.75f);
     }
 
     public void SwordPowerAnim()
@@ -617,10 +633,13 @@ public class Viewer_Player : MonoBehaviour
 
     IEnumerator SlowTimeCorrutine()
     {
+        postProcess.HeavyAttackEffect(true);
         Time.timeScale = 0.1f;
         _slowedTime = true;
         yield return new WaitForSeconds(0.1f);
         Time.timeScale = 1;
         _slowedTime = false;
+        postProcess.HeavyAttackEffect(false);
+        _player._playerCamera.CameraShakeSmooth(3, 5, 0.5f);
     }
 }

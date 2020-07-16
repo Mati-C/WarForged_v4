@@ -16,7 +16,7 @@ public class PostProcessController : MonoBehaviour
     [Range(0, 1)]
     public float OverlayExtraIntensity;
 
-    public Model player;
+    Model player;
 
     void Start()
     {

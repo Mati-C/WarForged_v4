@@ -183,6 +183,7 @@ public class CinematicController : MonoBehaviour
         playerHolder.gameObject.SetActive(true);
         _player.onCinematic = false;
         onCinematic = false;
+        SoundManager.instance.BossMusic(true);
     }
 
     IEnumerator Level_1RocksCinematic()
@@ -269,6 +270,7 @@ public class CinematicController : MonoBehaviour
 
     IEnumerator StartScapeBossLevel_1()
     {
+        SoundManager.instance.BossMusic(false);
         winTrigger.SetActive(true);
         boss.canScape = true;
         cinematicScapeLevel1 = false;
@@ -351,6 +353,7 @@ public class CinematicController : MonoBehaviour
         playerHolder.gameObject.SetActive(true);
         _player.onCinematic = false;
         onCinematic = false;
+        SoundManager.instance.BossMusic(true);
     }
 
     IEnumerator TutorialCinematic()
