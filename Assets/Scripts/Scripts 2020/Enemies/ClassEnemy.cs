@@ -42,6 +42,7 @@ public abstract class ClassEnemy : MonoBehaviour
 
     public bool range;
     public bool melee;
+    public bool boss;
     public float life;
     public float maxLife;
     public float exp;
@@ -221,7 +222,7 @@ public abstract class ClassEnemy : MonoBehaviour
             {              
                 _viewer.CreatePopText(playerFireSowrd.fireSwordBurnDamage);
                 life -= playerFireSowrd.fireSwordBurnDamage;
-                _viewer.UpdateLifeBar(life / maxLife);
+                if(boss)_viewer.UpdateLifeBar(life / maxLife);
                 tic = 1;
                 if(life<= 0 && !isDead)
                 {

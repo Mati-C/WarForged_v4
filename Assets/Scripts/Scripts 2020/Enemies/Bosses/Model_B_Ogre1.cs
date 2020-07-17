@@ -118,6 +118,7 @@ public class Model_B_Ogre1 : ClassEnemy
         playerFireSowrd = FindObjectOfType<FireSword>();
         exp = playerFireSowrd.BossOgre1Exp;
         phScape = transform.position;
+        boss = true;
 
         var attack = new N_FSM_State("ATTACK");
         var surround = new N_FSM_State("SURROUND");
@@ -145,6 +146,7 @@ public class Model_B_Ogre1 : ClassEnemy
             _view.anim.SetBool("LightAttack", false);
             _view.anim.SetBool("ComboAttack", false);
             TauntEvent();
+            _view.healthBar.SetActive(false);
             StartCoroutine(TauntCorrutine());
             StartCoroutine(HeavyAttackScape());
         };
@@ -206,8 +208,8 @@ public class Model_B_Ogre1 : ClassEnemy
         {
             var d = Vector3.Distance(player.transform.position, transform.position);
 
-            if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
-            if (d >2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
+            if (d < 5 && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+            if (d > 5 && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
 
             player.CombatStateUp(false);
             if (!_onTaunt)
@@ -262,8 +264,8 @@ public class Model_B_Ogre1 : ClassEnemy
             {
                 if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkRightEvent();
-                if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
-                if (d > 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
+                if (d < 5 && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+                if (d > 5 && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
@@ -277,8 +279,8 @@ public class Model_B_Ogre1 : ClassEnemy
             {
                 if (NearEnemy() && !cantAvoid) StartCoroutine(AvoidNearEntity());
                 WalkLeftEvent();
-                if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
-                if (d > 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
+                if (d < 5 && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+                if (d > 5 && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
                 Quaternion targetRotation;
                 var dir = (player.transform.position - transform.position).normalized;
                 dir.y = 0;
@@ -326,8 +328,8 @@ public class Model_B_Ogre1 : ClassEnemy
 
             var d = Vector3.Distance(player.transform.position, transform.position);
 
-            if (d < 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
-            if (d > 2.5f && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
+            if (d < 5 && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+            if (d > 5 && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
 
             if (!canAttack && !onAttackAnimation && !_onTaunt && !attackFinish)
             {
@@ -496,12 +498,12 @@ public class Model_B_Ogre1 : ClassEnemy
 
     IEnumerator MoveOnAttack()
     {
-        yield return new WaitForSeconds(0.14f);
-        rb.AddForce(transform.forward * 50, ForceMode.Impulse);
-        yield return new WaitForSeconds(0.3f);
-        rb.AddForce(transform.forward * 50, ForceMode.Impulse);
-        yield return new WaitForSeconds(0.3f);
-        rb.AddForce(transform.forward * 50, ForceMode.Impulse);
+        yield return new WaitForSeconds(1);
+        rb.AddForce(transform.forward * 200, ForceMode.Impulse);
+        yield return new WaitForSeconds(0.8f);
+        rb.AddForce(transform.forward * 200, ForceMode.Impulse);
+        yield return new WaitForSeconds(0.8f);
+        rb.AddForce(transform.forward * 200, ForceMode.Impulse);
     }
 
     public void MakeHeavyAttack()

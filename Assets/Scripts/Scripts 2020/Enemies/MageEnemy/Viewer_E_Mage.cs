@@ -50,7 +50,6 @@ public class Viewer_E_Mage : ClassEnemyViewer
     {       
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
-        anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
@@ -64,7 +63,6 @@ public class Viewer_E_Mage : ClassEnemyViewer
     {
         anim.SetBool("Walk", true);
         anim.SetBool("Idle", false);
-        anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
@@ -75,7 +73,6 @@ public class Viewer_E_Mage : ClassEnemyViewer
     {
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", true);
-        anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
@@ -85,7 +82,6 @@ public class Viewer_E_Mage : ClassEnemyViewer
     {
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
-        anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", true);
         anim.SetBool("Attack", false);
@@ -95,7 +91,6 @@ public class Viewer_E_Mage : ClassEnemyViewer
     {
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
-        anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", true);
         anim.SetBool("WalkRight", false);
         anim.SetBool("Attack", false);
@@ -116,7 +111,6 @@ public class Viewer_E_Mage : ClassEnemyViewer
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Run", false);
-        anim.SetBool("Retreat", true);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         anim.SetBool("AttackCombo", false);
@@ -127,7 +121,6 @@ public class Viewer_E_Mage : ClassEnemyViewer
         anim.SetBool("Walk", false);
         anim.SetBool("Idle", false);
         anim.SetBool("Run", false);
-        anim.SetBool("Retreat", false);
         anim.SetBool("WalkLeft", false);
         anim.SetBool("WalkRight", false);
         bloodParticle.Clear();

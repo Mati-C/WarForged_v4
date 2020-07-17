@@ -57,6 +57,7 @@ public class Viewer_Player : MonoBehaviour
     bool _boneMove;
     bool _soundPowerFull;
     bool _powerBarFill;
+    bool _powerBarDecres;
     Quaternion _swordBackSaveRotation;
 
     [Header("Player AxisValues:")]
@@ -341,6 +342,7 @@ public class Viewer_Player : MonoBehaviour
 
     IEnumerator DecreesChargeAttackBar()
     {
+        
         chargeAttackBar.fillAmount = 0;
         while (_player.chargeAttackColdown < _player.chargeAttackColdownMax)
         {
@@ -348,11 +350,12 @@ public class Viewer_Player : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         if (chargeAttackBar.fillAmount > 1) chargeAttackBar.fillAmount = 1;
+
     }
 
     public void OnHit(float val)
     {        
-       if(!_powerBarFill) StartCoroutine(FillPowerBar(_player.fireEnergy / _fireSword.energyToUseFireSword));
+       if(!_powerBarFill && !_powerBarDecres) StartCoroutine(FillPowerBar(_player.fireEnergy / _fireSword.energyToUseFireSword));
     }
     
     IEnumerator FillPowerBar(float target)
@@ -385,6 +388,7 @@ public class Viewer_Player : MonoBehaviour
 
     IEnumerator DecreesPowerBar()
     {
+        _powerBarDecres = true;
         while(_player.fireSwordCurrentTime < _fireSword.fireSwordTime)
         {
             powerBar.fillAmount -= Time.deltaTime / _fireSword.fireSwordTime;
@@ -394,6 +398,7 @@ public class Viewer_Player : MonoBehaviour
         powerBar.material.SetFloat("_InsideGlowOpacity", 0);
         powerEffect.SetActive(false);
         _soundPowerFull = false;
+        _powerBarDecres = false;
     }
 
     public void ActivateSword()

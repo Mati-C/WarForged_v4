@@ -132,7 +132,7 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
         if (checkPointActivated && c.GetComponent<Model_Player>())
         {
                      
-            if (player.life != player.maxLife || player.fireEnergy <= player.fireSword.energyToUseFireSword)
+            if (player.life != player.maxLife && !player.flamesOn || player.fireEnergy <= player.fireSword.energyToUseFireSword && !player.flamesOn)
             {
                 player.UpdateLife(player.maxLife);
                 player.fireEnergy += 0.3f;
