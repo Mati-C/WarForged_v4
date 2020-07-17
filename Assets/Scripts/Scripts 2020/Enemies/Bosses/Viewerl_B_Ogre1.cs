@@ -103,11 +103,63 @@ public class Viewerl_B_Ogre1 : ClassEnemyViewer
         }
     }
 
+    public void LastComboEffect()
+    {
+        StartCoroutine(LastComboAttack());
+    }
+
+    public void Dirt()
+    {
+        smashParticles.Clear();
+        smashParticles.Play();
+        smashParticles.transform.position = transform.position + transform.forward;
+    }
+
+    public IEnumerator LastComboAttack()
+    {
+        
+        yield return new WaitForSeconds(0.1f);
+        float t = 1;
+        onSmashAttack = true;
+        SoundManager.instance.Play(Boss.SMASH, transform.position, true, 3);
+        while (t >0)
+        {
+            _cam.CameraShake(1.5f, 1.5f);
+            t -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        onSmashAttack = false;
+        _cam.CameraShake(0,0);
+    }
+
     IEnumerator DieShake()
     {
-        _cam.CameraShake(1, 1);
-        yield return new WaitForSeconds(0.3f);
-        _cam.CameraShake(0, 0);
+
+        yield return new WaitForSeconds(1.4f);
+        smashParticles.Clear();
+        smashParticles.Play();
+        smashParticles.transform.position = transform.position;
+        yield return new WaitForSeconds(0.1f);
+
+        onSmashAttack = true;
+        float t = 1;
+        bool f = false;
+        while (t > 0)
+        {
+            _cam.CameraShake(3, 3);
+            t -= Time.deltaTime;
+
+            if (t <= 1 && !f)
+            {
+                f = true;
+                SoundManager.instance.Play(Boss.SMASH, transform.position, true, 3);
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+        _cam.CameraShake(0,0);
+        onSmashAttack = false;
+        
     }
 
     IEnumerator SmashShake()

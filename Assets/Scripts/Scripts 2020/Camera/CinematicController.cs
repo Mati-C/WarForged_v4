@@ -233,7 +233,7 @@ public class CinematicController : MonoBehaviour
         while(d>1.2f)
         {
             d = Vector3.Distance(_player.transform.position, PH_Rocks1.position);
-            _player.WalkEvent();
+            _player.RunEvent();
 
             Quaternion targetRotation;
 
@@ -253,7 +253,7 @@ public class CinematicController : MonoBehaviour
         while (d2 > 1.2f)
         {
             d2 = Vector3.Distance(_player.transform.position, PH_Rocks2.position);
-            _player.WalkEvent();
+            _player.RunEvent();
 
             Quaternion targetRotation;
 

@@ -328,12 +328,14 @@ public class Model_B_Ogre1 : ClassEnemy
 
             var d = Vector3.Distance(player.transform.position, transform.position);
 
-            if (d < 5 && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
-            if (d > 5 && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
+            
 
             if (!canAttack && !onAttackAnimation && !_onTaunt && !attackFinish)
             {
                 if (d > 0.5f) WalkEvent();
+
+                if (d < 5 && !_view.onSmashAttack) playerCamera.CameraShake(0.5f, 0.5f);
+                if (d > 5 && !_view.onSmashAttack) playerCamera.CameraShake(0, 0);
 
                 Vector3 _dir = Vector3.zero;
                 Quaternion targetRotation;
@@ -498,9 +500,11 @@ public class Model_B_Ogre1 : ClassEnemy
 
     IEnumerator MoveOnAttack()
     {
+        SoundManager.instance.Play(Boss.MONSTER_ATTACK1, transform.position, true, 1.3f);
         yield return new WaitForSeconds(1);
+        SoundManager.instance.Play(Boss.MONSTER_ATTACK2, transform.position, true, 1.3f);
         rb.AddForce(transform.forward * 200, ForceMode.Impulse);
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.8f);       
         rb.AddForce(transform.forward * 200, ForceMode.Impulse);
         yield return new WaitForSeconds(0.8f);
         rb.AddForce(transform.forward * 200, ForceMode.Impulse);
@@ -526,20 +530,17 @@ public class Model_B_Ogre1 : ClassEnemy
             {
                 case 0:
                     _comboAmount++;
-                    player.GetDamage(combo1AttackDamage, transform, Model_Player.DamageType.Heavy);
-                    SoundManager.instance.Play(Boss.MONSTER_ATTACK1, transform.position, true, 1.3f);
+                    player.GetDamage(combo1AttackDamage, transform, Model_Player.DamageType.Heavy);                    
                     break;
 
                 case 1:
                     _comboAmount++;
                     player.GetDamage(combo2AttackDamage, transform, Model_Player.DamageType.Heavy);
-                    SoundManager.instance.Play(Boss.MONSTER_ATTACK2, transform.position, true, 1.3f);
                     break;
 
                 case 2:
                     _comboAmount = 0;
-                    player.GetDamage(combo3AttackDamage, transform, Model_Player.DamageType.Heavy);
-                    SoundManager.instance.Play(Boss.MONSTER_ATTACK3, transform.position, true, 1.3f);
+                    player.GetDamage(combo3AttackDamage, transform, Model_Player.DamageType.Heavy);                   
                     break;
             }
         }
@@ -561,6 +562,7 @@ public class Model_B_Ogre1 : ClassEnemy
                 playerFireSowrd.SwordExp(exp);
                 DieEvent();
                 if(!CC.cinematicLevel2) CC.barsAnimator.SetBool("Activate", false);
+                SoundManager.instance.Play(Objects.IRON_BARS, CC.barsAnimator.bodyPosition, true, 1);
             }
         }
 

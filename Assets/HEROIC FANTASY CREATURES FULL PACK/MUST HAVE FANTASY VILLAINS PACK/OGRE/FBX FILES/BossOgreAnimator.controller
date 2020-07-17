@@ -154,6 +154,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: ComboAttack
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Die
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Taunt
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6449257087099803955}
   m_Solo: 0
@@ -824,6 +830,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: LightAttack
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Die
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Taunt
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8552527519486543784}
   m_Solo: 0
@@ -874,6 +886,12 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: HeavyAttack
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Die
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Taunt
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5113068676455955319}
@@ -1245,7 +1263,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: walk
-  m_Speed: 0.6
+  m_Speed: 0.9
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8650958661826287268}
