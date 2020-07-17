@@ -56,6 +56,7 @@ public class Viewer_Player : MonoBehaviour
     bool _slowSound;
     bool _boneMove;
     bool _soundPowerFull;
+    bool _powerBarFill;
     Quaternion _swordBackSaveRotation;
 
     [Header("Player AxisValues:")]
@@ -336,6 +337,8 @@ public class Viewer_Player : MonoBehaviour
         StartCoroutine(DecreesChargeAttackBar());
     }
 
+   
+
     IEnumerator DecreesChargeAttackBar()
     {
         chargeAttackBar.fillAmount = 0;
@@ -349,14 +352,15 @@ public class Viewer_Player : MonoBehaviour
 
     public void OnHit(float val)
     {        
-        StartCoroutine(FillPowerBar(_player.fireEnergy / _fireSword.energyToUseFireSword));
+       if(!_powerBarFill) StartCoroutine(FillPowerBar(_player.fireEnergy / _fireSword.energyToUseFireSword));
     }
     
     IEnumerator FillPowerBar(float target)
     {
+        _powerBarFill = true;
         while (powerBar.fillAmount < target && powerBar.fillAmount < 1)
         {
-            powerBar.fillAmount += Time.deltaTime / 10;
+            powerBar.fillAmount += Time.deltaTime / 5;
             yield return new WaitForEndOfFrame();
         }
         powerBar.fillAmount = target;
@@ -369,6 +373,14 @@ public class Viewer_Player : MonoBehaviour
             if(!_soundPowerFull)SoundManager.instance.Play(Player.POWER_FULL, transform.position, true);
             _soundPowerFull = true;
         }
+        _powerBarFill = false;
+    }
+
+    public void PlusEnergy(float e)
+    {
+        var t = 1/ _fireSword.fireSwordTime;
+        powerBar.fillAmount += t * e;
+        if (powerBar.fillAmount > 1) powerBar.fillAmount = 1;
     }
 
     IEnumerator DecreesPowerBar()

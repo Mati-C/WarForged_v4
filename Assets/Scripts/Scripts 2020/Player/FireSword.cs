@@ -145,23 +145,23 @@ public class FireSword : MonoBehaviour
                 int c = (int)currentExp;
                 _viewer.timertAlphaSwordExp = 2;
                 _viewer.swordExp.text = c + "Exp";
+
+                if (expEarned >= expForEachLevel[fireSwordLevel] && fireSwordLevel < 9)
+                {
+                    expEarned -= expForEachLevel[fireSwordLevel];
+                    fireSwordLevel++;
+                    int level = fireSwordLevel + 1;
+                    _viewer.swordLevel.text = "Level-" + level;
+                    SoundManager.instance.Play(Player.LEVEL_UP, transform.position, true);
+                    LevelUpdates[fireSwordLevel]();
+                }
+
                 t -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
 
             int e = (int)expEarned;
             expEarned = e;
-
-
-            if (expEarned >= expForEachLevel[fireSwordLevel] && fireSwordLevel < 9)
-            {
-                expEarned -= expForEachLevel[fireSwordLevel];
-                fireSwordLevel++;              
-                int level = fireSwordLevel + 1;
-                _viewer.swordLevel.text = "Level-" + level;
-                SoundManager.instance.Play(Player.LEVEL_UP, transform.position, true);
-                LevelUpdates[fireSwordLevel]();
-            }
 
             if (currentExp > 0)
             {
@@ -212,6 +212,7 @@ public class FireSword : MonoBehaviour
     public void MoreTimeFireSword()
     {
         _player.fireSwordCurrentTime -= timeForDead;
+        _viewer.PlusEnergy(timeForDead);
     }
 
     public void OnDrawGizmos()

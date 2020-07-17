@@ -254,7 +254,7 @@ public class TutorialManager : MonoBehaviour
         texTutoUI.text = "Destroy the rune to close the portal and stop the enemies from appearing";
         _stopFollowText = true;
         StartCoroutine(FollowTutoTextCenter());
-        plusPos = Vector3.zero;
+        plusPos = new Vector3(0,-1.3f,0);
         _objective = objective6;
         var rune = FindObjectOfType<Portal_Rune>();
 
