@@ -126,7 +126,9 @@ public class CheckPoint : MonoBehaviour, ICheckObservable
 
             swordLevelText.text = "Level-" + l;
 
-            swordInfoText.text = "Next Level: " + _fireSword.LevelsInfo[_fireSword.fireSwordLevel];
+            if (_fireSword.fireSwordLevel < 9) swordInfoText.text = "Next Level: " + _fireSword.LevelsInfo[_fireSword.fireSwordLevel];
+
+            else swordInfoText.text = "";
         }
 
         if (checkPointActivated && c.GetComponent<Model_Player>())

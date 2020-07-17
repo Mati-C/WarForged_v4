@@ -373,7 +373,7 @@ public class Viewer_Player : MonoBehaviour
             powerBar.fillAmount = 1;
             powerBar.material.SetFloat("_InsideGlowOpacity", 1);
             powerEffect.SetActive(true);
-            if(!_soundPowerFull)SoundManager.instance.Play(Player.POWER_FULL, transform.position, true);
+            if(!_soundPowerFull)SoundManager.instance.Play(Player.POWER_FULL, transform.position, true,3.5f);
             _soundPowerFull = true;
         }
         _powerBarFill = false;
@@ -665,7 +665,7 @@ public class Viewer_Player : MonoBehaviour
     IEnumerator SlowSoundTimer()
     {
         _slowSound = true;
-        SoundManager.instance.Play(Player.HEAVY_ATTACK, transform.position, true);
+        SoundManager.instance.Play(Player.HEAVY_ATTACK, transform.position, true, 3);
         yield return new WaitForSeconds(1);
         _slowSound = false;
     }

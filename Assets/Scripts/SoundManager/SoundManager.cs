@@ -211,6 +211,7 @@ public class SoundManager : MonoBehaviour
                 if (!combatAudio.isPlaying)
                     combatAudio.Play();
                 combatAudio.volume = t * (musicVolume);
+                if (combatAudio.volume > 0.2f) combatAudio.volume = 0.2f;
                 ambienceAudio.volume = Mathf.Lerp(musicVolume, 0.75f, t);
             }
             else

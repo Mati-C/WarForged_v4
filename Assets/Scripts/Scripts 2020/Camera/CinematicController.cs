@@ -368,6 +368,7 @@ public class CinematicController : MonoBehaviour
             t -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        SoundManager.instance.BossMusic(true);
         cinematicBarCam.Priority = 0;
         cinematicBossLevel1Cam.Priority = 1;
 
@@ -389,7 +390,7 @@ public class CinematicController : MonoBehaviour
         playerHolder.gameObject.SetActive(true);
         _player.onCinematic = false;
         onCinematic = false;
-        SoundManager.instance.BossMusic(true);
+        
     }
 
     IEnumerator TutorialCinematic()

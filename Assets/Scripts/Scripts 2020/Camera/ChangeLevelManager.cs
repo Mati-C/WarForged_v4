@@ -43,14 +43,16 @@ public class ChangeLevelManager : MonoBehaviour
     IEnumerator WinGame()
     {
         _fade.FadeIn(false);
-        while(_fade.fadeIn)
+        _player.onCinematic = true;
+        _player.idleEvent();
+        while (_fade.fadeIn)
         {
             yield return new WaitForEndOfFrame();
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         winMenu.SetActive(true);
-        _player.onCinematic = true;
+        
         if (_viewer.pauseMenu.activeSelf) _viewer.pauseMenu.SetActive(false);
 
     }

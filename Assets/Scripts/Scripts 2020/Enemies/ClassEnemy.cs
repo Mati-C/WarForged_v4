@@ -222,7 +222,7 @@ public abstract class ClassEnemy : MonoBehaviour
             {              
                 _viewer.CreatePopText(playerFireSowrd.fireSwordBurnDamage);
                 life -= playerFireSowrd.fireSwordBurnDamage;
-                if(boss)_viewer.UpdateLifeBar(life / maxLife);
+                if(!boss)_viewer.UpdateLifeBar(life / maxLife);
                 tic = 1;
                 if(life<= 0 && !isDead)
                 {
