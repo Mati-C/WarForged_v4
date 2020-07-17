@@ -65,6 +65,7 @@ public class Model_B_Ogre1 : ClassEnemy
     public Action HeavyAttackEvent;
 
     bool _onTaunt;
+    bool _firsSee;
 
     IEnumerator TauntCorrutine()
     {
@@ -201,7 +202,7 @@ public class Model_B_Ogre1 : ClassEnemy
 
         persuit.OnEnter += () =>
         {
-            
+            _firsSee = true;
         };
 
         persuit.OnUpdate += () =>
@@ -426,7 +427,7 @@ public class Model_B_Ogre1 : ClassEnemy
         lightAttackCoef = 60;
         HeavyAttackCoef = 0;
         ComboAttackCoef = 0;
-        if (!CC.cinematicLevel2)
+        if (!CC.cinematicLevel2 && enemyWavesStrategy)
         {
             CC.barsAnimator.SetBool("Activate", false);
             CC.cinematicLevel2 = true;
@@ -458,12 +459,13 @@ public class Model_B_Ogre1 : ClassEnemy
             StartCoroutine(WavesStart());
         }
 
-        if(!CC.cinematicLevel1)
+        if(!CC.cinematicLevel1 && !enemyWavesStrategy)
         {
             CC.barsAnimator.SetBool("Activate", false);
             CC.cinematicLevel1 = true;
         }
-        SoundManager.instance.BossMusic(false);
+        if(_firsSee)SoundManager.instance.BossMusic(false);
+        _firsSee = false;
     }
 
     int StartAttackStrategy()

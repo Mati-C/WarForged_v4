@@ -49,6 +49,8 @@ MonoBehaviour:
     type: 3}
   musicTransitionTime: 2
   musicVolume: 0.3
+  ambienceAudio: {fileID: 0}
+  combatAudio: {fileID: 0}
   objects:
   - {fileID: 8300000, guid: a71f45a608948a945b148e588f118e5f, type: 3}
   - {fileID: 8300000, guid: 7956c47b5868003419d31664ac5b087a, type: 3}
