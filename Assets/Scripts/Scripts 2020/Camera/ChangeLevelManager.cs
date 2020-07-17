@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Sound;
 
 public class ChangeLevelManager : MonoBehaviour
 {
@@ -14,9 +14,11 @@ public class ChangeLevelManager : MonoBehaviour
     public GameObject winMenu;
     public Model_Player _player;
     public Viewer_Player _viewer;
+    public AudioSource winMusic;
 
     private void Awake()
     {
+        
         _fade = FindObjectOfType<FadeLevel>();
         _player = FindObjectOfType<Model_Player>();
         _viewer = FindObjectOfType<Viewer_Player>();
@@ -45,14 +47,22 @@ public class ChangeLevelManager : MonoBehaviour
         _fade.FadeIn(false);
         _player.onCinematic = true;
         _player.idleEvent();
+        winMusic.volume = 0;
+        winMusic.Play();
+        
         while (_fade.fadeIn)
         {
+            winMusic.volume += Time.deltaTime/3;
+            if (winMusic.volume > 1) winMusic.volume = 1;
+            SoundManager.instance.ambienceAudio.volume -= Time.deltaTime/3;
+            if (SoundManager.instance.ambienceAudio.volume < 0) SoundManager.instance.ambienceAudio.volume = 0;
             yield return new WaitForEndOfFrame();
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         winMenu.SetActive(true);
         
+
         if (_viewer.pauseMenu.activeSelf) _viewer.pauseMenu.SetActive(false);
 
     }
