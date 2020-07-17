@@ -423,6 +423,9 @@ public class Model_B_Ogre1 : ClassEnemy
         _view.healthBar.gameObject.SetActive(false);
         fase2 = false;
         fase3 = false;
+        lightAttackCoef = 60;
+        HeavyAttackCoef = 0;
+        ComboAttackCoef = 0;
         if (!CC.cinematicLevel2)
         {
             CC.barsAnimator.SetBool("Activate", false);
@@ -563,6 +566,7 @@ public class Model_B_Ogre1 : ClassEnemy
                 DieEvent();
                 if(!CC.cinematicLevel2) CC.barsAnimator.SetBool("Activate", false);
                 SoundManager.instance.Play(Objects.IRON_BARS, CC.barsAnimator.bodyPosition, true, 1);
+                _view.healthBar.gameObject.SetActive(false);
             }
         }
 
